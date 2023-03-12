@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-// Delete me
-export const Thing = () => {
+export function Thing() {
   return <div>Welcome to your first test package.</div>;
-};
+}
