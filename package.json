@@ -1,10 +1,10 @@
 {
-  "name": "react-cryptocurrency-icons",
+  "name": "react-web3-icons",
   "version": "0.1.0",
   "license": "MIT",
   "author": "derodero24",
   "main": "dist/index.js",
-  "module": "dist/react-cryptocurrency-icons.esm.js",
+  "module": "dist/react-web3-icons.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
@@ -41,11 +41,11 @@
   },
   "size-limit": [
     {
-      "path": "dist/react-cryptocurrency-icons.cjs.production.min.js",
+      "path": "dist/react-web3-icons.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/react-cryptocurrency-icons.esm.js",
+      "path": "dist/react-web3-icons.esm.js",
       "limit": "10 KB"
     }
   ],
