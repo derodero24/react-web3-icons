@@ -1,21 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import {
-  Bitcoin,
-  BitcoinMono,
-  OpenSea,
-  OpenSeaMono,
-  OpenSea2,
-  OpenSeaMono2,
-  LooksRare,
-  LooksRare2,
-  LooksRareMono,
-  LooksRareToken,
-  LooksRareToken2,
-  Bitcoin2,
-  BitcoinMono2,
-} from '../.';
+import * as icn from '../.';
 
 function App() {
   return (
@@ -24,29 +10,36 @@ function App() {
         <li>
           <p>Bitcoin</p>
           <div>
-            <Bitcoin />
-            <Bitcoin2 />
-            <BitcoinMono />
-            <BitcoinMono2 />
+            <icn.Bitcoin />
+            <icn.Bitcoin2 />
+            <icn.BitcoinMono />
+            <icn.BitcoinMono2 />
+          </div>
+        </li>
+        <li>
+          <p>Ethereum</p>
+          <div>
+            <icn.Ethereum />
+            <icn.EthereumMono />
           </div>
         </li>
         <li>
           <p>OpenSea</p>
           <div>
-            <OpenSea />
-            <OpenSea2 />
-            <OpenSeaMono />
-            <OpenSeaMono2 />
+            <icn.OpenSea />
+            <icn.OpenSea2 />
+            <icn.OpenSeaMono />
+            <icn.OpenSeaMono2 />
           </div>
         </li>
         <li>
           <p>LooksRare</p>
           <div>
-            <LooksRare />
-            <LooksRare2 />
-            <LooksRareMono />
-            <LooksRareToken />
-            <LooksRareToken2 />
+            <icn.LooksRare />
+            <icn.LooksRare2 />
+            <icn.LooksRareMono />
+            <icn.LooksRareToken />
+            <icn.LooksRareToken2 />
           </div>
         </li>
       </ul>
