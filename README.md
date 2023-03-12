@@ -24,41 +24,18 @@ function App() {
 
 ## Todo
 
-- Coin
-
-  - USDT
-  - BNB
-  - USDC
-  - XRP
-  - ADA
-  - MATIC
-  - DOT
-
-- Marketplace
-
-  - Foundation
-  - Magic Eden
-  - TofuNFT
-  - X2Y2
-  - Blur
-
-- DEX
-
-  - Uniswap
-  - Curve Finance
-  - dYdX
-  - PancakeSwap
-
-- Exchange
-
-  - Binance
-  - Kraken
-  - Coinbase
-
-- DAO
-- Game
-- Metaverse
-- Other services/contents
+- Add more icons
+  - Coin (e.g. USDT, BNB, MATIC)
+  - Marketplace (e.g. Foundation, X2Y2, Blur)
+  - DEX (e.g. Uniswap, Curve Finance, dYdX)
+  - Exchange (e.g. Binance, Kraken, Coinbase)
+  - DAO
+  - Game
+  - Metaverse
+  - Other services/contents
+- MECE foldering
+- Improve test code
+- Improve README
 
 ## Contribution
 
