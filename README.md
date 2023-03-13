@@ -15,12 +15,12 @@ pnpm add react-web3-icons     # for pnpm users
 ## Quick Start
 
 ```ts
-import { Bitcoin } as icn from '../.';
+import { Btc } from 'react-web3-icons';
 
 function App() {
   return (
     <div>
-      <Bitcoin />
+      <Btc />
     </div>
   );
 }
@@ -33,6 +33,7 @@ function App() {
   - Marketplace (e.g. Foundation, X2Y2, Blur)
   - DEX (e.g. Uniswap, Curve Finance, dYdX)
   - Exchange (e.g. Binance, Kraken, Coinbase)
+  - Chain (e.g. Binance Chain)
   - DAO
   - Game
   - Metaverse

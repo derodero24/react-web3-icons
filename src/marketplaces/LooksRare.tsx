@@ -1,10 +1,7 @@
 import React from 'react';
+import { IconProps } from '../lib';
 
-interface Props extends React.SVGAttributes<SVGElement> {
-  title?: string;
-}
-
-export function LooksRare(props: Props) {
+export function LooksRare(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +35,7 @@ export function LooksRare(props: Props) {
   );
 }
 
-export function LooksRare2(props: Props) {
+export function LooksRare2(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +61,7 @@ export function LooksRare2(props: Props) {
   );
 }
 
-export function LooksRareMono(props: Props) {
+export function LooksRareMono(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +86,7 @@ export function LooksRareMono(props: Props) {
   );
 }
 
-export function LooksRareToken(props: Props) {
+export function LooksRareToken(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +121,7 @@ export function LooksRareToken(props: Props) {
   );
 }
 
-export function LooksRareToken2(props: Props) {
+export function LooksRareToken2(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

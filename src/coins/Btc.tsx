@@ -1,10 +1,7 @@
 import React from 'react';
+import { IconProps } from '../lib';
 
-interface Props extends React.SVGAttributes<SVGElement> {
-  title?: string;
-}
-
-export function Bitcoin(props: Props) {
+export function Btc(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +23,7 @@ export function Bitcoin(props: Props) {
   );
 }
 
-export function Bitcoin2(props: Props) {
+export function Btc2(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +41,7 @@ export function Bitcoin2(props: Props) {
   );
 }
 
-export function BitcoinMono(props: Props) {
+export function BtcMono(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +60,7 @@ export function BitcoinMono(props: Props) {
   );
 }
 
-export function BitcoinMono2(props: Props) {
+export function BtcMono2(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

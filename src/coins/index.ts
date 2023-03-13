@@ -1,2 +1,2 @@
-export * from './Bitcoin';
-export * from './Ethereum';
+export * from './Btc';
+export * from './Eth';

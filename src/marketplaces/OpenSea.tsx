@@ -1,10 +1,7 @@
 import React from 'react';
+import { IconProps } from '../lib';
 
-interface Props extends React.SVGAttributes<SVGElement> {
-  title?: string;
-}
-
-export function OpenSea(props: Props) {
+export function OpenSea(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +23,7 @@ export function OpenSea(props: Props) {
   );
 }
 
-export function OpenSea2(props: Props) {
+export function OpenSea2(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +45,7 @@ export function OpenSea2(props: Props) {
   );
 }
 
-export function OpenSeaMono(props: Props) {
+export function OpenSeaMono(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +61,7 @@ export function OpenSeaMono(props: Props) {
   );
 }
 
-export function OpenSeaMono2(props: Props) {
+export function OpenSeaMono2(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

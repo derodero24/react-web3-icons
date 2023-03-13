@@ -1,10 +1,7 @@
 import React from 'react';
+import { IconProps } from '../lib';
 
-interface Props extends React.SVGAttributes<SVGElement> {
-  title?: string;
-}
-
-export function Ethereum(props: Props) {
+export function Eth(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +27,7 @@ export function Ethereum(props: Props) {
   );
 }
 
-export function EthereumMono(props: Props) {
+export function EthMono(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

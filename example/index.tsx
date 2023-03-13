@@ -10,17 +10,31 @@ function App() {
         <li>
           <p>Bitcoin</p>
           <div>
-            <icn.Bitcoin />
-            <icn.Bitcoin2 />
-            <icn.BitcoinMono />
-            <icn.BitcoinMono2 />
+            <icn.Btc />
+            <icn.Btc2 />
+            <icn.BtcMono />
+            <icn.BtcMono2 />
           </div>
         </li>
         <li>
           <p>Ethereum</p>
           <div>
-            <icn.Ethereum />
-            <icn.EthereumMono />
+            <icn.Eth />
+            <icn.EthMono />
+          </div>
+        </li>
+        <li>
+          <p>Binance</p>
+          <div>
+            <icn.Binance />
+            <icn.BinanceMono />
+          </div>
+        </li>
+        <li>
+          <p>Uniswap</p>
+          <div>
+            <icn.Uniswap />
+            <icn.UniswapMono />
           </div>
         </li>
         <li>
