@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "license": "MIT",
   "author": "derodero24",
+  "repository": "github:derodero24/react-web3-icons",
+  "homepage": "https://github.com/derodero24/react-web3-icons#readme",
   "main": "dist/index.js",
   "module": "dist/react-web3-icons.esm.js",
   "typings": "dist/index.d.ts",
@@ -18,6 +20,20 @@
     "size": "size-limit",
     "start": "dts watch",
     "test": "dts test --passWithNoTests"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^8.2.4",
+    "@tsconfig/create-react-app": "^1.0.3",
+    "@tsconfig/recommended": "^1.0.2",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "dts-cli": "^1.6.3",
+    "husky": "^8.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "size-limit": "^8.2.4",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.5"
   },
   "husky": {
     "hooks": {
@@ -48,19 +64,5 @@
       "path": "dist/react-web3-icons.esm.js",
       "limit": "10 KB"
     }
-  ],
-  "devDependencies": {
-    "@size-limit/preset-small-lib": "^8.2.4",
-    "@tsconfig/create-react-app": "^1.0.3",
-    "@tsconfig/recommended": "^1.0.2",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "dts-cli": "^1.6.3",
-    "husky": "^8.0.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "size-limit": "^8.2.4",
-    "tslib": "^2.5.0",
-    "typescript": "^4.9.5"
-  }
+  ]
 }
