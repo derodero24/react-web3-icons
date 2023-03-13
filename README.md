@@ -1,4 +1,4 @@
-# DTS React User Guide
+# React Web3 Icons
 
 ## Find icons
 
@@ -15,12 +15,13 @@ pnpm add react-web3-icons     # for pnpm users
 ## Quick Start
 
 ```ts
-import { Btc } from 'react-web3-icons';
+import { Btc, BtcMono } from 'react-web3-icons';
 
 function App() {
   return (
     <div>
-      <Btc />
+      <Btc style={{ fontSize: '1.5rem' }} />
+      <BtcMono style={{ color: '#1f2937', fontSize: '1.5rem' }} />
     </div>
   );
 }
@@ -34,10 +35,16 @@ function App() {
   - DEX (e.g. Uniswap, Curve Finance, dYdX)
   - Exchange (e.g. Binance, Kraken, Coinbase)
   - Chain (e.g. Binance Chain)
+  - Wallet (e.g. Metamask, Trust Wallet, Gnosis Safe)
+  - Node (e.g. Alchemy, Infura, QuickNode)
+  - Tool/Library (e.g. ethers.js, Hardhat, OpenZeppelin)
+  - Storage (e.g. Pinata, Fleek)
+  - Domain (e.g. ENS, Unstoppable)
   - DAO
   - Game
   - Metaverse
-  - Other services/contents
+  - Company
+  - Other services/contents (e.g. Etherscan, DefiLlama)
 - MECE foldering
 - Improve example page
 - Improve test code
