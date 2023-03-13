@@ -56,6 +56,13 @@ function App() {
             <icn.LooksRareToken2 />
           </div>
         </li>
+        <li>
+          <p>MetaMask</p>
+          <div>
+            <icn.MetaMask />
+            <icn.MetaMask2 />
+          </div>
+        </li>
       </ul>
     </div>
   );
