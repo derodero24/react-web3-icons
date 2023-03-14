@@ -1,3 +1,5 @@
+![](https://img.shields.io/npm/v/react-web3-icons?color=blue)
+
 # React Web3 Icons
 
 ## Find icons
