@@ -3,6 +3,7 @@ export * from './Astar';
 export * from './Avalanche';
 export * from './BinanceSmartChain';
 export * from './Bitcoin';
+export * from './Cardano';
 export * from './Ethereum';
 export * from './Polkadot';
 export * from './Polygon';

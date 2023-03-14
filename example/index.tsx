@@ -53,6 +53,13 @@ function App() {
           </div>
         </li>
         <li>
+          <p>Cardano</p>
+          <div>
+            <icn.Cardano />
+            <icn.CardanoMono />
+          </div>
+        </li>
+        <li>
           <p>Polkadot</p>
           <div>
             <icn.Polkadot />
