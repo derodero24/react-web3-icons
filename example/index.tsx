@@ -38,6 +38,14 @@ function App() {
           </div>
         </li>
         <li>
+          <p>Algorand</p>
+          <div>
+            <icn.Algorand />
+            <icn.Algorand2 />
+            <icn.AlgorandMono />
+          </div>
+        </li>
+        <li>
           <p>BTC</p>
           <div>
             <icn.Btc />
