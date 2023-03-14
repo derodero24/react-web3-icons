@@ -104,6 +104,12 @@ function App() {
             <icn.AlchemyMono />
           </div>
         </li>
+        <li>
+          <p>Pinata</p>
+          <div>
+            <icn.Pinata />
+          </div>
+        </li>
       </ul>
     </div>
   );
