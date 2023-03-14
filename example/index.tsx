@@ -141,6 +141,13 @@ function App() {
           </div>
         </li>
         <li>
+          <p>Phantom Wallet</p>
+          <div>
+            <icn.PhantomWallet />
+            <icn.PhantomWalletMono />
+          </div>
+        </li>
+        <li>
           <p>Alchemy</p>
           <div>
             <icn.Alchemy />
@@ -161,5 +168,5 @@ function App() {
 ReactDOM.createRoot(document.getElementById('root') as Element).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
