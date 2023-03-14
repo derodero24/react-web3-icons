@@ -124,6 +124,14 @@ function App() {
           </div>
         </li>
         <li>
+          <p>dYdX</p>
+          <div>
+            <icn.Dydx />
+            <icn.Dydx2 />
+            <icn.DydxMono />
+          </div>
+        </li>
+        <li>
           <p>OpenSea</p>
           <div>
             <icn.OpenSea />
