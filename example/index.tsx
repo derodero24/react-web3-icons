@@ -127,6 +127,13 @@ function App() {
           </div>
         </li>
         <li>
+          <p>WalletConnect</p>
+          <div>
+            <icn.WalletConnect />
+            <icn.WalletConnectMono />
+          </div>
+        </li>
+        <li>
           <p>Alchemy</p>
           <div>
             <icn.Alchemy />
