@@ -4,5 +4,6 @@ export * from './Avalanche';
 export * from './BinanceSmartChain';
 export * from './Bitcoin';
 export * from './Ethereum';
+export * from './Polkadot';
 export * from './Polygon';
 export * from './Solana';
