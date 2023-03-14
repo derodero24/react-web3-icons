@@ -9,8 +9,7 @@
   "module": "dist/react-web3-icons.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "analyze": "size-limit --why",
