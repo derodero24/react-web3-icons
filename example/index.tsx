@@ -97,6 +97,13 @@ function App() {
             <icn.MetaMask2 />
           </div>
         </li>
+        <li>
+          <p>Alchemy</p>
+          <div>
+            <icn.Alchemy />
+            <icn.AlchemyMono />
+          </div>
+        </li>
       </ul>
     </div>
   );
