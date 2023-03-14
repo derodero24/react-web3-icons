@@ -46,6 +46,13 @@ function App() {
           </div>
         </li>
         <li>
+          <p>Solana</p>
+          <div>
+            <icn.Solana />
+            <icn.SolanaMono />
+          </div>
+        </li>
+        <li>
           <p>BTC</p>
           <div>
             <icn.Btc />
