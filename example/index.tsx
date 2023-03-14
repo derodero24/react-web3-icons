@@ -103,6 +103,12 @@ function App() {
           </div>
         </li>
         <li>
+          <p>CAKE</p>
+          <div>
+            <icn.Cake />
+          </div>
+        </li>
+        <li>
           <p>LOOKS</p>
           <div>
             <icn.Looks />
@@ -129,6 +135,12 @@ function App() {
             <icn.Dydx />
             <icn.Dydx2 />
             <icn.DydxMono />
+          </div>
+        </li>
+        <li>
+          <p>PancakeSwap</p>
+          <div>
+            <icn.PancakeSwap />
           </div>
         </li>
         <li>
