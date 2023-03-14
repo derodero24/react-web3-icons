@@ -81,6 +81,13 @@ function App() {
           </div>
         </li>
         <li>
+          <p>Immutable X</p>
+          <div>
+            <icn.ImmutableX />
+            <icn.ImmutableXMono />
+          </div>
+        </li>
+        <li>
           <p>BTC</p>
           <div>
             <icn.Btc />
