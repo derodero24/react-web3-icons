@@ -10,6 +10,29 @@ function App() {
         <li>
           <p>Bitcoin</p>
           <div>
+            <icn.Bitcoin />
+            <icn.Bitcoin2 />
+            <icn.BitcoinMono />
+            <icn.BitcoinMono2 />
+          </div>
+        </li>
+        <li>
+          <p>Ethereum</p>
+          <div>
+            <icn.Ethereum />
+            <icn.EthereumMono />
+          </div>
+        </li>
+        <li>
+          <p>Binance Smart Chain</p>
+          <div>
+            <icn.BinanceSmartChain />
+            <icn.BinanceSmartChainMono />
+          </div>
+        </li>
+        <li>
+          <p>BTC</p>
+          <div>
             <icn.Btc />
             <icn.Btc2 />
             <icn.BtcMono />
@@ -17,10 +40,23 @@ function App() {
           </div>
         </li>
         <li>
-          <p>Ethereum</p>
+          <p>ETH</p>
           <div>
             <icn.Eth />
             <icn.EthMono />
+          </div>
+        </li>
+        <li>
+          <p>BNB</p>
+          <div>
+            <icn.Bnb />
+          </div>
+        </li>
+        <li>
+          <p>LOOKS</p>
+          <div>
+            <icn.Looks />
+            <icn.Looks2 />
           </div>
         </li>
         <li>
@@ -52,8 +88,6 @@ function App() {
             <icn.LooksRare />
             <icn.LooksRare2 />
             <icn.LooksRareMono />
-            <icn.LooksRareToken />
-            <icn.LooksRareToken2 />
           </div>
         </li>
         <li>
