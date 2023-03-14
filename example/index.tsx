@@ -53,6 +53,13 @@ function App() {
           </div>
         </li>
         <li>
+          <p>Polkadot</p>
+          <div>
+            <icn.Polkadot />
+            <icn.PolkadotMono />
+          </div>
+        </li>
+        <li>
           <p>Polygon</p>
           <div>
             <icn.Polygon />
