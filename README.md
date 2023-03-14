@@ -40,11 +40,10 @@ function App() {
   - Tool/Library (e.g. ethers.js, Hardhat, OpenZeppelin)
   - Storage (e.g. Pinata, Fleek)
   - Domain (e.g. ENS, Unstoppable)
+  - Dapp (Game, Metaverse)
   - DAO
-  - Game
-  - Metaverse
   - Company
-  - Other services/contents (e.g. Etherscan, DefiLlama)
+  - Other services (e.g. Etherscan, DefiLlama)
 - MECE foldering
 - Improve example page
 - Improve test code

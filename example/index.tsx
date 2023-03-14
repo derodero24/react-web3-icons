@@ -31,6 +31,13 @@ function App() {
           </div>
         </li>
         <li>
+          <p>Avalanche</p>
+          <div>
+            <icn.Avalanche />
+            <icn.Avalanche2 />
+          </div>
+        </li>
+        <li>
           <p>BTC</p>
           <div>
             <icn.Btc />
