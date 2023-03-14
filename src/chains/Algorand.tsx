@@ -1,5 +1,4 @@
-import React from 'react';
-import { IconProps } from '../lib';
+import type { IconProps } from '../lib';
 
 function _Algorand(props: IconProps) {
   return (

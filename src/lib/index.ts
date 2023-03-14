@@ -1,5 +1,5 @@
-import React from 'react';
+import type { SVGAttributes } from 'react';
 
-export interface IconProps extends React.SVGAttributes<SVGElement> {
+export interface IconProps extends SVGAttributes<SVGElement> {
   title?: string;
 }

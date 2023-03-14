@@ -9,15 +9,19 @@
     "build": "vite build"
   },
   "alias": {
+    "@tsconfig/strictest": "../node_modules/@tsconfig/strictest",
+    "@types/react": "../node_modules/@types/react",
+    "@types/react-dom": "../node_modules/@types/react-dom",
     "react": "../node_modules/react",
     "react-dom": "../node_modules/react-dom/profiling",
+    "typescript": "../node_modules/typescript",
     "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
   },
   "devDependencies": {
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.2.0",
-    "typescript": "^4.9.5",
     "vite": "^4.1.4"
+  },
+  "dependencies": {
+    "eslint": "^8.36.0"
   }
 }

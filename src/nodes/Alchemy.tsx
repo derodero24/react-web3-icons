@@ -1,5 +1,4 @@
-import React from 'react';
-import { IconProps } from '../lib';
+import type { IconProps } from '../lib';
 
 export function Alchemy(props: IconProps) {
   return (
@@ -32,9 +31,9 @@ export function Alchemy(props: IconProps) {
           y2="861.061"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#05d5ff" />
-          <stop offset=".724" stop-color="#363ff9" />
-          <stop offset="1" stop-color="#53f" />
+          <stop stopColor="#05d5ff" />
+          <stop offset=".724" stopColor="#363ff9" />
+          <stop offset="1" stopColor="#53f" />
         </linearGradient>
       </defs>
     </svg>

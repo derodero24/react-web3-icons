@@ -1,5 +1,4 @@
-import React from 'react';
-import { IconProps } from '../lib';
+import type { IconProps } from '../lib';
 
 export function Bnb(props: IconProps) {
   return (
@@ -13,7 +12,7 @@ export function Bnb(props: IconProps) {
       {props.title && <title>{props.title}</title>}
       <path
         d="M1248 0c689.3 0 1248 558.7 1248 1248s-558.7 1248-1248 1248S0 1937.3 0 1248 558.7 0 1248 0h0z"
-        fill-rule="evenodd"
+        fillRule="evenodd"
         fill="#f0b90b"
       />
       <path
