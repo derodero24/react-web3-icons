@@ -111,6 +111,12 @@ function App() {
           </div>
         </li>
         <li>
+          <p>USDC</p>
+          <div>
+            <icn.Usdc />
+          </div>
+        </li>
+        <li>
           <p>BNB</p>
           <div>
             <icn.Bnb />
