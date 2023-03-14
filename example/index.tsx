@@ -60,6 +60,13 @@ function App() {
           </div>
         </li>
         <li>
+          <p>Astar</p>
+          <div>
+            <icn.Astar />
+            <icn.AstarMono />
+          </div>
+        </li>
+        <li>
           <p>BTC</p>
           <div>
             <icn.Btc />
