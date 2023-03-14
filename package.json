@@ -4,7 +4,7 @@
   "license": "MIT",
   "author": "derodero24",
   "repository": "github:derodero24/react-web3-icons",
-  "homepage": "https://github.com/derodero24/react-web3-icons#readme",
+  "homepage": "https://react-web3-icons-mu.vercel.app/",
   "main": "dist/index.js",
   "module": "dist/react-web3-icons.esm.js",
   "typings": "dist/index.d.ts",
