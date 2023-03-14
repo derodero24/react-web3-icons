@@ -3,3 +3,4 @@ export * from './Btc';
 export * from './Cake';
 export * from './Eth';
 export * from './Looks';
+export * from './Usdt';

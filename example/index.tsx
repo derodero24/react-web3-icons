@@ -104,6 +104,13 @@ function App() {
           </div>
         </li>
         <li>
+          <p>USDT</p>
+          <div>
+            <icn.Usdt />
+            <icn.UsdtMono />
+          </div>
+        </li>
+        <li>
           <p>BNB</p>
           <div>
             <icn.Bnb />
