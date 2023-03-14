@@ -53,6 +53,13 @@ function App() {
           </div>
         </li>
         <li>
+          <p>Polygon</p>
+          <div>
+            <icn.Polygon />
+            <icn.PolygonMono />
+          </div>
+        </li>
+        <li>
           <p>BTC</p>
           <div>
             <icn.Btc />
