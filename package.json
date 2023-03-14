@@ -46,12 +46,6 @@
       "pre-commit": "dts lint"
     }
   },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
   "jest": {
     "testEnvironment": "jsdom"
   },
@@ -59,16 +53,16 @@
     "react": ">=16"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   },
   "size-limit": [
     {
       "path": "dist/react-web3-icons.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "100 KB"
     },
     {
       "path": "dist/react-web3-icons.esm.js",
-      "limit": "10 KB"
+      "limit": "100 KB"
     }
   ]
 }

@@ -1,6 +1,6 @@
 import type { IconProps } from '../lib';
 
-function _Algorand(props: IconProps) {
+function AlgorandBase(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,10 +16,10 @@ function _Algorand(props: IconProps) {
 }
 
 export function Algorand(props: IconProps) {
-  return <_Algorand {...props} />;
+  return <AlgorandBase {...props} />;
 }
 export function AlgorandMono(props: IconProps) {
-  return <_Algorand fill="currentColor" {...props} />;
+  return <AlgorandBase fill="currentColor" {...props} />;
 }
 
 export function Algorand2(props: IconProps) {

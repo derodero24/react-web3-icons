@@ -1,6 +1,6 @@
 import type { IconProps } from '../lib';
 
-function _WalletConnect(props: IconProps) {
+function WalletConnectBase(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,9 +16,9 @@ function _WalletConnect(props: IconProps) {
 }
 
 export function WalletConnect(props: IconProps) {
-  return <_WalletConnect fill="#3b99fc" {...props} />;
+  return <WalletConnectBase fill="#3b99fc" {...props} />;
 }
 
 export function WalletConnectMono(props: IconProps) {
-  return <_WalletConnect fill="currentColor" {...props} />;
+  return <WalletConnectBase fill="currentColor" {...props} />;
 }

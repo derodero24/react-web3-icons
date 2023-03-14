@@ -1,6 +1,6 @@
 import type { IconProps } from '../lib';
 
-function _Uniswap(props: IconProps) {
+function UniswapBase(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -32,9 +32,9 @@ function _Uniswap(props: IconProps) {
 }
 
 export function Uniswap(props: IconProps) {
-  return <_Uniswap fill="#FF007A" {...props} />;
+  return <UniswapBase fill="#FF007A" {...props} />;
 }
 
 export function UniswapMono(props: IconProps) {
-  return <_Uniswap fill="currentColor" {...props} />;
+  return <UniswapBase fill="currentColor" {...props} />;
 }

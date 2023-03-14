@@ -1,6 +1,6 @@
 import type { IconProps } from '../lib';
 
-export function _Binance(props: IconProps) {
+export function BinanceBase(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -38,8 +38,8 @@ export function _Binance(props: IconProps) {
 }
 
 export function Binance(props: IconProps) {
-  return <_Binance fill="#F3BA2F" {...props} />;
+  return <BinanceBase fill="#F3BA2F" {...props} />;
 }
 export function BinanceMono(props: IconProps) {
-  return <_Binance fill="currentColor" {...props} />;
+  return <BinanceBase fill="currentColor" {...props} />;
 }

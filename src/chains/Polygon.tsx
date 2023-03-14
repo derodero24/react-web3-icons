@@ -1,6 +1,6 @@
 import type { IconProps } from '../lib';
 
-function _Polygon(props: IconProps) {
+function PolygonBase(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,9 +16,9 @@ function _Polygon(props: IconProps) {
 }
 
 export function Polygon(props: IconProps) {
-  return <_Polygon fill="#8247e5" {...props} />;
+  return <PolygonBase fill="#8247e5" {...props} />;
 }
 
 export function PolygonMono(props: IconProps) {
-  return <_Polygon fill="currentColor" {...props} />;
+  return <PolygonBase fill="currentColor" {...props} />;
 }

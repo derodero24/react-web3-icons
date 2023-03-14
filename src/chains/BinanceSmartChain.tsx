@@ -1,6 +1,6 @@
 import type { IconProps } from '../lib';
 
-function _BinanceSmartChain(props: IconProps) {
+function BinanceSmartChainBase(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,8 +16,8 @@ function _BinanceSmartChain(props: IconProps) {
 }
 
 export function BinanceSmartChain(props: IconProps) {
-  return <_BinanceSmartChain fill="#f0b90b" {...props} />;
+  return <BinanceSmartChainBase fill="#f0b90b" {...props} />;
 }
 export function BinanceSmartChainMono(props: IconProps) {
-  return <_BinanceSmartChain fill="currentColor" {...props} />;
+  return <BinanceSmartChainBase fill="currentColor" {...props} />;
 }
