@@ -1,3 +1,4 @@
+export * from './Ada';
 export * from './Bnb';
 export * from './Btc';
 export * from './Cake';
