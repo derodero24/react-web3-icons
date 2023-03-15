@@ -9,13 +9,14 @@
   "module": "dist/react-web3-icons.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
+    "src",
     "dist"
   ],
   "scripts": {
     "analyze": "size-limit --why",
-    "build": "dts build",
+    "build": "dts build --format esm",
     "lint": "dts lint",
-    "prepare": "dts build",
+    "prepare": "npm run build",
     "size": "size-limit",
     "start": "dts watch",
     "test": "dts test --passWithNoTests"
@@ -56,10 +57,6 @@
     "node": ">=16"
   },
   "size-limit": [
-    {
-      "path": "dist/react-web3-icons.cjs.production.min.js",
-      "limit": "100 KB"
-    },
     {
       "path": "dist/react-web3-icons.esm.js",
       "limit": "100 KB"
