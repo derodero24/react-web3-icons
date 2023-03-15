@@ -56,6 +56,7 @@ function App() {
           <p>Cardano</p>
           <div>
             <icn.Cardano />
+            <icn.Cardano2 />
             <icn.CardanoMono />
           </div>
         </li>
@@ -120,14 +121,22 @@ function App() {
           <p>XRP</p>
           <div>
             <icn.Xrp />
-            <icn.XrpMono />
             <icn.Xrp2 />
+            <icn.XrpMono />
           </div>
         </li>
         <li>
           <p>BNB</p>
           <div>
             <icn.Bnb />
+          </div>
+        </li>
+        <li>
+          <p>ADA</p>
+          <div>
+            <icn.Ada />
+            <icn.Ada2 />
+            <icn.AdaMono />
           </div>
         </li>
         <li>
