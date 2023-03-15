@@ -117,6 +117,14 @@ function App() {
           </div>
         </li>
         <li>
+          <p>XRP</p>
+          <div>
+            <icn.Xrp />
+            <icn.XrpMono />
+            <icn.Xrp2 />
+          </div>
+        </li>
+        <li>
           <p>BNB</p>
           <div>
             <icn.Bnb />

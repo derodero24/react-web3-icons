@@ -5,3 +5,4 @@ export * from './Eth';
 export * from './Looks';
 export * from './Usdc';
 export * from './Usdt';
+export * from './Xrp';
