@@ -1,4 +1,5 @@
 import CustomHead from './sections/CustomHead';
+import Header from './sections/Header';
 
 import type { CustomHeadProps } from './sections/CustomHead';
 import type { ReactNode } from 'react';
@@ -11,7 +12,10 @@ export default function Layout({ children, ...props }: Props) {
   return (
     <>
       <CustomHead {...props} />
-      <main className="flex min-h-100svh flex-col">{children}</main>
+      <div className="flex min-h-100svh flex-col">
+        <Header />
+        <main>{children}</main>
+      </div>
     </>
   );
 }
