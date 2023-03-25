@@ -1,6 +1,6 @@
 import type { IconProps } from '../lib';
 
-export function ImmutableXBase(props: IconProps) {
+function ImmutableXBase(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
