@@ -40,7 +40,7 @@ const Home: NextPage = () => {
 
   return (
     <Layout title="React Web3 Icons" description="React Web3 Icons">
-      <section className="fixed flex h-full w-64 justify-center border border-gray-200 bg-gray-100 shadow">
+      <section className="fixed flex h-full w-64 justify-center border-r border-gray-200 bg-gray-100 shadow duration-150 dark:border-gray-600 dark:bg-gray-700">
         <div className="mt-12">
           <p className="font-orbitron text-3xl font-bold capitalize">
             category
@@ -62,7 +62,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section className="mt-12 mb-24 ml-72 mr-8">
+      <section className="relative ml-72 mr-8 mt-12 mb-24">
         <p className="font-orbitron text-3xl font-bold capitalize">
           {category}
         </p>
@@ -77,19 +77,19 @@ const Home: NextPage = () => {
           <input
             type="search"
             id="search"
-            className="peer h-12 w-full rounded-xl border border-gray-200 bg-white pl-10 shadow-sm focus:-translate-x-px focus:border-2 focus:border-blue-500/80"
+            className="peer h-12 w-full rounded-xl border border-gray-200 bg-white pl-10 shadow-sm transition-colors duration-150 focus:-translate-x-px focus:border-2 focus:border-blue-500/80 dark:border-gray-500 dark:bg-gray-600 dark:focus:border-blue-500/80"
             placeholder="Search"
             value={keyword}
             onChange={e => setKeyword(e.target.value)}
           />
-          <HiOutlineSearch className="pointer-events-none absolute left-3 text-xl opacity-40 peer-focus:text-blue-600 peer-focus:opacity-80" />
+          <HiOutlineSearch className="pointer-events-none absolute left-3 text-xl opacity-40 peer-focus:text-blue-600 peer-focus:opacity-80 dark:peer-focus:text-blue-400" />
         </form>
 
         <div className="mt-6 flex flex-wrap gap-x-3 gap-y-4">
           {icons.map((Component, idx) => (
             <div key={idx}>
-              <div className="mx-auto flex aspect-square w-20 items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm">
-                <Component className="text-4xl drop-shadow" />
+              <div className="mx-auto flex aspect-square w-20 items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm duration-150 dark:border-gray-500 dark:bg-gray-600">
+                <Component className="text-4xl drop-shadow dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.05)]" />
               </div>
               <p className="mt-0.5 w-24 overflow-hidden text-ellipsis text-center text-xs font-medium">
                 {Component.name}

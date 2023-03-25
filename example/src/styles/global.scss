@@ -9,7 +9,7 @@
 
   html,
   body {
-    @apply bg-gray-50 text-gray-900 duration-300 dark:bg-gray-800 dark:text-gray-50;
+    @apply bg-gray-50 text-gray-900 duration-150 dark:bg-gray-800 dark:text-gray-50;
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -36,16 +36,14 @@
   textarea {
     @apply inline-block;
   }
+
+  * {
+    @apply select-none;
+  }
 }
 
 @layer components {
   .container {
     @apply mx-auto max-w-screen-xl;
-  }
-
-  header {
-    .icon-btn {
-      @apply my-1 cursor-pointer text-xl duration-100 hover:opacity-75;
-    }
   }
 }
