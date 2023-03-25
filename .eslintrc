@@ -15,8 +15,7 @@
     "prettier"
   ],
   "ignorePatterns": [
-    "dist",
-    "example"
+    "dist"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"

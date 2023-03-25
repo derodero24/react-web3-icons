@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border whitespace-pre-wrap;
+  }
+
+  html,
+  body {
+    @apply bg-gray-50 text-gray-900 duration-300 dark:bg-gray-800 dark:text-gray-50;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  input {
+    // Hide outline
+    @apply outline-none;
+
+    // Hide cancel button
+    &[type='search']::-webkit-search-cancel-button {
+      @apply appearance-none;
+    }
+  }
+
+  // inline -> inline-block
+  a,
+  button,
+  canvas,
+  img,
+  input,
+  label,
+  select,
+  span,
+  svg,
+  textarea {
+    @apply inline-block;
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto max-w-screen-xl;
+  }
+
+  header {
+    .icon-btn {
+      @apply my-1 cursor-pointer text-xl duration-100 hover:opacity-75;
+    }
+  }
+}

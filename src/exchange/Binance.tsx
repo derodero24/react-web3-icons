@@ -1,6 +1,6 @@
 import type { IconProps } from '../lib';
 
-export function BinanceBase(props: IconProps) {
+function BinanceBase(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

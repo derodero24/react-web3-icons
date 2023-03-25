@@ -1,13 +1,29 @@
 {
   "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
-    "target": "ES6",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "jsx": "react-jsx",
+    "target": "ES2019",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "jsx": "preserve",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "removeComments": true,
+    "resolveJsonModule": true
   },
   "include": [
-    "index.tsx",
-    "vite.config.ts"
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
