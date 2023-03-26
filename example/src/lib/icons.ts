@@ -76,6 +76,11 @@ const exchange = [
   { name: 'KuCoinMono', component: icon.KuCoinMono },
 ].sort();
 
+const library = [
+  { name: 'OpenZeppelin', component: icon.OpenZeppelin },
+  { name: 'OpenZeppelinMono', component: icon.OpenZeppelinMono },
+].sort();
+
 const marketplace = [
   { name: 'LooksRare', component: icon.LooksRare },
   { name: 'LooksRare2', component: icon.LooksRare2 },
@@ -141,6 +146,7 @@ export const REACT_WEB3_ICONS = {
     ...coin,
     ...dex,
     ...exchange,
+    ...library,
     ...marketplace,
     ...node,
     ...storage,
@@ -150,6 +156,7 @@ export const REACT_WEB3_ICONS = {
   coin,
   dex,
   exchange,
+  library,
   marketplace,
   node,
   storage,

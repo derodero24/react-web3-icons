@@ -14,6 +14,7 @@ const CATEGORIES = [
   'coin',
   'dex',
   'exchange',
+  'library',
   'marketplace',
   'node',
   'storage',
