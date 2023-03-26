@@ -115,6 +115,7 @@ const wallet = [
   { name: 'NamiWalletMono', component: icon.NamiWalletMono },
   { name: 'PhantomWallet', component: icon.PhantomWallet },
   { name: 'PhantomWalletMono', component: icon.PhantomWalletMono },
+  { name: 'PhantomWalletMono2', component: icon.PhantomWalletMono2 },
   { name: 'RainbowWallet', component: icon.RainbowWallet },
   { name: 'RainbowWallet2', component: icon.RainbowWallet2 },
   { name: 'TrustWallet', component: icon.TrustWallet },
