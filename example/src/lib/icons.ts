@@ -103,6 +103,8 @@ const wallet = [
   { name: 'DaedalusWalletMono', component: icon.DaedalusWalletMono },
   { name: 'MetaMask', component: icon.MetaMask },
   { name: 'MetaMask2', component: icon.MetaMask2 },
+  { name: 'NamiWallet', component: icon.NamiWallet },
+  { name: 'NamiWalletMono', component: icon.NamiWalletMono },
   { name: 'PhantomWallet', component: icon.PhantomWallet },
   { name: 'PhantomWalletMono', component: icon.PhantomWalletMono },
   { name: 'TrustWallet', component: icon.TrustWallet },

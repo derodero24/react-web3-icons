@@ -2,6 +2,7 @@ export * from './Argent';
 export * from './CoinbaseWallet';
 export * from './DaedalusWallet';
 export * from './MetaMask';
+export * from './NamiWallet';
 export * from './PhantomWallet';
 export * from './TrustWallet';
 export * from './WalletConnect';
