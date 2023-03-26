@@ -55,6 +55,7 @@ const coin = [
   'Xrp',
   'Xrp2',
   'XrpMono',
+  'XrpMono2',
 ].sort() as ReactWeb3IconKey[];
 
 const dex = [
