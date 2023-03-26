@@ -111,6 +111,8 @@ const wallet = [
   { name: 'TrustWalletMono2', component: icon.TrustWalletMono2 },
   { name: 'WalletConnect', component: icon.WalletConnect },
   { name: 'WalletConnectMono', component: icon.WalletConnectMono },
+  { name: 'YoroiWallet', component: icon.YoroiWallet },
+  { name: 'YoroiWalletMono', component: icon.YoroiWalletMono },
   { name: 'Zerion', component: icon.Zerion },
   { name: 'Zerion2', component: icon.Zerion2 },
   { name: 'ZerionMono', component: icon.ZerionMono },

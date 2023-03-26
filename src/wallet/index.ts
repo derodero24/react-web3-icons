@@ -5,4 +5,5 @@ export * from './MetaMask';
 export * from './PhantomWallet';
 export * from './TrustWallet';
 export * from './WalletConnect';
+export * from './YoroiWallet';
 export * from './Zerion';
