@@ -1,6 +1,6 @@
-import type * as icon from '../../../.';
+import type * as icons from '../../../.';
 
-type ReactWeb3IconKey = keyof typeof icon;
+type ReactWeb3IconKey = keyof typeof icons;
 
 const chain = [
   'Algorand',
