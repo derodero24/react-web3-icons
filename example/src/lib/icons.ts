@@ -63,6 +63,8 @@ const dex = [
 const exchange = [
   { name: 'Binance', component: icon.Binance },
   { name: 'BinanceMono', component: icon.BinanceMono },
+  { name: 'Kraken', component: icon.Kraken },
+  { name: 'KrakenMono', component: icon.KrakenMono },
 ].sort();
 
 const marketplace = [
