@@ -55,7 +55,6 @@ export function Dydx2(props: IconProps) {
       viewBox="0 0 183 183"
       width="1em"
       height="1em"
-      fill="none"
       {...props}
     >
       {props.title && <title>{props.title}</title>}
@@ -77,6 +76,7 @@ export function Dydx2(props: IconProps) {
         rx="37"
         stroke="#2d2d3d"
         strokeWidth="2"
+        fill="none"
       />
       <defs>
         <linearGradient
@@ -128,9 +128,39 @@ export function DydxMono(props: IconProps) {
       {...props}
     >
       {props.title && <title>{props.title}</title>}
-      <path d="M116.379 38L41 145.991h23.143L139.912 38h-23.533z" />
-      <path d="M66.554 38l22.179 31.821-11.571 17.357L42.929 38h23.625z" />
-      <path d="M118.625 146l-24.589-35.196 11.571-16.875L141.768 146h-23.143z" />
+      <path d="M116.379 38L41 145.991h23.143L139.912 38h-23.533zm-49.825 0l22.179 31.821-11.571 17.357L42.929 38h23.625zm52.071 108l-24.589-35.196 11.571-16.875L141.768 146h-23.143z" />
+    </svg>
+  );
+}
+
+export function DydxMono2(props: IconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 183 183"
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      {...props}
+    >
+      {props.title && <title>{props.title}</title>}
+      <rect
+        x="1"
+        y="1"
+        width="181"
+        height="181"
+        rx="37"
+        mask="url(#bydxm2-a)"
+      />
+      <defs>
+        <mask id="bydxm2-a">
+          <rect width="100%" height="100%" fill="#fff" />
+          <path
+            d="M115.316 43L45 141.992h21.588L137.269 43h-21.953zm-46.478 0l20.689 29.17-10.795 15.91L46.799 43h22.038zm48.573 99l-22.937-32.263 10.794-15.469L139 142h-21.589z"
+            fill="#000"
+          />
+        </mask>
+      </defs>
     </svg>
   );
 }

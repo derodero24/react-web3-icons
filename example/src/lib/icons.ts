@@ -55,6 +55,7 @@ const dex = [
   { name: 'Dydx', component: icon.Dydx },
   { name: 'Dydx2', component: icon.Dydx2 },
   { name: 'DydxMono', component: icon.DydxMono },
+  { name: 'DydxMono2', component: icon.DydxMono2 },
   { name: 'PancakeSwap', component: icon.PancakeSwap },
   { name: 'Uniswap', component: icon.Uniswap },
   { name: 'UniswapMono', component: icon.UniswapMono },
