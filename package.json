@@ -10,7 +10,10 @@
     "blockchain",
     "cryptocurrency",
     "crypto",
-    "nft"
+    "nft",
+    "dex",
+    "marketplace",
+    "wallet"
   ],
   "repository": "github:derodero24/react-web3-icons",
   "homepage": "https://react-web3-icons-mu.vercel.app/",
