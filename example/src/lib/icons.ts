@@ -82,6 +82,8 @@ const marketplace = [
 const node = [
   { name: 'Alchemy', component: icon.Alchemy },
   { name: 'AlchemyMono', component: icon.AlchemyMono },
+  { name: 'QuickNode', component: icon.QuickNode },
+  { name: 'QuickNodeMono', component: icon.QuickNodeMono },
 ].sort();
 
 const storage = [{ name: 'Pinata', component: icon.Pinata }].sort();
