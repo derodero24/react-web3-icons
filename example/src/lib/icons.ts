@@ -67,6 +67,7 @@ const exchange = [
   { name: 'Coinbase2', component: icon.Coinbase2 },
   { name: 'Coinbase3', component: icon.Coinbase3 },
   { name: 'CoinbaseMono', component: icon.CoinbaseMono },
+  { name: 'CoinbaseMono2', component: icon.CoinbaseMono2 },
   { name: 'Kraken', component: icon.Kraken },
   { name: 'KrakenMono', component: icon.KrakenMono },
   { name: 'KuCoin', component: icon.KuCoin },
