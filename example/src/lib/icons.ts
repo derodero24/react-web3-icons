@@ -48,6 +48,7 @@ const coin = [
   'EthMono',
   'Looks',
   'Looks2',
+  'LooksMono',
   'Usdc',
   'UsdcMono',
   'Usdt',
