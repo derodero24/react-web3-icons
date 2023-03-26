@@ -95,6 +95,8 @@ const node = [
 const storage = [{ name: 'Pinata', component: icon.Pinata }].sort();
 
 const wallet = [
+  { name: 'CoinbaseWallet', component: icon.CoinbaseWallet },
+  { name: 'CoinbaseWalletMono', component: icon.CoinbaseWalletMono },
   { name: 'MetaMask', component: icon.MetaMask },
   { name: 'MetaMask2', component: icon.MetaMask2 },
   { name: 'PhantomWallet', component: icon.PhantomWallet },
