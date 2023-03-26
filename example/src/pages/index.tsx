@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useMemo, useState } from 'react';
 import { HiOutlineSearch } from 'react-icons/hi';
 
+import * as icon from '../../../.';
 import Layout from '../components/Layout';
 import { REACT_WEB3_ICONS } from '../lib/icons';
 
@@ -34,9 +35,9 @@ const Home: NextPage = () => {
     const category = query['category'] as
       | undefined
       | keyof typeof REACT_WEB3_ICONS;
-    return (
-      category ? REACT_WEB3_ICONS[category] : REACT_WEB3_ICONS.all
-    ).filter(icon => icon.name.toLowerCase().includes(keyword.toLowerCase()));
+    return (category ? REACT_WEB3_ICONS[category] : REACT_WEB3_ICONS.all)
+      .filter(name => name.toLowerCase().includes(keyword.toLowerCase()))
+      .map(name => ({ name, component: icon[name] }));
   }, [query, keyword]);
 
   return (
