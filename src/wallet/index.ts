@@ -1,3 +1,4 @@
+export * from './Argent';
 export * from './CoinbaseWallet';
 export * from './MetaMask';
 export * from './PhantomWallet';
