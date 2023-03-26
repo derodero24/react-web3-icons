@@ -1,6 +1,7 @@
 export * from './Argent';
 export * from './CoinbaseWallet';
 export * from './DaedalusWallet';
+export * from './GnosisSafe';
 export * from './MetaMask';
 export * from './NamiWallet';
 export * from './PhantomWallet';
