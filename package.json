@@ -3,6 +3,15 @@
   "version": "1.1.0",
   "license": "MIT",
   "author": "derodero24",
+  "keywords": [
+    "react",
+    "web3",
+    "icon",
+    "blockchain",
+    "cryptocurrency",
+    "crypto",
+    "nft"
+  ],
   "repository": "github:derodero24/react-web3-icons",
   "homepage": "https://react-web3-icons-mu.vercel.app/",
   "main": "dist/index.js",
