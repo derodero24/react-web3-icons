@@ -10,6 +10,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "import/namespace": "off",
     "tailwindcss/no-custom-classname": "off"
   }
 }
