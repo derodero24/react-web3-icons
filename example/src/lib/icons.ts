@@ -69,6 +69,8 @@ const exchange = [
   { name: 'CoinbaseMono', component: icon.CoinbaseMono },
   { name: 'Kraken', component: icon.Kraken },
   { name: 'KrakenMono', component: icon.KrakenMono },
+  { name: 'KuCoin', component: icon.KuCoin },
+  { name: 'KuCoinMono', component: icon.KuCoinMono },
 ].sort();
 
 const marketplace = [
