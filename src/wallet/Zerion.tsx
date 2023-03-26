@@ -61,6 +61,7 @@ export function ZerionMono(props: IconProps) {
       viewBox="0 0 1024 1024"
       width="1em"
       height="1em"
+      fill="currentColor"
       {...props}
     >
       {props.title && <title>{props.title}</title>}
@@ -74,13 +75,7 @@ export function ZerionMono(props: IconProps) {
           />
         </mask>
       </defs>
-      <rect
-        width="1024"
-        height="1024"
-        rx="512"
-        fill="currentColor"
-        mask="url(#zrwm-a)"
-      />
+      <rect width="1024" height="1024" rx="512" mask="url(#zrwm-a)" />
     </svg>
   );
 }
@@ -92,6 +87,7 @@ export function ZerionMono2(props: IconProps) {
       viewBox="98.874 163.084 40.147 40"
       width="1em"
       height="1em"
+      fill="currentColor"
       {...props}
     >
       {props.title && <title>{props.title}</title>}
@@ -107,7 +103,6 @@ export function ZerionMono2(props: IconProps) {
       </defs>
       <path
         d="M98.874 173.792c0-3.748 0-5.623.729-7.054a6.7 6.7 0 0 1 2.925-2.925c1.432-.729 3.306-.729 7.054-.729h18.73c3.748 0 5.623 0 7.054.729a6.7 6.7 0 0 1 2.925 2.925c.73 1.432.73 3.306.73 7.054v18.583c0 3.748 0 5.623-.73 7.054-.642 1.259-1.665 2.283-2.925 2.925-1.432.73-3.306.73-7.054.73h-18.73c-3.748 0-5.623 0-7.054-.73a6.7 6.7 0 0 1-2.925-2.925c-.729-1.432-.729-3.306-.729-7.054v-18.583z"
-        fill="currentColor"
         mask="url(#zrwm2-a)"
       />
     </svg>

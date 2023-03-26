@@ -56,6 +56,7 @@ export function TrustWalletMono(props: IconProps) {
       viewBox="0 0 1024 1024"
       width="1em"
       height="1em"
+      fill="currentColor"
       {...props}
     >
       {props.title && <title>{props.title}</title>}
@@ -74,7 +75,6 @@ export function TrustWalletMono(props: IconProps) {
       </defs>
       <path
         d="M0 260C0 116.406 116.406 0 260 0h504c143.594 0 260 116.406 260 260v504c0 143.594-116.406 260-260 260H260C116.406 1024 0 907.594 0 764V260z"
-        fill="currentColor"
         mask="url(#twm-a)"
       />
     </svg>
@@ -88,6 +88,7 @@ export function TrustWalletMono2(props: IconProps) {
       viewBox="0 0 64 64"
       width="1em"
       height="1em"
+      fill="currentColor"
       {...props}
     >
       {props.title && <title>{props.title}</title>}
@@ -104,7 +105,7 @@ export function TrustWalletMono2(props: IconProps) {
           />
         </mask>
       </defs>
-      <circle cx="32" cy="32" r="32" fill="currentColor" mask="url(#twm2-a)" />
+      <circle cx="32" cy="32" r="32" mask="url(#twm2-a)" />
     </svg>
   );
 }

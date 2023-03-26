@@ -5,6 +5,7 @@ export * from './GnosisSafe';
 export * from './MetaMask';
 export * from './NamiWallet';
 export * from './PhantomWallet';
+export * from './PolkadotJs';
 export * from './RainbowWallet';
 export * from './TrustWallet';
 export * from './WalletConnect';
