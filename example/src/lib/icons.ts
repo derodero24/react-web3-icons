@@ -108,7 +108,9 @@ const wallet = [
   { name: 'WalletConnect', component: icon.WalletConnect },
   { name: 'WalletConnectMono', component: icon.WalletConnectMono },
   { name: 'Zerion', component: icon.Zerion },
+  { name: 'Zerion2', component: icon.Zerion2 },
   { name: 'ZerionMono', component: icon.ZerionMono },
+  { name: 'ZerionMono2', component: icon.ZerionMono2 },
 ].sort();
 
 export const REACT_WEB3_ICONS = {
