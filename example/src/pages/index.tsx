@@ -89,7 +89,7 @@ const Home: NextPage = () => {
           {icons.map((icon, idx) => (
             <div key={idx}>
               <div className="mx-auto flex aspect-square w-20 items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm duration-150 dark:border-gray-500 dark:bg-gray-600">
-                <icon.component className="text-4xl drop-shadow dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.05)]" />
+                <icon.component className="text-4xl drop-shadow duration-150 dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.05)]" />
               </div>
               <p className="mt-0.5 w-24 overflow-hidden text-ellipsis text-center text-xs font-medium">
                 {icon.name}
