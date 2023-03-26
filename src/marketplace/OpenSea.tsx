@@ -64,7 +64,7 @@ export function OpenSeaMono2(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 90 90"
+      viewBox="18.9 18 55.48 49.93"
       width="1em"
       height="1em"
       fill="currentColor"
