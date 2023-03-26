@@ -10,14 +10,14 @@ export function Zerion(props: IconProps) {
       {...props}
     >
       {props.title && <title>{props.title}</title>}
-      <rect width="1024" height="1024" rx="512" fill="url(#zerion-a)" />
+      <rect width="1024" height="1024" rx="512" fill="url(#zr-a)" />
       <path
         d="M258.644 288c-15.355 0-21.271 18.987-8.387 26.918l322.327 194.353c8.036 4.946 18.751 2.992 24.283-4.43L738.586 318.79c9.635-12.925-.1-30.79-16.779-30.79H258.644zm506.608 448c15.352 0 21.422-19.09 8.54-27.019L451.371 514.652c-8.034-4.945-18.49-2.743-24.021 4.677L285.356 705.344c-9.633 12.922.407 30.656 17.082 30.656h462.814z"
         fill="#fff"
       />
       <defs>
         <linearGradient
-          id="zerion-a"
+          id="zr-a"
           x1="0"
           y1="0"
           x2="1209.97"
@@ -66,7 +66,7 @@ export function ZerionMono(props: IconProps) {
       {props.title && <title>{props.title}</title>}
 
       <defs>
-        <mask id="zerionmono-a">
+        <mask id="zrwm-a">
           <rect width="100%" height="100%" fill="white" />
           <path
             d="M258.644 288c-15.355 0-21.271 18.987-8.387 26.918l322.327 194.353c8.036 4.946 18.751 2.992 24.283-4.43L738.586 318.79c9.635-12.925-.1-30.79-16.779-30.79H258.644zm506.608 448c15.352 0 21.422-19.09 8.54-27.019L451.371 514.652c-8.034-4.945-18.49-2.743-24.021 4.677L285.356 705.344c-9.633 12.922.407 30.656 17.082 30.656h462.814z"
@@ -79,7 +79,7 @@ export function ZerionMono(props: IconProps) {
         height="1024"
         rx="512"
         fill="currentColor"
-        mask="url(#zerionmono-a)"
+        mask="url(#zrwm-a)"
       />
     </svg>
   );
@@ -97,7 +97,7 @@ export function ZerionMono2(props: IconProps) {
       {props.title && <title>{props.title}</title>}
 
       <defs>
-        <mask id="zerionmono2-a">
+        <mask id="zrwm2-a">
           <path fill="#fff" d="M-180.792-15.75h1847.001v1635H-180.792z" />
           <path
             d="M107.581 173.085c-.688 0-.953.848-.376 1.202l14.443 8.676a.83.83 0 0 0 1.088-.198l6.35-8.306c.432-.577-.005-1.374-.752-1.374h-20.753 0zm22.7 20c.688 0 .96-.852.383-1.206l-14.447-8.675c-.36-.221-.829-.122-1.076.209l-6.362 8.304c-.432.577.018 1.369.765 1.369h20.738l-.001-.001z"
@@ -108,7 +108,7 @@ export function ZerionMono2(props: IconProps) {
       <path
         d="M98.874 173.792c0-3.748 0-5.623.729-7.054a6.7 6.7 0 0 1 2.925-2.925c1.432-.729 3.306-.729 7.054-.729h18.73c3.748 0 5.623 0 7.054.729a6.7 6.7 0 0 1 2.925 2.925c.73 1.432.73 3.306.73 7.054v18.583c0 3.748 0 5.623-.73 7.054-.642 1.259-1.665 2.283-2.925 2.925-1.432.73-3.306.73-7.054.73h-18.73c-3.748 0-5.623 0-7.054-.73a6.7 6.7 0 0 1-2.925-2.925c-.729-1.432-.729-3.306-.729-7.054v-18.583z"
         fill="currentColor"
-        mask="url(#zerionmono2-a)"
+        mask="url(#zrwm2-a)"
       />
     </svg>
   );
