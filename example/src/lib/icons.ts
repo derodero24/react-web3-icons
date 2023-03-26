@@ -38,6 +38,7 @@ const coin = [
   'AdaMono',
   'AdaMono2',
   'Bnb',
+  'BnbMono',
   'Btc',
   'Btc2',
   'BtcMono',
