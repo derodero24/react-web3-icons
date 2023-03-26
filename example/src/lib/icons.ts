@@ -77,6 +77,8 @@ const exchange = [
 ].sort();
 
 const library = [
+  { name: 'Hardhat', component: icon.Hardhat },
+  { name: 'HardhatMono', component: icon.HardhatMono },
   { name: 'OpenZeppelin', component: icon.OpenZeppelin },
   { name: 'OpenZeppelinMono', component: icon.OpenZeppelinMono },
 ].sort();
