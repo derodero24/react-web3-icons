@@ -10,14 +10,14 @@ export function PhantomWallet(props: IconProps) {
       {...props}
     >
       {props.title && <title>{props.title}</title>}
-      <circle cx="64" cy="64" r="64" fill="url(#phantom-a)" />
+      <circle cx="64" cy="64" r="64" fill="url(#phw-a)" />
       <path
         d="M110.584 64.914H99.142C99.142 41.765 80.173 23 56.772 23c-23.111 0-41.901 18.306-42.361 41.058C13.936 87.577 36.241 108 60.019 108h2.991c20.963 0 49.06-16.233 53.45-36.013.811-3.646-2.101-7.073-5.875-7.073zm-70.815 1.031c0 3.096-2.559 5.627-5.689 5.627s-5.689-2.533-5.689-5.627v-9.104c0-3.096 2.559-5.627 5.689-5.627s5.689 2.532 5.689 5.627v9.104zm19.753 0c0 3.096-2.559 5.627-5.689 5.627s-5.689-2.533-5.689-5.627v-9.104c0-3.096 2.56-5.627 5.689-5.627s5.689 2.532 5.689 5.627v9.104z"
-        fill="url(#phantom-b)"
+        fill="url(#phw-b)"
       />
       <defs>
         <linearGradient
-          id="phantom-a"
+          id="phw-a"
           x1="64"
           y1="0"
           x2="64"
@@ -28,7 +28,7 @@ export function PhantomWallet(props: IconProps) {
           <stop offset="1" stopColor="#551bf9" />
         </linearGradient>
         <linearGradient
-          id="phantom-b"
+          id="phw-b"
           x1="65.5"
           y1="23"
           x2="65.5"
@@ -55,7 +55,7 @@ export function PhantomWalletMono(props: IconProps) {
     >
       {props.title && <title>{props.title}</title>}
       <defs>
-        <mask id="phantommono-a">
+        <mask id="phwm-a">
           <path fill="#fff" d="M0 0h128v128H0z" />
           <path
             d="M110.584 64.914H99.142C99.142 41.765 80.173 23 56.772 23c-23.111 0-41.901 18.306-42.361 41.058C13.936 87.577 36.241 108 60.019 108h2.991c20.963 0 49.06-16.233 53.45-36.013.811-3.646-2.101-7.073-5.875-7.073zm-70.815 1.031c0 3.096-2.559 5.627-5.689 5.627s-5.689-2.533-5.689-5.627v-9.104c0-3.096 2.559-5.627 5.689-5.627s5.689 2.532 5.689 5.627v9.104zm19.753 0c0 3.096-2.559 5.627-5.689 5.627s-5.689-2.533-5.689-5.627v-9.104c0-3.096 2.56-5.627 5.689-5.627s5.689 2.532 5.689 5.627v9.104z"
@@ -63,7 +63,7 @@ export function PhantomWalletMono(props: IconProps) {
           />
         </mask>
       </defs>
-      <circle cx="64" cy="64" r="64" mask="url(#phantommono-a)" />
+      <circle cx="64" cy="64" r="64" mask="url(#phwm-a)" />
     </svg>
   );
 }
