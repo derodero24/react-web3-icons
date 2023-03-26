@@ -73,6 +73,8 @@ const marketplace = [
   { name: 'OpenSea2', component: icon.OpenSea2 },
   { name: 'OpenSeaMono', component: icon.OpenSeaMono },
   { name: 'OpenSeaMono2', component: icon.OpenSeaMono2 },
+  { name: 'TofuNft', component: icon.TofuNft },
+  { name: 'TofuNftMono', component: icon.TofuNftMono },
 ].sort();
 
 const node = [
