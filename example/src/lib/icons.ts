@@ -45,6 +45,7 @@ const coin = [
   { name: 'Looks2', component: icon.Looks2 },
   { name: 'Usdc', component: icon.Usdc },
   { name: 'Usdt', component: icon.Usdt },
+  { name: 'UsdtMono', component: icon.UsdtMono },
   { name: 'Xrp', component: icon.Xrp },
   { name: 'Xrp2', component: icon.Xrp2 },
   { name: 'XrpMono', component: icon.XrpMono },
