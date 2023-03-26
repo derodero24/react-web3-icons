@@ -57,6 +57,7 @@ const dex = [
   { name: 'DydxMono', component: icon.DydxMono },
   { name: 'DydxMono2', component: icon.DydxMono2 },
   { name: 'PancakeSwap', component: icon.PancakeSwap },
+  { name: 'PancakeSwapMono', component: icon.PancakeSwapMono },
   { name: 'Uniswap', component: icon.Uniswap },
   { name: 'UniswapMono', component: icon.UniswapMono },
 ].sort();
