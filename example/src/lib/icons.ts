@@ -76,6 +76,8 @@ const domain = [
   'Ens2',
   'EnsMono',
   'EnsMono2',
+  'UnstoppableDomains',
+  'UnstoppableDomainsMono',
 ].sort() as ReactWeb3IconKey[];
 
 const exchange = [
