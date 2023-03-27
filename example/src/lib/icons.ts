@@ -102,6 +102,8 @@ const marketplace = [
   'OpenSeaMono2',
   'TofuNft',
   'TofuNftMono',
+  'X2Y2',
+  'X2Y2Mono',
 ].sort() as ReactWeb3IconKey[];
 
 const node = [
