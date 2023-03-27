@@ -49,12 +49,12 @@ export default function IconTable() {
       <div className="mt-6 flex flex-wrap gap-x-3 gap-y-4">
         {desplayedIcons.map((icon, idx) => (
           <div key={idx} className="relative">
-            <div
+            <button
               className="mx-auto flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm duration-100 hover:bg-gray-100 dark:border-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500/80"
               onClick={() => copy(icon.name)}
             >
               <icon.component className="text-4xl drop-shadow transition-shadow duration-100 dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.1)]" />
-            </div>
+            </button>
             <p className="mt-0.5 w-24 overflow-hidden text-ellipsis text-center text-xs font-medium">
               {icon.name}
             </p>
