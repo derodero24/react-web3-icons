@@ -130,6 +130,7 @@ const storage = [
   'NftStorage',
   'NftStorageMono',
   'Pinata',
+  'PinataMono',
 ].sort() as ReactWeb3IconKey[];
 
 const wallet = [
