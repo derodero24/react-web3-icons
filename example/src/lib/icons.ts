@@ -127,6 +127,8 @@ const node = [
 ].sort() as ReactWeb3IconKey[];
 
 const storage = [
+  'Arweave',
+  'ArweaveMono',
   'Ipfs',
   'IpfsMono',
   'NftStorage',
