@@ -86,6 +86,8 @@ const exchange = [
 ].sort() as ReactWeb3IconKey[];
 
 const library = [
+  'EthersJs',
+  'EthersJsMono',
   'Hardhat',
   'HardhatMono',
   'OpenZeppelin',
