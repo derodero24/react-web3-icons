@@ -102,8 +102,6 @@ const marketplace = [
   'OpenSeaMono2',
   'TofuNft',
   'TofuNftMono',
-  'NftStorage',
-  'NftStorageMono',
 ].sort() as ReactWeb3IconKey[];
 
 const node = [
@@ -115,7 +113,11 @@ const node = [
   'QuickNodeMono',
 ].sort() as ReactWeb3IconKey[];
 
-const storage = ['Pinata'].sort() as ReactWeb3IconKey[];
+const storage = [
+  'NftStorage',
+  'NftStorageMono',
+  'Pinata',
+].sort() as ReactWeb3IconKey[];
 
 const wallet = [
   'Argent',
