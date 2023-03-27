@@ -5,6 +5,7 @@ const CATEGORIES = [
   'chain',
   'coin',
   'dex',
+  'domain',
   'exchange',
   'library',
   'marketplace',

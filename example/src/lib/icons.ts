@@ -71,6 +71,13 @@ const dex = [
   'UniswapMono',
 ].sort() as ReactWeb3IconKey[];
 
+const domain = [
+  'Ens',
+  'Ens2',
+  'EnsMono',
+  'EnsMono2',
+].sort() as ReactWeb3IconKey[];
+
 const exchange = [
   'Binance',
   'BinanceMono',
@@ -164,6 +171,7 @@ export const REACT_WEB3_ICONS = {
     ...chain,
     ...coin,
     ...dex,
+    ...domain,
     ...exchange,
     ...library,
     ...marketplace,
@@ -174,6 +182,7 @@ export const REACT_WEB3_ICONS = {
   chain,
   coin,
   dex,
+  domain,
   exchange,
   library,
   marketplace,
