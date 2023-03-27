@@ -97,6 +97,8 @@ const exchange = [
 const library = [
   'EthersJs',
   'EthersJsMono',
+  'Ganache',
+  'GanacheMono',
   'Hardhat',
   'HardhatMono',
   'OpenZeppelin',
