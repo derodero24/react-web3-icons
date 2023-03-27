@@ -101,6 +101,8 @@ const library = [
   'HardhatMono',
   'OpenZeppelin',
   'OpenZeppelinMono',
+  'Truffle',
+  'TruffleMono',
 ].sort() as ReactWeb3IconKey[];
 
 const marketplace = [
