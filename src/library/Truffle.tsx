@@ -27,7 +27,7 @@ export function TruffleMono(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 206.83 204.29"
+      viewBox="0 -0.5 206.83 204.29"
       width="1em"
       height="1em"
       fill="currentColor"
