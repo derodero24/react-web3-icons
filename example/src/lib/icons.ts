@@ -95,6 +95,8 @@ const exchange = [
 ].sort() as ReactWeb3IconKey[];
 
 const library = [
+  'Drizzle',
+  'DrizzleMono',
   'EthersJs',
   'EthersJsMono',
   'Ganache',
