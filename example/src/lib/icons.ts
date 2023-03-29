@@ -43,6 +43,8 @@ const coin = [
   'Btc2',
   'BtcMono',
   'BtcMono2',
+  'Busd',
+  'BusdMono',
   'Cake',
   'CakeMono',
   'Eth',
