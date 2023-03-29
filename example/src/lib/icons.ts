@@ -52,6 +52,8 @@ const coin = [
   'Looks',
   'Looks2',
   'LooksMono',
+  'Ltc',
+  'LtcMono',
   'Usdc',
   'UsdcMono',
   'Usdt',
