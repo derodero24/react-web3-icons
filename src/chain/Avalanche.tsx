@@ -27,7 +27,7 @@ export function Avalanche(props: IconProps) {
   return <AvalancheBase withBackground={true} fill="#e84142" {...props} />;
 }
 
-export function Avalanche2(props: IconProps) {
+export function AvalancheMono(props: IconProps) {
   return (
     <AvalancheBase withBackground={false} fill="currentColor" {...props} />
   );
