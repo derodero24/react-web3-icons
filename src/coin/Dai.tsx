@@ -50,7 +50,7 @@ export function DaiMono(props: IconProps) {
   );
 }
 
-function Dai2Base(props: IconProps) {
+function DaiBase2(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -66,9 +66,9 @@ function Dai2Base(props: IconProps) {
 }
 
 export function Dai2(props: IconProps) {
-  return <Dai2Base fill="#f5ac37" {...props} />;
+  return <DaiBase2 fill="#f5ac37" {...props} />;
 }
 
 export function DaiMono2(props: IconProps) {
-  return <Dai2Base fill="currentColor" {...props} />;
+  return <DaiBase2 fill="currentColor" {...props} />;
 }
