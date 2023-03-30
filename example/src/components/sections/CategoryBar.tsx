@@ -19,7 +19,7 @@ export default function CategoryBar() {
     <section className="fixed flex h-full w-64 justify-center border-r border-gray-200 bg-gray-100 shadow duration-100 dark:border-gray-600 dark:bg-gray-700">
       <div className="mt-12">
         <p className="font-orbitron text-3xl font-bold capitalize">category</p>
-        <nav className="mt-4 ml-2 space-y-2">
+        <nav className="ml-2 mt-4 space-y-2">
           {CATEGORIES.map(item => (
             <Link
               key={item}

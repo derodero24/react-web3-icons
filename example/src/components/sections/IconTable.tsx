@@ -41,7 +41,7 @@ export default function IconTable() {
   };
 
   return (
-    <section className="relative ml-72 mr-8 mt-12 mb-24">
+    <section className="relative mb-24 ml-72 mr-8 mt-12">
       <p className="font-orbitron text-3xl font-bold capitalize">{category}</p>
 
       <SearchForm keyword={keyword} setKeyword={setKeyword} />

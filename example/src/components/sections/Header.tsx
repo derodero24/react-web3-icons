@@ -5,7 +5,7 @@ const BUTTONS = [ThemeButton, GitHubButton];
 
 export default function Header() {
   return (
-    <header className="absolute top-3 right-6">
+    <header className="absolute right-6 top-3">
       <div className="flex items-center space-x-6">
         {BUTTONS.map((Component, idx) => (
           <Component
