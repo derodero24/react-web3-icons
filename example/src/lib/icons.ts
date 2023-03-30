@@ -9,7 +9,7 @@ const chain = [
   'Astar',
   'AstarMono',
   'Avalanche',
-  'Avalanche2',
+  'AvalancheMono',
   'BinanceSmartChain',
   'BinanceSmartChainMono',
   'Bitcoin',
