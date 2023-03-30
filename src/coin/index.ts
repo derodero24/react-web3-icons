@@ -5,6 +5,7 @@ export * from './Btc';
 export * from './Busd';
 export * from './Cake';
 export * from './Dai';
+export * from './Doge';
 export * from './Eth';
 export * from './Looks';
 export * from './Ltc';

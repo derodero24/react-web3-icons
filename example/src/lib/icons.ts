@@ -57,6 +57,7 @@ const coin = [
   'Dai2',
   'DaiMono',
   'DaiMono2',
+  'Doge',
   'Eth',
   'EthMono',
   'Looks',
