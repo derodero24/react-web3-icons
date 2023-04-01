@@ -12,4 +12,5 @@ export * from './Ltc';
 export * from './Shib';
 export * from './Usdc';
 export * from './Usdt';
+export * from './Xlm';
 export * from './Xrp';
