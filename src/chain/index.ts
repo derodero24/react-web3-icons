@@ -9,3 +9,4 @@ export * from './ImmutableX';
 export * from './Polkadot';
 export * from './Polygon';
 export * from './Solana';
+export * from './Stellar';

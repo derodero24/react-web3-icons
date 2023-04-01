@@ -32,6 +32,8 @@ const chain = [
   'PolygonMono',
   'Solana',
   'SolanaMono',
+  'Stellar',
+  'StellarMono',
 ].sort() as ReactWeb3IconKey[];
 
 const coin = [
@@ -70,6 +72,8 @@ const coin = [
   'UsdcMono',
   'Usdt',
   'UsdtMono',
+  'Xlm',
+  'XlmMono',
   'Xrp',
   'Xrp2',
   'XrpMono',
