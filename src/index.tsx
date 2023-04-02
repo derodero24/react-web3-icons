@@ -3,6 +3,7 @@ export * from './coin';
 export * from './dex';
 export * from './domain';
 export * from './exchange';
+export * from './explorer';
 export * from './library';
 export * from './marketplace';
 export * from './node';
