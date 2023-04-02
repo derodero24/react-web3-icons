@@ -103,6 +103,8 @@ const domain = [
 const exchange = [
   'Binance',
   'BinanceMono',
+  'Bitfinex',
+  'BitfinexMono',
   'Coinbase',
   'Coinbase2',
   'Coinbase3',
