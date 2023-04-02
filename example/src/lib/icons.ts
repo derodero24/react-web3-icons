@@ -183,6 +183,7 @@ const tracker = [
   'CoinMarketCapMono',
   'CoinGecko',
   'CoinGeckoMono',
+  'DefiLlama',
 ].sort() as ReactWeb3IconKey[];
 
 const wallet = [
