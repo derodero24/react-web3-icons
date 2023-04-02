@@ -7,6 +7,7 @@ const CATEGORIES = [
   'dex',
   'domain',
   'exchange',
+  'explorer',
   'library',
   'marketplace',
   'node',

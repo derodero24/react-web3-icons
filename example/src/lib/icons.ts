@@ -114,6 +114,12 @@ const exchange = [
   'KuCoinMono',
 ].sort() as ReactWeb3IconKey[];
 
+const explorer = [
+  'Etherscan',
+  'Etherscan2',
+  'EtherscanMono',
+].sort() as ReactWeb3IconKey[];
+
 const library = [
   'Drizzle',
   'DrizzleMono',
@@ -206,6 +212,7 @@ export const REACT_WEB3_ICONS = {
     ...dex,
     ...domain,
     ...exchange,
+    ...explorer,
     ...library,
     ...marketplace,
     ...node,
@@ -217,6 +224,7 @@ export const REACT_WEB3_ICONS = {
   dex,
   domain,
   exchange,
+  explorer,
   library,
   marketplace,
   node,
