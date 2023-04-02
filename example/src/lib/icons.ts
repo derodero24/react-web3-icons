@@ -181,6 +181,8 @@ const storage = [
 const tracker = [
   'CoinMarketCap',
   'CoinMarketCapMono',
+  'CoinGecko',
+  'CoinGeckoMono',
 ].sort() as ReactWeb3IconKey[];
 
 const wallet = [
