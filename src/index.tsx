@@ -8,4 +8,5 @@ export * from './library';
 export * from './marketplace';
 export * from './node';
 export * from './storage';
+export * from './tracker';
 export * from './wallet';

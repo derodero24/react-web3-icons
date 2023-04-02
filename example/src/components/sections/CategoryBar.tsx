@@ -12,6 +12,7 @@ const CATEGORIES = [
   'marketplace',
   'node',
   'storage',
+  'tracker',
   'wallet',
 ];
 
