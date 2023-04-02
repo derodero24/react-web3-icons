@@ -121,6 +121,8 @@ const explorer = [
   'Bscscan',
   'Bscscan2',
   'BscscanMono',
+  'Solscan',
+  'SolscanMono',
 ].sort() as ReactWeb3IconKey[];
 
 const library = [
