@@ -115,6 +115,10 @@ const exchange = [
 ].sort() as ReactWeb3IconKey[];
 
 const explorer = [
+  'Avascan',
+  'Avascan2',
+  'AvascanMono',
+  'AvascanMono2',
   'Etherscan',
   'Etherscan2',
   'EtherscanMono',
