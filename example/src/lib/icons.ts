@@ -178,6 +178,11 @@ const storage = [
   'PinataMono',
 ].sort() as ReactWeb3IconKey[];
 
+const tracker = [
+  'CoinMarketCap',
+  'CoinMarketCapMono',
+].sort() as ReactWeb3IconKey[];
+
 const wallet = [
   'Argent',
   'ArgentMono',
@@ -226,6 +231,7 @@ export const REACT_WEB3_ICONS = {
     ...marketplace,
     ...node,
     ...storage,
+    ...tracker,
     ...wallet,
   ].sort(),
   chain,
@@ -238,5 +244,6 @@ export const REACT_WEB3_ICONS = {
   marketplace,
   node,
   storage,
+  tracker,
   wallet,
 };
