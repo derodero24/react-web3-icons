@@ -118,6 +118,9 @@ const explorer = [
   'Etherscan',
   'Etherscan2',
   'EtherscanMono',
+  'Bscscan',
+  'Bscscan2',
+  'BscscanMono',
 ].sort() as ReactWeb3IconKey[];
 
 const library = [
