@@ -175,7 +175,12 @@ const node = [
   'QuickNodeMono',
 ].sort() as ReactWeb3IconKey[];
 
-const portfolio = ['Zapper', 'ZapperMono'].sort() as ReactWeb3IconKey[];
+const portfolio = [
+  'DeBank',
+  'DeBankMono',
+  'Zapper',
+  'ZapperMono',
+].sort() as ReactWeb3IconKey[];
 
 const storage = [
   'Arweave',
