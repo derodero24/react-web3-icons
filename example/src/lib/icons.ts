@@ -175,6 +175,8 @@ const node = [
   'QuickNodeMono',
 ].sort() as ReactWeb3IconKey[];
 
+const portfolio = ['Zapper', 'ZapperMono'].sort() as ReactWeb3IconKey[];
+
 const storage = [
   'Arweave',
   'ArweaveMono',
@@ -241,6 +243,7 @@ export const REACT_WEB3_ICONS = {
     ...library,
     ...marketplace,
     ...node,
+    ...portfolio,
     ...storage,
     ...tracker,
     ...wallet,
@@ -254,6 +257,7 @@ export const REACT_WEB3_ICONS = {
   library,
   marketplace,
   node,
+  portfolio,
   storage,
   tracker,
   wallet,
