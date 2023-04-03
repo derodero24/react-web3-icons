@@ -11,6 +11,7 @@ const CATEGORIES = [
   'library',
   'marketplace',
   'node',
+  'portfolio',
   'storage',
   'tracker',
   'wallet',
