@@ -62,7 +62,7 @@ export function TrustWalletMono(props: IconProps) {
       {props.title && <title>{props.title}</title>}
       <defs>
         <mask id="twm-a">
-          <rect width="100%" height="100%" fill="white" />
+          <rect width="100%" height="100%" fill="#fff" />
           <path
             d="M512.3 215c103.319 86.288 221.801 80.966 255.653 80.966C760.548 786.707 704.128 689.395 512.3 827 320.472 689.395 264.405 786.707 257 295.966c33.499 0 151.981 5.322 255.3-80.966z"
             stroke="black"
@@ -94,7 +94,7 @@ export function TrustWalletMono2(props: IconProps) {
       {props.title && <title>{props.title}</title>}
       <defs>
         <mask id="twm2-a">
-          <rect width="100%" height="100%" fill="white" />
+          <rect width="100%" height="100%" fill="#fff" />
           <path
             d="M32.627 14c6.324 5.282 13.576 4.956 15.648 4.956-.453 30.038-3.907 24.081-15.648 32.504C20.885 43.037 17.453 48.994 17 18.956c2.05 0 9.303.326 15.627-4.956z"
             stroke="black"
