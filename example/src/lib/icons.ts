@@ -178,6 +178,12 @@ const node = [
 const portfolio = [
   'CoinLedger',
   'CoinLedgerMono',
+  'Coinpanda',
+  'Coinpanda2',
+  'Coinpanda3',
+  'CoinpandaMono',
+  'CoinpandaMono2',
+  'CoinpandaMono3',
   'DeBank',
   'DeBankMono',
   'Zapper',

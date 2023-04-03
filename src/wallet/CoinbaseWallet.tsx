@@ -37,7 +37,6 @@ export function CoinbaseWalletMono(props: IconProps) {
       {...props}
     >
       {props.title && <title>{props.title}</title>}
-
       <defs>
         <mask id="cbwm-a">
           <rect width="100%" height="100%" fill="#fff" />
