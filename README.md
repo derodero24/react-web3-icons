@@ -2,6 +2,10 @@
 
 # React Web3 Icons
 
+This library provides SVG icons related to Web3.
+
+![icons](image/icons.jpg)
+
 ## Find icons
 
 https://react-web3-icons-mu.vercel.app/
@@ -28,28 +32,6 @@ function App() {
   );
 }
 ```
-
-## Todo
-
-- Add more icons
-  - Coin (e.g. USDT, BNB, MATIC)
-  - Marketplace (e.g. Foundation, X2Y2, Blur)
-  - DEX (e.g. Uniswap, Curve Finance, dYdX)
-  - Exchange (e.g. Binance, Kraken, Coinbase)
-  - Chain (e.g. Binance Chain)
-  - Wallet (e.g. Metamask, Trust Wallet, Gnosis Safe)
-  - Node (e.g. Alchemy, Infura, QuickNode)
-  - Tool/Library (e.g. ethers.js, Hardhat, OpenZeppelin)
-  - Storage (e.g. Pinata, Fleek)
-  - Domain (e.g. ENS, Unstoppable)
-  - Dapp (Game, Metaverse)
-  - DAO
-  - Company
-  - Other services (e.g. Etherscan, DefiLlama)
-- MECE foldering
-- Improve example page
-- Improve test code
-- Improve README
 
 ## Contribution
 
