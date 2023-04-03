@@ -4,7 +4,7 @@
 
 This library provides SVG icons related to Web3.
 
-![icons](image/icons.jpg)
+![icons](image/icons.png)
 
 ## Find icons
 
