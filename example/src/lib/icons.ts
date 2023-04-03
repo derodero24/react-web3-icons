@@ -176,6 +176,8 @@ const node = [
 ].sort() as ReactWeb3IconKey[];
 
 const portfolio = [
+  'CoinLedger',
+  'CoinLedgerMono',
   'DeBank',
   'DeBankMono',
   'Zapper',
