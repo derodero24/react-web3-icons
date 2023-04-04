@@ -19,6 +19,7 @@ function BitfinexBase(props: IconProps) {
 export function Bitfinex(props: IconProps) {
   return <BitfinexBase fill="#03ca9b" {...props} />;
 }
+
 export function BitfinexMono(props: IconProps) {
   return <BitfinexBase fill="currentColor" {...props} />;
 }

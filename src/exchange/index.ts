@@ -5,3 +5,4 @@ export * from './Bybit';
 export * from './Coinbase';
 export * from './Kraken';
 export * from './KuCoin';
+export * from './Okx';

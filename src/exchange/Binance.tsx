@@ -40,6 +40,7 @@ function BinanceBase(props: IconProps) {
 export function Binance(props: IconProps) {
   return <BinanceBase fill="#F3BA2F" {...props} />;
 }
+
 export function BinanceMono(props: IconProps) {
   return <BinanceBase fill="currentColor" {...props} />;
 }
