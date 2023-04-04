@@ -18,6 +18,7 @@ function KrakenBase(props: IconProps) {
 export function Kraken(props: IconProps) {
   return <KrakenBase fill="#5741d9" {...props} />;
 }
+
 export function KrakenMono(props: IconProps) {
   return <KrakenBase fill="currentColor" {...props} />;
 }

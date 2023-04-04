@@ -121,6 +121,8 @@ const exchange = [
   'KrakenMono',
   'KuCoin',
   'KuCoinMono',
+  'Okx',
+  'OkxMono',
 ].sort() as ReactWeb3IconKey[];
 
 const explorer = [

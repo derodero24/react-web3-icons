@@ -18,6 +18,7 @@ function KuCoinBase(props: IconProps) {
 export function KuCoin(props: IconProps) {
   return <KuCoinBase fill="#28cd96" {...props} />;
 }
+
 export function KuCoinMono(props: IconProps) {
   return <KuCoinBase fill="currentColor" {...props} />;
 }
