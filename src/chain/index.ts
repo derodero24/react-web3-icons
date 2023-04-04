@@ -1,4 +1,5 @@
 export * from './Algorand';
+export * from './Arbitrum';
 export * from './Astar';
 export * from './Avalanche';
 export * from './BinanceSmartChain';
