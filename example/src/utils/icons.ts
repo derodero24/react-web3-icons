@@ -117,6 +117,8 @@ const exchange = [
   'Coinbase3',
   'CoinbaseMono',
   'CoinbaseMono2',
+  'Gateio',
+  'GateioMono',
   'Gemini',
   'GeminiMono',
   'Kraken',
