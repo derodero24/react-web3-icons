@@ -1,4 +1,4 @@
-import type { IconProps } from '../lib';
+import type { IconProps } from '../utils';
 
 interface Props extends IconProps {
   fill1: string;
