@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useMemo, useRef, useState } from 'react';
 
 import * as icons from '../../../../.';
-import { REACT_WEB3_ICONS } from '../../lib/icons';
+import { REACT_WEB3_ICONS } from '../../utils/icons';
 import SearchForm from '../elements/SearchForm';
 
 export default function IconTable() {

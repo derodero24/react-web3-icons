@@ -1,4 +1,4 @@
-import type { IconProps } from '../lib';
+import type { IconProps } from '../utils';
 
 function InfuraBase(props: IconProps) {
   return (

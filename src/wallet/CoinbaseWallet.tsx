@@ -1,4 +1,4 @@
-import type { IconProps } from '../lib';
+import type { IconProps } from '../utils';
 
 export function CoinbaseWallet(props: IconProps) {
   return (
