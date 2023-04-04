@@ -157,6 +157,8 @@ const library = [
   'OpenZeppelinMono',
   'Truffle',
   'TruffleMono',
+  'Web3Js',
+  'Web3JsMono',
 ].sort() as ReactWeb3IconKey[];
 
 const marketplace = [
