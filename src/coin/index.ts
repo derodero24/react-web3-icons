@@ -1,4 +1,5 @@
 export * from './Ada';
+export * from './Arb';
 export * from './Avax';
 export * from './Bnb';
 export * from './Btc';
