@@ -105,6 +105,8 @@ const devtool = [
   'GanacheMono',
   'Hardhat',
   'HardhatMono',
+  'Moralis',
+  'MoralisMono',
   'OpenZeppelin',
   'OpenZeppelinMono',
   'Remix',

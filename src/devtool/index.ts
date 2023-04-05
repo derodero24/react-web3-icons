@@ -2,6 +2,7 @@ export * from './Drizzle';
 export * from './EthersJs';
 export * from './Ganache';
 export * from './Hardhat';
+export * from './Moralis';
 export * from './OpenZeppelin';
 export * from './Remix';
 export * from './Solidity';
