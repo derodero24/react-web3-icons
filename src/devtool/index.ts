@@ -8,6 +8,7 @@ export * from './OpenZeppelin';
 export * from './Remix';
 export * from './Solidity';
 export * from './Tally';
+export * from './TheGraph';
 export * from './Thirdweb';
 export * from './Truffle';
 export * from './Web3Js';
