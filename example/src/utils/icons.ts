@@ -119,6 +119,8 @@ const devtool = [
   'SolidityMono',
   'Tally',
   'TallyMono',
+  'TheGraph',
+  'TheGraphMono',
   'Thirdweb',
   'ThirdwebMono',
   'Truffle',
