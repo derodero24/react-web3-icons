@@ -96,6 +96,23 @@ const coin = [
   'XrpMono2',
 ].sort() as ReactWeb3IconKey[];
 
+const devtool = [
+  'Drizzle',
+  'DrizzleMono',
+  'EthersJs',
+  'EthersJsMono',
+  'Ganache',
+  'GanacheMono',
+  'Hardhat',
+  'HardhatMono',
+  'OpenZeppelin',
+  'OpenZeppelinMono',
+  'Truffle',
+  'TruffleMono',
+  'Web3Js',
+  'Web3JsMono',
+].sort() as ReactWeb3IconKey[];
+
 const dex = [
   'Dydx',
   'Dydx2',
@@ -158,23 +175,6 @@ const explorer = [
   'BscscanMono',
   'Solscan',
   'SolscanMono',
-].sort() as ReactWeb3IconKey[];
-
-const library = [
-  'Drizzle',
-  'DrizzleMono',
-  'EthersJs',
-  'EthersJsMono',
-  'Ganache',
-  'GanacheMono',
-  'Hardhat',
-  'HardhatMono',
-  'OpenZeppelin',
-  'OpenZeppelinMono',
-  'Truffle',
-  'TruffleMono',
-  'Web3Js',
-  'Web3JsMono',
 ].sort() as ReactWeb3IconKey[];
 
 const marketplace = [
@@ -280,11 +280,12 @@ export const REACT_WEB3_ICONS = {
   all: [
     ...chain,
     ...coin,
+    ...devtool,
     ...dex,
     ...domain,
     ...exchange,
     ...explorer,
-    ...library,
+
     ...marketplace,
     ...node,
     ...portfolio,
@@ -294,11 +295,11 @@ export const REACT_WEB3_ICONS = {
   ].sort(),
   chain,
   coin,
+  devtool,
   dex,
   domain,
   exchange,
   explorer,
-  library,
   marketplace,
   node,
   portfolio,
