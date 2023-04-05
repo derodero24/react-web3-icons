@@ -97,6 +97,10 @@ const coin = [
 ].sort() as ReactWeb3IconKey[];
 
 const devtool = [
+  'Aragon',
+  'Aragon2',
+  'AragonMono',
+  'AragonMono2',
   'Drizzle',
   'DrizzleMono',
   'EthersJs',

@@ -1,3 +1,4 @@
+export * from './Aragon';
 export * from './Drizzle';
 export * from './EthersJs';
 export * from './Ganache';
