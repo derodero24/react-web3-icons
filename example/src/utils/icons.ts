@@ -113,6 +113,8 @@ const devtool = [
   'RemixMono',
   'Solidity',
   'SolidityMono',
+  'Thirdweb',
+  'ThirdwebMono',
   'Truffle',
   'TruffleMono',
   'Web3Js',
