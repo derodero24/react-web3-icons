@@ -109,6 +109,8 @@ const devtool = [
   'OpenZeppelinMono',
   'Remix',
   'RemixMono',
+  'Solidity',
+  'SolidityMono',
   'Truffle',
   'TruffleMono',
   'Web3Js',
