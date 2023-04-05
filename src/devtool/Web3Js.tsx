@@ -34,7 +34,6 @@ export function Web3JsMono(props: IconProps) {
       width="1em"
       height="1em"
       fill="currentColor"
-      stroke="currentColor"
       {...props}
     >
       {props.title && <title>{props.title}</title>}
