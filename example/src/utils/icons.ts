@@ -117,6 +117,8 @@ const devtool = [
   'RemixMono',
   'Solidity',
   'SolidityMono',
+  'Tally',
+  'TallyMono',
   'Thirdweb',
   'ThirdwebMono',
   'Truffle',
