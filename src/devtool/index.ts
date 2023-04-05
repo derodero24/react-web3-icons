@@ -1,4 +1,5 @@
 export * from './Aragon';
+export * from './CollabLand';
 export * from './Drizzle';
 export * from './EthersJs';
 export * from './Ganache';

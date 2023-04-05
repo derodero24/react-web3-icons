@@ -101,6 +101,8 @@ const devtool = [
   'Aragon2',
   'AragonMono',
   'AragonMono2',
+  'CollabLand',
+  'CollabLandMono',
   'Drizzle',
   'DrizzleMono',
   'EthersJs',
