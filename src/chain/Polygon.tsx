@@ -1,9 +1,5 @@
 import type { IconProps } from '../utils';
 
-interface Props extends IconProps {
-  shape: 'circle' | 'square';
-}
-
 export function Polygon(props: IconProps) {
   return (
     <svg
@@ -52,7 +48,7 @@ export function PolygonMono(props: IconProps) {
   );
 }
 
-function Polygon23Base({ shape, ...props }: Props) {
+export function Polygon2(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -63,11 +59,9 @@ function Polygon23Base({ shape, ...props }: Props) {
     >
       {props.title && <title>{props.title}</title>}
       <defs>
-        {shape === 'circle' && (
-          <clipPath id="plgn2-a">
-            <circle cx="250" cy="250" r="244.91" fill="none" />
-          </clipPath>
-        )}
+        <clipPath id="plgn2-a">
+          <circle cx="250" cy="250" r="244.91" fill="none" />
+        </clipPath>
         <linearGradient
           id="plgn2-b"
           x1="-116.09"
@@ -82,7 +76,7 @@ function Polygon23Base({ shape, ...props }: Props) {
       </defs>
       <path
         d="M-18.1-18.1h536.2v536.2H-18.1z"
-        clipPath={shape === 'circle' ? 'url(#plgn2-a)' : undefined}
+        clipPath="url(#plgn2-a)"
         fill="url(#plgn2-b)"
       />
       <path
@@ -93,15 +87,7 @@ function Polygon23Base({ shape, ...props }: Props) {
   );
 }
 
-export function Polygon2(props: IconProps) {
-  return <Polygon23Base shape="circle" {...props} />;
-}
-
-export function Polygon3(props: IconProps) {
-  return <Polygon23Base shape="square" {...props} />;
-}
-
-function PolygonMono23Base({ shape, ...props }: Props) {
+export function PolygonMono2(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -114,15 +100,13 @@ function PolygonMono23Base({ shape, ...props }: Props) {
       {props.title && <title>{props.title}</title>}
       <path
         d="M-18.1-18.1h536.2v536.2H-18.1z"
-        clipPath={shape === 'circle' ? 'url(#plgnm2-a)' : undefined}
+        clipPath="url(#plgnm2-a)"
         mask="url(#plgnm2-b)"
       />
       <defs>
-        {shape === 'circle' && (
-          <clipPath id="plgnm2-a">
-            <circle cx="250" cy="250" r="244.91" fill="none" />
-          </clipPath>
-        )}
+        <clipPath id="plgnm2-a">
+          <circle cx="250" cy="250" r="244.91" fill="none" />
+        </clipPath>
         <mask id="plgnm2-b">
           <rect width="200%" height="200%" fill="#fff" />
           <path
@@ -133,12 +117,4 @@ function PolygonMono23Base({ shape, ...props }: Props) {
       </defs>
     </svg>
   );
-}
-
-export function PolygonMono2(props: IconProps) {
-  return <PolygonMono23Base shape="circle" {...props} />;
-}
-
-export function PolygonMono3(props: IconProps) {
-  return <PolygonMono23Base shape="square" {...props} />;
 }
