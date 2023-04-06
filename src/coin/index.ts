@@ -10,6 +10,7 @@ export * from './Doge';
 export * from './Eth';
 export * from './Looks';
 export * from './Ltc';
+export * from './Matic';
 export * from './Shib';
 export * from './Usdc';
 export * from './Usdt';
