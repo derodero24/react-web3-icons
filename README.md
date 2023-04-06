@@ -1,4 +1,7 @@
-![](https://img.shields.io/npm/v/react-web3-icons?color=blue)
+[![npm][npm-image]][npm-url]
+
+[npm-image]: https://img.shields.io/npm/v/react-web3-icons?color=blue
+[npm-url]: https://www.npmjs.com/package/react-web3-icons
 
 # React Web3 Icons
 
