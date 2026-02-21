@@ -1,1 +1,1 @@
-dts lint
+npm run lint
