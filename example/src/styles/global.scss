@@ -14,8 +14,8 @@
   }
 
   input {
-    // Hide outline (only when not using keyboard navigation)
-    @apply focus-visible:outline-none;
+    // Hide default outline (custom focus styles applied in SearchForm)
+    @apply outline-none;
 
     // Hide cancel button
     &[type='search']::-webkit-search-cancel-button {

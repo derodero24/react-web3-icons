@@ -41,7 +41,7 @@ export default function CategoryBar() {
                     ? 'opacity-100 underline underline-offset-4'
                     : 'opacity-75 hover:opacity-100'
                 }`}
-                {...(isActive ? { 'aria-current': 'page' as const } : {})}
+                aria-current={isActive ? 'page' : undefined}
               >
                 {item}
               </Link>
