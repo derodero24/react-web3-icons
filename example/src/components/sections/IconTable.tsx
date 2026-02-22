@@ -20,13 +20,13 @@ export default function IconTable() {
   }, []);
 
   const category = useMemo<keyof typeof REACT_WEB3_ICONS>(() => {
-    const raw = query.category;
+    const raw = query['category'];
     const param = typeof raw === 'string' ? raw : undefined;
     if (param && param in REACT_WEB3_ICONS) {
       return param as keyof typeof REACT_WEB3_ICONS;
     }
     return 'all';
-  }, [query.category]);
+  }, [query['category']]);
 
   const displayedIcons = useMemo(
     () =>
