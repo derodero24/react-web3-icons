@@ -4,7 +4,7 @@
 
 @layer base {
   * {
-    @apply box-border whitespace-pre-wrap;
+    @apply box-border;
   }
 
   html,
@@ -14,7 +14,7 @@
   }
 
   input {
-    // Hide outline
+    // Hide default outline (custom focus styles applied in SearchForm)
     @apply outline-none;
 
     // Hide cancel button
@@ -35,10 +35,6 @@
   svg,
   textarea {
     @apply inline-block;
-  }
-
-  * {
-    @apply select-none;
   }
 }
 
