@@ -21,17 +21,19 @@ export default function IconTable() {
 
   const category = useMemo(
     () => (query.category as undefined | string) ?? 'all',
-    [query],
+    [query.category],
   );
 
   const displayedIcons = useMemo(() => {
-    const category = query.category as
+    const categoryKey = query.category as
       | undefined
       | keyof typeof REACT_WEB3_ICONS;
-    return (category ? REACT_WEB3_ICONS[category] : REACT_WEB3_ICONS.all)
+    return (
+      categoryKey ? REACT_WEB3_ICONS[categoryKey] : REACT_WEB3_ICONS.all
+    )
       .filter(name => name.toLowerCase().includes(keyword.toLowerCase()))
       .map(name => ({ name, component: icons[name] }));
-  }, [query, keyword]);
+  }, [query.category, keyword]);
 
   const copy = (value: string) => {
     navigator.clipboard
