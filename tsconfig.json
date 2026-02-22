@@ -5,7 +5,6 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "jsx": "react-jsx",
-    "rootDir": "./src",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true
@@ -13,5 +12,5 @@
   "include": [
     "src",
     "test"
-  ],
+  ]
 }
