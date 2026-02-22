@@ -9,6 +9,14 @@ updates:
         dependency-type: development
     open-pull-requests-limit: 10
 
+  - package-ecosystem: npm
+    directory: /example
+    schedule:
+      interval: weekly
+    groups:
+      all-dependencies:
+        patterns: ['*']
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
