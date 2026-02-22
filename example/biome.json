@@ -36,6 +36,9 @@
         "noUnusedVariables": "warn",
         "noUnusedFunctionParameters": "warn"
       },
+      "complexity": {
+        "useLiteralKeys": "off"
+      },
       "performance": {
         "noDynamicNamespaceImportAccess": "off"
       },
