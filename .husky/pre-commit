@@ -1,2 +1,2 @@
 #!/bin/sh
-npm run check
+npx @biomejs/biome check --staged --no-errors-on-unmatched

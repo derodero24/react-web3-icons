@@ -28,6 +28,7 @@
     "analyze": "size-limit --why",
     "build": "tsup",
     "check": "biome check",
+    "ci": "biome ci",
     "format": "biome format --write",
     "lint": "biome check --write",
     "prepare": "husky",
