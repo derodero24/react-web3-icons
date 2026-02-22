@@ -4,7 +4,7 @@
 
 @layer base {
   * {
-    @apply box-border whitespace-pre-wrap;
+    @apply box-border;
   }
 
   html,
@@ -14,8 +14,8 @@
   }
 
   input {
-    // Hide outline
-    @apply outline-none;
+    // Hide outline (only when not using keyboard navigation)
+    @apply focus-visible:outline-none;
 
     // Hide cancel button
     &[type='search']::-webkit-search-cancel-button {
@@ -35,10 +35,6 @@
   svg,
   textarea {
     @apply inline-block;
-  }
-
-  * {
-    @apply select-none;
   }
 }
 
