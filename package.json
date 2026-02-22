@@ -27,7 +27,7 @@
   "scripts": {
     "analyze": "size-limit --why",
     "build": "tsup",
-    "ci": "biome ci",
+    "check": "biome ci",
     "format": "biome format --write",
     "lint": "biome check",
     "lint:fix": "biome check --write",
