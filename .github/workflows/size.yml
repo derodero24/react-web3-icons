@@ -1,9 +1,13 @@
-name: size
+name: Size
 on: [pull_request]
 
 permissions:
   contents: read
   pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 jobs:
   size:
