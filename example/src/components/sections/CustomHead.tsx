@@ -13,8 +13,7 @@ export default function CustomHead({
   imageUrl,
 }: CustomHeadProps) {
   const { asPath } = useRouter();
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
   const fullUrl = new URL(asPath, baseUrl);
   const url = fullUrl.origin + fullUrl.pathname;
   const image = imageUrl ?? `${fullUrl.origin}/icon-512.png`;
