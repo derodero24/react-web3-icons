@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const CATEGORIES = [
   'all',
@@ -18,25 +19,37 @@ const CATEGORIES = [
 ];
 
 export default function CategoryBar() {
+  const { query } = useRouter();
+  const raw = query.category;
+  const current = typeof raw === 'string' ? raw : 'all';
+
   return (
-    <section className="fixed flex h-full w-64 justify-center border-r border-gray-200 bg-gray-100 shadow duration-100 dark:border-gray-600 dark:bg-gray-700">
+    <aside className="fixed flex h-full w-64 justify-center border-r border-gray-200 bg-gray-100 shadow duration-100 dark:border-gray-600 dark:bg-gray-700">
       <div className="mt-12">
         <p className="font-orbitron text-3xl font-bold capitalize">category</p>
         <nav className="ml-2 mt-4 space-y-2">
-          {CATEGORIES.map(item => (
-            <Link
-              key={item}
-              href={{
-                pathname: '/',
-                query: item === 'all' ? {} : { category: item },
-              }}
-              className="block text-xl font-bold capitalize opacity-75 hover:opacity-100"
-            >
-              {item}
-            </Link>
-          ))}
+          {CATEGORIES.map(item => {
+            const isActive = item === current;
+            return (
+              <Link
+                key={item}
+                href={{
+                  pathname: '/',
+                  query: item === 'all' ? {} : { category: item },
+                }}
+                className={`block text-xl font-bold capitalize ${
+                  isActive
+                    ? 'opacity-100 underline underline-offset-4'
+                    : 'opacity-75 hover:opacity-100'
+                }`}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {item}
+              </Link>
+            );
+          })}
         </nav>
       </div>
-    </section>
+    </aside>
   );
 }
