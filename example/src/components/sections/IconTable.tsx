@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import * as icons from '../../../../.';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
@@ -11,12 +11,20 @@ export default function IconTable() {
   const [tipShowed, setTipShowed] = useState<Record<string, boolean>>({});
   const timers = useRef<Record<string, NodeJS.Timeout>>({});
 
+  useEffect(() => {
+    return () => {
+      for (const id of Object.values(timers.current)) {
+        clearTimeout(id);
+      }
+    };
+  }, []);
+
   const category = useMemo(
     () => (query.category as undefined | string) ?? 'all',
     [query],
   );
 
-  const desplayedIcons = useMemo(() => {
+  const displayedIcons = useMemo(() => {
     const category = query.category as
       | undefined
       | keyof typeof REACT_WEB3_ICONS;
@@ -29,7 +37,6 @@ export default function IconTable() {
     navigator.clipboard
       .writeText(value)
       .then(() => {
-        console.log('copied.');
         setTipShowed(prev => ({ ...prev, [value]: true }));
         clearTimeout(timers.current[value]);
         timers.current[value] = setTimeout(
@@ -47,7 +54,7 @@ export default function IconTable() {
       <SearchForm keyword={keyword} setKeyword={setKeyword} />
 
       <div className="mt-6 flex flex-wrap gap-x-3 gap-y-4">
-        {desplayedIcons.map((icon, idx) => (
+        {displayedIcons.map((icon, idx) => (
           <div key={idx} className="relative">
             <button
               type="button"
@@ -66,7 +73,7 @@ export default function IconTable() {
                 (tipShowed[icon.name] ? '' : 'translate-y-2 opacity-0')
               }
             >
-              <div className="dark:bg-gray-60 flex h-6 w-20 items-center justify-center rounded border border-gray-200 bg-white font-orbitron text-sm font-bold shadow-sm duration-100 dark:border-gray-500 dark:bg-gray-600">
+              <div className="flex h-6 w-20 items-center justify-center rounded border border-gray-200 bg-white font-orbitron text-sm font-bold shadow-sm duration-100 dark:border-gray-500 dark:bg-gray-600">
                 Copied !!
               </div>
             </div>
