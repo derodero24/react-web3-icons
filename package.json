@@ -27,10 +27,10 @@
   "scripts": {
     "analyze": "size-limit --why",
     "build": "tsup",
-    "check": "biome check",
     "ci": "biome ci",
     "format": "biome format --write",
-    "lint": "biome check --write",
+    "lint": "biome check",
+    "lint:fix": "biome check --write",
     "prepare": "husky",
     "prepublishOnly": "npm run build",
     "size": "size-limit",
