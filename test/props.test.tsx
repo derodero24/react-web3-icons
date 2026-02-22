@@ -1,4 +1,5 @@
 /// <reference types="vitest/globals" />
+import type { ReactElement } from 'react';
 import { flushSync } from 'react-dom';
 import ReactDOM from 'react-dom/client';
 import { Btc, Ethereum, MetaMask } from '../src';
@@ -9,9 +10,19 @@ const testIcons = [
   ['Btc', Btc],
 ] as const;
 
-function renderToContainer(element: React.ReactElement): HTMLElement {
+const roots: ReturnType<typeof ReactDOM.createRoot>[] = [];
+
+afterEach(() => {
+  for (const root of roots) {
+    root.unmount();
+  }
+  roots.length = 0;
+});
+
+function renderToContainer(element: ReactElement): HTMLElement {
   const container = document.createElement('div');
   const root = ReactDOM.createRoot(container);
+  roots.push(root);
   flushSync(() => {
     root.render(element);
   });

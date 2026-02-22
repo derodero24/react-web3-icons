@@ -1,4 +1,5 @@
 /// <reference types="vitest/globals" />
+import { flushSync } from 'react-dom';
 import ReactDOM from 'react-dom/client';
 import * as icons from '../src';
 
@@ -9,7 +10,9 @@ describe('All icons render without error', () => {
     expect(typeof Component).toBe('function');
     const container = document.createElement('div');
     const root = ReactDOM.createRoot(container);
-    root.render(<Component />);
+    flushSync(() => {
+      root.render(<Component />);
+    });
     root.unmount();
   });
 });
