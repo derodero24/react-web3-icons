@@ -19,21 +19,22 @@ export default function IconTable() {
     };
   }, []);
 
-  const category = useMemo(
-    () => (query.category as undefined | string) ?? 'all',
-    [query.category],
-  );
+  const category = useMemo<keyof typeof REACT_WEB3_ICONS>(() => {
+    const raw = query.category;
+    const param = typeof raw === 'string' ? raw : undefined;
+    if (param && param in REACT_WEB3_ICONS) {
+      return param as keyof typeof REACT_WEB3_ICONS;
+    }
+    return 'all';
+  }, [query.category]);
 
-  const displayedIcons = useMemo(() => {
-    const categoryKey = query.category as
-      | undefined
-      | keyof typeof REACT_WEB3_ICONS;
-    return (
-      categoryKey ? REACT_WEB3_ICONS[categoryKey] : REACT_WEB3_ICONS.all
-    )
-      .filter(name => name.toLowerCase().includes(keyword.toLowerCase()))
-      .map(name => ({ name, component: icons[name] }));
-  }, [query.category, keyword]);
+  const displayedIcons = useMemo(
+    () =>
+      REACT_WEB3_ICONS[category]
+        .filter(name => name.toLowerCase().includes(keyword.toLowerCase()))
+        .map(name => ({ name, component: icons[name] })),
+    [category, keyword],
+  );
 
   const copy = (value: string) => {
     navigator.clipboard
@@ -46,6 +47,7 @@ export default function IconTable() {
           2_000,
         );
       })
+      // biome-ignore lint/suspicious/noConsole: legitimate error reporting for clipboard API
       .catch(console.error);
   };
 
