@@ -12,12 +12,12 @@ export default function IconTable() {
   const timers = useRef<Record<string, NodeJS.Timeout>>({});
 
   const category = useMemo(
-    () => (query['category'] as undefined | string) ?? 'all',
+    () => (query.category as undefined | string) ?? 'all',
     [query],
   );
 
   const desplayedIcons = useMemo(() => {
-    const category = query['category'] as
+    const category = query.category as
       | undefined
       | keyof typeof REACT_WEB3_ICONS;
     return (category ? REACT_WEB3_ICONS[category] : REACT_WEB3_ICONS.all)
@@ -50,6 +50,7 @@ export default function IconTable() {
         {desplayedIcons.map((icon, idx) => (
           <div key={idx} className="relative">
             <button
+              type="button"
               className="mx-auto flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm duration-100 hover:bg-gray-100 dark:border-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500/80"
               onClick={() => copy(icon.name)}
             >

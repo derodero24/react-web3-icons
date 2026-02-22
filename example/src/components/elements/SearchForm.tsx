@@ -1,6 +1,5 @@
-import { HiOutlineSearch } from 'react-icons/hi';
-
 import type { Dispatch, SetStateAction } from 'react';
+import { HiOutlineSearch } from 'react-icons/hi';
 
 interface Props {
   keyword: string;
