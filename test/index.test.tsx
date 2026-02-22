@@ -1,4 +1,3 @@
-/// <reference types="vitest/globals" />
 import ReactDOM from 'react-dom/client';
 
 import { Btc } from '../src/index';
