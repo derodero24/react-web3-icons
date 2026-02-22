@@ -58,6 +58,7 @@ export default function IconTable() {
           <div key={idx} className="relative">
             <button
               type="button"
+              aria-label={`Copy ${icon.name}`}
               className="mx-auto flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm duration-100 hover:bg-gray-100 dark:border-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500/80"
               onClick={() => copy(icon.name)}
             >
