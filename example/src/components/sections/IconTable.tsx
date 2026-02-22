@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import * as icons from '../../../../.';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
@@ -11,25 +11,35 @@ export default function IconTable() {
   const [tipShowed, setTipShowed] = useState<Record<string, boolean>>({});
   const timers = useRef<Record<string, NodeJS.Timeout>>({});
 
-  const category = useMemo(
-    () => (query.category as undefined | string) ?? 'all',
-    [query],
-  );
+  useEffect(() => {
+    return () => {
+      for (const id of Object.values(timers.current)) {
+        clearTimeout(id);
+      }
+    };
+  }, []);
 
-  const desplayedIcons = useMemo(() => {
-    const category = query.category as
-      | undefined
-      | keyof typeof REACT_WEB3_ICONS;
-    return (category ? REACT_WEB3_ICONS[category] : REACT_WEB3_ICONS.all)
-      .filter(name => name.toLowerCase().includes(keyword.toLowerCase()))
-      .map(name => ({ name, component: icons[name] }));
-  }, [query, keyword]);
+  const category = useMemo<keyof typeof REACT_WEB3_ICONS>(() => {
+    const raw = query.category;
+    const param = typeof raw === 'string' ? raw : undefined;
+    if (param && param in REACT_WEB3_ICONS) {
+      return param as keyof typeof REACT_WEB3_ICONS;
+    }
+    return 'all';
+  }, [query.category]);
+
+  const displayedIcons = useMemo(
+    () =>
+      REACT_WEB3_ICONS[category]
+        .filter(name => name.toLowerCase().includes(keyword.toLowerCase()))
+        .map(name => ({ name, component: icons[name] })),
+    [category, keyword],
+  );
 
   const copy = (value: string) => {
     navigator.clipboard
       .writeText(value)
       .then(() => {
-        console.log('copied.');
         setTipShowed(prev => ({ ...prev, [value]: true }));
         clearTimeout(timers.current[value]);
         timers.current[value] = setTimeout(
@@ -37,6 +47,7 @@ export default function IconTable() {
           2_000,
         );
       })
+      // biome-ignore lint/suspicious/noConsole: legitimate error reporting for clipboard API
       .catch(console.error);
   };
 
@@ -47,10 +58,11 @@ export default function IconTable() {
       <SearchForm keyword={keyword} setKeyword={setKeyword} />
 
       <div className="mt-6 flex flex-wrap gap-x-3 gap-y-4">
-        {desplayedIcons.map((icon, idx) => (
+        {displayedIcons.map((icon, idx) => (
           <div key={idx} className="relative">
             <button
               type="button"
+              aria-label={`Copy ${icon.name}`}
               className="mx-auto flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm duration-100 hover:bg-gray-100 dark:border-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500/80"
               onClick={() => copy(icon.name)}
             >
@@ -66,7 +78,7 @@ export default function IconTable() {
                 (tipShowed[icon.name] ? '' : 'translate-y-2 opacity-0')
               }
             >
-              <div className="dark:bg-gray-60 flex h-6 w-20 items-center justify-center rounded border border-gray-200 bg-white font-orbitron text-sm font-bold shadow-sm duration-100 dark:border-gray-500 dark:bg-gray-600">
+              <div className="flex h-6 w-20 items-center justify-center rounded border border-gray-200 bg-white font-orbitron text-sm font-bold shadow-sm duration-100 dark:border-gray-500 dark:bg-gray-600">
                 Copied !!
               </div>
             </div>

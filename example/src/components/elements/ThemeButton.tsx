@@ -7,6 +7,7 @@ export default function ThemeButton(props: { className: string }) {
   const { theme, setTheme, systemTheme } = useTheme();
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
+  const isDark = currentTheme === 'dark';
 
   useEffect(() => {
     setMounted(true);
@@ -14,9 +15,16 @@ export default function ThemeButton(props: { className: string }) {
 
   if (!mounted) {
     return null;
-  } else if (currentTheme === 'light') {
-    return <MdOutlineDarkMode {...props} onClick={() => setTheme('dark')} />;
-  } else {
-    return <MdOutlineLightMode {...props} onClick={() => setTheme('light')} />;
   }
+
+  return (
+    <button
+      type="button"
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      className={props.className}
+    >
+      {isDark ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
+    </button>
+  );
 }
