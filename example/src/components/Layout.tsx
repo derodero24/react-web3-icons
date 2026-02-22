@@ -1,8 +1,7 @@
+import type { ReactNode } from 'react';
+import type { CustomHeadProps } from './sections/CustomHead';
 import CustomHead from './sections/CustomHead';
 import Header from './sections/Header';
-
-import type { CustomHeadProps } from './sections/CustomHead';
-import type { ReactNode } from 'react';
 
 interface Props extends CustomHeadProps {
   children: ReactNode;
