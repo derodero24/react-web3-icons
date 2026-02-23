@@ -1,12 +1,18 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import * as icons from '../../../../.';
+import * as icons from '../../../..';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 import SearchForm from '../elements/SearchForm';
 
+type IconName = Extract<keyof typeof icons, string>;
+
+const iconMap = icons as Record<IconName, (typeof icons)[IconName]>;
+
 export default function IconTable() {
-  const { query } = useRouter();
+  const searchParams = useSearchParams();
   const [keyword, setKeyword] = useState('');
   const [tipShowed, setTipShowed] = useState<Record<string, boolean>>({});
   const timers = useRef<Record<string, NodeJS.Timeout>>({});
@@ -20,19 +26,18 @@ export default function IconTable() {
   }, []);
 
   const category = useMemo<keyof typeof REACT_WEB3_ICONS>(() => {
-    const raw = query['category'];
-    const param = typeof raw === 'string' ? raw : undefined;
+    const param = searchParams.get('category');
     if (param && param in REACT_WEB3_ICONS) {
       return param as keyof typeof REACT_WEB3_ICONS;
     }
     return 'all';
-  }, [query['category']]);
+  }, [searchParams]);
 
   const displayedIcons = useMemo(
     () =>
-      REACT_WEB3_ICONS[category]
+      (REACT_WEB3_ICONS[category] as IconName[])
         .filter(name => name.toLowerCase().includes(keyword.toLowerCase()))
-        .map(name => ({ name, component: icons[name] })),
+        .map(name => ({ name, component: iconMap[name] })),
     [category, keyword],
   );
 

@@ -1,4 +1,4 @@
-import type * as icons from '../../../dist';
+import type * as icons from '../../..';
 
 type ReactWeb3IconKey = keyof typeof icons;
 
