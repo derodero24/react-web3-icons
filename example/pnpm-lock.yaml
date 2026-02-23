@@ -31,13 +31,13 @@ importers:
         specifier: ^0.4.2
         version: 0.4.2
       '@tsconfig/strictest':
-        specifier: ^1.0.2
-        version: 1.0.2
+        specifier: ^2.0.8
+        version: 2.0.8
       '@types/node':
-        specifier: ^18.15.11
+        specifier: ^18.19.130
         version: 18.19.130
       '@types/react':
-        specifier: ^18.0.33
+        specifier: ^18.3.28
         version: 18.3.28
       '@types/react-dom':
         specifier: ^18.0.11
@@ -55,8 +55,8 @@ importers:
         specifier: ^3.3.1
         version: 3.4.19
       typescript:
-        specifier: ^4.9.5
-        version: 4.9.5
+        specifier: ^5.1.0
+        version: 5.9.3
 
 packages:
 
@@ -301,8 +301,8 @@ packages:
   '@total-typescript/ts-reset@0.4.2':
     resolution: {integrity: sha512-vqd7ZUDSrXFVT1n8b2kc3LnklncDQFPvR58yUS1kEP23/nHPAO9l1lMjUfnPrXYYk4Hj54rrLKMW5ipwk7k09A==}
 
-  '@tsconfig/strictest@1.0.2':
-    resolution: {integrity: sha512-IRKlC8cnP7zMz1SDBjyIVyPapkEGWLZ6wkF6Z8T+xU80P9sO5uGXlIUvtzjx+7ehPJRWxkB6CeIDwUfyqNtYkQ==}
+  '@tsconfig/strictest@2.0.8':
+    resolution: {integrity: sha512-XnQ7vNz5HRN0r88GYf1J9JJjqtZPiHt2woGJOo2dYqyHGGcd6OLGqSlBB6p1j9mpzja6Oe5BoPqWmeDx6X9rLw==}
 
   '@types/node@18.19.130':
     resolution: {integrity: sha512-GRaXQx6jGfL8sKfaIDD6OupbIHBr9jv7Jnaml9tB7l4v068PAOXqfcujMMo5PhbIs6ggR1XODELqahT2R8v0fg==}
@@ -727,9 +727,9 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  typescript@4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
     hasBin: true
 
   undici-types@5.26.5:
@@ -909,7 +909,7 @@ snapshots:
 
   '@total-typescript/ts-reset@0.4.2': {}
 
-  '@tsconfig/strictest@1.0.2': {}
+  '@tsconfig/strictest@2.0.8': {}
 
   '@types/node@18.19.130':
     dependencies:
@@ -1309,7 +1309,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  typescript@4.9.5: {}
+  typescript@5.9.3: {}
 
   undici-types@5.26.5: {}
 

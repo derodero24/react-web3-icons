@@ -20,7 +20,7 @@ const CATEGORIES = [
 
 export default function CategoryBar() {
   const { query } = useRouter();
-  const raw = query.category;
+  const raw = query['category'];
   const current = typeof raw === 'string' ? raw : 'all';
 
   return (
