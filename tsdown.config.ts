@@ -7,6 +7,6 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   external: ['react', 'react-dom', 'react/jsx-runtime'],
-  // Suppress CJS legacy check — this library intentionally ships dual ESM/CJS
+  // Disable CJS legacy check — this library intentionally ships dual ESM/CJS
   checks: { legacyCjs: false },
 });
