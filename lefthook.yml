@@ -1,4 +1,4 @@
 pre-commit:
   commands:
     biome-check:
-      run: npx @biomejs/biome check --staged --no-errors-on-unmatched
+      run: pnpm exec biome check --staged --no-errors-on-unmatched

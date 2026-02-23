@@ -7,10 +7,6 @@ import * as icons from '../../../..';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 import SearchForm from '../elements/SearchForm';
 
-type IconName = Extract<keyof typeof icons, string>;
-
-const iconMap = icons as Record<IconName, (typeof icons)[IconName]>;
-
 export default function IconTable() {
   const searchParams = useSearchParams();
   const [keyword, setKeyword] = useState('');
@@ -35,9 +31,9 @@ export default function IconTable() {
 
   const displayedIcons = useMemo(
     () =>
-      (REACT_WEB3_ICONS[category] as IconName[])
+      REACT_WEB3_ICONS[category]
         .filter(name => name.toLowerCase().includes(keyword.toLowerCase()))
-        .map(name => ({ name, component: iconMap[name] })),
+        .map(name => ({ name, component: icons[name] })),
     [category, keyword],
   );
 
