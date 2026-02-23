@@ -1,17 +1,20 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import type { FC } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import * as icons from '../../../..';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 import SearchForm from '../elements/SearchForm';
 
+const iconMap = icons as unknown as Record<string, FC<{ className?: string }>>;
+
 export default function IconTable() {
   const searchParams = useSearchParams();
   const [keyword, setKeyword] = useState('');
   const [tipShowed, setTipShowed] = useState<Record<string, boolean>>({});
-  const timers = useRef<Record<string, NodeJS.Timeout>>({});
+  const timers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
 
   useEffect(() => {
     return () => {
@@ -33,7 +36,7 @@ export default function IconTable() {
     () =>
       REACT_WEB3_ICONS[category]
         .filter(name => name.toLowerCase().includes(keyword.toLowerCase()))
-        .map(name => ({ name, component: icons[name] })),
+        .map(name => ({ name, component: iconMap[name] })),
     [category, keyword],
   );
 
@@ -59,32 +62,36 @@ export default function IconTable() {
       <SearchForm keyword={keyword} setKeyword={setKeyword} />
 
       <div className="mt-6 flex flex-wrap gap-x-3 gap-y-4">
-        {displayedIcons.map((icon, idx) => (
-          <div key={idx} className="relative">
-            <button
-              type="button"
-              aria-label={`Copy ${icon.name}`}
-              className="mx-auto flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm duration-100 hover:bg-gray-100 dark:border-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500/80"
-              onClick={() => copy(icon.name)}
-            >
-              <icon.component className="text-4xl drop-shadow transition-shadow duration-100 dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.1)]" />
-            </button>
-            <p className="mt-0.5 w-24 overflow-hidden text-ellipsis text-center text-xs font-medium">
-              {icon.name}
-            </p>
+        {displayedIcons.map(icon => {
+          const Icon = icon.component;
+          if (!Icon) return null;
+          return (
+            <div key={icon.name} className="relative">
+              <button
+                type="button"
+                aria-label={`Copy ${icon.name}`}
+                className="mx-auto flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm duration-100 hover:bg-gray-100 dark:border-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500/80"
+                onClick={() => copy(icon.name)}
+              >
+                <Icon className="text-4xl drop-shadow transition-shadow duration-100 dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.1)]" />
+              </button>
+              <p className="mt-0.5 w-24 overflow-hidden text-ellipsis text-center text-xs font-medium">
+                {icon.name}
+              </p>
 
-            <div
-              className={
-                'absolute -top-7 left-1/2 -translate-x-1/2 duration-150 ' +
-                (tipShowed[icon.name] ? '' : 'translate-y-2 opacity-0')
-              }
-            >
-              <div className="flex h-6 w-20 items-center justify-center rounded border border-gray-200 bg-white font-orbitron text-sm font-bold shadow-sm duration-100 dark:border-gray-500 dark:bg-gray-600">
-                Copied !!
+              <div
+                className={
+                  'absolute -top-7 left-1/2 -translate-x-1/2 duration-150 ' +
+                  (tipShowed[icon.name] ? '' : 'translate-y-2 opacity-0')
+                }
+              >
+                <div className="flex h-6 w-20 items-center justify-center rounded border border-gray-200 bg-white font-orbitron text-sm font-bold shadow-sm duration-100 dark:border-gray-500 dark:bg-gray-600">
+                  Copied !!
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

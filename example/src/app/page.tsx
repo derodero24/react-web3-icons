@@ -9,7 +9,7 @@ export default function Home() {
     <div className="flex min-h-svh flex-col">
       <Header />
       <main>
-        <Suspense>
+        <Suspense fallback={null}>
           <CategoryBar />
           <IconTable />
         </Suspense>

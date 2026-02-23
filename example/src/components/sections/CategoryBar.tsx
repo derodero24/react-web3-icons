@@ -22,7 +22,8 @@ const CATEGORIES = [
 
 export default function CategoryBar() {
   const searchParams = useSearchParams();
-  const current = searchParams.get('category') ?? 'all';
+  const raw = searchParams.get('category');
+  const current = raw && CATEGORIES.includes(raw) ? raw : 'all';
 
   return (
     <aside className="fixed flex h-full w-64 justify-center border-r border-gray-200 bg-gray-100 shadow duration-100 dark:border-gray-600 dark:bg-gray-700">
