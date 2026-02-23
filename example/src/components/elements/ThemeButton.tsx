@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 
-export default function ThemeButton(props: { className: string }) {
+export default function ThemeButton({ className }: { className: string }) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, systemTheme } = useTheme();
 
@@ -24,7 +24,7 @@ export default function ThemeButton(props: { className: string }) {
       type="button"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className={props.className}
+      className={className}
     >
       {isDark ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
     </button>

@@ -17,6 +17,7 @@
   ],
   "repository": "github:derodero24/react-web3-icons",
   "homepage": "https://react-web3-icons-mu.vercel.app/",
+  "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.cts",

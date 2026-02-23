@@ -80,6 +80,7 @@ export default function IconTable() {
               </p>
 
               <div
+                aria-hidden={!tipShowed[icon.name]}
                 className={
                   'absolute -top-7 left-1/2 -translate-x-1/2 duration-150 ' +
                   (tipShowed[icon.name] ? '' : 'translate-y-2 opacity-0')
