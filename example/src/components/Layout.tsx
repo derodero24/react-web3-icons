@@ -11,7 +11,7 @@ export default function Layout({ children, ...props }: Props) {
   return (
     <>
       <CustomHead {...props} />
-      <div className="flex min-h-100svh flex-col">
+      <div className="flex min-h-svh flex-col">
         <Header />
         <main>{children}</main>
       </div>
