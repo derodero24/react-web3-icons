@@ -7,4 +7,7 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   external: ['react', 'react-dom', 'react/jsx-runtime'],
+  checks: {
+    legacyCjs: false,
+  },
 });
