@@ -48,7 +48,8 @@
     "prepublishOnly": "pnpm run build",
     "size": "size-limit",
     "start": "tsdown --watch",
-    "test": "vitest run"
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.4",
