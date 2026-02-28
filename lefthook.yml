@@ -5,6 +5,7 @@ pre-commit:
       run: npx @biomejs/biome check --staged --no-errors-on-unmatched {staged_files}
 
 pre-push:
+  parallel: true
   commands:
     lint:
       run: pnpm run check
