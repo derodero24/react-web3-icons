@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import { flushSync } from 'react-dom';
 import ReactDOM from 'react-dom/client';
 import { describe, expect, it } from 'vitest';
@@ -16,7 +17,7 @@ import {
   XlmMono,
 } from '../src';
 
-function renderToHtml(component: React.ReactElement): string {
+function renderToHtml(component: ReactElement): string {
   const container = document.createElement('div');
   const root = ReactDOM.createRoot(container);
   flushSync(() => {
