@@ -1,0 +1,57 @@
+name: Changeset Check
+on: [pull_request]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check:
+    name: Check for missing changeset
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Check if src/ changed without a changeset
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              per_page: 100,
+            });
+
+            const srcChanged = files.some(f => f.filename.startsWith('src/'));
+            const hasChangeset = files.some(
+              f => f.filename.startsWith('.changeset/') && f.filename.endsWith('.md') && f.filename !== '.changeset/README.md'
+            );
+
+            if (srcChanged && !hasChangeset) {
+              const body = [
+                '## Changeset Missing',
+                '',
+                'This PR modifies files under `src/` but does not include a changeset.',
+                'If this change affects the published library, please run:',
+                '',
+                '```sh',
+                'pnpm changeset',
+                '```',
+                '',
+                'If this change does **not** affect the published library (e.g., refactoring with no public API change), you can ignore this message.',
+              ].join('\n');
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+
+              core.warning('src/ files changed without a changeset. See PR comment for details.');
+            } else {
+              core.info(srcChanged ? 'Changeset found.' : 'No src/ changes — changeset not required.');
+            }
