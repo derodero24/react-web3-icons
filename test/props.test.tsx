@@ -1,7 +1,7 @@
-/// <reference types="vitest/globals" />
 import type { ReactElement } from 'react';
 import { flushSync } from 'react-dom';
 import ReactDOM from 'react-dom/client';
+import { afterEach, describe, expect, it } from 'vitest';
 import { Btc, Ethereum, MetaMask } from '../src';
 
 const testIcons = [
