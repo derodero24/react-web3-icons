@@ -216,7 +216,7 @@ export function ArbitrumNovaMono(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="262.47 200 975.06 1099.98"
+      viewBox="200 200 1100 1100"
       width="1em"
       height="1em"
       fill="currentColor"
