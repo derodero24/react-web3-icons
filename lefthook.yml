@@ -12,6 +12,4 @@ pre-push:
     test:
       run: pnpm test
     build:
-      env:
-        CI: "true"
-      run: pnpm run build && pnpm run size
+      run: pnpm run build && CI=true pnpm run size
