@@ -1,7 +1,3 @@
-import type * as icons from '../../../dist';
-
-type ReactWeb3IconKey = keyof typeof icons;
-
 const chain = [
   'Algorand',
   'Algorand2',
@@ -48,7 +44,7 @@ const chain = [
   'SolanaMono',
   'Stellar',
   'StellarMono',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 const coin = [
   'Ada',
@@ -100,7 +96,7 @@ const coin = [
   'Xrp2',
   'XrpMono',
   'XrpMono2',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 const devtool = [
   'Aragon',
@@ -135,7 +131,7 @@ const devtool = [
   'TruffleMono',
   'Web3Js',
   'Web3JsMono',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 const dex = [
   'Dydx',
@@ -146,7 +142,7 @@ const dex = [
   'PancakeSwapMono',
   'Uniswap',
   'UniswapMono',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 const domain = [
   'Ens',
@@ -155,7 +151,7 @@ const domain = [
   'EnsMono2',
   'UnstoppableDomains',
   'UnstoppableDomainsMono',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 const exchange = [
   'Binance',
@@ -184,7 +180,7 @@ const exchange = [
   'KuCoinMono',
   'Okx',
   'OkxMono',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 const explorer = [
   'Avascan',
@@ -199,7 +195,7 @@ const explorer = [
   'BscscanMono',
   'Solscan',
   'SolscanMono',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 const marketplace = [
   'LooksRare',
@@ -219,7 +215,7 @@ const marketplace = [
   'TofuNftMono',
   'X2Y2',
   'X2Y2Mono',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 const node = [
   'Alchemy',
@@ -228,7 +224,7 @@ const node = [
   'InfuraMono',
   'QuickNode',
   'QuickNodeMono',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 const portfolio = [
   'CoinLedger',
@@ -243,7 +239,7 @@ const portfolio = [
   'DeBankMono',
   'Zapper',
   'ZapperMono',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 const storage = [
   'Arweave',
@@ -254,7 +250,7 @@ const storage = [
   'NftStorageMono',
   'Pinata',
   'PinataMono',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 const tracker = [
   'CoinMarketCap',
@@ -262,7 +258,7 @@ const tracker = [
   'CoinGecko',
   'CoinGeckoMono',
   'DefiLlama',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 const wallet = [
   'Argent',
@@ -298,7 +294,7 @@ const wallet = [
   'Zerion2',
   'ZerionMono',
   'ZerionMono2',
-].sort() as ReactWeb3IconKey[];
+].sort();
 
 export const REACT_WEB3_ICONS = {
   all: [
