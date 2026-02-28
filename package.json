@@ -44,7 +44,7 @@
     "lint": "biome check",
     "lint:fix": "biome check --write",
     "prepare": "lefthook install",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "pnpm run build",
     "size": "size-limit",
     "start": "tsdown --watch",
     "test": "vitest run"
@@ -68,6 +68,7 @@
   "peerDependencies": {
     "react": ">=16"
   },
+  "packageManager": "pnpm@10.13.1",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },

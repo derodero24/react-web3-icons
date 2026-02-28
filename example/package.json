@@ -4,11 +4,11 @@
   "license": "MIT",
   "author": "@derodero24",
   "scripts": {
-    "build": "npm --prefix .. run build && next build",
+    "build": "pnpm --prefix .. run build && next build",
     "dev": "next dev",
     "lint": "biome check",
     "lint:fix": "biome check --write",
-    "start": "npm --prefix .. run build && next build && next start"
+    "start": "pnpm --prefix .. run build && next build && next start"
   },
   "dependencies": {
     "next": "^16.1.6",
