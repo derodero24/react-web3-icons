@@ -17,16 +17,28 @@
   ],
   "repository": "github:derodero24/react-web3-icons",
   "homepage": "https://react-web3-icons-mu.vercel.app/",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
   "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "types": "dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
   "files": [
     "src",
     "dist"
   ],
   "scripts": {
     "analyze": "size-limit --why",
-    "build": "tsup",
+    "build": "tsdown",
     "check": "biome ci",
     "format": "biome format --write",
     "lint": "biome check",
@@ -34,7 +46,7 @@
     "prepare": "lefthook install",
     "prepublishOnly": "npm run build",
     "size": "size-limit",
-    "start": "tsup --watch",
+    "start": "tsdown --watch",
     "test": "vitest run"
   },
   "devDependencies": {
@@ -44,12 +56,12 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitest/coverage-v8": "^4.0.18",
-    "lefthook": "^2.1.1",
     "jsdom": "^28.1.0",
+    "lefthook": "^2.1.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "size-limit": "^12.0.0",
-    "tsup": "^8.5.0",
+    "tsdown": "0.21.0-beta.2",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"
   },
