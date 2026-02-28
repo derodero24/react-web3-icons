@@ -15,6 +15,7 @@
     "marketplace",
     "wallet"
   ],
+  "type": "module",
   "repository": "github:derodero24/react-web3-icons",
   "homepage": "https://react-web3-icons-mu.vercel.app/",
   "main": "dist/index.cjs",
