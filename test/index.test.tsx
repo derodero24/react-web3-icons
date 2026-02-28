@@ -1,5 +1,5 @@
-/// <reference types="vitest/globals" />
 import ReactDOM from 'react-dom/client';
+import { describe, it } from 'vitest';
 
 import { Btc } from '../src/index';
 
