@@ -26,7 +26,7 @@ pnpm install
 
 ## Project Structure
 
-```
+```text
 src/
   chain/        # L1/L2 blockchain icons (Ethereum, Arbitrum, etc.)
   coin/         # Cryptocurrency icons (Bitcoin, Doge, etc.)
@@ -42,7 +42,7 @@ src/
   portfolio/    # Portfolio tracker icons
   tracker/      # Analytics/tracker icons
   utils/        # Shared types (IconProps)
-  index.tsx     # Public exports
+  index.ts      # Public exports (re-exports all categories)
 example/        # Next.js demo app
 test/           # Vitest test suite
 ```
@@ -102,23 +102,29 @@ export function MyTokenMono(props: IconProps) {
 }
 ```
 
-### 3. Export from the Index
+### 3. Export from the Category Barrel
 
-Add your icon to `src/index.tsx`:
+Add your icon to the category's `index.ts` (e.g., `src/coin/index.ts`):
 
 ```tsx
-export { MyToken, MyTokenMono } from './coin/MyToken';
+export * from './MyToken';
 ```
+
+The top-level `src/index.ts` already re-exports all categories, so you don't need to modify it unless you're creating a new category.
 
 ### 4. Add Aliases (If Applicable)
 
-If the token has a common ticker symbol, add an alias file (e.g., `src/coin/Mtkn.tsx`):
+If the token has a common ticker symbol, add an alias re-export file (e.g., `src/coin/Mtkn.tsx`):
 
 ```tsx
 export { MyToken as Mtkn, MyTokenMono as MtknMono } from './MyToken';
 ```
 
-Then export the aliases from `src/index.tsx` as well.
+Then add the alias file to the same category barrel (`src/coin/index.ts`):
+
+```tsx
+export * from './Mtkn';
+```
 
 ## SVG Guidelines
 
@@ -127,6 +133,18 @@ Then export the aliases from `src/index.tsx` as well.
 - **Avoid `<style>` tags** inside SVGs. Use inline `style` props or direct fill/stroke attributes instead.
 - **Prefix gradient/filter IDs** to prevent collisions when multiple icons render on the same page (e.g., `mytoken-a`, `mytoken-b`).
 - **For large files** with multiple variants sharing the same paths, extract repeated `d` attribute values into constants at the top of the file.
+
+## Running the Example App
+
+The `example/` directory contains a Next.js app for browsing icons. To run it locally:
+
+```sh
+cd example
+pnpm install
+pnpm dev
+```
+
+This is useful for visually verifying new icons after adding them.
 
 ## Code Style
 
