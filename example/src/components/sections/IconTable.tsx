@@ -72,8 +72,8 @@ export default function IconTable() {
       <SearchForm keyword={keyword} setKeyword={setKeyword} />
 
       <div className="mt-6 flex flex-wrap gap-x-3 gap-y-4">
-        {displayedIcons.map((icon, idx) => (
-          <div key={idx} className="relative">
+        {displayedIcons.map(icon => (
+          <div key={icon.name} className="relative">
             <button
               type="button"
               aria-label={`Copy ${icon.name}`}
