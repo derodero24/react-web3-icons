@@ -61,7 +61,6 @@ export default function IconTable() {
           2_000,
         );
       })
-      // biome-ignore lint/suspicious/noConsole: legitimate error reporting for clipboard API
       .catch(console.error);
   };
 
