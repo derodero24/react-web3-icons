@@ -1,4 +1,4 @@
-import { defineConfig } from 'tsup';
+import { defineConfig } from 'tsdown';
 
 export default defineConfig({
   entry: ['src/index.tsx'],
@@ -6,5 +6,7 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
-  external: ['react', 'react-dom', 'react/jsx-runtime'],
+  deps: {
+    neverBundle: ['react', 'react-dom', 'react/jsx-runtime'],
+  },
 });
