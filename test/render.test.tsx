@@ -1,6 +1,6 @@
-/// <reference types="vitest/globals" />
 import { flushSync } from 'react-dom';
 import ReactDOM from 'react-dom/client';
+import { describe, expect, it } from 'vitest';
 import * as icons from '../src';
 
 const entries = Object.entries(icons);

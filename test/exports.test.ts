@@ -1,4 +1,4 @@
-/// <reference types="vitest/globals" />
+import { describe, expect, it } from 'vitest';
 import * as icons from '../src';
 
 describe('Export integrity', () => {
