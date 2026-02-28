@@ -9,6 +9,8 @@ pre-push:
   commands:
     lint:
       run: pnpm run check
+    typecheck:
+      run: pnpm run typecheck
     test:
       run: pnpm test
     build:
