@@ -11,3 +11,4 @@
 - [ ] Lint passes (`pnpm run check`)
 - [ ] Tests pass (`pnpm test`)
 - [ ] Build succeeds (`pnpm run build`)
+- [ ] Changeset included (if `src/` changed): `pnpm changeset`
