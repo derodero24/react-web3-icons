@@ -3,3 +3,12 @@ pre-commit:
     biome:
       glob: '*.{js,ts,jsx,tsx,json,css}'
       run: npx @biomejs/biome check --staged --no-errors-on-unmatched {staged_files}
+
+pre-push:
+  commands:
+    lint:
+      run: pnpm run check
+    test:
+      run: pnpm test
+    build:
+      run: pnpm run build

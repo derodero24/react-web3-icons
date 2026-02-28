@@ -21,15 +21,18 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v6
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: '24.x'
-          cache: npm
+          cache: pnpm
           registry-url: https://registry.npmjs.org
 
       - name: Install deps
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Verify version matches tag
         run: |
@@ -46,13 +49,13 @@ jobs:
           fi
 
       - name: Lint
-        run: npm run check
+        run: pnpm run check
 
       - name: Test
-        run: npm test
+        run: pnpm test
 
       - name: Publish to npm
-        run: npm publish
+        run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

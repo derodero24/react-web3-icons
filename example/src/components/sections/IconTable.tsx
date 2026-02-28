@@ -1,9 +1,20 @@
 import { useRouter } from 'next/router';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  type ComponentType,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
-import * as icons from '../../../../.';
+import * as iconModules from '../../../../.';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 import SearchForm from '../elements/SearchForm';
+
+const icons = iconModules as unknown as Record<
+  string,
+  ComponentType<{ className?: string }>
+>;
 
 export default function IconTable() {
   const { query } = useRouter();
@@ -32,7 +43,10 @@ export default function IconTable() {
     () =>
       REACT_WEB3_ICONS[category]
         .filter(name => name.toLowerCase().includes(keyword.toLowerCase()))
-        .map(name => ({ name, component: icons[name] })),
+        .map(name => ({
+          name,
+          component: icons[name] as ComponentType<{ className?: string }>,
+        })),
     [category, keyword],
   );
 
