@@ -159,5 +159,12 @@ This project uses [Biome](https://biomejs.dev/) for linting and formatting. Run 
    pnpm test
    pnpm run build
    ```
-3. Write a clear commit message (e.g., `feat(coin): add MyToken icon`)
-4. Open a pull request against `main`
+3. If your change affects the published library (new icons, bug fixes, API changes), add a changeset:
+
+   ```sh
+   pnpm changeset
+   ```
+
+   Follow the prompts to select the semver bump type (patch, minor, or major) and describe the change.
+4. Write a clear commit message (e.g., `feat(coin): add MyToken icon`)
+5. Open a pull request against `main`
