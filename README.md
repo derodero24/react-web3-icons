@@ -7,7 +7,7 @@
 
 This library provides SVG icons related to Web3.
 
-![icons](image/icons.png)
+![icons](https://raw.githubusercontent.com/derodero24/react-web3-icons/main/image/icons.png)
 
 ## Find icons
 
