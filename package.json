@@ -33,6 +33,7 @@
       }
     }
   },
+  "sideEffects": false,
   "files": [
     "src",
     "dist"
