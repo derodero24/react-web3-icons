@@ -84,8 +84,8 @@ const CoinpandaMonoBase = forwardRef(
         height="1em"
         fill="currentColor"
         aria-hidden={isDecorative || undefined}
-        role={isDecorative ? 'presentation' : 'img'}
-        {...(props as SVGProps<SVGSVGElement>)}
+        role={isDecorative ? undefined : 'img'}
+        {...props}
       >
         {title && <title id={_id}>{title}</title>}
         {background === 'circle' ? (
