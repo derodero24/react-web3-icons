@@ -1,0 +1,56 @@
+name: Bug Report
+description: Report a bug or unexpected behavior
+labels: ['bug']
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of the bug.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps to reproduce the behavior.
+      placeholder: |
+        1. Install react-web3-icons
+        2. Import `<IconName>` component
+        3. Render it with `...`
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What actually happened.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+      placeholder: e.g. 1.7.0
+    validations:
+      required: true
+  - type: input
+    id: react-version
+    attributes:
+      label: React version
+      placeholder: e.g. 19.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Any additional environment details (browser, bundler, OS, etc.)
