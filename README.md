@@ -38,4 +38,4 @@ function App() {
 
 ## Contribution
 
-We welcome your contributions!🎉
+We welcome your contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
