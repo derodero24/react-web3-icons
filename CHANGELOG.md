@@ -16,7 +16,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 
 - Migrated git hooks from Husky to Lefthook
-- Migrated build tool from tsup to tsdown
 - Migrated package manager from npm to pnpm
 - Migrated linter/formatter from ESLint + Prettier to Biome
 - Migrated test framework from Jest to Vitest
@@ -130,6 +129,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Package metadata (added keywords)
 
 ## [0.3.0] - 2023-03-15
+
+### Added
 
 - Initial public release with chain, coin, dex, wallet, and marketplace icons
 
