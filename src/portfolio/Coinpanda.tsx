@@ -1,6 +1,7 @@
 import { type ForwardedRef, forwardRef, useId } from 'react';
 
 import { createIcon, type IconProps } from '../utils';
+import { useIconContext } from '../utils/IconContext';
 
 const coinpandaContent = () => (
   <path d="M33.212 1.097c-3.636 0-6.608 2.896-6.731 6.502-4.155-1.822-8.864-1.821-13.016 0-.123-3.605-3.095-6.502-6.731-6.502C3.021 1.097 0 4.118 0 7.832c0 3.384 2.499 6.201 5.792 6.661-1.412 2.469-2.156 5.247-2.156 8.072a16.36 16.36 0 0 0 16.338 16.338 16.36 16.36 0 0 0 16.338-16.338c0-2.825-.744-5.603-2.156-8.072 3.294-.46 5.793-3.277 5.793-6.661a6.75 6.75 0 0 0-6.737-6.735zM6.734 11.298a3.47 3.47 0 0 1-3.465-3.465 3.47 3.47 0 0 1 3.465-3.466A3.47 3.47 0 0 1 10.2 7.833a3.47 3.47 0 0 1-3.466 3.465zm26.309 11.268c0 7.206-5.863 13.068-13.069 13.068S6.905 29.772 6.905 22.566 12.767 9.497 19.973 9.497a13.09 13.09 0 0 1 13.07 13.069zM29.747 7.833a3.47 3.47 0 0 1 3.466-3.466 3.47 3.47 0 0 1 3.466 3.466 3.47 3.47 0 0 1-3.466 3.465 3.47 3.47 0 0 1-3.466-3.465z" />
@@ -26,17 +27,17 @@ interface PropsWithBackground extends IconProps {
 
 const CoinpandaBase2 = forwardRef(
   (
-    {
-      background,
+    { background, ...rawProps }: PropsWithBackground,
+    ref: ForwardedRef<SVGSVGElement>,
+  ) => {
+    const {
       title,
       titleId,
       size = '1em',
       width,
       height,
       ...props
-    }: PropsWithBackground,
-    ref: ForwardedRef<SVGSVGElement>,
-  ) => {
+    } = useIconContext(rawProps);
     const isDecorative = !(
       title ||
       props['aria-label'] ||
@@ -78,17 +79,17 @@ export function Coinpanda3(props: IconProps) {
 
 const CoinpandaMonoBase = forwardRef(
   (
-    {
-      background,
+    { background, ...rawProps }: PropsWithBackground,
+    ref: ForwardedRef<SVGSVGElement>,
+  ) => {
+    const {
       title,
       titleId,
       size = '1em',
       width,
       height,
       ...props
-    }: PropsWithBackground,
-    ref: ForwardedRef<SVGSVGElement>,
-  ) => {
+    } = useIconContext(rawProps);
     const _id = useId();
     const isDecorative = !(
       title ||

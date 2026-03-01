@@ -1,23 +1,21 @@
 import { forwardRef, useId } from 'react';
 import type { IconProps } from '../utils';
+import { useIconContext } from '../utils/IconContext';
 
 interface RainbowWalletProps extends IconProps {
   withBackground?: boolean;
 }
 
 export const RainbowWallet = forwardRef<SVGSVGElement, RainbowWalletProps>(
-  function RainbowWallet(
-    {
-      withBackground = true,
+  function RainbowWallet({ withBackground = true, ...rawProps }, ref) {
+    const {
       title,
       titleId,
       size = '1em',
       width,
       height,
       ...props
-    },
-    ref,
-  ) {
+    } = useIconContext(rawProps);
     const _id = useId();
     const isDecorative = !(
       title ||
@@ -178,18 +176,15 @@ export const RainbowWallet = forwardRef<SVGSVGElement, RainbowWalletProps>(
 );
 
 export const RainbowWallet2 = forwardRef<SVGSVGElement, RainbowWalletProps>(
-  function RainbowWallet2(
-    {
-      withBackground = false,
+  function RainbowWallet2({ withBackground = false, ...rawProps }, ref) {
+    const {
       title,
       titleId,
       size = '1em',
       width,
       height,
       ...props
-    },
-    ref,
-  ) {
+    } = useIconContext(rawProps);
     const _id = useId();
     const isDecorative = !(
       title ||
