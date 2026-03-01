@@ -12,7 +12,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="316.72"
         x2="114.205"
         y2="228.584"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop offset=".001" stopColor="#e6007a" />
         <stop offset=".207" stopColor="#703ac2" />
@@ -26,7 +26,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         cy="0"
         r="1"
         gradientTransform="translate(91.8259 254.777) scale(26.2819 26.6154)"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#fff" />
         <stop offset="1" stopColor="#fff" stopOpacity="0" />
@@ -37,7 +37,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         cy="0"
         r="1"
         gradientTransform="translate(52.9778 304.151) scale(15.2911 15.485)"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#fff" />
         <stop offset="1" stopColor="#fff" stopOpacity="0" />
@@ -48,7 +48,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="301.532"
         x2="44.77"
         y2="301.33"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#fff" stopOpacity="0" />
         <stop offset="1" stopColor="#fff" />
@@ -59,7 +59,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         cy="0"
         r="1"
         gradientTransform="translate(50.1539 258.751) rotate(-119.688) scale(26.5324 26.3641)"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#fff" />
         <stop offset="1" stopColor="#fff" stopOpacity="0" />
@@ -70,7 +70,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         cy="0"
         r="1"
         gradientTransform="translate(111.803 268.133) rotate(-119.688) scale(15.4368 15.3389)"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#fff" />
         <stop offset="1" stopColor="#fff" stopOpacity="0" />
@@ -81,7 +81,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="289.568"
         x2="113.348"
         y2="276.831"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#fff" stopOpacity="0" />
         <stop offset="1" stopColor="#fff" />
@@ -92,7 +92,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         cy="0"
         r="1"
         gradientTransform="translate(73.143 292.077) rotate(119.688) scale(26.5324 26.3641)"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#fff" />
         <stop offset="1" stopColor="#fff" stopOpacity="0" />
@@ -103,7 +103,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         cy="0"
         r="1"
         gradientTransform="translate(51.5839 234.55) rotate(119.688) scale(15.4368 15.3389)"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#fff" />
         <stop offset="1" stopColor="#fff" stopOpacity="0" />
@@ -114,7 +114,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="215.734"
         x2="57.966"
         y2="228.686"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#fff" stopOpacity="0" />
         <stop offset="1" stopColor="#fff" />
@@ -125,7 +125,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="209.111"
         x2="45.939"
         y2="215.592"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -136,7 +136,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="296.085"
         x2="45.027"
         y2="315.747"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -147,7 +147,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="293.086"
         x2="133.729"
         y2="272.957"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -158,7 +158,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="220.65"
         x2="108.991"
         y2="227.485"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -169,7 +169,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="298.917"
         x2="88.737"
         y2="321.626"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -180,7 +180,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="287.287"
         x2="18.187"
         y2="257.375"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -191,7 +191,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="231.926"
         x2="75.689"
         y2="241.479"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -202,7 +202,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="275.844"
         x2="46.917"
         y2="279.303"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -213,7 +213,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="299.062"
         x2="93.578"
         y2="285.868"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -224,7 +224,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="287.31"
         x2="83.121"
         y2="279.364"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -235,7 +235,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="283.84"
         x2="46.039"
         y2="289.255"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -246,7 +246,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="264.514"
         x2="57.018"
         y2="271.942"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -257,7 +257,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="241.465"
         x2="67.389"
         y2="232.913"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -268,7 +268,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="280.698"
         x2="103.485"
         y2="282.317"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />
@@ -279,7 +279,7 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
         y1="256.42"
         x2="76.227"
         y2="254.801"
-        xlinkHref={`#${_id}-astr-z`}
+        href={`#${_id}-astr-z`}
       >
         <stop stopColor="#231f20" />
         <stop offset="1" stopColor="#fff" />

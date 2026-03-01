@@ -26,10 +26,9 @@ interface PropsWithBackground extends IconProps {
 
 const CoinpandaBase2 = forwardRef(
   (
-    { background, title, ...props }: PropsWithBackground,
+    { background, title, titleId, ...props }: PropsWithBackground,
     ref: ForwardedRef<SVGSVGElement>,
   ) => {
-    const _id = useId();
     const isDecorative = !(
       title ||
       props['aria-label'] ||
@@ -45,7 +44,7 @@ const CoinpandaBase2 = forwardRef(
         role={isDecorative ? undefined : 'img'}
         {...props}
       >
-        {title && <title id={_id}>{title}</title>}
+        {title && <title id={titleId}>{title}</title>}
         {background === 'circle' ? (
           <circle fill="#246aff" cx="43" cy="43" r="43" />
         ) : (
@@ -71,11 +70,15 @@ export function Coinpanda3(props: IconProps) {
 
 const CoinpandaMonoBase = forwardRef(
   (
-    { background, title, ...props }: PropsWithBackground,
+    { background, title, titleId, ...props }: PropsWithBackground,
     ref: ForwardedRef<SVGSVGElement>,
   ) => {
     const _id = useId();
-    const isDecorative = !title;
+    const isDecorative = !(
+      title ||
+      props['aria-label'] ||
+      props['aria-labelledby']
+    );
     return (
       <svg
         ref={ref}
@@ -87,7 +90,7 @@ const CoinpandaMonoBase = forwardRef(
         role={isDecorative ? undefined : 'img'}
         {...props}
       >
-        {title && <title id={_id}>{title}</title>}
+        {title && <title id={titleId}>{title}</title>}
         {background === 'circle' ? (
           <circle cx="43" cy="43" r="43" mask={`url(#${_id}-cpd-a)`} />
         ) : (

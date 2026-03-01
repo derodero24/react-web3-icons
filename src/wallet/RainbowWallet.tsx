@@ -65,7 +65,7 @@ export const RainbowWallet = forwardRef<SVGSVGElement, RainbowWalletProps>(
               y1="0"
               x2="60"
               y2="120"
-              xlinkHref={`#${_id}-rbw-k`}
+              href={`#${_id}-rbw-k`}
             >
               <stop stopColor="#174299" />
               <stop offset="1" stopColor="#001e59" />
@@ -77,7 +77,7 @@ export const RainbowWallet = forwardRef<SVGSVGElement, RainbowWalletProps>(
             cy="0"
             r="1"
             gradientTransform="translate(26 94) rotate(-90) scale(74)"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop offset=".77" stopColor="#ff4000" />
             <stop offset="1" stopColor="#8754c9" />
@@ -88,7 +88,7 @@ export const RainbowWallet = forwardRef<SVGSVGElement, RainbowWalletProps>(
             y1="97"
             x2="100"
             y2="97"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop stopColor="#ff4000" />
             <stop offset="1" stopColor="#8754c9" />
@@ -99,7 +99,7 @@ export const RainbowWallet = forwardRef<SVGSVGElement, RainbowWalletProps>(
             y1="20"
             x2="23"
             y2="37"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop stopColor="#8754c9" />
             <stop offset="1" stopColor="#ff4000" />
@@ -110,7 +110,7 @@ export const RainbowWallet = forwardRef<SVGSVGElement, RainbowWalletProps>(
             cy="0"
             r="1"
             gradientTransform="translate(26 94) rotate(-90) scale(58)"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop offset=".724" stopColor="#fff700" />
             <stop offset="1" stopColor="#ff9901" />
@@ -121,7 +121,7 @@ export const RainbowWallet = forwardRef<SVGSVGElement, RainbowWalletProps>(
             y1="97"
             x2="84"
             y2="97"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop stopColor="#fff700" />
             <stop offset="1" stopColor="#ff9901" />
@@ -132,7 +132,7 @@ export const RainbowWallet = forwardRef<SVGSVGElement, RainbowWalletProps>(
             y1="52"
             x2="23"
             y2="36"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop stopColor="#fff700" />
             <stop offset="1" stopColor="#ff9901" />
@@ -143,7 +143,7 @@ export const RainbowWallet = forwardRef<SVGSVGElement, RainbowWalletProps>(
             cy="0"
             r="1"
             gradientTransform="translate(26 94) rotate(-90) scale(42)"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop offset=".595" stopColor="#0af" />
             <stop offset="1" stopColor="#01da40" />
@@ -154,7 +154,7 @@ export const RainbowWallet = forwardRef<SVGSVGElement, RainbowWalletProps>(
             cy="0"
             r="1"
             gradientTransform="translate(51 97) scale(17 45.3333)"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop stopColor="#0af" />
             <stop offset="1" stopColor="#01da40" />
@@ -165,7 +165,7 @@ export const RainbowWallet = forwardRef<SVGSVGElement, RainbowWalletProps>(
             cy="0"
             r="1"
             gradientTransform="translate(23 69) rotate(-90) scale(17 322.37)"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop stopColor="#0af" />
             <stop offset="1" stopColor="#01da40" />
@@ -237,7 +237,7 @@ export const RainbowWallet2 = forwardRef<SVGSVGElement, RainbowWalletProps>(
               y1="0"
               x2="60"
               y2="120"
-              xlinkHref={`#${_id}-rbw-k`}
+              href={`#${_id}-rbw-k`}
             >
               <stop stopColor="#174299" />
               <stop offset="1" stopColor="#001e59" />
@@ -249,7 +249,7 @@ export const RainbowWallet2 = forwardRef<SVGSVGElement, RainbowWalletProps>(
             cy="0"
             r="1"
             gradientTransform="translate(26 94) rotate(-90) scale(74)"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop offset=".77" stopColor="#ff4000" />
             <stop offset="1" stopColor="#8754c9" />
@@ -260,7 +260,7 @@ export const RainbowWallet2 = forwardRef<SVGSVGElement, RainbowWalletProps>(
             y1="97"
             x2="100"
             y2="97"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop stopColor="#ff4000" />
             <stop offset="1" stopColor="#8754c9" />
@@ -271,7 +271,7 @@ export const RainbowWallet2 = forwardRef<SVGSVGElement, RainbowWalletProps>(
             y1="20"
             x2="23"
             y2="37"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop stopColor="#8754c9" />
             <stop offset="1" stopColor="#ff4000" />
@@ -282,7 +282,7 @@ export const RainbowWallet2 = forwardRef<SVGSVGElement, RainbowWalletProps>(
             cy="0"
             r="1"
             gradientTransform="translate(26 94) rotate(-90) scale(58)"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop offset=".724" stopColor="#fff700" />
             <stop offset="1" stopColor="#ff9901" />
@@ -293,7 +293,7 @@ export const RainbowWallet2 = forwardRef<SVGSVGElement, RainbowWalletProps>(
             y1="97"
             x2="84"
             y2="97"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop stopColor="#fff700" />
             <stop offset="1" stopColor="#ff9901" />
@@ -304,7 +304,7 @@ export const RainbowWallet2 = forwardRef<SVGSVGElement, RainbowWalletProps>(
             y1="52"
             x2="23"
             y2="36"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop stopColor="#fff700" />
             <stop offset="1" stopColor="#ff9901" />
@@ -315,7 +315,7 @@ export const RainbowWallet2 = forwardRef<SVGSVGElement, RainbowWalletProps>(
             cy="0"
             r="1"
             gradientTransform="translate(26 94) rotate(-90) scale(42)"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop offset=".595" stopColor="#0af" />
             <stop offset="1" stopColor="#01da40" />
@@ -326,7 +326,7 @@ export const RainbowWallet2 = forwardRef<SVGSVGElement, RainbowWalletProps>(
             cy="0"
             r="1"
             gradientTransform="translate(51 97) scale(17 45.3333)"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop stopColor="#0af" />
             <stop offset="1" stopColor="#01da40" />
@@ -337,7 +337,7 @@ export const RainbowWallet2 = forwardRef<SVGSVGElement, RainbowWalletProps>(
             cy="0"
             r="1"
             gradientTransform="translate(23 69) rotate(-90) scale(17 322.37)"
-            xlinkHref={`#${_id}-rbw-k`}
+            href={`#${_id}-rbw-k`}
           >
             <stop stopColor="#0af" />
             <stop offset="1" stopColor="#01da40" />

@@ -21,7 +21,7 @@ export const Ens = createIcon('Ens', '0 0 72.52 80.95', _id => (
         y1="81.66"
         x2="71.96"
         y2="49.81"
-        xlinkHref={`#${_id}-ens-A`}
+        href={`#${_id}-ens-a`}
       />
       <linearGradient
         id={`${_id}-ens-c`}

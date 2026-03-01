@@ -132,10 +132,10 @@ export const DydxMono2 = createIcon(
         width="181"
         height="181"
         rx="37"
-        mask={`url(#${_id}-bydxm2-a)`}
+        mask={`url(#${_id}-dydxm2-a)`}
       />
       <defs>
-        <mask id={`${_id}-bydxm2-a`}>
+        <mask id={`${_id}-dydxm2-a`}>
           <rect width="100%" height="100%" fill="#fff" />
           <path
             d="M115.316 43L45 141.992h21.588L137.269 43h-21.953zm-46.478 0l20.689 29.17-10.795 15.91L46.799 43h22.038zm48.573 99l-22.937-32.263 10.794-15.469L139 142h-21.589z"
