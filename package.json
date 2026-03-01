@@ -31,6 +31,136 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
+    },
+    "./chain": {
+      "import": {
+        "types": "./dist/chain/index.d.mts",
+        "default": "./dist/chain/index.mjs"
+      },
+      "require": {
+        "types": "./dist/chain/index.d.cts",
+        "default": "./dist/chain/index.cjs"
+      }
+    },
+    "./coin": {
+      "import": {
+        "types": "./dist/coin/index.d.mts",
+        "default": "./dist/coin/index.mjs"
+      },
+      "require": {
+        "types": "./dist/coin/index.d.cts",
+        "default": "./dist/coin/index.cjs"
+      }
+    },
+    "./devtool": {
+      "import": {
+        "types": "./dist/devtool/index.d.mts",
+        "default": "./dist/devtool/index.mjs"
+      },
+      "require": {
+        "types": "./dist/devtool/index.d.cts",
+        "default": "./dist/devtool/index.cjs"
+      }
+    },
+    "./dex": {
+      "import": {
+        "types": "./dist/dex/index.d.mts",
+        "default": "./dist/dex/index.mjs"
+      },
+      "require": {
+        "types": "./dist/dex/index.d.cts",
+        "default": "./dist/dex/index.cjs"
+      }
+    },
+    "./domain": {
+      "import": {
+        "types": "./dist/domain/index.d.mts",
+        "default": "./dist/domain/index.mjs"
+      },
+      "require": {
+        "types": "./dist/domain/index.d.cts",
+        "default": "./dist/domain/index.cjs"
+      }
+    },
+    "./exchange": {
+      "import": {
+        "types": "./dist/exchange/index.d.mts",
+        "default": "./dist/exchange/index.mjs"
+      },
+      "require": {
+        "types": "./dist/exchange/index.d.cts",
+        "default": "./dist/exchange/index.cjs"
+      }
+    },
+    "./explorer": {
+      "import": {
+        "types": "./dist/explorer/index.d.mts",
+        "default": "./dist/explorer/index.mjs"
+      },
+      "require": {
+        "types": "./dist/explorer/index.d.cts",
+        "default": "./dist/explorer/index.cjs"
+      }
+    },
+    "./marketplace": {
+      "import": {
+        "types": "./dist/marketplace/index.d.mts",
+        "default": "./dist/marketplace/index.mjs"
+      },
+      "require": {
+        "types": "./dist/marketplace/index.d.cts",
+        "default": "./dist/marketplace/index.cjs"
+      }
+    },
+    "./node": {
+      "import": {
+        "types": "./dist/node/index.d.mts",
+        "default": "./dist/node/index.mjs"
+      },
+      "require": {
+        "types": "./dist/node/index.d.cts",
+        "default": "./dist/node/index.cjs"
+      }
+    },
+    "./portfolio": {
+      "import": {
+        "types": "./dist/portfolio/index.d.mts",
+        "default": "./dist/portfolio/index.mjs"
+      },
+      "require": {
+        "types": "./dist/portfolio/index.d.cts",
+        "default": "./dist/portfolio/index.cjs"
+      }
+    },
+    "./storage": {
+      "import": {
+        "types": "./dist/storage/index.d.mts",
+        "default": "./dist/storage/index.mjs"
+      },
+      "require": {
+        "types": "./dist/storage/index.d.cts",
+        "default": "./dist/storage/index.cjs"
+      }
+    },
+    "./tracker": {
+      "import": {
+        "types": "./dist/tracker/index.d.mts",
+        "default": "./dist/tracker/index.mjs"
+      },
+      "require": {
+        "types": "./dist/tracker/index.d.cts",
+        "default": "./dist/tracker/index.cjs"
+      }
+    },
+    "./wallet": {
+      "import": {
+        "types": "./dist/wallet/index.d.mts",
+        "default": "./dist/wallet/index.mjs"
+      },
+      "require": {
+        "types": "./dist/wallet/index.d.cts",
+        "default": "./dist/wallet/index.cjs"
+      }
     }
   },
   "sideEffects": false,
@@ -80,8 +210,74 @@
   },
   "size-limit": [
     {
+      "name": "full bundle",
       "path": "dist/index.mjs",
       "limit": "100 KB"
+    },
+    {
+      "name": "chain",
+      "path": "dist/chain/index.mjs",
+      "limit": "20 KB"
+    },
+    {
+      "name": "coin",
+      "path": "dist/coin/index.mjs",
+      "limit": "35 KB"
+    },
+    {
+      "name": "devtool",
+      "path": "dist/devtool/index.mjs",
+      "limit": "20 KB"
+    },
+    {
+      "name": "dex",
+      "path": "dist/dex/index.mjs",
+      "limit": "10 KB"
+    },
+    {
+      "name": "domain",
+      "path": "dist/domain/index.mjs",
+      "limit": "5 KB"
+    },
+    {
+      "name": "exchange",
+      "path": "dist/exchange/index.mjs",
+      "limit": "10 KB"
+    },
+    {
+      "name": "explorer",
+      "path": "dist/explorer/index.mjs",
+      "limit": "10 KB"
+    },
+    {
+      "name": "marketplace",
+      "path": "dist/marketplace/index.mjs",
+      "limit": "15 KB"
+    },
+    {
+      "name": "node",
+      "path": "dist/node/index.mjs",
+      "limit": "5 KB"
+    },
+    {
+      "name": "portfolio",
+      "path": "dist/portfolio/index.mjs",
+      "limit": "10 KB"
+    },
+    {
+      "name": "storage",
+      "path": "dist/storage/index.mjs",
+      "limit": "20 KB"
+    },
+    {
+      "name": "tracker",
+      "path": "dist/tracker/index.mjs",
+      "limit": "10 KB"
+    },
+    {
+      "name": "wallet",
+      "path": "dist/wallet/index.mjs",
+      "limit": "20 KB"
     }
   ]
 }
