@@ -1,0 +1,77 @@
+name: Icon Request
+description: Request a new icon with official source references
+labels: ['enhancement']
+body:
+  - type: input
+    id: icon-name
+    attributes:
+      label: Icon name
+      description: Project/token/service name to add
+      placeholder: e.g. Base, Optimism, Rabby
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Target category
+      description: Select the best matching category
+      options:
+        - chain
+        - coin
+        - wallet
+        - dex
+        - exchange
+        - explorer
+        - devtool
+        - marketplace
+        - storage
+        - domain
+        - node
+        - portfolio
+        - tracker
+        - other (please explain in additional context)
+    validations:
+      required: true
+
+  - type: textarea
+    id: official-source
+    attributes:
+      label: Official SVG source URL(s)
+      description: Link brand kit, official press page, or official repository file
+      placeholder: |
+        - https://example.com/brand-assets
+        - https://github.com/org/repo/path/logo.svg
+    validations:
+      required: true
+
+  - type: textarea
+    id: usage-rights
+    attributes:
+      label: Brand usage/license notes
+      description: Include any usage permissions, restrictions, or terms
+      placeholder: |
+        - Brand guideline page:
+        - License/usage terms:
+        - Notes:
+    validations:
+      required: true
+
+  - type: textarea
+    id: variants
+    attributes:
+      label: Requested variants
+      description: List expected exports (default, mono, circle, aliases, etc.)
+      placeholder: |
+        - Base
+        - BaseMono
+        - BaseCircle
+        - BaseCircleMono
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Priority signals, adoption metrics, or related issues/PRs
