@@ -69,13 +69,17 @@ const CoinpandaBase2 = forwardRef(
 );
 CoinpandaBase2.displayName = 'CoinpandaBase2';
 
-export function Coinpanda2(props: IconProps) {
-  return <CoinpandaBase2 background="circle" {...props} />;
-}
+export const Coinpanda2 = forwardRef<SVGSVGElement, IconProps>(
+  function Coinpanda2(props, ref) {
+    return <CoinpandaBase2 background="circle" {...props} ref={ref} />;
+  },
+);
 
-export function Coinpanda3(props: IconProps) {
-  return <CoinpandaBase2 background="rect" {...props} />;
-}
+export const Coinpanda3 = forwardRef<SVGSVGElement, IconProps>(
+  function Coinpanda3(props, ref) {
+    return <CoinpandaBase2 background="rect" {...props} ref={ref} />;
+  },
+);
 
 const CoinpandaMonoBase = forwardRef(
   (
@@ -128,10 +132,14 @@ const CoinpandaMonoBase = forwardRef(
 );
 CoinpandaMonoBase.displayName = 'CoinpandaMonoBase';
 
-export function CoinpandaMono2(props: IconProps) {
-  return <CoinpandaMonoBase background="circle" {...props} />;
-}
+export const CoinpandaMono2 = forwardRef<SVGSVGElement, IconProps>(
+  function CoinpandaMono2(props, ref) {
+    return <CoinpandaMonoBase background="circle" {...props} ref={ref} />;
+  },
+);
 
-export function CoinpandaMono3(props: IconProps) {
-  return <CoinpandaMonoBase background="rect" {...props} />;
-}
+export const CoinpandaMono3 = forwardRef<SVGSVGElement, IconProps>(
+  function CoinpandaMono3(props, ref) {
+    return <CoinpandaMonoBase background="rect" {...props} ref={ref} />;
+  },
+);
