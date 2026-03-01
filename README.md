@@ -153,7 +153,17 @@ Plus all standard SVG attributes (`fill`, `stroke`, `opacity`, `onClick`, etc.).
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding icons, the SVG optimization pipeline, and submitting pull requests.
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding icons, lifecycle/deprecation rules, the SVG optimization pipeline, and submitting pull requests.
+
+## Icon Lifecycle Policy
+
+When icon brands are renamed (for example, `GnosisSafe` -> `Safe`, `Matic` -> `Pol`), this project keeps backward compatibility by shipping deprecated aliases.
+
+- Canonical exports follow the current official brand name.
+- Deprecated aliases stay available for at least one minor release and at least 90 days.
+- Alias removals happen only in major releases and are documented in changelog/release notes.
+
+Full process and test requirements: [CONTRIBUTING.md#icon-lifecycle-policy](CONTRIBUTING.md#icon-lifecycle-policy).
 
 ## License
 

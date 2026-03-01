@@ -111,6 +111,45 @@ Then add the alias file to the same category barrel (`src/coin/index.ts`):
 export * from './Mtkn';
 ```
 
+## Icon Lifecycle Policy
+
+Use this policy when an icon project rebrands or an export name must change.
+
+### Rename strategy
+
+- The current official name becomes the canonical export (for example, `Safe`).
+- The previous public name remains as a re-export alias in the same category (for example, `GnosisSafe`).
+- Alias exports must include ``/** @deprecated Use `NewName` instead. */`` JSDoc comments.
+- Keep behavior identical by re-exporting the canonical component instead of duplicating SVG markup.
+
+### Deprecation and removal timing
+
+- Keep deprecated aliases for at least one minor release and at least 90 days after deprecation starts.
+- Remove deprecated aliases only in a major release.
+- When removing aliases, include a clear breaking-change entry in the changeset and changelog.
+
+### Release note requirements
+
+For each rename/deprecation PR, include:
+
+- Rename mapping (`OldName` -> `NewName`)
+- The version/date when deprecation starts
+- The earliest planned major version for alias removal
+- Any category path changes (if applicable)
+
+### Test requirements
+
+Rename PRs must prove backward compatibility before merge:
+
+- Export presence tests for both old and new names (`test/exports.test.ts`)
+- Alias equality tests showing identical rendered SVG (`test/aliases.test.tsx`)
+- Existing category snapshot/render tests still passing
+
+### Existing examples in this repository
+
+- `src/wallet/Safe.tsx` is canonical, and `src/wallet/GnosisSafe.tsx` provides deprecated aliases.
+- `src/coin/Pol.tsx` is canonical, and `src/coin/Matic.tsx` provides deprecated aliases.
+
 ## SVG Optimization Pipeline
 
 When adding a new icon, follow this workflow:
