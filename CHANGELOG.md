@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- [#138](https://github.com/derodero24/react-web3-icons/pull/138) [`a7a1f40`](https://github.com/derodero24/react-web3-icons/commit/a7a1f40631c07beebe7f8dd6b0d880e8acc68dd8) Thanks [@derodero24](https://github.com/derodero24)! - Add Sol and SolMono coin exports by re-exporting Solana chain icon
+
 ## 2.0.1
 
 ### Patch Changes
