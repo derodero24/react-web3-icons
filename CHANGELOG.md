@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1
+
+### Patch Changes
+
+- [#130](https://github.com/derodero24/react-web3-icons/pull/130) [`5508c60`](https://github.com/derodero24/react-web3-icons/commit/5508c60709e882d507fd9f355b5738af8e4e4886) Thanks [@derodero24](https://github.com/derodero24)! - Add missing forwardRef wrappers to Coinpanda2, Coinpanda3, CoinpandaMono2, and CoinpandaMono3
+
 ## 2.0.0
 
 ### Major Changes
