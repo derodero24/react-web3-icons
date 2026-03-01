@@ -15,7 +15,7 @@ A comprehensive React SVG icon library for Web3 — blockchains, wallets, DEXs, 
 
 ![icons](https://raw.githubusercontent.com/derodero24/react-web3-icons/main/image/icons.png)
 
-**[Browse all icons](https://react-web3-icons-mu.vercel.app/)**
+**[Browse all icons](https://react-web3-icons.vercel.app/)**
 
 ## Features
 
@@ -133,7 +133,7 @@ import { Ethereum } from 'react-web3-icons';
 | `portfolio` | Portfolio trackers | DeBank, Zapper, CoinLedger |
 | `tracker` | Analytics & tracking | DefiLlama, CoinGecko, CoinMarketCap |
 
-Browse the full list at the **[demo site](https://react-web3-icons-mu.vercel.app/)**.
+Browse the full list at the **[demo site](https://react-web3-icons.vercel.app/)**.
 
 ## Props
 
