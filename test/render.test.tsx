@@ -1,9 +1,12 @@
+import type { ComponentType } from 'react';
 import { flushSync } from 'react-dom';
 import ReactDOM from 'react-dom/client';
 import { describe, expect, it } from 'vitest';
 import * as icons from '../src';
 
-const entries = Object.entries(icons);
+const entries = Object.entries(icons).filter(
+  ([name]) => name !== 'IconContext',
+) as [string, ComponentType][];
 
 describe('All icons render without error', () => {
   it.each(entries)('%s renders without crashing', (_name, Component) => {

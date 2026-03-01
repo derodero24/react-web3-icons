@@ -10,4 +10,5 @@ export * from './node';
 export * from './portfolio';
 export * from './storage';
 export * from './tracker';
+export { IconContext, type IconContextValue, type IconProps } from './utils';
 export * from './wallet';

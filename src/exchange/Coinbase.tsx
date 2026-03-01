@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import type { IconProps } from '../utils';
 import { createIcon } from '../utils';
+import { useIconContext } from '../utils/IconContext';
 
 interface CoinbaseProps extends IconProps {
   fill1?: string;
@@ -8,10 +9,15 @@ interface CoinbaseProps extends IconProps {
 }
 
 const CoinbaseBase = forwardRef<SVGSVGElement, CoinbaseProps>(
-  function CoinbaseBase(
-    { fill1, fill2, title, titleId, size = '1em', width, height, ...props },
-    ref,
-  ) {
+  function CoinbaseBase({ fill1, fill2, ...rawProps }, ref) {
+    const {
+      title,
+      titleId,
+      size = '1em',
+      width,
+      height,
+      ...props
+    } = useIconContext(rawProps);
     const isDecorative = !(
       title ||
       props['aria-label'] ||
