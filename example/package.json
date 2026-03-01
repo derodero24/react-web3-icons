@@ -5,7 +5,7 @@
   "author": "@derodero24",
   "scripts": {
     "build": "pnpm --prefix .. run build && next build",
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "lint": "biome check",
     "lint:fix": "biome check --write",
     "start": "pnpm --prefix .. run build && next build && next start"
