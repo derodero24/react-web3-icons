@@ -1,24 +1,21 @@
-import type { IconProps } from '../utils';
+import { createIcon } from '../utils';
 
-function BusdBase(props: IconProps) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0.2 0.21 336 337"
-      width="1em"
-      height="1em"
-      {...props}
-    >
-      {props.title && <title>{props.title}</title>}
-      <path d="M168.2.71l41.5 42.5-104.5 104.5-41.5-41.5zm63 63l41.5 42.5-167.5 167.5-41.5-41.5zm-189 63l41.5 42.5-41.5 41.5-41.5-41.5zm252 0l41.5 42.5-167.5 167.5-41.5-41.5z" />
-    </svg>
-  );
-}
+const busdContent = () => (
+  <>
+    <path d="M168.2.71l41.5 42.5-104.5 104.5-41.5-41.5zm63 63l41.5 42.5-167.5 167.5-41.5-41.5zm-189 63l41.5 42.5-41.5 41.5-41.5-41.5zm252 0l41.5 42.5-167.5 167.5-41.5-41.5z" />
+  </>
+);
 
-export function Busd(props: IconProps) {
-  return <BusdBase fill="#f0b90b" {...props} />;
-}
+export const Busd = createIcon(
+  'Busd',
+  '0.2 0.21 336 337',
+  busdContent,
+  '#f0b90b',
+);
 
-export function BusdMono(props: IconProps) {
-  return <BusdBase fill="currentColor" {...props} />;
-}
+export const BusdMono = createIcon(
+  'BusdMono',
+  '0.2 0.21 336 337',
+  busdContent,
+  'currentColor',
+);
