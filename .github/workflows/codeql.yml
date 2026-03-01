@@ -28,7 +28,7 @@ jobs:
           node-version: '24.x'
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - uses: github/codeql-action/init@v3
+      - uses: github/codeql-action/init@v4
         with:
           languages: javascript-typescript
-      - uses: github/codeql-action/analyze@v3
+      - uses: github/codeql-action/analyze@v4
