@@ -35,7 +35,7 @@ export default function IconTable() {
   const category = useMemo<keyof typeof REACT_WEB3_ICONS>(() => {
     const raw = searchParams.get('category');
     const param = typeof raw === 'string' ? raw : undefined;
-    if (param && param in REACT_WEB3_ICONS) {
+    if (param && Object.hasOwn(REACT_WEB3_ICONS, param)) {
       return param as keyof typeof REACT_WEB3_ICONS;
     }
     return 'all';
