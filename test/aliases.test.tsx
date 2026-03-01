@@ -37,11 +37,36 @@ function renderToHtml(component: ReactElement): string {
 }
 
 function normalizeGeneratedIds(html: string): string {
-  const ids = Array.from(new Set(html.match(/_r_[A-Za-z0-9_-]+/g) ?? []));
-  return ids.reduce(
-    (acc, id, index) => acc.split(id).join(`__id_${index}__`),
-    html,
+  const idMap = new Map<string, string>();
+  let counter = 0;
+
+  const getNormalizedId = (original: string): string => {
+    const existing = idMap.get(original);
+    if (existing) {
+      return existing;
+    }
+
+    const normalized = `__id_${counter}__`;
+    counter += 1;
+    idMap.set(original, normalized);
+    return normalized;
+  };
+
+  let normalizedHtml = html.replace(/\bid="([^"]+)"/g, (_match, id: string) => {
+    return `id="${getNormalizedId(id)}"`;
+  });
+
+  normalizedHtml = normalizedHtml.replace(
+    /url\(#([^)]+)\)/g,
+    (_match, id: string) => `url(#${getNormalizedId(id)})`,
   );
+
+  normalizedHtml = normalizedHtml.replace(
+    /\b(href|xlink:href)="#([^"]+)"/g,
+    (_match, attr: string, id: string) => `${attr}="#${getNormalizedId(id)}"`,
+  );
+
+  return normalizedHtml;
 }
 
 const aliasPairs = [
