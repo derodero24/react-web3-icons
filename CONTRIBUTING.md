@@ -7,7 +7,7 @@ Thanks for your interest in contributing! This guide covers how to add icons, fi
 ```sh
 git clone https://github.com/derodero24/react-web3-icons.git
 cd react-web3-icons
-nvm use
+nvm install
 pnpm install
 ```
 
@@ -16,7 +16,7 @@ pnpm install
 - **Node.js** ^20.19.0 or >=22.12.0
 - **pnpm** 10.x
 
-Run `nvm use` before installing dependencies (reads `.nvmrc` in the repo root).
+Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/activates the required Node version if missing).
 `pnpm install` fails fast on unsupported Node versions because `engine-strict=true` is enforced.
 
 ### Useful Commands
