@@ -6,6 +6,6 @@ node_modules
 dist
 coverage
 
-# Claude Code local files
+# Local development files
 CLAUDE.md
 .claude/
