@@ -1,5 +1,59 @@
 # Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- [#103](https://github.com/derodero24/react-web3-icons/pull/103) [`4a9f273`](https://github.com/derodero24/react-web3-icons/commit/4a9f273e89286fa9b4c1321e3ac82ecc0609f875) Thanks [@derodero24](https://github.com/derodero24)! - Rename rebranded services to current names:
+
+  - Add `Safe` / `SafeMono` and deprecate `GnosisSafe*` aliases
+  - Add `Pol` / `Pol*` and deprecate `Matic*` aliases
+  - Update the example icon catalog to prefer `Safe` and `Pol`
+
+- [`0e17d34`](https://github.com/derodero24/react-web3-icons/commit/0e17d34b249c2e22137eebeb44782459d0aefd3a) Thanks [@derodero24](https://github.com/derodero24)! - ### Breaking Changes
+
+  - **React 18+ required**: Narrowed peer dependency from `>=16` to `>=18` to enable modern APIs (`useId`, `forwardRef` improvements)
+  - **`IconProps` type changed**: Now extends `SVGProps<SVGSVGElement>` instead of `SVGAttributes<SVGElement>`, providing more precise typing for SVG elements
+  - **New `size` prop**: All icons accept a `size` prop (defaults to `"1em"`) that sets both `width` and `height`. If you previously passed non-standard props that happen to be named `size`, they will now be intercepted
+  - **`type: module`**: Package now sets `"type": "module"` in package.json. Dual CJS/ESM exports are still provided, so most consumers are unaffected
+
+  ### New Features
+
+  - **`createIcon` factory**: All icon components are now built with a shared factory that provides consistent behavior
+  - **Ref forwarding**: All icons support `React.forwardRef` for direct DOM access
+  - **`size` prop**: Unified sizing via a single `size` prop (e.g., `<Ethereum size={24} />`)
+  - **`title` / `titleId` props**: Built-in accessible labeling support
+  - **Automatic `aria-hidden`**: Icons without an accessible name (`title`, `aria-label`, or `aria-labelledby`) are automatically marked as decorative
+  - **Dynamic SVG IDs**: Internal `<mask>`, `<linearGradient>`, `<clipPath>`, and `<filter>` IDs are generated via `useId()` to prevent collisions when multiple icons render on the same page
+  - **Tree-shaking**: Added `"sideEffects": false` to package.json for optimal bundle sizes
+
+  ### Bug Fixes
+
+  - Fix SVG ID collisions when rendering multiple instances of the same icon
+  - Fix ArbitrumNovaMono viewBox clipping
+  - Fix MetaMask2 inline `<style>` tag replaced with inline styles for CSP compatibility
+  - Fix stroke rendering on TruffleMono and GanacheMono icons
+  - Fix `fill="none"` missing on NftStorageMono masked stroke paths
+  - Fix `size` prop handling in Coinpanda multi-variant components
+
+  ### Internal
+
+  - Migrated build tool from dts-cli → tsup → tsdown
+  - Modernized TypeScript configuration (target ES2022, moduleResolution Bundler)
+  - Optimized large SVG files with shared path constants
+  - Excluded source files from npm package for smaller install size
+
+### Minor Changes
+
+- [#95](https://github.com/derodero24/react-web3-icons/pull/95) [`917d4b4`](https://github.com/derodero24/react-web3-icons/commit/917d4b4eb8bee8a93c45e31fea5327d83497b6b2) Thanks [@derodero24](https://github.com/derodero24)! - Add `IconContext` for setting default icon props via React Context. Wrap icons in `<IconContext.Provider value={{ size: 24, className: 'icon' }}>` to apply defaults to all descendant icons. Direct props override context values; `style` is shallow-merged.
+
+- [#102](https://github.com/derodero24/react-web3-icons/pull/102) [`5e6efe9`](https://github.com/derodero24/react-web3-icons/commit/5e6efe933d7260a5f4c4e096d9fe739893213a75) Thanks [@derodero24](https://github.com/derodero24)! - Add per-category subpath exports for tree-shaking (e.g. `react-web3-icons/chain`)
+
+- [#107](https://github.com/derodero24/react-web3-icons/pull/107) [`e76dff7`](https://github.com/derodero24/react-web3-icons/commit/e76dff75dfefd4be3d0f0ec457c665f449b6c836) Thanks [@derodero24](https://github.com/derodero24)! - Add TON chain icon variants:
+
+  - `Ton` (colored)
+  - `TonMono` (monochrome)
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
