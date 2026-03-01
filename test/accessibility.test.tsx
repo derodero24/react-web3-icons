@@ -2,12 +2,14 @@ import type { ReactElement } from 'react';
 import { flushSync } from 'react-dom';
 import ReactDOM from 'react-dom/client';
 import { afterEach, describe, expect, it } from 'vitest';
-import { Ethereum, MetaMask, Uniswap } from '../src';
+import { Avalanche, Ethereum, MetaMask, Uniswap } from '../src';
 
 const testIcons = [
   ['Ethereum', Ethereum],
   ['MetaMask', MetaMask],
   ['Uniswap', Uniswap],
+  // Manual forwardRef icon (not using createIcon factory)
+  ['Avalanche', Avalanche],
 ] as const;
 
 const roots: ReturnType<typeof ReactDOM.createRoot>[] = [];

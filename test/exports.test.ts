@@ -15,7 +15,7 @@ describe('Export integrity', () => {
     expect(entries.length).toBeGreaterThanOrEqual(100);
   });
 
-  it('exports IconContext and IconProps type helper', () => {
+  it('exports IconContext', () => {
     expect(names.has('IconContext')).toBe(true);
   });
 });
@@ -48,10 +48,9 @@ describe('Every colored icon has a Mono variant', () => {
 
   // Icons that don't follow the Mono naming convention
   const monoExemptions = new Set([
-    // Coin aliases that point to chain Mono variants
+    // Standalone coin icons without Mono variants
     'Doge',
     'Shib',
-    // Numbered variants (e.g. Avalanche2, Bitcoin2) don't always need separate Mono
   ]);
 
   // Get base names (non-Mono, non-numbered-variant)

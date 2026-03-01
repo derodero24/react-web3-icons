@@ -53,10 +53,13 @@ describe('Snapshot tests', () => {
   it.each(representatives)('%s matches snapshot', (_name, Component) => {
     const container = document.createElement('div');
     const root = ReactDOM.createRoot(container);
-    flushSync(() => {
-      root.render(<Component />);
-    });
-    expect(container.innerHTML).toMatchSnapshot();
-    root.unmount();
+    try {
+      flushSync(() => {
+        root.render(<Component />);
+      });
+      expect(container.innerHTML).toMatchSnapshot();
+    } finally {
+      root.unmount();
+    }
   });
 });
