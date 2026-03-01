@@ -51,55 +51,36 @@ test/           # Vitest test suite
 
 ### 1. Create the Icon Component
 
-Each icon is a React component that renders an SVG element. Place your file in the appropriate category directory under `src/`.
+Each icon is created using the `createIcon` factory function. Place your file in the appropriate category directory under `src/`.
 
 ```tsx
-import type { IconProps } from '../utils';
+import { createIcon } from '../utils';
 
-export function MyToken(props: IconProps) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="1em"
-      height="1em"
-      {...props}
-    >
-      {props.title && <title>{props.title}</title>}
-      <path d="..." fill="#..." />
-    </svg>
-  );
-}
+export const MyToken = createIcon('MyToken', '0 0 24 24', () => (
+  <path d="..." fill="#..." />
+));
 ```
+
+The factory handles `forwardRef`, `useId`, `size` prop, `title`/`titleId`, and `aria-hidden` automatically.
 
 **Key conventions:**
 
-- Default size is `1em` (scales with font size)
-- Spread `{...props}` on the root `<svg>` element to allow consumers to pass standard SVG attributes
-- Support the optional `title` prop for accessibility
+- Use `createIcon` for all new icons
 - Use named exports (no default exports)
-- Function names use PascalCase matching the token/project name
+- Component names use PascalCase matching the token/project name
+- The render callback receives an `_id` parameter for dynamic SVG element IDs
 
 ### 2. Add a Monochrome Variant (Optional)
 
-Mono icons use `fill="currentColor"` on the `<svg>` element, allowing the icon color to be controlled via CSS `color`.
+Pass `'currentColor'` as the fourth argument to `createIcon`. This sets `fill="currentColor"` on the root `<svg>`, allowing the icon color to be controlled via CSS `color`.
 
 ```tsx
-export function MyTokenMono(props: IconProps) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="1em"
-      height="1em"
-      fill="currentColor"
-      {...props}
-    >
-      {props.title && <title>{props.title}</title>}
-      <path d="..." />
-    </svg>
-  );
-}
+export const MyTokenMono = createIcon(
+  'MyTokenMono',
+  '0 0 24 24',
+  () => <path d="..." />,
+  'currentColor',
+);
 ```
 
 ### 3. Export from the Category Barrel
@@ -126,12 +107,75 @@ Then add the alias file to the same category barrel (`src/coin/index.ts`):
 export * from './Mtkn';
 ```
 
+## SVG Optimization Pipeline
+
+When adding a new icon, follow this workflow:
+
+```text
+1. Download official SVG  →  2. Optimize with SVGO  →  3. Convert to React component  →  4. Manual refinement  →  5. Visual QA
+```
+
+### 1. Source the SVG
+
+Download from the project's official brand kit, GitHub repository, or press page. Always use the original vector file — never trace a raster image.
+
+### 2. Optimize with SVGO
+
+Run the bundled SVGO configuration against the raw SVG:
+
+```sh
+pnpm run optimize:svg path/to/icon.svg
+```
+
+This removes metadata, strips fixed dimensions, and cleans up the markup while preserving brand colors, IDs, and multi-colored paths.
+
+You can also optimize a directory of SVGs:
+
+```sh
+pnpm run optimize:svg -r path/to/svgs/
+```
+
+### 3. Convert to a React Component
+
+Create a `.tsx` file in the appropriate category directory and wrap the optimized SVG content using `createIcon`:
+
+```tsx
+import { createIcon } from '../utils';
+
+export const MyToken = createIcon('MyToken', '0 0 24 24', () => (
+  <path d="..." fill="#..." />
+));
+
+export const MyTokenMono = createIcon(
+  'MyTokenMono',
+  '0 0 24 24',
+  () => <path d="..." />,
+  'currentColor',
+);
+```
+
+### 4. Manual Refinement
+
+After the initial conversion, check for:
+
+- **SVG IDs** (`<mask>`, `<linearGradient>`, `<clipPath>`, `<filter>`): Replace static IDs with dynamic ones using the `_id` parameter from `createIcon`'s render callback (e.g., `` id={`${_id}-mytoken-a`} ``)
+- **Shared path data**: Extract repeated `d` attribute values into constants at the top of the file
+- **Mono variants**: Ensure `fill="none"` is present on stroke-only elements, and remove hardcoded colors that should inherit `currentColor`
+
+### 5. Visual QA
+
+Run the example app and verify:
+
+- Icon renders correctly at multiple sizes (16px, 24px, 48px)
+- Colors match the official brand
+- Mono variant works with different CSS `color` values
+- No visual artifacts in dark mode / light mode
+
 ## SVG Guidelines
 
-- **Clean up SVGs** before converting. Remove editor metadata, unnecessary groups, and redundant attributes.
 - **Use `viewBox`** instead of fixed `width`/`height` in the SVG source. The component sets `width="1em"` and `height="1em"` as defaults.
 - **Avoid `<style>` tags** inside SVGs. Use inline `style` props or direct fill/stroke attributes instead.
-- **Prefix gradient/filter IDs** to prevent collisions when multiple icons render on the same page (e.g., `mytoken-a`, `mytoken-b`).
+- **Use dynamic IDs** via the `_id` parameter from `createIcon` to prevent collisions when multiple icons render on the same page.
 - **For large files** with multiple variants sharing the same paths, extract repeated `d` attribute values into constants at the top of the file.
 
 ## Running the Example App
