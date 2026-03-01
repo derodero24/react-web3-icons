@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 import type { IconProps } from './index';
 
-export type IconContextValue = Partial<IconProps>;
+export type IconContextValue = Partial<Omit<IconProps, 'ref'>>;
 
 const EMPTY: IconContextValue = {};
 

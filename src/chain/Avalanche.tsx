@@ -64,18 +64,15 @@ export const Avalanche2 = createIcon(
 );
 
 export const AvalancheMono = forwardRef<SVGSVGElement, AvalancheProps>(
-  function AvalancheMono(
-    {
-      withBackground = false,
+  function AvalancheMono({ withBackground = false, ...rawProps }, ref) {
+    const {
       title,
       titleId,
       size = '1em',
       width,
       height,
       ...props
-    },
-    ref,
-  ) {
+    } = useIconContext(rawProps);
     const isDecorative = !(
       title ||
       props['aria-label'] ||
