@@ -123,6 +123,30 @@ When adding a new icon, follow this workflow:
 
 Download from the project's official brand kit, GitHub repository, or press page. Always use the original vector file — never trace a raster image.
 
+### Icon Authenticity Policy (Required)
+
+To protect icon quality and brand fidelity, all icon additions/updates must follow these rules:
+
+- **Use official sources only**: Brand kit, official website press page, or official organization repository.
+- **No unofficial/community redraws**: If no official SVG exists, do not add the icon yet; open an issue and track it.
+- **Document source of truth in PR**: Include official source URL(s), access date, and any usage/license notes.
+- **Keep brand geometry and color identity**: Converted icon must visually match the official source.
+
+Allowed transformations:
+
+- SVGO optimization using this repository's `svgo.config.js`
+- JSX conversion and React component wrapping (`createIcon`)
+- Dynamic ID wiring (`_id`) for gradients/masks/clip paths
+- Readability refactors (extracting repeated path constants, formatting)
+- Optional mono variants using `currentColor`
+
+Prohibited transformations:
+
+- Redrawing, tracing, or manually reshaping brand geometry
+- Altering brand colors/gradients/strokes in the default icon variant
+- Mixing logo elements from different logo versions/brands
+- "Stylizing" official marks to make them look different from the source
+
 ### 2. Optimize with SVGO
 
 Run the bundled SVGO configuration against the raw SVG:
