@@ -11,6 +11,7 @@ export * from './Eth';
 export * from './Looks';
 export * from './Ltc';
 export * from './Matic';
+export * from './Pol';
 export * from './Shib';
 export * from './Usdc';
 export * from './Usdt';
