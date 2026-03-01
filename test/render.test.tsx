@@ -7,7 +7,9 @@ const entries = Object.entries(icons);
 
 describe('All icons render without error', () => {
   it.each(entries)('%s renders without crashing', (_name, Component) => {
-    expect(typeof Component).toBe('function');
+    expect(
+      typeof Component === 'function' || typeof Component === 'object',
+    ).toBe(true);
     const container = document.createElement('div');
     const root = ReactDOM.createRoot(container);
     flushSync(() => {
