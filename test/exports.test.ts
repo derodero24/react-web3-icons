@@ -39,6 +39,8 @@ describe('Coin aliases re-export correctly', () => {
     'Bnb',
     'BnbMono',
     'Pol',
+    'Sol',
+    'SolMono',
     'Matic',
   ];
 
