@@ -105,30 +105,32 @@ Icons accept all standard SVG attributes:
 | Category | Description | Examples |
 | --- | --- | --- |
 | `chain` | L1/L2 blockchains | Ethereum, Arbitrum, Polygon, Solana |
-| `coin` | Cryptocurrencies & tokens | Bitcoin, Doge, USDT, USDC |
-| `wallet` | Wallet apps | MetaMask, Phantom, Rainbow |
-| `dex` | Decentralized exchanges | Uniswap, SushiSwap, PancakeSwap |
+| `coin` | Cryptocurrencies & tokens | Bitcoin, Doge, Usdt, Usdc |
+| `wallet` | Wallet apps | MetaMask, PhantomWallet, RainbowWallet |
+| `dex` | Decentralized exchanges | Uniswap, PancakeSwap, Dydx |
 | `exchange` | Centralized exchanges | Binance, Coinbase, Kraken |
-| `marketplace` | NFT marketplaces | OpenSea, Rarible, LooksRare |
-| `devtool` | Developer tools | Hardhat, Truffle, Foundry |
-| `explorer` | Block explorers | Etherscan, Blockscout |
+| `marketplace` | NFT marketplaces | OpenSea, MagicEden, LooksRare |
+| `devtool` | Developer tools | Hardhat, Truffle, Web3Js |
+| `explorer` | Block explorers | Etherscan, Bscscan, Solscan |
 | `node` | Node providers | Alchemy, Infura, QuickNode |
-| `storage` | Decentralized storage | IPFS, Arweave, Filecoin |
-| `domain` | Domain services | ENS, Unstoppable Domains |
-| `portfolio` | Portfolio trackers | DeBank, Zapper |
-| `tracker` | Analytics & tracking | DeFi Llama, Dune |
+| `storage` | Decentralized storage | Ipfs, Arweave, NftStorage |
+| `domain` | Domain services | Ens, UnstoppableDomains |
+| `portfolio` | Portfolio trackers | DeBank, Zapper, CoinLedger |
+| `tracker` | Analytics & tracking | DefiLlama, CoinGecko, CoinMarketCap |
 
 Browse the full list at the **[demo site](https://react-web3-icons-mu.vercel.app/)**.
 
 ## Props
 
-All icons extend `SVGAttributes<SVGElement>` with the following additions:
+All icons extend `SVGProps<SVGSVGElement>` with the following additions:
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `title` | `string` | — | Accessible title rendered as `<title>` inside the SVG |
-| `width` | `string \| number` | `"1em"` | Icon width |
-| `height` | `string \| number` | `"1em"` | Icon height |
+| `titleId` | `string` | — | ID applied to the `<title>` element; can be referenced from `aria-labelledby` on the `<svg>` (not set automatically) |
+| `size` | `string \| number` | `"1em"` | For icons created via `createIcon`/`useIconContext`, sets both width and height unless explicitly overridden |
+| `width` | `string \| number` | — | Icon width (overrides `size` for width only) |
+| `height` | `string \| number` | — | Icon height (overrides `size` for height only) |
 | `className` | `string` | — | CSS class name |
 | `style` | `CSSProperties` | — | Inline styles |
 
