@@ -24,12 +24,14 @@ export default function IconTable() {
   const [tipShowed, setTipShowed] = useState<Record<string, boolean>>({});
   const [copyStatus, setCopyStatus] = useState('');
   const timers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
+  const statusTimer = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
     return () => {
       for (const id of Object.values(timers.current)) {
         clearTimeout(id);
       }
+      clearTimeout(statusTimer.current);
     };
   }, []);
 
@@ -62,10 +64,12 @@ export default function IconTable() {
         setCopyStatus(`Copied ${value}`);
         setTipShowed(prev => ({ ...prev, [value]: true }));
         clearTimeout(timers.current[value]);
-        timers.current[value] = setTimeout(() => {
-          setTipShowed(prev => ({ ...prev, [value]: false }));
-          setCopyStatus('');
-        }, 2_000);
+        timers.current[value] = setTimeout(
+          () => setTipShowed(prev => ({ ...prev, [value]: false })),
+          2_000,
+        );
+        clearTimeout(statusTimer.current);
+        statusTimer.current = setTimeout(() => setCopyStatus(''), 2_000);
       })
       // biome-ignore lint/suspicious/noConsole: legitimate error reporting for clipboard API
       .catch(console.error);
@@ -97,7 +101,9 @@ export default function IconTable() {
         {resultsText}
       </p>
 
-      <output className="sr-only">{copyStatus}</output>
+      <output aria-live="polite" className="sr-only">
+        {copyStatus}
+      </output>
 
       <div className="mt-6 flex flex-wrap gap-x-3 gap-y-4">
         {displayedIcons.map(icon => (

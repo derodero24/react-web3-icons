@@ -11,7 +11,7 @@ const BUTTONS = [
 export default function Header() {
   return (
     <header className="absolute right-6 top-3">
-      <nav className="flex items-center space-x-6">
+      <nav aria-label="Site actions" className="flex items-center space-x-6">
         {BUTTONS.map(({ key, Component }) => (
           <Component
             key={key}
