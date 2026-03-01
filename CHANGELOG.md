@@ -1,22 +1,5 @@
 # Changelog
 
-## 2.0.0
-
-### Major Changes
-
-- [#84](https://github.com/derodero24/react-web3-icons/pull/84) [`39f7489`](https://github.com/derodero24/react-web3-icons/commit/39f7489eb539154e5c38bf00210ea9ee5d3e6b3f) Thanks [@derodero24](https://github.com/derodero24)! - Narrow React peer dependency from `>=16` to `>=18`. React 16 and 17 are no longer supported. This enables modern React APIs such as `useId()` and aligns with the broader ecosystem.
-
-### Minor Changes
-
-- [#85](https://github.com/derodero24/react-web3-icons/pull/85) [`41900e4`](https://github.com/derodero24/react-web3-icons/commit/41900e42a07697c13ecd10a2332426453753981b) Thanks [@derodero24](https://github.com/derodero24)! - ### What's Changed
-
-  - Enable tree-shaking with `sideEffects: false` field in package.json
-  - Exclude source files from npm package for smaller install size
-  - Modernize TypeScript configuration (target ES2022, moduleResolution Bundler)
-  - Optimize large SVG icon files with shared path constants
-  - Fix ArbitrumNovaMono viewBox clipping issue
-  - Fix README image not rendering on npm
-
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
