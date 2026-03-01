@@ -1,8 +1,6 @@
 export * from './Aragon';
 export * from './CollabLand';
-export * from './Drizzle';
 export * from './EthersJs';
-export * from './Ganache';
 export * from './Hardhat';
 export * from './Moralis';
 export * from './OpenZeppelin';
@@ -11,5 +9,4 @@ export * from './Solidity';
 export * from './Tally';
 export * from './TheGraph';
 export * from './Thirdweb';
-export * from './Truffle';
 export * from './Web3Js';

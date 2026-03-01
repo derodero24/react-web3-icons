@@ -65,8 +65,6 @@ const coin = [
   'Btc2',
   'BtcMono',
   'BtcMono2',
-  'Busd',
-  'BusdMono',
   'Cake',
   'CakeMono',
   'Dai',
@@ -105,12 +103,8 @@ const devtool = [
   'AragonMono2',
   'CollabLand',
   'CollabLandMono',
-  'Drizzle',
-  'DrizzleMono',
   'EthersJs',
   'EthersJsMono',
-  'Ganache',
-  'GanacheMono',
   'Hardhat',
   'HardhatMono',
   'Moralis',
@@ -127,8 +121,6 @@ const devtool = [
   'TheGraphMono',
   'Thirdweb',
   'ThirdwebMono',
-  'Truffle',
-  'TruffleMono',
   'Web3Js',
   'Web3JsMono',
 ].sort();
@@ -211,10 +203,6 @@ const marketplace = [
   'OpenSea2',
   'OpenSeaMono',
   'OpenSeaMono2',
-  'TofuNft',
-  'TofuNftMono',
-  'X2Y2',
-  'X2Y2Mono',
 ].sort();
 
 const node = [
@@ -246,8 +234,6 @@ const storage = [
   'ArweaveMono',
   'Ipfs',
   'IpfsMono',
-  'NftStorage',
-  'NftStorageMono',
   'Pinata',
   'PinataMono',
 ].sort();
