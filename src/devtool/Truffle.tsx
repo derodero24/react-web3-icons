@@ -19,7 +19,14 @@ export const TruffleMono = createIcon(
   '0 -0.5 206.83 204.29',
   _id => (
     <>
-      <ellipse cx="103.17" cy="102.14" rx="100.96" ry="102.14" fill="none" />
+      <ellipse
+        cx="103.17"
+        cy="102.14"
+        rx="100.96"
+        ry="102.14"
+        fill="none"
+        stroke="currentColor"
+      />
       <ellipse
         cx="103.17"
         cy="102.14"
