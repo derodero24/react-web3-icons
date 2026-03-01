@@ -1,4 +1,6 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { useSearchParams } from 'next/navigation';
 import {
   type ComponentType,
   useEffect,
@@ -17,10 +19,10 @@ const icons = iconModules as unknown as Record<
 >;
 
 export default function IconTable() {
-  const { query } = useRouter();
+  const searchParams = useSearchParams();
   const [keyword, setKeyword] = useState('');
   const [tipShowed, setTipShowed] = useState<Record<string, boolean>>({});
-  const timers = useRef<Record<string, NodeJS.Timeout>>({});
+  const timers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
 
   useEffect(() => {
     return () => {
@@ -31,13 +33,13 @@ export default function IconTable() {
   }, []);
 
   const category = useMemo<keyof typeof REACT_WEB3_ICONS>(() => {
-    const raw = query['category'];
+    const raw = searchParams.get('category');
     const param = typeof raw === 'string' ? raw : undefined;
-    if (param && param in REACT_WEB3_ICONS) {
+    if (param && Object.hasOwn(REACT_WEB3_ICONS, param)) {
       return param as keyof typeof REACT_WEB3_ICONS;
     }
     return 'all';
-  }, [query['category']]);
+  }, [searchParams]);
 
   const displayedIcons = useMemo(
     () =>
@@ -45,7 +47,9 @@ export default function IconTable() {
         .filter(name => name.toLowerCase().includes(keyword.toLowerCase()))
         .map(name => ({
           name,
-          component: icons[name] as ComponentType<{ className?: string }>,
+          component: icons[name] as ComponentType<{
+            className?: string;
+          }>,
         })),
     [category, keyword],
   );
@@ -87,6 +91,8 @@ export default function IconTable() {
             </p>
 
             <div
+              aria-hidden={!tipShowed[icon.name]}
+              aria-live="polite"
               className={
                 'absolute -top-7 left-1/2 -translate-x-1/2 duration-150 ' +
                 (tipShowed[icon.name] ? '' : 'translate-y-2 opacity-0')
