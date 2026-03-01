@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import type { IconProps } from '../utils';
+import { useIconContext } from '../utils/IconContext';
 
 interface BybitProps extends IconProps {
   fill1?: string;
@@ -7,18 +8,17 @@ interface BybitProps extends IconProps {
 }
 
 export const Bybit = forwardRef<SVGSVGElement, BybitProps>(function Bybit(
-  {
-    fill1 = '#f7a600',
-    fill2 = '#15192a',
+  { fill1 = '#f7a600', fill2 = '#15192a', ...rawProps },
+  ref,
+) {
+  const {
     title,
     titleId,
     size = '1em',
     width,
     height,
     ...props
-  },
-  ref,
-) {
+  } = useIconContext(rawProps);
   const isDecorative = !(
     title ||
     props['aria-label'] ||
@@ -46,18 +46,17 @@ export const Bybit = forwardRef<SVGSVGElement, BybitProps>(function Bybit(
 });
 
 export const Bybit2 = forwardRef<SVGSVGElement, BybitProps>(function Bybit2(
-  {
-    fill1 = '#f7a600',
-    fill2 = '#fff',
+  { fill1 = '#f7a600', fill2 = '#fff', ...rawProps },
+  ref,
+) {
+  const {
     title,
     titleId,
     size = '1em',
     width,
     height,
     ...props
-  },
-  ref,
-) {
+  } = useIconContext(rawProps);
   const isDecorative = !(
     title ||
     props['aria-label'] ||
@@ -85,10 +84,15 @@ export const Bybit2 = forwardRef<SVGSVGElement, BybitProps>(function Bybit2(
 });
 
 export const BybitMono = forwardRef<SVGSVGElement, BybitProps>(
-  function BybitMono(
-    { fill1, fill2, title, titleId, size = '1em', width, height, ...props },
-    ref,
-  ) {
+  function BybitMono({ fill1, fill2, ...rawProps }, ref) {
+    const {
+      title,
+      titleId,
+      size = '1em',
+      width,
+      height,
+      ...props
+    } = useIconContext(rawProps);
     const isDecorative = !(
       title ||
       props['aria-label'] ||

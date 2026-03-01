@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import type { IconProps } from '../utils';
+import { useIconContext } from '../utils/IconContext';
 
 interface BscscanProps extends IconProps {
   fill1?: string;
@@ -7,10 +8,15 @@ interface BscscanProps extends IconProps {
 }
 
 const BscscanBase = forwardRef<SVGSVGElement, BscscanProps>(
-  function BscscanBase(
-    { fill1, fill2, title, titleId, size = '1em', width, height, ...props },
-    ref,
-  ) {
+  function BscscanBase({ fill1, fill2, ...rawProps }, ref) {
+    const {
+      title,
+      titleId,
+      size = '1em',
+      width,
+      height,
+      ...props
+    } = useIconContext(rawProps);
     const isDecorative = !(
       title ||
       props['aria-label'] ||
