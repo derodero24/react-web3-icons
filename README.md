@@ -157,7 +157,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ## Icon Lifecycle Policy
 
-When icon brands rename (for example, `GnosisSafe` -> `Safe`, `Matic` -> `Pol`), this project keeps backward compatibility by shipping deprecated aliases.
+When icon brands are renamed (for example, `GnosisSafe` -> `Safe`, `Matic` -> `Pol`), this project keeps backward compatibility by shipping deprecated aliases.
 
 - Canonical exports follow the current official brand name.
 - Deprecated aliases stay available for at least one minor release and at least 90 days.
