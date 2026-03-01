@@ -33,6 +33,7 @@ describe('Coin aliases re-export correctly', () => {
     'Avax',
     'Bnb',
     'BnbMono',
+    'Pol',
     'Matic',
   ];
 
