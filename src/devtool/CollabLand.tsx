@@ -34,7 +34,7 @@ export const CollabLandMono = createIcon(
       <use href={`#${_id}-clblm-a`} x="-9.67" />
       <path
         d="M21.789 29.306c-1.002 0-1.819-.727-1.819-1.617h.589c0 .57.552 1.033 1.23 1.033s1.233-.463 1.233-1.033h.588c0 .892-.817 1.617-1.821 1.617z"
-        stroke="currentcolor"
+        stroke="currentColor"
         strokeWidth=".116"
         strokeMiterlimit="10"
       />
