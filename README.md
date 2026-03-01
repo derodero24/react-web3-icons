@@ -105,7 +105,7 @@ Icons accept all standard SVG attributes:
 | Category | Description | Examples |
 | --- | --- | --- |
 | `chain` | L1/L2 blockchains | Ethereum, Arbitrum, Polygon, Solana |
-| `coin` | Cryptocurrencies & tokens | Bitcoin, Doge, USDT, USDC |
+| `coin` | Cryptocurrencies & tokens | Bitcoin, Doge, Usdt, Usdc |
 | `wallet` | Wallet apps | MetaMask, PhantomWallet, RainbowWallet |
 | `dex` | Decentralized exchanges | Uniswap, PancakeSwap, Dydx |
 | `exchange` | Centralized exchanges | Binance, Coinbase, Kraken |
@@ -127,8 +127,8 @@ All icons extend `SVGProps<SVGSVGElement>` with the following additions:
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `title` | `string` | — | Accessible title rendered as `<title>` inside the SVG |
-| `titleId` | `string` | — | ID used to bind `<title>` to the SVG for accessibility |
-| `size` | `string \| number` | `"1em"` | Sets both width and height unless explicitly overridden |
+| `titleId` | `string` | — | ID applied to the `<title>` element; can be referenced from `aria-labelledby` on the `<svg>` (not set automatically) |
+| `size` | `string \| number` | `"1em"` | For icons created via `createIcon`/`useIconContext`, sets both width and height unless explicitly overridden |
 | `width` | `string \| number` | — | Icon width (overrides `size` for width only) |
 | `height` | `string \| number` | — | Icon height (overrides `size` for height only) |
 | `className` | `string` | — | CSS class name |
