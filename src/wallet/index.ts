@@ -7,6 +7,7 @@ export * from './NamiWallet';
 export * from './PhantomWallet';
 export * from './PolkadotJs';
 export * from './RainbowWallet';
+export * from './Safe';
 export * from './TrustWallet';
 export * from './WalletConnect';
 export * from './YoroiWallet';

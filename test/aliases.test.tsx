@@ -11,6 +11,14 @@ import {
   Ethereum,
   EthereumMono,
   EthMono,
+  GnosisSafe,
+  GnosisSafeMono,
+  Matic,
+  MaticMono,
+  Pol,
+  PolMono,
+  Safe,
+  SafeMono,
   Stellar,
   StellarMono,
   Xlm,
@@ -28,17 +36,31 @@ function renderToHtml(component: ReactElement): string {
   return html;
 }
 
+function normalizeGeneratedIds(html: string): string {
+  const ids = Array.from(new Set(html.match(/_r_[A-Za-z0-9_-]+/g) ?? []));
+  return ids.reduce(
+    (acc, id, index) => acc.split(id).join(`__id_${index}__`),
+    html,
+  );
+}
+
 const aliasPairs = [
   ['Btc → Bitcoin', Btc, Bitcoin],
   ['BtcMono → BitcoinMono', BtcMono, BitcoinMono],
   ['Eth → Ethereum', Eth, Ethereum],
   ['EthMono → EthereumMono', EthMono, EthereumMono],
+  ['Matic → Pol', Matic, Pol],
+  ['MaticMono → PolMono', MaticMono, PolMono],
+  ['GnosisSafe → Safe', GnosisSafe, Safe],
+  ['GnosisSafeMono → SafeMono', GnosisSafeMono, SafeMono],
   ['Xlm → Stellar', Xlm, Stellar],
   ['XlmMono → StellarMono', XlmMono, StellarMono],
 ] as const;
 
 describe('Icon aliases', () => {
   it.each(aliasPairs)('%s renders identical SVG', (_label, Alias, Original) => {
-    expect(renderToHtml(<Alias />)).toBe(renderToHtml(<Original />));
+    expect(normalizeGeneratedIds(renderToHtml(<Alias />))).toBe(
+      normalizeGeneratedIds(renderToHtml(<Original />)),
+    );
   });
 });
