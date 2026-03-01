@@ -13,6 +13,7 @@ export * from './Ltc';
 export * from './Matic';
 export * from './Pol';
 export * from './Shib';
+export * from './Sol';
 export * from './Usdc';
 export * from './Usdt';
 export * from './Xlm';
