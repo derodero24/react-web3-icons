@@ -11,3 +11,4 @@ export * from './Polkadot';
 export * from './Polygon';
 export * from './Solana';
 export * from './Stellar';
+export * from './Ton';

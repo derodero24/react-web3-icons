@@ -18,6 +18,11 @@ describe('Export integrity', () => {
   it('exports IconContext', () => {
     expect(names.has('IconContext')).toBe(true);
   });
+
+  it('exports TON chain variants', () => {
+    expect(names.has('Ton')).toBe(true);
+    expect(names.has('TonMono')).toBe(true);
+  });
 });
 
 describe('Coin aliases re-export correctly', () => {

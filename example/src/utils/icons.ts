@@ -44,6 +44,8 @@ const chain = [
   'SolanaMono',
   'Stellar',
   'StellarMono',
+  'Ton',
+  'TonMono',
 ].sort();
 
 const coin = [
