@@ -100,6 +100,21 @@ Icons accept all standard SVG attributes:
 <Ethereum className="my-icon" style={{ opacity: 0.8 }} onClick={handleClick} />
 ```
 
+### Per-Category Imports
+
+Import from a specific category to reduce your bundle size:
+
+```tsx
+import { Ethereum } from 'react-web3-icons/chain';
+import { Uniswap } from 'react-web3-icons/dex';
+```
+
+The root import still works and includes all icons:
+
+```tsx
+import { Ethereum } from 'react-web3-icons';
+```
+
 ## Icon Categories
 
 | Category | Description | Examples |
