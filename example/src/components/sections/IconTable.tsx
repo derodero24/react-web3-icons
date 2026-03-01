@@ -24,7 +24,9 @@ export default function IconTable() {
   const [tipShowed, setTipShowed] = useState<Record<string, boolean>>({});
   const [copyStatus, setCopyStatus] = useState('');
   const timers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
-  const statusTimer = useRef<ReturnType<typeof setTimeout>>();
+  const statusTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
 
   useEffect(() => {
     return () => {
