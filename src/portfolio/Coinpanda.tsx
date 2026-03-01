@@ -26,7 +26,15 @@ interface PropsWithBackground extends IconProps {
 
 const CoinpandaBase2 = forwardRef(
   (
-    { background, title, titleId, ...props }: PropsWithBackground,
+    {
+      background,
+      title,
+      titleId,
+      size = '1em',
+      width,
+      height,
+      ...props
+    }: PropsWithBackground,
     ref: ForwardedRef<SVGSVGElement>,
   ) => {
     const isDecorative = !(
@@ -38,8 +46,8 @@ const CoinpandaBase2 = forwardRef(
       <svg
         ref={ref}
         viewBox="0 0 86 86"
-        width="1em"
-        height="1em"
+        width={width ?? size}
+        height={height ?? size}
         aria-hidden={isDecorative || undefined}
         role={isDecorative ? undefined : 'img'}
         {...props}
@@ -70,7 +78,15 @@ export function Coinpanda3(props: IconProps) {
 
 const CoinpandaMonoBase = forwardRef(
   (
-    { background, title, titleId, ...props }: PropsWithBackground,
+    {
+      background,
+      title,
+      titleId,
+      size = '1em',
+      width,
+      height,
+      ...props
+    }: PropsWithBackground,
     ref: ForwardedRef<SVGSVGElement>,
   ) => {
     const _id = useId();
@@ -83,8 +99,8 @@ const CoinpandaMonoBase = forwardRef(
       <svg
         ref={ref}
         viewBox="0 0 86 86"
-        width="1em"
-        height="1em"
+        width={width ?? size}
+        height={height ?? size}
         fill="currentColor"
         aria-hidden={isDecorative || undefined}
         role={isDecorative ? undefined : 'img'}

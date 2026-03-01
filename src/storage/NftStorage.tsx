@@ -204,6 +204,7 @@ export const NftStorageMono = createIcon(
         strokeWidth="2"
         transform="translate(2.843 -122.845)"
         stroke="currentColor"
+        fill="none"
       />
       <use href={`#${_id}-nstm-g`} y="-20.48" />
       <path
@@ -212,6 +213,7 @@ export const NftStorageMono = createIcon(
         strokeWidth="2"
         transform="translate(2.843 -122.845)"
         stroke="currentColor"
+        fill="none"
       />
       <use href={`#${_id}-nstm-g`} y="-30.72" />
       <path
@@ -220,6 +222,7 @@ export const NftStorageMono = createIcon(
         strokeWidth="2"
         transform="translate(2.843 -122.845)"
         stroke="currentColor"
+        fill="none"
       />
       <use href={`#${_id}-nstm-g`} y="-40.96" />
       <path
