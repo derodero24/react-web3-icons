@@ -102,6 +102,8 @@ const coin = [
   'XrpMono2',
 ].sort();
 
+const defi: string[] = [];
+
 const devtool = [
   'Aragon',
   'Aragon2',
@@ -136,8 +138,6 @@ const devtool = [
   'Web3Js',
   'Web3JsMono',
 ].sort();
-
-const defi: string[] = [];
 
 const dex = [
   'Dydx',
@@ -305,8 +305,8 @@ export const REACT_WEB3_ICONS = {
     ...bridge,
     ...chain,
     ...coin,
-    ...devtool,
     ...defi,
+    ...devtool,
     ...dex,
     ...domain,
     ...exchange,
@@ -322,8 +322,8 @@ export const REACT_WEB3_ICONS = {
   bridge,
   chain,
   coin,
-  devtool,
   defi,
+  devtool,
   dex,
   domain,
   exchange,

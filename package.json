@@ -62,16 +62,6 @@
         "default": "./dist/coin/index.cjs"
       }
     },
-    "./devtool": {
-      "import": {
-        "types": "./dist/devtool/index.d.mts",
-        "default": "./dist/devtool/index.mjs"
-      },
-      "require": {
-        "types": "./dist/devtool/index.d.cts",
-        "default": "./dist/devtool/index.cjs"
-      }
-    },
     "./defi": {
       "import": {
         "types": "./dist/defi/index.d.mts",
@@ -80,6 +70,16 @@
       "require": {
         "types": "./dist/defi/index.d.cts",
         "default": "./dist/defi/index.cjs"
+      }
+    },
+    "./devtool": {
+      "import": {
+        "types": "./dist/devtool/index.d.mts",
+        "default": "./dist/devtool/index.mjs"
+      },
+      "require": {
+        "types": "./dist/devtool/index.d.cts",
+        "default": "./dist/devtool/index.cjs"
       }
     },
     "./dex": {
