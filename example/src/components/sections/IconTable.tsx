@@ -21,18 +21,18 @@ const icons = iconModules as unknown as Record<
 export default function IconTable() {
   const searchParams = useSearchParams();
   const [keyword, setKeyword] = useState('');
-  const [tipShowed, setTipShowed] = useState<Record<string, boolean>>({});
+  const [copiedName, setCopiedName] = useState<string | null>(null);
   const [copyStatus, setCopyStatus] = useState('');
-  const timers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
+  const copiedTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
   const statusTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   );
 
   useEffect(() => {
     return () => {
-      for (const id of Object.values(timers.current)) {
-        clearTimeout(id);
-      }
+      clearTimeout(copiedTimer.current);
       clearTimeout(statusTimer.current);
     };
   }, []);
@@ -64,12 +64,9 @@ export default function IconTable() {
       .writeText(value)
       .then(() => {
         setCopyStatus(`Copied ${value}`);
-        setTipShowed(prev => ({ ...prev, [value]: true }));
-        clearTimeout(timers.current[value]);
-        timers.current[value] = setTimeout(
-          () => setTipShowed(prev => ({ ...prev, [value]: false })),
-          2_000,
-        );
+        setCopiedName(value);
+        clearTimeout(copiedTimer.current);
+        copiedTimer.current = setTimeout(() => setCopiedName(null), 1_500);
         clearTimeout(statusTimer.current);
         statusTimer.current = setTimeout(() => setCopyStatus(''), 2_000);
       })
@@ -108,33 +105,46 @@ export default function IconTable() {
       </output>
 
       <div className="mt-6 flex flex-wrap gap-x-3 gap-y-4">
-        {displayedIcons.map(icon => (
-          <div key={icon.name} className="relative">
-            <button
-              type="button"
-              aria-label={`Copy ${icon.name}`}
-              className="mx-auto flex aspect-square w-20 cursor-pointer items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm duration-100 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500/80"
-              onClick={() => copy(icon.name)}
-            >
-              <icon.component className="text-4xl drop-shadow transition-shadow duration-100 dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.1)]" />
-            </button>
-            <p className="mt-0.5 w-24 overflow-hidden text-ellipsis text-center text-xs font-medium">
-              {icon.name}
-            </p>
-
-            <div
-              aria-hidden="true"
-              className={
-                'absolute -top-7 left-1/2 -translate-x-1/2 duration-150 ' +
-                (tipShowed[icon.name] ? '' : 'translate-y-2 opacity-0')
-              }
-            >
-              <div className="flex h-6 w-20 items-center justify-center rounded border border-gray-200 bg-white font-orbitron text-sm font-bold shadow-sm duration-100 dark:border-gray-500 dark:bg-gray-600">
-                Copied !!
-              </div>
+        {displayedIcons.map(icon => {
+          const isCopied = copiedName === icon.name;
+          return (
+            <div key={icon.name} className="relative">
+              <button
+                type="button"
+                aria-label={`Copy ${icon.name}`}
+                className="group mx-auto flex aspect-square w-20 cursor-pointer items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-150 ease-out hover:scale-[1.05] hover:border-gray-300 hover:shadow-md active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-500 dark:bg-gray-600 dark:hover:border-gray-400 dark:hover:shadow-lg"
+                onClick={() => copy(icon.name)}
+              >
+                <icon.component
+                  className={`text-4xl drop-shadow transition-all duration-150 dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.1)] ${
+                    isCopied ? 'scale-90 opacity-30' : ''
+                  }`}
+                />
+                {isCopied && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={3}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="absolute h-6 w-6 text-green-500 dark:text-green-400"
+                    aria-hidden="true"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                )}
+              </button>
+              <p
+                className={`mt-0.5 w-24 overflow-hidden text-ellipsis text-center text-xs font-medium transition-colors duration-150 ${
+                  isCopied ? 'text-green-600 dark:text-green-400' : ''
+                }`}
+              >
+                {isCopied ? 'Copied!' : icon.name}
+              </p>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
