@@ -33,34 +33,29 @@ export default function CategoryBar() {
       : 'all';
 
   return (
-    <aside
-      aria-label="Categories"
-      className="fixed flex h-full w-64 justify-center border-r border-gray-200 bg-gray-100 shadow duration-100 dark:border-gray-600 dark:bg-gray-700"
+    <nav
+      aria-label="Icon categories"
+      className="overflow-x-auto border-b border-gray-200 bg-gray-100 px-4 py-3 dark:border-gray-600 dark:bg-gray-700 sm:px-6"
     >
-      <div className="mt-12">
-        <h2 className="font-orbitron text-3xl font-bold capitalize">
-          category
-        </h2>
-        <nav aria-label="Icon categories" className="ml-2 mt-4 space-y-2">
-          {CATEGORIES.map(item => {
-            const isActive = item === current;
-            return (
-              <Link
-                key={item}
-                href={item === 'all' ? '/' : `/?category=${item}`}
-                className={`block rounded text-xl font-bold capitalize focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-                  isActive
-                    ? 'opacity-100 underline underline-offset-4'
-                    : 'opacity-75 hover:opacity-100'
-                }`}
-                aria-current={isActive ? 'page' : undefined}
-              >
-                {item}
-              </Link>
-            );
-          })}
-        </nav>
+      <div className="flex gap-2">
+        {CATEGORIES.map(item => {
+          const isActive = item === current;
+          return (
+            <Link
+              key={item}
+              href={item === 'all' ? '/' : `/?category=${item}`}
+              className={`shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold capitalize transition-colors duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+                isActive
+                  ? 'bg-gray-800 text-white dark:bg-gray-100 dark:text-gray-900'
+                  : 'bg-white text-gray-600 hover:bg-gray-200 dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500'
+              }`}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {item}
+            </Link>
+          );
+        })}
       </div>
-    </aside>
+    </nav>
   );
 }
