@@ -1,0 +1,42 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["before 4am on monday"],
+  "prConcurrentLimit": 10,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  },
+  "packageRules": [
+    {
+      "description": "Automerge non-major devDependency updates",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "automerge": true
+    },
+    {
+      "description": "Automerge non-major GitHub Actions updates",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "automerge": true
+    },
+    {
+      "description": "Group and automerge example app dependencies (non-major)",
+      "matchFileNames": ["example/package.json"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "groupName": "example-app-dependencies",
+      "automerge": true
+    },
+    {
+      "description": "Group example app major updates (no automerge)",
+      "matchFileNames": ["example/package.json"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "example-app-major"
+    },
+    {
+      "description": "Do not automerge production dependencies",
+      "matchDepTypes": ["dependencies"],
+      "automerge": false
+    }
+  ]
+}
