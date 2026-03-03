@@ -5,8 +5,10 @@ import { useSearchParams } from 'next/navigation';
 
 const CATEGORIES = [
   'all',
+  'bridge',
   'chain',
   'coin',
+  'defi',
   'devtool',
   'dex',
   'domain',

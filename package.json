@@ -32,6 +32,16 @@
         "default": "./dist/index.cjs"
       }
     },
+    "./bridge": {
+      "import": {
+        "types": "./dist/bridge/index.d.mts",
+        "default": "./dist/bridge/index.mjs"
+      },
+      "require": {
+        "types": "./dist/bridge/index.d.cts",
+        "default": "./dist/bridge/index.cjs"
+      }
+    },
     "./chain": {
       "import": {
         "types": "./dist/chain/index.d.mts",
@@ -50,6 +60,16 @@
       "require": {
         "types": "./dist/coin/index.d.cts",
         "default": "./dist/coin/index.cjs"
+      }
+    },
+    "./defi": {
+      "import": {
+        "types": "./dist/defi/index.d.mts",
+        "default": "./dist/defi/index.mjs"
+      },
+      "require": {
+        "types": "./dist/defi/index.d.cts",
+        "default": "./dist/defi/index.cjs"
       }
     },
     "./devtool": {
