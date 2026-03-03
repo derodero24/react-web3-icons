@@ -83,12 +83,8 @@ export default function IconTable() {
   return (
     <section
       aria-label={`${category} icons`}
-      className="relative mb-24 ml-72 mr-8 mt-12"
+      className="relative mb-24 px-4 pt-6 sm:px-6 lg:px-8"
     >
-      <h2 className="font-orbitron text-3xl font-bold capitalize">
-        {category}
-      </h2>
-
       <SearchForm
         keyword={keyword}
         setKeyword={setKeyword}
