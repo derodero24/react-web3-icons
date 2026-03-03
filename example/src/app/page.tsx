@@ -7,15 +7,25 @@ export default function Home() {
     <>
       <Suspense
         fallback={
-          <aside className="fixed flex h-full w-64 justify-center border-r border-gray-200 bg-gray-100 shadow duration-100 dark:border-gray-600 dark:bg-gray-700" />
+          <nav
+            aria-label="Icon categories"
+            className="border-b border-gray-200 bg-gray-100 px-4 py-3 dark:border-gray-600 dark:bg-gray-700 sm:px-6"
+          >
+            <div className="flex gap-2">
+              <span className="h-8 w-16 rounded-full bg-gray-300 dark:bg-gray-500" />
+            </div>
+          </nav>
         }
       >
         <CategoryBar />
       </Suspense>
       <Suspense
         fallback={
-          <section className="relative mb-24 ml-72 mr-8 mt-12">
-            <p className="font-orbitron text-3xl font-bold capitalize">all</p>
+          <section className="relative mb-24 px-4 pt-6 sm:px-6 lg:px-8">
+            <div
+              aria-hidden="true"
+              className="h-10 w-40 rounded-md bg-gray-300 dark:bg-gray-500"
+            />
           </section>
         }
       >

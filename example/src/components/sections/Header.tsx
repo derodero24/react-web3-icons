@@ -10,8 +10,11 @@ const BUTTONS = [
 
 export default function Header() {
   return (
-    <header className="absolute right-6 top-3">
-      <nav aria-label="Site actions" className="flex items-center space-x-6">
+    <header className="flex items-center justify-between px-4 py-3 sm:px-6">
+      <h1 className="font-orbitron text-xl font-bold sm:text-2xl">
+        React Web3 Icons
+      </h1>
+      <nav aria-label="Site actions" className="flex items-center space-x-4">
         {BUTTONS.map(({ key, Component }) => (
           <Component
             key={key}
