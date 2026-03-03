@@ -23,16 +23,16 @@ export default function IconTable() {
   const [keyword, setKeyword] = useState('');
   const [copiedName, setCopiedName] = useState<string | null>(null);
   const [copyStatus, setCopyStatus] = useState('');
-  const timers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
+  const copiedTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
   const statusTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   );
 
   useEffect(() => {
     return () => {
-      for (const id of Object.values(timers.current)) {
-        clearTimeout(id);
-      }
+      clearTimeout(copiedTimer.current);
       clearTimeout(statusTimer.current);
     };
   }, []);
@@ -65,8 +65,8 @@ export default function IconTable() {
       .then(() => {
         setCopyStatus(`Copied ${value}`);
         setCopiedName(value);
-        clearTimeout(timers.current[value]);
-        timers.current[value] = setTimeout(() => setCopiedName(null), 1_500);
+        clearTimeout(copiedTimer.current);
+        copiedTimer.current = setTimeout(() => setCopiedName(null), 1_500);
         clearTimeout(statusTimer.current);
         statusTimer.current = setTimeout(() => setCopyStatus(''), 2_000);
       })
