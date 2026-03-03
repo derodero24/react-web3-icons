@@ -1,5 +1,7 @@
+export * from './bridge';
 export * from './chain';
 export * from './coin';
+export * from './defi';
 export * from './devtool';
 export * from './dex';
 export * from './domain';
