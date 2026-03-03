@@ -1,5 +1,4 @@
 import type { Dispatch, SetStateAction } from 'react';
-import { HiOutlineSearch } from 'react-icons/hi';
 
 interface Props {
   keyword: string;
@@ -31,7 +30,21 @@ export default function SearchForm({
         value={keyword}
         onChange={e => setKeyword(e.target.value)}
       />
-      <HiOutlineSearch className="pointer-events-none absolute left-3 text-xl opacity-40 peer-focus:text-blue-600 peer-focus:opacity-80 dark:peer-focus:text-blue-400" />
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        width="1em"
+        height="1em"
+        className="pointer-events-none absolute left-3 text-xl opacity-40 peer-focus:text-blue-600 peer-focus:opacity-80 dark:peer-focus:text-blue-400"
+        aria-hidden="true"
+      >
+        <circle cx={11} cy={11} r={8} />
+        <path d="m21 21-4.35-4.35" />
+      </svg>
       {keyword && (
         <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
           {resultCount} of {totalCount} icons
