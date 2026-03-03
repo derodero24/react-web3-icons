@@ -1,3 +1,5 @@
+const bridge: string[] = [];
+
 const chain = [
   'Algorand',
   'Algorand2',
@@ -134,6 +136,8 @@ const devtool = [
   'Web3Js',
   'Web3JsMono',
 ].sort();
+
+const defi: string[] = [];
 
 const dex = [
   'Dydx',
@@ -298,9 +302,11 @@ const wallet = [
 
 export const REACT_WEB3_ICONS = {
   all: [
+    ...bridge,
     ...chain,
     ...coin,
     ...devtool,
+    ...defi,
     ...dex,
     ...domain,
     ...exchange,
@@ -313,9 +319,11 @@ export const REACT_WEB3_ICONS = {
     ...tracker,
     ...wallet,
   ].sort(),
+  bridge,
   chain,
   coin,
   devtool,
+  defi,
   dex,
   domain,
   exchange,

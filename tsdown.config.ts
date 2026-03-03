@@ -3,9 +3,11 @@ import { defineConfig } from 'tsdown';
 export default defineConfig({
   entry: [
     'src/index.ts',
+    'src/bridge/index.ts',
     'src/chain/index.ts',
     'src/coin/index.ts',
     'src/devtool/index.ts',
+    'src/defi/index.ts',
     'src/dex/index.ts',
     'src/domain/index.ts',
     'src/exchange/index.ts',
