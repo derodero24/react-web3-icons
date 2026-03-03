@@ -34,8 +34,9 @@
       "groupName": "example-app-major"
     },
     {
-      "description": "Do not automerge production dependencies",
+      "description": "Do not automerge root production dependencies",
       "matchDepTypes": ["dependencies"],
+      "matchFileNames": ["package.json"],
       "automerge": false
     }
   ]
