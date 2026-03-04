@@ -14,6 +14,7 @@ All numbered icon variants (`Foo2`, `Foo3`) are renamed to descriptive suffixes 
 - `Alt` — alternative color scheme (e.g. `MetaMaskAlt`)
 - `Light` — light-colored variant for dark backgrounds (e.g. `BybitLight`)
 - `Flat` — single brand color simplification (e.g. `ArbitrumOneFlat`)
+- `Symbol` / `SymbolMono` — standalone symbol without container (e.g. `RainbowWalletSymbol`, `OpenSeaSymbolMono`)
 
 Some icons swap which variant is the base name — the standalone symbol (no background) is now always the unsuffixed default:
 

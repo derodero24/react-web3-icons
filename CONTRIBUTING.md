@@ -130,7 +130,8 @@ Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The bas
 | `Alt`          | Alternative color scheme or design                       | `MetaMaskAlt`           |
 | `Light`        | Light-colored variant for dark backgrounds               | `BybitLight`            |
 | `Flat`         | Single brand color, no internal color variation          | `ArbitrumOneFlat`       |
-| `SymbolMono`   | Standalone symbol monochrome (when base has a container) | `OpenSeaSymbolMono`     |
+| `Symbol`       | Standalone symbol without container (when base has one)  | `RainbowWalletSymbol`   |
+| `SymbolMono`   | Monochrome standalone symbol without container           | `OpenSeaSymbolMono`     |
 
 ### Rules
 
