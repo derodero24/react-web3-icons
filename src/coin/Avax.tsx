@@ -1,6 +1,6 @@
 export {
   Avalanche as Avax,
-  Avalanche2 as Avax2,
+  AvalancheCircle as AvaxCircle,
+  AvalancheCircleMono as AvaxCircleMono,
   AvalancheMono as AvaxMono,
-  AvalancheMono2 as AvaxMono2,
 } from '../chain/Avalanche';

@@ -1,6 +1,6 @@
 export {
   Polygon as Pol,
-  Polygon2 as Pol2,
+  PolygonCircle as PolCircle,
+  PolygonCircleMono as PolCircleMono,
   PolygonMono as PolMono,
-  PolygonMono2 as PolMono2,
 } from '../chain/Polygon';

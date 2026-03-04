@@ -25,7 +25,7 @@ interface PropsWithBackground extends IconProps {
   background: 'circle' | 'rect';
 }
 
-const CoinpandaBase2 = forwardRef(
+const CoinpandaBase = forwardRef(
   (
     { background, ...rawProps }: PropsWithBackground,
     ref: ForwardedRef<SVGSVGElement>,
@@ -67,17 +67,17 @@ const CoinpandaBase2 = forwardRef(
     );
   },
 );
-CoinpandaBase2.displayName = 'CoinpandaBase2';
+CoinpandaBase.displayName = 'CoinpandaBase';
 
-export const Coinpanda2 = forwardRef<SVGSVGElement, IconProps>(
-  function Coinpanda2(props, ref) {
-    return <CoinpandaBase2 background="circle" {...props} ref={ref} />;
+export const CoinpandaCircle = forwardRef<SVGSVGElement, IconProps>(
+  function CoinpandaCircle(props, ref) {
+    return <CoinpandaBase background="circle" {...props} ref={ref} />;
   },
 );
 
-export const Coinpanda3 = forwardRef<SVGSVGElement, IconProps>(
-  function Coinpanda3(props, ref) {
-    return <CoinpandaBase2 background="rect" {...props} ref={ref} />;
+export const CoinpandaSquare = forwardRef<SVGSVGElement, IconProps>(
+  function CoinpandaSquare(props, ref) {
+    return <CoinpandaBase background="rect" {...props} ref={ref} />;
   },
 );
 
@@ -132,14 +132,14 @@ const CoinpandaMonoBase = forwardRef(
 );
 CoinpandaMonoBase.displayName = 'CoinpandaMonoBase';
 
-export const CoinpandaMono2 = forwardRef<SVGSVGElement, IconProps>(
-  function CoinpandaMono2(props, ref) {
+export const CoinpandaCircleMono = forwardRef<SVGSVGElement, IconProps>(
+  function CoinpandaCircleMono(props, ref) {
     return <CoinpandaMonoBase background="circle" {...props} ref={ref} />;
   },
 );
 
-export const CoinpandaMono3 = forwardRef<SVGSVGElement, IconProps>(
-  function CoinpandaMono3(props, ref) {
+export const CoinpandaSquareMono = forwardRef<SVGSVGElement, IconProps>(
+  function CoinpandaSquareMono(props, ref) {
     return <CoinpandaMonoBase background="rect" {...props} ref={ref} />;
   },
 );

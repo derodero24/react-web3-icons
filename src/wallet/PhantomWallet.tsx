@@ -54,8 +54,8 @@ export const PhantomWalletMono = createIcon(
   'currentColor',
 );
 
-export const PhantomWalletMono2 = createIcon(
-  'PhantomWalletMono2',
+export const PhantomWalletSymbolMono = createIcon(
+  'PhantomWalletSymbolMono',
   '0 0 128 106',
   () => (
     <>

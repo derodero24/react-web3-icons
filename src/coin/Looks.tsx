@@ -23,7 +23,7 @@ export const Looks = createIcon('Looks', '0 0 96 96', () => (
   </>
 ));
 
-export const Looks2 = createIcon('Looks2', '0 0 96 96', () => (
+export const LooksAlt = createIcon('LooksAlt', '0 0 96 96', () => (
   <>
     <circle cx="48" cy="48" r="48" fill="#0CE466" />
     <path
