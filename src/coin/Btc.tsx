@@ -1,6 +1,6 @@
 export {
   Bitcoin as Btc,
-  Bitcoin2 as Btc2,
+  BitcoinCircle as BtcCircle,
+  BitcoinCircleMono as BtcCircleMono,
   BitcoinMono as BtcMono,
-  BitcoinMono2 as BtcMono2,
 } from '../chain/Bitcoin';

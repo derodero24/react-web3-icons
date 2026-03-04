@@ -15,7 +15,7 @@ export const XrpMono = createIcon(
   'currentColor',
 );
 
-export const Xrp2 = createIcon('Xrp2', '0 0 704 704', () => (
+export const XrpCircle = createIcon('XrpCircle', '0 0 704 704', () => (
   <>
     <path
       d="M352 704c167.93.002 312.476-118.622 345.239-283.325S641.857 91.061 486.71 26.795 152.625 16.809 59.327 156.437-15.644 482.155 103.1 600.9A352 352 0 0 0 352 704z"
@@ -28,8 +28,8 @@ export const Xrp2 = createIcon('Xrp2', '0 0 704 704', () => (
   </>
 ));
 
-export const XrpMono2 = createIcon(
-  'XrpMono2',
+export const XrpCircleMono = createIcon(
+  'XrpCircleMono',
   '0 0 704 704',
   _id => (
     <>

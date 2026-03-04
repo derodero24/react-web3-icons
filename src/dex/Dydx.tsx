@@ -43,7 +43,7 @@ export const Dydx = createIcon(
   'none',
 );
 
-export const Dydx2 = createIcon('Dydx2', '0 0 183 183', _id => (
+export const DydxSquare = createIcon('DydxSquare', '0 0 183 183', _id => (
   <>
     <rect
       x="1"
@@ -121,8 +121,8 @@ export const DydxMono = createIcon(
   'currentColor',
 );
 
-export const DydxMono2 = createIcon(
-  'DydxMono2',
+export const DydxSquareMono = createIcon(
+  'DydxSquareMono',
   '0 0 183 183',
   _id => (
     <>

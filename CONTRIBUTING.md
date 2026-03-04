@@ -21,12 +21,12 @@ Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/ac
 
 ### Useful Commands
 
-| Command | Description |
-| --- | --- |
-| `pnpm run lint` | Run Biome linter |
+| Command             | Description                     |
+| ------------------- | ------------------------------- |
+| `pnpm run lint`     | Run Biome linter                |
 | `pnpm run lint:fix` | Auto-fix lint and format issues |
-| `pnpm test` | Run tests |
-| `pnpm run build` | Build the package |
+| `pnpm test`         | Run tests                       |
+| `pnpm run build`    | Build the package               |
 
 ## Project Structure
 
@@ -110,6 +110,35 @@ Then add the alias file to the same category barrel (`src/coin/index.ts`):
 ```tsx
 export * from './Mtkn';
 ```
+
+## Icon Variant Naming Convention
+
+Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The base name (no suffix) always represents the **standalone branded symbol** without a background container. When no standalone variant exists in the official brand assets, the base name represents the primary brand mark.
+
+### Variant Suffixes
+
+| Suffix         | Meaning                                                  | Example                 |
+| -------------- | -------------------------------------------------------- | ----------------------- |
+| _(none)_       | Standalone branded symbol (no background)                | `Bitcoin`               |
+| `Mono`         | Monochrome (`currentColor`) matching the base shape      | `BitcoinMono`           |
+| `Circle`       | Symbol on a circular background                          | `BitcoinCircle`         |
+| `CircleMono`   | Monochrome circular                                      | `BitcoinCircleMono`     |
+| `Square`       | Symbol on a square / rounded-rectangle background        | `TrustWalletSquare`     |
+| `SquareMono`   | Monochrome square                                        | `TrustWalletSquareMono` |
+| `Wordmark`     | Symbol with text (logotype)                              | `MagicEdenWordmark`     |
+| `WordmarkMono` | Monochrome wordmark                                      | `MagicEdenWordmarkMono` |
+| `Alt`          | Alternative color scheme or design                       | `MetaMaskAlt`           |
+| `Light`        | Light-colored variant for dark backgrounds               | `BybitLight`            |
+| `Flat`         | Single brand color, no internal color variation          | `ArbitrumOneFlat`       |
+| `SymbolMono`   | Standalone symbol monochrome (when base has a container) | `OpenSeaSymbolMono`     |
+
+### Rules
+
+1. **Base = standalone**: The unsuffixed name is always the standalone symbol. If the brand's primary mark is a circle (e.g., OpenSea ship on blue circle), the base name keeps the circle shape and `SymbolMono` provides the symbol-only mono variant.
+2. **Mono mirrors its base**: `FooMono` matches `Foo`'s shape; `FooCircleMono` matches `FooCircle`'s shape.
+3. **No numeric suffixes**: Never use `Foo2`, `Foo3`, etc. Use descriptive suffixes that convey the visual difference.
+4. **Flat vs Alt**: Use `Flat` when the difference is strictly single-color simplification. Use `Alt` for a meaningfully different design or color scheme.
+5. **Light**: Reserved for variants where the artwork uses white/light colors, designed for dark backgrounds. The shape and layout are identical to the base.
 
 ## Icon Lifecycle Policy
 
@@ -225,7 +254,7 @@ export const MyTokenMono = createIcon(
 
 After the initial conversion, check for:
 
-- **SVG IDs** (`<mask>`, `<linearGradient>`, `<clipPath>`, `<filter>`): Replace static IDs with dynamic ones using the `_id` parameter from `createIcon`'s render callback (e.g., `` id={`${_id}-mytoken-a`} ``)
+- **SVG IDs** (`<mask>`, `<linearGradient>`, `<clipPath>`, `<filter>`): Replace static IDs with dynamic ones using the `_id` parameter from `createIcon`'s render callback (e.g., ``id={`${_id}-mytoken-a`}``)
 - **Shared path data**: Extract repeated `d` attribute values into constants at the top of the file
 - **Mono variants**: Ensure `fill="none"` is present on stroke-only elements, and remove hardcoded colors that should inherit `currentColor`
 
@@ -277,5 +306,6 @@ This project uses [Biome](https://biomejs.dev/) for linting and formatting. Run 
    ```
 
    Follow the prompts to select the semver bump type (patch, minor, or major) and describe the change.
+
 4. Write a clear commit message (e.g., `feat(coin): add MyToken icon`)
 5. Open a pull request against `main`

@@ -1,6 +1,6 @@
 import { createIcon } from '../utils';
 
-export const Dai = createIcon('Dai', '0 0 444.44 444.44', () => (
+export const DaiCircle = createIcon('DaiCircle', '0 0 444.44 444.44', () => (
   <>
     <path
       fill="#f5ac37"
@@ -13,8 +13,8 @@ export const Dai = createIcon('Dai', '0 0 444.44 444.44', () => (
   </>
 ));
 
-export const DaiMono = createIcon(
-  'DaiMono',
+export const DaiCircleMono = createIcon(
+  'DaiCircleMono',
   '0 0 444.44 444.44',
   _id => (
     <>
@@ -42,15 +42,15 @@ const dai2Content = () => (
   </>
 );
 
-export const Dai2 = createIcon(
-  'Dai2',
+export const Dai = createIcon(
+  'Dai',
   '81.67 98.63 290.54 247.11',
   dai2Content,
   '#f5ac37',
 );
 
-export const DaiMono2 = createIcon(
-  'DaiMono2',
+export const DaiMono = createIcon(
+  'DaiMono',
   '81.67 98.63 290.54 247.11',
   dai2Content,
   'currentColor',
