@@ -36,38 +36,42 @@ export const PolygonMono = createIcon(
   'currentColor',
 );
 
-export const Polygon2 = createIcon('Polygon2', '4.5 5.5 491 489', _id => (
-  <>
-    <defs>
-      <clipPath id={`${_id}-plgn2-a`}>
-        <circle cx="250" cy="250" r="244.91" fill="none" />
-      </clipPath>
-      <linearGradient
-        id={`${_id}-plgn2-b`}
-        x1="-116.09"
-        y1="25.97"
-        x2="437.45"
-        y2="364.71"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop offset="0" stopColor="#a229c5" />
-        <stop offset="1" stopColor="#7b3fe4" />
-      </linearGradient>
-    </defs>
-    <path
-      d="M-18.1-18.1h536.2v536.2H-18.1z"
-      clipPath={`url(#${_id}-plgn2-a)`}
-      fill={`url(#${_id}-plgn2-b)`}
-    />
-    <path
-      d="m320.83,302.85l69.29-40.01c3.67-2.12,5.94-6.06,5.94-10.3v-80.01c0-4.23-2.28-8.18-5.94-10.3l-69.29-40.01c-3.67-2.12-8.22-2.11-11.89,0l-69.29,40.01c-3.67,2.12-5.94,6.07-5.94,10.3v142.99l-48.59,28.05-48.59-28.05v-56.11l48.59-28.05,32.05,18.5v-37.64l-26.11-15.07c-1.8-1.04-3.86-1.59-5.95-1.59s-4.15.55-5.94,1.59l-69.29,40.01c-3.67,2.12-5.94,6.06-5.94,10.3v80.01c0,4.23,2.28,8.18,5.94,10.3l69.29,40.01c3.66,2.11,8.22,2.11,11.89,0l69.29-40c3.67-2.12,5.94-6.07,5.94-10.3v-142.99l.88-.5,47.71-27.55,48.59,28.05v56.11l-48.59,28.05-32-18.48v37.64l26.06,15.05c3.67,2.11,8.22,2.11,11.89,0Z"
-      fill="#fff"
-    />
-  </>
-));
+export const PolygonCircle = createIcon(
+  'PolygonCircle',
+  '4.5 5.5 491 489',
+  _id => (
+    <>
+      <defs>
+        <clipPath id={`${_id}-plgn2-a`}>
+          <circle cx="250" cy="250" r="244.91" fill="none" />
+        </clipPath>
+        <linearGradient
+          id={`${_id}-plgn2-b`}
+          x1="-116.09"
+          y1="25.97"
+          x2="437.45"
+          y2="364.71"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" stopColor="#a229c5" />
+          <stop offset="1" stopColor="#7b3fe4" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M-18.1-18.1h536.2v536.2H-18.1z"
+        clipPath={`url(#${_id}-plgn2-a)`}
+        fill={`url(#${_id}-plgn2-b)`}
+      />
+      <path
+        d="m320.83,302.85l69.29-40.01c3.67-2.12,5.94-6.06,5.94-10.3v-80.01c0-4.23-2.28-8.18-5.94-10.3l-69.29-40.01c-3.67-2.12-8.22-2.11-11.89,0l-69.29,40.01c-3.67,2.12-5.94,6.07-5.94,10.3v142.99l-48.59,28.05-48.59-28.05v-56.11l48.59-28.05,32.05,18.5v-37.64l-26.11-15.07c-1.8-1.04-3.86-1.59-5.95-1.59s-4.15.55-5.94,1.59l-69.29,40.01c-3.67,2.12-5.94,6.06-5.94,10.3v80.01c0,4.23,2.28,8.18,5.94,10.3l69.29,40.01c3.66,2.11,8.22,2.11,11.89,0l69.29-40c3.67-2.12,5.94-6.07,5.94-10.3v-142.99l.88-.5,47.71-27.55,48.59,28.05v56.11l-48.59,28.05-32-18.48v37.64l26.06,15.05c3.67,2.11,8.22,2.11,11.89,0Z"
+        fill="#fff"
+      />
+    </>
+  ),
+);
 
-export const PolygonMono2 = createIcon(
-  'PolygonMono2',
+export const PolygonCircleMono = createIcon(
+  'PolygonCircleMono',
   '4.5 5.5 491 489',
   _id => (
     <>

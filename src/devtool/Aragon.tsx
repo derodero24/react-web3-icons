@@ -26,15 +26,15 @@ export const AragonMono = createIcon(
   'currentColor',
 );
 
-export const Aragon2 = createIcon('Aragon2', '0 0 248 248', () => (
+export const AragonCircle = createIcon('AragonCircle', '0 0 248 248', () => (
   <>
     <rect width="248" height="248" rx="124" fill="#3164fa" />
     <g fill="#fff">{aragonPaths}</g>
   </>
 ));
 
-export const AragonMono2 = createIcon(
-  'AragonMono2',
+export const AragonCircleMono = createIcon(
+  'AragonCircleMono',
   '0 0 248 248',
   _id => (
     <>

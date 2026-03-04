@@ -13,12 +13,16 @@ export const AlgorandMono = createIcon(
   'currentColor',
 );
 
-export const Algorand2 = createIcon('Algorand2', '0 0 2500 2500', () => (
-  <>
-    <circle cx="1250" cy="1250" r="1250" />
-    <path
-      d="M2051.7 2052.5h-252l-162.6-607.1-350.5 607.1h-280.5l541.5-939.7-86.5-326.7-732.4 1266.4H448.3l927.7-1605h244.7l108.8 398.3h253.6l-174.5 301.3z"
-      fill="#fff"
-    />
-  </>
-));
+export const AlgorandCircle = createIcon(
+  'AlgorandCircle',
+  '0 0 2500 2500',
+  () => (
+    <>
+      <circle cx="1250" cy="1250" r="1250" />
+      <path
+        d="M2051.7 2052.5h-252l-162.6-607.1-350.5 607.1h-280.5l541.5-939.7-86.5-326.7-732.4 1266.4H448.3l927.7-1605h244.7l108.8 398.3h253.6l-174.5 301.3z"
+        fill="#fff"
+      />
+    </>
+  ),
+);

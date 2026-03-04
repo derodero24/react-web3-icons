@@ -55,7 +55,7 @@ export const MetaMask = createIcon('MetaMask', '31.3 35 256 237.4', () => (
   </>
 ));
 
-export const MetaMask2 = createIcon('MetaMask2', '0 0 404 420.2', () => (
+export const MetaMaskAlt = createIcon('MetaMaskAlt', '0 0 404 420.2', () => (
   <>
     <path
       fill="#e4761b"

@@ -17,8 +17,8 @@ export const Etherscan = createIcon(
   ),
 );
 
-export const Etherscan2 = createIcon(
-  'Etherscan2',
+export const EtherscanLight = createIcon(
+  'EtherscanLight',
   '0 0.18 121.68 121.46',
   () => (
     <>

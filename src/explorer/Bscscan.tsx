@@ -53,8 +53,8 @@ export const Bscscan = forwardRef<SVGSVGElement, IconProps>(
   },
 );
 
-export const Bscscan2 = forwardRef<SVGSVGElement, IconProps>(
-  function Bscscan2(props, ref) {
+export const BscscanLight = forwardRef<SVGSVGElement, IconProps>(
+  function BscscanLight(props, ref) {
     return <BscscanBase fill1="#fff" fill2="#f0b90b" {...props} ref={ref} />;
   },
 );

@@ -1,6 +1,6 @@
 export {
   Arbitrum as Arb,
-  Arbitrum2 as Arb2,
+  ArbitrumCircle as ArbCircle,
+  ArbitrumCircleMono as ArbCircleMono,
   ArbitrumMono as ArbMono,
-  ArbitrumMono2 as ArbMono2,
 } from '../chain/Arbitrum';
