@@ -78,10 +78,10 @@ const magicEdenSmallPath =
 
 export const MagicEden = createIcon('MagicEden', '10 10 79.05 47.48', _id => (
   <>
-    <path d={magicEdenSmallPath} fill={`url(#${_id}-mge3-a)`} />
+    <path d={magicEdenSmallPath} fill={`url(#${_id}-mge-small-a)`} />
     <defs>
       <linearGradient
-        id={`${_id}-mge3-a`}
+        id={`${_id}-mge-small-a`}
         x1="18.909"
         y1="-14.925"
         x2="62.083"

@@ -72,7 +72,7 @@ export const TrustWalletCircleMono = createIcon(
   _id => (
     <>
       <defs>
-        <mask id={`${_id}-twm2-a`}>
+        <mask id={`${_id}-twm-circle-a`}>
           <rect width="100%" height="100%" fill="#fff" />
           <path
             d="M32.627 14c6.324 5.282 13.576 4.956 15.648 4.956-.453 30.038-3.907 24.081-15.648 32.504C20.885 43.037 17.453 48.994 17 18.956c2.05 0 9.303.326 15.627-4.956z"
@@ -84,8 +84,14 @@ export const TrustWalletCircleMono = createIcon(
           />
         </mask>
       </defs>
-      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-twm2-a)`} />
+      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-twm-circle-a)`} />
     </>
   ),
   'currentColor',
 );
+
+/** Base alias — TrustWallet's primary brand mark is the shield on a square background. */
+export const TrustWallet = TrustWalletSquare;
+
+/** Base mono alias. */
+export const TrustWalletMono = TrustWalletSquareMono;

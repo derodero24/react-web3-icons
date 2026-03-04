@@ -117,21 +117,21 @@ Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The bas
 
 ### Variant Suffixes
 
-| Suffix         | Meaning                                                  | Example                 |
-| -------------- | -------------------------------------------------------- | ----------------------- |
-| _(none)_       | Standalone branded symbol (no background)                | `Bitcoin`               |
-| `Mono`         | Monochrome (`currentColor`) matching the base shape      | `BitcoinMono`           |
-| `Circle`       | Symbol on a circular background                          | `BitcoinCircle`         |
-| `CircleMono`   | Monochrome circular                                      | `BitcoinCircleMono`     |
-| `Square`       | Symbol on a square / rounded-rectangle background        | `TrustWalletSquare`     |
-| `SquareMono`   | Monochrome square                                        | `TrustWalletSquareMono` |
-| `Wordmark`     | Symbol with text (logotype)                              | `MagicEdenWordmark`     |
-| `WordmarkMono` | Monochrome wordmark                                      | `MagicEdenWordmarkMono` |
-| `Alt`          | Alternative color scheme or design                       | `MetaMaskAlt`           |
-| `Light`        | Light-colored variant for dark backgrounds               | `BybitLight`            |
-| `Flat`         | Single brand color, no internal color variation          | `ArbitrumOneFlat`       |
-| `Symbol`       | Standalone symbol without container (when base has one)  | `RainbowWalletSymbol`   |
-| `SymbolMono`   | Monochrome standalone symbol without container           | `OpenSeaSymbolMono`     |
+| Suffix         | Meaning                                                 | Example                 |
+| -------------- | ------------------------------------------------------- | ----------------------- |
+| _(none)_       | Standalone branded symbol (no background)               | `Bitcoin`               |
+| `Mono`         | Monochrome (`currentColor`) matching the base shape     | `BitcoinMono`           |
+| `Circle`       | Symbol on a circular background                         | `BitcoinCircle`         |
+| `CircleMono`   | Monochrome circular                                     | `BitcoinCircleMono`     |
+| `Square`       | Symbol on a square / rounded-rectangle background       | `TrustWalletSquare`     |
+| `SquareMono`   | Monochrome square                                       | `TrustWalletSquareMono` |
+| `Wordmark`     | Symbol with text (logotype)                             | `MagicEdenWordmark`     |
+| `WordmarkMono` | Monochrome wordmark                                     | `MagicEdenWordmarkMono` |
+| `Alt`          | Alternative color scheme or design                      | `MetaMaskAlt`           |
+| `Light`        | Light-colored variant for dark backgrounds              | `BybitLight`            |
+| `Flat`         | Single brand color, no internal color variation         | `ArbitrumOneFlat`       |
+| `Symbol`       | Standalone symbol without container (when base has one) | `RainbowWalletSymbol`   |
+| `SymbolMono`   | Monochrome standalone symbol without container          | `OpenSeaSymbolMono`     |
 
 ### Rules
 
@@ -169,7 +169,8 @@ For each rename/deprecation PR, include:
 
 ### Test requirements
 
-Rename PRs must prove backward compatibility before merge:
+Rename/deprecation PRs should prove backward compatibility before merge.
+For intentional breaking renames in a major release, document the exception in the changeset/changelog:
 
 - Export presence tests for both old and new names (`test/exports.test.ts`)
 - Alias equality tests showing identical rendered SVG (`test/aliases.test.tsx`)
@@ -255,7 +256,7 @@ export const MyTokenMono = createIcon(
 
 After the initial conversion, check for:
 
-- **SVG IDs** (`<mask>`, `<linearGradient>`, `<clipPath>`, `<filter>`): Replace static IDs with dynamic ones using the `_id` parameter from `createIcon`'s render callback (e.g., ``id={`${_id}-mytoken-a`}``)
+- **SVG IDs** (`<mask>`, `<linearGradient>`, `<clipPath>`, `<filter>`): Replace static IDs with dynamic ones using the `_id` parameter from `createIcon`'s render callback (e.g., `id={`${\_id}-mytoken-a`}`)
 - **Shared path data**: Extract repeated `d` attribute values into constants at the top of the file
 - **Mono variants**: Ensure `fill="none"` is present on stroke-only elements, and remove hardcoded colors that should inherit `currentColor`
 

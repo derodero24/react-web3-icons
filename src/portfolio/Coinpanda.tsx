@@ -25,7 +25,7 @@ interface PropsWithBackground extends IconProps {
   background: 'circle' | 'rect';
 }
 
-const CoinpandaBase2 = forwardRef(
+const CoinpandaBase = forwardRef(
   (
     { background, ...rawProps }: PropsWithBackground,
     ref: ForwardedRef<SVGSVGElement>,
@@ -67,17 +67,17 @@ const CoinpandaBase2 = forwardRef(
     );
   },
 );
-CoinpandaBase2.displayName = 'CoinpandaBase2';
+CoinpandaBase.displayName = 'CoinpandaBase';
 
 export const CoinpandaCircle = forwardRef<SVGSVGElement, IconProps>(
   function CoinpandaCircle(props, ref) {
-    return <CoinpandaBase2 background="circle" {...props} ref={ref} />;
+    return <CoinpandaBase background="circle" {...props} ref={ref} />;
   },
 );
 
 export const CoinpandaSquare = forwardRef<SVGSVGElement, IconProps>(
   function CoinpandaSquare(props, ref) {
-    return <CoinpandaBase2 background="rect" {...props} ref={ref} />;
+    return <CoinpandaBase background="rect" {...props} ref={ref} />;
   },
 );
 

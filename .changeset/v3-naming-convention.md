@@ -6,7 +6,7 @@ Replace opaque numeric suffixes with descriptive variant names across all icon e
 
 **Breaking changes:**
 
-All numbered icon variants (`Foo2`, `Foo3`) are renamed to descriptive suffixes that convey the visual shape:
+All numbered icon variants (`Foo2`, `Foo3`, `Foo4`) are renamed to descriptive suffixes that convey the visual shape:
 
 - `Circle` — symbol on circular background (e.g. `BitcoinCircle`)
 - `Square` — symbol on square/rounded-rect background (e.g. `DydxSquare`)
@@ -27,6 +27,6 @@ Some icons swap which variant is the base name — the standalone symbol (no bac
 
 Coin aliases follow their chain counterparts (e.g. `Btc` → standalone, `BtcCircle` → circle).
 
-Removed exports: `GnosisSafe2`, `GnosisSafeMono2` (duplicates of `GnosisSafe` / `GnosisSafeMono`).
+Removed exports: `GnosisSafe2`, `GnosisSafeMono2` — use `GnosisSafe` / `GnosisSafeMono` instead (identical components).
 
 See CONTRIBUTING.md § "Icon Variant Naming Convention" for the full suffix reference.
