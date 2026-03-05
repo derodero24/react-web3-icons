@@ -6,6 +6,9 @@ node_modules
 dist
 coverage
 
+# Visual regression screenshots (generated in CI)
+test/visual/__screenshots__/
+
 # Local development files
 CLAUDE.md
 .claude/

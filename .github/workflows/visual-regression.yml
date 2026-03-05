@@ -1,0 +1,67 @@
+name: Visual Regression
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'test/visual/**'
+      - 'vitest.config.visual.ts'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'test/visual/**'
+      - 'vitest.config.visual.ts'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: visual-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  visual-test:
+    name: Visual regression test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24.x'
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Restore reference screenshots
+        id: screenshots-cache
+        uses: actions/cache@v4
+        with:
+          path: test/visual/__screenshots__
+          key: visual-screenshots-${{ hashFiles('src/**') }}
+          restore-keys: |
+            visual-screenshots-
+
+      - name: Generate reference screenshots
+        if: steps.screenshots-cache.outputs.cache-hit != 'true'
+        run: pnpm test:visual:update
+
+      - name: Run visual regression tests
+        if: steps.screenshots-cache.outputs.cache-hit == 'true'
+        run: pnpm test:visual
+
+      - name: Upload screenshot diffs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-regression-diffs
+          path: test/visual/__screenshots__
+          retention-days: 30
