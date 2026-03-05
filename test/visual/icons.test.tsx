@@ -7,7 +7,7 @@ import * as icons from '../../src';
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
 const entries = Object.entries(icons).filter(
-  ([name]) => name !== 'IconContext',
+  ([, value]) => typeof value === 'function',
 ) as [string, IconComponent][];
 
 describe('Icon visual regression', () => {
