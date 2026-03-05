@@ -16,7 +16,7 @@ export const Truffle = createIcon('Truffle', '0 0 206.83 204.29', () => (
 
 export const TruffleMono = createIcon(
   'TruffleMono',
-  '0 -0.5 206.83 204.29',
+  '0 0 206.83 204.29',
   _id => (
     <>
       <ellipse
