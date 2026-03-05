@@ -11,7 +11,7 @@ const entries = Object.entries(icons).filter(
 ) as [string, IconComponent][];
 
 describe('Icon visual regression', () => {
-  test.each(entries)('%s', async (_name, Component) => {
+  test.each(entries)('%s', async (name, Component) => {
     await render(
       <div
         data-testid="icon-wrapper"
@@ -26,6 +26,6 @@ describe('Icon visual regression', () => {
     );
     await expect
       .element(page.getByTestId('icon-wrapper'))
-      .toMatchScreenshot(_name);
+      .toMatchScreenshot(name);
   });
 });

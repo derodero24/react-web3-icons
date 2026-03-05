@@ -41,21 +41,42 @@ jobs:
       - name: Install Playwright browsers
         run: pnpm exec playwright install --with-deps chromium
 
-      - name: Restore reference screenshots
-        id: screenshots-cache
+      # On main: generate and cache reference screenshots
+      - name: Restore reference screenshots (main)
+        if: github.event_name == 'push'
+        id: screenshots-cache-main
         uses: actions/cache@v4
         with:
           path: test/visual/__screenshots__
-          key: visual-screenshots-${{ hashFiles('src/**') }}
+          key: visual-screenshots-main-${{ github.sha }}
           restore-keys: |
-            visual-screenshots-
+            visual-screenshots-main-
 
-      - name: Generate reference screenshots
-        if: steps.screenshots-cache.outputs.cache-hit != 'true'
+      - name: Generate reference screenshots (main)
+        if: github.event_name == 'push' && steps.screenshots-cache-main.outputs.cache-hit != 'true'
         run: pnpm test:visual:update
 
+      # On PRs: restore main baseline and compare
+      - name: Restore reference screenshots from main (PR)
+        if: github.event_name == 'pull_request'
+        id: screenshots-cache-pr
+        uses: actions/cache/restore@v4
+        with:
+          path: test/visual/__screenshots__
+          key: visual-screenshots-main-${{ github.event.pull_request.base.sha }}
+          restore-keys: |
+            visual-screenshots-main-
+
+      - name: Generate baseline if none cached (PR)
+        if: github.event_name == 'pull_request' && steps.screenshots-cache-pr.outputs.cache-hit != 'true'
+        run: |
+          echo "::warning::No reference screenshots from main found. Generating baseline for this run."
+          git stash
+          pnpm test:visual:update
+          git stash pop
+
       - name: Run visual regression tests
-        if: steps.screenshots-cache.outputs.cache-hit == 'true'
+        if: github.event_name == 'pull_request'
         run: pnpm test:visual
 
       - name: Upload screenshot diffs on failure
