@@ -71,12 +71,10 @@ jobs:
         if: github.event_name == 'pull_request' && steps.screenshots-cache-pr.outputs.cache-hit != 'true'
         run: |
           echo "::warning::No reference screenshots from main found. Generating baseline for this run."
-          git stash
           pnpm test:visual:update
-          git stash pop
 
       - name: Run visual regression tests
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && steps.screenshots-cache-pr.outputs.cache-hit == 'true'
         run: pnpm test:visual
 
       - name: Upload screenshot diffs on failure
