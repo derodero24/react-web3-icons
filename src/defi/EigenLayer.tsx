@@ -7,10 +7,8 @@ const markPath =
 export const EigenLayer = createIcon(
   'EigenLayer',
   '0 0 525 600',
-  () => (
-    <path fillRule="evenodd" clipRule="evenodd" d={markPath} fill="#1A0C6D" />
-  ),
-  'none',
+  () => <path fillRule="evenodd" clipRule="evenodd" d={markPath} />,
+  '#1A0C6D',
 );
 
 export const EigenLayerMono = createIcon(
