@@ -131,15 +131,23 @@ export default function IconTable() {
           <p className="text-sm">Try a different search term</p>
         </div>
       ) : (
-        <div className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(96px,1fr))] gap-x-3 gap-y-4">
-          {displayedIcons.map(icon => (
-            <IconCard
+        <div
+          key={`${validCategory}-${variant}`}
+          className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(96px,1fr))] gap-x-3 gap-y-4"
+        >
+          {displayedIcons.map((icon, index) => (
+            <div
               key={icon.name}
-              name={icon.name}
-              component={icon.component}
-              isCopied={copiedName === icon.name}
-              onCopy={copy}
-            />
+              className="motion-safe:animate-fade-in-up"
+              style={{ animationDelay: `${Math.min(index * 12, 150)}ms` }}
+            >
+              <IconCard
+                name={icon.name}
+                component={icon.component}
+                isCopied={copiedName === icon.name}
+                onCopy={copy}
+              />
+            </div>
           ))}
         </div>
       )}
