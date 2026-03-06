@@ -1,4 +1,13 @@
-const bridge: string[] = [];
+const bridge = [
+  'Across',
+  'AcrossMono',
+  'LayerZero',
+  'LayerZeroMono',
+  'Stargate',
+  'StargateMono',
+  'Wormhole',
+  'WormholeMono',
+].sort();
 
 const chain = [
   'Algorand',
