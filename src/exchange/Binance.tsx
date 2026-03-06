@@ -32,7 +32,7 @@ export const Binance = createIcon(
   'Binance',
   '0 0 126.611 126.611',
   binanceContent,
-  '#F3BA2F',
+  '#F0B90B',
 );
 
 export const BinanceMono = createIcon(
