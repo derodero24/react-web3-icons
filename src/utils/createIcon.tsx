@@ -34,6 +34,9 @@ export function createIcon(
         role={isDecorative ? undefined : 'img'}
         ref={ref}
         {...props}
+        aria-labelledby={
+          props['aria-labelledby'] ?? (title && titleId ? titleId : undefined)
+        }
       >
         {title && <title id={titleId}>{title}</title>}
         {render(_id)}

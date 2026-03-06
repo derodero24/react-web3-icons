@@ -4,6 +4,13 @@ import ReactDOM from 'react-dom/client';
 import { afterEach, describe, expect, it } from 'vitest';
 import { Avalanche, Ethereum, MetaMask, Uniswap } from '../src';
 
+// Icons created via the createIcon factory (excludes manual forwardRef icons like Avalanche)
+const createIconIcons = [
+  ['Ethereum', Ethereum],
+  ['MetaMask', MetaMask],
+  ['Uniswap', Uniswap],
+] as const;
+
 const testIcons = [
   ['Ethereum', Ethereum],
   ['MetaMask', MetaMask],
@@ -78,5 +85,35 @@ describe.each(testIcons)('%s accessibility', (_name, Icon) => {
     const svg = container.querySelector('svg');
     expect(svg?.getAttribute('aria-describedby')).toBe('desc-id');
     expect(svg?.getAttribute('aria-live')).toBe('polite');
+  });
+});
+
+describe.each(
+  createIconIcons,
+)('%s aria-labelledby auto-wire', (_name, Icon) => {
+  it('auto-wires aria-labelledby when both title and titleId are provided', () => {
+    const container = renderToContainer(
+      <Icon title="Ethereum logo" titleId="eth-title" />,
+    );
+    const svg = container.querySelector('svg');
+    expect(svg?.getAttribute('aria-labelledby')).toBe('eth-title');
+  });
+
+  it('does not set aria-labelledby when only title is provided (no titleId)', () => {
+    const container = renderToContainer(<Icon title="Ethereum logo" />);
+    const svg = container.querySelector('svg');
+    expect(svg?.getAttribute('aria-labelledby')).toBeNull();
+  });
+
+  it('explicit aria-labelledby prop overrides auto-wire', () => {
+    const container = renderToContainer(
+      <Icon
+        title="Ethereum logo"
+        titleId="eth-title"
+        aria-labelledby="custom-label"
+      />,
+    );
+    const svg = container.querySelector('svg');
+    expect(svg?.getAttribute('aria-labelledby')).toBe('custom-label');
   });
 });

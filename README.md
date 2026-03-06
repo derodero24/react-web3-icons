@@ -92,6 +92,13 @@ Add a `title` prop for screen reader support:
 
 When no `title` is provided, the icon is treated as decorative.
 
+For maximum screen reader compatibility, pair `title` with `titleId` — the SVG will automatically get `aria-labelledby` pointing to the title:
+
+```tsx
+<Ethereum title="Ethereum logo" titleId="eth-title" />
+{/* Renders: <svg aria-labelledby="eth-title"><title id="eth-title">Ethereum logo</title>…</svg> */}
+```
+
 ### All Standard SVG Props
 
 Icons accept all standard SVG attributes:
@@ -142,7 +149,7 @@ All icons extend `SVGProps<SVGSVGElement>` with the following additions:
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `title` | `string` | — | Accessible title rendered as `<title>` inside the SVG |
-| `titleId` | `string` | — | ID applied to the `<title>` element; can be referenced from `aria-labelledby` on the `<svg>` (not set automatically) |
+| `titleId` | `string` | — | ID applied to the `<title>` element; when provided together with `title`, `aria-labelledby` is automatically set to this value |
 | `size` | `string \| number` | `"1em"` | For icons created via `createIcon`/`useIconContext`, sets both width and height unless explicitly overridden |
 | `width` | `string \| number` | — | Icon width (overrides `size` for width only) |
 | `height` | `string \| number` | — | Icon height (overrides `size` for height only) |
