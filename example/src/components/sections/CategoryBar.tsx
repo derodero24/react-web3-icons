@@ -3,7 +3,11 @@
 import Link from 'next/link';
 import { parseAsString, useQueryState } from 'nuqs';
 
-import { ICON_CATEGORIES, type IconCategory } from '../../utils/icons';
+import {
+  ICON_CATEGORIES,
+  type IconCategory,
+  REACT_WEB3_ICONS,
+} from '../../utils/icons';
 
 type Category = IconCategory;
 
@@ -27,6 +31,7 @@ export default function CategoryBar() {
       <div className="flex gap-2">
         {ICON_CATEGORIES.map(item => {
           const isActive = item === current;
+          const count = REACT_WEB3_ICONS[item].length;
           return (
             <Link
               key={item}
@@ -39,6 +44,17 @@ export default function CategoryBar() {
               aria-current={isActive ? 'page' : undefined}
             >
               {item}
+              <span
+                className={`ml-1.5 text-xs font-normal tabular-nums ${
+                  isActive
+                    ? 'opacity-80'
+                    : count === 0
+                      ? 'text-gray-400 dark:text-gray-500'
+                      : 'text-gray-400 dark:text-gray-400'
+                }`}
+              >
+                {count}
+              </span>
             </Link>
           );
         })}
