@@ -118,7 +118,7 @@ export default function IconTable() {
           />
         </div>
 
-        <fieldset className="flex shrink-0 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-500 dark:bg-gray-600">
+        <fieldset className="flex shrink-0 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-600 dark:bg-gray-800">
           <legend className="sr-only">Icon variant filter</legend>
           {VARIANTS.map(v => (
             <button
@@ -126,10 +126,10 @@ export default function IconTable() {
               type="button"
               onClick={() => setVariant(v)}
               aria-pressed={variant === v}
-              className={`h-12 px-4 text-sm font-medium transition-colors duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 ${
+              className={`h-12 px-4 text-sm font-medium transition-colors duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-500 ${
                 variant === v
-                  ? 'bg-gray-800 text-white dark:bg-gray-100 dark:text-gray-900'
-                  : 'text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-500'
+                  ? 'bg-indigo-700 text-white dark:bg-indigo-100 dark:text-gray-900'
+                  : 'text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
               }`}
             >
               {VARIANT_LABELS[v]}

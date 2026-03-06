@@ -20,7 +20,7 @@ export default function CategoryBar() {
   return (
     <nav
       aria-label="Icon categories"
-      className="overflow-x-auto border-b border-gray-200 bg-gray-100 px-4 py-3 dark:border-gray-600 dark:bg-gray-700 sm:px-6"
+      className="overflow-x-auto border-b border-gray-200 bg-gray-100 px-4 py-3 dark:border-gray-700 dark:bg-gray-800 sm:px-6"
     >
       <div className="flex gap-2">
         {ICON_CATEGORIES.map(item => {
@@ -29,10 +29,10 @@ export default function CategoryBar() {
             <Link
               key={item}
               href={item === 'all' ? '/' : `/?category=${item}`}
-              className={`shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold capitalize transition-colors duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+              className={`shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold capitalize transition-colors duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
                 isActive
-                  ? 'bg-gray-800 text-white dark:bg-gray-100 dark:text-gray-900'
-                  : 'bg-white text-gray-600 hover:bg-gray-200 dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500'
+                  ? 'bg-indigo-700 text-white dark:bg-indigo-200 dark:text-gray-900'
+                  : 'bg-white text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
               }`}
               aria-current={isActive ? 'page' : undefined}
             >
