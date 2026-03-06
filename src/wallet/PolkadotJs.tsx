@@ -15,7 +15,6 @@ export const PolkadotJsMono = createIcon(
   '15 15 140 140',
   _id => (
     <>
-      <circle cx="85" cy="85" r="70" mask={`url(#${_id}-pdjm-a)`} />
       <defs>
         <mask id={`${_id}-pdjm-a`}>
           <rect width="120%" height="120%" fill="#fff" />
@@ -25,6 +24,7 @@ export const PolkadotJsMono = createIcon(
           />
         </mask>
       </defs>
+      <circle cx="85" cy="85" r="70" mask={`url(#${_id}-pdjm-a)`} />
     </>
   ),
   'currentColor',
