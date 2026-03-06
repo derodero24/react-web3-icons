@@ -8,7 +8,7 @@ export const KuCoin = createIcon(
   'KuCoin',
   '276.7 115.5 246.65 268.9',
   kuCoinContent,
-  '#28cd96',
+  '#23AF91',
 );
 
 export const KuCoinMono = createIcon(
