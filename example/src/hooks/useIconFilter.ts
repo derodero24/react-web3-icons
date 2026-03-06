@@ -7,7 +7,11 @@ type Variant = 'all' | 'colored' | 'mono';
 type IconComponent = ComponentType<{ className?: string }>;
 
 const icons = Object.fromEntries(
-  Object.entries(iconModules).filter(([, v]) => typeof v === 'function'),
+  Object.entries(iconModules).filter(
+    ([, v]) =>
+      typeof v === 'function' ||
+      (typeof v === 'object' && v !== null && '$$typeof' in v),
+  ),
 ) as Record<string, IconComponent>;
 
 function filterByVariant(name: string, variant: Variant): boolean {
