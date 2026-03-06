@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react';
 import { useMemo } from 'react';
 
-import * as iconModules from '../../../.';
+import * as iconModules from 'react-web3-icons';
 
 type Variant = 'all' | 'colored' | 'mono';
 
