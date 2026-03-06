@@ -1,9 +1,11 @@
 [![npm][npm-image]][npm-url]
+[![downloads][downloads-image]][npm-url]
 [![license][license-image]][license-url]
 [![bundle size][size-image]][size-url]
 
 [npm-image]: https://img.shields.io/npm/v/react-web3-icons?color=blue
 [npm-url]: https://www.npmjs.com/package/react-web3-icons
+[downloads-image]: https://img.shields.io/npm/dw/react-web3-icons
 [license-image]: https://img.shields.io/npm/l/react-web3-icons
 [license-url]: https://github.com/derodero24/react-web3-icons/blob/main/LICENSE
 [size-image]: https://img.shields.io/bundlephobia/minzip/react-web3-icons
