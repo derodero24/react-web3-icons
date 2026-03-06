@@ -1,8 +1,6 @@
-import type { Dispatch, SetStateAction } from 'react';
-
 interface Props {
   keyword: string;
-  setKeyword: Dispatch<SetStateAction<string>>;
+  setKeyword: (value: string) => void;
   resultCount: number;
   totalCount: number;
 }
