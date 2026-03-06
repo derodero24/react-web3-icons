@@ -28,7 +28,6 @@ const representatives: [string, ComponentType][] = [
   ['Bitcoin', Bitcoin],
   ['Arbitrum', Arbitrum],
   // coin (alias) — omitted: covered by chain originals
-  // devtool — no separate import needed, coverage via chain/exchange
   // dex
   ['Uniswap', Uniswap],
   ['PancakeSwap', PancakeSwap],
@@ -50,7 +49,7 @@ const representatives: [string, ComponentType][] = [
   ['CoinGecko', CoinGecko],
   // wallet
   ['MetaMask', MetaMask],
-  // bridge — appended to preserve snapshot IDs of existing entries
+  // bridge
   ['Wormhole', Wormhole],
   // defi
   ['Lido', Lido],

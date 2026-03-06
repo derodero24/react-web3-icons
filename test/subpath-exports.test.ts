@@ -114,5 +114,6 @@ describe('Category module exports', () => {
     expect(Object.keys(wallet)).toContain('ArgentMono');
     expect(Object.keys(wallet)).toContain('MetaMask');
     expect(Object.keys(wallet)).toContain('CoinbaseWallet');
+    expect(Object.keys(wallet)).toContain('CoinbaseWalletMono');
   });
 });
