@@ -10,7 +10,7 @@ export const WalletConnect = createIcon(
   'WalletConnect',
   '45.52 99.74 387.64 237.59',
   walletConnectContent,
-  '#3b99fc',
+  '#3396FF',
 );
 
 export const WalletConnectMono = createIcon(
