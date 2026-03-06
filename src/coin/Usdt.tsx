@@ -13,7 +13,7 @@ export const Usdt = createIcon(
   'Usdt',
   '0.45 0.86 110.36 88.3',
   usdtContent,
-  '#009393',
+  '#26A17B',
 );
 
 export const UsdtMono = createIcon(
