@@ -49,7 +49,7 @@ export default function CategoryBar() {
                   isActive
                     ? 'opacity-80'
                     : count === 0
-                      ? 'text-gray-400 dark:text-gray-500'
+                      ? 'text-gray-300 dark:text-gray-600'
                       : 'text-gray-400 dark:text-gray-400'
                 }`}
               >
