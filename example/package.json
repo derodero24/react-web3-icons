@@ -4,12 +4,11 @@
   "license": "MIT",
   "author": "@derodero24",
   "scripts": {
-    "build": "pnpm -w run build && next build",
+    "build": "next build",
     "dev": "next dev --turbopack",
     "lint": "biome check",
     "lint:fix": "biome check --write",
-    "start": "next start",
-    "dev:full": "concurrently -n lib,app -c blue,green \"pnpm -w run start\" \"next dev --turbopack\""
+    "start": "next start"
   },
   "dependencies": {
     "next": "^16.1.6",
@@ -27,7 +26,6 @@
     "@types/node": "^25.3.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "concurrently": "^9.1.2",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
