@@ -32,7 +32,8 @@ export default function SearchForm({
       if (
         e.key === '/' &&
         !(e.target instanceof HTMLInputElement) &&
-        !(e.target instanceof HTMLTextAreaElement)
+        !(e.target instanceof HTMLTextAreaElement) &&
+        !(e.target as HTMLElement).isContentEditable
       ) {
         e.preventDefault();
         input.focus();
@@ -83,7 +84,7 @@ export default function SearchForm({
         <path d="m21 21-4.35-4.35" />
       </svg>
       {!keyword && (
-        <kbd className="pointer-events-none absolute right-3 rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-sans text-xs text-gray-400 opacity-70 peer-focus:opacity-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-500">
+        <kbd className="pointer-events-none absolute right-3 rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-sans text-xs text-gray-400 opacity-70 transition-opacity duration-100 peer-focus:opacity-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-500">
           /
         </kbd>
       )}
