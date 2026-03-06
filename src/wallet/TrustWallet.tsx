@@ -11,7 +11,7 @@ export const TrustWalletSquare = createIcon(
       />
       <path
         d="M512.3 215c103.319 86.288 221.801 80.966 255.653 80.966C760.548 786.707 704.128 689.395 512.3 827 320.472 689.395 264.405 786.707 257 295.966c33.499 0 151.981 5.322 255.3-80.966z"
-        stroke="#3375bb"
+        stroke="#0a64bc"
         strokeWidth="70"
         strokeMiterlimit="10"
         strokeLinejoin="round"
@@ -26,7 +26,7 @@ export const TrustWalletCircle = createIcon(
   '0 0 64 64',
   () => (
     <>
-      <circle cx="32" cy="32" r="32" fill="#3375bb" />
+      <circle cx="32" cy="32" r="32" fill="#0a64bc" />
       <path
         d="M32.627 14c6.324 5.282 13.576 4.956 15.648 4.956-.453 30.038-3.907 24.081-15.648 32.504C20.885 43.037 17.453 48.994 17 18.956c2.05 0 9.303.326 15.627-4.956z"
         stroke="#fff"
