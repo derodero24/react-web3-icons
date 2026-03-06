@@ -67,14 +67,24 @@ jobs:
           restore-keys: |
             visual-screenshots-main-
 
+      - name: Check for existing screenshots (PR)
+        if: github.event_name == 'pull_request'
+        id: check-screenshots
+        run: |
+          if [ -d "test/visual/__screenshots__" ] && [ -n "$(ls -A test/visual/__screenshots__ 2>/dev/null)" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Generate baseline if none cached (PR)
-        if: github.event_name == 'pull_request' && steps.screenshots-cache-pr.outputs.cache-hit != 'true'
+        if: github.event_name == 'pull_request' && steps.check-screenshots.outputs.exists != 'true'
         run: |
           echo "::warning::No reference screenshots from main found. Generating baseline for this run."
           pnpm test:visual:update
 
       - name: Run visual regression tests
-        if: github.event_name == 'pull_request' && steps.screenshots-cache-pr.outputs.cache-hit == 'true'
+        if: github.event_name == 'pull_request'
         run: pnpm test:visual
 
       - name: Upload screenshot diffs on failure

@@ -1,5 +1,6 @@
-import { defineConfig } from 'vitest/config';
+import { join } from 'node:path';
 import { playwright } from '@vitest/browser-playwright';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
@@ -22,8 +23,7 @@ export default defineConfig({
             ext,
             testFileDirectory,
             testFileName,
-          }) =>
-            `${testFileDirectory}/__screenshots__/${testFileName}/${arg}${ext}`,
+          }) => join(testFileDirectory, '__screenshots__', testFileName, `${arg}${ext}`),
         },
       },
     },
