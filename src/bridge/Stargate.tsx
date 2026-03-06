@@ -32,13 +32,18 @@ export const Stargate = createIcon(
 export const StargateMono = createIcon(
   'StargateMono',
   '0 0 31.01 32',
-  () => (
+  _id => (
     <>
-      <path d={arcTopRight} />
-      <path d={arcTopLeft} />
-      <path d={arcBottomRight} />
-      <path d={arcBottomLeft} />
-      <path d={starCenter} />
+      <path d={arcTopRight} mask={`url(#${_id}-sg-m)`} />
+      <path d={arcTopLeft} mask={`url(#${_id}-sg-m)`} />
+      <path d={arcBottomRight} mask={`url(#${_id}-sg-m)`} />
+      <path d={arcBottomLeft} mask={`url(#${_id}-sg-m)`} />
+      <defs>
+        <mask id={`${_id}-sg-m`}>
+          <rect width="31.01" height="32" fill="white" />
+          <path d={starCenter} fill="black" />
+        </mask>
+      </defs>
     </>
   ),
   'currentColor',

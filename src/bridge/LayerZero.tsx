@@ -8,7 +8,7 @@ const bottomPath =
 
 export const LayerZero = createIcon(
   'LayerZero',
-  '0 0 19 32',
+  '0 0 19 32.1',
   () => (
     <>
       <path d={topPath} fill="#000000" />
@@ -20,7 +20,7 @@ export const LayerZero = createIcon(
 
 export const LayerZeroMono = createIcon(
   'LayerZeroMono',
-  '0 0 19 32',
+  '0 0 19 32.1',
   () => (
     <>
       <path d={topPath} />
