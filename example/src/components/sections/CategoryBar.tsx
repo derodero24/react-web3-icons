@@ -3,28 +3,11 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-const CATEGORIES = [
-  'all',
-  'bridge',
-  'chain',
-  'coin',
-  'defi',
-  'devtool',
-  'dex',
-  'domain',
-  'exchange',
-  'explorer',
-  'marketplace',
-  'node',
-  'portfolio',
-  'storage',
-  'tracker',
-  'wallet',
-] as const;
+import { ICON_CATEGORIES, type IconCategory } from '../../utils/icons';
 
-type Category = (typeof CATEGORIES)[number];
+type Category = IconCategory;
 
-const CATEGORY_SET: ReadonlySet<string> = new Set<string>(CATEGORIES);
+const CATEGORY_SET: ReadonlySet<string> = new Set<string>(ICON_CATEGORIES);
 
 export default function CategoryBar() {
   const searchParams = useSearchParams();
@@ -40,7 +23,7 @@ export default function CategoryBar() {
       className="overflow-x-auto border-b border-gray-200 bg-gray-100 px-4 py-3 dark:border-gray-600 dark:bg-gray-700 sm:px-6"
     >
       <div className="flex gap-2">
-        {CATEGORIES.map(item => {
+        {ICON_CATEGORIES.map(item => {
           const isActive = item === current;
           return (
             <Link
