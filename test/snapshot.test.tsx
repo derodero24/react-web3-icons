@@ -12,11 +12,14 @@ import {
   Ens,
   Ethereum,
   Etherscan,
+  Hardhat,
   Ipfs,
+  Lido,
   MetaMask,
   OpenSea,
   PancakeSwap,
   Uniswap,
+  Wormhole,
 } from '../src';
 
 const representatives: [string, ComponentType][] = [
@@ -47,6 +50,12 @@ const representatives: [string, ComponentType][] = [
   ['CoinGecko', CoinGecko],
   // wallet
   ['MetaMask', MetaMask],
+  // bridge — appended to preserve snapshot IDs of existing entries
+  ['Wormhole', Wormhole],
+  // defi
+  ['Lido', Lido],
+  // devtool
+  ['Hardhat', Hardhat],
 ];
 
 describe('Snapshot tests', () => {
