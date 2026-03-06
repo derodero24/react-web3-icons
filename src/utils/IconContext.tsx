@@ -6,6 +6,7 @@ export type IconContextValue = Partial<Omit<IconProps, 'ref'>>;
 const EMPTY: IconContextValue = {};
 
 export const IconContext = createContext<IconContextValue>(EMPTY);
+IconContext.displayName = 'ReactWeb3Icons.IconContext';
 
 export function useIconContext<T extends IconProps>(props: T): T {
   const ctx = useContext(IconContext);
