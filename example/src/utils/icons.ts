@@ -102,7 +102,7 @@ const coin = [
   'XrpMono',
 ].sort();
 
-const defi: string[] = [];
+const defi = ['Aave', 'AaveMono', 'Lido', 'LidoMono'].sort();
 
 const devtool = [
   'Aragon',
