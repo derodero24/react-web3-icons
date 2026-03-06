@@ -1,13 +1,29 @@
 import '../styles/global.css';
 
 import type { Metadata } from 'next';
+import { Noto_Sans, Orbitron } from 'next/font/google';
 import type { ReactNode } from 'react';
 import Header from '../components/sections/Header';
 import { Providers } from './providers';
 
+const notoSans = Noto_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-orbitron',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: 'React Web3 Icons',
-  description: 'React Web3 Icons',
+  description:
+    'Open-source React icon library for Web3 — chains, coins, wallets, DEXs, and more.',
   authors: [{ name: '@derodero24' }],
   keywords: 'React, Web3, Icon, Blockchain, Crypto, Currency, Token, NFT',
   icons: {
@@ -29,7 +45,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${notoSans.variable} ${orbitron.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <meta name="theme-color" content="#1F2937" />
         <meta
@@ -41,16 +61,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           name="theme-color"
           media="(prefers-color-scheme: dark)"
           content="#1F2937"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&family=Orbitron:wght@500;600;700&display=swap"
-          rel="stylesheet"
         />
       </head>
       <body>
