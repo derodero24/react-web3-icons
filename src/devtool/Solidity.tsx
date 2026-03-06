@@ -33,7 +33,7 @@ export const Solidity = createIcon(
   'Solidity',
   '381.84 253.31 523.9 812.97',
   solidityContent,
-  '#000',
+  '#2B247C',
 );
 
 export const SolidityMono = createIcon(
