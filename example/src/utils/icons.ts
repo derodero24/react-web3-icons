@@ -264,6 +264,7 @@ const tracker = [
   'CoinGecko',
   'CoinGeckoMono',
   'DefiLlama',
+  'DefiLlamaMono',
 ].sort();
 
 const wallet = [

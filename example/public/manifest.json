@@ -1,7 +1,7 @@
 {
     "name": "React Web3 Icons",
     "short_name": "React Web3 Icons",
-    "description": "",
+    "description": "Open-source React icon library for Web3 — chains, coins, wallets, DEXs, and more.",
     "start_url": "/",
     "display": "standalone",
     "orientation": "portrait",
