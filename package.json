@@ -1,7 +1,7 @@
 {
   "name": "react-web3-icons",
   "version": "2.0.1",
-  "description": "React SVG icon library for Web3 — blockchains, wallets, DEXs, tokens, and more",
+  "description": "React SVG icon library for Web3 \u2014 blockchains, wallets, DEXs, tokens, and more",
   "license": "MIT",
   "author": "derodero24",
   "keywords": [
@@ -258,11 +258,6 @@
       "limit": "10 KB"
     },
     {
-      "name": "defi",
-      "path": "dist/defi/index.mjs",
-      "limit": "5 KB"
-    },
-    {
       "name": "chain",
       "path": "dist/chain/index.mjs",
       "limit": "20 KB"
@@ -271,6 +266,11 @@
       "name": "coin",
       "path": "dist/coin/index.mjs",
       "limit": "35 KB"
+    },
+    {
+      "name": "defi",
+      "path": "dist/defi/index.mjs",
+      "limit": "5 KB"
     },
     {
       "name": "devtool",
