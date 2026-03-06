@@ -3,6 +3,7 @@ import '../styles/global.css';
 import type { Metadata } from 'next';
 import { Noto_Sans, Orbitron } from 'next/font/google';
 import type { ReactNode } from 'react';
+import Footer from '../components/sections/Footer';
 import Header from '../components/sections/Header';
 import { Providers } from './providers';
 
@@ -68,7 +69,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Providers>
           <div className="flex min-h-svh flex-col">
             <Header />
-            <main>{children}</main>
+            <main className="flex-1">{children}</main>
+            <Footer />
           </div>
         </Providers>
       </body>
