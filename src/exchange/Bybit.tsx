@@ -27,7 +27,7 @@ export const Bybit = forwardRef<SVGSVGElement, BybitProps>(function Bybit(
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 3 87 29"
+      viewBox="0 0 87 34"
       width={width ?? size}
       height={height ?? size}
       aria-hidden={isDecorative || undefined}
@@ -63,7 +63,7 @@ export const BybitLight = forwardRef<SVGSVGElement, BybitProps>(
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 3 87 29"
+        viewBox="0 0 87 34"
         width={width ?? size}
         height={height ?? size}
         aria-hidden={isDecorative || undefined}
@@ -101,7 +101,7 @@ export const BybitMono = forwardRef<SVGSVGElement, BybitProps>(
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 3 87 29"
+        viewBox="0 0 87 34"
         width={width ?? size}
         height={height ?? size}
         aria-hidden={isDecorative || undefined}
