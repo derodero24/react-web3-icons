@@ -1,22 +1,13 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
-import {
-  type ComponentType,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { parseAsString, useQueryState } from 'nuqs';
+import { useState } from 'react';
 
-import * as iconModules from '../../../../.';
+import { useCopy } from '../../hooks/useCopy';
+import { useIconFilter } from '../../hooks/useIconFilter';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
+import IconCard from '../elements/IconCard';
 import SearchForm from '../elements/SearchForm';
-
-const icons = iconModules as unknown as Record<
-  string,
-  ComponentType<{ className?: string }>
->;
 
 type Variant = 'all' | 'colored' | 'mono';
 
@@ -28,71 +19,24 @@ const VARIANT_LABELS: Record<Variant, string> = {
 
 const VARIANTS: Variant[] = ['all', 'colored', 'mono'];
 
-function filterByVariant(name: string, variant: Variant): boolean {
-  if (variant === 'mono') return name.endsWith('Mono');
-  if (variant === 'colored') return !name.endsWith('Mono');
-  return true;
-}
-
 export default function IconTable() {
-  const searchParams = useSearchParams();
-  const [keyword, setKeyword] = useState('');
+  const [rawCategory] = useQueryState(
+    'category',
+    parseAsString.withDefault('all'),
+  );
+  const [keyword, setKeyword] = useQueryState(
+    'q',
+    parseAsString.withDefault(''),
+  );
   const [variant, setVariant] = useState<Variant>('all');
-  const [copiedName, setCopiedName] = useState<string | null>(null);
-  const [copyStatus, setCopyStatus] = useState('');
-  const copiedTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
-    undefined,
-  );
-  const statusTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
-    undefined,
-  );
+  const { copy, copiedName, copyStatus } = useCopy();
 
-  useEffect(() => {
-    return () => {
-      clearTimeout(copiedTimer.current);
-      clearTimeout(statusTimer.current);
-    };
-  }, []);
+  const validCategory = Object.hasOwn(REACT_WEB3_ICONS, rawCategory)
+    ? (rawCategory as keyof typeof REACT_WEB3_ICONS)
+    : 'all';
 
-  const category = useMemo<keyof typeof REACT_WEB3_ICONS>(() => {
-    const raw = searchParams.get('category');
-    const param = typeof raw === 'string' ? raw : undefined;
-    if (param && Object.hasOwn(REACT_WEB3_ICONS, param)) {
-      return param as keyof typeof REACT_WEB3_ICONS;
-    }
-    return 'all';
-  }, [searchParams]);
-
-  const categoryIcons = REACT_WEB3_ICONS[category];
-
-  const displayedIcons = useMemo(
-    () =>
-      categoryIcons
-        .filter(name => filterByVariant(name, variant))
-        .filter(name => name.toLowerCase().includes(keyword.toLowerCase()))
-        .map(name => ({
-          name,
-          component: icons[name] as ComponentType<{
-            className?: string;
-          }>,
-        })),
-    [categoryIcons, keyword, variant],
-  );
-
-  const copy = (value: string) => {
-    navigator.clipboard
-      .writeText(value)
-      .then(() => {
-        setCopyStatus(`Copied ${value}`);
-        setCopiedName(value);
-        clearTimeout(copiedTimer.current);
-        copiedTimer.current = setTimeout(() => setCopiedName(null), 1_500);
-        clearTimeout(statusTimer.current);
-        statusTimer.current = setTimeout(() => setCopyStatus(''), 2_000);
-      })
-      // biome-ignore lint/suspicious/noConsole: legitimate error reporting for clipboard API
-      .catch(console.error);
-  };
+  const categoryIcons = REACT_WEB3_ICONS[validCategory];
+  const displayedIcons = useIconFilter(categoryIcons, keyword, variant);
 
   const totalCount = categoryIcons.length;
   const resultCount = displayedIcons.length;
@@ -105,14 +49,14 @@ export default function IconTable() {
 
   return (
     <section
-      aria-label={`${category} icons`}
+      aria-label={`${validCategory} icons`}
       className="relative mb-6 px-4 pt-6 sm:px-6 lg:px-8"
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-4">
         <div className="flex-1">
           <SearchForm
             keyword={keyword}
-            setKeyword={setKeyword}
+            setKeyword={value => void setKeyword(value)}
             resultCount={resultCount}
             totalCount={totalCount}
           />
@@ -163,7 +107,7 @@ export default function IconTable() {
           </svg>
           <p className="text-base font-medium">No icons yet</p>
           <p className="text-sm">
-            {`${category.charAt(0).toUpperCase()}${category.slice(1)} icons are coming soon`}
+            {`${validCategory.charAt(0).toUpperCase()}${validCategory.slice(1)} icons are coming soon`}
           </p>
         </div>
       ) : isSearchEmpty ? (
@@ -188,51 +132,15 @@ export default function IconTable() {
         </div>
       ) : (
         <div className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(96px,1fr))] gap-x-3 gap-y-4">
-          {displayedIcons.map(icon => {
-            const isCopied = copiedName === icon.name;
-            return (
-              <div
-                key={icon.name}
-                className="relative flex flex-col items-center"
-              >
-                <button
-                  type="button"
-                  aria-label={`Copy ${icon.name}`}
-                  title={icon.name}
-                  className="group mx-auto flex aspect-square w-full cursor-pointer items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-150 ease-out hover:scale-[1.05] hover:border-gray-300 hover:shadow-md active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-500 dark:bg-gray-600 dark:hover:border-gray-400 dark:hover:shadow-lg"
-                  onClick={() => copy(icon.name)}
-                >
-                  <icon.component
-                    className={`text-4xl drop-shadow transition-all duration-150 dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.1)] ${
-                      isCopied ? 'scale-90 opacity-30' : ''
-                    }`}
-                  />
-                  {isCopied && (
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={3}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="absolute h-6 w-6 text-green-500 dark:text-green-400"
-                      aria-hidden="true"
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  )}
-                </button>
-                <p
-                  title={icon.name}
-                  className={`mt-1 w-full text-balance text-center text-xs font-medium leading-tight transition-colors duration-150 ${
-                    isCopied ? 'text-green-600 dark:text-green-400' : ''
-                  }`}
-                >
-                  {isCopied ? 'Copied!' : icon.name}
-                </p>
-              </div>
-            );
-          })}
+          {displayedIcons.map(icon => (
+            <IconCard
+              key={icon.name}
+              name={icon.name}
+              component={icon.component}
+              isCopied={copiedName === icon.name}
+              onCopy={copy}
+            />
+          ))}
         </div>
       )}
     </section>

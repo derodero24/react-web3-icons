@@ -1,3 +1,7 @@
+packages:
+  - 'example'
+
 onlyBuiltDependencies:
   - esbuild
   - lefthook
+  - sharp

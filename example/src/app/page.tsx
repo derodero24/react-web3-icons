@@ -4,33 +4,9 @@ import IconTable from '../components/sections/IconTable';
 
 export default function Home() {
   return (
-    <>
-      <Suspense
-        fallback={
-          <nav
-            aria-label="Icon categories"
-            className="border-b border-gray-200 bg-gray-100 px-4 py-3 dark:border-gray-600 dark:bg-gray-700 sm:px-6"
-          >
-            <div className="flex gap-2">
-              <span className="h-8 w-16 rounded-full bg-gray-300 dark:bg-gray-500" />
-            </div>
-          </nav>
-        }
-      >
-        <CategoryBar />
-      </Suspense>
-      <Suspense
-        fallback={
-          <section className="relative mb-24 px-4 pt-6 sm:px-6 lg:px-8">
-            <div
-              aria-hidden="true"
-              className="h-10 w-40 rounded-md bg-gray-300 dark:bg-gray-500"
-            />
-          </section>
-        }
-      >
-        <IconTable />
-      </Suspense>
-    </>
+    <Suspense>
+      <CategoryBar />
+      <IconTable />
+    </Suspense>
   );
 }

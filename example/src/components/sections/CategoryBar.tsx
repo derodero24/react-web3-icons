@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { parseAsString, useQueryState } from 'nuqs';
 
 import { ICON_CATEGORIES, type IconCategory } from '../../utils/icons';
 
@@ -10,11 +10,13 @@ type Category = IconCategory;
 const CATEGORY_SET: ReadonlySet<string> = new Set<string>(ICON_CATEGORIES);
 
 export default function CategoryBar() {
-  const searchParams = useSearchParams();
-  const raw = searchParams.get('category');
+  const [rawCategory] = useQueryState(
+    'category',
+    parseAsString.withDefault('all'),
+  );
   const current: Category =
-    typeof raw === 'string' && CATEGORY_SET.has(raw)
-      ? (raw as Category)
+    typeof rawCategory === 'string' && CATEGORY_SET.has(rawCategory)
+      ? (rawCategory as Category)
       : 'all';
 
   return (
