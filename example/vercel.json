@@ -1,0 +1,3 @@
+{
+  "buildCommand": "pnpm -w run build && next build"
+}
