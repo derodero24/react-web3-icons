@@ -163,9 +163,7 @@ export default function IconTable() {
           </svg>
           <p className="text-base font-medium">No icons yet</p>
           <p className="text-sm">
-            {category === 'bridge'
-              ? 'Bridge icons are coming in v3.0'
-              : `${category.charAt(0).toUpperCase()}${category.slice(1)} icons are coming soon`}
+            {`${category.charAt(0).toUpperCase()}${category.slice(1)} icons are coming soon`}
           </p>
         </div>
       ) : isSearchEmpty ? (
