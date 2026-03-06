@@ -8,7 +8,7 @@ export const Gemini = createIcon(
   'Gemini',
   '132.9 202.31 44.98 44.98',
   geminiContent,
-  '#00dcfa',
+  '#26DDF9',
 );
 
 export const GeminiMono = createIcon(
