@@ -24,7 +24,7 @@ export default function SearchForm({
       <input
         type="search"
         id="search"
-        className="peer h-12 w-full rounded-xl border border-gray-200 bg-white pl-10 shadow-sm transition-colors duration-100 focus:-translate-x-px focus:border-2 focus:border-blue-500/80 dark:border-gray-500 dark:bg-gray-600 dark:focus:border-blue-500/80"
+        className="peer h-12 w-full rounded-xl border border-gray-200 bg-white pl-10 shadow-sm transition-colors duration-100 focus:-translate-x-px focus:border-2 focus:border-indigo-500/80 dark:border-gray-600 dark:bg-gray-800 dark:focus:border-indigo-500/80"
         placeholder="Search"
         aria-describedby="icon-count"
         value={keyword}
@@ -39,7 +39,7 @@ export default function SearchForm({
         strokeLinejoin="round"
         width="1em"
         height="1em"
-        className="pointer-events-none absolute left-3 text-xl opacity-40 peer-focus:text-blue-600 peer-focus:opacity-80 dark:peer-focus:text-blue-400"
+        className="pointer-events-none absolute left-3 text-xl opacity-40 peer-focus:text-indigo-600 peer-focus:opacity-80 dark:peer-focus:text-indigo-400"
         aria-hidden="true"
       >
         <circle cx={11} cy={11} r={8} />

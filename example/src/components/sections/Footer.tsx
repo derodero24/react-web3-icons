@@ -27,7 +27,7 @@ export default function Footer() {
             type="button"
             onClick={copyInstall}
             aria-label="Copy install command"
-            className="flex items-center gap-2 rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 font-mono text-xs transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600"
+            className="flex items-center gap-2 rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 font-mono text-xs transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
           >
             <span className="select-all">{installCmd}</span>
             {copied ? (
