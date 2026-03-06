@@ -19,7 +19,7 @@ export const Drizzle = createIcon('Drizzle', '0 0 197.9 167.42', () => (
 
 export const DrizzleMono = createIcon(
   'DrizzleMono',
-  '0 -0.5 206.83 204.29',
+  '0 0 197.9 167.42',
   _id => (
     <>
       <defs>
