@@ -139,7 +139,7 @@ export default function IconTable() {
             <div
               key={icon.name}
               className="motion-safe:animate-fade-in-up"
-              style={{ animationDelay: `${index * 12}ms` }}
+              style={{ animationDelay: `${Math.min(index * 12, 150)}ms` }}
             >
               <IconCard
                 name={icon.name}
