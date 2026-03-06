@@ -4,8 +4,15 @@ import * as bridge from '../src/bridge';
 import * as defi from '../src/defi';
 
 describe('Category module exports', () => {
-  it('exports empty bridge category module', () => {
-    expect(Object.keys(bridge)).toHaveLength(0);
+  it('exports bridge category icons', () => {
+    expect(Object.keys(bridge)).toContain('Wormhole');
+    expect(Object.keys(bridge)).toContain('WormholeMono');
+    expect(Object.keys(bridge)).toContain('Stargate');
+    expect(Object.keys(bridge)).toContain('StargateMono');
+    expect(Object.keys(bridge)).toContain('LayerZero');
+    expect(Object.keys(bridge)).toContain('LayerZeroMono');
+    expect(Object.keys(bridge)).toContain('Across');
+    expect(Object.keys(bridge)).toContain('AcrossMono');
   });
 
   it('exports defi category icons', () => {
