@@ -4,7 +4,7 @@
   "license": "MIT",
   "author": "@derodero24",
   "scripts": {
-    "build": "pnpm --prefix .. run build && next build",
+    "build": "next build",
     "dev": "next dev --turbopack",
     "lint": "biome check",
     "lint:fix": "biome check --write",
@@ -15,7 +15,8 @@
     "next-themes": "^0.4.6",
     "nuqs": "^2.8.9",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "react-web3-icons": "workspace:*"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.4",
