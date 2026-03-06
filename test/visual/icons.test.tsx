@@ -6,8 +6,9 @@ import * as icons from '../../src';
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
+const FORWARD_REF = Symbol.for('react.forward_ref');
 const entries = Object.entries(icons).filter(
-  ([, value]) => typeof value === 'function',
+  ([, value]) => (value as { $$typeof?: symbol })?.$$typeof === FORWARD_REF,
 ) as [string, IconComponent][];
 
 describe('Icon visual regression', () => {
