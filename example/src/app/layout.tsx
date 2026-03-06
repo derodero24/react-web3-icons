@@ -37,7 +37,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'React Web3 Icons',
     siteName: 'React Web3 Icons',
-    description: 'React Web3 Icons',
+    description:
+      'Open-source React icon library for Web3 — chains, coins, wallets, DEXs, and more.',
     images: '/icon-512.png',
     type: 'website',
   },

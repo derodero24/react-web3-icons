@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <main className="my-24 flex flex-col items-center gap-4">
+    <div className="my-24 flex flex-col items-center gap-4">
       <h1 className="font-orbitron text-6xl font-bold">404</h1>
       <p className="text-xl font-medium opacity-60">Page not found</p>
       <Link
@@ -11,6 +11,6 @@ export default function NotFound() {
       >
         Back to icons
       </Link>
-    </main>
+    </div>
   );
 }
