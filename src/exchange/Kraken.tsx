@@ -8,7 +8,7 @@ export const Kraken = createIcon(
   'Kraken',
   '-0.2 264.35 2500.2 1971.32',
   krakenContent,
-  '#5741d9',
+  '#5841D8',
 );
 
 export const KrakenMono = createIcon(
