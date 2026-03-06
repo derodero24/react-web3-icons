@@ -1,4 +1,3 @@
 {
-  "installCommand": "pnpm install && pnpm --filter react-web3-icons run build",
   "buildCommand": "next build"
 }

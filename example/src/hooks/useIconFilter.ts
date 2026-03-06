@@ -6,11 +6,9 @@ import * as iconModules from 'react-web3-icons';
 type Variant = 'all' | 'colored' | 'mono';
 type IconComponent = ComponentType<{ className?: string }>;
 
-const icons: Record<string, IconComponent> = Object.fromEntries(
-  Object.entries(iconModules).filter(
-    (entry): entry is [string, IconComponent] => typeof entry[1] === 'function',
-  ),
-);
+const icons = Object.fromEntries(
+  Object.entries(iconModules).filter(([, v]) => typeof v === 'function'),
+) as Record<string, IconComponent>;
 
 function filterByVariant(name: string, variant: Variant): boolean {
   if (variant === 'mono') return name.endsWith('Mono');
