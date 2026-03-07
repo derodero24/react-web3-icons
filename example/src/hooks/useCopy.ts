@@ -15,12 +15,13 @@ export function useCopy() {
     };
   }, []);
 
-  const copy = (value: string) => {
+  const copy = (name: string) => {
+    const text = `import { ${name} } from 'react-web3-icons';`;
     navigator.clipboard
-      .writeText(value)
+      .writeText(text)
       .then(() => {
-        setCopyStatus(`Copied ${value}`);
-        setCopiedName(value);
+        setCopyStatus(`Copied import for ${name}`);
+        setCopiedName(name);
         clearTimeout(copiedTimer.current);
         copiedTimer.current = setTimeout(() => setCopiedName(null), 1_500);
         clearTimeout(statusTimer.current);
