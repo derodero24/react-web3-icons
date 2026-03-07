@@ -30,5 +30,6 @@ export * from './Trx';
 export * from './Uni';
 export * from './Usdc';
 export * from './Usdt';
+export * from './Wld';
 export * from './Xlm';
 export * from './Xrp';
