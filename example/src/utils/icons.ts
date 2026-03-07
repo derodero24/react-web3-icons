@@ -2,6 +2,7 @@ import * as bridge from '../../../src/bridge';
 import * as chain from '../../../src/chain';
 import * as coin from '../../../src/coin';
 import * as defi from '../../../src/defi';
+import { DEPRECATED_ICON_NAMES } from '../../../src/deprecated';
 import * as devtool from '../../../src/devtool';
 import * as dex from '../../../src/dex';
 import * as domain from '../../../src/domain';
@@ -35,16 +36,8 @@ export const ICON_CATEGORIES = [
 
 export type IconCategory = (typeof ICON_CATEGORIES)[number];
 
-// Deprecated aliases — excluded to avoid showing duplicate icons in the example
-const DEPRECATED = new Set([
-  'Matic',
-  'MaticCircle',
-  'MaticMono',
-  'MaticCircleMono',
-  'GnosisSafe',
-  'GnosisSafeMono',
-]);
-const filter = (keys: string[]) => keys.filter(k => !DEPRECATED.has(k));
+const filter = (keys: string[]) =>
+  keys.filter(k => !DEPRECATED_ICON_NAMES.has(k));
 
 const bridgeIcons = filter(Object.keys(bridge)).sort();
 const chainIcons = filter(Object.keys(chain)).sort();

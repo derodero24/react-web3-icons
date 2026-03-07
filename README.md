@@ -245,6 +245,29 @@ When icon brands are renamed (for example, `GnosisSafe` -> `Safe`, `Matic` -> `P
 - Deprecated aliases stay available for at least one minor release and at least 90 days.
 - Alias removals happen only in major releases and are documented in changelog/release notes.
 
+### Filtering Deprecated Icons
+
+Use the exported `DEPRECATED_ICON_NAMES` set to filter deprecated aliases from icon lists:
+
+```ts
+import * as icons from 'react-web3-icons';
+import { DEPRECATED_ICON_NAMES } from 'react-web3-icons';
+
+// Get current (non-deprecated) icon names, excluding non-icon exports
+const activeIconNames = Object.keys(icons).filter(
+  name =>
+    !DEPRECATED_ICON_NAMES.has(name) &&
+    name !== 'IconContext' &&
+    name !== 'DEPRECATED_ICON_NAMES',
+);
+```
+
+Or import from the dedicated subpath to avoid loading the full bundle:
+
+```ts
+import { DEPRECATED_ICON_NAMES } from 'react-web3-icons/deprecated';
+```
+
 Full process and test requirements: [CONTRIBUTING.md#icon-lifecycle-policy](CONTRIBUTING.md#icon-lifecycle-policy).
 
 ## License

@@ -1,7 +1,7 @@
 {
   "name": "react-web3-icons",
   "version": "2.0.1",
-  "description": "React SVG icon library for Web3 \u2014 blockchains, wallets, DEXs, tokens, and more",
+  "description": "React SVG icon library for Web3 — blockchains, wallets, DEXs, tokens, and more",
   "license": "MIT",
   "author": "derodero24",
   "keywords": [
@@ -52,6 +52,16 @@
       "require": {
         "types": "./dist/bridge/index.d.cts",
         "default": "./dist/bridge/index.cjs"
+      }
+    },
+    "./deprecated": {
+      "import": {
+        "types": "./dist/deprecated.d.mts",
+        "default": "./dist/deprecated.mjs"
+      },
+      "require": {
+        "types": "./dist/deprecated.d.cts",
+        "default": "./dist/deprecated.cjs"
       }
     },
     "./chain": {
@@ -222,6 +232,7 @@
     "@changesets/cli": "^2.29.8",
     "@size-limit/preset-small-lib": "^12.0.0",
     "@tsconfig/strictest": "^2.0.8",
+    "@types/node": "^25.3.5",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitest/browser": "^4.0.18",
@@ -251,6 +262,11 @@
       "name": "full bundle",
       "path": "dist/index.mjs",
       "limit": "100 KB"
+    },
+    {
+      "name": "deprecated",
+      "path": "dist/deprecated.mjs",
+      "limit": "1 KB"
     },
     {
       "name": "bridge",

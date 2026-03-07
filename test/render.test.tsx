@@ -4,8 +4,14 @@ import ReactDOM from 'react-dom/client';
 import { describe, expect, it } from 'vitest';
 import * as icons from '../src';
 
+// Filter to only forwardRef icon components, excluding non-component exports
+// (IconContext, DEPRECATED_ICON_NAMES, type-only exports, etc.)
+const FORWARD_REF = Symbol.for('react.forward_ref');
 const entries = Object.entries(icons).filter(
-  ([name]) => name !== 'IconContext',
+  ([, value]) =>
+    value !== null &&
+    typeof value === 'object' &&
+    (value as unknown as { $$typeof?: symbol }).$$typeof === FORWARD_REF,
 ) as [string, ComponentType][];
 
 describe('All icons render without error', () => {

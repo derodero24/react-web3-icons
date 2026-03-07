@@ -1,6 +1,9 @@
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import type { IconName } from '../src';
 import * as icons from '../src';
+import { DEPRECATED_ICON_NAMES } from '../src/deprecated';
 
 describe('Export integrity', () => {
   const entries = Object.entries(icons);
@@ -22,7 +25,10 @@ describe('Export integrity', () => {
 
   it('IconName covers all icon component names', () => {
     // Compile-time: IconName must be exactly the set of exported icon names
-    type ExportedIconNames = Exclude<keyof typeof icons, 'IconContext'>;
+    type ExportedIconNames = Exclude<
+      keyof typeof icons,
+      'IconContext' | 'DEPRECATED_ICON_NAMES'
+    >;
     expectTypeOf<IconName>().toEqualTypeOf<ExportedIconNames>();
 
     // Compile-time: arbitrary strings must NOT be assignable to IconName
@@ -71,8 +77,89 @@ describe('Coin aliases re-export correctly', () => {
   });
 });
 
+describe('DEPRECATED_ICON_NAMES', () => {
+  it('is exported from the root entry', () => {
+    expect(icons).toHaveProperty('DEPRECATED_ICON_NAMES');
+  });
+
+  it('root re-export is the same reference as the direct import', () => {
+    // Verifies the barrel export wires to the same value, not a copy or different set
+    expect(icons.DEPRECATED_ICON_NAMES).toBe(DEPRECATED_ICON_NAMES);
+  });
+
+  it('contains only names that are actually exported', () => {
+    const allNames = new Set(Object.keys(icons));
+    for (const name of icons.DEPRECATED_ICON_NAMES) {
+      expect(
+        allNames.has(name),
+        `${name} in DEPRECATED_ICON_NAMES but not exported`,
+      ).toBe(true);
+    }
+  });
+
+  it('includes known deprecated aliases', () => {
+    expect(icons.DEPRECATED_ICON_NAMES.has('Matic')).toBe(true);
+    expect(icons.DEPRECATED_ICON_NAMES.has('GnosisSafe')).toBe(true);
+  });
+
+  it('matches all @deprecated tagged exports in src/**', () => {
+    // Collect all names tagged @deprecated in source files
+    const srcDir = join(import.meta.dirname, '..', 'src');
+    const deprecatedExportRe =
+      /\/\*\*\s*@deprecated\b[^*]*\*+\/\s*export\s+(?:const|function|class)\s+(\w+)/g;
+
+    const taggedNames = new Set<string>();
+    const scanFile = (filePath: string) => {
+      const source = readFileSync(filePath, 'utf-8');
+      for (const match of source.matchAll(deprecatedExportRe)) {
+        if (match[1]) {
+          taggedNames.add(match[1]);
+        }
+      }
+    };
+    const scanDir = (dir: string) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const fullPath = join(dir, entry.name);
+        if (entry.isDirectory()) {
+          scanDir(fullPath);
+        } else if (entry.isFile() && /\.[cm]?[jt]sx?$/.test(entry.name)) {
+          scanFile(fullPath);
+        }
+      }
+    };
+    scanDir(srcDir);
+
+    // Every @deprecated-tagged export should be in DEPRECATED_ICON_NAMES
+    for (const name of taggedNames) {
+      expect(
+        icons.DEPRECATED_ICON_NAMES.has(name),
+        `${name} is @deprecated in source but missing from DEPRECATED_ICON_NAMES`,
+      ).toBe(true);
+    }
+
+    // Every name in DEPRECATED_ICON_NAMES should have a @deprecated tag in source
+    for (const name of icons.DEPRECATED_ICON_NAMES) {
+      expect(
+        taggedNames.has(name),
+        `${name} is in DEPRECATED_ICON_NAMES but has no @deprecated tag in src/**`,
+      ).toBe(true);
+    }
+  });
+});
+
 describe('Every colored icon has a Mono variant', () => {
-  const names = Object.keys(icons).filter(n => n !== 'IconContext');
+  // Filter to forwardRef icon components only — avoids listing excluded names manually
+  const forwardRefType = Symbol.for('react.forward_ref');
+  const names = Object.entries(icons)
+    .filter(([, v]) => {
+      if (typeof v !== 'object' || v === null) {
+        return false;
+      }
+      return (
+        (v as unknown as { $$typeof?: unknown }).$$typeof === forwardRefType
+      );
+    })
+    .map(([name]) => name);
 
   // Icons that are exempt from the Mono requirement.
   // To skip a missing-Mono failure, either add the variant or add an entry here with a comment.
