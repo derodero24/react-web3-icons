@@ -39,7 +39,7 @@ function extractDeprecatedExports(source: string): string[] {
 }
 
 describe('DEPRECATED_ICON_NAMES sync with source', () => {
-  const srcDir = join(__dirname, '..', 'src');
+  const srcDir = join(import.meta.dirname, '..', 'src');
   const sourceFiles = collectSourceFiles(srcDir);
 
   // Collect all @deprecated exports from source
