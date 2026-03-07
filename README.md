@@ -141,15 +141,26 @@ Any prop that can be passed directly to an icon can be set via context (`size`, 
 
 ### React Server Components (RSC)
 
-Icons use React hooks (`useId`, `useContext`) and therefore **cannot be rendered in React Server Components** directly. In a Next.js App Router project, add a `'use client'` boundary to any file that renders icon components:
+Icons use React hooks (`useId`, `useContext`) and therefore **cannot be rendered in React Server Components** directly. Add a `'use client'` directive (as the first statement in the file) to any component that renders icons:
 
 ```tsx
-// app/icons.tsx
+// app/my-component.tsx
+'use client';
+
+import { Ethereum, Bitcoin } from 'react-web3-icons';
+
+export function MyComponent() {
+  return <Ethereum />;
+}
+```
+
+Alternatively, create a small client-only re-export wrapper:
+
+```tsx
+// app/icons.tsx — must be a Client Component
 'use client';
 export { Ethereum, Bitcoin } from 'react-web3-icons';
 ```
-
-Or simply add `'use client'` at the top of the component file that uses icons.
 
 ## Icon Categories
 
