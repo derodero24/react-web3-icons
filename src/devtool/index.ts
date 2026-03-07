@@ -12,4 +12,5 @@ export * from './Tally';
 export * from './TheGraph';
 export * from './Thirdweb';
 export * from './Truffle';
+export * from './Wagmi';
 export * from './Web3Js';
