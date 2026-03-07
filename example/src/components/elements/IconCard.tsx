@@ -77,9 +77,13 @@ export default function IconCard({
     setSelected(activeVariant);
   }, [activeVariant]);
 
+<<<<<<< HEAD
   // components is always populated from variants, so this is always defined
   const Icon = (components[selected] ??
     components[variants[0] ?? '']) as ComponentType<{ className?: string }>;
+=======
+  const Icon = components[selected] ?? components[variants[0] ?? ''];
+>>>>>>> 200a297 (fix(example): guard against undefined variants[0] in strictest tsconfig)
   const hasMultiple = variants.length > 1;
 
   return (
