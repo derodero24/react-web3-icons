@@ -14,6 +14,13 @@
 - Brand guideline / usage reference:
 - Manual edits beyond SVGO (if any):
 
+## Breaking changes / Deprecations
+
+<!-- If this PR introduces a breaking change or deprecates an export, document it here. -->
+<!-- - Breaking: removed/renamed export `X` -->
+<!-- - Deprecated: `OldName` → `NewName` (removal planned for next major) -->
+<!-- write N/A if not applicable -->
+
 ## Checklist
 
 - [ ] Lint passes (`pnpm run check`)
