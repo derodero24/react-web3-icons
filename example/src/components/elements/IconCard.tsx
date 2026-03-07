@@ -8,6 +8,7 @@ interface Props {
   isCopied: boolean;
   onCopy: (name: string) => void;
   previewDark?: boolean;
+  highlighted?: boolean;
 }
 
 function downloadSvg(name: string, container: HTMLElement | null) {
@@ -32,6 +33,7 @@ export default function IconCard({
   isCopied,
   onCopy,
   previewDark = false,
+  highlighted = false,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -45,9 +47,11 @@ export default function IconCard({
         aria-label={`Copy import for ${name}`}
         title={buildImportStatement(name)}
         className={`group mx-auto flex aspect-square w-full cursor-pointer items-center justify-center rounded-lg border shadow-sm transition-all duration-150 ease-out hover:scale-[1.05] hover:shadow-md active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${
-          previewDark
-            ? 'border-gray-700 bg-gray-900 text-white hover:border-gray-600'
-            : 'border-gray-200 bg-white hover:border-gray-300 dark:border-gray-500 dark:bg-gray-600 dark:hover:border-gray-400 dark:hover:shadow-lg'
+          highlighted
+            ? 'border-indigo-400 bg-white ring-2 ring-indigo-400 ring-offset-1 hover:border-indigo-500 dark:bg-gray-600 dark:border-indigo-400 dark:ring-indigo-400'
+            : previewDark
+              ? 'border-gray-700 bg-gray-900 text-white hover:border-gray-600'
+              : 'border-gray-200 bg-white hover:border-gray-300 dark:border-gray-500 dark:bg-gray-600 dark:hover:border-gray-400 dark:hover:shadow-lg'
         }`}
         onClick={() => onCopy(name)}
       >
