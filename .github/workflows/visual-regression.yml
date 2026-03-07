@@ -83,6 +83,31 @@ jobs:
           echo "::warning::No reference screenshots from main found. Generating baseline for this run."
           pnpm test:visual:update
 
+      - name: Generate screenshots for new icons (PR)
+        if: github.event_name == 'pull_request' && steps.check-screenshots.outputs.exists == 'true'
+        run: |
+          # Build to make the dist available for the node script
+          pnpm build --silent
+          # Find icons that don't have a reference screenshot yet (newly added in this PR)
+          NEW_ICONS=$(node --input-type=module <<'EOF'
+          import { existsSync } from 'node:fs';
+          import * as icons from './dist/index.mjs';
+          const fwdRef = Symbol.for('react.forward_ref');
+          const dir = 'test/visual/__screenshots__/icons.test.tsx';
+          const newIcons = Object.entries(icons)
+            .filter(([, v]) => v?.$$typeof === fwdRef)
+            .map(([name]) => name)
+            .filter(name => !existsSync(`${dir}/${name}.png`));
+          if (newIcons.length > 0) {
+            process.stdout.write(newIcons.join('|'));
+          }
+          EOF
+          )
+          if [ -n "$NEW_ICONS" ]; then
+            echo "::notice::Generating reference screenshots for new icons: $NEW_ICONS"
+            pnpm test:visual:update -t "$NEW_ICONS"
+          fi
+
       - name: Run visual regression tests
         if: github.event_name == 'pull_request'
         run: pnpm test:visual
