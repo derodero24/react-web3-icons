@@ -22,7 +22,7 @@ const SEARCH_ALIASES: Record<string, string[]> = {
   algo: ['Algorand'],
   arb: ['Arbitrum'],
   arb1: ['ArbitrumOne'],
-  asm: ['Astar'],
+  astr: ['Astar'],
   avax: ['Avalanche'],
   bnb: ['Binance', 'BinanceSmartChain', 'Bnb'],
   bsc: ['BinanceSmartChain'],
@@ -58,14 +58,13 @@ const SEARCH_ALIASES: Record<string, string[]> = {
   zrx: ['ZeroEx'],
 };
 
-function matchesSearch(name: string, keyword: string): boolean {
-  const lc = keyword.toLowerCase().trim();
-  if (!lc) return true;
+function matchesSearch(name: string, normalizedKeyword: string): boolean {
+  if (!normalizedKeyword) return true;
   // Check alias match: alias → list of base names; name must start with one of them
-  const aliasTargets = SEARCH_ALIASES[lc];
+  const aliasTargets = SEARCH_ALIASES[normalizedKeyword];
   if (aliasTargets?.some(target => name.startsWith(target))) return true;
   // Fallback: substring match
-  return name.toLowerCase().includes(lc);
+  return name.toLowerCase().includes(normalizedKeyword);
 }
 
 function filterByVariant(name: string, variant: Variant): boolean {
@@ -79,15 +78,14 @@ export function useIconFilter(
   keyword: string,
   variant: Variant,
 ) {
-  return useMemo(
-    () =>
-      categoryIcons
-        .filter(name => filterByVariant(name, variant))
-        .filter(name => matchesSearch(name, keyword))
-        .map(name => ({
-          name,
-          component: icons[name] as ComponentType<{ className?: string }>,
-        })),
-    [categoryIcons, keyword, variant],
-  );
+  return useMemo(() => {
+    const normalizedKeyword = keyword.toLowerCase().trim();
+    return categoryIcons
+      .filter(name => filterByVariant(name, variant))
+      .filter(name => matchesSearch(name, normalizedKeyword))
+      .map(name => ({
+        name,
+        component: icons[name] as ComponentType<{ className?: string }>,
+      }));
+  }, [categoryIcons, keyword, variant]);
 }
