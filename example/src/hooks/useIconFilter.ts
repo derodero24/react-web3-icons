@@ -95,15 +95,16 @@ function pickActive(
     return (
       variants.find(v => v === `${base}Mono`) ??
       variants.find(v => v.endsWith('Mono')) ??
-      variants[0]
+      variants[0] ??
+      ''
     );
   }
   if (variant === 'colored') {
     const colored = variants.find(v => !v.endsWith('Mono'));
-    return colored ?? variants[0];
+    return colored ?? variants[0] ?? '';
   }
   // 'all': prefer the exact base variant, else first
-  return variants.find(v => v === base) ?? variants[0];
+  return variants.find(v => v === base) ?? variants[0] ?? '';
 }
 
 function groupMatchesSearch(
