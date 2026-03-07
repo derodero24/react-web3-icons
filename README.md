@@ -21,7 +21,7 @@ A comprehensive React SVG icon library for Web3 — blockchains, wallets, DEXs, 
 
 ## Features
 
-- 130+ icons across 13 categories
+- 200+ icons across 15 categories
 - Colored and monochrome variants for every icon
 - Tree-shakeable — only import what you use (`sideEffects: false`)
 - Scales with font size (`1em` default)
@@ -132,6 +132,8 @@ import { Ethereum } from 'react-web3-icons';
 | `coin` | Cryptocurrencies & tokens | Bitcoin, Doge, Usdt, Usdc |
 | `wallet` | Wallet apps | MetaMask, PhantomWallet, RainbowWallet |
 | `dex` | Decentralized exchanges | Uniswap, PancakeSwap, Dydx |
+| `defi` | DeFi protocols | Aave, EigenLayer, Lido |
+| `bridge` | Cross-chain bridge protocols | Across, LayerZero, Stargate, Wormhole |
 | `exchange` | Centralized exchanges | Binance, Coinbase, Kraken |
 | `marketplace` | NFT marketplaces | OpenSea, MagicEden, LooksRare |
 | `devtool` | Developer tools | Hardhat, Truffle, Web3Js |

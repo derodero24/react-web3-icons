@@ -35,6 +35,8 @@ src/
   chain/        # L1/L2 blockchain icons (Ethereum, Arbitrum, etc.)
   coin/         # Cryptocurrency icons (Bitcoin, Doge, etc.)
   dex/          # DEX icons (Uniswap, SushiSwap, etc.)
+  defi/         # DeFi protocol icons (Aave, EigenLayer, Lido)
+  bridge/       # Cross-chain bridge icons (Across, LayerZero, etc.)
   wallet/       # Wallet icons (MetaMask, Phantom, etc.)
   marketplace/  # NFT marketplace icons
   storage/      # Decentralized storage icons
