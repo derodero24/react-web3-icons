@@ -62,3 +62,30 @@ jobs:
 
       - name: Build
         run: pnpm run build
+
+  build-example:
+    name: Build example app
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Use Node 24.x
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24.x'
+          cache: pnpm
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build library
+        run: pnpm run build
+
+      - name: Build example app
+        run: pnpm --filter react-web3-icons-example run build
