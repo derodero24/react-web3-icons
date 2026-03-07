@@ -153,6 +153,7 @@ Use this policy when an icon project rebrands or an export name must change.
 - The previous public name remains as a re-export alias in the same category (for example, `GnosisSafe`).
 - Alias exports must include ``/** @deprecated Use `NewName` instead. */`` JSDoc comments.
 - Keep behavior identical by re-exporting the canonical component instead of duplicating SVG markup.
+- Add the deprecated alias names to `src/deprecated.ts` (`DEPRECATED_ICON_NAMES`) so consuming apps can filter them automatically.
 
 ### Deprecation and removal timing
 
