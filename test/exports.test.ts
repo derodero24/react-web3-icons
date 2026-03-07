@@ -21,21 +21,21 @@ describe('Export integrity', () => {
   });
 
   it('IconName covers all icon component names', () => {
-    // Every icon export (excluding non-component exports) must be a valid IconName
-    const componentNames = entries
-      .filter(([name, v]) => {
-        const isComponent =
-          typeof v === 'function' ||
-          (typeof v === 'object' && v !== null && '$$typeof' in (v as object));
-        return isComponent && name !== 'IconContext';
-      })
-      .map(([name]) => name);
+    // Compile-time: known icon names must be assignable to IconName
+    expectTypeOf<'Ethereum'>().toMatchTypeOf<IconName>();
+    expectTypeOf<'EthereumMono'>().toMatchTypeOf<IconName>();
+    // Compile-time: arbitrary strings must NOT be assignable to IconName
+    expectTypeOf<string>().not.toMatchTypeOf<IconName>();
+    expectTypeOf<'NonExistentIcon'>().not.toMatchTypeOf<IconName>();
 
-    for (const name of componentNames) {
-      // TypeScript compile-time check: assignment to IconName should succeed
-      expectTypeOf(name as IconName).toEqualTypeOf<IconName>();
-    }
-    expect(componentNames.length).toBeGreaterThan(0);
+    // Runtime: confirm the set is non-empty
+    const componentCount = entries.filter(([name, v]) => {
+      const isComponent =
+        typeof v === 'function' ||
+        (typeof v === 'object' && v !== null && '$$typeof' in (v as object));
+      return isComponent && name !== 'IconContext';
+    }).length;
+    expect(componentCount).toBeGreaterThan(0);
   });
 
   it('exports TON chain variants', () => {
