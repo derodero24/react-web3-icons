@@ -1,4 +1,5 @@
 export * from './Algorand';
+export * from './Aptos';
 export * from './Arbitrum';
 export * from './Astar';
 export * from './Avalanche';
@@ -7,6 +8,7 @@ export * from './BinanceSmartChain';
 export * from './Bitcoin';
 export * from './Cardano';
 export * from './Ethereum';
+export * from './Fantom';
 export * from './ImmutableX';
 export * from './Near';
 export * from './Optimism';
@@ -16,3 +18,4 @@ export * from './Solana';
 export * from './Stellar';
 export * from './Sui';
 export * from './Ton';
+export * from './Tron';
