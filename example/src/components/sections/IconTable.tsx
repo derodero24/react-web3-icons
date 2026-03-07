@@ -1,7 +1,7 @@
 'use client';
 
 import { parseAsString, useQueryState } from 'nuqs';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useCopy } from '../../hooks/useCopy';
 import { useIconFilter } from '../../hooks/useIconFilter';
@@ -28,6 +28,7 @@ export default function IconTable() {
     'q',
     parseAsString.withDefault(''),
   );
+  const [linkedIcon] = useQueryState('icon', parseAsString.withDefault(''));
   const [variant, setVariant] = useState<Variant>('all');
   const [previewDark, setPreviewDark] = useState(false);
   const { copy, copiedName, copyStatus } = useCopy();
@@ -38,6 +39,19 @@ export default function IconTable() {
 
   const categoryIcons = REACT_WEB3_ICONS[validCategory];
   const displayedIcons = useIconFilter(categoryIcons, keyword, variant);
+
+  // Scroll to the linked icon the first time it appears in the grid
+  const hasScrolled = useRef(false);
+  useEffect(() => {
+    if (!linkedIcon || hasScrolled.current) return;
+    const el = document.querySelector<HTMLElement>(
+      `[data-icon-name="${linkedIcon}"]`,
+    );
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      hasScrolled.current = true;
+    }
+  }, [linkedIcon]);
 
   const totalCount = categoryIcons.length;
   const resultCount = displayedIcons.length;
@@ -165,6 +179,7 @@ export default function IconTable() {
           {displayedIcons.map((icon, index) => (
             <div
               key={icon.name}
+              data-icon-name={icon.name}
               className="motion-safe:animate-fade-in-up"
               style={{ animationDelay: `${Math.min(index * 12, 150)}ms` }}
             >
@@ -174,6 +189,7 @@ export default function IconTable() {
                 isCopied={copiedName === icon.name}
                 onCopy={copy}
                 previewDark={variant === 'mono' && previewDark}
+                highlighted={linkedIcon === icon.name}
               />
             </div>
           ))}
