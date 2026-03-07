@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
   title: 'Docs — React Web3 Icons',
@@ -12,7 +13,7 @@ function Section({
 }: {
   id: string;
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <section id={id} className="scroll-mt-8">
@@ -177,10 +178,10 @@ export function MyComponent() {
                     string
                   </td>
                   <td className="py-2 pr-4 align-top font-mono text-sm text-gray-500">
-                    auto
+                    —
                   </td>
                   <td className="py-2 align-top text-sm text-gray-700 dark:text-gray-300">
-                    ID for the{' '}
+                    Optional ID for the{' '}
                     <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
                       {'<title>'}
                     </code>{' '}
@@ -196,7 +197,7 @@ export function MyComponent() {
                     <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
                       aria-labelledby
                     </code>{' '}
-                    automatically.
+                    to that ID.
                   </td>
                 </tr>
                 <tr className="border-b border-gray-100 dark:border-gray-700">

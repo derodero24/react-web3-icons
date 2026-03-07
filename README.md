@@ -17,7 +17,7 @@ A comprehensive React SVG icon library for Web3 — blockchains, wallets, DEXs, 
 
 ![icons](https://raw.githubusercontent.com/derodero24/react-web3-icons/main/image/icons.png)
 
-**[Browse all icons](https://react-web3-icons.vercel.app/)**
+**[Browse all icons](https://react-web3-icons.vercel.app/)** · **[API Reference](https://react-web3-icons.vercel.app/docs)**
 
 ## Features
 
