@@ -286,6 +286,9 @@ export const Astar = createIcon('Astar', '17.76 43.6 138.25 140', _id => (
       </linearGradient>
       <linearGradient id={`${_id}-astr-z`} gradientUnits="userSpaceOnUse" />
     </defs>
+    {/* mixBlendMode is required to reproduce the official Astar brand design.
+        Note: blend modes are not supported in all SVG rendering contexts
+        (e.g. <img src>, PDF export, some SSR/SSG pipelines). */}
     <g transform="translate(14.755 -155.35)">
       <path d={ASTAR_MAIN} fill={`url(#${_id}-astr-a)`} />
       <path
