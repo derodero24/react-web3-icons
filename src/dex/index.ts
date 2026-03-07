@@ -1,4 +1,5 @@
 export * from './Dydx';
+export * from './Jupiter';
 export * from './Oneinch';
 export * from './PancakeSwap';
 export * from './Raydium';
