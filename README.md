@@ -124,6 +124,23 @@ The root import still works and includes all icons:
 import { Ethereum } from 'react-web3-icons';
 ```
 
+### Dynamic Icon Lookup
+
+Use the `IconName` type for type-safe dynamic icon rendering:
+
+```tsx
+import type { IconName } from 'react-web3-icons';
+import * as icons from 'react-web3-icons';
+
+function Icon({ name, ...props }: { name: IconName } & React.SVGProps<SVGSVGElement>) {
+  const Component = icons[name];
+  return <Component {...props} />;
+}
+
+// Usage — name is typed as IconName, so typos are caught at compile time
+<Icon name="Ethereum" width={32} height={32} />
+```
+
 ## Icon Categories
 
 | Category | Description | Examples |
