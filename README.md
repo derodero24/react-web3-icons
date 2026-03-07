@@ -139,6 +139,39 @@ import { IconContext } from 'react-web3-icons';
 
 Any prop that can be passed directly to an icon can be set via context (`size`, `className`, `style`, `fill`, etc.). Per-icon props always take precedence; `style` objects are merged rather than replaced.
 
+### React Server Components (RSC)
+
+Icons use React hooks (`useId`, `useContext`) and therefore **cannot be rendered in React Server Components** directly. Add a `'use client'` directive (as the first statement in the file) to the component that renders icons, or to a small client-only re-export wrapper:
+
+```tsx
+// app/my-component.tsx
+'use client';
+
+import { Ethereum, Bitcoin } from 'react-web3-icons';
+
+export function MyComponent() {
+  return <Ethereum />;
+}
+```
+
+Alternatively, create a small client-only re-export wrapper and import icons from it in your Client Components:
+
+```tsx
+// app/icons.tsx — must be a Client Component
+'use client';
+export { Ethereum, Bitcoin } from 'react-web3-icons';
+```
+
+```tsx
+// app/my-component.tsx — Client Component that renders icons
+'use client';
+import { Ethereum } from './icons';
+
+export function MyComponent() {
+  return <Ethereum />;
+}
+```
+
 ## Icon Categories
 
 | Category | Description | Examples |
