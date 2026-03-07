@@ -1,17 +1,26 @@
 import type { ComponentType } from 'react';
 import { flushSync } from 'react-dom';
 import ReactDOM from 'react-dom/client';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import * as icons from '../src';
 
 const entries = Object.entries(icons).filter(
-  ([name]) => name !== 'IconContext',
+  ([name]) => name !== 'IconContext' && name !== 'DEPRECATED_ICON_NAMES',
 ) as [string, ComponentType][];
 
 describe('SVG quality checks', () => {
+  const roots: ReturnType<typeof ReactDOM.createRoot>[] = [];
+
+  afterEach(() => {
+    for (const root of roots) {
+      root.unmount();
+    }
+    roots.length = 0;
+  });
+
   describe.each(entries)('%s', (_name, Component) => {
-    let container: HTMLElement;
-    let svg: SVGSVGElement | null;
+    let container: HTMLElement | undefined;
+    let svg: SVGSVGElement | null = null;
 
     // Render once per icon before the checks
     function ensureRendered() {
@@ -20,6 +29,7 @@ describe('SVG quality checks', () => {
       }
       container = document.createElement('div');
       const root = ReactDOM.createRoot(container);
+      roots.push(root);
       flushSync(() => {
         root.render(<Component />);
       });
