@@ -46,6 +46,8 @@ pnpm add react-web3-icons
 
 ## Quick Start
 
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)][stackblitz-url]
+
 ```tsx
 import { Ethereum, EthereumMono } from 'react-web3-icons';
 
