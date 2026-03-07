@@ -29,7 +29,7 @@ export default function IconCard({
         onClick={() => onCopy(name)}
       >
         <Icon
-          className={`text-4xl drop-shadow transition-all duration-150 ${
+          className={`text-4xl drop-shadow dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.1)] transition-all duration-150 ${
             isCopied ? 'scale-90 opacity-30' : ''
           }`}
         />

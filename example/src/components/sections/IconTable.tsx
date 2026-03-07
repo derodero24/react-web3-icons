@@ -91,7 +91,10 @@ export default function IconTable() {
               <button
                 key={v}
                 type="button"
-                onClick={() => setVariant(v)}
+                onClick={() => {
+                  if (v !== 'mono') setPreviewDark(false);
+                  setVariant(v);
+                }}
                 aria-pressed={variant === v}
                 className={`h-12 px-4 text-sm font-medium transition-colors duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-500 ${
                   variant === v
@@ -170,7 +173,7 @@ export default function IconTable() {
                 component={icon.component}
                 isCopied={copiedName === icon.name}
                 onCopy={copy}
-                previewDark={previewDark}
+                previewDark={variant === 'mono' && previewDark}
               />
             </div>
           ))}
