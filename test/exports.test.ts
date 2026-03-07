@@ -54,11 +54,29 @@ describe('Coin aliases re-export correctly', () => {
 describe('Every colored icon has a Mono variant', () => {
   const names = Object.keys(icons).filter(n => n !== 'IconContext');
 
-  // Icons that don't follow the Mono naming convention
+  // Icons that are exempt from the Mono requirement.
+  // To skip a missing-Mono failure, either add the variant or add an entry here with a comment.
   const monoExemptions = new Set([
-    // Standalone coin icons without Mono variants
+    // Standalone coin icons with no monochrome mark
     'Doge',
     'Shib',
+    // Light variants use white/light fills by design; a Mono would be redundant
+    'BscscanLight',
+    'BybitLight',
+    'EtherscanLight',
+    // Alt/Flat variants where a Mono adds no practical value
+    'CoinbaseCircleAlt',
+    'LooksAlt',
+    'LooksRareFlat',
+    'MagicEdenFlat',
+    'MagicEdenWordmarkFlat',
+    'MetaMaskAlt',
+    'OpenSeaAlt',
+    // Pending — Mono variants not yet available; tracked in #355 and #356
+    'MetaMask',
+    'RainbowWallet',
+    'RainbowWalletSymbol',
+    'AlgorandCircle',
   ]);
 
   // Get base names (non-Mono, non-numbered-variant)
@@ -66,14 +84,11 @@ describe('Every colored icon has a Mono variant', () => {
     n => !(/Mono\d*$/.test(n) || /\d+$/.test(n) || monoExemptions.has(n)),
   );
 
-  // This is a diagnostic test — it reports which icons lack Mono variants
-  it('reports Mono variant coverage', () => {
+  it('every non-exempt colored icon has a Mono variant', () => {
     const missingMono = baseNames.filter(
       name => !names.includes(`${name}Mono`),
     );
-    // Allow some icons to not have Mono variants (e.g. coin aliases)
-    // but the majority should have them
-    const coverage = (baseNames.length - missingMono.length) / baseNames.length;
-    expect(coverage).toBeGreaterThan(0.5);
+    // If this fails, either add the Mono variant or add an exemption above with a comment
+    expect(missingMono, 'Icons missing Mono variants').toHaveLength(0);
   });
 });
