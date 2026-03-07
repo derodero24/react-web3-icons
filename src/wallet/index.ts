@@ -4,6 +4,7 @@ export * from './DaedalusWallet';
 export * from './GnosisSafe';
 export * from './MetaMask';
 export * from './NamiWallet';
+export * from './OKXWallet';
 export * from './PhantomWallet';
 export * from './PolkadotJs';
 export * from './RainbowWallet';
