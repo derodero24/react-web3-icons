@@ -141,7 +141,7 @@ Any prop that can be passed directly to an icon can be set via context (`size`, 
 
 ### React Server Components (RSC)
 
-Icons use React hooks (`useId`, `useContext`) and therefore **cannot be rendered in React Server Components** directly. Add a `'use client'` directive (as the first statement in the file) to any component that renders icons:
+Icons use React hooks (`useId`, `useContext`) and therefore **cannot be rendered in React Server Components** directly. Add a `'use client'` directive (as the first statement in the file) to the component that renders icons, or to a small client-only re-export wrapper:
 
 ```tsx
 // app/my-component.tsx
