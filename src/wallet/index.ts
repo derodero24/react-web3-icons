@@ -10,6 +10,7 @@ export * from './NamiWallet';
 export * from './OKXWallet';
 export * from './PhantomWallet';
 export * from './PolkadotJs';
+export * from './Rabby';
 export * from './RainbowWallet';
 export * from './Safe';
 export * from './Trezor';
