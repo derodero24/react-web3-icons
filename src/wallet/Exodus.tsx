@@ -56,11 +56,11 @@ export const Exodus = createIcon(
           style={{ maskType: 'alpha' }}
         >
           <path
-            fill={`url(#${_id}-exodus-a)`}
+            fill="#fff"
             d="M20.758 8.026 13.092 3v2.81l4.918 3.195-.579 1.83h-4.339v2.33h4.34l.578 1.83-4.918 3.195V21l7.666-5.01-1.254-3.982z"
           />
           <path
-            fill={`url(#${_id}-exodus-b)`}
+            fill="#fff"
             d="M6.424 13.164h4.322v-2.328H6.407l-.562-1.83 4.901-3.196V3L3.081 8.026l1.253 3.982-1.253 3.982L10.762 21v-2.81l-4.917-3.195z"
           />
         </mask>
