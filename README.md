@@ -21,7 +21,7 @@ A comprehensive React SVG icon library for Web3 — blockchains, wallets, DEXs, 
 
 ## Features
 
-- 130+ icons across 13 categories
+- 250+ icons across 15 categories
 - Colored and monochrome variants for every icon
 - Tree-shakeable — only import what you use (`sideEffects: false`)
 - Scales with font size (`1em` default)
@@ -128,19 +128,21 @@ import { Ethereum } from 'react-web3-icons';
 
 | Category | Description | Examples |
 | --- | --- | --- |
+| `bridge` | Cross-chain bridge protocols | Across, LayerZero, Stargate, Wormhole |
 | `chain` | L1/L2 blockchains | Ethereum, Arbitrum, Polygon, Solana |
 | `coin` | Cryptocurrencies & tokens | Bitcoin, Doge, Usdt, Usdc |
-| `wallet` | Wallet apps | MetaMask, PhantomWallet, RainbowWallet |
-| `dex` | Decentralized exchanges | Uniswap, PancakeSwap, Dydx |
-| `exchange` | Centralized exchanges | Binance, Coinbase, Kraken |
-| `marketplace` | NFT marketplaces | OpenSea, MagicEden, LooksRare |
+| `defi` | DeFi protocols | Aave, EigenLayer, Lido |
 | `devtool` | Developer tools | Hardhat, Truffle, Web3Js |
-| `explorer` | Block explorers | Etherscan, Bscscan, Solscan |
-| `node` | Node providers | Alchemy, Infura, QuickNode |
-| `storage` | Decentralized storage | Ipfs, Arweave, NftStorage |
+| `dex` | Decentralized exchanges | Uniswap, PancakeSwap, Dydx |
 | `domain` | Domain services | Ens, UnstoppableDomains |
+| `exchange` | Centralized exchanges | Binance, Coinbase, Kraken |
+| `explorer` | Block explorers | Etherscan, Bscscan, Solscan |
+| `marketplace` | NFT marketplaces | OpenSea, MagicEden, LooksRare |
+| `node` | Node providers | Alchemy, Infura, QuickNode |
 | `portfolio` | Portfolio trackers | DeBank, Zapper, CoinLedger |
+| `storage` | Decentralized storage | Ipfs, Arweave, NftStorage |
 | `tracker` | Analytics & tracking | DefiLlama, CoinGecko, CoinMarketCap |
+| `wallet` | Wallet apps | MetaMask, PhantomWallet, RainbowWallet |
 
 Browse the full list at the **[demo site](https://react-web3-icons.vercel.app/)**.
 
