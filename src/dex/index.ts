@@ -1,3 +1,4 @@
+export * from './CowProtocol';
 export * from './Dydx';
 export * from './Jupiter';
 export * from './Oneinch';
