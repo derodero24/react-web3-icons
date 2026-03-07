@@ -179,10 +179,8 @@ describe('Every colored icon has a Mono variant', () => {
     'MagicEdenWordmarkFlat',
     'MetaMaskAlt',
     'OpenSeaAlt',
-    // Pending — Mono variants not yet available; tracked in #355
-    'MetaMask',
-    'RainbowWallet',
-    'RainbowWalletSymbol',
+    // Pending — Mono variants not yet available; tracked in #356
+    'AlgorandCircle',
   ]);
 
   // Get base names (non-Mono, non-numbered-variant)
