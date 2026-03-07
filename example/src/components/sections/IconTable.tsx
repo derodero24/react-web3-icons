@@ -45,7 +45,7 @@ export default function IconTable() {
   useEffect(() => {
     if (!linkedIcon || hasScrolled.current) return;
     const el = document.querySelector<HTMLElement>(
-      `[data-icon-name="${linkedIcon}"]`,
+      `[data-icon-name="${CSS.escape(linkedIcon)}"]`,
     );
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
