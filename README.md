@@ -124,6 +124,21 @@ The root import still works and includes all icons:
 import { Ethereum } from 'react-web3-icons';
 ```
 
+### IconContext
+
+Use `IconContext.Provider` to set default props for all icons in a subtree:
+
+```tsx
+import { IconContext } from 'react-web3-icons';
+
+<IconContext.Provider value={{ size: 32, className: 'my-icon' }}>
+  <Ethereum />
+  <Bitcoin />
+</IconContext.Provider>
+```
+
+Any prop that can be passed directly to an icon can be set via context (`size`, `className`, `style`, `fill`, etc.). Per-icon props always take precedence; `style` objects are merged rather than replaced.
+
 ## Icon Categories
 
 | Category | Description | Examples |
