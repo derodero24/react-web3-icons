@@ -26,3 +26,23 @@ export const AlgorandCircle = createIcon(
     </>
   ),
 );
+
+export const AlgorandCircleMono = createIcon(
+  'AlgorandCircleMono',
+  '0 0 2500 2500',
+  _id => (
+    <>
+      <circle cx="1250" cy="1250" r="1250" mask={`url(#${_id}-algo-cm-a)`} />
+      <defs>
+        <mask id={`${_id}-algo-cm-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <path
+            fill="#000"
+            d="M2051.7 2052.5h-252l-162.6-607.1-350.5 607.1h-280.5l541.5-939.7-86.5-326.7-732.4 1266.4H448.3l927.7-1605h244.7l108.8 398.3h253.6l-174.5 301.3z"
+          />
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
