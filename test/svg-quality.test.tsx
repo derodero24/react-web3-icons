@@ -4,9 +4,20 @@ import ReactDOM from 'react-dom/client';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import * as icons from '../src';
 
-const entries = Object.entries(icons).filter(
-  ([name]) => name !== 'IconContext' && name !== 'DEPRECATED_ICON_NAMES',
-) as [string, ComponentType][];
+const forwardRefType = Symbol.for('react.forward_ref');
+const entries = Object.entries(icons).filter(([, value]) => {
+  if (typeof value === 'function') {
+    return true;
+  }
+  if (
+    typeof value === 'object' &&
+    value !== null &&
+    '$$typeof' in (value as object)
+  ) {
+    return (value as { $$typeof?: unknown }).$$typeof === forwardRefType;
+  }
+  return false;
+}) as [string, ComponentType][];
 
 describe('SVG quality checks', () => {
   describe.each(entries)('%s', (_name, Component) => {
@@ -26,6 +37,13 @@ describe('SVG quality checks', () => {
       root?.unmount();
       root = null;
       svg = null;
+    });
+
+    it('renders an SVG element', () => {
+      expect(
+        svg,
+        `${_name}: component did not render an <svg> element`,
+      ).not.toBeNull();
     });
 
     it('has a viewBox attribute', () => {
@@ -69,10 +87,14 @@ describe('SVG quality checks', () => {
       const width = svg?.getAttribute('width');
       const height = svg?.getAttribute('height');
       if (width) {
-        expect(width, `${_name}: hardcoded px width`).not.toMatch(/\d+px$/);
+        expect(width, `${_name}: hardcoded px width`).not.toMatch(
+          /[+-]?(?:\d+|\d*\.\d+)px$/i,
+        );
       }
       if (height) {
-        expect(height, `${_name}: hardcoded px height`).not.toMatch(/\d+px$/);
+        expect(height, `${_name}: hardcoded px height`).not.toMatch(
+          /[+-]?(?:\d+|\d*\.\d+)px$/i,
+        );
       }
     });
   });
