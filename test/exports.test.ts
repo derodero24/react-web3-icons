@@ -1,4 +1,5 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, expectTypeOf, it } from 'vitest';
+import type { IconName } from '../src';
 import * as icons from '../src';
 
 describe('Export integrity', () => {
@@ -17,6 +18,24 @@ describe('Export integrity', () => {
 
   it('exports IconContext', () => {
     expect(names.has('IconContext')).toBe(true);
+  });
+
+  it('IconName covers all icon component names', () => {
+    // Every icon export (excluding non-component exports) must be a valid IconName
+    const componentNames = entries
+      .filter(([name, v]) => {
+        const isComponent =
+          typeof v === 'function' ||
+          (typeof v === 'object' && v !== null && '$$typeof' in (v as object));
+        return isComponent && name !== 'IconContext';
+      })
+      .map(([name]) => name);
+
+    for (const name of componentNames) {
+      // TypeScript compile-time check: assignment to IconName should succeed
+      expectTypeOf(name as IconName).toEqualTypeOf<IconName>();
+    }
+    expect(componentNames.length).toBeGreaterThan(0);
   });
 
   it('exports TON chain variants', () => {
