@@ -177,6 +177,24 @@ export function MyComponent() {
 }
 ```
 
+### Type-Safe Dynamic Icon Lookup
+
+Use the `IconName` type to reference icon names safely:
+
+```tsx
+import type { IconName } from 'react-web3-icons';
+import * as allIcons from 'react-web3-icons';
+
+function DynamicIcon({ name }: { name: IconName }) {
+  const Icon = allIcons[name];
+  return <Icon />;
+}
+
+// TypeScript errors on unknown names:
+<DynamicIcon name="Ethereum" />   // ✅
+<DynamicIcon name="Unknown" />    // ❌ TypeScript error
+```
+
 ## Icon Categories
 
 | Category | Description | Examples |
