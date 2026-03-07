@@ -7,6 +7,8 @@ export * from './Coinbase';
 export * from './CryptoCom';
 export * from './Gateio';
 export * from './Gemini';
+export * from './Htx';
 export * from './Kraken';
 export * from './KuCoin';
+export * from './Mexc';
 export * from './Okx';
