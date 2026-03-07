@@ -17,19 +17,21 @@ body:
       label: Target category
       description: Select the best matching category
       options:
+        - bridge
         - chain
         - coin
-        - wallet
+        - defi
+        - devtool
         - dex
+        - domain
         - exchange
         - explorer
-        - devtool
         - marketplace
-        - storage
-        - domain
         - node
         - portfolio
+        - storage
         - tracker
+        - wallet
         - other (please explain in additional context)
     validations:
       required: true
