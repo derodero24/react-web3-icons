@@ -32,19 +32,21 @@ Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/ac
 
 ```text
 src/
+  bridge/       # Cross-chain bridge icons (Across, LayerZero, etc.)
   chain/        # L1/L2 blockchain icons (Ethereum, Arbitrum, etc.)
   coin/         # Cryptocurrency icons (Bitcoin, Doge, etc.)
+  defi/         # DeFi protocol icons (Aave, EigenLayer, Lido)
+  devtool/      # Developer tool icons
   dex/          # DEX icons (Uniswap, SushiSwap, etc.)
-  wallet/       # Wallet icons (MetaMask, Phantom, etc.)
-  marketplace/  # NFT marketplace icons
-  storage/      # Decentralized storage icons
+  domain/       # Domain service icons
   exchange/     # Exchange icons
   explorer/     # Block explorer icons
-  devtool/      # Developer tool icons
-  domain/       # Domain service icons
+  marketplace/  # NFT marketplace icons
   node/         # Node provider icons
   portfolio/    # Portfolio tracker icons
+  storage/      # Decentralized storage icons
   tracker/      # Analytics/tracker icons
+  wallet/       # Wallet icons (MetaMask, Phantom, etc.)
   utils/        # Shared types (IconProps)
   index.ts      # Public exports (re-exports all categories)
 example/        # Next.js demo app
