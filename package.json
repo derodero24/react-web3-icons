@@ -54,6 +54,16 @@
         "default": "./dist/bridge/index.cjs"
       }
     },
+    "./deprecated": {
+      "import": {
+        "types": "./dist/deprecated.d.mts",
+        "default": "./dist/deprecated.mjs"
+      },
+      "require": {
+        "types": "./dist/deprecated.d.cts",
+        "default": "./dist/deprecated.cjs"
+      }
+    },
     "./chain": {
       "import": {
         "types": "./dist/chain/index.d.mts",
