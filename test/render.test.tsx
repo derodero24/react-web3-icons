@@ -11,7 +11,7 @@ const entries = Object.entries(icons).filter(
   ([, value]) =>
     value !== null &&
     typeof value === 'object' &&
-    (value as { $$typeof?: symbol }).$$typeof === FORWARD_REF,
+    (value as unknown as { $$typeof?: symbol }).$$typeof === FORWARD_REF,
 ) as [string, ComponentType][];
 
 describe('All icons render without error', () => {
