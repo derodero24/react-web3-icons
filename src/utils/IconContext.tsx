@@ -1,13 +1,26 @@
 import { createContext, useContext } from 'react';
 import type { IconProps } from './index';
 
+/** Default prop values applied to all icons within the provider subtree. Per-icon props take precedence; `style` objects are merged. */
 export type IconContextValue = Partial<Omit<IconProps, 'ref'>>;
 
 const EMPTY: IconContextValue = {};
 
+/**
+ * React context for setting default props on all icon components in a subtree.
+ *
+ * @example
+ * ```tsx
+ * <IconContext.Provider value={{ size: 32, className: 'icon' }}>
+ *   <Ethereum />
+ *   <Bitcoin />
+ * </IconContext.Provider>
+ * ```
+ */
 export const IconContext = createContext<IconContextValue>(EMPTY);
 IconContext.displayName = 'ReactWeb3Icons.IconContext';
 
+/** Merges `IconContext` defaults with per-icon props. Per-icon props win; `style` objects are deep-merged. */
 export function useIconContext<T extends IconProps>(props: T): T {
   const ctx = useContext(IconContext);
   if (ctx === EMPTY) {
