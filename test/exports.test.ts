@@ -101,15 +101,16 @@ describe('DEPRECATED_ICON_NAMES', () => {
 describe('Every colored icon has a Mono variant', () => {
   // Filter to forwardRef icon components only — avoids listing excluded names manually
   const forwardRefType = Symbol.for('react.forward_ref');
-  const names = Object.keys(icons).filter(name => {
-    const v = icons[name as keyof typeof icons];
-    return (
-      typeof v === 'object' &&
-      v !== null &&
-      '$$typeof' in (v as object) &&
-      (v as { $$typeof: unknown }).$$typeof === forwardRefType
-    );
-  });
+  const names = Object.entries(icons)
+    .filter(([, v]) => {
+      if (typeof v !== 'object' || v === null) {
+        return false;
+      }
+      return (
+        (v as unknown as { $$typeof?: unknown }).$$typeof === forwardRefType
+      );
+    })
+    .map(([name]) => name);
 
   // Icons that are exempt from the Mono requirement.
   // To skip a missing-Mono failure, either add the variant or add an entry here with a comment.

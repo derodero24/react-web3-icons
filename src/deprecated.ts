@@ -9,10 +9,13 @@
  * import * as icons from 'react-web3-icons';
  * import { DEPRECATED_ICON_NAMES } from 'react-web3-icons';
  *
- * // Filter to active icon components (excludes deprecated aliases and non-icon exports)
- * const activeIconNames = Object.entries(icons)
- *   .filter(([name, value]) => typeof value === 'function' && !DEPRECATED_ICON_NAMES.has(name))
- *   .map(([name]) => name);
+ * // Get current (non-deprecated) icon names, excluding non-icon exports
+ * const activeIconNames = Object.keys(icons).filter(
+ *   name =>
+ *     !DEPRECATED_ICON_NAMES.has(name) &&
+ *     name !== 'IconContext' &&
+ *     name !== 'DEPRECATED_ICON_NAMES',
+ * );
  * ```
  */
 export const DEPRECATED_ICON_NAMES: ReadonlySet<string> = new Set([
