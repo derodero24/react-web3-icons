@@ -2,6 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+export function buildImportStatement(name: string): string {
+  return `import { ${name} } from 'react-web3-icons';`;
+}
+
 export function useCopy() {
   const [copiedName, setCopiedName] = useState<string | null>(null);
   const [copyStatus, setCopyStatus] = useState('');
@@ -16,7 +20,7 @@ export function useCopy() {
   }, []);
 
   const copy = (name: string) => {
-    const text = `import { ${name} } from 'react-web3-icons';`;
+    const text = buildImportStatement(name);
     navigator.clipboard
       .writeText(text)
       .then(() => {
