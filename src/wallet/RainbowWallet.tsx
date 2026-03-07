@@ -1,5 +1,5 @@
 import { forwardRef, useId } from 'react';
-import type { IconProps } from '../utils';
+import { createIcon, type IconProps } from '../utils';
 import { useIconContext } from '../utils/IconContext';
 
 interface RainbowWalletProps extends IconProps {
@@ -192,3 +192,31 @@ export const RainbowWalletSymbol = forwardRef<
     <RainbowWalletBase withBackground={withBackground} {...props} ref={ref} />
   );
 });
+
+const rainbowMonoContent = () => (
+  <>
+    <path d="M20 38h6c30.928 0 56 25.072 56 56v6h12a6 6 0 0 0 6-6c0-40.869-33.131-74-74-74a6 6 0 0 0-6 6v12z" />
+    <path d="M84 94h16a6 6 0 0 1-6 6H84v-6z" />
+    <path d="M26 20v16h-6V26a6 6 0 0 1 6-6z" />
+    <path d="M20 36h6c32.033 0 58 25.968 58 58v6H66v-6c0-22.091-17.909-40-40-40h-6V36z" />
+    <path d="M68 94h16v6H68v-6z" />
+    <path d="M20 52V36h6v16h-6z" />
+    <path d="M20 62a6 6 0 0 0 6 6c14.359 0 26 11.641 26 26a6 6 0 0 0 6 6h10v-6c0-23.196-18.804-42-42-42h-6v10z" />
+    <path d="M52 94h16v6H58a6 6 0 0 1-6-6z" />
+    <path d="M26 68a6 6 0 0 1-6-6V52h6v16z" />
+  </>
+);
+
+export const RainbowWalletMono = createIcon(
+  'RainbowWalletMono',
+  '20 20 80 80',
+  rainbowMonoContent,
+  'currentColor',
+);
+
+export const RainbowWalletSymbolMono = createIcon(
+  'RainbowWalletSymbolMono',
+  '20 20 80 80',
+  rainbowMonoContent,
+  'currentColor',
+);
