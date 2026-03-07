@@ -7,4 +7,5 @@ export * from './MakerDao';
 export * from './Morpho';
 export * from './Pendle';
 export * from './RocketPool';
+export * from './Synthetix';
 export * from './Yearn';
