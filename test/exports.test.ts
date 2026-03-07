@@ -25,7 +25,10 @@ describe('Export integrity', () => {
 
   it('IconName covers all icon component names', () => {
     // Compile-time: IconName must be exactly the set of exported icon names
-    type ExportedIconNames = Exclude<keyof typeof icons, 'IconContext'>;
+    type ExportedIconNames = Exclude<
+      keyof typeof icons,
+      'IconContext' | 'DEPRECATED_ICON_NAMES'
+    >;
     expectTypeOf<IconName>().toEqualTypeOf<ExportedIconNames>();
 
     // Compile-time: arbitrary strings must NOT be assignable to IconName
