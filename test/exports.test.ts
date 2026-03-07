@@ -21,9 +21,10 @@ describe('Export integrity', () => {
   });
 
   it('IconName covers all icon component names', () => {
-    // Compile-time: known icon names must be assignable to IconName
-    expectTypeOf<'Ethereum'>().toMatchTypeOf<IconName>();
-    expectTypeOf<'EthereumMono'>().toMatchTypeOf<IconName>();
+    // Compile-time: IconName must be exactly the set of exported icon names
+    type ExportedIconNames = Exclude<keyof typeof icons, 'IconContext'>;
+    expectTypeOf<IconName>().toEqualTypeOf<ExportedIconNames>();
+
     // Compile-time: arbitrary strings must NOT be assignable to IconName
     expectTypeOf<string>().not.toMatchTypeOf<IconName>();
     expectTypeOf<'NonExistentIcon'>().not.toMatchTypeOf<IconName>();
