@@ -30,7 +30,10 @@ function extractDeprecatedExports(source: string): string[] {
   // Match @deprecated JSDoc block followed by `export const NAME`
   const re = /\/\*\*\s*@deprecated[\s\S]*?\*\/\s*export\s+const\s+(\w+)/g;
   for (const match of source.matchAll(re)) {
-    names.push(match[1]);
+    const name = match[1];
+    if (name) {
+      names.push(name);
+    }
   }
   return names;
 }
