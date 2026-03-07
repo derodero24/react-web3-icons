@@ -20,7 +20,7 @@ export default defineConfig({
     'src/tracker/index.ts',
     'src/wallet/index.ts',
   ],
-  format: ['esm', 'cjs'],
+  format: ['esm'],
   dts: true,
   sourcemap: true,
   clean: true,

@@ -30,29 +30,17 @@
   "type": "module",
   "repository": "github:derodero24/react-web3-icons",
   "homepage": "https://react-web3-icons.vercel.app/",
-  "main": "dist/index.cjs",
+  "main": "dist/index.mjs",
   "module": "dist/index.mjs",
-  "types": "dist/index.d.cts",
+  "types": "dist/index.d.mts",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      }
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
     },
     "./bridge": {
-      "import": {
-        "types": "./dist/bridge/index.d.mts",
-        "default": "./dist/bridge/index.mjs"
-      },
-      "require": {
-        "types": "./dist/bridge/index.d.cts",
-        "default": "./dist/bridge/index.cjs"
-      }
+      "types": "./dist/bridge/index.d.mts",
+      "default": "./dist/bridge/index.mjs"
     },
     "./deprecated": {
       "import": {
@@ -65,144 +53,60 @@
       }
     },
     "./chain": {
-      "import": {
-        "types": "./dist/chain/index.d.mts",
-        "default": "./dist/chain/index.mjs"
-      },
-      "require": {
-        "types": "./dist/chain/index.d.cts",
-        "default": "./dist/chain/index.cjs"
-      }
+      "types": "./dist/chain/index.d.mts",
+      "default": "./dist/chain/index.mjs"
     },
     "./coin": {
-      "import": {
-        "types": "./dist/coin/index.d.mts",
-        "default": "./dist/coin/index.mjs"
-      },
-      "require": {
-        "types": "./dist/coin/index.d.cts",
-        "default": "./dist/coin/index.cjs"
-      }
+      "types": "./dist/coin/index.d.mts",
+      "default": "./dist/coin/index.mjs"
     },
     "./defi": {
-      "import": {
-        "types": "./dist/defi/index.d.mts",
-        "default": "./dist/defi/index.mjs"
-      },
-      "require": {
-        "types": "./dist/defi/index.d.cts",
-        "default": "./dist/defi/index.cjs"
-      }
+      "types": "./dist/defi/index.d.mts",
+      "default": "./dist/defi/index.mjs"
     },
     "./devtool": {
-      "import": {
-        "types": "./dist/devtool/index.d.mts",
-        "default": "./dist/devtool/index.mjs"
-      },
-      "require": {
-        "types": "./dist/devtool/index.d.cts",
-        "default": "./dist/devtool/index.cjs"
-      }
+      "types": "./dist/devtool/index.d.mts",
+      "default": "./dist/devtool/index.mjs"
     },
     "./dex": {
-      "import": {
-        "types": "./dist/dex/index.d.mts",
-        "default": "./dist/dex/index.mjs"
-      },
-      "require": {
-        "types": "./dist/dex/index.d.cts",
-        "default": "./dist/dex/index.cjs"
-      }
+      "types": "./dist/dex/index.d.mts",
+      "default": "./dist/dex/index.mjs"
     },
     "./domain": {
-      "import": {
-        "types": "./dist/domain/index.d.mts",
-        "default": "./dist/domain/index.mjs"
-      },
-      "require": {
-        "types": "./dist/domain/index.d.cts",
-        "default": "./dist/domain/index.cjs"
-      }
+      "types": "./dist/domain/index.d.mts",
+      "default": "./dist/domain/index.mjs"
     },
     "./exchange": {
-      "import": {
-        "types": "./dist/exchange/index.d.mts",
-        "default": "./dist/exchange/index.mjs"
-      },
-      "require": {
-        "types": "./dist/exchange/index.d.cts",
-        "default": "./dist/exchange/index.cjs"
-      }
+      "types": "./dist/exchange/index.d.mts",
+      "default": "./dist/exchange/index.mjs"
     },
     "./explorer": {
-      "import": {
-        "types": "./dist/explorer/index.d.mts",
-        "default": "./dist/explorer/index.mjs"
-      },
-      "require": {
-        "types": "./dist/explorer/index.d.cts",
-        "default": "./dist/explorer/index.cjs"
-      }
+      "types": "./dist/explorer/index.d.mts",
+      "default": "./dist/explorer/index.mjs"
     },
     "./marketplace": {
-      "import": {
-        "types": "./dist/marketplace/index.d.mts",
-        "default": "./dist/marketplace/index.mjs"
-      },
-      "require": {
-        "types": "./dist/marketplace/index.d.cts",
-        "default": "./dist/marketplace/index.cjs"
-      }
+      "types": "./dist/marketplace/index.d.mts",
+      "default": "./dist/marketplace/index.mjs"
     },
     "./node": {
-      "import": {
-        "types": "./dist/node/index.d.mts",
-        "default": "./dist/node/index.mjs"
-      },
-      "require": {
-        "types": "./dist/node/index.d.cts",
-        "default": "./dist/node/index.cjs"
-      }
+      "types": "./dist/node/index.d.mts",
+      "default": "./dist/node/index.mjs"
     },
     "./portfolio": {
-      "import": {
-        "types": "./dist/portfolio/index.d.mts",
-        "default": "./dist/portfolio/index.mjs"
-      },
-      "require": {
-        "types": "./dist/portfolio/index.d.cts",
-        "default": "./dist/portfolio/index.cjs"
-      }
+      "types": "./dist/portfolio/index.d.mts",
+      "default": "./dist/portfolio/index.mjs"
     },
     "./storage": {
-      "import": {
-        "types": "./dist/storage/index.d.mts",
-        "default": "./dist/storage/index.mjs"
-      },
-      "require": {
-        "types": "./dist/storage/index.d.cts",
-        "default": "./dist/storage/index.cjs"
-      }
+      "types": "./dist/storage/index.d.mts",
+      "default": "./dist/storage/index.mjs"
     },
     "./tracker": {
-      "import": {
-        "types": "./dist/tracker/index.d.mts",
-        "default": "./dist/tracker/index.mjs"
-      },
-      "require": {
-        "types": "./dist/tracker/index.d.cts",
-        "default": "./dist/tracker/index.cjs"
-      }
+      "types": "./dist/tracker/index.d.mts",
+      "default": "./dist/tracker/index.mjs"
     },
     "./wallet": {
-      "import": {
-        "types": "./dist/wallet/index.d.mts",
-        "default": "./dist/wallet/index.mjs"
-      },
-      "require": {
-        "types": "./dist/wallet/index.d.cts",
-        "default": "./dist/wallet/index.cjs"
-      }
+      "types": "./dist/wallet/index.d.mts",
+      "default": "./dist/wallet/index.mjs"
     }
   },
   "sideEffects": false,
