@@ -6,4 +6,5 @@ export * from './Lido';
 export * from './MakerDao';
 export * from './Pendle';
 export * from './RocketPool';
+export * from './Synthetix';
 export * from './Yearn';
