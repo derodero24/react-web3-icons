@@ -32,6 +32,7 @@
   "homepage": "https://react-web3-icons.vercel.app/",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
+  "types": "dist/index.d.mts",
   "exports": {
     ".": {
       "types": "./dist/index.d.mts",
