@@ -139,6 +139,18 @@ import { IconContext } from 'react-web3-icons';
 
 Any prop that can be passed directly to an icon can be set via context (`size`, `className`, `style`, `fill`, etc.). Per-icon props always take precedence; `style` objects are merged rather than replaced.
 
+### React Server Components (RSC)
+
+Icons use React hooks (`useId`, `useContext`) and therefore **cannot be rendered in React Server Components** directly. In a Next.js App Router project, add a `'use client'` boundary to any file that renders icon components:
+
+```tsx
+// app/icons.tsx
+'use client';
+export { Ethereum, Bitcoin } from 'react-web3-icons';
+```
+
+Or simply add `'use client'` at the top of the component file that uses icons.
+
 ## Icon Categories
 
 | Category | Description | Examples |
