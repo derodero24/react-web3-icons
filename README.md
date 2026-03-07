@@ -154,12 +154,22 @@ export function MyComponent() {
 }
 ```
 
-Alternatively, create a small client-only re-export wrapper:
+Alternatively, create a small client-only re-export wrapper and import icons from it in your Client Components:
 
 ```tsx
 // app/icons.tsx — must be a Client Component
 'use client';
 export { Ethereum, Bitcoin } from 'react-web3-icons';
+```
+
+```tsx
+// app/my-component.tsx — Client Component that renders icons
+'use client';
+import { Ethereum } from './icons';
+
+export function MyComponent() {
+  return <Ethereum />;
+}
 ```
 
 ## Icon Categories
