@@ -32,11 +32,9 @@ export function createIcon(
         fill={defaultFill}
         aria-hidden={isDecorative || undefined}
         role={isDecorative ? undefined : 'img'}
+        aria-labelledby={title && titleId ? titleId : undefined}
         ref={ref}
         {...props}
-        aria-labelledby={
-          props['aria-labelledby'] ?? (title && titleId ? titleId : undefined)
-        }
       >
         {title && <title id={titleId}>{title}</title>}
         {render(_id)}
