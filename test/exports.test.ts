@@ -1,6 +1,7 @@
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import type { IconName } from '../src';
 import * as icons from '../src';
+import { DEPRECATED_ICON_NAMES } from '../src/deprecated';
 
 describe('Export integrity', () => {
   const entries = Object.entries(icons);
@@ -71,8 +72,31 @@ describe('Coin aliases re-export correctly', () => {
   });
 });
 
+describe('DEPRECATED_ICON_NAMES', () => {
+  it('is exported from the root entry', () => {
+    expect(icons).toHaveProperty('DEPRECATED_ICON_NAMES');
+  });
+
+  it('contains only names that are actually exported', () => {
+    const allNames = new Set(Object.keys(icons));
+    for (const name of DEPRECATED_ICON_NAMES) {
+      expect(
+        allNames.has(name),
+        `${name} in DEPRECATED_ICON_NAMES but not exported`,
+      ).toBe(true);
+    }
+  });
+
+  it('includes known deprecated aliases', () => {
+    expect(DEPRECATED_ICON_NAMES.has('Matic')).toBe(true);
+    expect(DEPRECATED_ICON_NAMES.has('GnosisSafe')).toBe(true);
+  });
+});
+
 describe('Every colored icon has a Mono variant', () => {
-  const names = Object.keys(icons).filter(n => n !== 'IconContext');
+  const names = Object.keys(icons).filter(
+    n => n !== 'IconContext' && n !== 'DEPRECATED_ICON_NAMES',
+  );
 
   // Icons that are exempt from the Mono requirement.
   // To skip a missing-Mono failure, either add the variant or add an entry here with a comment.

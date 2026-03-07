@@ -2,6 +2,7 @@ export * from './bridge';
 export * from './chain';
 export * from './coin';
 export * from './defi';
+export { DEPRECATED_ICON_NAMES } from './deprecated';
 export * from './devtool';
 export * from './dex';
 export * from './domain';

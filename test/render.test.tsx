@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import * as icons from '../src';
 
 const entries = Object.entries(icons).filter(
-  ([name]) => name !== 'IconContext',
+  ([name]) => name !== 'IconContext' && name !== 'DEPRECATED_ICON_NAMES',
 ) as [string, ComponentType][];
 
 describe('All icons render without error', () => {
