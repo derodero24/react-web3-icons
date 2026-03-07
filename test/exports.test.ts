@@ -1,3 +1,5 @@
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import type { IconName } from '../src';
 import * as icons from '../src';
@@ -95,6 +97,50 @@ describe('DEPRECATED_ICON_NAMES', () => {
   it('includes known deprecated aliases', () => {
     expect(icons.DEPRECATED_ICON_NAMES.has('Matic')).toBe(true);
     expect(icons.DEPRECATED_ICON_NAMES.has('GnosisSafe')).toBe(true);
+  });
+
+  it('matches all @deprecated tagged exports in src/**', () => {
+    // Collect all names tagged @deprecated in source files
+    const srcDir = join(import.meta.dirname, '..', 'src');
+    const deprecatedExportRe =
+      /\/\*\*\s*@deprecated\b[^*]*\*+\/\s*export\s+(?:const|function|class)\s+(\w+)/g;
+
+    const taggedNames = new Set<string>();
+    const scanFile = (filePath: string) => {
+      const source = readFileSync(filePath, 'utf-8');
+      for (const match of source.matchAll(deprecatedExportRe)) {
+        if (match[1]) {
+          taggedNames.add(match[1]);
+        }
+      }
+    };
+    const scanDir = (dir: string) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const fullPath = join(dir, entry.name);
+        if (entry.isDirectory()) {
+          scanDir(fullPath);
+        } else if (entry.isFile() && /\.[cm]?[jt]sx?$/.test(entry.name)) {
+          scanFile(fullPath);
+        }
+      }
+    };
+    scanDir(srcDir);
+
+    // Every @deprecated-tagged export should be in DEPRECATED_ICON_NAMES
+    for (const name of taggedNames) {
+      expect(
+        icons.DEPRECATED_ICON_NAMES.has(name),
+        `${name} is @deprecated in source but missing from DEPRECATED_ICON_NAMES`,
+      ).toBe(true);
+    }
+
+    // Every name in DEPRECATED_ICON_NAMES should have a @deprecated tag in source
+    for (const name of icons.DEPRECATED_ICON_NAMES) {
+      expect(
+        taggedNames.has(name),
+        `${name} is in DEPRECATED_ICON_NAMES but has no @deprecated tag in src/**`,
+      ).toBe(true);
+    }
   });
 });
 
