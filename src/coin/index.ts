@@ -10,6 +10,7 @@ export * from './Dai';
 export * from './Doge';
 export * from './Eigen';
 export * from './Eth';
+export * from './Fil';
 export * from './Ftm';
 export * from './Jup';
 export * from './Ldo';
