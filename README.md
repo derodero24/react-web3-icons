@@ -2,6 +2,7 @@
 [![downloads][downloads-image]][npm-url]
 [![license][license-image]][license-url]
 [![bundle size][size-image]][size-url]
+[![Open in StackBlitz][stackblitz-image]][stackblitz-url]
 
 [npm-image]: https://img.shields.io/npm/v/react-web3-icons?color=blue
 [npm-url]: https://www.npmjs.com/package/react-web3-icons
@@ -10,6 +11,8 @@
 [license-url]: https://github.com/derodero24/react-web3-icons/blob/main/LICENSE
 [size-image]: https://img.shields.io/bundlephobia/minzip/react-web3-icons
 [size-url]: https://bundlephobia.com/package/react-web3-icons
+[stackblitz-image]: https://developer.stackblitz.com/img/open_in_stackblitz_small.svg
+[stackblitz-url]: https://stackblitz.com/github/derodero24/react-web3-icons/tree/main/example
 
 # React Web3 Icons
 
@@ -42,6 +45,8 @@ pnpm add react-web3-icons
 ```
 
 ## Quick Start
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)][stackblitz-url]
 
 ```tsx
 import { Ethereum, EthereumMono } from 'react-web3-icons';
