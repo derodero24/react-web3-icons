@@ -91,6 +91,7 @@ function pickActive(
   variant: Variant,
 ): string {
   if (variant === 'mono') {
+    // Prefer the exact base mono (e.g. `EthereumMono`), then any `*Mono`
     return (
       variants.find(v => v === `${base}Mono`) ??
       variants.find(v => v.endsWith('Mono')) ??

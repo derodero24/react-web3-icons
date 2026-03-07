@@ -40,8 +40,9 @@ export function groupIcons(names: string[]): IconGroup[] {
   }
 
   return Array.from(map.entries()).map(([base, variants]) => {
-    // Sort so the exact base name comes first, then alphabetically
-    const sorted = variants.sort((a, b) => {
+    // Sort a copy so the exact base name comes first, then alphabetically
+    const sorted = [...variants].sort((a, b) => {
+      if (a === b) return 0;
       if (a === base) return -1;
       if (b === base) return 1;
       return a.localeCompare(b);
