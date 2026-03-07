@@ -253,9 +253,10 @@ Use the exported `DEPRECATED_ICON_NAMES` set to filter deprecated aliases from i
 import * as icons from 'react-web3-icons';
 import { DEPRECATED_ICON_NAMES } from 'react-web3-icons';
 
-const activeIcons = Object.keys(icons).filter(
-  name => !DEPRECATED_ICON_NAMES.has(name),
-);
+// Filter to active icon components (excludes deprecated aliases and non-icon exports)
+const activeIconNames = Object.entries(icons)
+  .filter(([name, value]) => typeof value === 'function' && !DEPRECATED_ICON_NAMES.has(name))
+  .map(([name]) => name);
 ```
 
 Or import from the dedicated subpath to avoid loading the full bundle:

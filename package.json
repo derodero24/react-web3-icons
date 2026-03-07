@@ -263,6 +263,11 @@
       "limit": "100 KB"
     },
     {
+      "name": "deprecated",
+      "path": "dist/deprecated.mjs",
+      "limit": "1 KB"
+    },
+    {
       "name": "bridge",
       "path": "dist/bridge/index.mjs",
       "limit": "10 KB"

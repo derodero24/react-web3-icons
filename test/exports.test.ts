@@ -77,9 +77,14 @@ describe('DEPRECATED_ICON_NAMES', () => {
     expect(icons).toHaveProperty('DEPRECATED_ICON_NAMES');
   });
 
+  it('root re-export is the same reference as the direct import', () => {
+    // Verifies the barrel export wires to the same value, not a copy or different set
+    expect(icons.DEPRECATED_ICON_NAMES).toBe(DEPRECATED_ICON_NAMES);
+  });
+
   it('contains only names that are actually exported', () => {
     const allNames = new Set(Object.keys(icons));
-    for (const name of DEPRECATED_ICON_NAMES) {
+    for (const name of icons.DEPRECATED_ICON_NAMES) {
       expect(
         allNames.has(name),
         `${name} in DEPRECATED_ICON_NAMES but not exported`,
@@ -88,8 +93,8 @@ describe('DEPRECATED_ICON_NAMES', () => {
   });
 
   it('includes known deprecated aliases', () => {
-    expect(DEPRECATED_ICON_NAMES.has('Matic')).toBe(true);
-    expect(DEPRECATED_ICON_NAMES.has('GnosisSafe')).toBe(true);
+    expect(icons.DEPRECATED_ICON_NAMES.has('Matic')).toBe(true);
+    expect(icons.DEPRECATED_ICON_NAMES.has('GnosisSafe')).toBe(true);
   });
 });
 
