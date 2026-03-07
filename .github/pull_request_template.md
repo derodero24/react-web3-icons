@@ -19,7 +19,7 @@
 <!-- If this PR introduces a breaking change or deprecates an export, document it here. -->
 <!-- - Breaking: removed/renamed export `X` -->
 <!-- - Deprecated: `OldName` → `NewName` (removal planned for next major) -->
-<!-- Write N/A if not applicable -->
+<!-- write N/A if not applicable -->
 
 ## Checklist
 
