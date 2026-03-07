@@ -5,6 +5,7 @@ interface Props {
   component: ComponentType<{ className?: string }>;
   isCopied: boolean;
   onCopy: (name: string) => void;
+  previewDark?: boolean;
 }
 
 export default function IconCard({
@@ -12,6 +13,7 @@ export default function IconCard({
   component: Icon,
   isCopied,
   onCopy,
+  previewDark = false,
 }: Props) {
   return (
     <div className="relative flex flex-col items-center">
@@ -19,11 +21,15 @@ export default function IconCard({
         type="button"
         aria-label={`Copy ${name}`}
         title={name}
-        className="group mx-auto flex aspect-square w-full cursor-pointer items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-150 ease-out hover:scale-[1.05] hover:border-gray-300 hover:shadow-md active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-500 dark:bg-gray-600 dark:hover:border-gray-400 dark:hover:shadow-lg"
+        className={`group mx-auto flex aspect-square w-full cursor-pointer items-center justify-center rounded-lg border shadow-sm transition-all duration-150 ease-out hover:scale-[1.05] hover:shadow-md active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${
+          previewDark
+            ? 'border-gray-700 bg-gray-900 text-white hover:border-gray-600'
+            : 'border-gray-200 bg-white hover:border-gray-300 dark:border-gray-500 dark:bg-gray-600 dark:hover:border-gray-400 dark:hover:shadow-lg'
+        }`}
         onClick={() => onCopy(name)}
       >
         <Icon
-          className={`text-4xl drop-shadow transition-all duration-150 dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.1)] ${
+          className={`text-4xl drop-shadow dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.1)] transition-all duration-150 ${
             isCopied ? 'scale-90 opacity-30' : ''
           }`}
         />
