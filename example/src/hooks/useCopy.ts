@@ -2,6 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+export function buildImportStatement(name: string): string {
+  return `import { ${name} } from 'react-web3-icons';`;
+}
+
 export function useCopy() {
   const [copiedName, setCopiedName] = useState<string | null>(null);
   const [copyStatus, setCopyStatus] = useState('');
@@ -15,12 +19,13 @@ export function useCopy() {
     };
   }, []);
 
-  const copy = (value: string) => {
+  const copy = (name: string) => {
+    const text = buildImportStatement(name);
     navigator.clipboard
-      .writeText(value)
+      .writeText(text)
       .then(() => {
-        setCopyStatus(`Copied ${value}`);
-        setCopiedName(value);
+        setCopyStatus(`Copied import for ${name}`);
+        setCopiedName(name);
         clearTimeout(copiedTimer.current);
         copiedTimer.current = setTimeout(() => setCopiedName(null), 1_500);
         clearTimeout(statusTimer.current);

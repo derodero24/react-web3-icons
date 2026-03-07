@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react';
+import { buildImportStatement } from '../../hooks/useCopy';
 
 interface Props {
   name: string;
@@ -19,8 +20,8 @@ export default function IconCard({
     <div className="relative flex flex-col items-center">
       <button
         type="button"
-        aria-label={`Copy ${name}`}
-        title={name}
+        aria-label={`Copy import for ${name}`}
+        title={buildImportStatement(name)}
         className={`group mx-auto flex aspect-square w-full cursor-pointer items-center justify-center rounded-lg border shadow-sm transition-all duration-150 ease-out hover:scale-[1.05] hover:shadow-md active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${
           previewDark
             ? 'border-gray-700 bg-gray-900 text-white hover:border-gray-600'
