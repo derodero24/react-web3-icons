@@ -32,6 +32,7 @@ export function createIcon(
         fill={defaultFill}
         aria-hidden={isDecorative || undefined}
         role={isDecorative ? undefined : 'img'}
+        aria-labelledby={title && titleId ? titleId : undefined}
         ref={ref}
         {...props}
       >
