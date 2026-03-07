@@ -1,0 +1,81 @@
+# Auto-labeler configuration for actions/labeler@v5
+# Labels are applied when a PR modifies files matching any listed glob pattern.
+
+# Icon categories
+icon:bridge:
+  - changed-files:
+    - any-glob-to-any-file: src/bridge/**
+
+icon:chain:
+  - changed-files:
+    - any-glob-to-any-file: src/chain/**
+
+icon:coin:
+  - changed-files:
+    - any-glob-to-any-file: src/coin/**
+
+icon:defi:
+  - changed-files:
+    - any-glob-to-any-file: src/defi/**
+
+icon:devtool:
+  - changed-files:
+    - any-glob-to-any-file: src/devtool/**
+
+icon:dex:
+  - changed-files:
+    - any-glob-to-any-file: src/dex/**
+
+icon:domain:
+  - changed-files:
+    - any-glob-to-any-file: src/domain/**
+
+icon:exchange:
+  - changed-files:
+    - any-glob-to-any-file: src/exchange/**
+
+icon:explorer:
+  - changed-files:
+    - any-glob-to-any-file: src/explorer/**
+
+icon:marketplace:
+  - changed-files:
+    - any-glob-to-any-file: src/marketplace/**
+
+icon:node:
+  - changed-files:
+    - any-glob-to-any-file: src/node/**
+
+icon:portfolio:
+  - changed-files:
+    - any-glob-to-any-file: src/portfolio/**
+
+icon:storage:
+  - changed-files:
+    - any-glob-to-any-file: src/storage/**
+
+icon:tracker:
+  - changed-files:
+    - any-glob-to-any-file: src/tracker/**
+
+icon:wallet:
+  - changed-files:
+    - any-glob-to-any-file: src/wallet/**
+
+# Other categories
+documentation:
+  - changed-files:
+    - any-glob-to-any-file: 'README.md'
+    - any-glob-to-any-file: 'CONTRIBUTING.md'
+    - any-glob-to-any-file: docs/**
+
+test:
+  - changed-files:
+    - any-glob-to-any-file: test/**
+    - any-glob-to-any-file: '**/*.test.*'
+    - any-glob-to-any-file: '**/*.spec.*'
+
+github_actions:
+  - changed-files:
+    - any-glob-to-any-file: .github/workflows/**
+    - any-glob-to-any-file: .github/actions/**
