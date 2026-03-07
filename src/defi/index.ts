@@ -3,4 +3,7 @@ export * from './Balancer';
 export * from './Compound';
 export * from './EigenLayer';
 export * from './Lido';
+export * from './MakerDao';
+export * from './Pendle';
+export * from './RocketPool';
 export * from './Yearn';
