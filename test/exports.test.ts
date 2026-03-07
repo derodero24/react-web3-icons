@@ -54,7 +54,8 @@ describe('Coin aliases re-export correctly', () => {
 describe('Every colored icon has a Mono variant', () => {
   const names = Object.keys(icons).filter(n => n !== 'IconContext');
 
-  // Icons that intentionally lack a Mono variant
+  // Icons that are exempt from the Mono requirement.
+  // To skip a missing-Mono failure, either add the variant or add an entry here with a comment.
   const monoExemptions = new Set([
     // Standalone coin icons with no monochrome mark
     'Doge',
@@ -71,7 +72,7 @@ describe('Every colored icon has a Mono variant', () => {
     'MagicEdenWordmarkFlat',
     'MetaMaskAlt',
     'OpenSeaAlt',
-    // Pending Mono additions — tracked in #355 and #356
+    // Pending — Mono variants not yet available; tracked in #355 and #356
     'MetaMask',
     'RainbowWallet',
     'RainbowWalletSymbol',
@@ -83,15 +84,11 @@ describe('Every colored icon has a Mono variant', () => {
     n => !(/Mono\d*$/.test(n) || /\d+$/.test(n) || monoExemptions.has(n)),
   );
 
-  it('Mono variant coverage meets threshold', () => {
+  it('every non-exempt colored icon has a Mono variant', () => {
     const missingMono = baseNames.filter(
       name => !names.includes(`${name}Mono`),
     );
-    const coverage = (baseNames.length - missingMono.length) / baseNames.length;
-    // Threshold set to catch regressions; exemptions above document intentional gaps
-    expect(
-      coverage,
-      `Missing Mono variants: ${missingMono.join(', ')}`,
-    ).toBeGreaterThan(0.85);
+    // If this fails, either add the Mono variant or add an exemption above with a comment
+    expect(missingMono, 'Icons missing Mono variants').toHaveLength(0);
   });
 });
