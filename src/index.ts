@@ -7,6 +7,7 @@ export * from './dex';
 export * from './domain';
 export * from './exchange';
 export * from './explorer';
+export type { IconName } from './IconName';
 export * from './marketplace';
 export * from './node';
 export * from './portfolio';
