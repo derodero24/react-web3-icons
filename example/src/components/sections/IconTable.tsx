@@ -1,10 +1,11 @@
 'use client';
 
 import { parseAsString, useQueryState } from 'nuqs';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { useCopy } from '../../hooks/useCopy';
 import { useIconFilter } from '../../hooks/useIconFilter';
+import { groupIcons } from '../../utils/groupIcons';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 import IconCard from '../elements/IconCard';
 import SearchForm from '../elements/SearchForm';
@@ -38,7 +39,13 @@ export default function IconTable() {
     : 'all';
 
   const categoryIcons = REACT_WEB3_ICONS[validCategory];
-  const displayedIcons = useIconFilter(categoryIcons, keyword, variant);
+  const displayedGroups = useIconFilter(categoryIcons, keyword, variant);
+
+  // Total group count (before search/variant filter, for the "N icons" label)
+  const totalGroupCount = useMemo(
+    () => groupIcons(categoryIcons).length,
+    [categoryIcons],
+  );
 
   // Scroll to the linked icon the first time it appears in the grid
   const hasScrolled = useRef(false);
@@ -53,14 +60,15 @@ export default function IconTable() {
     }
   }, [linkedIcon]);
 
-  const totalCount = categoryIcons.length;
-  const resultCount = displayedIcons.length;
+  const totalCount = totalGroupCount;
+  const resultCount = displayedGroups.length;
   const resultsText = keyword
     ? `${resultCount} of ${totalCount} icons`
     : `${totalCount} icons`;
 
-  const isCategoryEmpty = totalCount === 0;
-  const isSearchEmpty = !isCategoryEmpty && resultCount === 0;
+  const isCategoryEmpty = categoryIcons.length === 0;
+  const isSearchEmpty =
+    !isCategoryEmpty && keyword.length > 0 && resultCount === 0;
 
   return (
     <section
@@ -176,20 +184,22 @@ export default function IconTable() {
           key={`${validCategory}-${variant}`}
           className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(96px,1fr))] gap-x-3 gap-y-4"
         >
-          {displayedIcons.map((icon, index) => (
+          {displayedGroups.map((group, index) => (
             <div
-              key={icon.name}
-              data-icon-name={icon.name}
+              key={group.base}
+              data-icon-name={group.base}
               className="motion-safe:animate-fade-in-up"
               style={{ animationDelay: `${Math.min(index * 12, 150)}ms` }}
             >
               <IconCard
-                name={icon.name}
-                component={icon.component}
-                isCopied={copiedName === icon.name}
+                base={group.base}
+                variants={group.variants}
+                activeVariant={group.activeVariant}
+                components={group.components}
+                isCopied={group.variants.includes(copiedName ?? '')}
                 onCopy={copy}
                 previewDark={variant === 'mono' && previewDark}
-                highlighted={linkedIcon === icon.name}
+                highlighted={linkedIcon === group.base}
               />
             </div>
           ))}
