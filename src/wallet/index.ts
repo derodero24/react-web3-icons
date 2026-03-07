@@ -2,6 +2,7 @@ export * from './Argent';
 export * from './BackpackWallet';
 export * from './CoinbaseWallet';
 export * from './DaedalusWallet';
+export * from './Exodus';
 export * from './GnosisSafe';
 export * from './Keplr';
 export * from './Ledger';
