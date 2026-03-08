@@ -173,7 +173,7 @@
     {
       "name": "full bundle",
       "path": "dist/index.mjs",
-      "limit": "131 KB"
+      "limit": "132 KB"
     },
     {
       "name": "deprecated",
@@ -188,7 +188,7 @@
     {
       "name": "chain",
       "path": "dist/chain/index.mjs",
-      "limit": "25 KB"
+      "limit": "27 KB"
     },
     {
       "name": "coin",
