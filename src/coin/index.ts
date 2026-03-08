@@ -7,6 +7,7 @@ export * from './Bnb';
 export * from './Btc';
 export * from './Busd';
 export * from './Cake';
+export * from './Crv';
 export * from './Dai';
 export * from './Doge';
 export * from './Eigen';
