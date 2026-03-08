@@ -1,3 +1,4 @@
+export * from './Aerodrome';
 export * from './CowProtocol';
 export * from './Dydx';
 export * from './Hyperliquid';
