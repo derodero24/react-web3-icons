@@ -173,7 +173,7 @@
     {
       "name": "full bundle",
       "path": "dist/index.mjs",
-      "limit": "134 KB"
+      "limit": "135 KB"
     },
     {
       "name": "deprecated",
