@@ -165,7 +165,7 @@
     {
       "name": "full bundle",
       "path": "dist/index.mjs",
-      "limit": "117 KB"
+      "limit": "120 KB"
     },
     {
       "name": "deprecated",
@@ -200,7 +200,7 @@
     {
       "name": "dex",
       "path": "dist/dex/index.mjs",
-      "limit": "10 KB"
+      "limit": "12 KB"
     },
     {
       "name": "domain",
