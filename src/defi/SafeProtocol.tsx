@@ -1,5 +1,5 @@
 import { createIcon } from '../utils';
-import { SAFE_PATH } from '../wallet/Safe';
+import { SAFE_PATH } from '../wallet/safe-path';
 
 const safeProtocolContent = () => <path d={SAFE_PATH} />;
 
