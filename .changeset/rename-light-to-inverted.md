@@ -1,5 +1,5 @@
 ---
-'react-web3-icons': major
+'react-web3-icons': minor
 ---
 
 Rename Light icon variants to Inverted for clearer semantics

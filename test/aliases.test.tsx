@@ -5,10 +5,16 @@ import { describe, expect, it } from 'vitest';
 import {
   Aptos,
   AptosMono,
+  BasescanInverted,
+  BasescanLight,
   Bitcoin,
   BitcoinMono,
+  BscscanInverted,
+  BscscanLight,
   Btc,
   BtcMono,
+  BybitInverted,
+  BybitLight,
   Chainlink,
   ChainlinkMono,
   EigenLayer,
@@ -16,6 +22,8 @@ import {
   Eth,
   Ethereum,
   EthereumMono,
+  EtherscanInverted,
+  EtherscanLight,
   EthMono,
   Fantom,
   FantomMono,
@@ -148,6 +156,10 @@ const aliasPairs = [
   ['EigenMono → EigenLayerMono', EigenMono, EigenLayerMono],
   ['Jup → Jupiter', Jup, Jupiter],
   ['JupMono → JupiterMono', JupMono, JupiterMono],
+  ['BasescanLight → BasescanInverted', BasescanLight, BasescanInverted],
+  ['BscscanLight → BscscanInverted', BscscanLight, BscscanInverted],
+  ['BybitLight → BybitInverted', BybitLight, BybitInverted],
+  ['EtherscanLight → EtherscanInverted', EtherscanLight, EtherscanInverted],
 ] as const;
 
 describe('Icon aliases', () => {
