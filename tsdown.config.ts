@@ -19,6 +19,7 @@ export default defineConfig({
     'src/storage/index.ts',
     'src/tracker/index.ts',
     'src/wallet/index.ts',
+    'src/meta/index.ts',
   ],
   format: ['esm'],
   dts: true,
