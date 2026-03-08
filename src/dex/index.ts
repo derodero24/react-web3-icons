@@ -4,6 +4,7 @@ export * from './Dydx';
 export * from './Hyperliquid';
 export * from './Jupiter';
 export * from './Oneinch';
+export * from './Orca';
 export * from './Osmosis';
 export * from './PancakeSwap';
 export * from './Raydium';
