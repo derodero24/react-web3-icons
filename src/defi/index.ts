@@ -12,6 +12,7 @@ export * from './MakerDao';
 export * from './Morpho';
 export * from './Pendle';
 export * from './RocketPool';
+export * from './SafeProtocol';
 export * from './Spark';
 export * from './Synthetix';
 export * from './Yearn';
