@@ -7,8 +7,8 @@ const FANTOM_BARS =
 
 export const Fantom = createIcon('Fantom', '0 0 24 24', () => (
   <>
-    <path d={FANTOM_GEM} fill="#26B6EA" fillRule="evenodd" clipRule="evenodd" />
-    <path d={FANTOM_BARS} fill="#26B6EA" />
+    <path d={FANTOM_GEM} fill="#F37A29" fillRule="evenodd" clipRule="evenodd" />
+    <path d={FANTOM_BARS} fill="#F37A29" />
   </>
 ));
 
