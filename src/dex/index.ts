@@ -1,6 +1,8 @@
 export * from './Aerodrome';
+export * from './Camelot';
 export * from './CowProtocol';
 export * from './Dydx';
+export * from './Ekubo';
 export * from './Hyperliquid';
 export * from './Jupiter';
 export * from './Oneinch';
@@ -9,3 +11,4 @@ export * from './PancakeSwap';
 export * from './Raydium';
 export * from './SushiSwap';
 export * from './Uniswap';
+export * from './Velodrome';
