@@ -5,7 +5,10 @@
   "prConcurrentLimit": 10,
   "lockFileMaintenance": {
     "enabled": true,
-    "automerge": true
+    "automerge": true,
+    "schedule": ["before 4am on monday"],
+    "recreateWhen": "always",
+    "rebaseWhen": "never"
   },
   "packageRules": [
     {
