@@ -169,7 +169,12 @@ describe('Every colored icon has a Mono variant', () => {
     // Standalone coin icons with no monochrome mark
     'Doge',
     'Shib',
-    // Light variants use white/light fills designed for dark backgrounds; a Mono would be redundant
+    // Inverted variants use white/light fills designed for dark backgrounds; a Mono would be redundant
+    'BasescanInverted',
+    'BscscanInverted',
+    'BybitInverted',
+    'EtherscanInverted',
+    // Deprecated Light aliases (re-exports of Inverted variants)
     'BasescanLight',
     'BscscanLight',
     'BybitLight',

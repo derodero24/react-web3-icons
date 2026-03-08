@@ -53,6 +53,8 @@ function chipLabel(variantName: string, base: string): string {
     FlatMono: 'FM',
     Alt: 'A',
     AltMono: 'AM',
+    Inverted: 'Iv',
+    InvertedMono: 'IvM',
     Light: 'L',
     LightMono: 'LM',
   };
