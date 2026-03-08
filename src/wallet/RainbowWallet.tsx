@@ -193,7 +193,7 @@ export const RainbowWalletSymbol = forwardRef<
   );
 });
 
-const rainbowMonoContent = () => (
+const rainbowArcPaths = () => (
   <>
     <path d="M20 38h6c30.928 0 56 25.072 56 56v6h12a6 6 0 0 0 6-6c0-40.869-33.131-74-74-74a6 6 0 0 0-6 6v12z" />
     <path d="M84 94h16a6 6 0 0 1-6 6H84v-6z" />
@@ -209,14 +209,24 @@ const rainbowMonoContent = () => (
 
 export const RainbowWalletMono = createIcon(
   'RainbowWalletMono',
-  '20 20 80 80',
-  rainbowMonoContent,
+  '0 0 120 120',
+  _id => (
+    <>
+      <rect width="120" height="120" mask={`url(#${_id}-rbwm-a)`} />
+      <defs>
+        <mask id={`${_id}-rbwm-a`}>
+          <rect width="120" height="120" fill="#fff" />
+          <g fill="#000">{rainbowArcPaths()}</g>
+        </mask>
+      </defs>
+    </>
+  ),
   'currentColor',
 );
 
 export const RainbowWalletSymbolMono = createIcon(
   'RainbowWalletSymbolMono',
   '20 20 80 80',
-  rainbowMonoContent,
+  rainbowArcPaths,
   'currentColor',
 );
