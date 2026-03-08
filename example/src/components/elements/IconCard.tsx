@@ -2,15 +2,14 @@
 
 import type { ComponentType } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { buildImportStatement } from '../../hooks/useCopy';
+import { VARIANT_ABBREV } from '../../utils/groupIcons';
 
 interface Props {
   base: string;
   variants: string[];
   activeVariant: string;
   components: Record<string, ComponentType<{ className?: string }>>;
-  isCopied: boolean;
-  onCopy: (name: string) => void;
+  onOpenDetail: (base: string) => void;
   previewDark?: boolean;
   highlighted?: boolean;
 }
@@ -35,28 +34,7 @@ function downloadSvg(name: string, container: HTMLElement | null) {
 function chipLabel(variantName: string, base: string): string {
   if (variantName === base) return '●';
   const suffix = variantName.slice(base.length);
-  const ABBREV: Record<string, string> = {
-    Mono: 'M',
-    Circle: 'C',
-    CircleMono: 'CM',
-    CircleAlt: 'CA',
-    CircleAltMono: 'CAM',
-    Square: 'Sq',
-    SquareMono: 'SqM',
-    SquareAlt: 'SqA',
-    Wordmark: 'W',
-    WordmarkMono: 'WM',
-    WordmarkFlat: 'WF',
-    Symbol: 'Sy',
-    SymbolMono: 'SyM',
-    Flat: 'F',
-    FlatMono: 'FM',
-    Alt: 'A',
-    AltMono: 'AM',
-    Light: 'L',
-    LightMono: 'LM',
-  };
-  return ABBREV[suffix] ?? suffix;
+  return VARIANT_ABBREV[suffix] ?? suffix;
 }
 
 export default function IconCard({
@@ -64,8 +42,7 @@ export default function IconCard({
   variants,
   activeVariant,
   components,
-  isCopied,
-  onCopy,
+  onOpenDetail,
   previewDark = false,
   highlighted = false,
 }: Props) {
@@ -89,8 +66,8 @@ export default function IconCard({
     >
       <button
         type="button"
-        aria-label={`Copy import for ${selected}`}
-        title={buildImportStatement(selected)}
+        aria-label={`View details for ${base}`}
+        title={`View ${base} variants`}
         className={`group relative mx-auto flex aspect-square w-full cursor-pointer items-center justify-center rounded-lg border shadow-sm transition-all duration-150 ease-out hover:scale-[1.05] hover:shadow-md active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${
           highlighted
             ? 'border-indigo-400 bg-white ring-2 ring-indigo-400 ring-offset-1 hover:border-indigo-500 dark:bg-gray-600 dark:border-indigo-400 dark:ring-indigo-400'
@@ -98,27 +75,9 @@ export default function IconCard({
               ? 'border-gray-700 bg-gray-900 text-white hover:border-gray-600'
               : 'border-gray-200 bg-white hover:border-gray-300 dark:border-gray-500 dark:bg-gray-600 dark:hover:border-gray-400 dark:hover:shadow-lg'
         }`}
-        onClick={() => onCopy(selected)}
+        onClick={() => onOpenDetail(base)}
       >
-        <Icon
-          className={`text-4xl drop-shadow dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.1)] transition-all duration-150 ${
-            isCopied ? 'scale-90 opacity-30' : ''
-          }`}
-        />
-        {isCopied && (
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={3}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="absolute h-6 w-6 text-green-500 dark:text-green-400"
-            aria-hidden="true"
-          >
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        )}
+        <Icon className="text-4xl drop-shadow dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.1)]" />
       </button>
       <button
         type="button"
@@ -145,12 +104,10 @@ export default function IconCard({
       </button>
 
       <p
-        title={selected}
-        className={`w-full text-balance text-center text-xs font-medium leading-tight transition-colors duration-150 ${
-          isCopied ? 'text-green-600 dark:text-green-400' : ''
-        }`}
+        title={base}
+        className="w-full text-balance text-center text-xs font-medium leading-tight"
       >
-        {isCopied ? 'Copied!' : base}
+        {base}
       </p>
 
       {hasMultiple && (

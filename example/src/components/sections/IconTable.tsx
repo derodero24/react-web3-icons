@@ -1,13 +1,15 @@
 'use client';
 
 import { parseAsString, useQueryState } from 'nuqs';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { useCopy } from '../../hooks/useCopy';
+import type { DisplayGroup } from '../../hooks/useIconFilter';
 import { useIconFilter } from '../../hooks/useIconFilter';
 import { groupIcons } from '../../utils/groupIcons';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 import IconCard from '../elements/IconCard';
+import IconDetailPanel from '../elements/IconDetailPanel';
 import SearchForm from '../elements/SearchForm';
 
 type Variant = 'all' | 'colored' | 'mono';
@@ -29,7 +31,10 @@ export default function IconTable() {
     'q',
     parseAsString.withDefault(''),
   );
-  const [linkedIcon] = useQueryState('icon', parseAsString.withDefault(''));
+  const [linkedIcon, setLinkedIcon] = useQueryState(
+    'icon',
+    parseAsString.withDefault(''),
+  );
   const [variant, setVariant] = useState<Variant>('all');
   const [previewDark, setPreviewDark] = useState(false);
   const { copy, copiedName, copyStatus } = useCopy();
@@ -41,16 +46,54 @@ export default function IconTable() {
   const categoryIcons = REACT_WEB3_ICONS[validCategory];
   const displayedGroups = useIconFilter(categoryIcons, keyword, variant);
 
+  // All groups (unfiltered) for URL-based panel lookup
+  const allGroups = useIconFilter(REACT_WEB3_ICONS.all, '', 'all');
+
   // Total group count (before search/variant filter, for the "N icons" label)
   const totalGroupCount = useMemo(
     () => groupIcons(categoryIcons).length,
     [categoryIcons],
   );
 
-  // Scroll to the linked icon the first time it appears in the grid
+  // The group currently shown in the detail panel (null = closed)
+  const [panelGroup, setPanelGroup] = useState<DisplayGroup | null>(null);
+
+  // Open the detail panel for a given base name
+  const openPanel = useCallback(
+    (base: string) => {
+      // Try displayed groups first, then fall back to all groups
+      const group =
+        displayedGroups.find(g => g.base === base) ??
+        allGroups.find(g => g.base === base);
+      if (group) {
+        setPanelGroup(group);
+        void setLinkedIcon(base);
+      }
+    },
+    [displayedGroups, allGroups, setLinkedIcon],
+  );
+
+  // Close the detail panel
+  const closePanel = useCallback(() => {
+    setPanelGroup(null);
+    void setLinkedIcon(null);
+  }, [setLinkedIcon]);
+
+  // On mount with ?icon= param: open the panel for that icon
+  const hasOpenedFromUrl = useRef(false);
+  useEffect(() => {
+    if (!linkedIcon || hasOpenedFromUrl.current || panelGroup) return;
+    const group = allGroups.find(g => g.base === linkedIcon);
+    if (group) {
+      setPanelGroup(group);
+      hasOpenedFromUrl.current = true;
+    }
+  }, [linkedIcon, allGroups, panelGroup]);
+
+  // Scroll to the linked icon in the grid (when no panel is open and group is visible)
   const hasScrolled = useRef(false);
   useEffect(() => {
-    if (!linkedIcon || hasScrolled.current) return;
+    if (!linkedIcon || hasScrolled.current || panelGroup) return;
     const el = document.querySelector<HTMLElement>(
       `[data-icon-name="${CSS.escape(linkedIcon)}"]`,
     );
@@ -58,7 +101,7 @@ export default function IconTable() {
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       hasScrolled.current = true;
     }
-  }, [linkedIcon]);
+  }, [linkedIcon, panelGroup]);
 
   const totalCount = totalGroupCount;
   const resultCount = displayedGroups.length;
@@ -196,14 +239,24 @@ export default function IconTable() {
                 variants={group.variants}
                 activeVariant={group.activeVariant}
                 components={group.components}
-                isCopied={group.variants.includes(copiedName ?? '')}
-                onCopy={copy}
+                onOpenDetail={openPanel}
                 previewDark={variant === 'mono' && previewDark}
                 highlighted={linkedIcon === group.base}
               />
             </div>
           ))}
         </div>
+      )}
+
+      {panelGroup && (
+        <IconDetailPanel
+          base={panelGroup.base}
+          variants={panelGroup.variants}
+          components={panelGroup.components}
+          copiedName={copiedName}
+          onCopy={copy}
+          onClose={closePanel}
+        />
       )}
     </section>
   );
