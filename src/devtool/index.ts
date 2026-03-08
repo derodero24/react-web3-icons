@@ -11,6 +11,7 @@ export * from './Privy';
 export * from './Remix';
 export * from './Solidity';
 export * from './Tally';
+export * from './Tenderly';
 export * from './TheGraph';
 export * from './Thirdweb';
 export * from './Truffle';
