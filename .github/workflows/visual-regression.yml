@@ -45,7 +45,7 @@ jobs:
       - name: Restore reference screenshots (main)
         if: github.event_name == 'push'
         id: screenshots-cache-main
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: test/visual/__screenshots__
           key: visual-screenshots-main-${{ github.sha }}
@@ -60,7 +60,7 @@ jobs:
       - name: Restore reference screenshots from main (PR)
         if: github.event_name == 'pull_request'
         id: screenshots-cache-pr
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: test/visual/__screenshots__
           key: visual-screenshots-main-${{ github.event.pull_request.base.sha }}
