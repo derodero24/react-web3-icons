@@ -20,7 +20,7 @@ interface DynamicIconBase extends Omit<IconProps, 'ref'> {
 }
 
 export interface ChainIconProps extends DynamicIconBase {
-  /** Lowercase chain slug (e.g. `'ethereum'`, `'arbitrum'`). */
+  /** Chain slug, case-insensitive (e.g. `'ethereum'`, `'arbitrum'`). */
   name?: string;
   /** EVM chain ID (e.g. `1`, `8453`). Takes precedence over `name`. */
   chainId?: number;

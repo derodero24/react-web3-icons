@@ -5,6 +5,8 @@ import {
   resolveExchangeExportName,
   resolveWalletExportName,
 } from '../src/dynamic/resolve';
+import * as exchange from '../src/exchange';
+import * as wallet from '../src/wallet';
 
 describe('resolveChainExportName', () => {
   it('resolves by chain ID', () => {
@@ -81,6 +83,40 @@ describe('resolveWalletExportName', () => {
   it('returns null for unknown wallet', () => {
     expect(resolveWalletExportName({ name: 'notawallet' })).toBeNull();
   });
+
+  it('every resolved name references an exported wallet icon', () => {
+    const walletNames = new Set(Object.keys(wallet));
+    const slugs = [
+      'argent',
+      'backpackwallet',
+      'coinbasewallet',
+      'daedaluswallet',
+      'exodus',
+      'keplr',
+      'ledger',
+      'metamask',
+      'namiwallet',
+      'okxwallet',
+      'phantomwallet',
+      'polkadotjs',
+      'rabby',
+      'rainbowwallet',
+      'safe',
+      'trezor',
+      'trustwallet',
+      'walletconnect',
+      'yoroiwallet',
+      'zerion',
+    ];
+    for (const slug of slugs) {
+      const name = resolveWalletExportName({ name: slug });
+      expect(name).not.toBeNull();
+      expect(
+        walletNames.has(name as string),
+        `wallet slug '${slug}' resolves to '${name}' which is not exported`,
+      ).toBe(true);
+    }
+  });
 });
 
 describe('resolveExchangeExportName', () => {
@@ -88,6 +124,11 @@ describe('resolveExchangeExportName', () => {
     expect(resolveExchangeExportName({ name: 'binance' })).toBe('Binance');
     expect(resolveExchangeExportName({ name: 'coinbase' })).toBe('Coinbase');
     expect(resolveExchangeExportName({ name: 'kraken' })).toBe('Kraken');
+  });
+
+  it('is case-insensitive', () => {
+    expect(resolveExchangeExportName({ name: 'Binance' })).toBe('Binance');
+    expect(resolveExchangeExportName({ name: 'KRAKEN' })).toBe('Kraken');
   });
 
   it('resolves mono variant', () => {
@@ -98,5 +139,33 @@ describe('resolveExchangeExportName', () => {
 
   it('returns null for unknown exchange', () => {
     expect(resolveExchangeExportName({ name: 'notanexchange' })).toBeNull();
+  });
+
+  it('every resolved name references an exported exchange icon', () => {
+    const exchangeNames = new Set(Object.keys(exchange));
+    const slugs = [
+      'binance',
+      'bitfinex',
+      'bitget',
+      'bitstamp',
+      'bybit',
+      'coinbase',
+      'cryptocom',
+      'gateio',
+      'gemini',
+      'htx',
+      'kraken',
+      'kucoin',
+      'mexc',
+      'okx',
+    ];
+    for (const slug of slugs) {
+      const name = resolveExchangeExportName({ name: slug });
+      expect(name).not.toBeNull();
+      expect(
+        exchangeNames.has(name as string),
+        `exchange slug '${slug}' resolves to '${name}' which is not exported`,
+      ).toBe(true);
+    }
   });
 });
