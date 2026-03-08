@@ -115,25 +115,25 @@ export * from './Mtkn';
 
 ## Icon Variant Naming Convention
 
-Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The base name (no suffix) always represents the **standalone branded symbol** without a background container. When no standalone variant exists in the official brand assets, the base name represents the primary brand mark.
+Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The base name (no suffix) typically represents the **standalone branded symbol** without a background container — unless the brand's official assets always include a specific background, in which case the base includes it (see [Base icon background rule](#base-icon-background-rule) below). When no standalone variant exists in the official brand assets, the base name represents the primary brand mark.
 
 ### Variant Suffixes
 
-| Suffix         | Meaning                                                 | Example                 |
-| -------------- | ------------------------------------------------------- | ----------------------- |
-| _(none)_       | Standalone branded symbol (no background)               | `Bitcoin`               |
-| `Mono`         | Monochrome (`currentColor`) matching the base shape     | `BitcoinMono`           |
-| `Circle`       | Symbol on a circular background                         | `BitcoinCircle`         |
-| `CircleMono`   | Monochrome circular                                     | `BitcoinCircleMono`     |
-| `Square`       | Symbol on a square / rounded-rectangle background       | `TrustWalletSquare`     |
-| `SquareMono`   | Monochrome square                                       | `TrustWalletSquareMono` |
-| `Wordmark`     | Symbol with text (logotype)                             | `MagicEdenWordmark`     |
-| `WordmarkMono` | Monochrome wordmark                                     | `MagicEdenWordmarkMono` |
-| `Alt`          | Alternative color scheme or design                      | `MetaMaskAlt`           |
-| `Light`        | Light-colored variant for dark backgrounds              | `BybitLight`            |
-| `Flat`         | Single brand color, no internal color variation         | `ArbitrumOneFlat`       |
-| `Symbol`       | Standalone symbol without container (when base has one) | `RainbowWalletSymbol`   |
-| `SymbolMono`   | Monochrome standalone symbol without container          | `OpenSeaSymbolMono`     |
+| Suffix | Meaning | Example |
+| --- | --- | --- |
+| _(none)_ | Primary brand mark — standalone symbol without background in most cases; includes background when integral to the official brand mark (see [Base icon background rule](#base-icon-background-rule)) | `Bitcoin`, `ZkSync` |
+| `Mono` | Monochrome (`currentColor`) matching the base shape | `BitcoinMono` |
+| `Circle` | Symbol on a circular background | `BitcoinCircle` |
+| `CircleMono` | Monochrome circular | `BitcoinCircleMono` |
+| `Square` | Symbol on a square / rounded-rectangle background | `TrustWalletSquare` |
+| `SquareMono` | Monochrome square | `TrustWalletSquareMono` |
+| `Wordmark` | Symbol with text (logotype) | `MagicEdenWordmark` |
+| `WordmarkMono` | Monochrome wordmark | `MagicEdenWordmarkMono` |
+| `Alt` | Alternative color scheme or design | `MetaMaskAlt` |
+| `Light` | Light-colored variant for dark backgrounds | `BybitLight` |
+| `Flat` | Single brand color, no internal color variation | `ArbitrumOneFlat` |
+| `Symbol` | Standalone symbol without container (when base has one) | `RainbowWalletSymbol` |
+| `SymbolMono` | Monochrome standalone symbol without container | `OpenSeaSymbolMono` |
 
 ### Rules
 
