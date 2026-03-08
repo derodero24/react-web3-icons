@@ -171,6 +171,7 @@ describe('Every colored icon has a Mono variant', () => {
     'Shib',
     // Light variants use white/light fills by design; a Mono would be redundant
     'BasescanLight',
+    'BlastscanLight',
     'BscscanLight',
     'BybitLight',
     'EtherscanLight',
