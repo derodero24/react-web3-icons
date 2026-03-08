@@ -7,6 +7,7 @@ export * from './Ganache';
 export * from './Hardhat';
 export * from './Moralis';
 export * from './OpenZeppelin';
+export * from './Privy';
 export * from './Remix';
 export * from './Solidity';
 export * from './Tally';
