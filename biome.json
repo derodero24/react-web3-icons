@@ -289,6 +289,18 @@
       }
     }
   },
+  "overrides": [
+    {
+      "includes": ["src/meta/index.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useNamingConvention": "off"
+          }
+        }
+      }
+    }
+  ],
   "assist": {
     "enabled": true,
     "actions": {
