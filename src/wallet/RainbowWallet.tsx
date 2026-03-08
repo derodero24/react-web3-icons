@@ -193,7 +193,7 @@ export const RainbowWalletSymbol = forwardRef<
   );
 });
 
-const rainbowMonoContent = () => (
+const rainbowArcPaths = () => (
   <>
     <path d="M20 38h6c30.928 0 56 25.072 56 56v6h12a6 6 0 0 0 6-6c0-40.869-33.131-74-74-74a6 6 0 0 0-6 6v12z" />
     <path d="M84 94h16a6 6 0 0 1-6 6H84v-6z" />
@@ -209,14 +209,41 @@ const rainbowMonoContent = () => (
 
 export const RainbowWalletMono = createIcon(
   'RainbowWalletMono',
-  '20 20 80 80',
-  rainbowMonoContent,
+  '0 0 120 120',
+  _id => (
+    <>
+      <rect width="120" height="120" mask={`url(#${_id}-rbwm-a)`} />
+      <defs>
+        <mask id={`${_id}-rbwm-a`}>
+          <rect width="120" height="120" fill="#fff" />
+          <path
+            d="M20 38h6c30.928 0 56 25.072 56 56v6h12a6 6 0 0 0 6-6c0-40.869-33.131-74-74-74a6 6 0 0 0-6 6v12z"
+            fill="#000"
+          />
+          <path d="M84 94h16a6 6 0 0 1-6 6H84v-6z" fill="#000" />
+          <path d="M26 20v16h-6V26a6 6 0 0 1 6-6z" fill="#000" />
+          <path
+            d="M20 36h6c32.033 0 58 25.968 58 58v6H66v-6c0-22.091-17.909-40-40-40h-6V36z"
+            fill="#000"
+          />
+          <path d="M68 94h16v6H68v-6z" fill="#000" />
+          <path d="M20 52V36h6v16h-6z" fill="#000" />
+          <path
+            d="M20 62a6 6 0 0 0 6 6c14.359 0 26 11.641 26 26a6 6 0 0 0 6 6h10v-6c0-23.196-18.804-42-42-42h-6v10z"
+            fill="#000"
+          />
+          <path d="M52 94h16v6H58a6 6 0 0 1-6-6z" fill="#000" />
+          <path d="M26 68a6 6 0 0 1-6-6V52h6v16z" fill="#000" />
+        </mask>
+      </defs>
+    </>
+  ),
   'currentColor',
 );
 
 export const RainbowWalletSymbolMono = createIcon(
   'RainbowWalletSymbolMono',
   '20 20 80 80',
-  rainbowMonoContent,
+  rainbowArcPaths,
   'currentColor',
 );
