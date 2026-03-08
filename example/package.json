@@ -19,7 +19,7 @@
     "react-web3-icons": "workspace:*"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.4",
+    "@biomejs/biome": "2.4.6",
     "@tailwindcss/postcss": "^4.2.1",
     "@total-typescript/ts-reset": "^0.6.1",
     "@tsconfig/strictest": "^2.0.8",
@@ -30,5 +30,5 @@
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
   },
-  "packageManager": "pnpm@10.13.1"
+  "packageManager": "pnpm@10.31.0"
 }
