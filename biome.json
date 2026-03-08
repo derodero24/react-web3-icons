@@ -291,7 +291,7 @@
   },
   "overrides": [
     {
-      "includes": ["src/meta/**"],
+      "includes": ["src/meta/index.ts"],
       "linter": {
         "rules": {
           "style": {

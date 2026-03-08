@@ -3,11 +3,13 @@
  *
  * Use with `react-web3-icons/chain` for wagmi/viem integration:
  * ```ts
- * import { CHAIN_ID_TO_NAME } from 'react-web3-icons/meta';
+ * import { CHAIN_ID_TO_NAME, type ChainId } from 'react-web3-icons/meta';
  * import * as chains from 'react-web3-icons/chain';
  *
- * const name = CHAIN_ID_TO_NAME[chain.id]; // e.g. 'Ethereum'
- * const Icon = name ? chains[name] : null;
+ * // Runtime check narrows to ChainId
+ * const Icon = chain.id in CHAIN_ID_TO_NAME
+ *   ? chains[CHAIN_ID_TO_NAME[chain.id as ChainId]]
+ *   : null;
  * ```
  */
 export const CHAIN_ID_TO_NAME = {
@@ -81,11 +83,13 @@ export type ChainSlug = keyof typeof CHAIN_SLUG_TO_NAME;
  *
  * Maps to exports from `react-web3-icons/coin`:
  * ```ts
- * import { TICKER_TO_COIN } from 'react-web3-icons/meta';
+ * import { TICKER_TO_COIN, type Ticker } from 'react-web3-icons/meta';
  * import * as coins from 'react-web3-icons/coin';
  *
- * const name = TICKER_TO_COIN['ETH']; // 'Eth'
- * const Icon = name ? coins[name] : null;
+ * const symbol = token.symbol.toUpperCase();
+ * const Icon = symbol in TICKER_TO_COIN
+ *   ? coins[TICKER_TO_COIN[symbol as Ticker]]
+ *   : null;
  * ```
  */
 export const TICKER_TO_COIN = {
