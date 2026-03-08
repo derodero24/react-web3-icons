@@ -143,6 +143,22 @@ Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The bas
 4. **Flat vs Alt**: Use `Flat` when the difference is strictly single-color simplification. Use `Alt` for a meaningfully different design or color scheme.
 5. **Light**: Reserved for variants where the artwork uses white/light colors, designed for dark backgrounds. The shape and layout are identical to the base.
 
+### Base icon background rule
+
+Whether the base icon (`Foo`) includes a background container depends on the official brand assets:
+
+- **Include the background in the base variant** when the brand's official icon is always presented with a specific background (colored square, circle, or rounded rectangle) in all official assets — the background is integral to the brand mark.
+
+  _Examples_: `ZkSync` (black square), `Scroll` (beige rectangle), `Mantle` (black circle), `Linea` (black rectangle)
+
+  In these cases, do **not** add a separate `FooCircle`/`FooSquare` variant unless the mark also officially exists without a background.
+
+- **Omit the background from the base variant** when the brand provides a standalone icon mark (no background). The base icon (`Foo`) contains only the mark. Add `FooCircle` and/or `FooSquare` variants when a background container is needed.
+
+  _Examples_: `Coinbase` (C mark only) + `CoinbaseCircle`; `Avalanche` (A mark) + `AvalancheCircle`
+
+When in doubt, consult the brand's official press kit or design guidelines. If the official assets show the mark both with and without a background, use the standalone mark as the base and add Circle/Square variants for the backgrounded versions.
+
 ## Icon Lifecycle Policy
 
 Use this policy when an icon project rebrands or an export name must change.
