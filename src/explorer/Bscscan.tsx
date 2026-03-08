@@ -12,8 +12,8 @@ export const Bscscan = createIcon('Bscscan', '0 0.18 121.38 121.15', () => (
   </>
 ));
 
-export const BscscanLight = createIcon(
-  'BscscanLight',
+export const BscscanInverted = createIcon(
+  'BscscanInverted',
   '0 0.18 121.38 121.15',
   () => (
     <>

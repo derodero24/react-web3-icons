@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import type { IconProps } from '../utils';
 import { useIconContext } from '../utils/IconContext';
 
-interface BybitProps extends IconProps {
+export interface BybitProps extends IconProps {
   fill1?: string;
   fill2?: string;
 }
@@ -45,8 +45,11 @@ export const Bybit = forwardRef<SVGSVGElement, BybitProps>(function Bybit(
   );
 });
 
-export const BybitLight = forwardRef<SVGSVGElement, BybitProps>(
-  function BybitLight({ fill1 = '#f7a600', fill2 = '#fff', ...rawProps }, ref) {
+export const BybitInverted = forwardRef<SVGSVGElement, BybitProps>(
+  function BybitInverted(
+    { fill1 = '#f7a600', fill2 = '#fff', ...rawProps },
+    ref,
+  ) {
     const {
       title,
       titleId,

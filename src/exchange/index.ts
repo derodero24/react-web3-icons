@@ -3,6 +3,7 @@ export * from './Bitfinex';
 export * from './Bitget';
 export * from './Bitstamp';
 export * from './Bybit';
+export * from './BybitLight';
 export * from './Coinbase';
 export * from './CryptoCom';
 export * from './Gateio';

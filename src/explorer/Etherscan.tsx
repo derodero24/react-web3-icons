@@ -17,8 +17,8 @@ export const Etherscan = createIcon(
   ),
 );
 
-export const EtherscanLight = createIcon(
-  'EtherscanLight',
+export const EtherscanInverted = createIcon(
+  'EtherscanInverted',
   '0.5 0.68 121.68 121.46',
   () => (
     <g transform="translate(0.5 0.5)">

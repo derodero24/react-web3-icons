@@ -1,6 +1,6 @@
 // Ordered longest-first so longer compound suffixes are stripped before shorter ones
 const SUFFIX_RE =
-  /(CircleMono|SquareMono|WordmarkMono|WordmarkFlat|SymbolMono|FlatMono|AltMono|LightMono|Circle|Square|Wordmark|Symbol|Flat|Alt|Light|Mono)$/;
+  /(CircleMono|SquareMono|WordmarkMono|WordmarkFlat|SymbolMono|FlatMono|AltMono|InvertedMono|LightMono|Circle|Square|Wordmark|Symbol|Flat|Alt|Inverted|Light|Mono)$/;
 
 /**
  * Derive the base icon name by iteratively stripping known variant suffixes.

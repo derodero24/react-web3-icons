@@ -169,7 +169,7 @@ describe('Every colored icon has a Mono variant', () => {
     // Standalone coin icons with no monochrome mark
     'Doge',
     'Shib',
-    // Light variants use white/light fills designed for dark backgrounds; a Mono would be redundant
+    // Deprecated Light aliases (re-exports of Inverted variants)
     'BasescanLight',
     'BscscanLight',
     'BybitLight',
@@ -191,7 +191,13 @@ describe('Every colored icon has a Mono variant', () => {
 
   // Get base names (non-Mono, non-numbered-variant)
   const baseNames = names.filter(
-    n => !(/Mono\d*$/.test(n) || /\d+$/.test(n) || monoExemptions.has(n)),
+    n =>
+      !(
+        /Mono\d*$/.test(n) ||
+        /\d+$/.test(n) ||
+        /Inverted$/.test(n) ||
+        monoExemptions.has(n)
+      ),
   );
 
   it('every non-exempt colored icon has a Mono variant', () => {

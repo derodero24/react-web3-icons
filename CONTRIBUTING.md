@@ -130,7 +130,8 @@ Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The bas
 | `Wordmark` | Symbol with text (logotype) | `MagicEdenWordmark` |
 | `WordmarkMono` | Monochrome wordmark | `MagicEdenWordmarkMono` |
 | `Alt` | Alternative color scheme or design | `MetaMaskAlt` |
-| `Light` | Light-colored variant for dark backgrounds | `BybitLight` |
+| `Inverted` | Inverted color scheme for contrast on dark backgrounds | `EtherscanInverted` |
+| `Light` | _(deprecated)_ Legacy lighter variant; only `BlastscanLight` remains active. Prefer `Inverted` for new icons. | `BlastscanLight` |
 | `Flat` | Single brand color, no internal color variation | `ArbitrumOneFlat` |
 | `Symbol` | Standalone symbol without container (when base has one) | `RainbowWalletSymbol` |
 | `SymbolMono` | Monochrome standalone symbol without container | `OpenSeaSymbolMono` |
@@ -141,7 +142,7 @@ Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The bas
 2. **Mono mirrors its base**: `FooMono` matches `Foo`'s shape; `FooCircleMono` matches `FooCircle`'s shape.
 3. **No numeric suffixes**: Never use `Foo2`, `Foo3`, etc. Use descriptive suffixes that convey the visual difference.
 4. **Flat vs Alt**: Use `Flat` when the difference is strictly single-color simplification. Use `Alt` for a meaningfully different design or color scheme.
-5. **Light**: Reserved for variants where the artwork uses white/light colors, designed for dark backgrounds. The shape and layout are identical to the base.
+5. **Inverted**: Reserved for variants where the artwork colors are inverted for contrast on dark backgrounds. The shape and layout are identical to the base.
 
 ### Base icon background rule
 

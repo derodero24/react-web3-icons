@@ -27,4 +27,9 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<string> = new Set([
   // GnosisSafe -> Safe (Safe rebranded)
   'GnosisSafe',
   'GnosisSafeMono',
+  // Light -> Inverted (naming clarification)
+  'BasescanLight',
+  'BscscanLight',
+  'BybitLight',
+  'EtherscanLight',
 ]);
