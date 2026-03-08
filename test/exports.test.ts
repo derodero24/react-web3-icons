@@ -169,11 +169,14 @@ describe('Every colored icon has a Mono variant', () => {
     // Standalone coin icons with no monochrome mark
     'Doge',
     'Shib',
-    // Light variants use white/light fills by design; a Mono would be redundant
+    // Light variants use white/light fills designed for dark backgrounds; a Mono would be redundant
     'BasescanLight',
     'BscscanLight',
     'BybitLight',
     'EtherscanLight',
+    // BlastscanLight uses black fill for light/white backgrounds — distinct from typical Light variants;
+    // treated as a single-fill design variant with no corresponding Mono
+    'BlastscanLight',
     // Alt/Flat variants where a Mono adds no practical value
     'CoinbaseCircleAlt',
     'LooksAlt',
