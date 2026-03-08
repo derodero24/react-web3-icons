@@ -1,3 +1,29 @@
+/**
+ * Abbreviated chip labels for known variant suffixes (used in the icon grid).
+ * Exported so other components can reference the same canonical suffix set.
+ */
+export const VARIANT_ABBREV: Record<string, string> = {
+  Mono: 'M',
+  Circle: 'C',
+  CircleMono: 'CM',
+  CircleAlt: 'CA',
+  CircleAltMono: 'CAM',
+  Square: 'Sq',
+  SquareMono: 'SqM',
+  SquareAlt: 'SqA',
+  Wordmark: 'W',
+  WordmarkMono: 'WM',
+  WordmarkFlat: 'WF',
+  Symbol: 'Sy',
+  SymbolMono: 'SyM',
+  Flat: 'F',
+  FlatMono: 'FM',
+  Alt: 'A',
+  AltMono: 'AM',
+  Light: 'L',
+  LightMono: 'LM',
+};
+
 // Ordered longest-first so longer compound suffixes are stripped before shorter ones
 const SUFFIX_RE =
   /(CircleMono|SquareMono|WordmarkMono|WordmarkFlat|SymbolMono|FlatMono|AltMono|LightMono|Circle|Square|Wordmark|Symbol|Flat|Alt|Light|Mono)$/;

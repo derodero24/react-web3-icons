@@ -1,37 +1,24 @@
 'use client';
 
 import type { ComponentType } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { buildImportStatement } from '../../hooks/useCopy';
+import { VARIANT_ABBREV } from '../../utils/groupIcons';
 
 const SIZES = [16, 24, 48, 64] as const;
 
-/** Short label for a variant chip relative to the base name. */
+/**
+ * Human-readable label for a variant relative to the base name.
+ * Derived from the abbreviated suffix map (shared source of truth) by
+ * expanding the suffix with spaces before each uppercase letter.
+ * e.g. "CircleMono" → "Circle Mono", "Mono" → "Mono"
+ */
 function variantLabel(variantName: string, base: string): string {
   if (variantName === base) return 'Colored';
   const suffix = variantName.slice(base.length);
-  const LABELS: Record<string, string> = {
-    Mono: 'Mono',
-    Circle: 'Circle',
-    CircleMono: 'Circle Mono',
-    CircleAlt: 'Circle Alt',
-    CircleAltMono: 'Circle Alt Mono',
-    Square: 'Square',
-    SquareMono: 'Square Mono',
-    SquareAlt: 'Square Alt',
-    Wordmark: 'Wordmark',
-    WordmarkMono: 'Wordmark Mono',
-    WordmarkFlat: 'Wordmark Flat',
-    Symbol: 'Symbol',
-    SymbolMono: 'Symbol Mono',
-    Flat: 'Flat',
-    FlatMono: 'Flat Mono',
-    Alt: 'Alt',
-    AltMono: 'Alt Mono',
-    Light: 'Light',
-    LightMono: 'Light Mono',
-  };
-  return LABELS[suffix] ?? suffix;
+  // Only known suffixes (from VARIANT_ABBREV) get humanised; others fall through as-is
+  if (!(suffix in VARIANT_ABBREV)) return suffix;
+  return suffix.replace(/([a-z])([A-Z])/g, '$1 $2');
 }
 
 interface VariantRowProps {
@@ -49,18 +36,11 @@ function VariantRow({
   isCopied,
   onCopy,
 }: VariantRowProps) {
-  const isMono = variantName.endsWith('Mono');
   const importStatement = buildImportStatement(variantName);
 
   return (
     <div className="flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50 px-3 py-2.5 dark:border-gray-700 dark:bg-gray-800">
-      <div
-        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-md border ${
-          isMono
-            ? 'border-gray-300 bg-white dark:border-gray-600 dark:bg-gray-900'
-            : 'border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900'
-        }`}
-      >
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900">
         <Icon className="text-2xl" />
       </div>
 
@@ -133,6 +113,17 @@ export default function IconDetailPanel({
   onCopy,
   onClose,
 }: Props) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Move focus to close button on open; restore focus to trigger on close
+  useEffect(() => {
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    closeButtonRef.current?.focus();
+    return () => {
+      previouslyFocused?.focus();
+    };
+  }, []);
+
   // Dismiss on Escape key
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -178,6 +169,7 @@ export default function IconDetailPanel({
             {base}
           </h2>
           <button
+            ref={closeButtonRef}
             type="button"
             aria-label="Close detail panel"
             onClick={onClose}

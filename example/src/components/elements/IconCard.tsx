@@ -2,6 +2,7 @@
 
 import type { ComponentType } from 'react';
 import { useEffect, useRef, useState } from 'react';
+import { VARIANT_ABBREV } from '../../utils/groupIcons';
 
 interface Props {
   base: string;
@@ -33,28 +34,7 @@ function downloadSvg(name: string, container: HTMLElement | null) {
 function chipLabel(variantName: string, base: string): string {
   if (variantName === base) return '●';
   const suffix = variantName.slice(base.length);
-  const ABBREV: Record<string, string> = {
-    Mono: 'M',
-    Circle: 'C',
-    CircleMono: 'CM',
-    CircleAlt: 'CA',
-    CircleAltMono: 'CAM',
-    Square: 'Sq',
-    SquareMono: 'SqM',
-    SquareAlt: 'SqA',
-    Wordmark: 'W',
-    WordmarkMono: 'WM',
-    WordmarkFlat: 'WF',
-    Symbol: 'Sy',
-    SymbolMono: 'SyM',
-    Flat: 'F',
-    FlatMono: 'FM',
-    Alt: 'A',
-    AltMono: 'AM',
-    Light: 'L',
-    LightMono: 'LM',
-  };
-  return ABBREV[suffix] ?? suffix;
+  return VARIANT_ABBREV[suffix] ?? suffix;
 }
 
 export default function IconCard({
