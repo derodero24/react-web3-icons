@@ -111,6 +111,41 @@ export const ArbitrumCircleMono = createIcon(
   'currentColor',
 );
 
+// Square variant: original viewBox 262.47 200 975.06 1099.98 → scale 0.04182, translate(0.64, 0.64)
+const ARB_SQUARE_TX = 'translate(0.64 0.64) scale(0.04182)';
+
+export const ArbitrumSquare = createIcon('ArbitrumSquare', '0 0 64 64', () => (
+  <>
+    <rect width="64" height="64" rx="12.8" fill="#213147" />
+    <g transform={ARB_SQUARE_TX}>
+      <path d={ARB_BLUE} fill="#12aaff" />
+      <path d={ARB_BORDER} fill="#9dcced" />
+      <path d={ARB_WHITE} fill="#fff" />
+    </g>
+  </>
+));
+
+export const ArbitrumSquareMono = createIcon(
+  'ArbitrumSquareMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-arbs-a)`} />
+      <defs>
+        <mask id={`${_id}-arbs-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={ARB_SQUARE_TX} fill="#000">
+            <path d={ARB_BLUE} />
+            <path d={ARB_BORDER} />
+            <path d={ARB_WHITE} />
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+
 export const ArbitrumOne = createIcon(
   'ArbitrumOne',
   '200 228.16 1100 1100',

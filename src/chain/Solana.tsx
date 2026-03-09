@@ -99,6 +99,73 @@ export const SolanaCircle = createIcon('SolanaCircle', '0 0 64 64', _id => (
   </>
 ));
 
+export const SolanaSquare = createIcon('SolanaSquare', '0 0 64 64', _id => (
+  <>
+    <rect width="64" height="64" rx="12.8" fill="#000" />
+    <defs>
+      <linearGradient
+        id={`${_id}-slns-a`}
+        gradientUnits="userSpaceOnUse"
+        x1="48.19"
+        y1="12.65"
+        x2="26.22"
+        y2="54.73"
+      >
+        <stop offset="0" stopColor="#00ffa3" />
+        <stop offset="1" stopColor="#dc1fff" />
+      </linearGradient>
+      <linearGradient
+        id={`${_id}-slns-b`}
+        gradientUnits="userSpaceOnUse"
+        x1="38.58"
+        y1="7.64"
+        x2="16.62"
+        y2="49.71"
+      >
+        <stop offset="0" stopColor="#00ffa3" />
+        <stop offset="1" stopColor="#dc1fff" />
+      </linearGradient>
+      <linearGradient
+        id={`${_id}-slns-c`}
+        gradientUnits="userSpaceOnUse"
+        x1="43.35"
+        y1="10.13"
+        x2="21.39"
+        y2="52.21"
+      >
+        <stop offset="0" stopColor="#00ffa3" />
+        <stop offset="1" stopColor="#dc1fff" />
+      </linearGradient>
+    </defs>
+    <g transform={SOL_CIRCLE_TX}>
+      <path d={SOL_BAR_A} fill={`url(#${_id}-slns-a)`} />
+      <path d={SOL_BAR_B} fill={`url(#${_id}-slns-b)`} />
+      <path d={SOL_BAR_C} fill={`url(#${_id}-slns-c)`} />
+    </g>
+  </>
+));
+
+export const SolanaSquareMono = createIcon(
+  'SolanaSquareMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-solsm-a)`} />
+      <defs>
+        <mask id={`${_id}-solsm-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={SOL_CIRCLE_TX} fill="#000">
+            <path d={SOL_BAR_A} />
+            <path d={SOL_BAR_B} />
+            <path d={SOL_BAR_C} />
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+
 export const SolanaCircleMono = createIcon(
   'SolanaCircleMono',
   '0 0 64 64',

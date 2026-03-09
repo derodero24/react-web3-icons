@@ -40,6 +40,34 @@ export const BaseCircle = createIcon('BaseCircle', '0 0 64 64', () => (
   </>
 ));
 
+export const BaseSquare = createIcon('BaseSquare', '0 0 64 64', () => (
+  <>
+    <rect width="64" height="64" rx="12.8" fill="#0052FF" />
+    <g transform={BASE_CIRCLE_TX}>
+      <path d={BASE_B} fill="#fff" />
+    </g>
+  </>
+));
+
+export const BaseSquareMono = createIcon(
+  'BaseSquareMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-bass-a)`} />
+      <defs>
+        <mask id={`${_id}-bass-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={BASE_CIRCLE_TX} fill="#000">
+            <path d={BASE_B} />
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+
 export const BaseCircleMono = createIcon(
   'BaseCircleMono',
   '0 0 64 64',

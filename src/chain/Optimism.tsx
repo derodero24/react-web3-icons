@@ -39,6 +39,34 @@ export const OptimismCircle = createIcon('OptimismCircle', '0 0 64 64', () => (
   </>
 ));
 
+export const OptimismSquare = createIcon('OptimismSquare', '0 0 64 64', () => (
+  <>
+    <rect width="64" height="64" rx="12.8" fill="#FF0420" />
+    <g transform={OP_CIRCLE_TX}>
+      <path d={OP_SYMBOL} fill="#fff" />
+    </g>
+  </>
+));
+
+export const OptimismSquareMono = createIcon(
+  'OptimismSquareMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-opts-a)`} />
+      <defs>
+        <mask id={`${_id}-opts-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={OP_CIRCLE_TX} fill="#000">
+            <path d={OP_SYMBOL} />
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+
 export const OptimismCircleMono = createIcon(
   'OptimismCircleMono',
   '0 0 64 64',

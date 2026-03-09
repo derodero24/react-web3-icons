@@ -34,6 +34,34 @@ export const BinanceSmartChainCircle = createIcon(
   ),
 );
 
+export const BinanceSmartChainSquare = createIcon(
+  'BinanceSmartChainSquare',
+  '0 0 64 64',
+  () => (
+    <>
+      <rect width="64" height="64" rx="12.8" fill="#f0b90b" />
+      <path transform={BNB_CIRCLE_TX} d={BNB_MARK} fill="#fff" />
+    </>
+  ),
+);
+
+export const BinanceSmartChainSquareMono = createIcon(
+  'BinanceSmartChainSquareMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-bnbs-a)`} />
+      <defs>
+        <mask id={`${_id}-bnbs-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <path transform={BNB_CIRCLE_TX} d={BNB_MARK} fill="#000" />
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+
 export const BinanceSmartChainCircleMono = createIcon(
   'BinanceSmartChainCircleMono',
   '0 0 64 64',
