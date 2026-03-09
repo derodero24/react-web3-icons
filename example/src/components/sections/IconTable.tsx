@@ -1,13 +1,13 @@
 'use client';
 
 import { parseAsString, useQueryState } from 'nuqs';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { useCopy } from '../../hooks/useCopy';
 import { useIconFilter } from '../../hooks/useIconFilter';
 import { groupIcons } from '../../utils/groupIcons';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 import IconCard from '../elements/IconCard';
+import IconDrawer from '../elements/IconDrawer';
 import SearchForm from '../elements/SearchForm';
 
 type Variant = 'all' | 'colored' | 'mono';
@@ -29,9 +29,11 @@ export default function IconTable() {
     'q',
     parseAsString.withDefault(''),
   );
-  const [linkedIcon] = useQueryState('icon', parseAsString.withDefault(''));
+  const [linkedIcon, setLinkedIcon] = useQueryState(
+    'icon',
+    parseAsString.withDefault(''),
+  );
   const [variant, setVariant] = useState<Variant>('all');
-  const { copy, copiedName, copyStatus } = useCopy();
 
   const validCategory = Object.hasOwn(REACT_WEB3_ICONS, rawCategory)
     ? (rawCategory as keyof typeof REACT_WEB3_ICONS)
@@ -44,6 +46,11 @@ export default function IconTable() {
     () => groupIcons(categoryIcons).length,
     [categoryIcons],
   );
+
+  // Find the group for the opened drawer
+  const openGroup = linkedIcon
+    ? displayedGroups.find(g => g.base === linkedIcon)
+    : null;
 
   const hasScrolled = useRef(false);
   useEffect(() => {
@@ -66,6 +73,17 @@ export default function IconTable() {
   const isCategoryEmpty = categoryIcons.length === 0;
   const isSearchEmpty =
     !isCategoryEmpty && keyword.length > 0 && resultCount === 0;
+
+  const handleOpenDrawer = useCallback(
+    (base: string) => {
+      void setLinkedIcon(base);
+    },
+    [setLinkedIcon],
+  );
+
+  const handleCloseDrawer = useCallback(() => {
+    void setLinkedIcon('');
+  }, [setLinkedIcon]);
 
   return (
     <section
@@ -105,10 +123,6 @@ export default function IconTable() {
       <p id="icon-count" className="sr-only" aria-live="polite">
         {resultsText}
       </p>
-
-      <output aria-live="polite" className="sr-only">
-        {copyStatus}
-      </output>
 
       {isCategoryEmpty ? (
         <div className="mt-16 flex flex-col items-center gap-2 text-center text-white/30">
@@ -156,19 +170,27 @@ export default function IconTable() {
           className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(112px,1fr))] gap-0"
         >
           {displayedGroups.map(group => (
-            <div key={group.base} data-icon-name={group.base} className="p-3">
+            <div key={group.base} data-icon-name={group.base} className="p-2">
               <IconCard
                 base={group.base}
-                variants={group.variants}
                 activeVariant={group.activeVariant}
                 components={group.components}
-                isCopied={group.variants.includes(copiedName ?? '')}
-                onCopy={copy}
                 highlighted={linkedIcon === group.base}
+                onClick={() => handleOpenDrawer(group.base)}
               />
             </div>
           ))}
         </div>
+      )}
+
+      {/* Detail drawer */}
+      {linkedIcon && openGroup && (
+        <IconDrawer
+          base={openGroup.base}
+          variants={openGroup.variants}
+          components={openGroup.components}
+          onClose={handleCloseDrawer}
+        />
       )}
     </section>
   );
