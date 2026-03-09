@@ -89,9 +89,12 @@ describe('resolveWalletExportName', () => {
     const slugs = [
       'argent',
       'backpackwallet',
+      'bitgetwallet',
       'coinbasewallet',
       'daedaluswallet',
+      'enkrypt',
       'exodus',
+      'imtoken',
       'keplr',
       'ledger',
       'metamask',
@@ -102,6 +105,8 @@ describe('resolveWalletExportName', () => {
       'rabby',
       'rainbowwallet',
       'safe',
+      'subwallet',
+      'tangem',
       'trezor',
       'trustwallet',
       'walletconnect',
@@ -147,10 +152,12 @@ describe('resolveExchangeExportName', () => {
       'binance',
       'bitfinex',
       'bitget',
+      'bithumb',
       'bitstamp',
       'bybit',
       'coinbase',
       'cryptocom',
+      'deribit',
       'gateio',
       'gemini',
       'htx',
@@ -158,6 +165,8 @@ describe('resolveExchangeExportName', () => {
       'kucoin',
       'mexc',
       'okx',
+      'phemex',
+      'upbit',
     ];
     for (const slug of slugs) {
       const name = resolveExchangeExportName({ name: slug });
