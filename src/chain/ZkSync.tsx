@@ -31,3 +31,39 @@ export const ZkSyncMono = createIcon(
   ),
   'currentColor',
 );
+
+// Circle variant: 40×40 content scaled to ~46px centered in 64×64
+const ZKSYNC_CIRCLE_TX = 'translate(9 9) scale(1.15)';
+
+export const ZkSyncCircle = createIcon('ZkSyncCircle', '0 0 64 64', () => (
+  <>
+    <circle cx="32" cy="32" r="32" fill="#000" />
+    <g transform={ZKSYNC_CIRCLE_TX}>
+      <path
+        d={ZKSYNC_ARROWS}
+        fill="#fff"
+        fillRule="evenodd"
+        clipRule="evenodd"
+      />
+    </g>
+  </>
+));
+
+export const ZkSyncCircleMono = createIcon(
+  'ZkSyncCircleMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-zksc-a)`} />
+      <defs>
+        <mask id={`${_id}-zksc-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={ZKSYNC_CIRCLE_TX} fill="#000">
+            <path d={ZKSYNC_ARROWS} fillRule="evenodd" clipRule="evenodd" />
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
