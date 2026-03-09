@@ -50,6 +50,87 @@ export const Solana = createIcon('Solana', '-0.02 0 397.74 311.7', _id => (
   </>
 ));
 
+// Solana bar paths scaled to fit in a 64×64 circle (≈62% fill).
+// Original viewBox -0.02 0 397.74 311.7 → scale 0.1, translate(12.1, 16.4)
+const SOL_CIRCLE_TX = 'translate(12.1 16.4) scale(0.1)';
+
+const SOL_BAR_A =
+  'M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z';
+const SOL_BAR_B =
+  'M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z';
+const SOL_BAR_C =
+  'M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z';
+
+export const SolanaCircle = createIcon('SolanaCircle', '0 0 64 64', _id => (
+  <>
+    <circle cx="32" cy="32" r="32" fill="#000" />
+    <defs>
+      <linearGradient
+        id={`${_id}-slnc-a`}
+        gradientUnits="userSpaceOnUse"
+        x1="360.879"
+        y1="-37.455"
+        x2="141.213"
+        y2="383.294"
+        gradientTransform={SOL_CIRCLE_TX}
+      >
+        <stop offset="0" stopColor="#00ffa3" />
+        <stop offset="1" stopColor="#dc1fff" />
+      </linearGradient>
+      <linearGradient
+        id={`${_id}-slnc-b`}
+        gradientUnits="userSpaceOnUse"
+        x1="264.829"
+        y1="-87.601"
+        x2="45.163"
+        y2="333.148"
+        gradientTransform={SOL_CIRCLE_TX}
+      >
+        <stop offset="0" stopColor="#00ffa3" />
+        <stop offset="1" stopColor="#dc1fff" />
+      </linearGradient>
+      <linearGradient
+        id={`${_id}-slnc-c`}
+        gradientUnits="userSpaceOnUse"
+        x1="312.548"
+        y1="-62.688"
+        x2="92.882"
+        y2="358.061"
+        gradientTransform={SOL_CIRCLE_TX}
+      >
+        <stop offset="0" stopColor="#00ffa3" />
+        <stop offset="1" stopColor="#dc1fff" />
+      </linearGradient>
+    </defs>
+    <g transform={SOL_CIRCLE_TX}>
+      <path d={SOL_BAR_A} fill={`url(#${_id}-slnc-a)`} />
+      <path d={SOL_BAR_B} fill={`url(#${_id}-slnc-b)`} />
+      <path d={SOL_BAR_C} fill={`url(#${_id}-slnc-c)`} />
+    </g>
+  </>
+));
+
+export const SolanaCircleMono = createIcon(
+  'SolanaCircleMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-solcm-a)`} />
+      <defs>
+        <mask id={`${_id}-solcm-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={SOL_CIRCLE_TX} fill="#000">
+            <path d={SOL_BAR_A} />
+            <path d={SOL_BAR_B} />
+            <path d={SOL_BAR_C} />
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+
 export const SolanaMono = createIcon(
   'SolanaMono',
   '-0.02 0 397.74 311.7',
