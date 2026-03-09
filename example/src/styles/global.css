@@ -52,4 +52,12 @@
   .container {
     @apply mx-auto max-w-7xl;
   }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }

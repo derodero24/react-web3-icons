@@ -167,7 +167,7 @@ export default function IconTable() {
       ) : (
         <div
           key={`${validCategory}-${variant}`}
-          className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(112px,1fr))] gap-0"
+          className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(88px,1fr))] gap-0 sm:grid-cols-[repeat(auto-fill,minmax(112px,1fr))]"
         >
           {displayedGroups.map(group => (
             <div key={group.base} data-icon-name={group.base} className="p-2">

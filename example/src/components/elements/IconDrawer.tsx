@@ -6,7 +6,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 interface Props {
   base: string;
   variants: string[];
-  components: Record<string, ComponentType<{ className?: string }>>;
+  components: Record<
+    string,
+    ComponentType<{ className?: string; style?: React.CSSProperties }>
+  >;
   onClose: () => void;
 }
 
@@ -19,6 +22,15 @@ const CODE_TABS: { key: CodeTab; label: string }[] = [
 ];
 
 const SIZES = [16, 24, 32, 48, 64] as const;
+const PRESET_COLORS = [
+  { value: '', label: 'Default' },
+  { value: '#ffffff', label: 'White' },
+  { value: '#6366f1', label: 'Indigo' },
+  { value: '#22c55e', label: 'Green' },
+  { value: '#f59e0b', label: 'Amber' },
+  { value: '#ef4444', label: 'Red' },
+  { value: '#06b6d4', label: 'Cyan' },
+] as const;
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -105,11 +117,13 @@ export default function IconDrawer({
     variants.find(v => v === base) ?? variants[0] ?? '',
   );
   const [codeTab, setCodeTab] = useState<CodeTab>('import');
+  const [previewSize, setPreviewSize] = useState(64);
+  const [previewColor, setPreviewColor] = useState('');
   const iconRef = useRef<HTMLDivElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
 
   const Icon = components[selected] as
-    | ComponentType<{ className?: string }>
+    | ComponentType<{ className?: string; style?: React.CSSProperties }>
     | undefined;
 
   // Close on Escape
@@ -151,7 +165,7 @@ export default function IconDrawer({
     >
       <div
         ref={drawerRef}
-        className="flex h-full w-full max-w-md flex-col overflow-y-auto border-l border-border bg-[#0a0a0a]"
+        className="flex h-full w-full flex-col overflow-y-auto border-l border-border bg-[#0a0a0a] sm:max-w-md"
         role="dialog"
         aria-label={`${base} icon details`}
         aria-modal="true"
@@ -184,11 +198,14 @@ export default function IconDrawer({
         <div className="flex flex-col items-center gap-4 border-b border-border px-5 py-8">
           <div
             ref={iconRef}
-            className="flex h-24 w-24 items-center justify-center"
+            className="flex items-center justify-center"
+            style={{ minHeight: 96 }}
           >
             {Icon && (
-              <span style={{ fontSize: 96 }}>
-                <Icon />
+              <span style={{ fontSize: previewSize }}>
+                <Icon
+                  {...(previewColor ? { style: { color: previewColor } } : {})}
+                />
               </span>
             )}
           </div>
@@ -224,24 +241,95 @@ export default function IconDrawer({
           </div>
         </div>
 
-        {/* Size preview */}
+        {/* Size control */}
+        <div className="border-b border-border px-5 py-4">
+          <div className="mb-3 flex items-center justify-between">
+            <p className="text-xs font-medium uppercase tracking-wide text-white/30">
+              Size
+            </p>
+            <span className="font-mono text-xs text-white/40">
+              {previewSize}px
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <input
+              type="range"
+              min={12}
+              max={128}
+              value={previewSize}
+              onChange={e => setPreviewSize(Number(e.target.value))}
+              className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full bg-white/10 accent-accent"
+              aria-label="Preview size"
+            />
+          </div>
+          <div className="mt-2 flex gap-1.5">
+            {SIZES.map(size => (
+              <button
+                key={size}
+                type="button"
+                onClick={() => setPreviewSize(size)}
+                className={`rounded px-2 py-0.5 font-mono text-[10px] transition-colors ${
+                  previewSize === size
+                    ? 'bg-accent/20 text-accent'
+                    : 'bg-white/5 text-white/30 hover:text-white/50'
+                }`}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Color control */}
         <div className="border-b border-border px-5 py-4">
           <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/30">
-            Sizes
+            Color
           </p>
-          <div className="flex items-end gap-4">
-            {SIZES.map(size => (
-              <div key={size} className="flex flex-col items-center gap-1">
-                {Icon && (
-                  <span style={{ fontSize: `${String(size)}px` }}>
-                    <Icon />
-                  </span>
-                )}
-                <span className="font-mono text-[10px] text-white/30">
-                  {size}
-                </span>
-              </div>
+          <div className="flex flex-wrap items-center gap-2">
+            {PRESET_COLORS.map(c => (
+              <button
+                key={c.value || 'default'}
+                type="button"
+                onClick={() => setPreviewColor(c.value)}
+                title={c.label}
+                className={`h-7 w-7 rounded-full border-2 transition-all ${
+                  previewColor === c.value
+                    ? 'border-accent scale-110'
+                    : 'border-transparent hover:border-white/20'
+                }`}
+                style={
+                  c.value
+                    ? { backgroundColor: c.value }
+                    : {
+                        background:
+                          'conic-gradient(#ef4444, #f59e0b, #22c55e, #06b6d4, #6366f1, #ec4899, #ef4444)',
+                      }
+                }
+                aria-label={c.label}
+              />
             ))}
+            <label className="relative">
+              <input
+                type="color"
+                value={previewColor || '#ffffff'}
+                onChange={e => setPreviewColor(e.target.value)}
+                className="absolute inset-0 h-7 w-7 cursor-pointer opacity-0"
+                aria-label="Custom color"
+              />
+              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-dashed border-white/20 text-white/30 transition-colors hover:border-white/40 hover:text-white/50">
+                <svg
+                  viewBox="0 0 16 16"
+                  className="h-3.5 w-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                >
+                  <circle cx={8} cy={8} r={6} />
+                  <path d="M8 5v6M5 8h6" />
+                </svg>
+              </span>
+            </label>
           </div>
         </div>
 
