@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { parseAsString, useQueryState } from 'nuqs';
 import { useLayoutEffect, useRef, useState } from 'react';
 
+import { groupIcons } from '../../utils/groupIcons';
 import {
   ICON_CATEGORIES,
   type IconCategory,
@@ -13,6 +14,11 @@ import {
 type Category = IconCategory;
 
 const CATEGORY_SET: ReadonlySet<string> = new Set<string>(ICON_CATEGORIES);
+
+/** Pre-computed base icon counts per category (static data, computed once) */
+const CATEGORY_COUNTS: Record<string, number> = Object.fromEntries(
+  ICON_CATEGORIES.map(cat => [cat, groupIcons(REACT_WEB3_ICONS[cat]).length]),
+);
 
 export default function CategoryBar() {
   const [rawCategory] = useQueryState(
@@ -69,7 +75,7 @@ export default function CategoryBar() {
         />
         {ICON_CATEGORIES.map(item => {
           const isActive = item === current;
-          const count = REACT_WEB3_ICONS[item].length;
+          const count = CATEGORY_COUNTS[item];
           return (
             <Link
               key={item}
