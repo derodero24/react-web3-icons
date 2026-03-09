@@ -62,8 +62,8 @@ export default function SearchForm({
         ref={inputRef}
         type="search"
         id="search"
-        className="peer h-12 w-full rounded-xl border border-gray-200 bg-white pl-10 pr-12 shadow-sm transition-colors duration-100 focus:-translate-x-px focus:border-2 focus:border-indigo-500/80 dark:border-gray-600 dark:bg-gray-800 dark:focus:border-indigo-500/80"
-        placeholder="Search"
+        className="peer h-11 w-full rounded-lg border border-border bg-surface pl-10 pr-12 font-mono text-sm text-white placeholder-white/30 transition-colors focus:border-accent/60 focus:ring-1 focus:ring-accent/60"
+        placeholder="Search icons..."
         aria-describedby="icon-count"
         value={keyword}
         onChange={e => setKeyword(e.target.value)}
@@ -77,19 +77,19 @@ export default function SearchForm({
         strokeLinejoin="round"
         width="1em"
         height="1em"
-        className="pointer-events-none absolute left-3 text-xl opacity-40 peer-focus:text-indigo-600 peer-focus:opacity-80 dark:peer-focus:text-indigo-400"
+        className="pointer-events-none absolute left-3 text-lg text-white/30 peer-focus:text-accent"
         aria-hidden="true"
       >
         <circle cx={11} cy={11} r={8} />
         <path d="m21 21-4.35-4.35" />
       </svg>
       {!keyword && (
-        <kbd className="pointer-events-none absolute right-3 rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-sans text-xs text-gray-400 opacity-70 transition-opacity duration-100 peer-focus:opacity-0 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-500">
+        <kbd className="pointer-events-none absolute right-3 rounded border border-border bg-white/5 px-1.5 py-0.5 font-mono text-xs text-white/30 transition-opacity peer-focus:opacity-0">
           /
         </kbd>
       )}
       {keyword && (
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        <p className="mt-1 text-sm text-white/40">
           {resultCount} of {totalCount} icons
         </p>
       )}

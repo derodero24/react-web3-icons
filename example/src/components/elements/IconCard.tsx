@@ -11,7 +11,6 @@ interface Props {
   components: Record<string, ComponentType<{ className?: string }>>;
   isCopied: boolean;
   onCopy: (name: string) => void;
-  previewDark?: boolean;
   highlighted?: boolean;
 }
 
@@ -68,42 +67,39 @@ export default function IconCard({
   components,
   isCopied,
   onCopy,
-  previewDark = false,
   highlighted = false,
 }: Props) {
   const [selected, setSelected] = useState(activeVariant);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Sync to parent's active variant when filter changes
   useEffect(() => {
     setSelected(activeVariant);
   }, [activeVariant]);
 
-  // components is always populated from variants, so this is always defined
   const Icon = (components[selected] ??
-    components[variants[0] ?? '']) as ComponentType<{ className?: string }>;
+    components[variants[0] ?? '']) as ComponentType<{
+    className?: string;
+  }>;
   const hasMultiple = variants.length > 1;
 
   return (
     <div
       ref={containerRef}
-      className="group relative flex flex-col items-center gap-1"
+      className="group relative flex flex-col items-center gap-1.5"
     >
       <button
         type="button"
         aria-label={`Copy import for ${selected}`}
         title={buildImportStatement(selected)}
-        className={`group relative mx-auto flex aspect-square w-full cursor-pointer items-center justify-center rounded-lg border shadow-sm transition-all duration-150 ease-out hover:scale-[1.05] hover:shadow-md active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${
+        className={`relative flex aspect-square w-full cursor-pointer items-center justify-center border border-border transition-colors hover:bg-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset ${
           highlighted
-            ? 'border-indigo-400 bg-white ring-2 ring-indigo-400 ring-offset-1 hover:border-indigo-500 dark:bg-gray-600 dark:border-indigo-400 dark:ring-indigo-400'
-            : previewDark
-              ? 'border-gray-700 bg-gray-900 text-white hover:border-gray-600'
-              : 'border-gray-200 bg-white hover:border-gray-300 dark:border-gray-500 dark:bg-gray-600 dark:hover:border-gray-400 dark:hover:shadow-lg'
+            ? 'bg-accent/10 ring-1 ring-accent ring-inset'
+            : 'bg-surface'
         }`}
         onClick={() => onCopy(selected)}
       >
         <Icon
-          className={`text-4xl drop-shadow dark:drop-shadow-[0_1px_1px_rgba(255,255,255,0.1)] transition-all duration-150 ${
+          className={`text-4xl transition-all duration-150 ${
             isCopied ? 'scale-90 opacity-30' : ''
           }`}
         />
@@ -115,7 +111,7 @@ export default function IconCard({
             strokeWidth={3}
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="absolute h-6 w-6 text-green-500 dark:text-green-400"
+            className="absolute h-6 w-6 text-green-400"
             aria-hidden="true"
           >
             <polyline points="20 6 9 17 4 12" />
@@ -130,7 +126,7 @@ export default function IconCard({
           e.stopPropagation();
           downloadSvg(selected, containerRef.current);
         }}
-        className="absolute top-1 right-1 z-10 rounded p-0.5 text-gray-400 opacity-0 transition-opacity duration-100 hover:text-gray-700 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:text-gray-500 dark:hover:text-gray-200"
+        className="absolute top-1 right-1 z-10 rounded p-1 text-white/30 opacity-0 transition-opacity hover:text-white/70 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       >
         <svg
           viewBox="0 0 16 16"
@@ -148,8 +144,8 @@ export default function IconCard({
 
       <p
         title={selected}
-        className={`w-full text-balance text-center text-xs font-medium leading-tight transition-colors duration-150 ${
-          isCopied ? 'text-green-600 dark:text-green-400' : ''
+        className={`w-full text-balance text-center font-mono text-[11px] leading-tight transition-colors ${
+          isCopied ? 'text-green-400' : 'text-white/40'
         }`}
       >
         {isCopied ? 'Copied!' : base}
@@ -170,8 +166,8 @@ export default function IconCard({
               }}
               className={`rounded px-1 py-0.5 font-mono text-[9px] leading-none transition-colors ${
                 selected === v
-                  ? 'bg-indigo-600 text-white dark:bg-indigo-400 dark:text-gray-900'
-                  : 'bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600'
+                  ? 'bg-white/15 text-white'
+                  : 'text-white/25 hover:bg-white/5 hover:text-white/50'
               }`}
             >
               {chipLabel(v, base)}

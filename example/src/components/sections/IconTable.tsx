@@ -31,7 +31,6 @@ export default function IconTable() {
   );
   const [linkedIcon] = useQueryState('icon', parseAsString.withDefault(''));
   const [variant, setVariant] = useState<Variant>('all');
-  const [previewDark, setPreviewDark] = useState(false);
   const { copy, copiedName, copyStatus } = useCopy();
 
   const validCategory = Object.hasOwn(REACT_WEB3_ICONS, rawCategory)
@@ -41,13 +40,11 @@ export default function IconTable() {
   const categoryIcons = REACT_WEB3_ICONS[validCategory];
   const displayedGroups = useIconFilter(categoryIcons, keyword, variant);
 
-  // Total group count (before search/variant filter, for the "N icons" label)
   const totalGroupCount = useMemo(
     () => groupIcons(categoryIcons).length,
     [categoryIcons],
   );
 
-  // Scroll to the linked icon the first time it appears in the grid
   const hasScrolled = useRef(false);
   useEffect(() => {
     if (!linkedIcon || hasScrolled.current) return;
@@ -85,50 +82,24 @@ export default function IconTable() {
           />
         </div>
 
-        <div className="flex shrink-0 items-center gap-2">
-          {variant === 'mono' && (
+        <fieldset className="flex shrink-0 overflow-hidden rounded-lg border border-border bg-surface">
+          <legend className="sr-only">Icon variant filter</legend>
+          {VARIANTS.map(v => (
             <button
+              key={v}
               type="button"
-              aria-pressed={previewDark}
-              aria-label="Toggle dark card background"
-              title="Preview mono icons on dark background"
-              onClick={() => setPreviewDark(p => !p)}
-              className={`flex h-12 items-center gap-1.5 rounded-xl border px-3 text-sm font-medium shadow-sm transition-colors duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
-                previewDark
-                  ? 'border-gray-700 bg-gray-800 text-white'
-                  : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700'
+              onClick={() => setVariant(v)}
+              aria-pressed={variant === v}
+              className={`h-11 px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent ${
+                variant === v
+                  ? 'bg-white/10 text-white'
+                  : 'text-white/40 hover:bg-white/5 hover:text-white/60'
               }`}
             >
-              <span
-                className={`inline-block h-3.5 w-3.5 rounded-sm border ${previewDark ? 'border-gray-500 bg-gray-900' : 'border-gray-400 bg-gray-800'}`}
-                aria-hidden="true"
-              />
-              Dark
+              {VARIANT_LABELS[v]}
             </button>
-          )}
-
-          <fieldset className="flex overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-600 dark:bg-gray-800">
-            <legend className="sr-only">Icon variant filter</legend>
-            {VARIANTS.map(v => (
-              <button
-                key={v}
-                type="button"
-                onClick={() => {
-                  if (v !== 'mono') setPreviewDark(false);
-                  setVariant(v);
-                }}
-                aria-pressed={variant === v}
-                className={`h-12 px-4 text-sm font-medium transition-colors duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-500 ${
-                  variant === v
-                    ? 'bg-indigo-700 text-white dark:bg-indigo-100 dark:text-gray-900'
-                    : 'text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
-                }`}
-              >
-                {VARIANT_LABELS[v]}
-              </button>
-            ))}
-          </fieldset>
-        </div>
+          ))}
+        </fieldset>
       </div>
 
       <p id="icon-count" className="sr-only" aria-live="polite">
@@ -140,7 +111,7 @@ export default function IconTable() {
       </output>
 
       {isCategoryEmpty ? (
-        <div className="mt-16 flex flex-col items-center gap-2 text-center text-gray-400 dark:text-gray-500">
+        <div className="mt-16 flex flex-col items-center gap-2 text-center text-white/30">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -154,13 +125,13 @@ export default function IconTable() {
             <circle cx={12} cy={12} r={10} />
             <path d="M8 12h8" />
           </svg>
-          <p className="text-base font-medium">No icons yet</p>
+          <p className="text-base font-medium text-white/50">No icons yet</p>
           <p className="text-sm">
             {`${validCategory.charAt(0).toUpperCase()}${validCategory.slice(1)} icons are coming soon`}
           </p>
         </div>
       ) : isSearchEmpty ? (
-        <div className="mt-16 flex flex-col items-center gap-2 text-center text-gray-400 dark:text-gray-500">
+        <div className="mt-16 flex flex-col items-center gap-2 text-center text-white/30">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -174,7 +145,7 @@ export default function IconTable() {
             <circle cx={11} cy={11} r={8} />
             <path d="m21 21-4.35-4.35" />
           </svg>
-          <p className="text-base font-medium">
+          <p className="text-base font-medium text-white/50">
             No results for &ldquo;{keyword}&rdquo;
           </p>
           <p className="text-sm">Try a different search term</p>
@@ -182,15 +153,10 @@ export default function IconTable() {
       ) : (
         <div
           key={`${validCategory}-${variant}`}
-          className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(96px,1fr))] gap-x-3 gap-y-4"
+          className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(112px,1fr))] gap-0"
         >
-          {displayedGroups.map((group, index) => (
-            <div
-              key={group.base}
-              data-icon-name={group.base}
-              className="motion-safe:animate-fade-in-up"
-              style={{ animationDelay: `${Math.min(index * 12, 150)}ms` }}
-            >
+          {displayedGroups.map(group => (
+            <div key={group.base} data-icon-name={group.base} className="p-3">
               <IconCard
                 base={group.base}
                 variants={group.variants}
@@ -198,7 +164,6 @@ export default function IconTable() {
                 components={group.components}
                 isCopied={group.variants.includes(copiedName ?? '')}
                 onCopy={copy}
-                previewDark={variant === 'mono' && previewDark}
                 highlighted={linkedIcon === group.base}
               />
             </div>
