@@ -1,23 +1,21 @@
 import '../styles/global.css';
 
 import type { Metadata } from 'next';
-import { Noto_Sans, Orbitron } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import type { ReactNode } from 'react';
 import Footer from '../components/sections/Footer';
 import Header from '../components/sections/Header';
 import { Providers } from './providers';
 
-const notoSans = Noto_Sans({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
   variable: '--font-sans',
   display: 'swap',
 });
 
-const orbitron = Orbitron({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  variable: '--font-orbitron',
+  variable: '--font-mono',
   display: 'swap',
 });
 
@@ -47,23 +45,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${notoSans.variable} ${orbitron.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <meta name="theme-color" content="#1F2937" />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: light)"
-          content="#F3F4F6"
-        />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: dark)"
-          content="#1F2937"
-        />
+        <meta name="theme-color" content="#080808" />
       </head>
       <body>
         <Providers>

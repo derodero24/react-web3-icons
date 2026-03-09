@@ -17,9 +17,7 @@ function Section({
 }) {
   return (
     <section id={id} className="scroll-mt-8">
-      <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">
-        {title}
-      </h2>
+      <h2 className="mb-4 text-xl font-semibold text-white">{title}</h2>
       {children}
     </section>
   );
@@ -27,7 +25,7 @@ function Section({
 
 function Code({ children }: { children: string }) {
   return (
-    <pre className="overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm text-gray-100 dark:bg-gray-950">
+    <pre className="overflow-x-auto rounded-lg bg-surface border border-border p-4 font-mono text-sm text-white/80">
       <code>{children}</code>
     </pre>
   );
@@ -36,12 +34,10 @@ function Code({ children }: { children: string }) {
 export default function DocsPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="mb-2 font-orbitron text-3xl font-bold text-gray-900 dark:text-gray-100">
-        API Reference
-      </h1>
-      <p className="mb-10 text-gray-500 dark:text-gray-400">
+      <h1 className="mb-2 text-3xl font-bold text-white">API Reference</h1>
+      <p className="mb-10 text-white/40">
         Usage guide and complete API reference for{' '}
-        <code className="rounded bg-gray-100 px-1 py-0.5 font-mono text-sm dark:bg-gray-800">
+        <code className="rounded bg-surface px-1 py-0.5 font-mono text-sm text-white/60">
           react-web3-icons
         </code>
         .
@@ -50,7 +46,7 @@ export default function DocsPage() {
       <div className="flex flex-col gap-10">
         {/* Getting Started */}
         <Section id="getting-started" title="Getting Started">
-          <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-3 text-sm text-white/60">
             Install via your package manager:
           </p>
           <Code>{`npm install react-web3-icons
@@ -58,7 +54,7 @@ export default function DocsPage() {
 pnpm add react-web3-icons
 # or
 yarn add react-web3-icons`}</Code>
-          <p className="mt-4 mb-3 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-4 mb-3 text-sm text-white/60">
             Import and use any icon component:
           </p>
           <Code>{`import { Ethereum, BitcoinCircle, MetaMask } from 'react-web3-icons';
@@ -76,171 +72,142 @@ export function MyComponent() {
 
         {/* Icon Props */}
         <Section id="icon-props" title="Icon Props">
-          <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-4 text-sm text-white/60">
             All icon components accept the following props in addition to
             standard SVG attributes.
           </p>
-          <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+          <div className="overflow-x-auto rounded-lg border border-border">
             <table className="w-full text-left">
               <thead>
-                <tr className="border-b border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800/50">
-                  <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <tr className="border-b border-border bg-surface">
+                  <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-white/40">
                     Prop
                   </th>
-                  <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                  <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-white/40">
                     Type
                   </th>
-                  <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                  <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-white/40">
                     Default
                   </th>
-                  <th className="py-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                  <th className="py-2 text-xs font-semibold uppercase tracking-wide text-white/40">
                     Description
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100 pl-3 dark:divide-gray-700">
-                <tr className="border-b border-gray-100 dark:border-gray-700">
-                  <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-indigo-600 dark:text-indigo-400">
+              <tbody className="divide-y divide-border pl-3">
+                <tr>
+                  <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                     size
                   </td>
-                  <td className="py-2 pr-4 align-top font-mono text-sm text-gray-600 dark:text-gray-400">
+                  <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
                     {'string | number'}
                   </td>
-                  <td className="py-2 pr-4 align-top font-mono text-sm text-gray-500">
+                  <td className="py-2 pr-4 align-top font-mono text-sm text-white/40">
                     {'"1em"'}
                   </td>
-                  <td className="py-2 align-top text-sm text-gray-700 dark:text-gray-300">
+                  <td className="py-2 align-top text-sm text-white/60">
                     Sets both{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      width
-                    </code>{' '}
-                    and{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      height
-                    </code>
-                    . Accepts any valid CSS size or a unitless number (treated
-                    as pixels).
+                    <code className="rounded bg-surface px-1">width</code> and{' '}
+                    <code className="rounded bg-surface px-1">height</code>.
+                    Accepts any valid CSS size or a unitless number (treated as
+                    pixels).
                   </td>
                 </tr>
-                <tr className="border-b border-gray-100 dark:border-gray-700">
-                  <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-indigo-600 dark:text-indigo-400">
+                <tr>
+                  <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                     className
                   </td>
-                  <td className="py-2 pr-4 align-top font-mono text-sm text-gray-600 dark:text-gray-400">
+                  <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
                     string
                   </td>
-                  <td className="py-2 pr-4 align-top font-mono text-sm text-gray-500">
+                  <td className="py-2 pr-4 align-top font-mono text-sm text-white/40">
                     —
                   </td>
-                  <td className="py-2 align-top text-sm text-gray-700 dark:text-gray-300">
+                  <td className="py-2 align-top text-sm text-white/60">
                     CSS class applied to the root{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      {'<svg>'}
-                    </code>
-                    . Use{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      text-*
-                    </code>{' '}
+                    <code className="rounded bg-surface px-1">{'<svg>'}</code>.
+                    Use <code className="rounded bg-surface px-1">text-*</code>{' '}
                     utilities to set the color of{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
+                    <code className="rounded bg-surface px-1">
                       currentColor
                     </code>{' '}
                     mono icons.
                   </td>
                 </tr>
-                <tr className="border-b border-gray-100 dark:border-gray-700">
-                  <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-indigo-600 dark:text-indigo-400">
+                <tr>
+                  <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                     title
                   </td>
-                  <td className="py-2 pr-4 align-top font-mono text-sm text-gray-600 dark:text-gray-400">
+                  <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
                     string
                   </td>
-                  <td className="py-2 pr-4 align-top font-mono text-sm text-gray-500">
+                  <td className="py-2 pr-4 align-top font-mono text-sm text-white/40">
                     —
                   </td>
-                  <td className="py-2 align-top text-sm text-gray-700 dark:text-gray-300">
+                  <td className="py-2 align-top text-sm text-white/60">
                     Accessible label rendered as a{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      {'<title>'}
-                    </code>{' '}
+                    <code className="rounded bg-surface px-1">{'<title>'}</code>{' '}
                     element inside the SVG. When provided,{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      aria-hidden
-                    </code>{' '}
+                    <code className="rounded bg-surface px-1">aria-hidden</code>{' '}
                     is removed automatically.
                   </td>
                 </tr>
-                <tr className="border-b border-gray-100 dark:border-gray-700">
-                  <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-indigo-600 dark:text-indigo-400">
+                <tr>
+                  <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                     titleId
                   </td>
-                  <td className="py-2 pr-4 align-top font-mono text-sm text-gray-600 dark:text-gray-400">
+                  <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
                     string
                   </td>
-                  <td className="py-2 pr-4 align-top font-mono text-sm text-gray-500">
+                  <td className="py-2 pr-4 align-top font-mono text-sm text-white/40">
                     —
                   </td>
-                  <td className="py-2 align-top text-sm text-gray-700 dark:text-gray-300">
+                  <td className="py-2 align-top text-sm text-white/60">
                     Optional ID for the{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      {'<title>'}
-                    </code>{' '}
+                    <code className="rounded bg-surface px-1">{'<title>'}</code>{' '}
                     element. When both{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      title
-                    </code>{' '}
-                    and{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      titleId
-                    </code>{' '}
-                    are provided, the SVG sets{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
+                    <code className="rounded bg-surface px-1">title</code> and{' '}
+                    <code className="rounded bg-surface px-1">titleId</code> are
+                    provided, the SVG sets{' '}
+                    <code className="rounded bg-surface px-1">
                       aria-labelledby
                     </code>{' '}
                     to that ID.
                   </td>
                 </tr>
-                <tr className="border-b border-gray-100 dark:border-gray-700">
-                  <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-indigo-600 dark:text-indigo-400">
+                <tr>
+                  <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                     aria-hidden
                   </td>
-                  <td className="py-2 pr-4 align-top font-mono text-sm text-gray-600 dark:text-gray-400">
+                  <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
                     boolean
                   </td>
-                  <td className="py-2 pr-4 align-top font-mono text-sm text-gray-500">
+                  <td className="py-2 pr-4 align-top font-mono text-sm text-white/40">
                     true
                   </td>
-                  <td className="py-2 align-top text-sm text-gray-700 dark:text-gray-300">
+                  <td className="py-2 align-top text-sm text-white/60">
                     Defaults to{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      true
-                    </code>{' '}
+                    <code className="rounded bg-surface px-1">true</code>{' '}
                     (decorative). Set to{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      false
-                    </code>{' '}
-                    or supply a{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      title
-                    </code>{' '}
-                    to expose the icon to screen readers.
+                    <code className="rounded bg-surface px-1">false</code> or
+                    supply a{' '}
+                    <code className="rounded bg-surface px-1">title</code> to
+                    expose the icon to screen readers.
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-indigo-600 dark:text-indigo-400">
+                  <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                     style
                   </td>
-                  <td className="py-2 pr-4 align-top font-mono text-sm text-gray-600 dark:text-gray-400">
+                  <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
                     CSSProperties
                   </td>
-                  <td className="py-2 pr-4 align-top font-mono text-sm text-gray-500">
+                  <td className="py-2 pr-4 align-top font-mono text-sm text-white/40">
                     —
                   </td>
-                  <td className="py-2 align-top text-sm text-gray-700 dark:text-gray-300">
+                  <td className="py-2 align-top text-sm text-white/60">
                     Inline styles merged (shallow spread) on top of any{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      IconContext
-                    </code>{' '}
+                    <code className="rounded bg-surface px-1">IconContext</code>{' '}
                     defaults.
                   </td>
                 </tr>
@@ -251,9 +218,9 @@ export function MyComponent() {
 
         {/* IconContext */}
         <Section id="icon-context" title="IconContext">
-          <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-3 text-sm text-white/60">
             Wrap a subtree with{' '}
-            <code className="rounded bg-gray-100 px-1 font-mono text-sm dark:bg-gray-800">
+            <code className="rounded bg-surface px-1 font-mono text-sm">
               IconContext.Provider
             </code>{' '}
             to apply default props to every icon inside it. Per-icon props
@@ -266,11 +233,11 @@ export function MyComponent() {
   <Ethereum />      {/* size=24, text-gray-700 */}
   <Bitcoin size={48} /> {/* size=48 (overrides context), text-gray-700 */}
 </IconContext.Provider>`}</Code>
-          <p className="mt-4 mb-3 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-4 mb-3 text-sm text-white/60">
             Context value accepts all{' '}
             <a
               href="#icon-props"
-              className="text-indigo-600 underline hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
+              className="text-accent underline hover:text-accent-hover"
             >
               IconProps
             </a>
@@ -280,18 +247,18 @@ export function MyComponent() {
 
         {/* Import Patterns */}
         <Section id="import-patterns" title="Import Patterns">
-          <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-3 text-sm text-white/60">
             Three equivalent ways to import icons:
           </p>
           <div className="flex flex-col gap-4">
             <div>
-              <p className="mb-1.5 text-sm font-medium text-gray-700 dark:text-gray-300">
+              <p className="mb-1.5 text-sm font-medium text-white/80">
                 Named import from root entry
               </p>
               <Code>{`import { Ethereum, BitcoinMono } from 'react-web3-icons';`}</Code>
             </div>
             <div>
-              <p className="mb-1.5 text-sm font-medium text-gray-700 dark:text-gray-300">
+              <p className="mb-1.5 text-sm font-medium text-white/80">
                 Category subpath (better tree-shaking)
               </p>
               <Code>{`import { Ethereum } from 'react-web3-icons/chain';
@@ -299,7 +266,7 @@ import { Bitcoin, Doge } from 'react-web3-icons/coin';
 import { MetaMask } from 'react-web3-icons/wallet';`}</Code>
             </div>
             <div>
-              <p className="mb-1.5 text-sm font-medium text-gray-700 dark:text-gray-300">
+              <p className="mb-1.5 text-sm font-medium text-white/80">
                 Available subpath categories
               </p>
               <Code>{`react-web3-icons/bridge
@@ -323,18 +290,18 @@ react-web3-icons/wallet`}</Code>
 
         {/* Naming Conventions */}
         <Section id="naming" title="Naming Conventions">
-          <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-4 text-sm text-white/60">
             Icon names use PascalCase. Variant suffixes describe visual
             differences:
           </p>
-          <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+          <div className="overflow-x-auto rounded-lg border border-border">
             <table className="w-full text-left">
               <thead>
-                <tr className="border-b border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800/50">
-                  <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <tr className="border-b border-border bg-surface">
+                  <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-white/40">
                     Suffix
                   </th>
-                  <th className="py-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                  <th className="py-2 text-xs font-semibold uppercase tracking-wide text-white/40">
                     Description
                   </th>
                 </tr>
@@ -357,12 +324,12 @@ react-web3-icons/wallet`}</Code>
                 ].map(([suffix, desc]) => (
                   <tr
                     key={suffix}
-                    className="border-b border-gray-100 last:border-0 dark:border-gray-700"
+                    className="border-b border-border last:border-0"
                   >
-                    <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-indigo-600 dark:text-indigo-400">
+                    <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                       {suffix}
                     </td>
-                    <td className="py-2 align-top text-sm text-gray-700 dark:text-gray-300">
+                    <td className="py-2 align-top text-sm text-white/60">
                       {desc}
                     </td>
                   </tr>
@@ -370,21 +337,21 @@ react-web3-icons/wallet`}</Code>
               </tbody>
             </table>
           </div>
-          <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-3 text-sm text-white/60">
             Example:{' '}
-            <code className="rounded bg-gray-100 px-1 font-mono text-sm dark:bg-gray-800">
+            <code className="rounded bg-surface px-1 font-mono text-sm">
               Ethereum
             </code>
             ,{' '}
-            <code className="rounded bg-gray-100 px-1 font-mono text-sm dark:bg-gray-800">
+            <code className="rounded bg-surface px-1 font-mono text-sm">
               EthereumMono
             </code>
             ,{' '}
-            <code className="rounded bg-gray-100 px-1 font-mono text-sm dark:bg-gray-800">
+            <code className="rounded bg-surface px-1 font-mono text-sm">
               EthereumCircle
             </code>
             ,{' '}
-            <code className="rounded bg-gray-100 px-1 font-mono text-sm dark:bg-gray-800">
+            <code className="rounded bg-surface px-1 font-mono text-sm">
               EthereumCircleMono
             </code>
           </p>
@@ -392,14 +359,14 @@ react-web3-icons/wallet`}</Code>
 
         {/* Deprecation */}
         <Section id="deprecation" title="Deprecation Policy">
-          <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-3 text-sm text-white/60">
             When a project rebrands, the old name stays as a deprecated
             re-export alias and is removed only in a major release (after at
             least one minor release and 90 days).
           </p>
-          <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-3 text-sm text-white/60">
             A{' '}
-            <code className="rounded bg-gray-100 px-1 font-mono text-sm dark:bg-gray-800">
+            <code className="rounded bg-surface px-1 font-mono text-sm">
               DEPRECATED_ICON_NAMES
             </code>{' '}
             set is exported to help you filter deprecated aliases at runtime:
@@ -420,13 +387,13 @@ const activeNames = Object.keys(icons).filter(
 
         {/* RSC */}
         <Section id="rsc" title="React Server Components">
-          <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-3 text-sm text-white/60">
             Icons use{' '}
-            <code className="rounded bg-gray-100 px-1 font-mono text-sm dark:bg-gray-800">
+            <code className="rounded bg-surface px-1 font-mono text-sm">
               useId
             </code>{' '}
             and{' '}
-            <code className="rounded bg-gray-100 px-1 font-mono text-sm dark:bg-gray-800">
+            <code className="rounded bg-surface px-1 font-mono text-sm">
               useContext
             </code>
             , so they cannot render in React Server Components directly. Mark
@@ -440,7 +407,7 @@ import { Ethereum } from 'react-web3-icons';
 export function MyComponent() {
   return <Ethereum size={24} />;
 }`}</Code>
-          <p className="mt-4 mb-3 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-4 mb-3 text-sm text-white/60">
             Alternatively, create a small re-export wrapper:
           </p>
           <Code>{`// icons.tsx — client boundary
@@ -450,9 +417,9 @@ export { Ethereum, Bitcoin } from 'react-web3-icons';`}</Code>
 
         {/* TypeScript */}
         <Section id="typescript" title="TypeScript">
-          <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-3 text-sm text-white/60">
             The{' '}
-            <code className="rounded bg-gray-100 px-1 font-mono text-sm dark:bg-gray-800">
+            <code className="rounded bg-surface px-1 font-mono text-sm">
               IconName
             </code>{' '}
             union type enumerates every exported icon name and is useful for
@@ -469,7 +436,7 @@ function DynamicIcon({ name, size }: { name: IconName; size?: number }) {
       </div>
 
       {/* Nav links */}
-      <nav className="mt-12 border-t border-gray-200 pt-6 dark:border-gray-700">
+      <nav className="mt-12 border-t border-border pt-6">
         <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
           {[
             ['#getting-started', 'Getting Started'],
@@ -484,7 +451,7 @@ function DynamicIcon({ name, size }: { name: IconName; size?: number }) {
             <li key={href}>
               <a
                 href={href}
-                className="text-indigo-600 hover:underline dark:text-indigo-400"
+                className="text-accent hover:text-accent-hover hover:underline"
               >
                 {label}
               </a>
