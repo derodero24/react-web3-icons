@@ -74,6 +74,8 @@ describe('Coin aliases re-export correctly', () => {
     'Matic',
     'Mkr',
     'MkrMono',
+    'OpCircle',
+    'OpCircleMono',
   ];
 
   const names = new Set(Object.keys(icons));

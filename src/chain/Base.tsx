@@ -27,3 +27,34 @@ export const BaseMono = createIcon(
   ),
   'currentColor',
 );
+
+// Circle variant: 28×28 content scaled to ~46px centered in 64×64
+const BASE_CIRCLE_TX = 'translate(9 9) scale(1.643)';
+
+export const BaseCircle = createIcon('BaseCircle', '0 0 64 64', () => (
+  <>
+    <circle cx="32" cy="32" r="32" fill="#0052FF" />
+    <g transform={BASE_CIRCLE_TX}>
+      <path d={BASE_B} fill="#fff" />
+    </g>
+  </>
+));
+
+export const BaseCircleMono = createIcon(
+  'BaseCircleMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-basc-a)`} />
+      <defs>
+        <mask id={`${_id}-basc-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={BASE_CIRCLE_TX} fill="#000">
+            <path d={BASE_B} />
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);

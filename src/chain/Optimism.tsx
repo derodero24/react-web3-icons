@@ -26,3 +26,34 @@ export const OptimismMono = createIcon(
   ),
   'currentColor',
 );
+
+// Circle variant: 28×28 content scaled to ~46px centered in 64×64
+const OP_CIRCLE_TX = 'translate(9 9) scale(1.643)';
+
+export const OptimismCircle = createIcon('OptimismCircle', '0 0 64 64', () => (
+  <>
+    <circle cx="32" cy="32" r="32" fill="#FF0420" />
+    <g transform={OP_CIRCLE_TX}>
+      <path d={OP_SYMBOL} fill="#fff" />
+    </g>
+  </>
+));
+
+export const OptimismCircleMono = createIcon(
+  'OptimismCircleMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-optc-a)`} />
+      <defs>
+        <mask id={`${_id}-optc-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={OP_CIRCLE_TX} fill="#000">
+            <path d={OP_SYMBOL} />
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
