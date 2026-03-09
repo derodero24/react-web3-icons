@@ -1,1 +1,6 @@
-export { Solana as Sol, SolanaMono as SolMono } from '../chain/Solana';
+export {
+  Solana as Sol,
+  SolanaCircle as SolCircle,
+  SolanaCircleMono as SolCircleMono,
+  SolanaMono as SolMono,
+} from '../chain/Solana';
