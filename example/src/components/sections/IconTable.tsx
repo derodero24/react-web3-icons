@@ -24,7 +24,7 @@ const VARIANT_LABELS: Record<Variant, string> = {
 
 const VARIANTS: Variant[] = ['all', 'colored', 'mono'];
 
-const PAGE_SIZE = 60;
+const PAGE_SIZE = 120;
 
 export default function IconTable() {
   const [rawCategory] = useQueryState(
