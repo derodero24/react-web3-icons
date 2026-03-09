@@ -195,6 +195,39 @@ function DynamicIcon({ name }: { name: IconName }) {
 <DynamicIcon name="Unknown" />    // ❌ TypeScript error
 ```
 
+### Dynamic Icon Components
+
+The `react-web3-icons/dynamic` entry point provides components that lazily load icons at runtime by identifier (ticker, slug, or chain ID). Each category has a dedicated component:
+
+```tsx
+import { ChainIcon, CoinIcon, WalletIcon, ExchangeIcon } from 'react-web3-icons/dynamic';
+
+<ChainIcon chainId={1} />               // Ethereum by chain ID
+<ChainIcon name="arbitrum" />            // Arbitrum by slug
+<CoinIcon symbol="ETH" />               // ETH coin icon
+<WalletIcon name="metamask" />           // MetaMask wallet icon
+<ExchangeIcon name="binance" />          // Binance exchange icon
+```
+
+Use the `variant` prop to switch between colored and monochrome:
+
+```tsx
+<CoinIcon symbol="BTC" variant="mono" />
+```
+
+#### Fallback
+
+Use the `fallback` prop to render alternative content while the icon chunk is loading or when the identifier is not recognized:
+
+```tsx
+<CoinIcon symbol={token.symbol} fallback={<GenericTokenIcon />} />
+<CoinIcon symbol={token.symbol} fallback={<Skeleton width={24} height={24} />} />
+```
+
+When omitted, nothing is rendered for unknown identifiers and during loading.
+
+All standard icon props (`size`, `className`, `fill`, etc.) are forwarded to the underlying SVG icon.
+
 ## Icon Categories
 
 | Category | Description | Examples |

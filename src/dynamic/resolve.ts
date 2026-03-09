@@ -10,9 +10,12 @@ function withVariant(baseName: string, variant: Variant): string {
 const WALLET_SLUG_TO_NAME: Record<string, string> = {
   argent: 'Argent',
   backpackwallet: 'BackpackWallet',
+  bitgetwallet: 'BitgetWallet',
   coinbasewallet: 'CoinbaseWallet',
   daedaluswallet: 'DaedalusWallet',
+  enkrypt: 'Enkrypt',
   exodus: 'Exodus',
+  imtoken: 'ImToken',
   keplr: 'Keplr',
   ledger: 'Ledger',
   metamask: 'MetaMask',
@@ -23,6 +26,8 @@ const WALLET_SLUG_TO_NAME: Record<string, string> = {
   rabby: 'Rabby',
   rainbowwallet: 'RainbowWallet',
   safe: 'Safe',
+  subwallet: 'SubWallet',
+  tangem: 'Tangem',
   trezor: 'Trezor',
   trustwallet: 'TrustWallet',
   walletconnect: 'WalletConnect',
@@ -35,10 +40,12 @@ const EXCHANGE_SLUG_TO_NAME: Record<string, string> = {
   binance: 'Binance',
   bitfinex: 'Bitfinex',
   bitget: 'Bitget',
+  bithumb: 'Bithumb',
   bitstamp: 'Bitstamp',
   bybit: 'Bybit',
   coinbase: 'Coinbase',
   cryptocom: 'CryptoCom',
+  deribit: 'Deribit',
   gateio: 'Gateio',
   gemini: 'Gemini',
   htx: 'Htx',
@@ -46,6 +53,8 @@ const EXCHANGE_SLUG_TO_NAME: Record<string, string> = {
   kucoin: 'KuCoin',
   mexc: 'Mexc',
   okx: 'Okx',
+  phemex: 'Phemex',
+  upbit: 'Upbit',
 };
 
 export function resolveChainExportName(props: {
