@@ -1,6 +1,6 @@
-// Known variant modifiers and suffixes.
-// Compound suffixes (e.g. "CircleMono") are built from shape + modifier combinations.
-const SHAPES = [
+// Known variant suffix parts: base suffixes and modifiers.
+// Compound suffixes (e.g. "CircleMono") are generated automatically.
+const VARIANT_PARTS = [
   'Circle',
   'Square',
   'Wordmark',
@@ -12,14 +12,14 @@ const SHAPES = [
 ] as const;
 const MODIFIERS = ['Mono'] as const;
 
-// Build all valid suffixes: compound first (longest), then shapes, then modifiers
+// Build all valid suffixes: compound first (longest), then base parts, then modifiers
 const SUFFIXES: string[] = [
-  // Compound: shape + modifier (e.g. "CircleMono", "SquareMono")
-  ...SHAPES.flatMap(s => MODIFIERS.map(m => `${s}${m}`)),
+  // Compound: base part + modifier (e.g. "CircleMono", "SquareMono")
+  ...VARIANT_PARTS.flatMap(s => MODIFIERS.map(m => `${s}${m}`)),
   // Special compound: "WordmarkFlat"
   'WordmarkFlat',
-  // Individual shapes and modifiers
-  ...SHAPES,
+  // Individual parts and modifiers
+  ...VARIANT_PARTS,
   ...MODIFIERS,
 ];
 

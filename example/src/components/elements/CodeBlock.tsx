@@ -1,16 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function CodeBlock({ children }: { children: string }) {
   const [copied, setCopied] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  useEffect(() => () => clearTimeout(timerRef.current), []);
 
   const handleCopy = () => {
     navigator.clipboard
       .writeText(children)
       .then(() => {
         setCopied(true);
-        setTimeout(() => setCopied(false), 1500);
+        clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(() => setCopied(false), 1500);
       })
       // biome-ignore lint/suspicious/noConsole: clipboard error
       .catch(console.error);
@@ -25,7 +29,7 @@ export default function CodeBlock({ children }: { children: string }) {
         type="button"
         onClick={handleCopy}
         aria-label="Copy code"
-        className="absolute right-2 top-2 rounded p-1.5 text-white/20 opacity-0 transition-all hover:bg-white/10 hover:text-white/60 group-hover:opacity-100"
+        className="absolute right-2 top-2 rounded p-1.5 text-white/20 opacity-0 transition-all hover:bg-white/10 hover:text-white/60 focus-visible:opacity-100 group-hover:opacity-100"
       >
         {copied ? (
           <svg

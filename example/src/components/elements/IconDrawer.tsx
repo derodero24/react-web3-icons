@@ -1,6 +1,6 @@
 'use client';
 
-import type { ComponentType } from 'react';
+import type { ComponentType, CSSProperties } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface Props {
@@ -8,18 +8,14 @@ interface Props {
   variants: string[];
   components: Record<
     string,
-    ComponentType<{ className?: string; style?: React.CSSProperties }>
+    ComponentType<{ className?: string; style?: CSSProperties }>
   >;
+  /** Current category key, or 'all' when browsing all categories */
+  category: string;
   onClose: () => void;
 }
 
 type CodeTab = 'import' | 'subpath' | 'svg';
-
-const CODE_TABS: { key: CodeTab; label: string }[] = [
-  { key: 'import', label: 'Import' },
-  { key: 'subpath', label: 'Subpath' },
-  { key: 'svg', label: 'SVG' },
-];
 
 const SIZES = [16, 24, 32, 48, 64] as const;
 const PRESET_COLORS = [
@@ -32,24 +28,35 @@ const PRESET_COLORS = [
   { value: '#06b6d4', label: 'Cyan' },
 ] as const;
 
-function CopyButton({ text }: { text: string }) {
+/** Safely copy text and show a brief check mark. */
+function useCopyAction() {
   const [copied, setCopied] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-  const handleCopy = () => {
+  useEffect(() => () => clearTimeout(timerRef.current), []);
+
+  const copy = useCallback((text: string) => {
     navigator.clipboard
       .writeText(text)
       .then(() => {
         setCopied(true);
-        setTimeout(() => setCopied(false), 1500);
+        clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(() => setCopied(false), 1500);
       })
       // biome-ignore lint/suspicious/noConsole: clipboard error
       .catch(console.error);
-  };
+  }, []);
+
+  return { copied, copy };
+}
+
+function CopyButton({ text }: { text: string }) {
+  const { copied, copy } = useCopyAction();
 
   return (
     <button
       type="button"
-      onClick={handleCopy}
+      onClick={() => copy(text)}
       aria-label="Copy to clipboard"
       className="rounded p-1.5 text-white/30 transition-colors hover:bg-white/10 hover:text-white/60"
     >
@@ -101,16 +108,23 @@ function downloadSvg(name: string, container: HTMLElement | null) {
   URL.revokeObjectURL(url);
 }
 
-function getSvgMarkup(container: HTMLElement | null): string {
-  const svg = container?.querySelector('svg');
-  if (!svg) return '';
-  return new XMLSerializer().serializeToString(svg);
+/** Background style helper used in both normal and compare previews */
+function bgStyle(bg: 'dark' | 'light' | 'checker'): CSSProperties {
+  if (bg === 'light') return { backgroundColor: '#fff' };
+  if (bg === 'checker')
+    return {
+      backgroundImage:
+        'repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%)',
+      backgroundSize: '8px 8px',
+    };
+  return { backgroundColor: '#111' };
 }
 
 export default function IconDrawer({
   base,
   variants,
   components,
+  category,
   onClose,
 }: Props) {
   const [selected, setSelected] = useState(
@@ -123,12 +137,27 @@ export default function IconDrawer({
   const [previewBg, setPreviewBg] = useState<'dark' | 'light' | 'checker'>(
     'dark',
   );
+  const [svgMarkup, setSvgMarkup] = useState('');
   const iconRef = useRef<HTMLDivElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
 
   const Icon = components[selected] as
-    | ComponentType<{ className?: string; style?: React.CSSProperties }>
+    | ComponentType<{ className?: string; style?: CSSProperties }>
     | undefined;
+
+  // Serialize SVG after render so the code tab shows the current DOM.
+  // Deps trigger re-serialization when the icon or its styling changes.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: intentional triggers for DOM serialization
+  useEffect(() => {
+    // Small delay lets React commit the icon DOM first
+    const id = requestAnimationFrame(() => {
+      const svg = iconRef.current?.querySelector('svg');
+      if (svg) {
+        setSvgMarkup(new XMLSerializer().serializeToString(svg));
+      }
+    });
+    return () => cancelAnimationFrame(id);
+  }, [selected, previewSize, previewColor]);
 
   // Close on Escape and focus trap
   useEffect(() => {
@@ -158,15 +187,17 @@ export default function IconDrawer({
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  // Focus drawer on open and lock body scroll
+  // Focus close button on open and lock body scroll (preserve previous value)
   useEffect(() => {
     const closeBtn = drawerRef.current?.querySelector<HTMLElement>(
       '[aria-label="Close drawer"]',
     );
     closeBtn?.focus();
+
+    const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = prev;
     };
   }, []);
 
@@ -180,16 +211,31 @@ export default function IconDrawer({
     [onClose],
   );
 
+  // Code content
   const importCode = `import { ${selected} } from 'react-web3-icons';`;
-  const subpathCode = `import { ${selected} } from 'react-web3-icons/<category>';`;
-  const svgCode = getSvgMarkup(iconRef.current);
+  const hasSubpath = category !== 'all';
+  const subpathCode = hasSubpath
+    ? `import { ${selected} } from 'react-web3-icons/${category}';`
+    : '';
+
+  const codeTabs: { key: CodeTab; label: string }[] = [
+    { key: 'import', label: 'Import' },
+    ...(hasSubpath ? [{ key: 'subpath' as CodeTab, label: 'Subpath' }] : []),
+    { key: 'svg', label: 'SVG' },
+  ];
+
+  // Reset to 'import' if subpath tab disappears
+  const effectiveTab =
+    codeTab === 'subpath' && !hasSubpath ? 'import' : codeTab;
 
   const codeContent =
-    codeTab === 'import'
+    effectiveTab === 'import'
       ? importCode
-      : codeTab === 'subpath'
+      : effectiveTab === 'subpath'
         ? subpathCode
-        : svgCode || '(render the icon first)';
+        : svgMarkup || '(loading...)';
+
+  const textColor = previewBg === 'light' ? '#666' : 'rgba(255,255,255,0.4)';
 
   return (
     // biome-ignore lint/a11y/noStaticElementInteractions: backdrop dismisses drawer
@@ -240,18 +286,9 @@ export default function IconDrawer({
               className={`h-5 w-5 rounded border transition-colors ${
                 previewBg === bg ? 'border-accent' : 'border-border'
               }`}
-              style={
-                bg === 'dark'
-                  ? { backgroundColor: '#111' }
-                  : bg === 'light'
-                    ? { backgroundColor: '#fff' }
-                    : {
-                        backgroundImage:
-                          'repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%)',
-                        backgroundSize: '8px 8px',
-                      }
-              }
+              style={bgStyle(bg)}
               aria-label={`${bg} background`}
+              aria-pressed={previewBg === bg}
             />
           ))}
           <div className="flex-1" />
@@ -259,6 +296,7 @@ export default function IconDrawer({
             <button
               type="button"
               onClick={() => setCompareMode(prev => !prev)}
+              aria-pressed={compareMode}
               className={`rounded px-2 py-0.5 text-xs font-medium transition-colors ${
                 compareMode
                   ? 'bg-accent/20 text-accent'
@@ -281,7 +319,10 @@ export default function IconDrawer({
             >
               {variants.map(v => {
                 const VIcon = components[v] as
-                  | ComponentType<{ className?: string }>
+                  | ComponentType<{
+                      className?: string;
+                      style?: CSSProperties;
+                    }>
                   | undefined;
                 return (
                   <button
@@ -295,28 +336,22 @@ export default function IconDrawer({
                   >
                     <div
                       className="flex items-center justify-center rounded-lg p-3"
-                      style={{
-                        backgroundColor:
-                          previewBg === 'dark'
-                            ? '#111'
-                            : previewBg === 'light'
-                              ? '#fff'
-                              : undefined,
-                        backgroundImage:
-                          previewBg === 'checker'
-                            ? 'repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%)'
-                            : undefined,
-                        backgroundSize:
-                          previewBg === 'checker' ? '8px 8px' : undefined,
-                      }}
+                      style={bgStyle(previewBg)}
                     >
                       {VIcon && (
-                        <span style={{ fontSize: 48 }}>
-                          <VIcon />
+                        <span style={{ fontSize: previewSize }}>
+                          <VIcon
+                            {...(previewColor
+                              ? { style: { color: previewColor } }
+                              : {})}
+                          />
                         </span>
                       )}
                     </div>
-                    <span className="max-w-full truncate font-mono text-[10px] text-white/40">
+                    <span
+                      className="max-w-full truncate font-mono text-[10px]"
+                      style={{ color: textColor }}
+                    >
                       {v}
                     </span>
                   </button>
@@ -329,20 +364,7 @@ export default function IconDrawer({
             {/* Icon preview */}
             <div
               className="flex flex-col items-center gap-4 border-b border-border px-5 py-8"
-              style={{
-                backgroundColor:
-                  previewBg === 'dark'
-                    ? undefined
-                    : previewBg === 'light'
-                      ? '#fff'
-                      : undefined,
-                backgroundImage:
-                  previewBg === 'checker'
-                    ? 'repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%)'
-                    : undefined,
-                backgroundSize:
-                  previewBg === 'checker' ? '16px 16px' : undefined,
-              }}
+              style={bgStyle(previewBg)}
             >
               <div
                 ref={iconRef}
@@ -359,13 +381,7 @@ export default function IconDrawer({
                   </span>
                 )}
               </div>
-              <p
-                className="font-mono text-sm"
-                style={{
-                  color:
-                    previewBg === 'light' ? '#666' : 'rgba(255,255,255,0.4)',
-                }}
-              >
+              <p className="font-mono text-sm" style={{ color: textColor }}>
                 {selected}
               </p>
             </div>
@@ -375,19 +391,27 @@ export default function IconDrawer({
               <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/30">
                 Variants
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div
+                className="flex flex-wrap gap-2"
+                role="radiogroup"
+                aria-label="Icon variant"
+              >
                 {variants.map(v => {
                   const VariantIcon = components[v] as
                     | ComponentType<{ className?: string }>
                     | undefined;
+                  const isSelected = selected === v;
                   return (
+                    // biome-ignore lint/a11y/useSemanticElements: button with role="radio" is intentional for custom radio group styling
                     <button
                       key={v}
                       type="button"
+                      role="radio"
+                      aria-checked={isSelected}
+                      aria-label={v}
                       onClick={() => setSelected(v)}
-                      title={v}
                       className={`flex h-12 w-12 items-center justify-center rounded-lg border transition-colors ${
-                        selected === v
+                        isSelected
                           ? 'border-accent bg-accent/10'
                           : 'border-border bg-surface hover:border-white/20'
                       }`}
@@ -497,13 +521,13 @@ export default function IconDrawer({
         <div className="flex-1 px-5 py-4">
           <div className="flex items-center justify-between">
             <div className="flex gap-1">
-              {CODE_TABS.map(tab => (
+              {codeTabs.map(tab => (
                 <button
                   key={tab.key}
                   type="button"
                   onClick={() => setCodeTab(tab.key)}
                   className={`rounded-t-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                    codeTab === tab.key
+                    effectiveTab === tab.key
                       ? 'bg-surface text-white'
                       : 'text-white/30 hover:text-white/60'
                   }`}

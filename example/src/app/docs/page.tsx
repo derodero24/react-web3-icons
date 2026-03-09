@@ -267,7 +267,7 @@ export function MyComponent() {
             {/* Import Patterns */}
             <Section id="import-patterns" title="Import Patterns">
               <p className="mb-3 text-sm text-white/60">
-                Three equivalent ways to import icons:
+                Two ways to import icons:
               </p>
               <div className="flex flex-col gap-4">
                 <div>
