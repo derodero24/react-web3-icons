@@ -5,8 +5,8 @@
     "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-mono:
-    "JetBrains Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo,
-    Consolas, "DejaVu Sans Mono", monospace;
+    "JetBrains Mono", ui-monospace, "Cascadia Code", "Source Code Pro", "Menlo",
+    "Consolas", "DejaVu Sans Mono", monospace;
 
   --color-surface: #111111;
   --color-surface-hover: #1a1a1a;
@@ -58,6 +58,22 @@
     scrollbar-width: none;
     &::-webkit-scrollbar {
       display: none;
+    }
+  }
+
+  input[type="range"] {
+    &::-webkit-slider-thumb {
+      @apply h-3.5 w-3.5 appearance-none rounded-full bg-accent;
+      margin-top: -4px;
+    }
+    &::-moz-range-thumb {
+      @apply h-3.5 w-3.5 appearance-none rounded-full border-none bg-accent;
+    }
+    &::-webkit-slider-runnable-track {
+      @apply h-1.5 rounded-full bg-white/10;
+    }
+    &::-moz-range-track {
+      @apply h-1.5 rounded-full bg-white/10;
     }
   }
 }

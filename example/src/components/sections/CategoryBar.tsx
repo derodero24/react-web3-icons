@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { parseAsString, useQueryState } from 'nuqs';
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 import {
   ICON_CATEGORIES,
@@ -27,8 +27,10 @@ export default function CategoryBar() {
   const navRef = useRef<HTMLElement>(null);
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
 
-  // Update indicator position and scroll active tab into view when category changes
-  useEffect(() => {
+  // Update indicator position and scroll active tab into view when category changes.
+  // useLayoutEffect prevents visual flicker on the indicator position.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: current drives which DOM element is active
+  useLayoutEffect(() => {
     const nav = navRef.current;
     if (!nav) return;
     const active = nav.querySelector<HTMLElement>('[aria-current="page"]');
@@ -37,10 +39,13 @@ export default function CategoryBar() {
     // Update indicator
     const navRect = nav.getBoundingClientRect();
     const rect = active.getBoundingClientRect();
-    setIndicator({
-      left: rect.left - navRect.left + nav.scrollLeft,
-      width: rect.width,
-    });
+    const newLeft = rect.left - navRect.left + nav.scrollLeft;
+    const newWidth = rect.width;
+    setIndicator(prev =>
+      prev.left === newLeft && prev.width === newWidth
+        ? prev
+        : { left: newLeft, width: newWidth },
+    );
 
     // Scroll into view
     active.scrollIntoView({
@@ -48,7 +53,7 @@ export default function CategoryBar() {
       block: 'nearest',
       inline: 'center',
     });
-  });
+  }, [current]);
 
   return (
     <nav

@@ -1,14 +1,18 @@
 'use client';
 
 import { parseAsString, useQueryState } from 'nuqs';
+import type { ComponentType } from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import * as iconModules from 'react-web3-icons';
 import { useIconFilter } from '../../hooks/useIconFilter';
 import { groupIcons } from '../../utils/groupIcons';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 import IconCard from '../elements/IconCard';
 import IconDrawer from '../elements/IconDrawer';
 import SearchForm from '../elements/SearchForm';
+
+type IconComponent = ComponentType<{ className?: string }>;
 
 type Variant = 'all' | 'colored' | 'mono';
 
@@ -20,7 +24,7 @@ const VARIANT_LABELS: Record<Variant, string> = {
 
 const VARIANTS: Variant[] = ['all', 'colored', 'mono'];
 
-const PAGE_SIZE = 60;
+const PAGE_SIZE = 120;
 
 export default function IconTable() {
   const [rawCategory] = useQueryState(
@@ -33,7 +37,7 @@ export default function IconTable() {
   );
   const [linkedIcon, setLinkedIcon] = useQueryState(
     'icon',
-    parseAsString.withDefault(''),
+    parseAsString.withDefault('').withOptions({ history: 'push' }),
   );
   const [variant, setVariant] = useState<Variant>('all');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
@@ -83,10 +87,27 @@ export default function IconTable() {
     return () => observer.disconnect();
   }, [hasMore]);
 
-  // Find the group for the opened drawer
-  const openGroup = linkedIcon
-    ? displayedGroups.find(g => g.base === linkedIcon)
-    : null;
+  // All groups in this category (unfiltered) — used for drawer lookup so
+  // direct links work even when the icon is filtered out by search/variant.
+  const allGroups = useMemo(() => groupIcons(categoryIcons), [categoryIcons]);
+
+  // Find the group for the opened drawer from unfiltered groups
+  const drawerData = useMemo(() => {
+    if (!linkedIcon) return null;
+    const group = allGroups.find(g => g.base === linkedIcon);
+    if (!group) return null;
+    const components: Record<string, IconComponent> = {};
+    for (const v of group.variants) {
+      const comp = iconModules[v as keyof typeof iconModules];
+      if (
+        typeof comp === 'function' ||
+        (typeof comp === 'object' && comp !== null && '$$typeof' in comp)
+      ) {
+        components[v] = comp as IconComponent;
+      }
+    }
+    return { ...group, components };
+  }, [linkedIcon, allGroups]);
 
   const hasScrolled = useRef(false);
   useEffect(() => {
@@ -124,8 +145,9 @@ export default function IconTable() {
   return (
     <section
       id="icon-grid"
+      tabIndex={-1}
       aria-label={`${validCategory} icons`}
-      className="relative mb-6 px-4 pt-6 sm:px-6 lg:px-8"
+      className="relative mb-6 px-4 pt-6 outline-none sm:px-6 lg:px-8"
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-4">
         <div className="flex-1">
@@ -232,11 +254,12 @@ export default function IconTable() {
       )}
 
       {/* Detail drawer */}
-      {linkedIcon && openGroup && (
+      {linkedIcon && drawerData && (
         <IconDrawer
-          base={openGroup.base}
-          variants={openGroup.variants}
-          components={openGroup.components}
+          base={drawerData.base}
+          variants={drawerData.variants}
+          components={drawerData.components}
+          category={validCategory}
           onClose={handleCloseDrawer}
         />
       )}

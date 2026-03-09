@@ -1,6 +1,32 @@
-// Ordered longest-first so longer compound suffixes are stripped before shorter ones
-const SUFFIX_RE =
-  /(CircleMono|SquareMono|WordmarkMono|WordmarkFlat|SymbolMono|FlatMono|AltMono|InvertedMono|LightMono|Circle|Square|Wordmark|Symbol|Flat|Alt|Inverted|Light|Mono)$/;
+// Known variant suffix parts: base suffixes and modifiers.
+// Compound suffixes (e.g. "CircleMono") are generated automatically.
+const VARIANT_PARTS = [
+  'Circle',
+  'Square',
+  'Wordmark',
+  'Symbol',
+  'Flat',
+  'Alt',
+  'Inverted',
+  'Light',
+] as const;
+const MODIFIERS = ['Mono'] as const;
+
+// Build all valid suffixes: compound first (longest), then base parts, then modifiers
+const SUFFIXES: string[] = [
+  // Compound: base part + modifier (e.g. "CircleMono", "SquareMono")
+  ...VARIANT_PARTS.flatMap(s => MODIFIERS.map(m => `${s}${m}`)),
+  // Special compound: "WordmarkFlat"
+  'WordmarkFlat',
+  // Individual parts and modifiers
+  ...VARIANT_PARTS,
+  ...MODIFIERS,
+];
+
+// Sort longest-first so compound suffixes match before their components
+SUFFIXES.sort((a, b) => b.length - a.length);
+
+const SUFFIX_RE = new RegExp(`(${SUFFIXES.join('|')})$`);
 
 /**
  * Derive the base icon name by iteratively stripping known variant suffixes.

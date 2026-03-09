@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { groupIcons } from '../../utils/groupIcons';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 
 type PkgManager = 'npm' | 'yarn' | 'pnpm' | 'bun';
@@ -14,28 +15,41 @@ const INSTALL_CMDS: Record<PkgManager, string> = {
 
 const PKG_MANAGERS: PkgManager[] = ['npm', 'yarn', 'pnpm', 'bun'];
 
+// Unique base icon count (not variant count)
+const ICON_COUNT = groupIcons(REACT_WEB3_ICONS.all).length;
+
 export default function Hero() {
   const [pkg, setPkg] = useState<PkgManager>('npm');
   const [copied, setCopied] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-  const iconCount = REACT_WEB3_ICONS.all.length;
+  // Clear timer on unmount
+  useEffect(() => () => clearTimeout(timerRef.current), []);
 
   const handleCopy = () => {
     navigator.clipboard
       .writeText(INSTALL_CMDS[pkg])
       .then(() => {
         setCopied(true);
-        setTimeout(() => setCopied(false), 1500);
+        clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(() => setCopied(false), 1500);
       })
       // biome-ignore lint/suspicious/noConsole: clipboard error
       .catch(console.error);
+  };
+
+  // Reset copied when switching package manager
+  const handlePkgChange = (m: PkgManager) => {
+    setPkg(m);
+    setCopied(false);
+    clearTimeout(timerRef.current);
   };
 
   return (
     <section className="border-b border-border px-4 py-10 sm:px-6 sm:py-14">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-          {iconCount}+ Web3 icons for React
+          {ICON_COUNT}+ Web3 icons for React
         </h2>
         <p className="mt-3 text-sm text-white/40 sm:text-base">
           Open-source SVG icons for chains, coins, wallets, DEXs, and more.
@@ -48,7 +62,7 @@ export default function Hero() {
               <button
                 key={m}
                 type="button"
-                onClick={() => setPkg(m)}
+                onClick={() => handlePkgChange(m)}
                 className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
                   pkg === m
                     ? 'bg-white/10 text-white'

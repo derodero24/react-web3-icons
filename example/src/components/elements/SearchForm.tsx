@@ -64,7 +64,6 @@ export default function SearchForm({
         id="search"
         className="peer h-11 w-full rounded-lg border border-border bg-surface pl-10 pr-12 font-mono text-sm text-white placeholder-white/30 transition-colors focus:border-accent/60 focus:ring-1 focus:ring-accent/60"
         placeholder="Search icons..."
-        aria-label={`Search icons — ${resultCount} of ${totalCount}`}
         aria-describedby="icon-count"
         value={keyword}
         onChange={e => setKeyword(e.target.value)}
