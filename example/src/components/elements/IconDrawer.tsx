@@ -163,7 +163,7 @@ export default function IconDrawer({
       }
     });
     return () => cancelAnimationFrame(id);
-  }, [selected, previewSize, previewColor]);
+  }, [selected, previewSize, previewColor, previewBg]);
 
   // Close on Escape and focus trap
   useEffect(() => {
@@ -242,6 +242,11 @@ export default function IconDrawer({
         : svgMarkup || '(loading...)';
 
   const textColor = previewBg === 'light' ? '#666' : 'rgba(255,255,255,0.4)';
+
+  // When light BG is active and no custom color is set, use a dark color so
+  // mono icons (which rely on currentColor) remain visible against white.
+  const effectiveColor =
+    previewBg === 'light' && !previewColor ? '#1a1a1a' : previewColor;
 
   return (
     // biome-ignore lint/a11y/noStaticElementInteractions: backdrop dismisses drawer
@@ -347,8 +352,8 @@ export default function IconDrawer({
                       {VIcon && (
                         <span style={{ fontSize: previewSize }}>
                           <VIcon
-                            {...(previewColor
-                              ? { style: { color: previewColor } }
+                            {...(effectiveColor
+                              ? { style: { color: effectiveColor } }
                               : {})}
                           />
                         </span>
@@ -380,8 +385,8 @@ export default function IconDrawer({
                 {Icon && (
                   <span style={{ fontSize: previewSize }}>
                     <Icon
-                      {...(previewColor
-                        ? { style: { color: previewColor } }
+                      {...(effectiveColor
+                        ? { style: { color: effectiveColor } }
                         : {})}
                     />
                   </span>
