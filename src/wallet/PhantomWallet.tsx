@@ -102,6 +102,47 @@ export const PhantomWalletCircleMono = createIcon(
   'currentColor',
 );
 
+export const PhantomWalletSquare = createIcon(
+  'PhantomWalletSquare',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" fill={`url(#${_id}-phsq-a)`} />
+      <path d={PHANTOM_GHOST} transform={PH_CIRCLE_TX} fill="#fff" />
+      <defs>
+        <linearGradient
+          id={`${_id}-phsq-a`}
+          x1="32"
+          y1="0"
+          x2="32"
+          y2="64"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#534bb1" />
+          <stop offset="1" stopColor="#551bf9" />
+        </linearGradient>
+      </defs>
+    </>
+  ),
+);
+
+export const PhantomWalletSquareMono = createIcon(
+  'PhantomWalletSquareMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-phsqm-a)`} />
+      <defs>
+        <mask id={`${_id}-phsqm-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <path d={PHANTOM_GHOST} transform={PH_CIRCLE_TX} fill="#000" />
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+
 export const PhantomWalletSymbolMono = createIcon(
   'PhantomWalletSymbolMono',
   '0 0 128 106',

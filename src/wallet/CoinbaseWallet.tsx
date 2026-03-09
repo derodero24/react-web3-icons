@@ -60,6 +60,36 @@ export const CoinbaseWalletCircleMono = createIcon(
   'currentColor',
 );
 
+export const CoinbaseWalletSquare = createIcon(
+  'CoinbaseWalletSquare',
+  '0 0 64 64',
+  () => (
+    <>
+      <rect width="64" height="64" rx="12.8" fill="#0052ff" />
+      <path d={CB_WHITE_CIRCLE} transform={CB_CIRCLE_TX} fill="#fff" />
+      <path d={CB_INNER_RECT} transform={CB_CIRCLE_TX} fill="#0052ff" />
+    </>
+  ),
+);
+
+export const CoinbaseWalletSquareMono = createIcon(
+  'CoinbaseWalletSquareMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-cbsqm-a)`} />
+      <defs>
+        <mask id={`${_id}-cbsqm-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <path d={CB_WHITE_CIRCLE} transform={CB_CIRCLE_TX} fill="#000" />
+        </mask>
+      </defs>
+      <path d={CB_INNER_RECT} transform={CB_CIRCLE_TX} />
+    </>
+  ),
+  'currentColor',
+);
+
 export const CoinbaseWalletMono = createIcon(
   'CoinbaseWalletMono',
   '0 0 2500 2500',

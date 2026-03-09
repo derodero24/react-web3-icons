@@ -111,6 +111,34 @@ export const MetaMaskCircleMono = createIcon(
   'currentColor',
 );
 
+export const MetaMaskSquare = createIcon('MetaMaskSquare', '0 0 64 64', () => (
+  <>
+    <rect width="64" height="64" rx="12.8" fill="#F6851B" />
+    <g transform={MM_CIRCLE_TX} fill="#fff">
+      {metaMaskMonoPaths()}
+    </g>
+  </>
+));
+
+export const MetaMaskSquareMono = createIcon(
+  'MetaMaskSquareMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-mmsq-a)`} />
+      <defs>
+        <mask id={`${_id}-mmsq-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={MM_CIRCLE_TX} fill="#000">
+            {metaMaskMonoPaths()}
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+
 export const MetaMaskAlt = createIcon('MetaMaskAlt', '0 0 404 420.2', () => (
   <>
     <path
