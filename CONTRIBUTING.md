@@ -272,6 +272,50 @@ export const MyTokenMono = createIcon(
 );
 ```
 
+### Circle / Square Variants
+
+To add a Circle (or Square) variant, create a 64×64 icon with a branded background and the symbol scaled to ~72% fill:
+
+```tsx
+// Extract shared path constant (reused by base, Mono, Circle, CircleMono)
+const MY_TOKEN_MARK = 'M10 2 L20 22 ...';
+
+// Scale + center: target ~46px mark inside 64px circle
+const MY_TOKEN_CIRCLE_TX = 'translate(9 9) scale(1.917)';
+
+export const MyTokenCircle = createIcon('MyTokenCircle', '0 0 64 64', () => (
+  <>
+    <circle cx="32" cy="32" r="32" fill="#brandColor" />
+    <path transform={MY_TOKEN_CIRCLE_TX} d={MY_TOKEN_MARK} fill="#fff" />
+  </>
+));
+
+export const MyTokenCircleMono = createIcon(
+  'MyTokenCircleMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-mtc-a)`} />
+      <defs>
+        <mask id={`${_id}-mtc-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <path transform={MY_TOKEN_CIRCLE_TX} d={MY_TOKEN_MARK} fill="#000" />
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+```
+
+Key points:
+
+- Use `viewBox="0 0 64 64"` for all Circle/Square variants
+- Colored variant: brand color background + white icon mark
+- Mono variant: `currentColor` circle + mask that punches out the icon mark
+- For icons with gradients, **pre-compute** gradient coordinates in the 64×64 space — do **not** use `gradientTransform`
+- Always extract shared path constants to avoid duplication
+
 ### 4. Manual Refinement
 
 After the initial conversion, check for:
