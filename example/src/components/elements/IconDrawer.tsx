@@ -138,8 +138,14 @@ export default function IconDrawer({
     'dark',
   );
   const [svgMarkup, setSvgMarkup] = useState('');
+  const [open, setOpen] = useState(false);
   const iconRef = useRef<HTMLDivElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
+
+  // Trigger enter animation on mount
+  useEffect(() => {
+    requestAnimationFrame(() => setOpen(true));
+  }, []);
 
   const Icon = components[selected] as
     | ComponentType<{ className?: string; style?: CSSProperties }>
@@ -241,12 +247,12 @@ export default function IconDrawer({
     // biome-ignore lint/a11y/noStaticElementInteractions: backdrop dismisses drawer
     // biome-ignore lint/a11y/useKeyWithClickEvents: Escape key handled via useEffect
     <div
-      className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm"
+      className={`fixed inset-0 z-50 flex justify-end transition-colors duration-300 ${open ? 'bg-black/60 backdrop-blur-sm' : 'bg-black/0'}`}
       onClick={handleBackdropClick}
     >
       <div
         ref={drawerRef}
-        className="flex h-full w-full flex-col overflow-y-auto border-l border-border bg-[#0a0a0a] sm:max-w-md"
+        className={`flex h-full w-full flex-col overflow-y-auto border-l border-border bg-[#0a0a0a] transition-transform duration-300 ease-out sm:max-w-md ${open ? 'translate-x-0' : 'translate-x-full'}`}
         role="dialog"
         aria-label={`${base} icon details`}
         aria-modal="true"

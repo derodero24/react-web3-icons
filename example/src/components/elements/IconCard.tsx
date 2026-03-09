@@ -26,7 +26,7 @@ export default function IconCard({
       type="button"
       aria-label={`View ${base} icon details`}
       onClick={onClick}
-      className={`flex w-full cursor-pointer flex-col items-center gap-2 rounded-lg border p-4 transition-colors hover:bg-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset ${
+      className={`flex w-full cursor-pointer flex-col items-center gap-2 rounded-lg border p-4 transition-all duration-200 hover:border-white/15 hover:bg-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset ${
         highlighted ? 'border-accent bg-accent/10' : 'border-border bg-surface'
       }`}
     >
