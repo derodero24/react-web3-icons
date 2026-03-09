@@ -41,6 +41,38 @@ export const WalletConnectCircleMono = createIcon(
   'currentColor',
 );
 
+export const WalletConnectSquare = createIcon(
+  'WalletConnectSquare',
+  '0 0 64 64',
+  () => (
+    <>
+      <rect width="64" height="64" rx="12.8" fill="#3396FF" />
+      <g transform={WC_CIRCLE_TX} fill="#fff">
+        {walletConnectContent()}
+      </g>
+    </>
+  ),
+);
+
+export const WalletConnectSquareMono = createIcon(
+  'WalletConnectSquareMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-wcsqm-a)`} />
+      <defs>
+        <mask id={`${_id}-wcsqm-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={WC_CIRCLE_TX} fill="#000">
+            {walletConnectContent()}
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+
 export const WalletConnect = createIcon(
   'WalletConnect',
   '45.52 99.74 387.64 237.59',
