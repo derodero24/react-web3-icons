@@ -119,6 +119,10 @@ export default function IconDrawer({
   const [codeTab, setCodeTab] = useState<CodeTab>('import');
   const [previewSize, setPreviewSize] = useState(64);
   const [previewColor, setPreviewColor] = useState('');
+  const [compareMode, setCompareMode] = useState(false);
+  const [previewBg, setPreviewBg] = useState<'dark' | 'light' | 'checker'>(
+    'dark',
+  );
   const iconRef = useRef<HTMLDivElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
 
@@ -225,52 +229,177 @@ export default function IconDrawer({
           </button>
         </div>
 
-        {/* Icon preview */}
-        <div className="flex flex-col items-center gap-4 border-b border-border px-5 py-8">
-          <div
-            ref={iconRef}
-            className="flex items-center justify-center"
-            style={{ minHeight: 96 }}
-          >
-            {Icon && (
-              <span style={{ fontSize: previewSize }}>
-                <Icon
-                  {...(previewColor ? { style: { color: previewColor } } : {})}
-                />
-              </span>
-            )}
-          </div>
-          <p className="font-mono text-sm text-white/40">{selected}</p>
+        {/* Preview background selector */}
+        <div className="flex items-center gap-2 border-b border-border px-5 py-2">
+          <span className="text-xs text-white/30">BG</span>
+          {(['dark', 'light', 'checker'] as const).map(bg => (
+            <button
+              key={bg}
+              type="button"
+              onClick={() => setPreviewBg(bg)}
+              className={`h-5 w-5 rounded border transition-colors ${
+                previewBg === bg ? 'border-accent' : 'border-border'
+              }`}
+              style={
+                bg === 'dark'
+                  ? { backgroundColor: '#111' }
+                  : bg === 'light'
+                    ? { backgroundColor: '#fff' }
+                    : {
+                        backgroundImage:
+                          'repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%)',
+                        backgroundSize: '8px 8px',
+                      }
+              }
+              aria-label={`${bg} background`}
+            />
+          ))}
+          <div className="flex-1" />
+          {variants.length > 1 && (
+            <button
+              type="button"
+              onClick={() => setCompareMode(prev => !prev)}
+              className={`rounded px-2 py-0.5 text-xs font-medium transition-colors ${
+                compareMode
+                  ? 'bg-accent/20 text-accent'
+                  : 'bg-white/5 text-white/30 hover:text-white/50'
+              }`}
+            >
+              Compare
+            </button>
+          )}
         </div>
 
-        {/* Variant selector */}
-        <div className="border-b border-border px-5 py-4">
-          <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/30">
-            Variants
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {variants.map(v => {
-              const VariantIcon = components[v] as
-                | ComponentType<{ className?: string }>
-                | undefined;
-              return (
-                <button
-                  key={v}
-                  type="button"
-                  onClick={() => setSelected(v)}
-                  title={v}
-                  className={`flex h-12 w-12 items-center justify-center rounded-lg border transition-colors ${
-                    selected === v
-                      ? 'border-accent bg-accent/10'
-                      : 'border-border bg-surface hover:border-white/20'
-                  }`}
-                >
-                  {VariantIcon && <VariantIcon className="text-2xl" />}
-                </button>
-              );
-            })}
+        {compareMode ? (
+          /* Compare all variants side by side */
+          <div className="border-b border-border px-5 py-6">
+            <div
+              className="grid gap-4"
+              style={{
+                gridTemplateColumns: `repeat(${Math.min(variants.length, 3)}, 1fr)`,
+              }}
+            >
+              {variants.map(v => {
+                const VIcon = components[v] as
+                  | ComponentType<{ className?: string }>
+                  | undefined;
+                return (
+                  <button
+                    key={v}
+                    type="button"
+                    onClick={() => {
+                      setSelected(v);
+                      setCompareMode(false);
+                    }}
+                    className="flex flex-col items-center gap-2 rounded-lg p-3 transition-colors hover:bg-white/5"
+                  >
+                    <div
+                      className="flex items-center justify-center rounded-lg p-3"
+                      style={{
+                        backgroundColor:
+                          previewBg === 'dark'
+                            ? '#111'
+                            : previewBg === 'light'
+                              ? '#fff'
+                              : undefined,
+                        backgroundImage:
+                          previewBg === 'checker'
+                            ? 'repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%)'
+                            : undefined,
+                        backgroundSize:
+                          previewBg === 'checker' ? '8px 8px' : undefined,
+                      }}
+                    >
+                      {VIcon && (
+                        <span style={{ fontSize: 48 }}>
+                          <VIcon />
+                        </span>
+                      )}
+                    </div>
+                    <span className="max-w-full truncate font-mono text-[10px] text-white/40">
+                      {v}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        ) : (
+          <>
+            {/* Icon preview */}
+            <div
+              className="flex flex-col items-center gap-4 border-b border-border px-5 py-8"
+              style={{
+                backgroundColor:
+                  previewBg === 'dark'
+                    ? undefined
+                    : previewBg === 'light'
+                      ? '#fff'
+                      : undefined,
+                backgroundImage:
+                  previewBg === 'checker'
+                    ? 'repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%)'
+                    : undefined,
+                backgroundSize:
+                  previewBg === 'checker' ? '16px 16px' : undefined,
+              }}
+            >
+              <div
+                ref={iconRef}
+                className="flex items-center justify-center"
+                style={{ minHeight: 96 }}
+              >
+                {Icon && (
+                  <span style={{ fontSize: previewSize }}>
+                    <Icon
+                      {...(previewColor
+                        ? { style: { color: previewColor } }
+                        : {})}
+                    />
+                  </span>
+                )}
+              </div>
+              <p
+                className="font-mono text-sm"
+                style={{
+                  color:
+                    previewBg === 'light' ? '#666' : 'rgba(255,255,255,0.4)',
+                }}
+              >
+                {selected}
+              </p>
+            </div>
+
+            {/* Variant selector */}
+            <div className="border-b border-border px-5 py-4">
+              <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/30">
+                Variants
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {variants.map(v => {
+                  const VariantIcon = components[v] as
+                    | ComponentType<{ className?: string }>
+                    | undefined;
+                  return (
+                    <button
+                      key={v}
+                      type="button"
+                      onClick={() => setSelected(v)}
+                      title={v}
+                      className={`flex h-12 w-12 items-center justify-center rounded-lg border transition-colors ${
+                        selected === v
+                          ? 'border-accent bg-accent/10'
+                          : 'border-border bg-surface hover:border-white/20'
+                      }`}
+                    >
+                      {VariantIcon && <VariantIcon className="text-2xl" />}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        )}
 
         {/* Size control */}
         <div className="border-b border-border px-5 py-4">
