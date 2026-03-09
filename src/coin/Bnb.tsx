@@ -1,5 +1,10 @@
 import { createIcon } from '../utils';
 
+export {
+  BinanceSmartChainCircle as BnbCircle,
+  BinanceSmartChainCircleMono as BnbCircleMono,
+} from '../chain/BinanceSmartChain';
+
 export const Bnb = createIcon('Bnb', '0 0 2496 2496', () => (
   <>
     <path

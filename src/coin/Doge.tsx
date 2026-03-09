@@ -606,3 +606,35 @@ export const DogeMono = createIcon(
   ),
   'currentColor',
 );
+
+// Simplified Doge "D" mark scaled to fit in a 64x64 circle (~72% fill).
+// DogeMono viewBox 0 0 24 24 -> scale 1.917, translate(9, 9)
+const DOGE_CIRCLE_TX = 'translate(9 9) scale(1.917)';
+
+export const DogeCircle = createIcon('DogeCircle', '0 0 64 64', () => (
+  <>
+    <circle cx="32" cy="32" r="32" fill="#C2A633" />
+    <g transform={DOGE_CIRCLE_TX}>
+      <path d={DOGE_D} fill="#fff" />
+    </g>
+  </>
+));
+
+export const DogeCircleMono = createIcon(
+  'DogeCircleMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-dogec-a)`} />
+      <defs>
+        <mask id={`${_id}-dogec-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={DOGE_CIRCLE_TX}>
+            <path d={DOGE_D} fill="#000" />
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
