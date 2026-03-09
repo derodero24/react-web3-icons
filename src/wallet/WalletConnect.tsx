@@ -6,6 +6,41 @@ const walletConnectContent = () => (
   </>
 );
 
+// Original viewBox 45.52 99.74 387.64 237.59 → scale 0.119, translate(3.6, 6.1)
+const WC_CIRCLE_TX = 'translate(3.6 6.1) scale(0.119)';
+
+export const WalletConnectCircle = createIcon(
+  'WalletConnectCircle',
+  '0 0 64 64',
+  () => (
+    <>
+      <circle cx="32" cy="32" r="32" fill="#3396FF" />
+      <g transform={WC_CIRCLE_TX} fill="#fff">
+        {walletConnectContent()}
+      </g>
+    </>
+  ),
+);
+
+export const WalletConnectCircleMono = createIcon(
+  'WalletConnectCircleMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-wccm-a)`} />
+      <defs>
+        <mask id={`${_id}-wccm-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={WC_CIRCLE_TX} fill="#000">
+            {walletConnectContent()}
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+
 export const WalletConnect = createIcon(
   'WalletConnect',
   '45.52 99.74 387.64 237.59',

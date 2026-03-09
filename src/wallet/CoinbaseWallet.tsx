@@ -21,6 +21,45 @@ export const CoinbaseWallet = createIcon(
   ),
 );
 
+// Coinbase "C" symbol paths (white circle + blue inner rect) shared across variants
+const CB_WHITE_CIRCLE =
+  'M1250 362.1c490.4 0 887.9 397.5 887.9 887.9 0 490.4-397.5 887.9-887.9 887.9-490.4 0-887.9-397.5-887.9-887.9 0-490.4 397.5-887.9 887.9-887.9z';
+const CB_INNER_RECT =
+  'M1031.3 966.2h437.3c36 0 65.1 31.4 65.1 70v427.5c0 38.7-29.2 70-65.1 70h-437.3c-36 0-65.1-31.4-65.1-70v-427.5c0-38.6 29.2-70 65.1-70z';
+
+// Original viewBox 0 0 2500 2500 → scale 0.0256 (64/2500)
+const CB_CIRCLE_TX = 'translate(0 0) scale(0.0256)';
+
+export const CoinbaseWalletCircle = createIcon(
+  'CoinbaseWalletCircle',
+  '0 0 64 64',
+  () => (
+    <>
+      <circle cx="32" cy="32" r="32" fill="#0052ff" />
+      <path d={CB_WHITE_CIRCLE} transform={CB_CIRCLE_TX} fill="#fff" />
+      <path d={CB_INNER_RECT} transform={CB_CIRCLE_TX} fill="#0052ff" />
+    </>
+  ),
+);
+
+export const CoinbaseWalletCircleMono = createIcon(
+  'CoinbaseWalletCircleMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-cbcm-a)`} />
+      <defs>
+        <mask id={`${_id}-cbcm-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <path d={CB_WHITE_CIRCLE} transform={CB_CIRCLE_TX} fill="#000" />
+        </mask>
+      </defs>
+      <path d={CB_INNER_RECT} transform={CB_CIRCLE_TX} />
+    </>
+  ),
+  'currentColor',
+);
+
 export const CoinbaseWalletMono = createIcon(
   'CoinbaseWalletMono',
   '0 0 2500 2500',
