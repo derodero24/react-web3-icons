@@ -20,6 +20,8 @@ const VARIANT_LABELS: Record<Variant, string> = {
 
 const VARIANTS: Variant[] = ['all', 'colored', 'mono'];
 
+const PAGE_SIZE = 60;
+
 export default function IconTable() {
   const [rawCategory] = useQueryState(
     'category',
@@ -34,6 +36,7 @@ export default function IconTable() {
     parseAsString.withDefault(''),
   );
   const [variant, setVariant] = useState<Variant>('all');
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const validCategory = Object.hasOwn(REACT_WEB3_ICONS, rawCategory)
     ? (rawCategory as keyof typeof REACT_WEB3_ICONS)
@@ -46,6 +49,39 @@ export default function IconTable() {
     () => groupIcons(categoryIcons).length,
     [categoryIcons],
   );
+
+  // Reset visible count when the displayed results change
+  const prevResultKey = useRef('');
+  const resultKey = `${validCategory}-${keyword}-${variant}`;
+  if (resultKey !== prevResultKey.current) {
+    prevResultKey.current = resultKey;
+    if (visibleCount !== PAGE_SIZE) {
+      setVisibleCount(PAGE_SIZE);
+    }
+  }
+
+  const visibleGroups = useMemo(
+    () => displayedGroups.slice(0, visibleCount),
+    [displayedGroups, visibleCount],
+  );
+  const hasMore = visibleCount < displayedGroups.length;
+
+  // Infinite scroll: load more when sentinel enters viewport
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel || !hasMore) return;
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0]?.isIntersecting) {
+          setVisibleCount(prev => prev + PAGE_SIZE);
+        }
+      },
+      { rootMargin: '200px' },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [hasMore]);
 
   // Find the group for the opened drawer
   const openGroup = linkedIcon
@@ -87,6 +123,7 @@ export default function IconTable() {
 
   return (
     <section
+      id="icon-grid"
       aria-label={`${validCategory} icons`}
       className="relative mb-6 px-4 pt-6 sm:px-6 lg:px-8"
     >
@@ -165,22 +202,33 @@ export default function IconTable() {
           <p className="text-sm">Try a different search term</p>
         </div>
       ) : (
-        <div
-          key={`${validCategory}-${variant}`}
-          className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(88px,1fr))] gap-0 sm:grid-cols-[repeat(auto-fill,minmax(112px,1fr))]"
-        >
-          {displayedGroups.map(group => (
-            <div key={group.base} data-icon-name={group.base} className="p-2">
-              <IconCard
-                base={group.base}
-                activeVariant={group.activeVariant}
-                components={group.components}
-                highlighted={linkedIcon === group.base}
-                onClick={() => handleOpenDrawer(group.base)}
-              />
+        <>
+          <ul
+            key={`${validCategory}-${variant}`}
+            className="mt-6 grid list-none grid-cols-[repeat(auto-fill,minmax(88px,1fr))] gap-0 sm:grid-cols-[repeat(auto-fill,minmax(112px,1fr))]"
+          >
+            {visibleGroups.map(group => (
+              <li key={group.base} data-icon-name={group.base} className="p-2">
+                <IconCard
+                  base={group.base}
+                  activeVariant={group.activeVariant}
+                  components={group.components}
+                  highlighted={linkedIcon === group.base}
+                  onClick={() => handleOpenDrawer(group.base)}
+                />
+              </li>
+            ))}
+          </ul>
+          {hasMore && (
+            <div
+              ref={sentinelRef}
+              className="flex justify-center py-8"
+              aria-hidden="true"
+            >
+              <div className="h-6 w-6 animate-spin rounded-full border-2 border-white/10 border-t-accent" />
             </div>
-          ))}
-        </div>
+          )}
+        </>
       )}
 
       {/* Detail drawer */}

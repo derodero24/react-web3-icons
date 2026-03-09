@@ -51,6 +51,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <Providers>
+          <a
+            href="#icon-grid"
+            className="fixed left-4 top-4 z-50 -translate-y-16 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-transform focus:translate-y-0"
+          >
+            Skip to icons
+          </a>
           <div className="flex min-h-svh flex-col">
             <Header />
             <main className="flex-1">{children}</main>

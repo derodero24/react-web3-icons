@@ -126,14 +126,45 @@ export default function IconDrawer({
     | ComponentType<{ className?: string; style?: React.CSSProperties }>
     | undefined;
 
-  // Close on Escape
+  // Close on Escape and focus trap
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      // Focus trap: cycle focus within drawer
+      if (e.key === 'Tab' && drawerRef.current) {
+        const focusable = drawerRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
+
+  // Focus drawer on open and lock body scroll
+  useEffect(() => {
+    const closeBtn = drawerRef.current?.querySelector<HTMLElement>(
+      '[aria-label="Close drawer"]',
+    );
+    closeBtn?.focus();
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   // Close on click outside
   const handleBackdropClick = useCallback(
