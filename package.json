@@ -193,7 +193,7 @@
     {
       "name": "coin",
       "path": "dist/coin/index.mjs",
-      "limit": "54 KB"
+      "limit": "55 KB"
     },
     {
       "name": "defi",

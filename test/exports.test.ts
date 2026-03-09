@@ -54,6 +54,8 @@ describe('Export integrity', () => {
 describe('Coin aliases re-export correctly', () => {
   const expectedAliases = [
     'Btc',
+    'BtcCircle',
+    'BtcCircleMono',
     'BtcMono',
     'Eth',
     'EthCircle',
@@ -65,6 +67,8 @@ describe('Coin aliases re-export correctly', () => {
     'Arb',
     'Avax',
     'Bnb',
+    'BnbCircle',
+    'BnbCircleMono',
     'BnbMono',
     'Pol',
     'Sol',
