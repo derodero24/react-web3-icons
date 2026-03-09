@@ -188,7 +188,7 @@
     {
       "name": "chain",
       "path": "dist/chain/index.mjs",
-      "limit": "27 KB"
+      "limit": "28 KB"
     },
     {
       "name": "coin",

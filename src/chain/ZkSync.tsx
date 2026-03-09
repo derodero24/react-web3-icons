@@ -49,6 +49,39 @@ export const ZkSyncCircle = createIcon('ZkSyncCircle', '0 0 64 64', () => (
   </>
 ));
 
+export const ZkSyncSquare = createIcon('ZkSyncSquare', '0 0 64 64', () => (
+  <>
+    <rect width="64" height="64" rx="12.8" fill="#000" />
+    <g transform={ZKSYNC_CIRCLE_TX}>
+      <path
+        d={ZKSYNC_ARROWS}
+        fill="#fff"
+        fillRule="evenodd"
+        clipRule="evenodd"
+      />
+    </g>
+  </>
+));
+
+export const ZkSyncSquareMono = createIcon(
+  'ZkSyncSquareMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-zkss-a)`} />
+      <defs>
+        <mask id={`${_id}-zkss-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g transform={ZKSYNC_CIRCLE_TX} fill="#000">
+            <path d={ZKSYNC_ARROWS} fillRule="evenodd" clipRule="evenodd" />
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+
 export const ZkSyncCircleMono = createIcon(
   'ZkSyncCircleMono',
   '0 0 64 64',

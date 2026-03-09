@@ -114,6 +114,58 @@ export const StarkNetCircle = createIcon('StarkNetCircle', '0 0 64 64', _id => (
   </>
 ));
 
+export const StarkNetSquare = createIcon('StarkNetSquare', '0 0 64 64', _id => (
+  <>
+    <rect width="64" height="64" rx="12.8" fill="#0C0C4F" />
+    <g transform={STARKNET_CIRCLE_TX} fillRule="evenodd" clipRule="evenodd">
+      <path d={STARKNET_STAR} fill="#FAFAFA" />
+      <path d={STARKNET_SNAKE_A} fill={`url(#${_id}-snks-grad)`} />
+      <path d={STARKNET_SNAKE_B} fill="#FAFAFA" />
+      <path d={STARKNET_DOT} fill="#EC796B" />
+    </g>
+    <defs>
+      <linearGradient
+        id={`${_id}-snks-grad`}
+        x1="49.07"
+        x2="-17.08"
+        y1="16.27"
+        y2="35.34"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#EC796B" />
+        <stop offset="1" stopColor="#D672EF" />
+      </linearGradient>
+    </defs>
+  </>
+));
+
+export const StarkNetSquareMono = createIcon(
+  'StarkNetSquareMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-snksm-a)`} />
+      <defs>
+        <mask id={`${_id}-snksm-a`}>
+          <rect width="100%" height="100%" fill="#fff" />
+          <g
+            transform={STARKNET_CIRCLE_TX}
+            fill="#000"
+            fillRule="evenodd"
+            clipRule="evenodd"
+          >
+            <path d={STARKNET_STAR} />
+            <path d={STARKNET_SNAKE_A} />
+            <path d={STARKNET_SNAKE_B} />
+            <path d={STARKNET_DOT} />
+          </g>
+        </mask>
+      </defs>
+    </>
+  ),
+  'currentColor',
+);
+
 export const StarkNetCircleMono = createIcon(
   'StarkNetCircleMono',
   '0 0 64 64',

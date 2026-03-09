@@ -98,6 +98,54 @@ export const AvalancheCircleMono = forwardRef<SVGSVGElement, AvalancheProps>(
   },
 );
 
+// Square variant: AVALANCHE_PATH in 1502×1502 space → scale to fit ~46px in 64×64
+// Full circle is 1502 wide → scale 0.0306, translate(9, 9)
+const AVAX_SQUARE_TX = 'translate(9 9) scale(0.0306)';
+
+export const AvalancheSquare = createIcon(
+  'AvalancheSquare',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" fill="#e84142" />
+      <defs>
+        <mask id={`${_id}-avxs-a`}>
+          <rect width="100%" height="100%" fill="#000" />
+          <path
+            transform={AVAX_SQUARE_TX}
+            fillRule="evenodd"
+            d={AVALANCHE_PATH}
+            fill="#fff"
+          />
+        </mask>
+      </defs>
+      <rect width="64" height="64" fill="#fff" mask={`url(#${_id}-avxs-a)`} />
+    </>
+  ),
+);
+
+export const AvalancheSquareMono = createIcon(
+  'AvalancheSquareMono',
+  '0 0 64 64',
+  _id => (
+    <>
+      <defs>
+        <mask id={`${_id}-avxsm-a`}>
+          <rect width="100%" height="100%" fill="#000" />
+          <path
+            transform={AVAX_SQUARE_TX}
+            fillRule="evenodd"
+            d={AVALANCHE_PATH}
+            fill="#fff"
+          />
+        </mask>
+      </defs>
+      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-avxsm-a)`} />
+    </>
+  ),
+  'currentColor',
+);
+
 export const AvalancheMono = createIcon(
   'AvalancheMono',
   '320 280 869 771',
