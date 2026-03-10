@@ -109,15 +109,13 @@ export default function IconTable() {
     return { ...group, components };
   }, [linkedIcon, allGroups]);
 
-  const hasScrolled = useRef(false);
   useEffect(() => {
-    if (!linkedIcon || hasScrolled.current) return;
+    if (!linkedIcon) return;
     const el = document.querySelector<HTMLElement>(
       `[data-icon-name="${CSS.escape(linkedIcon)}"]`,
     );
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      hasScrolled.current = true;
     }
   }, [linkedIcon]);
 

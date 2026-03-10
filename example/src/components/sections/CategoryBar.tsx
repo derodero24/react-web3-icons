@@ -30,22 +30,24 @@ export default function CategoryBar() {
       ? (rawCategory as Category)
       : 'all';
 
-  const navRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
 
   // Update indicator position and scroll active tab into view when category changes.
   // useLayoutEffect prevents visual flicker on the indicator position.
   // biome-ignore lint/correctness/useExhaustiveDependencies: current drives which DOM element is active
   useLayoutEffect(() => {
-    const nav = navRef.current;
-    if (!nav) return;
-    const active = nav.querySelector<HTMLElement>('[aria-current="page"]');
+    const container = containerRef.current;
+    if (!container) return;
+    const active = container.querySelector<HTMLElement>(
+      '[aria-current="page"]',
+    );
     if (!active) return;
 
-    // Update indicator
-    const navRect = nav.getBoundingClientRect();
+    // Compute position relative to the inner container (the indicator's offset parent)
+    const containerRect = container.getBoundingClientRect();
     const rect = active.getBoundingClientRect();
-    const newLeft = rect.left - navRect.left + nav.scrollLeft;
+    const newLeft = rect.left - containerRect.left;
     const newWidth = rect.width;
     setIndicator(prev =>
       prev.left === newLeft && prev.width === newWidth
@@ -53,7 +55,7 @@ export default function CategoryBar() {
         : { left: newLeft, width: newWidth },
     );
 
-    // Scroll into view
+    // Scroll active tab into view within the scrollable nav
     active.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
@@ -63,11 +65,10 @@ export default function CategoryBar() {
 
   return (
     <nav
-      ref={navRef}
       aria-label="Icon categories"
       className="scrollbar-none sticky top-0 z-10 overflow-x-auto border-b border-border bg-[#0a0a0a] px-4 py-2 sm:px-6"
     >
-      <div className="relative flex gap-1">
+      <div ref={containerRef} className="relative flex gap-1">
         {/* Animated indicator */}
         <div
           className="pointer-events-none absolute bottom-0 h-0.5 rounded-full bg-accent transition-all duration-200 ease-out"
