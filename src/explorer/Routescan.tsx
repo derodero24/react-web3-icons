@@ -27,12 +27,12 @@ export const RoutescanMono = createIcon(
   '0 0 42 48',
   () => (
     <>
-      <path d={RS_TOP_LEFT} />
+      <path d={RS_TOP_LEFT} opacity="0.9" />
       <path d={RS_TOP_RIGHT} />
-      <path d={RS_MID_LEFT} />
-      <path d={RS_MID_RIGHT} />
-      <path d={RS_BOT_RIGHT} />
-      <path d={RS_BOT_LEFT} />
+      <path d={RS_MID_LEFT} opacity="0.5" />
+      <path d={RS_MID_RIGHT} opacity="0.75" />
+      <path d={RS_BOT_RIGHT} opacity="0.65" />
+      <path d={RS_BOT_LEFT} opacity="0.45" />
     </>
   ),
   'currentColor',
