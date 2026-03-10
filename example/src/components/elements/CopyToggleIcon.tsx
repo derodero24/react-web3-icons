@@ -1,4 +1,4 @@
-/** Animated icon that toggles between a copy icon and a check mark. */
+/** Icon that toggles between a copy icon and a check mark. */
 export default function CopyToggleIcon({
   copied,
   className = 'h-4 w-4',
@@ -15,7 +15,8 @@ export default function CopyToggleIcon({
         strokeWidth={2.5}
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={`${className} text-green-400`}
+        className={className}
+        style={{ color: '#4ade80' }}
         aria-hidden="true"
       >
         <polyline points="20 6 9 17 4 12" />
