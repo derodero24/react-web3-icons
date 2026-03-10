@@ -52,6 +52,7 @@ jobs:
       - name: Fast-forward main to develop
         if: steps.changesets.outputs.published == 'true'
         run: |
+          git fetch origin main:main
           git checkout main
           if git merge develop --ff-only; then
             git push origin main
