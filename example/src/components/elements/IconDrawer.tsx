@@ -1,15 +1,16 @@
 'use client';
 
-import type { ComponentType, CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+
+import { useCopyAction } from '../../hooks/useCopyAction';
+import type { IconComponent } from '../../types/icons';
+import CopyToggleIcon from './CopyToggleIcon';
 
 interface Props {
   base: string;
   variants: string[];
-  components: Record<
-    string,
-    ComponentType<{ className?: string; style?: CSSProperties }>
-  >;
+  components: Record<string, IconComponent>;
   /** Current category key, or 'all' when browsing all categories */
   category: string;
   onClose: () => void;
@@ -28,28 +29,6 @@ const PRESET_COLORS = [
   { value: '#06b6d4', label: 'Cyan' },
 ] as const;
 
-/** Safely copy text and show a brief check mark. */
-function useCopyAction() {
-  const [copied, setCopied] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
-
-  useEffect(() => () => clearTimeout(timerRef.current), []);
-
-  const copy = useCallback((text: string) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setCopied(true);
-        clearTimeout(timerRef.current);
-        timerRef.current = setTimeout(() => setCopied(false), 1500);
-      })
-      // biome-ignore lint/suspicious/noConsole: clipboard error
-      .catch(console.error);
-  }, []);
-
-  return { copied, copy };
-}
-
 function CopyButton({ text }: { text: string }) {
   const { copied, copy } = useCopyAction();
 
@@ -60,34 +39,7 @@ function CopyButton({ text }: { text: string }) {
       aria-label="Copy to clipboard"
       className="rounded p-1.5 text-white/30 transition-colors hover:bg-white/10 hover:text-white/60"
     >
-      {copied ? (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-4 w-4 text-green-400"
-          aria-hidden="true"
-        >
-          <polyline points="20 6 9 17 4 12" />
-        </svg>
-      ) : (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-4 w-4"
-          aria-hidden="true"
-        >
-          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-        </svg>
-      )}
+      <CopyToggleIcon copied={copied} />
     </button>
   );
 }
@@ -147,9 +99,7 @@ export default function IconDrawer({
     requestAnimationFrame(() => setOpen(true));
   }, []);
 
-  const Icon = components[selected] as
-    | ComponentType<{ className?: string; style?: CSSProperties }>
-    | undefined;
+  const Icon = components[selected] as IconComponent | undefined;
 
   // Serialize SVG after render so the code tab shows the current DOM.
   // Deps trigger re-serialization when the icon or its styling changes.
@@ -329,12 +279,7 @@ export default function IconDrawer({
               }}
             >
               {variants.map(v => {
-                const VIcon = components[v] as
-                  | ComponentType<{
-                      className?: string;
-                      style?: CSSProperties;
-                    }>
-                  | undefined;
+                const VIcon = components[v] as IconComponent | undefined;
                 return (
                   <button
                     key={v}
@@ -409,7 +354,7 @@ export default function IconDrawer({
               >
                 {variants.map(v => {
                   const VariantIcon = components[v] as
-                    | ComponentType<{ className?: string }>
+                    | IconComponent
                     | undefined;
                   const isSelected = selected === v;
                   return (

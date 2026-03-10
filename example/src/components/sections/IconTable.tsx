@@ -1,20 +1,16 @@
 'use client';
 
 import { parseAsString, useQueryState } from 'nuqs';
-import type { ComponentType } from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import * as iconModules from 'react-web3-icons';
 import { useIconFilter } from '../../hooks/useIconFilter';
+import type { IconComponent, Variant } from '../../types/icons';
 import { groupIcons } from '../../utils/groupIcons';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 import IconCard from '../elements/IconCard';
 import IconDrawer from '../elements/IconDrawer';
 import SearchForm from '../elements/SearchForm';
-
-type IconComponent = ComponentType<{ className?: string }>;
-
-type Variant = 'all' | 'colored' | 'mono';
 
 const VARIANT_LABELS: Record<Variant, string> = {
   all: 'All',

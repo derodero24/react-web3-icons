@@ -1,11 +1,8 @@
-import type { ComponentType } from 'react';
 import { useMemo } from 'react';
 
 import * as iconModules from 'react-web3-icons';
+import type { IconComponent, Variant } from '../types/icons';
 import { groupIcons } from '../utils/groupIcons';
-
-type Variant = 'all' | 'colored' | 'mono';
-type IconComponent = ComponentType<{ className?: string }>;
 
 const icons = Object.fromEntries(
   Object.entries(iconModules).filter(
