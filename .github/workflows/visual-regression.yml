@@ -2,13 +2,13 @@ name: Visual Regression
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
     paths:
       - 'src/**'
       - 'test/visual/**'
       - 'vitest.config.visual.ts'
   pull_request:
-    branches: [main]
+    branches: [develop]
     paths:
       - 'src/**'
       - 'test/visual/**'
@@ -41,31 +41,31 @@ jobs:
       - name: Install Playwright browsers
         run: pnpm exec playwright install --with-deps chromium
 
-      # On main: generate and cache reference screenshots
-      - name: Restore reference screenshots (main)
+      # On develop: generate and cache reference screenshots
+      - name: Restore reference screenshots (develop)
         if: github.event_name == 'push'
-        id: screenshots-cache-main
+        id: screenshots-cache-develop
         uses: actions/cache@v5
         with:
           path: test/visual/__screenshots__
-          key: visual-screenshots-main-${{ github.sha }}
+          key: visual-screenshots-develop-${{ github.sha }}
           restore-keys: |
-            visual-screenshots-main-
+            visual-screenshots-develop-
 
-      - name: Generate reference screenshots (main)
-        if: github.event_name == 'push' && steps.screenshots-cache-main.outputs.cache-hit != 'true'
+      - name: Generate reference screenshots (develop)
+        if: github.event_name == 'push' && steps.screenshots-cache-develop.outputs.cache-hit != 'true'
         run: pnpm test:visual:update
 
-      # On PRs: restore main baseline and compare
-      - name: Restore reference screenshots from main (PR)
+      # On PRs: restore develop baseline and compare
+      - name: Restore reference screenshots from develop (PR)
         if: github.event_name == 'pull_request'
         id: screenshots-cache-pr
         uses: actions/cache/restore@v5
         with:
           path: test/visual/__screenshots__
-          key: visual-screenshots-main-${{ github.event.pull_request.base.sha }}
+          key: visual-screenshots-develop-${{ github.event.pull_request.base.sha }}
           restore-keys: |
-            visual-screenshots-main-
+            visual-screenshots-develop-
 
       - name: Check for existing screenshots (PR)
         if: github.event_name == 'pull_request'
@@ -80,7 +80,7 @@ jobs:
       - name: Generate baseline if none cached (PR)
         if: github.event_name == 'pull_request' && steps.check-screenshots.outputs.exists != 'true'
         run: |
-          echo "::warning::No reference screenshots from main found. Generating baseline for this run."
+          echo "::warning::No reference screenshots from develop found. Generating baseline for this run."
           pnpm test:visual:update
 
       - name: Generate screenshots for new icons (PR)
