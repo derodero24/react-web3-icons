@@ -1,11 +1,11 @@
 'use client';
 
-import type { ComponentType } from 'react';
+import type { IconComponent } from '../../types/icons';
 
 interface Props {
   base: string;
   activeVariant: string;
-  components: Record<string, ComponentType<{ className?: string }>>;
+  components: Record<string, IconComponent>;
   highlighted?: boolean;
   onClick: () => void;
 }
@@ -17,9 +17,7 @@ export default function IconCard({
   highlighted = false,
   onClick,
 }: Props) {
-  const Icon = components[activeVariant] as
-    | ComponentType<{ className?: string }>
-    | undefined;
+  const Icon = components[activeVariant] as IconComponent | undefined;
 
   return (
     <button
