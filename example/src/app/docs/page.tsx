@@ -84,6 +84,7 @@ export function MyComponent() {
               </p>
               <div className="overflow-x-auto rounded-lg border border-border">
                 <table className="w-full text-left">
+                  <caption className="sr-only">Icon component props</caption>
                   <thead>
                     <tr className="border-b border-border bg-surface">
                       <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-white/50">
@@ -315,6 +316,9 @@ react-web3-icons/wallet`}</CodeBlock>
               </p>
               <div className="overflow-x-auto rounded-lg border border-border">
                 <table className="w-full text-left">
+                  <caption className="sr-only">
+                    Naming convention suffixes
+                  </caption>
                   <thead>
                     <tr className="border-b border-border bg-surface">
                       <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-white/50">
