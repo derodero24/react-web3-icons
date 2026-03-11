@@ -37,7 +37,7 @@ function CopyButton({ text }: { text: string }) {
       type="button"
       onClick={() => copy(text)}
       aria-label="Copy to clipboard"
-      className="rounded p-1.5 text-white/50 transition-colors hover:bg-white/10 hover:text-white/60"
+      className="flex min-h-11 min-w-11 items-center justify-center rounded text-white/50 transition-colors hover:bg-white/10 hover:text-white/60"
     >
       <CopyToggleIcon copied={copied} />
     </button>
@@ -408,7 +408,7 @@ export default function IconDrawer({
                 key={size}
                 type="button"
                 onClick={() => setPreviewSize(size)}
-                className={`rounded px-2 py-0.5 font-mono text-[10px] transition-colors ${
+                className={`flex min-h-11 min-w-11 items-center justify-center rounded font-mono text-[10px] transition-colors ${
                   previewSize === size
                     ? 'bg-accent/20 text-accent'
                     : 'bg-white/5 text-white/50 hover:text-white/60'
@@ -432,7 +432,7 @@ export default function IconDrawer({
                 type="button"
                 onClick={() => setPreviewColor(c.value)}
                 title={c.label}
-                className={`h-7 w-7 rounded-full border-2 transition-all ${
+                className={`h-11 w-11 rounded-full border-2 transition-all ${
                   previewColor === c.value
                     ? 'border-accent scale-110'
                     : 'border-transparent hover:border-white/20'
@@ -453,10 +453,10 @@ export default function IconDrawer({
                 type="color"
                 value={previewColor || '#ffffff'}
                 onChange={e => setPreviewColor(e.target.value)}
-                className="absolute inset-0 h-7 w-7 cursor-pointer opacity-0"
+                className="absolute inset-0 h-11 w-11 cursor-pointer opacity-0"
                 aria-label="Custom color"
               />
-              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-dashed border-white/20 text-white/50 transition-colors hover:border-white/40 hover:text-white/60">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-dashed border-white/20 text-white/50 transition-colors hover:border-white/40 hover:text-white/60">
                 <svg
                   viewBox="0 0 16 16"
                   className="h-3.5 w-3.5"
