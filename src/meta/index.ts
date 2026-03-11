@@ -158,6 +158,7 @@ export const TICKER_TO_COIN = {
   POL: 'Pol',
   PYTH: 'Pyth',
   RENDER: 'Render',
+  RNDR: 'Render',
   SHIB: 'Shib',
   SOL: 'Sol',
   TAO: 'Tao',
