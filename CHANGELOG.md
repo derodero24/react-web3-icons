@@ -2,6 +2,8 @@
 
 ## 3.0.0
 
+> **Upgrading from v2?** See the [Migration Guide](./MIGRATION.md) for step-by-step instructions.
+
 ### Major Changes
 
 - [#375](https://github.com/derodero24/react-web3-icons/pull/375) [`7db69e8`](https://github.com/derodero24/react-web3-icons/commit/7db69e86257e365446e9b1bb4a04afa7b649fe74) Thanks [@derodero24](https://github.com/derodero24)! - Drop CommonJS (CJS) output — distribute ESM only.
