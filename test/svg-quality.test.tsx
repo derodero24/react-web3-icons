@@ -53,6 +53,34 @@ describe('SVG quality checks', () => {
       ).toBeTruthy();
     });
 
+    it('viewBox is 4 space-separated numbers with positive width/height', () => {
+      const viewBox = svg?.getAttribute('viewBox');
+      if (!viewBox) {
+        return; // covered by the previous test
+      }
+      const parts = viewBox.trim().split(/\s+/);
+      expect(
+        parts.length,
+        `${_name}: viewBox "${viewBox}" must have exactly 4 values`,
+      ).toBe(4);
+      for (const part of parts) {
+        expect(
+          Number.isFinite(Number(part)),
+          `${_name}: viewBox value "${part}" is not a valid number`,
+        ).toBe(true);
+      }
+      const width = Number(parts[2]);
+      const height = Number(parts[3]);
+      expect(
+        width,
+        `${_name}: viewBox width must be positive, got ${width}`,
+      ).toBeGreaterThan(0);
+      expect(
+        height,
+        `${_name}: viewBox height must be positive, got ${height}`,
+      ).toBeGreaterThan(0);
+    });
+
     it('has no <style> tags', () => {
       const styleTags = svg?.querySelectorAll('style') ?? [];
       expect(
