@@ -12,6 +12,8 @@ import type { IconProps } from '../utils';
 type LazyComponent = ComponentType<IconProps>;
 type LazyCache = Map<string, LazyComponent>;
 
+const warnedNames: Set<string> = /* @__PURE__ */ new Set<string>();
+
 /**
  * Creates a dynamic icon component that lazily loads icons from a category module.
  *
@@ -44,6 +46,17 @@ export function createDynamicIcon<P>(
         importCategory().then(mod => {
           const comp = mod[exportName] as LazyComponent | undefined;
           if (!comp) {
+            if (
+              // biome-ignore lint/complexity/useLiteralKeys: TS noPropertyAccessFromIndexSignature
+              process.env['NODE_ENV'] !== 'production' &&
+              !warnedNames.has(exportName)
+            ) {
+              warnedNames.add(exportName);
+              // biome-ignore lint/suspicious/noConsole: intentional dev-mode warning
+              console.warn(
+                `[react-web3-icons] Icon "${exportName}" not found in module.`,
+              );
+            }
             return { default: (() => null) as unknown as LazyComponent };
           }
           return { default: comp };
