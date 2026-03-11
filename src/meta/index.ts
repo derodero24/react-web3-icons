@@ -194,6 +194,7 @@ export const WALLET_SLUG_TO_NAME = {
   rabby: 'Rabby',
   rainbowwallet: 'RainbowWallet',
   safe: 'Safe',
+  solflare: 'Solflare',
   subwallet: 'SubWallet',
   tangem: 'Tangem',
   trezor: 'Trezor',
