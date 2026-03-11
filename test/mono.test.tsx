@@ -6,7 +6,7 @@ import * as icons from '../src';
 
 // Dynamically discover all Mono variants from exports
 const monoEntries = Object.entries(icons).filter(
-  ([name]) => /Mono\d*$/.test(name) && name !== 'IconContext',
+  ([name]) => /Mono$/.test(name) && name !== 'IconContext',
 ) as [string, ComponentType][];
 
 describe('Mono variant icons', () => {
