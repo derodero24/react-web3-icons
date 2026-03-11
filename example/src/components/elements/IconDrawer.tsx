@@ -261,7 +261,7 @@ export default function IconDrawer({
               className={`rounded px-2 py-0.5 text-xs font-medium transition-colors ${
                 compareMode
                   ? 'bg-accent/20 text-accent'
-                  : 'bg-white/5 text-white/50 hover:text-white/50'
+                  : 'bg-white/5 text-white/50 hover:text-white/60'
               }`}
             >
               Compare
@@ -411,7 +411,7 @@ export default function IconDrawer({
                 className={`rounded px-2 py-0.5 font-mono text-[10px] transition-colors ${
                   previewSize === size
                     ? 'bg-accent/20 text-accent'
-                    : 'bg-white/5 text-white/50 hover:text-white/50'
+                    : 'bg-white/5 text-white/50 hover:text-white/60'
                 }`}
               >
                 {size}
@@ -456,7 +456,7 @@ export default function IconDrawer({
                 className="absolute inset-0 h-7 w-7 cursor-pointer opacity-0"
                 aria-label="Custom color"
               />
-              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-dashed border-white/20 text-white/50 transition-colors hover:border-white/40 hover:text-white/50">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-dashed border-white/20 text-white/50 transition-colors hover:border-white/40 hover:text-white/60">
                 <svg
                   viewBox="0 0 16 16"
                   className="h-3.5 w-3.5"
