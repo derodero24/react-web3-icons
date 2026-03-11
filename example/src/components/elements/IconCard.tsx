@@ -29,7 +29,7 @@ export default function IconCard({
       }`}
     >
       {Icon && <Icon className="text-4xl" />}
-      <p className="w-full truncate text-center font-mono text-[11px] text-white/40">
+      <p className="w-full truncate text-center font-mono text-[11px] text-white/50">
         {base}
       </p>
     </button>

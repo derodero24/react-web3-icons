@@ -77,7 +77,7 @@ export default function SearchForm({
         strokeLinejoin="round"
         width="1em"
         height="1em"
-        className="pointer-events-none absolute left-3 text-lg text-white/30 peer-focus:text-accent"
+        className="pointer-events-none absolute left-3 text-lg text-white/50 peer-focus:text-accent"
         aria-hidden="true"
       >
         <circle cx={11} cy={11} r={8} />
@@ -85,12 +85,12 @@ export default function SearchForm({
       </svg>
       {keyword ? (
         <div className="pointer-events-none absolute right-3 flex items-center gap-2">
-          <span className="font-mono text-xs text-white/30">
+          <span className="font-mono text-xs text-white/50">
             {resultCount}/{totalCount}
           </span>
         </div>
       ) : (
-        <kbd className="pointer-events-none absolute right-3 rounded border border-border bg-white/5 px-1.5 py-0.5 font-mono text-xs text-white/30 transition-opacity peer-focus:opacity-0">
+        <kbd className="pointer-events-none absolute right-3 rounded border border-border bg-white/5 px-1.5 py-0.5 font-mono text-xs text-white/50 transition-opacity peer-focus:opacity-0">
           /
         </kbd>
       )}
