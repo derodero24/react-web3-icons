@@ -1,6 +1,16 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import type {
+  BridgeSlug,
+  ChainId,
+  ChainSlug,
+  DefiSlug,
+  DexSlug,
+  ExchangeSlug,
+  Ticker,
+  WalletSlug,
+} from '../meta';
 import type { IconProps } from '../utils';
 import { createDynamicIcon } from './DynamicIcon';
 import {
@@ -24,39 +34,39 @@ interface DynamicIconBase extends Omit<IconProps, 'ref'> {
 
 export interface ChainIconProps extends DynamicIconBase {
   /** Chain slug, case-insensitive (e.g. `'ethereum'`, `'arbitrum'`). */
-  name?: string;
+  name?: ChainSlug | (string & {});
   /** EVM chain ID (e.g. `1`, `8453`). Takes precedence over `name`. */
-  chainId?: number;
+  chainId?: ChainId | (number & {});
 }
 
 export interface CoinIconProps extends DynamicIconBase {
   /** Ticker symbol, case-insensitive (e.g. `'ETH'`, `'btc'`). */
-  symbol: string;
+  symbol: Ticker | (string & {});
 }
 
 export interface WalletIconProps extends DynamicIconBase {
   /** Wallet name, case-insensitive (e.g. `'metamask'`, `'rabby'`). */
-  name: string;
+  name: WalletSlug | (string & {});
 }
 
 export interface ExchangeIconProps extends DynamicIconBase {
   /** Exchange name, case-insensitive (e.g. `'binance'`, `'coinbase'`). */
-  name: string;
+  name: ExchangeSlug | (string & {});
 }
 
 export interface DefiIconProps extends DynamicIconBase {
   /** DeFi protocol name, case-insensitive (e.g. `'aave'`, `'lido'`). */
-  name: string;
+  name: DefiSlug | (string & {});
 }
 
 export interface DexIconProps extends DynamicIconBase {
   /** DEX name, case-insensitive (e.g. `'uniswap'`, `'sushiswap'`). */
-  name: string;
+  name: DexSlug | (string & {});
 }
 
 export interface BridgeIconProps extends DynamicIconBase {
   /** Bridge name, case-insensitive (e.g. `'layerzero'`, `'wormhole'`). */
-  name: string;
+  name: BridgeSlug | (string & {});
 }
 
 const CHAIN_STRIP = ['name', 'chainId', 'variant', 'fallback'] as const;
