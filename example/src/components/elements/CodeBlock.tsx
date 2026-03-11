@@ -12,8 +12,13 @@ export default function CodeBlock({
 }) {
   const { copied, copy } = useCopyAction();
 
+  const Wrapper = label ? 'section' : 'div';
+
   return (
-    <section className="group relative" aria-label={label ?? 'Code example'}>
+    <Wrapper
+      className="group relative"
+      {...(label ? { 'aria-label': label } : {})}
+    >
       <pre className="overflow-x-auto rounded-lg border border-border bg-surface p-4 pr-12 font-mono text-sm text-white/80">
         <code>{children}</code>
       </pre>
@@ -25,6 +30,6 @@ export default function CodeBlock({
       >
         <CopyToggleIcon copied={copied} />
       </button>
-    </section>
+    </Wrapper>
   );
 }
