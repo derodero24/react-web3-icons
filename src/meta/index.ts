@@ -161,7 +161,9 @@ export const TICKER_TO_COIN = {
   USDT: 'Usdt',
   WLD: 'Wld',
   XLM: 'Xlm',
+  XMR: 'Xmr',
   XRP: 'Xrp',
+  ZEC: 'Zec',
 } as const satisfies Record<string, string>;
 
 /** Uppercase ticker symbol recognized by this package. */
