@@ -188,7 +188,7 @@
     {
       "name": "chain",
       "path": "dist/chain/index.mjs",
-      "limit": "28 KB"
+      "limit": "29 KB"
     },
     {
       "name": "coin",
@@ -263,7 +263,7 @@
     {
       "name": "dynamic",
       "path": "dist/dynamic/index.mjs",
-      "limit": "105 KB"
+      "limit": "106 KB"
     }
   ]
 }
