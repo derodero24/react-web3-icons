@@ -1,7 +1,13 @@
 import { describe, expect, it } from 'vitest';
+import * as bridge from '../src/bridge';
+import * as defi from '../src/defi';
+import * as dex from '../src/dex';
 import {
+  resolveBridgeExportName,
   resolveChainExportName,
   resolveCoinExportName,
+  resolveDefiExportName,
+  resolveDexExportName,
   resolveExchangeExportName,
   resolveWalletExportName,
 } from '../src/dynamic/resolve';
@@ -174,6 +180,154 @@ describe('resolveExchangeExportName', () => {
       expect(
         exchangeNames.has(name as string),
         `exchange slug '${slug}' resolves to '${name}' which is not exported`,
+      ).toBe(true);
+    }
+  });
+});
+
+describe('resolveDefiExportName', () => {
+  it('resolves known protocols', () => {
+    expect(resolveDefiExportName({ name: 'aave' })).toBe('Aave');
+    expect(resolveDefiExportName({ name: 'lido' })).toBe('Lido');
+    expect(resolveDefiExportName({ name: 'eigenlayer' })).toBe('EigenLayer');
+  });
+
+  it('is case-insensitive', () => {
+    expect(resolveDefiExportName({ name: 'Aave' })).toBe('Aave');
+    expect(resolveDefiExportName({ name: 'LIDO' })).toBe('Lido');
+  });
+
+  it('resolves mono variant', () => {
+    expect(resolveDefiExportName({ name: 'aave', variant: 'mono' })).toBe(
+      'AaveMono',
+    );
+  });
+
+  it('returns null for unknown protocol', () => {
+    expect(resolveDefiExportName({ name: 'notadefi' })).toBeNull();
+  });
+
+  it('every resolved name references an exported defi icon', () => {
+    const defiNames = new Set(Object.keys(defi));
+    const slugs = [
+      'aave',
+      'balancer',
+      'compound',
+      'convex',
+      'eigenlayer',
+      'ethena',
+      'frax',
+      'gmx',
+      'lido',
+      'liquity',
+      'makerdao',
+      'morpho',
+      'pendle',
+      'rocketpool',
+      'safeprotocol',
+      'spark',
+      'synthetix',
+      'yearn',
+    ];
+    for (const slug of slugs) {
+      const name = resolveDefiExportName({ name: slug });
+      expect(name).not.toBeNull();
+      expect(
+        defiNames.has(name as string),
+        `defi slug '${slug}' resolves to '${name}' which is not exported`,
+      ).toBe(true);
+    }
+  });
+});
+
+describe('resolveDexExportName', () => {
+  it('resolves known DEXes', () => {
+    expect(resolveDexExportName({ name: 'uniswap' })).toBe('Uniswap');
+    expect(resolveDexExportName({ name: 'sushiswap' })).toBe('SushiSwap');
+    expect(resolveDexExportName({ name: 'jupiter' })).toBe('Jupiter');
+  });
+
+  it('is case-insensitive', () => {
+    expect(resolveDexExportName({ name: 'Uniswap' })).toBe('Uniswap');
+    expect(resolveDexExportName({ name: 'JUPITER' })).toBe('Jupiter');
+  });
+
+  it('resolves mono variant', () => {
+    expect(resolveDexExportName({ name: 'uniswap', variant: 'mono' })).toBe(
+      'UniswapMono',
+    );
+  });
+
+  it('returns null for unknown DEX', () => {
+    expect(resolveDexExportName({ name: 'notadex' })).toBeNull();
+  });
+
+  it('every resolved name references an exported dex icon', () => {
+    const dexNames = new Set(Object.keys(dex));
+    const slugs = [
+      'aerodrome',
+      'camelot',
+      'cowprotocol',
+      'dydx',
+      'ekubo',
+      'hyperliquid',
+      'jupiter',
+      'oneinch',
+      'osmosis',
+      'pancakeswap',
+      'raydium',
+      'sushiswap',
+      'uniswap',
+      'velodrome',
+    ];
+    for (const slug of slugs) {
+      const name = resolveDexExportName({ name: slug });
+      expect(name).not.toBeNull();
+      expect(
+        dexNames.has(name as string),
+        `dex slug '${slug}' resolves to '${name}' which is not exported`,
+      ).toBe(true);
+    }
+  });
+});
+
+describe('resolveBridgeExportName', () => {
+  it('resolves known bridges', () => {
+    expect(resolveBridgeExportName({ name: 'layerzero' })).toBe('LayerZero');
+    expect(resolveBridgeExportName({ name: 'wormhole' })).toBe('Wormhole');
+    expect(resolveBridgeExportName({ name: 'across' })).toBe('Across');
+  });
+
+  it('is case-insensitive', () => {
+    expect(resolveBridgeExportName({ name: 'LayerZero' })).toBe('LayerZero');
+    expect(resolveBridgeExportName({ name: 'WORMHOLE' })).toBe('Wormhole');
+  });
+
+  it('resolves mono variant', () => {
+    expect(
+      resolveBridgeExportName({ name: 'layerzero', variant: 'mono' }),
+    ).toBe('LayerZeroMono');
+  });
+
+  it('returns null for unknown bridge', () => {
+    expect(resolveBridgeExportName({ name: 'notabridge' })).toBeNull();
+  });
+
+  it('every resolved name references an exported bridge icon', () => {
+    const bridgeNames = new Set(Object.keys(bridge));
+    const slugs = [
+      'across',
+      'hopprotocol',
+      'layerzero',
+      'stargate',
+      'wormhole',
+    ];
+    for (const slug of slugs) {
+      const name = resolveBridgeExportName({ name: slug });
+      expect(name).not.toBeNull();
+      expect(
+        bridgeNames.has(name as string),
+        `bridge slug '${slug}' resolves to '${name}' which is not exported`,
       ).toBe(true);
     }
   });
