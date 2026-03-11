@@ -164,7 +164,7 @@ export default function IconTable() {
               className={`h-11 px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent ${
                 variant === v
                   ? 'bg-white/10 text-white'
-                  : 'text-white/40 hover:bg-white/5 hover:text-white/60'
+                  : 'text-white/50 hover:bg-white/5 hover:text-white/60'
               }`}
             >
               {VARIANT_LABELS[v]}
@@ -178,7 +178,7 @@ export default function IconTable() {
       </p>
 
       {isCategoryEmpty ? (
-        <div className="mt-16 flex flex-col items-center gap-2 text-center text-white/30">
+        <div className="mt-16 flex flex-col items-center gap-2 text-center text-white/50">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -198,7 +198,7 @@ export default function IconTable() {
           </p>
         </div>
       ) : isSearchEmpty ? (
-        <div className="mt-16 flex flex-col items-center gap-2 text-center text-white/30">
+        <div className="mt-16 flex flex-col items-center gap-2 text-center text-white/50">
           <svg
             viewBox="0 0 24 24"
             fill="none"
