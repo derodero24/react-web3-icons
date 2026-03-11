@@ -17,6 +17,7 @@ export * from './PolkadotJs';
 export * from './Rabby';
 export * from './RainbowWallet';
 export * from './Safe';
+export * from './Solflare';
 export * from './SubWallet';
 export * from './Tangem';
 export * from './Trezor';
