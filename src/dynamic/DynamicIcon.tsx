@@ -47,7 +47,8 @@ export function createDynamicIcon<P>(
           const comp = mod[exportName] as LazyComponent | undefined;
           if (!comp) {
             if (
-              // biome-ignore lint/complexity/useLiteralKeys: TS noPropertyAccessFromIndexSignature
+              typeof process !== 'undefined' &&
+              // biome-ignore lint/complexity/useLiteralKeys: dot notation preferred for bundler DCE, but TS noPropertyAccessFromIndexSignature requires bracket access
               process.env['NODE_ENV'] !== 'production' &&
               !warnedNames.has(exportName)
             ) {
