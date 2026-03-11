@@ -358,7 +358,7 @@ This project uses [Biome](https://biomejs.dev/) for linting and formatting. Run 
 
 ## Submitting a Pull Request
 
-1. Fork the repository and create a feature branch from `main`
+1. Fork the repository and create a feature branch from `develop`
 2. Make your changes and ensure all checks pass:
    ```sh
    pnpm run lint
@@ -374,4 +374,4 @@ This project uses [Biome](https://biomejs.dev/) for linting and formatting. Run 
    Follow the prompts to select the semver bump type (patch, minor, or major) and describe the change.
 
 4. Write a clear commit message (e.g., `feat(coin): add MyToken icon`)
-5. Open a pull request against `main`
+5. Open a pull request against `develop`
