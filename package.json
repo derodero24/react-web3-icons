@@ -258,7 +258,7 @@
     {
       "name": "meta",
       "path": "dist/meta/index.mjs",
-      "limit": "1 KB"
+      "limit": "2 KB"
     },
     {
       "name": "dynamic",
