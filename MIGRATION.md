@@ -59,12 +59,12 @@ Every `Foo2` / `Foo3` / `Foo4` export is renamed to a descriptive suffix. The ol
 | `EnsMono2` | `EnsCircleMono` |
 | `Bitstamp2` | `BitstampCircle` |
 | `BitstampMono2` | `BitstampCircleMono` |
-| `Bybit2` | `BybitLight` |
+| `Bybit2` | `BybitInverted` |
 | `Coinbase2` | `CoinbaseCircle` |
 | `Coinbase3` | `CoinbaseCircleAlt` |
 | `CoinbaseMono2` | `CoinbaseCircleMono` |
-| `Etherscan2` | `EtherscanLight` |
-| `Bscscan2` | `BscscanLight` |
+| `Etherscan2` | `EtherscanInverted` |
+| `Bscscan2` | `BscscanInverted` |
 | `Avascan2` | `AvascanWordmark` |
 | `AvascanMono2` | `AvascanWordmarkMono` |
 | `LooksRare2` | `LooksRareFlat` |
@@ -124,14 +124,14 @@ Coin aliases follow the same pattern: `Btc` (was circle) is now standalone, use 
 
 ## 4. Removed exports
 
-These exports are deleted with no replacement alias:
+These numbered variants are removed. Use the base name instead:
 
-- `GnosisSafe2` — use `GnosisSafe` (identical component)
-- `GnosisSafeMono2` — use `GnosisSafeMono` (identical component)
+- `GnosisSafe2` — use `Safe` (identical component; `GnosisSafe` also works but is deprecated)
+- `GnosisSafeMono2` — use `SafeMono` (identical component; `GnosisSafeMono` also works but is deprecated)
 
 ```diff
 - import { GnosisSafe2 } from 'react-web3-icons';
-+ import { GnosisSafe } from 'react-web3-icons';
++ import { Safe } from 'react-web3-icons';
 ```
 
 ## 5. Deprecated re-exports (still work, will be removed later)
@@ -161,5 +161,5 @@ These old names continue to work in v3 as re-exports, but emit TypeScript `@depr
 1. Replace all `require('react-web3-icons')` with `import`
 2. Rename numbered variants using the table in section 2
 3. Check if you use any swapped base names (section 3) — update if you expected the circle/wordmark variant
-4. Replace `GnosisSafe2` / `GnosisSafeMono2` with `GnosisSafe` / `GnosisSafeMono`
+4. Replace `GnosisSafe2` / `GnosisSafeMono2` with `Safe` / `SafeMono`
 5. Optionally update deprecated names (section 5) to avoid future breakage
