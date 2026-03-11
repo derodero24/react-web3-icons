@@ -41,7 +41,7 @@ export default function DocsPage() {
       <div className="lg:grid lg:grid-cols-[1fr_200px] lg:gap-8">
         <div>
           <h1 className="mb-2 text-3xl font-bold text-white">API Reference</h1>
-          <p className="mb-10 text-white/40">
+          <p className="mb-10 text-white/50">
             Usage guide and complete API reference for{' '}
             <code className="rounded bg-surface px-1 py-0.5 font-mono text-sm text-white/60">
               react-web3-icons
@@ -86,16 +86,16 @@ export function MyComponent() {
                 <table className="w-full text-left">
                   <thead>
                     <tr className="border-b border-border bg-surface">
-                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-white/40">
+                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-white/50">
                         Prop
                       </th>
-                      <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-white/40">
+                      <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-white/50">
                         Type
                       </th>
-                      <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-white/40">
+                      <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-white/50">
                         Default
                       </th>
-                      <th className="py-2 text-xs font-semibold uppercase tracking-wide text-white/40">
+                      <th className="py-2 text-xs font-semibold uppercase tracking-wide text-white/50">
                         Description
                       </th>
                     </tr>
@@ -108,7 +108,7 @@ export function MyComponent() {
                       <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
                         {'string | number'}
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/40">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/50">
                         {'"1em"'}
                       </td>
                       <td className="py-2 align-top text-sm text-white/60">
@@ -127,7 +127,7 @@ export function MyComponent() {
                       <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
                         string
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/40">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/50">
                         —
                       </td>
                       <td className="py-2 align-top text-sm text-white/60">
@@ -151,7 +151,7 @@ export function MyComponent() {
                       <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
                         string
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/40">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/50">
                         —
                       </td>
                       <td className="py-2 align-top text-sm text-white/60">
@@ -173,7 +173,7 @@ export function MyComponent() {
                       <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
                         string
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/40">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/50">
                         —
                       </td>
                       <td className="py-2 align-top text-sm text-white/60">
@@ -199,7 +199,7 @@ export function MyComponent() {
                       <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
                         boolean
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/40">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/50">
                         true
                       </td>
                       <td className="py-2 align-top text-sm text-white/60">
@@ -219,7 +219,7 @@ export function MyComponent() {
                       <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
                         CSSProperties
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/40">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/50">
                         —
                       </td>
                       <td className="py-2 align-top text-sm text-white/60">
@@ -317,10 +317,10 @@ react-web3-icons/wallet`}</CodeBlock>
                 <table className="w-full text-left">
                   <thead>
                     <tr className="border-b border-border bg-surface">
-                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-white/40">
+                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-white/50">
                         Suffix
                       </th>
-                      <th className="py-2 text-xs font-semibold uppercase tracking-wide text-white/40">
+                      <th className="py-2 text-xs font-semibold uppercase tracking-wide text-white/50">
                         Description
                       </th>
                     </tr>
@@ -468,7 +468,7 @@ function DynamicIcon({ name, size }: { name: IconName; size?: number }) {
         {/* Sticky sidebar TOC (desktop only) */}
         <aside className="hidden lg:block">
           <nav aria-label="Table of contents" className="sticky top-8">
-            <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/30">
+            <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/50">
               On this page
             </p>
             <ul className="flex flex-col gap-1.5 border-l border-border pl-3">
@@ -476,7 +476,7 @@ function DynamicIcon({ name, size }: { name: IconName; size?: number }) {
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
-                    className="text-sm text-white/40 transition-colors hover:text-white/80"
+                    className="text-sm text-white/50 transition-colors hover:text-white/80"
                   >
                     {item.label}
                   </a>

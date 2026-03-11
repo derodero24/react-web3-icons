@@ -37,7 +37,7 @@ function CopyButton({ text }: { text: string }) {
       type="button"
       onClick={() => copy(text)}
       aria-label="Copy to clipboard"
-      className="rounded p-1.5 text-white/30 transition-colors hover:bg-white/10 hover:text-white/60"
+      className="rounded p-1.5 text-white/50 transition-colors hover:bg-white/10 hover:text-white/60"
     >
       <CopyToggleIcon copied={copied} />
     </button>
@@ -219,7 +219,7 @@ export default function IconDrawer({
             type="button"
             onClick={onClose}
             aria-label="Close drawer"
-            className="rounded p-1 text-white/40 transition-colors hover:bg-white/10 hover:text-white"
+            className="rounded p-1 text-white/50 transition-colors hover:bg-white/10 hover:text-white"
           >
             <svg
               viewBox="0 0 24 24"
@@ -238,7 +238,7 @@ export default function IconDrawer({
 
         {/* Preview background selector */}
         <div className="flex items-center gap-2 border-b border-border px-5 py-2">
-          <span className="text-xs text-white/30">BG</span>
+          <span className="text-xs text-white/50">BG</span>
           {(['dark', 'light', 'checker'] as const).map(bg => (
             <button
               key={bg}
@@ -261,7 +261,7 @@ export default function IconDrawer({
               className={`rounded px-2 py-0.5 text-xs font-medium transition-colors ${
                 compareMode
                   ? 'bg-accent/20 text-accent'
-                  : 'bg-white/5 text-white/30 hover:text-white/50'
+                  : 'bg-white/5 text-white/50 hover:text-white/60'
               }`}
             >
               Compare
@@ -344,7 +344,7 @@ export default function IconDrawer({
 
             {/* Variant selector */}
             <div className="border-b border-border px-5 py-4">
-              <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/30">
+              <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/50">
                 Variants
               </p>
               <div
@@ -384,10 +384,10 @@ export default function IconDrawer({
         {/* Size control */}
         <div className="border-b border-border px-5 py-4">
           <div className="mb-3 flex items-center justify-between">
-            <p className="text-xs font-medium uppercase tracking-wide text-white/30">
+            <p className="text-xs font-medium uppercase tracking-wide text-white/50">
               Size
             </p>
-            <span className="font-mono text-xs text-white/40">
+            <span className="font-mono text-xs text-white/50">
               {previewSize}px
             </span>
           </div>
@@ -411,7 +411,7 @@ export default function IconDrawer({
                 className={`rounded px-2 py-0.5 font-mono text-[10px] transition-colors ${
                   previewSize === size
                     ? 'bg-accent/20 text-accent'
-                    : 'bg-white/5 text-white/30 hover:text-white/50'
+                    : 'bg-white/5 text-white/50 hover:text-white/60'
                 }`}
               >
                 {size}
@@ -422,7 +422,7 @@ export default function IconDrawer({
 
         {/* Color control */}
         <div className="border-b border-border px-5 py-4">
-          <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/30">
+          <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/50">
             Color
           </p>
           <div className="flex flex-wrap items-center gap-2">
@@ -456,7 +456,7 @@ export default function IconDrawer({
                 className="absolute inset-0 h-7 w-7 cursor-pointer opacity-0"
                 aria-label="Custom color"
               />
-              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-dashed border-white/20 text-white/30 transition-colors hover:border-white/40 hover:text-white/50">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-dashed border-white/20 text-white/50 transition-colors hover:border-white/40 hover:text-white/60">
                 <svg
                   viewBox="0 0 16 16"
                   className="h-3.5 w-3.5"
@@ -485,7 +485,7 @@ export default function IconDrawer({
                   className={`rounded-t-md px-3 py-1.5 text-xs font-medium transition-colors ${
                     effectiveTab === tab.key
                       ? 'bg-surface text-white'
-                      : 'text-white/30 hover:text-white/60'
+                      : 'text-white/50 hover:text-white/60'
                   }`}
                 >
                   {tab.label}

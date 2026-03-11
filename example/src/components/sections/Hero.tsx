@@ -35,7 +35,7 @@ export default function Hero() {
         <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
           {ICON_COUNT}+ Web3 icons for React
         </h2>
-        <p className="mt-3 text-sm text-white/40 sm:text-base">
+        <p className="mt-3 text-sm text-white/50 sm:text-base">
           Open-source SVG icons for chains, coins, wallets, DEXs, and more.
         </p>
 
@@ -50,7 +50,7 @@ export default function Hero() {
                 className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                   pkg === m
                     ? 'bg-white/10 text-white'
-                    : 'text-white/30 hover:text-white/60'
+                    : 'text-white/50 hover:text-white/60'
                 }`}
               >
                 {m}
@@ -64,7 +64,7 @@ export default function Hero() {
             className="flex items-center gap-3 rounded-lg border border-border bg-surface px-5 py-2.5 font-mono text-sm text-white/80 transition-colors hover:bg-surface-hover"
           >
             <span className="select-all">{INSTALL_CMDS[pkg]}</span>
-            <span className="text-white/30">
+            <span className="text-white/50">
               <CopyToggleIcon copied={copied} />
             </span>
           </button>

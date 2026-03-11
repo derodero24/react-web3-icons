@@ -13,7 +13,7 @@ export default function Header() {
             React Web3 Icons
           </Link>
         </h1>
-        <span className="font-mono text-xs text-white/40">v{pkg.version}</span>
+        <span className="font-mono text-xs text-white/50">v{pkg.version}</span>
       </div>
       <nav aria-label="Site navigation" className="flex items-center gap-4">
         <Link

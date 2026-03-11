@@ -3,7 +3,7 @@ import pkg from '../../../../package.json';
 export default function Footer() {
   return (
     <footer className="mt-auto border-t border-border px-4 py-4 sm:px-6">
-      <div className="flex items-center justify-between text-xs text-white/40">
+      <div className="flex items-center justify-between text-xs text-white/50">
         <div className="flex items-center gap-3">
           <span className="font-medium text-white/60">React Web3 Icons</span>
           <span className="font-mono">v{pkg.version}</span>
