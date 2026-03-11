@@ -237,8 +237,13 @@ The `react-web3-icons/meta` subpath exports lookup maps for resolving icons by c
 | `CHAIN_ID_TO_NAME` | EVM chain ID (`1`, `42161`, …) | Chain icon base name | `1` → `'Ethereum'` |
 | `CHAIN_SLUG_TO_NAME` | Lowercased slug (`'arbitrum'`, …) | Chain icon base name | `'arbitrum'` → `'Arbitrum'` |
 | `TICKER_TO_COIN` | Uppercase ticker (`'ETH'`, …) | Coin icon base name | `'ETH'` → `'Eth'` |
+| `WALLET_SLUG_TO_NAME` | Lowercased slug (`'metamask'`, …) | Wallet icon base name | `'metamask'` → `'MetaMask'` |
+| `EXCHANGE_SLUG_TO_NAME` | Lowercased slug (`'binance'`, …) | Exchange icon base name | `'binance'` → `'Binance'` |
+| `DEFI_SLUG_TO_NAME` | Lowercased slug (`'aave'`, …) | DeFi icon base name | `'aave'` → `'Aave'` |
+| `DEX_SLUG_TO_NAME` | Lowercased slug (`'uniswap'`, …) | DEX icon base name | `'uniswap'` → `'Uniswap'` |
+| `BRIDGE_SLUG_TO_NAME` | Lowercased slug (`'layerzero'`, …) | Bridge icon base name | `'layerzero'` → `'LayerZero'` |
 
-Each map also exports a corresponding type (`ChainId`, `ChainSlug`, `Ticker`) for type-safe key access.
+Each map exports a corresponding type (`ChainId`, `ChainSlug`, `Ticker`, `WalletSlug`, `ExchangeSlug`, `DefiSlug`, `DexSlug`, `BridgeSlug`) for type-safe key access.
 
 #### Example: Resolve a chain icon from wagmi/viem
 
@@ -246,7 +251,7 @@ Each map also exports a corresponding type (`ChainId`, `ChainSlug`, `Ticker`) fo
 import { CHAIN_ID_TO_NAME, type ChainId } from 'react-web3-icons/meta';
 import * as chains from 'react-web3-icons/chain';
 
-function ChainIcon({ chainId }: { chainId: number }) {
+function ResolvedChainIcon({ chainId }: { chainId: number }) {
   if (!(chainId in CHAIN_ID_TO_NAME)) return null;
   const name = CHAIN_ID_TO_NAME[chainId as ChainId];
   const Icon = chains[name];
@@ -261,7 +266,7 @@ import { TICKER_TO_COIN, type Ticker } from 'react-web3-icons/meta';
 import * as coins from 'react-web3-icons/coin';
 
 function TokenIcon({ symbol }: { symbol: string }) {
-  const key = symbol.toUpperCase();
+  const key = symbol.toUpperCase().trim();
   if (!(key in TICKER_TO_COIN)) return null;
   const Icon = coins[TICKER_TO_COIN[key as Ticker]];
   return <Icon />;
