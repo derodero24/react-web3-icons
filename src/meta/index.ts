@@ -240,3 +240,88 @@ export const EXCHANGE_SLUG_TO_NAME = {
 
 /** Lowercased exchange slug recognized by this package. */
 export type ExchangeSlug = keyof typeof EXCHANGE_SLUG_TO_NAME;
+
+/**
+ * Lowercased slug → DeFi protocol icon base name.
+ *
+ * Maps to exports from `react-web3-icons/defi`:
+ * ```ts
+ * import { DEFI_SLUG_TO_NAME } from 'react-web3-icons/meta';
+ *
+ * const name = DEFI_SLUG_TO_NAME['aave']; // 'Aave'
+ * ```
+ */
+export const DEFI_SLUG_TO_NAME = {
+  aave: 'Aave',
+  balancer: 'Balancer',
+  compound: 'Compound',
+  convex: 'Convex',
+  eigenlayer: 'EigenLayer',
+  ethena: 'Ethena',
+  frax: 'Frax',
+  gmx: 'Gmx',
+  lido: 'Lido',
+  liquity: 'Liquity',
+  makerdao: 'MakerDao',
+  morpho: 'Morpho',
+  pendle: 'Pendle',
+  rocketpool: 'RocketPool',
+  safeprotocol: 'SafeProtocol',
+  spark: 'Spark',
+  synthetix: 'Synthetix',
+  yearn: 'Yearn',
+} as const satisfies Record<string, string>;
+
+/** Lowercased DeFi protocol slug recognized by this package. */
+export type DefiSlug = keyof typeof DEFI_SLUG_TO_NAME;
+
+/**
+ * Lowercased slug → DEX icon base name.
+ *
+ * Maps to exports from `react-web3-icons/dex`:
+ * ```ts
+ * import { DEX_SLUG_TO_NAME } from 'react-web3-icons/meta';
+ *
+ * const name = DEX_SLUG_TO_NAME['uniswap']; // 'Uniswap'
+ * ```
+ */
+export const DEX_SLUG_TO_NAME = {
+  aerodrome: 'Aerodrome',
+  camelot: 'Camelot',
+  cowprotocol: 'CowProtocol',
+  dydx: 'Dydx',
+  ekubo: 'Ekubo',
+  hyperliquid: 'Hyperliquid',
+  jupiter: 'Jupiter',
+  oneinch: 'Oneinch',
+  osmosis: 'Osmosis',
+  pancakeswap: 'PancakeSwap',
+  raydium: 'Raydium',
+  sushiswap: 'SushiSwap',
+  uniswap: 'Uniswap',
+  velodrome: 'Velodrome',
+} as const satisfies Record<string, string>;
+
+/** Lowercased DEX slug recognized by this package. */
+export type DexSlug = keyof typeof DEX_SLUG_TO_NAME;
+
+/**
+ * Lowercased slug → bridge icon base name.
+ *
+ * Maps to exports from `react-web3-icons/bridge`:
+ * ```ts
+ * import { BRIDGE_SLUG_TO_NAME } from 'react-web3-icons/meta';
+ *
+ * const name = BRIDGE_SLUG_TO_NAME['layerzero']; // 'LayerZero'
+ * ```
+ */
+export const BRIDGE_SLUG_TO_NAME = {
+  across: 'Across',
+  hopprotocol: 'HopProtocol',
+  layerzero: 'LayerZero',
+  stargate: 'Stargate',
+  wormhole: 'Wormhole',
+} as const satisfies Record<string, string>;
+
+/** Lowercased bridge slug recognized by this package. */
+export type BridgeSlug = keyof typeof BRIDGE_SLUG_TO_NAME;

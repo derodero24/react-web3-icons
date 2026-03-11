@@ -4,8 +4,11 @@ import type { ReactNode } from 'react';
 import type { IconProps } from '../utils';
 import { createDynamicIcon } from './DynamicIcon';
 import {
+  resolveBridgeExportName,
   resolveChainExportName,
   resolveCoinExportName,
+  resolveDefiExportName,
+  resolveDexExportName,
   resolveExchangeExportName,
   resolveWalletExportName,
 } from './resolve';
@@ -41,6 +44,21 @@ export interface ExchangeIconProps extends DynamicIconBase {
   name: string;
 }
 
+export interface DefiIconProps extends DynamicIconBase {
+  /** DeFi protocol name, case-insensitive (e.g. `'aave'`, `'lido'`). */
+  name: string;
+}
+
+export interface DexIconProps extends DynamicIconBase {
+  /** DEX name, case-insensitive (e.g. `'uniswap'`, `'sushiswap'`). */
+  name: string;
+}
+
+export interface BridgeIconProps extends DynamicIconBase {
+  /** Bridge name, case-insensitive (e.g. `'layerzero'`, `'wormhole'`). */
+  name: string;
+}
+
 const CHAIN_STRIP = ['name', 'chainId', 'variant', 'fallback'] as const;
 const NAME_STRIP = ['name', 'variant', 'fallback'] as const;
 const SYMBOL_STRIP = ['symbol', 'variant', 'fallback'] as const;
@@ -70,5 +88,26 @@ export const WalletIcon = createDynamicIcon<WalletIconProps>(
 export const ExchangeIcon = createDynamicIcon<ExchangeIconProps>(
   resolveExchangeExportName,
   () => import('../exchange'),
+  NAME_STRIP,
+);
+
+/** Lazily loads a DeFi protocol icon by name. */
+export const DefiIcon = createDynamicIcon<DefiIconProps>(
+  resolveDefiExportName,
+  () => import('../defi'),
+  NAME_STRIP,
+);
+
+/** Lazily loads a DEX icon by name. */
+export const DexIcon = createDynamicIcon<DexIconProps>(
+  resolveDexExportName,
+  () => import('../dex'),
+  NAME_STRIP,
+);
+
+/** Lazily loads a bridge icon by name. */
+export const BridgeIcon = createDynamicIcon<BridgeIconProps>(
+  resolveBridgeExportName,
+  () => import('../bridge'),
   NAME_STRIP,
 );
