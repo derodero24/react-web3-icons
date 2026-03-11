@@ -7,7 +7,7 @@
  * import * as chains from 'react-web3-icons/chain';
  *
  * // Runtime check narrows to ChainId
- * const Icon = chain.id in CHAIN_ID_TO_NAME
+ * const Icon = Object.hasOwn(CHAIN_ID_TO_NAME, chain.id)
  *   ? chains[CHAIN_ID_TO_NAME[chain.id as ChainId]]
  *   : null;
  * ```
@@ -87,7 +87,7 @@ export type ChainSlug = keyof typeof CHAIN_SLUG_TO_NAME;
  * import * as coins from 'react-web3-icons/coin';
  *
  * const symbol = token.symbol.toUpperCase();
- * const Icon = symbol in TICKER_TO_COIN
+ * const Icon = Object.hasOwn(TICKER_TO_COIN, symbol)
  *   ? coins[TICKER_TO_COIN[symbol as Ticker]]
  *   : null;
  * ```
@@ -142,7 +142,7 @@ export type Ticker = keyof typeof TICKER_TO_COIN;
  * import * as wallets from 'react-web3-icons/wallet';
  *
  * const slug = walletId.toLowerCase();
- * const Icon = slug in WALLET_SLUG_TO_NAME
+ * const Icon = Object.hasOwn(WALLET_SLUG_TO_NAME, slug)
  *   ? wallets[WALLET_SLUG_TO_NAME[slug as WalletSlug]]
  *   : null;
  * ```
@@ -187,7 +187,7 @@ export type WalletSlug = keyof typeof WALLET_SLUG_TO_NAME;
  * import * as exchanges from 'react-web3-icons/exchange';
  *
  * const slug = exchangeId.toLowerCase();
- * const Icon = slug in EXCHANGE_SLUG_TO_NAME
+ * const Icon = Object.hasOwn(EXCHANGE_SLUG_TO_NAME, slug)
  *   ? exchanges[EXCHANGE_SLUG_TO_NAME[slug as ExchangeSlug]]
  *   : null;
  * ```

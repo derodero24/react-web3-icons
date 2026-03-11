@@ -21,10 +21,14 @@ export function resolveChainExportName(props: {
   let baseName: string | undefined;
 
   if (props.chainId !== undefined) {
-    baseName = CHAIN_ID_TO_NAME[props.chainId as keyof typeof CHAIN_ID_TO_NAME];
+    baseName = Object.hasOwn(CHAIN_ID_TO_NAME, props.chainId)
+      ? CHAIN_ID_TO_NAME[props.chainId as keyof typeof CHAIN_ID_TO_NAME]
+      : undefined;
   } else if (props.name) {
     const slug = props.name.toLowerCase().trim();
-    baseName = CHAIN_SLUG_TO_NAME[slug as keyof typeof CHAIN_SLUG_TO_NAME];
+    baseName = Object.hasOwn(CHAIN_SLUG_TO_NAME, slug)
+      ? CHAIN_SLUG_TO_NAME[slug as keyof typeof CHAIN_SLUG_TO_NAME]
+      : undefined;
   }
 
   return baseName ? withVariant(baseName, variant) : null;
@@ -36,7 +40,9 @@ export function resolveCoinExportName(props: {
 }): string | null {
   const variant = props.variant ?? 'colored';
   const ticker = props.symbol.toUpperCase().trim();
-  const baseName = TICKER_TO_COIN[ticker as keyof typeof TICKER_TO_COIN];
+  const baseName = Object.hasOwn(TICKER_TO_COIN, ticker)
+    ? TICKER_TO_COIN[ticker as keyof typeof TICKER_TO_COIN]
+    : undefined;
   return baseName ? withVariant(baseName, variant) : null;
 }
 
@@ -46,8 +52,9 @@ export function resolveWalletExportName(props: {
 }): string | null {
   const variant = props.variant ?? 'colored';
   const slug = props.name.toLowerCase().trim();
-  const baseName =
-    WALLET_SLUG_TO_NAME[slug as keyof typeof WALLET_SLUG_TO_NAME];
+  const baseName = Object.hasOwn(WALLET_SLUG_TO_NAME, slug)
+    ? WALLET_SLUG_TO_NAME[slug as keyof typeof WALLET_SLUG_TO_NAME]
+    : undefined;
   return baseName ? withVariant(baseName, variant) : null;
 }
 
@@ -57,7 +64,8 @@ export function resolveExchangeExportName(props: {
 }): string | null {
   const variant = props.variant ?? 'colored';
   const slug = props.name.toLowerCase().trim();
-  const baseName =
-    EXCHANGE_SLUG_TO_NAME[slug as keyof typeof EXCHANGE_SLUG_TO_NAME];
+  const baseName = Object.hasOwn(EXCHANGE_SLUG_TO_NAME, slug)
+    ? EXCHANGE_SLUG_TO_NAME[slug as keyof typeof EXCHANGE_SLUG_TO_NAME]
+    : undefined;
   return baseName ? withVariant(baseName, variant) : null;
 }
