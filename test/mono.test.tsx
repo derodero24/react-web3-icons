@@ -4,14 +4,22 @@ import ReactDOM from 'react-dom/client';
 import { describe, expect, it } from 'vitest';
 import * as icons from '../src';
 
+// All exported names (excluding non-component exports)
+const allNames = Object.keys(icons).filter(name => name !== 'IconContext');
+
 // Dynamically discover all Mono variants from exports
 const monoEntries = Object.entries(icons).filter(
-  ([name]) => /Mono\d*$/.test(name) && name !== 'IconContext',
+  ([name]) => /Mono$/.test(name) && name !== 'IconContext',
 ) as [string, ComponentType][];
 
 describe('Mono variant icons', () => {
   it('discovers at least 100 Mono variants', () => {
     expect(monoEntries.length).toBeGreaterThanOrEqual(100);
+  });
+
+  it('no Mono variants use numeric suffixes', () => {
+    const invalid = allNames.filter(n => /Mono\d+$/.test(n));
+    expect(invalid).toEqual([]);
   });
 
   it.each(
