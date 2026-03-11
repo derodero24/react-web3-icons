@@ -3,11 +3,22 @@
 import { useCopyAction } from '../../hooks/useCopyAction';
 import CopyToggleIcon from './CopyToggleIcon';
 
-export default function CodeBlock({ children }: { children: string }) {
+export default function CodeBlock({
+  children,
+  label,
+}: {
+  children: string;
+  label?: string;
+}) {
   const { copied, copy } = useCopyAction();
 
+  const Wrapper = label ? 'section' : 'div';
+
   return (
-    <div className="group relative">
+    <Wrapper
+      className="group relative"
+      {...(label ? { 'aria-label': label } : {})}
+    >
       <pre className="overflow-x-auto rounded-lg border border-border bg-surface p-4 pr-12 font-mono text-sm text-white/80">
         <code>{children}</code>
       </pre>
@@ -19,6 +30,6 @@ export default function CodeBlock({ children }: { children: string }) {
       >
         <CopyToggleIcon copied={copied} />
       </button>
-    </div>
+    </Wrapper>
   );
 }
