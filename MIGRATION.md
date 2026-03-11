@@ -15,7 +15,7 @@ All modern bundlers (Vite, Webpack 5, Next.js) and Node.js 20+ support ESM nativ
 
 ## 2. Renamed exports — numeric suffixes replaced
 
-Every `Foo2` / `Foo3` / `Foo4` export is renamed to a descriptive suffix. The old numbered names **no longer exist** and will cause import errors.
+Most `Foo2` / `Foo3` / `Foo4` exports are renamed to a descriptive suffix. A few are removed entirely (see [section 4](#4-removed-exports)). Either way, the old numbered names **no longer exist** and will cause import errors.
 
 ### Rename table
 
@@ -100,7 +100,7 @@ s/Bitcoin2/BitcoinCircle/g
 
 ## 3. Swapped base names
 
-For some icons, the **base (unsuffixed) name now points to a different variant**. In v2, the base name was often the circle variant. In v3, the base name is always the standalone symbol.
+For some icons, the **base (unsuffixed) name now points to a different variant**. In v2, the base name was often the circle variant. In v3, the base name is typically the standalone symbol (icons whose official brand mark includes an integral background — such as OpenSea, ZkSync, or Scroll — retain that background as the base).
 
 If you relied on `Bitcoin` being the orange circle, you need `BitcoinCircle` now:
 
