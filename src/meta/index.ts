@@ -329,6 +329,8 @@ export type DexSlug = keyof typeof DEX_SLUG_TO_NAME;
  */
 export const BRIDGE_SLUG_TO_NAME = {
   across: 'Across',
+  axelar: 'Axelar',
+  debridge: 'DeBridge',
   hopprotocol: 'HopProtocol',
   layerzero: 'LayerZero',
   stargate: 'Stargate',
