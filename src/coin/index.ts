@@ -46,4 +46,6 @@ export * from './Usdc';
 export * from './Usdt';
 export * from './Wld';
 export * from './Xlm';
+export * from './Xmr';
 export * from './Xrp';
+export * from './Zec';
