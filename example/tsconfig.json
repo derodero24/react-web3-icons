@@ -2,7 +2,8 @@
   "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "react-web3-icons": ["../src/index.ts"]
+      "react-web3-icons": ["../src/index.ts"],
+      "react-web3-icons/meta": ["../src/meta/index.ts"]
     },
     "module": "ESNext",
     "moduleResolution": "Bundler",
