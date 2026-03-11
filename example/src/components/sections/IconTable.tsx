@@ -133,8 +133,18 @@ export default function IconTable() {
   );
 
   const handleCloseDrawer = useCallback(() => {
+    // Restore focus to the card that opened the drawer
+    const iconName = linkedIcon;
     void setLinkedIcon('');
-  }, [setLinkedIcon]);
+    if (iconName) {
+      requestAnimationFrame(() => {
+        const card = document.querySelector<HTMLElement>(
+          `[data-icon-name="${CSS.escape(iconName)}"] button`,
+        );
+        card?.focus();
+      });
+    }
+  }, [linkedIcon, setLinkedIcon]);
 
   return (
     <section
