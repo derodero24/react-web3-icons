@@ -1,6 +1,11 @@
 import { useMemo } from 'react';
 
 import * as iconModules from 'react-web3-icons';
+import {
+  CHAIN_ID_TO_NAME,
+  CHAIN_SLUG_TO_NAME,
+  TICKER_TO_COIN,
+} from 'react-web3-icons/meta';
 import type { IconComponent, Variant } from '../types/icons';
 import { groupIcons } from '../utils/groupIcons';
 
@@ -12,77 +17,66 @@ const icons = Object.fromEntries(
   ),
 ) as Record<string, IconComponent>;
 
-// Common Web3 ticker symbols, abbreviations, and aliases mapped to icon base names.
-// Matched before substring search so e.g. "eth" finds "Ethereum" directly.
-const SEARCH_ALIASES: Record<string, string[]> = {
+// Common Web3 abbreviations and aliases that aren't covered by meta maps.
+const MANUAL_ALIASES: Record<string, string[]> = {
   '1inch': ['Oneinch'],
-  aave: ['Aave'],
-  ada: ['Cardano'],
-  algo: ['Algorand'],
-  apt: ['Aptos'],
-  arb: ['Arbitrum'],
   arb1: ['ArbitrumOne'],
   arw: ['Arweave'],
-  astr: ['Astar'],
   atom: ['Atom', 'CosmosHub'],
-  avax: ['Avalanche'],
   bnb: ['Binance', 'BinanceSmartChain', 'Bnb'],
   bsc: ['BinanceSmartChain'],
   btc: ['Bitcoin'],
   cake: ['PancakeSwap'],
-  celo: ['Celo'],
   comp: ['Compound'],
-  crv: ['Crv'],
-  dai: ['Dai'],
-  doge: ['Doge'],
   dot: ['Polkadot'],
-  dydx: ['Dydx'],
   eigen: ['EigenLayer'],
-  ens: ['Ens'],
-  eth: ['Ethereum'],
-  fantom: ['Fantom'],
   fil: ['Filecoin'],
   ftm: ['Fantom'],
   gno: ['GnosisChain'],
   gnosis: ['GnosisChain', 'Safe'],
   grt: ['TheGraph'],
-  icp: ['Icp'],
-  imx: ['ImmutableX'],
-  inj: ['Injective'],
-  ldo: ['Lido'],
-  link: ['Chainlink'],
-  ltc: ['Ltc'],
   lz: ['LayerZero'],
   manta: ['MantaPacific'],
   matic: ['Polygon'],
   metamask: ['MetaMask'],
-  mkr: ['MakerDao'],
-  near: ['Near'],
   okb: ['Okx'],
-  op: ['Optimism'],
-  pendle: ['Pendle'],
-  pol: ['Polygon'],
   ray: ['Raydium'],
-  sei: ['Sei'],
-  shib: ['Shib'],
   snx: ['Synthetix'],
-  sol: ['Solana'],
-  starknet: ['StarkNet'],
   steth: ['Lido'],
   stg: ['Stargate'],
-  sui: ['Sui'],
   sushi: ['SushiSwap'],
-  ton: ['Ton'],
-  trx: ['Tron'],
-  uni: ['Uniswap'],
-  usdc: ['Usdc'],
-  usdt: ['Usdt'],
   wc: ['WalletConnect'],
-  xrp: ['Xrp'],
-  xlm: ['Stellar'],
   zk: ['ZkSync'],
-  zksync: ['ZkSync'],
 };
+
+// Build search aliases by merging meta maps with manual overrides.
+// Chain IDs (e.g. "1" → Ethereum), slugs, and ticker symbols are all searchable.
+function buildSearchAliases(): Record<string, string[]> {
+  const aliases: Record<string, string[]> = { ...MANUAL_ALIASES };
+
+  const addAlias = (key: string, value: string) => {
+    const existing = aliases[key];
+    if (existing) {
+      if (!existing.includes(value)) existing.push(value);
+    } else {
+      aliases[key] = [value];
+    }
+  };
+
+  for (const [id, name] of Object.entries(CHAIN_ID_TO_NAME)) {
+    addAlias(id, name);
+  }
+  for (const [slug, name] of Object.entries(CHAIN_SLUG_TO_NAME)) {
+    addAlias(slug, name);
+  }
+  for (const [ticker, name] of Object.entries(TICKER_TO_COIN)) {
+    addAlias(ticker.toLowerCase(), name);
+  }
+
+  return aliases;
+}
+
+const SEARCH_ALIASES = buildSearchAliases();
 
 export interface DisplayGroup {
   /** Base name for this group (e.g. "Ethereum") */

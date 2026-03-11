@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       // Resolve the workspace package to its TypeScript source so Next.js
       // can transpile it directly without requiring a pre-built dist/.
       'react-web3-icons': '../src/index.ts',
+      'react-web3-icons/meta': '../src/meta/index.ts',
     },
   },
 };
