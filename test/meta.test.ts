@@ -1,10 +1,16 @@
 import { describe, expect, it } from 'vitest';
+import * as bridge from '../src/bridge';
 import * as chain from '../src/chain';
 import * as coin from '../src/coin';
+import * as defi from '../src/defi';
+import * as dex from '../src/dex';
 import * as exchange from '../src/exchange';
 import {
+  BRIDGE_SLUG_TO_NAME,
   CHAIN_ID_TO_NAME,
   CHAIN_SLUG_TO_NAME,
+  DEFI_SLUG_TO_NAME,
+  DEX_SLUG_TO_NAME,
   EXCHANGE_SLUG_TO_NAME,
   TICKER_TO_COIN,
   WALLET_SLUG_TO_NAME,
@@ -145,6 +151,78 @@ describe('EXCHANGE_SLUG_TO_NAME', () => {
       expect(
         exchangeNames.has(name),
         `EXCHANGE_SLUG_TO_NAME['${slug}'] = '${name}' is not exported from exchange`,
+      ).toBe(true);
+    }
+  });
+});
+
+describe('DEFI_SLUG_TO_NAME', () => {
+  it('maps known slugs', () => {
+    expect(DEFI_SLUG_TO_NAME.aave).toBe('Aave');
+    expect(DEFI_SLUG_TO_NAME.lido).toBe('Lido');
+    expect(DEFI_SLUG_TO_NAME.eigenlayer).toBe('EigenLayer');
+  });
+
+  it('all keys are lowercase', () => {
+    for (const slug of Object.keys(DEFI_SLUG_TO_NAME)) {
+      expect(slug).toBe(slug.toLowerCase());
+    }
+  });
+
+  it('every value references an exported defi icon', () => {
+    const defiNames = new Set(Object.keys(defi));
+    for (const [slug, name] of Object.entries(DEFI_SLUG_TO_NAME)) {
+      expect(
+        defiNames.has(name),
+        `DEFI_SLUG_TO_NAME['${slug}'] = '${name}' is not exported from defi`,
+      ).toBe(true);
+    }
+  });
+});
+
+describe('DEX_SLUG_TO_NAME', () => {
+  it('maps known slugs', () => {
+    expect(DEX_SLUG_TO_NAME.uniswap).toBe('Uniswap');
+    expect(DEX_SLUG_TO_NAME.sushiswap).toBe('SushiSwap');
+    expect(DEX_SLUG_TO_NAME.jupiter).toBe('Jupiter');
+  });
+
+  it('all keys are lowercase', () => {
+    for (const slug of Object.keys(DEX_SLUG_TO_NAME)) {
+      expect(slug).toBe(slug.toLowerCase());
+    }
+  });
+
+  it('every value references an exported dex icon', () => {
+    const dexNames = new Set(Object.keys(dex));
+    for (const [slug, name] of Object.entries(DEX_SLUG_TO_NAME)) {
+      expect(
+        dexNames.has(name),
+        `DEX_SLUG_TO_NAME['${slug}'] = '${name}' is not exported from dex`,
+      ).toBe(true);
+    }
+  });
+});
+
+describe('BRIDGE_SLUG_TO_NAME', () => {
+  it('maps known slugs', () => {
+    expect(BRIDGE_SLUG_TO_NAME.layerzero).toBe('LayerZero');
+    expect(BRIDGE_SLUG_TO_NAME.wormhole).toBe('Wormhole');
+    expect(BRIDGE_SLUG_TO_NAME.across).toBe('Across');
+  });
+
+  it('all keys are lowercase', () => {
+    for (const slug of Object.keys(BRIDGE_SLUG_TO_NAME)) {
+      expect(slug).toBe(slug.toLowerCase());
+    }
+  });
+
+  it('every value references an exported bridge icon', () => {
+    const bridgeNames = new Set(Object.keys(bridge));
+    for (const [slug, name] of Object.entries(BRIDGE_SLUG_TO_NAME)) {
+      expect(
+        bridgeNames.has(name),
+        `BRIDGE_SLUG_TO_NAME['${slug}'] = '${name}' is not exported from bridge`,
       ).toBe(true);
     }
   });
