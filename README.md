@@ -24,7 +24,7 @@ A comprehensive React SVG icon library for Web3 — blockchains, wallets, DEXs, 
 
 ## Features
 
-- 250+ icons across 15 categories
+- 270+ icons across 15 categories
 - Colored and monochrome variants for every icon
 - Tree-shakeable — only import what you use (`sideEffects: false`)
 - Scales with font size (`1em` default)
@@ -227,6 +227,51 @@ Use the `fallback` prop to render alternative content while the icon chunk is lo
 When omitted, nothing is rendered for unknown identifiers and during loading.
 
 All standard icon props (`size`, `className`, `fill`, etc.) are forwarded to the underlying SVG icon.
+
+### Metadata Lookups
+
+The `react-web3-icons/meta` subpath exports lookup maps for resolving icons by chain ID, slug, or ticker symbol at runtime:
+
+| Export | Key | Value | Example |
+| --- | --- | --- | --- |
+| `CHAIN_ID_TO_NAME` | EVM chain ID (`1`, `42161`, …) | Chain icon base name | `1` → `'Ethereum'` |
+| `CHAIN_SLUG_TO_NAME` | Lowercased slug (`'arbitrum'`, …) | Chain icon base name | `'arbitrum'` → `'Arbitrum'` |
+| `TICKER_TO_COIN` | Uppercase ticker (`'ETH'`, …) | Coin icon base name | `'ETH'` → `'Eth'` |
+| `WALLET_SLUG_TO_NAME` | Lowercased slug (`'metamask'`, …) | Wallet icon base name | `'metamask'` → `'MetaMask'` |
+| `EXCHANGE_SLUG_TO_NAME` | Lowercased slug (`'binance'`, …) | Exchange icon base name | `'binance'` → `'Binance'` |
+| `DEFI_SLUG_TO_NAME` | Lowercased slug (`'aave'`, …) | DeFi icon base name | `'aave'` → `'Aave'` |
+| `DEX_SLUG_TO_NAME` | Lowercased slug (`'uniswap'`, …) | DEX icon base name | `'uniswap'` → `'Uniswap'` |
+| `BRIDGE_SLUG_TO_NAME` | Lowercased slug (`'layerzero'`, …) | Bridge icon base name | `'layerzero'` → `'LayerZero'` |
+
+Each map exports a corresponding type (`ChainId`, `ChainSlug`, `Ticker`, `WalletSlug`, `ExchangeSlug`, `DefiSlug`, `DexSlug`, `BridgeSlug`) for type-safe key access.
+
+#### Example: Resolve a chain icon from wagmi/viem
+
+```tsx
+import { CHAIN_ID_TO_NAME, type ChainId } from 'react-web3-icons/meta';
+import * as chains from 'react-web3-icons/chain';
+
+function ResolvedChainIcon({ chainId }: { chainId: number }) {
+  if (!(chainId in CHAIN_ID_TO_NAME)) return null;
+  const name = CHAIN_ID_TO_NAME[chainId as ChainId];
+  const Icon = chains[name];
+  return <Icon />;
+}
+```
+
+#### Example: Resolve a coin icon from a ticker
+
+```tsx
+import { TICKER_TO_COIN, type Ticker } from 'react-web3-icons/meta';
+import * as coins from 'react-web3-icons/coin';
+
+function TokenIcon({ symbol }: { symbol: string }) {
+  const key = symbol.toUpperCase().trim();
+  if (!(key in TICKER_TO_COIN)) return null;
+  const Icon = coins[TICKER_TO_COIN[key as Ticker]];
+  return <Icon />;
+}
+```
 
 ## Icon Categories
 
