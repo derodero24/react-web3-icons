@@ -12,7 +12,9 @@ describe('CHAIN_ID_TO_NAME', () => {
     expect(CHAIN_ID_TO_NAME[1]).toBe('Ethereum');
     expect(CHAIN_ID_TO_NAME[100]).toBe('GnosisChain');
     expect(CHAIN_ID_TO_NAME[169]).toBe('MantaPacific');
+    expect(CHAIN_ID_TO_NAME[252]).toBe('Fraxtal');
     expect(CHAIN_ID_TO_NAME[1088]).toBe('Metis');
+    expect(CHAIN_ID_TO_NAME[2222]).toBe('Kava');
     expect(CHAIN_ID_TO_NAME[8453]).toBe('Base');
     expect(CHAIN_ID_TO_NAME[34_443]).toBe('Mode');
     expect(CHAIN_ID_TO_NAME[42_161]).toBe('Arbitrum');
@@ -39,9 +41,19 @@ describe('CHAIN_SLUG_TO_NAME', () => {
     expect(CHAIN_SLUG_TO_NAME.arbitrum).toBe('Arbitrum');
     expect(CHAIN_SLUG_TO_NAME['arbitrum-nova']).toBe('ArbitrumNova');
     expect(CHAIN_SLUG_TO_NAME.blast).toBe('Blast');
+    expect(CHAIN_SLUG_TO_NAME.celestia).toBe('Celestia');
+    expect(CHAIN_SLUG_TO_NAME.celo).toBe('Celo');
+    expect(CHAIN_SLUG_TO_NAME['cosmos-hub']).toBe('CosmosHub');
+    expect(CHAIN_SLUG_TO_NAME.fraxtal).toBe('Fraxtal');
     expect(CHAIN_SLUG_TO_NAME.gnosis).toBe('GnosisChain');
+    expect(CHAIN_SLUG_TO_NAME.hedera).toBe('Hedera');
+    expect(CHAIN_SLUG_TO_NAME.injective).toBe('Injective');
+    expect(CHAIN_SLUG_TO_NAME.kava).toBe('Kava');
     expect(CHAIN_SLUG_TO_NAME.manta).toBe('MantaPacific');
+    expect(CHAIN_SLUG_TO_NAME.metis).toBe('Metis');
+    expect(CHAIN_SLUG_TO_NAME.mode).toBe('Mode');
     expect(CHAIN_SLUG_TO_NAME.solana).toBe('Solana');
+    expect(CHAIN_SLUG_TO_NAME.stacks).toBe('Stacks');
     expect(CHAIN_SLUG_TO_NAME.zora).toBe('Zora');
   });
 
