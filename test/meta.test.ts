@@ -1,11 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import * as chain from '../src/chain';
 import * as coin from '../src/coin';
+import * as exchange from '../src/exchange';
 import {
   CHAIN_ID_TO_NAME,
   CHAIN_SLUG_TO_NAME,
+  EXCHANGE_SLUG_TO_NAME,
   TICKER_TO_COIN,
+  WALLET_SLUG_TO_NAME,
 } from '../src/meta';
+import * as wallet from '../src/wallet';
 
 describe('CHAIN_ID_TO_NAME', () => {
   it('maps known EVM chain IDs', () => {
@@ -68,6 +72,54 @@ describe('TICKER_TO_COIN', () => {
       expect(
         coinNames.has(name),
         `TICKER_TO_COIN['${ticker}'] = '${name}' is not exported from coin`,
+      ).toBe(true);
+    }
+  });
+});
+
+describe('WALLET_SLUG_TO_NAME', () => {
+  it('maps known slugs', () => {
+    expect(WALLET_SLUG_TO_NAME.metamask).toBe('MetaMask');
+    expect(WALLET_SLUG_TO_NAME.trustwallet).toBe('TrustWallet');
+    expect(WALLET_SLUG_TO_NAME.ledger).toBe('Ledger');
+  });
+
+  it('all keys are lowercase', () => {
+    for (const slug of Object.keys(WALLET_SLUG_TO_NAME)) {
+      expect(slug).toBe(slug.toLowerCase());
+    }
+  });
+
+  it('every value references an exported wallet icon', () => {
+    const walletNames = new Set(Object.keys(wallet));
+    for (const [slug, name] of Object.entries(WALLET_SLUG_TO_NAME)) {
+      expect(
+        walletNames.has(name),
+        `WALLET_SLUG_TO_NAME['${slug}'] = '${name}' is not exported from wallet`,
+      ).toBe(true);
+    }
+  });
+});
+
+describe('EXCHANGE_SLUG_TO_NAME', () => {
+  it('maps known slugs', () => {
+    expect(EXCHANGE_SLUG_TO_NAME.binance).toBe('Binance');
+    expect(EXCHANGE_SLUG_TO_NAME.kraken).toBe('Kraken');
+    expect(EXCHANGE_SLUG_TO_NAME.coinbase).toBe('Coinbase');
+  });
+
+  it('all keys are lowercase', () => {
+    for (const slug of Object.keys(EXCHANGE_SLUG_TO_NAME)) {
+      expect(slug).toBe(slug.toLowerCase());
+    }
+  });
+
+  it('every value references an exported exchange icon', () => {
+    const exchangeNames = new Set(Object.keys(exchange));
+    for (const [slug, name] of Object.entries(EXCHANGE_SLUG_TO_NAME)) {
+      expect(
+        exchangeNames.has(name),
+        `EXCHANGE_SLUG_TO_NAME['${slug}'] = '${name}' is not exported from exchange`,
       ).toBe(true);
     }
   });

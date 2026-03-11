@@ -132,3 +132,86 @@ export const TICKER_TO_COIN = {
 
 /** Uppercase ticker symbol recognized by this package. */
 export type Ticker = keyof typeof TICKER_TO_COIN;
+
+/**
+ * Lowercased slug → wallet icon base name.
+ *
+ * Maps to exports from `react-web3-icons/wallet`:
+ * ```ts
+ * import { WALLET_SLUG_TO_NAME, type WalletSlug } from 'react-web3-icons/meta';
+ * import * as wallets from 'react-web3-icons/wallet';
+ *
+ * const slug = walletId.toLowerCase();
+ * const Icon = slug in WALLET_SLUG_TO_NAME
+ *   ? wallets[WALLET_SLUG_TO_NAME[slug as WalletSlug]]
+ *   : null;
+ * ```
+ */
+export const WALLET_SLUG_TO_NAME = {
+  argent: 'Argent',
+  backpackwallet: 'BackpackWallet',
+  bitgetwallet: 'BitgetWallet',
+  coinbasewallet: 'CoinbaseWallet',
+  daedaluswallet: 'DaedalusWallet',
+  enkrypt: 'Enkrypt',
+  exodus: 'Exodus',
+  imtoken: 'ImToken',
+  keplr: 'Keplr',
+  ledger: 'Ledger',
+  metamask: 'MetaMask',
+  namiwallet: 'NamiWallet',
+  okxwallet: 'OKXWallet',
+  phantomwallet: 'PhantomWallet',
+  polkadotjs: 'PolkadotJs',
+  rabby: 'Rabby',
+  rainbowwallet: 'RainbowWallet',
+  safe: 'Safe',
+  subwallet: 'SubWallet',
+  tangem: 'Tangem',
+  trezor: 'Trezor',
+  trustwallet: 'TrustWallet',
+  walletconnect: 'WalletConnect',
+  yoroiwallet: 'YoroiWallet',
+  zerion: 'Zerion',
+} as const satisfies Record<string, string>;
+
+/** Lowercased wallet slug recognized by this package. */
+export type WalletSlug = keyof typeof WALLET_SLUG_TO_NAME;
+
+/**
+ * Lowercased slug → exchange icon base name.
+ *
+ * Maps to exports from `react-web3-icons/exchange`:
+ * ```ts
+ * import { EXCHANGE_SLUG_TO_NAME, type ExchangeSlug } from 'react-web3-icons/meta';
+ * import * as exchanges from 'react-web3-icons/exchange';
+ *
+ * const slug = exchangeId.toLowerCase();
+ * const Icon = slug in EXCHANGE_SLUG_TO_NAME
+ *   ? exchanges[EXCHANGE_SLUG_TO_NAME[slug as ExchangeSlug]]
+ *   : null;
+ * ```
+ */
+export const EXCHANGE_SLUG_TO_NAME = {
+  binance: 'Binance',
+  bitfinex: 'Bitfinex',
+  bitget: 'Bitget',
+  bithumb: 'Bithumb',
+  bitstamp: 'Bitstamp',
+  bybit: 'Bybit',
+  coinbase: 'Coinbase',
+  cryptocom: 'CryptoCom',
+  deribit: 'Deribit',
+  gateio: 'Gateio',
+  gemini: 'Gemini',
+  htx: 'Htx',
+  kraken: 'Kraken',
+  kucoin: 'KuCoin',
+  mexc: 'Mexc',
+  okx: 'Okx',
+  phemex: 'Phemex',
+  upbit: 'Upbit',
+} as const satisfies Record<string, string>;
+
+/** Lowercased exchange slug recognized by this package. */
+export type ExchangeSlug = keyof typeof EXCHANGE_SLUG_TO_NAME;
