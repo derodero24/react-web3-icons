@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://moralis.io
 export const Moralis = createIcon('Moralis', '0 0 256 206.7', _id => (
   <>
     <path

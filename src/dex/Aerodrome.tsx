@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
-// Icon mark paths extracted from aerodrome.finance/logo.svg (official website)
-// All paths use the same orange-red palette (#E35930→#E84125); simplified to flat #E84125
+// Source: https://aerodrome.finance
+// Icon mark paths extracted from aerodrome.finance/logo.svg; simplified to flat #E84125
 const aerodromeContent = () => (
   <>
     <path d="M25.23 8.381a13.053 13.053 0 0 0-5.104-1.03c-1.811 0-3.535.366-5.103 1.03L19.71.241a.477.477 0 0 1 .825 0l4.69 8.14h.004Z" />

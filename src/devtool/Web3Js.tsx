@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://web3js.org
 export const Web3Js = createIcon(
   'Web3Js',
   '1169.7 378.4 1500.3 1403.25',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://pancakeswap.finance
 export const PancakeSwap = createIcon(
   'PancakeSwap',
   '3 0 191.25 198.61',

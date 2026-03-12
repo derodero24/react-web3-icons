@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://1inch.io
 export const Oneinch = createIcon(
   'Oneinch',
   '0 0 40 40',

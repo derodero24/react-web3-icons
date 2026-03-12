@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://chain.link
 export const Chainlink = createIcon('Chainlink', '0 0 37.8 43.6', () => (
   <>
     <path

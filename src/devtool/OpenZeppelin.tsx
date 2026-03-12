@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://openzeppelin.com
 export const OpenZeppelin = createIcon(
   'OpenZeppelin',
   '0 0 29.86 33.62',

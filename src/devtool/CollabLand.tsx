@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://collab.land
 export const CollabLand = createIcon('CollabLand', '0 0 43.62 33.95', _id => (
   <>
     <defs>

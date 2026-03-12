@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://hardhat.org
 export const Hardhat = createIcon(
   'Hardhat',
   '154.25 169.12 49.88 34.57',

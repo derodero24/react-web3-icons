@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://aragon.org
 const aragonPaths = (
   <>
     <path

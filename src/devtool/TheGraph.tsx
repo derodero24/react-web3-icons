@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://thegraph.com
 export const TheGraph = createIcon(
   'TheGraph',
   '0 0 362.8 467.6',

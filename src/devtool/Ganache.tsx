@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://trufflesuite.com/ganache
 export const Ganache = createIcon('Ganache', '0 0 190.3 214', () => (
   <>
     <path

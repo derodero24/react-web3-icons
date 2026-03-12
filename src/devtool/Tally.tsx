@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://tally.xyz
 export const Tally = createIcon('Tally', '308.07 194 25 34.28', () => (
   <>
     <path

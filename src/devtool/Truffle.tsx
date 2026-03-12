@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://trufflesuite.com
 export const Truffle = createIcon('Truffle', '0 0 206.83 204.29', () => (
   <>
     <ellipse cx="103.17" cy="102.14" rx="100.96" ry="102.14" fill="#5e464d" />

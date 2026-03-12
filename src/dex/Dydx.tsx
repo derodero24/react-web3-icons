@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://dydx.exchange
 export const Dydx = createIcon(
   'Dydx',
   '41 38 100.77 108',

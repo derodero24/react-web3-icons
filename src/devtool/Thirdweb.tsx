@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://thirdweb.com
 export const Thirdweb = createIcon('Thirdweb', '0 0 516 321', _id => (
   <>
     <path

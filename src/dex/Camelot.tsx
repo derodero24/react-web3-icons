@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
-// Camelot DEX shield/crest emblem extracted from camelot.exchange/img/logo.svg (official)
-// Orange outer shield (#f58b00) with cream inner detail bands (#fff3d4)
+// Source: https://camelot.exchange
+// Shield/crest emblem extracted from camelot.exchange/img/logo.svg
 const CAMELOT_SHIELD =
   'm305.771,187.56c-36.84-20.52-78.24-33.85-122.29-38.1v86.27l-30.57,13.14-30.57-13.13v-23.26c0,0,0-18.05,0-18.05v-44.96c-44.05,4.25-85.44,17.58-122.29,38.1,0,0-7.31,201.51,152.85,275.01,0,0,.01,0,.02,0,160.15-73.51,152.85-275.01,152.85-275.01zm-94.35,96.19-33.21,14.27-23.35,10.03,27.45,.28c.65,0,1.11,75.55,.99,75.74l-30.37,45.43c0,0,0,0,0,0l-30.57-45.73c0,0,.53-76.03,1.18-76.03l27.36,.28-23.26-9.99-33.21-14.27-33.21-14.27,33.21-14.27,58.04,24.94c.3,.13,.63,.13,.93,0l58.04-24.94,33.21,14.27-33.21,14.27z';
 const CAMELOT_BAND_BOT =
