@@ -13,6 +13,7 @@ import {
   resolveWalletExportName,
 } from '../src/dynamic/resolve';
 import * as exchange from '../src/exchange';
+import { DEX_SLUG_TO_NAME } from '../src/meta';
 import * as oracle from '../src/oracle';
 import * as wallet from '../src/wallet';
 
@@ -266,23 +267,7 @@ describe('resolveDexExportName', () => {
 
   it('every resolved name references an exported dex icon', () => {
     const dexNames = new Set(Object.keys(dex));
-    const slugs = [
-      'aerodrome',
-      'camelot',
-      'cowprotocol',
-      'dydx',
-      'ekubo',
-      'hyperliquid',
-      'jupiter',
-      'oneinch',
-      'osmosis',
-      'pancakeswap',
-      'raydium',
-      'sushiswap',
-      'uniswap',
-      'velodrome',
-    ];
-    for (const slug of slugs) {
+    for (const slug of Object.keys(DEX_SLUG_TO_NAME)) {
       const name = resolveDexExportName({ name: slug });
       expect(name).not.toBeNull();
       expect(
