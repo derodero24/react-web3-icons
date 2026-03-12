@@ -8,6 +8,7 @@ import type {
   DefiSlug,
   DexSlug,
   ExchangeSlug,
+  OracleSlug,
   Ticker,
   WalletSlug,
 } from '../meta';
@@ -20,6 +21,7 @@ import {
   resolveDefiExportName,
   resolveDexExportName,
   resolveExchangeExportName,
+  resolveOracleExportName,
   resolveWalletExportName,
 } from './resolve';
 
@@ -67,6 +69,11 @@ export interface DexIconProps extends DynamicIconBase {
 export interface BridgeIconProps extends DynamicIconBase {
   /** Bridge name, case-insensitive (e.g. `'layerzero'`, `'wormhole'`). */
   name: BridgeSlug | (string & {});
+}
+
+export interface OracleIconProps extends DynamicIconBase {
+  /** Oracle protocol name, case-insensitive (e.g. `'pyth'`, `'band'`). */
+  name: OracleSlug | (string & {});
 }
 
 const CHAIN_STRIP = ['name', 'chainId', 'variant', 'fallback'] as const;
@@ -119,5 +126,12 @@ export const DexIcon = createDynamicIcon<DexIconProps>(
 export const BridgeIcon = createDynamicIcon<BridgeIconProps>(
   resolveBridgeExportName,
   () => import('../bridge'),
+  NAME_STRIP,
+);
+
+/** Lazily loads an oracle icon by name. */
+export const OracleIcon = createDynamicIcon<OracleIconProps>(
+  resolveOracleExportName,
+  () => import('../oracle'),
   NAME_STRIP,
 );

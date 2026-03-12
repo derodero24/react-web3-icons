@@ -10,6 +10,7 @@ import type * as exchange from '../exchange';
 import type * as explorer from '../explorer';
 import type * as marketplace from '../marketplace';
 import type * as node from '../node';
+import type * as oracle from '../oracle';
 import type * as portfolio from '../portfolio';
 import type * as storage from '../storage';
 import type * as tracker from '../tracker';
@@ -26,6 +27,7 @@ type AllIconModules = typeof bridge &
   typeof explorer &
   typeof marketplace &
   typeof node &
+  Omit<typeof oracle, 'Pyth' | 'PythMono'> &
   typeof portfolio &
   typeof storage &
   typeof tracker &
