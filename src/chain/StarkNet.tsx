@@ -10,7 +10,7 @@ const STARKNET_SNAKE_B =
 const STARKNET_DOT =
   'M15.541 15.885a1.026 1.026 0 1 0 2.051 0 1.026 1.026 0 0 0-2.051 0';
 
-/** Stark Net chain icon (colored). */
+/** StarkNet chain icon (colored). */
 export const StarkNet = createIcon('StarkNet', '0 0 24 24', _id => (
   <>
     <path
@@ -59,7 +59,7 @@ export const StarkNet = createIcon('StarkNet', '0 0 24 24', _id => (
   </>
 ));
 
-/** Stark Net chain icon (monochrome). */
+/** StarkNet chain icon (monochrome). */
 export const StarkNetMono = createIcon(
   'StarkNetMono',
   '0 0 24 24',
@@ -91,7 +91,7 @@ export const StarkNetMono = createIcon(
 // Gradient coordinates pre-computed: new = 9 + original * 1.917
 const STARKNET_CIRCLE_TX = 'translate(9 9) scale(1.917)';
 
-/** Stark Net Circle chain icon (colored). */
+/** StarkNet Circle chain icon (colored). */
 export const StarkNetCircle = createIcon('StarkNetCircle', '0 0 64 64', _id => (
   <>
     <circle cx="32" cy="32" r="32" fill="#0C0C4F" />
@@ -117,7 +117,7 @@ export const StarkNetCircle = createIcon('StarkNetCircle', '0 0 64 64', _id => (
   </>
 ));
 
-/** Stark Net Square chain icon (colored). */
+/** StarkNet Square chain icon (colored). */
 export const StarkNetSquare = createIcon('StarkNetSquare', '0 0 64 64', _id => (
   <>
     <rect width="64" height="64" rx="12.8" fill="#0C0C4F" />
@@ -143,7 +143,7 @@ export const StarkNetSquare = createIcon('StarkNetSquare', '0 0 64 64', _id => (
   </>
 ));
 
-/** Stark Net Square chain icon (monochrome). */
+/** StarkNet Square chain icon (monochrome). */
 export const StarkNetSquareMono = createIcon(
   'StarkNetSquareMono',
   '0 0 64 64',
@@ -171,7 +171,7 @@ export const StarkNetSquareMono = createIcon(
   'currentColor',
 );
 
-/** Stark Net Circle chain icon (monochrome). */
+/** StarkNet Circle chain icon (monochrome). */
 export const StarkNetCircleMono = createIcon(
   'StarkNetCircleMono',
   '0 0 64 64',

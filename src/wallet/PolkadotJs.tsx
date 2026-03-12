@@ -1,6 +1,6 @@
 import { createIcon } from '../utils';
 
-/** Polkadot Js wallet icon (colored). */
+/** PolkadotJs wallet icon (colored). */
 export const PolkadotJs = createIcon('PolkadotJs', '15 15 140 140', () => (
   <>
     <circle cx="85" cy="85" r="70" fill="#ff8c00" />
@@ -11,7 +11,7 @@ export const PolkadotJs = createIcon('PolkadotJs', '15 15 140 140', () => (
   </>
 ));
 
-/** Polkadot Js wallet icon (monochrome). */
+/** PolkadotJs wallet icon (monochrome). */
 export const PolkadotJsMono = createIcon(
   'PolkadotJsMono',
   '15 15 140 140',

@@ -1,6 +1,6 @@
 import { createIcon } from '../utils';
 
-/** Collab Land dev tool icon (colored). */
+/** CollabLand dev tool icon (colored). */
 export const CollabLand = createIcon('CollabLand', '0 0 43.62 33.95', _id => (
   <>
     <defs>
@@ -25,7 +25,7 @@ export const CollabLand = createIcon('CollabLand', '0 0 43.62 33.95', _id => (
   </>
 ));
 
-/** Collab Land dev tool icon (monochrome). */
+/** CollabLand dev tool icon (monochrome). */
 export const CollabLandMono = createIcon(
   'CollabLandMono',
   '0 0 43.62 33.95',

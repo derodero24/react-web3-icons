@@ -21,7 +21,7 @@ export const Blastscan = createIcon(
   '#FCFC03',
 );
 
-/** Blastscan Light explorer icon (colored). */
+/** BlastscanLight explorer icon (colored). */
 export const BlastscanLight = createIcon(
   'BlastscanLight',
   '0 0 252 166',

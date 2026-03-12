@@ -3,7 +3,7 @@ import { createIcon } from '../utils';
 const ZKSYNC_ARROWS =
   'm32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7l6.954-6.922ZM7.75 20.005l6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7L7.75 20.004Z';
 
-/** Zk Sync chain icon (colored). */
+/** ZkSync chain icon (colored). */
 export const ZkSync = createIcon('ZkSync', '0 0 40 40', () => (
   <>
     <path d="M0 0h40v40H0z" fill="#000" />
@@ -11,7 +11,7 @@ export const ZkSync = createIcon('ZkSync', '0 0 40 40', () => (
   </>
 ));
 
-/** Zk Sync chain icon (monochrome). */
+/** ZkSync chain icon (monochrome). */
 export const ZkSyncMono = createIcon(
   'ZkSyncMono',
   '0 0 40 40',
@@ -37,7 +37,7 @@ export const ZkSyncMono = createIcon(
 // Circle variant: 40×40 content scaled to ~46px centered in 64×64
 const ZKSYNC_CIRCLE_TX = 'translate(9 9) scale(1.15)';
 
-/** Zk Sync Circle chain icon (colored). */
+/** ZkSync Circle chain icon (colored). */
 export const ZkSyncCircle = createIcon('ZkSyncCircle', '0 0 64 64', () => (
   <>
     <circle cx="32" cy="32" r="32" fill="#000" />
@@ -52,7 +52,7 @@ export const ZkSyncCircle = createIcon('ZkSyncCircle', '0 0 64 64', () => (
   </>
 ));
 
-/** Zk Sync Square chain icon (colored). */
+/** ZkSync Square chain icon (colored). */
 export const ZkSyncSquare = createIcon('ZkSyncSquare', '0 0 64 64', () => (
   <>
     <rect width="64" height="64" rx="12.8" fill="#000" />
@@ -67,7 +67,7 @@ export const ZkSyncSquare = createIcon('ZkSyncSquare', '0 0 64 64', () => (
   </>
 ));
 
-/** Zk Sync Square chain icon (monochrome). */
+/** ZkSync Square chain icon (monochrome). */
 export const ZkSyncSquareMono = createIcon(
   'ZkSyncSquareMono',
   '0 0 64 64',
@@ -87,7 +87,7 @@ export const ZkSyncSquareMono = createIcon(
   'currentColor',
 );
 
-/** Zk Sync Circle chain icon (monochrome). */
+/** ZkSync Circle chain icon (monochrome). */
 export const ZkSyncCircleMono = createIcon(
   'ZkSyncCircleMono',
   '0 0 64 64',

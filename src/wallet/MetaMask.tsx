@@ -1,6 +1,6 @@
 import { createIcon } from '../utils';
 
-/** Meta Mask wallet icon (colored). */
+/** MetaMask wallet icon (colored). */
 export const MetaMask = createIcon('MetaMask', '31.3 35 256 237.4', () => (
   <>
     <path fill="#e2761b" stroke="#e2761b" d="m274.1 35.5-99.5 73.9L193 65.8z" />
@@ -74,7 +74,7 @@ const metaMaskMonoPaths = () => (
   </>
 );
 
-/** Meta Mask wallet icon (monochrome). */
+/** MetaMask wallet icon (monochrome). */
 export const MetaMaskMono = createIcon(
   'MetaMaskMono',
   '31.3 35 256 237.4',
@@ -85,7 +85,7 @@ export const MetaMaskMono = createIcon(
 // Original viewBox 31.3 35 256 237.4 → scale 0.18, translate(3.3, 4.3)
 const MM_CIRCLE_TX = 'translate(3.3 4.3) scale(0.18)';
 
-/** Meta Mask Circle wallet icon (colored). */
+/** MetaMask Circle wallet icon (colored). */
 export const MetaMaskCircle = createIcon('MetaMaskCircle', '0 0 64 64', () => (
   <>
     <circle cx="32" cy="32" r="32" fill="#F6851B" />
@@ -95,7 +95,7 @@ export const MetaMaskCircle = createIcon('MetaMaskCircle', '0 0 64 64', () => (
   </>
 ));
 
-/** Meta Mask Circle wallet icon (monochrome). */
+/** MetaMask Circle wallet icon (monochrome). */
 export const MetaMaskCircleMono = createIcon(
   'MetaMaskCircleMono',
   '0 0 64 64',
@@ -115,7 +115,7 @@ export const MetaMaskCircleMono = createIcon(
   'currentColor',
 );
 
-/** Meta Mask Square wallet icon (colored). */
+/** MetaMask Square wallet icon (colored). */
 export const MetaMaskSquare = createIcon('MetaMaskSquare', '0 0 64 64', () => (
   <>
     <rect width="64" height="64" rx="12.8" fill="#F6851B" />
@@ -125,7 +125,7 @@ export const MetaMaskSquare = createIcon('MetaMaskSquare', '0 0 64 64', () => (
   </>
 ));
 
-/** Meta Mask Square wallet icon (monochrome). */
+/** MetaMask Square wallet icon (monochrome). */
 export const MetaMaskSquareMono = createIcon(
   'MetaMaskSquareMono',
   '0 0 64 64',
@@ -145,7 +145,7 @@ export const MetaMaskSquareMono = createIcon(
   'currentColor',
 );
 
-/** Meta Mask Alt wallet icon (colored). */
+/** MetaMask Alt wallet icon (colored). */
 export const MetaMaskAlt = createIcon('MetaMaskAlt', '0 0 404 420.2', () => (
   <>
     <path
