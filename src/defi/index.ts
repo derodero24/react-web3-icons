@@ -15,4 +15,5 @@ export * from './RocketPool';
 export * from './SafeProtocol';
 export * from './Spark';
 export * from './Synthetix';
+export * from './Venus';
 export * from './Yearn';
