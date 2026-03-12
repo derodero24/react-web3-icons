@@ -32,4 +32,7 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<string> = new Set([
   'BscscanLight',
   'BybitLight',
   'EtherscanLight',
+  // TofuNFT marketplace shut down permanently in 2024
+  'TofuNft',
+  'TofuNftMono',
 ]);
