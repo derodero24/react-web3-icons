@@ -21,12 +21,14 @@ Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/ac
 
 ### Useful Commands
 
-| Command             | Description                     |
-| ------------------- | ------------------------------- |
-| `pnpm run lint`     | Run Biome linter                |
-| `pnpm run lint:fix` | Auto-fix lint and format issues |
-| `pnpm test`         | Run tests                       |
-| `pnpm run build`    | Build the package               |
+| Command                | Description                     |
+| ---------------------- | ------------------------------- |
+| `pnpm run lint`        | Run Biome linter                |
+| `pnpm run lint:fix`    | Auto-fix lint and format issues |
+| `pnpm test`            | Run tests                       |
+| `pnpm run build`       | Build the package               |
+| `pnpm run new-icon`    | Scaffold a new icon component   |
+| `pnpm run optimize:svg`| Optimize an SVG with SVGO       |
 
 ## Project Structure
 
@@ -54,6 +56,41 @@ test/           # Vitest test suite
 ```
 
 ## Adding a New Icon
+
+### Quick Start (Scaffolding)
+
+Use the scaffolding script to set up the boilerplate automatically:
+
+```sh
+pnpm run new-icon --category <category> --name <ComponentName> [--svg path/to/icon.svg] [--slug <slug>]
+```
+
+This creates the component file, adds the export to the category index, and inserts the slug/ticker entry into the meta map (for applicable categories). For example:
+
+```sh
+# DeFi protocol (with SVG file)
+pnpm run new-icon --category defi --name EtherFi --svg ./etherfi.svg --slug etherfi
+
+# Coin (with ticker)
+pnpm run new-icon --category coin --name Bitcoin --svg ./btc.svg --ticker BTC
+
+# Chain (with chain ID)
+pnpm run new-icon --category chain --name Taiko --svg ./taiko.svg --slug taiko --chain-id 167000
+
+# Without SVG (generates a placeholder to fill in)
+pnpm run new-icon --category wallet --name Phantom --slug phantomwallet
+```
+
+After running the script, open the generated file and:
+
+1. Paste or review the SVG content in the render function
+2. Replace any static `id` attributes with dynamic ones using `_id` (if the SVG has gradients or masks)
+3. Add the `// Source: <URL>` comment pointing to the official asset
+4. Adjust the `Mono` variant to use `currentColor` correctly
+
+Then continue with the [manual steps](#1-create-the-icon-component) below for the parts that still need attention.
+
+---
 
 ### 1. Create the Icon Component
 
