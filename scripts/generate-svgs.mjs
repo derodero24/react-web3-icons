@@ -49,9 +49,6 @@ function cleanSvg(html) {
       .replace(/\s+aria-hidden="true"/g, '')
       // Remove role="img" (add back if needed per use case)
       .replace(/\s+role="img"/g, '')
-      // Remove inline width/height="1em" — let viewBox control sizing
-      .replace(/\s+width="1em"/g, '')
-      .replace(/\s+height="1em"/g, '')
   );
 }
 
