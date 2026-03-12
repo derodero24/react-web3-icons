@@ -12,6 +12,7 @@ export * from './Cardano';
 export * from './Celestia';
 export * from './Celo';
 export * from './CosmosHub';
+export * from './Eclipse';
 export * from './Ethereum';
 export * from './Fantom';
 export * from './Fraxtal';
