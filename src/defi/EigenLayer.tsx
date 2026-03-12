@@ -1,6 +1,6 @@
 import { createIcon } from '../utils';
 
-// Paths sourced from app.eigenlayer.xyz/logo/markLightA.svg
+// Source: https://app.eigenlayer.xyz/logo/markLightA.svg (now 403; path data preserved from original retrieval)
 const markPath =
   'M150 300L150 0L0 0L0 300V600H150H225H300H375H450V450H375H300V300H375H450V150H525V0L450 0V150H375V0H303L300 0H228V75H300V300H225V450H150L150 300Z';
 
