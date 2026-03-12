@@ -20,6 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://react-web3-icons.vercel.app'),
   title: 'React Web3 Icons',
   description:
     'Open-source React icon library for Web3 — chains, coins, wallets, DEXs, and more.',
@@ -38,8 +39,13 @@ export const metadata: Metadata = {
     siteName: 'React Web3 Icons',
     description:
       'Open-source React icon library for Web3 — chains, coins, wallets, DEXs, and more.',
-    images: '/icon-512.png',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'React Web3 Icons',
+    description:
+      'Open-source React icon library for Web3 — chains, coins, wallets, DEXs, and more.',
   },
 };
 
