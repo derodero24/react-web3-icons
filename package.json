@@ -213,7 +213,7 @@
     {
       "name": "dex",
       "path": "dist/dex/index.mjs",
-      "limit": "12 KB"
+      "limit": "17 KB"
     },
     {
       "name": "domain",

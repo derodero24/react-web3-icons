@@ -322,6 +322,7 @@ export const DEX_SLUG_TO_NAME = {
   ekubo: 'Ekubo',
   hyperliquid: 'Hyperliquid',
   jupiter: 'Jupiter',
+  meteora: 'Meteora',
   odos: 'Odos',
   oneinch: 'Oneinch',
   osmosis: 'Osmosis',
@@ -329,6 +330,7 @@ export const DEX_SLUG_TO_NAME = {
   paraswap: 'ParaSwap',
   raydium: 'Raydium',
   sushiswap: 'SushiSwap',
+  traderjoe: 'TraderJoe',
   uniswap: 'Uniswap',
   velodrome: 'Velodrome',
 } as const satisfies Record<string, string>;
