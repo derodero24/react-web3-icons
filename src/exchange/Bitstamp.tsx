@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Bitstamp exchange icon (colored). */
 export const Bitstamp = createIcon('Bitstamp', '0 0 145.2 221.1', () => (
   <>
     <path
@@ -10,6 +11,7 @@ export const Bitstamp = createIcon('Bitstamp', '0 0 145.2 221.1', () => (
   </>
 ));
 
+/** Bitstamp Circle exchange icon (colored). */
 export const BitstampCircle = createIcon(
   'BitstampCircle',
   '0 0 446.4 446.4',
@@ -31,6 +33,7 @@ export const BitstampCircle = createIcon(
   ),
 );
 
+/** Bitstamp exchange icon (monochrome). */
 export const BitstampMono = createIcon(
   'BitstampMono',
   '0 0 145.2 221.1',
@@ -42,6 +45,7 @@ export const BitstampMono = createIcon(
   'currentColor',
 );
 
+/** Bitstamp Circle exchange icon (monochrome). */
 export const BitstampCircleMono = createIcon(
   'BitstampCircleMono',
   '0 0 446.4 446.4',

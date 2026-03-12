@@ -8,6 +8,7 @@ const stacksContent = () => (
   />
 );
 
+/** Stacks chain icon (colored). */
 export const Stacks = createIcon(
   'Stacks',
   '0 0 24 24',
@@ -15,6 +16,7 @@ export const Stacks = createIcon(
   '#141414',
 );
 
+/** Stacks chain icon (monochrome). */
 export const StacksMono = createIcon(
   'StacksMono',
   '0 0 24 24',

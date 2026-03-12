@@ -5,6 +5,7 @@ const FANTOM_GEM =
 const FANTOM_BARS =
   'M4.35 18.835V16.05h.9v2.34l2.25 1.16v1zm15.3-13.67V7.95h-.9V5.61L16.5 4.45v-1z';
 
+/** Fantom chain icon (colored). */
 export const Fantom = createIcon('Fantom', '0 0 24 24', () => (
   <>
     <path d={FANTOM_GEM} fill="#F37A29" fillRule="evenodd" clipRule="evenodd" />
@@ -12,6 +13,7 @@ export const Fantom = createIcon('Fantom', '0 0 24 24', () => (
   </>
 ));
 
+/** Fantom chain icon (monochrome). */
 export const FantomMono = createIcon(
   'FantomMono',
   '0 0 24 24',

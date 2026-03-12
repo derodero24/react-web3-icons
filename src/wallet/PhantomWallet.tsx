@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Phantom Wallet wallet icon (colored). */
 export const PhantomWallet = createIcon('PhantomWallet', '0 0 128 128', _id => (
   <>
     <circle cx="64" cy="64" r="64" fill={`url(#${_id}-phw-a)`} />
@@ -34,6 +35,7 @@ export const PhantomWallet = createIcon('PhantomWallet', '0 0 128 128', _id => (
   </>
 ));
 
+/** Phantom Wallet wallet icon (monochrome). */
 export const PhantomWalletMono = createIcon(
   'PhantomWalletMono',
   '0 0 128 128',
@@ -61,6 +63,7 @@ const PHANTOM_GHOST =
 // Original viewBox 0 0 128 128 → scale 0.36, translate(9, 9)
 const PH_CIRCLE_TX = 'translate(9 9) scale(0.36)';
 
+/** Phantom Wallet Circle wallet icon (colored). */
 export const PhantomWalletCircle = createIcon(
   'PhantomWalletCircle',
   '0 0 64 64',
@@ -85,6 +88,7 @@ export const PhantomWalletCircle = createIcon(
   ),
 );
 
+/** Phantom Wallet Circle wallet icon (monochrome). */
 export const PhantomWalletCircleMono = createIcon(
   'PhantomWalletCircleMono',
   '0 0 64 64',
@@ -102,6 +106,7 @@ export const PhantomWalletCircleMono = createIcon(
   'currentColor',
 );
 
+/** Phantom Wallet Square wallet icon (colored). */
 export const PhantomWalletSquare = createIcon(
   'PhantomWalletSquare',
   '0 0 64 64',
@@ -126,6 +131,7 @@ export const PhantomWalletSquare = createIcon(
   ),
 );
 
+/** Phantom Wallet Square wallet icon (monochrome). */
 export const PhantomWalletSquareMono = createIcon(
   'PhantomWalletSquareMono',
   '0 0 64 64',
@@ -143,6 +149,7 @@ export const PhantomWalletSquareMono = createIcon(
   'currentColor',
 );
 
+/** Phantom Wallet Symbol wallet icon (monochrome). */
 export const PhantomWalletSymbolMono = createIcon(
   'PhantomWalletSymbolMono',
   '0 0 128 106',

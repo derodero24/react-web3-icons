@@ -12,6 +12,7 @@ const synthetixContent = () => (
   </>
 );
 
+/** Synthetix DeFi icon (colored). */
 export const Synthetix = createIcon(
   'Synthetix',
   '0 0 24 24',
@@ -19,6 +20,7 @@ export const Synthetix = createIcon(
   '#1B1230',
 );
 
+/** Synthetix DeFi icon (monochrome). */
 export const SynthetixMono = createIcon(
   'SynthetixMono',
   '0 0 24 24',

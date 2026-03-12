@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Blockscout explorer icon (colored). */
 export const Blockscout = createIcon(
   'Blockscout',
   '0 0 20 20',
@@ -9,6 +10,7 @@ export const Blockscout = createIcon(
   '#1258F6',
 );
 
+/** Blockscout explorer icon (monochrome). */
 export const BlockscoutMono = createIcon(
   'BlockscoutMono',
   '0 0 20 20',

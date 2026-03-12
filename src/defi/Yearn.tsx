@@ -8,8 +8,10 @@ const yearnContent = () => (
   />
 );
 
+/** Yearn DeFi icon (colored). */
 export const Yearn = createIcon('Yearn', '0 0 64 64', yearnContent, '#0657F9');
 
+/** Yearn DeFi icon (monochrome). */
 export const YearnMono = createIcon(
   'YearnMono',
   '0 0 64 64',

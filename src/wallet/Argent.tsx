@@ -6,6 +6,7 @@ const argentContent = () => (
   </>
 );
 
+/** Argent wallet icon (colored). */
 export const Argent = createIcon(
   'Argent',
   '0 0 39.38 36',
@@ -13,6 +14,7 @@ export const Argent = createIcon(
   '#ff875b',
 );
 
+/** Argent wallet icon (monochrome). */
 export const ArgentMono = createIcon(
   'ArgentMono',
   '0 0 39.38 36',

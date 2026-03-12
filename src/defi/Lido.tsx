@@ -31,8 +31,10 @@ const lidoContent = () => (
   </>
 );
 
+/** Lido DeFi icon (colored). */
 export const Lido = createIcon('Lido', '0 0 1080 1080', lidoContent, '#00A3FF');
 
+/** Lido DeFi icon (monochrome). */
 export const LidoMono = createIcon(
   'LidoMono',
   '0 0 1080 1080',

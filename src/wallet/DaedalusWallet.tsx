@@ -6,6 +6,7 @@ const daedalusWalletContent = () => (
   </>
 );
 
+/** Daedalus Wallet wallet icon (colored). */
 export const DaedalusWallet = createIcon(
   'DaedalusWallet',
   '26.36 174.91 87 68.1',
@@ -13,6 +14,7 @@ export const DaedalusWallet = createIcon(
   '#82ff65',
 );
 
+/** Daedalus Wallet wallet icon (monochrome). */
 export const DaedalusWalletMono = createIcon(
   'DaedalusWalletMono',
   '26.36 174.91 87 68.1',

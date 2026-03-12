@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Coinbase Wallet wallet icon (colored). */
 export const CoinbaseWallet = createIcon(
   'CoinbaseWallet',
   '0 0 2500 2500',
@@ -30,6 +31,7 @@ const CB_INNER_RECT =
 // Original viewBox 0 0 2500 2500 → scale 0.0256 (64/2500)
 const CB_CIRCLE_TX = 'translate(0 0) scale(0.0256)';
 
+/** Coinbase Wallet Circle wallet icon (colored). */
 export const CoinbaseWalletCircle = createIcon(
   'CoinbaseWalletCircle',
   '0 0 64 64',
@@ -42,6 +44,7 @@ export const CoinbaseWalletCircle = createIcon(
   ),
 );
 
+/** Coinbase Wallet Circle wallet icon (monochrome). */
 export const CoinbaseWalletCircleMono = createIcon(
   'CoinbaseWalletCircleMono',
   '0 0 64 64',
@@ -60,6 +63,7 @@ export const CoinbaseWalletCircleMono = createIcon(
   'currentColor',
 );
 
+/** Coinbase Wallet Square wallet icon (colored). */
 export const CoinbaseWalletSquare = createIcon(
   'CoinbaseWalletSquare',
   '0 0 64 64',
@@ -72,6 +76,7 @@ export const CoinbaseWalletSquare = createIcon(
   ),
 );
 
+/** Coinbase Wallet Square wallet icon (monochrome). */
 export const CoinbaseWalletSquareMono = createIcon(
   'CoinbaseWalletSquareMono',
   '0 0 64 64',
@@ -90,6 +95,7 @@ export const CoinbaseWalletSquareMono = createIcon(
   'currentColor',
 );
 
+/** Coinbase Wallet wallet icon (monochrome). */
 export const CoinbaseWalletMono = createIcon(
   'CoinbaseWalletMono',
   '0 0 2500 2500',

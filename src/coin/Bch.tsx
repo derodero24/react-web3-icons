@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Bch coin icon (colored). */
 export const Bch = createIcon('Bch', '0 0 24 24', () => (
   <path
     fill="#58BE92"
@@ -7,6 +8,7 @@ export const Bch = createIcon('Bch', '0 0 24 24', () => (
   />
 ));
 
+/** Bch coin icon (monochrome). */
 export const BchMono = createIcon(
   'BchMono',
   '0 0 24 24',

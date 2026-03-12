@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Dai Circle coin icon (colored). */
 export const DaiCircle = createIcon('DaiCircle', '0 0 444.44 444.44', () => (
   <>
     <path
@@ -13,6 +14,7 @@ export const DaiCircle = createIcon('DaiCircle', '0 0 444.44 444.44', () => (
   </>
 ));
 
+/** Dai Circle coin icon (monochrome). */
 export const DaiCircleMono = createIcon(
   'DaiCircleMono',
   '0 0 444.44 444.44',
@@ -42,6 +44,7 @@ const daiContent = () => (
   </>
 );
 
+/** Dai coin icon (colored). */
 export const Dai = createIcon(
   'Dai',
   '81.67 98.63 290.54 247.11',
@@ -49,6 +52,7 @@ export const Dai = createIcon(
   '#f5ac37',
 );
 
+/** Dai coin icon (monochrome). */
 export const DaiMono = createIcon(
   'DaiMono',
   '81.67 98.63 290.54 247.11',

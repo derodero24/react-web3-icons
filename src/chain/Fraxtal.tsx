@@ -7,6 +7,7 @@ const fraxtalContent = () => (
   </>
 );
 
+/** Fraxtal chain icon (colored). */
 export const Fraxtal = createIcon(
   'Fraxtal',
   '0 0 24 24',
@@ -14,6 +15,7 @@ export const Fraxtal = createIcon(
   '#000',
 );
 
+/** Fraxtal chain icon (monochrome). */
 export const FraxtalMono = createIcon(
   'FraxtalMono',
   '0 0 24 24',

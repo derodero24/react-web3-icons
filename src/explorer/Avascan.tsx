@@ -8,6 +8,7 @@ const avascanContent2 = () => (
   <path d="M183.15 198.543a9.7 9.7 0 0 1 3.5 13.2l-16.4 28.7c-3.791 6.433-13.125 6.349-16.8-.15a9.7 9.7 0 0 1 0-9.55l16.5-28.7a9.7 9.7 0 0 1 13.3-3.5h-.1zm30.3 3.3l.2.2 16.5 28.7c3.258 6.719-1.978 14.445-9.426 13.908a9.7 9.7 0 0 1-7.174-4.008l-.2-.2-16.5-28.7c-3.258-6.719 1.978-14.445 9.426-13.908a9.7 9.7 0 0 1 7.174 4.008h0zm56.7-3.3a9.7 9.7 0 0 1 3.5 13.2l-16.5 28.7c-3.791 6.433-13.125 6.349-16.8-.15a9.7 9.7 0 0 1 0-9.55l16.5-28.7a9.7 9.7 0 0 1 13.3-3.5zm12.2 27.6c7.313 0 11.884 7.917 8.227 14.25a9.5 9.5 0 0 1-8.227 4.75c-7.313 0-11.884-7.917-8.227-14.25a9.5 9.5 0 0 1 8.227-4.75h0z" />
 );
 
+/** Avascan Wordmark explorer icon (colored). */
 export const AvascanWordmark = createIcon(
   'AvascanWordmark',
   '0.04 -0.03 139.76 76.24',
@@ -15,6 +16,7 @@ export const AvascanWordmark = createIcon(
   '#6d6df2',
 );
 
+/** Avascan Wordmark explorer icon (monochrome). */
 export const AvascanWordmarkMono = createIcon(
   'AvascanWordmarkMono',
   '0.04 -0.03 139.76 76.24',
@@ -22,6 +24,7 @@ export const AvascanWordmarkMono = createIcon(
   'currentColor',
 );
 
+/** Avascan explorer icon (colored). */
 export const Avascan = createIcon(
   'Avascan',
   '152.19 197.21 139.67 48.01',
@@ -29,6 +32,7 @@ export const Avascan = createIcon(
   '#6d6df2',
 );
 
+/** Avascan explorer icon (monochrome). */
 export const AvascanMono = createIcon(
   'AvascanMono',
   '152.19 197.21 139.67 48.01',

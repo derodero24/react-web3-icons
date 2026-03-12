@@ -8,8 +8,10 @@ const pythContent = () => (
   </>
 );
 
+/** Pyth coin icon (colored). */
 export const Pyth = createIcon('Pyth', '0 0 24 24', pythContent, '#110F24');
 
+/** Pyth coin icon (monochrome). */
 export const PythMono = createIcon(
   'PythMono',
   '0 0 24 24',

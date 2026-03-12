@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Alchemy node icon (colored). */
 export const Alchemy = createIcon('Alchemy', '0 0 1008 861', _id => (
   <>
     <path
@@ -31,6 +32,7 @@ export const Alchemy = createIcon('Alchemy', '0 0 1008 861', _id => (
   </>
 ));
 
+/** Alchemy node icon (monochrome). */
 export const AlchemyMono = createIcon(
   'AlchemyMono',
   '0 0 1008 861',

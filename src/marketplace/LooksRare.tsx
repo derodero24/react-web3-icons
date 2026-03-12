@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** LooksRare marketplace icon (colored). */
 export const LooksRare = createIcon('LooksRare', '0 12.32 96 76.54', () => (
   <>
     <path d="M21.651 28.366c14.552-14.47 38.146-14.47 52.697 0l12.57 12.499-12.57 12.499c-14.552 14.47-38.146 14.47-52.698 0L9.081 40.865l12.57-12.499z" />
@@ -17,6 +18,7 @@ export const LooksRare = createIcon('LooksRare', '0 12.32 96 76.54', () => (
   </>
 ));
 
+/** LooksRare Flat marketplace icon (colored). */
 export const LooksRareFlat = createIcon(
   'LooksRareFlat',
   '0 12.32 96 76.54',
@@ -26,6 +28,7 @@ export const LooksRareFlat = createIcon(
   '#04cd58',
 );
 
+/** LooksRare marketplace icon (monochrome). */
 export const LooksRareMono = createIcon(
   'LooksRareMono',
   '0 12.32 96 76.54',

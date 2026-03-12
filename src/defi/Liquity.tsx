@@ -14,8 +14,10 @@ const liquityContent = () => (
   </>
 );
 
+/** Liquity DeFi icon (colored). */
 export const Liquity = createIcon('Liquity', '0 0 40 40', liquityContent);
 
+/** Liquity DeFi icon (monochrome). */
 export const LiquityMono = createIcon(
   'LiquityMono',
   '0 0 40 40',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Thirdweb dev tool icon (colored). */
 export const Thirdweb = createIcon('Thirdweb', '0 0 516 321', _id => (
   <>
     <path
@@ -61,6 +62,7 @@ export const Thirdweb = createIcon('Thirdweb', '0 0 516 321', _id => (
   </>
 ));
 
+/** Thirdweb dev tool icon (monochrome). */
 export const ThirdwebMono = createIcon(
   'ThirdwebMono',
   '0 0 516 321',

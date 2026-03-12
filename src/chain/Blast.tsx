@@ -7,8 +7,10 @@ const blastContent = () => (
   </>
 );
 
+/** Blast chain icon (colored). */
 export const Blast = createIcon('Blast', '0 0 24 24', blastContent, '#FCFC03');
 
+/** Blast chain icon (monochrome). */
 export const BlastMono = createIcon(
   'BlastMono',
   '0 0 24 24',

@@ -8,6 +8,7 @@ const pendleMonoContent = () => (
   </>
 );
 
+/** Pendle DeFi icon (colored). */
 export const Pendle = createIcon(
   'Pendle',
   '0 0 24 24',
@@ -30,6 +31,7 @@ export const Pendle = createIcon(
   'none',
 );
 
+/** Pendle DeFi icon (monochrome). */
 export const PendleMono = createIcon(
   'PendleMono',
   '0 0 24 24',

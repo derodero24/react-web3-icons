@@ -22,6 +22,7 @@ const uniswapContent = () => (
   </>
 );
 
+/** Uniswap DEX icon (colored). */
 export const Uniswap = createIcon(
   'Uniswap',
   '40.04 0 470.19 541.43',
@@ -29,6 +30,7 @@ export const Uniswap = createIcon(
   '#FF007A',
 );
 
+/** Uniswap DEX icon (monochrome). */
 export const UniswapMono = createIcon(
   'UniswapMono',
   '40.04 0 470.19 541.43',

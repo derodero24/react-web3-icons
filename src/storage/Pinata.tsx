@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Pinata storage icon (colored). */
 export const Pinata = createIcon('Pinata', '0 0 84 125', () => (
   <>
     <path
@@ -97,6 +98,7 @@ export const Pinata = createIcon('Pinata', '0 0 84 125', () => (
   </>
 ));
 
+/** Pinata storage icon (monochrome). */
 export const PinataMono = createIcon(
   'PinataMono',
   '0 0 84 125',

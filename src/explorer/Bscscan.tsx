@@ -5,6 +5,7 @@ const BSCSCAN_BODY =
 const BSCSCAN_TAIL =
   'M25.039 109.727a60.66 60.66 0 0 0 96.339-49.061l-.158-4.152c-22.163 33.055-63.085 48.508-96.181 53.213';
 
+/** Bscscan explorer icon (colored). */
 export const Bscscan = createIcon('Bscscan', '0 0.18 121.38 121.15', () => (
   <>
     <path d={BSCSCAN_BODY} fill="#12161c" />
@@ -12,6 +13,7 @@ export const Bscscan = createIcon('Bscscan', '0 0.18 121.38 121.15', () => (
   </>
 ));
 
+/** Bscscan Inverted explorer icon (colored). */
 export const BscscanInverted = createIcon(
   'BscscanInverted',
   '0 0.18 121.38 121.15',
@@ -23,6 +25,7 @@ export const BscscanInverted = createIcon(
   ),
 );
 
+/** Bscscan explorer icon (monochrome). */
 export const BscscanMono = createIcon(
   'BscscanMono',
   '0 0.18 121.38 121.15',

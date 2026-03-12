@@ -35,6 +35,7 @@ const content = () => (
   </>
 );
 
+/** Polkadot chain icon (colored). */
 export const Polkadot = createIcon(
   'Polkadot',
   '262.21 293.83 1475.59 1410.27',
@@ -42,6 +43,7 @@ export const Polkadot = createIcon(
   '#e6007a',
 );
 
+/** Polkadot chain icon (monochrome). */
 export const PolkadotMono = createIcon(
   'PolkadotMono',
   '262.21 293.83 1475.59 1410.27',

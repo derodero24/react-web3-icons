@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Bitcoin Circle chain icon (colored). */
 export const BitcoinCircle = createIcon('BitcoinCircle', '0 0 64 64', () => (
   <>
     <path
@@ -13,6 +14,7 @@ export const BitcoinCircle = createIcon('BitcoinCircle', '0 0 64 64', () => (
   </>
 ));
 
+/** Bitcoin chain icon (colored). */
 export const Bitcoin = createIcon('Bitcoin', '15.57 11.15 30.61 40.52', () => (
   <path
     d="m46.109 27.441c.637-4.258-2.605-6.547-7.038-8.074l1.438-5.768-3.511-.875-1.4 5.616-2.813-.662 1.41-5.653-3.509-.875-1.439 5.766-2.242-.527.004-.018-4.842-1.209-.934 3.75s2.605.597 2.55.634c1.422.355 1.679 1.296 1.636 2.042l-1.638 6.571a2.91 2.91 0 0 1 .365.117l-.371-.092-2.296 9.205c-.174.432-.615 1.08-1.609.834.035.051-2.552-.637-2.552-.637l-1.743 4.019 4.569 1.139 2.503.646-1.453 5.834 3.507.875 1.439-5.772 2.798.726-1.434 5.745 3.511.875 1.453-5.823c5.987 1.133 10.489.676 12.384-4.739 1.527-4.36-.076-6.875-3.226-8.515 2.294-.529 4.022-2.038 4.483-5.155zm-8.022 11.249c-1.085 4.36-8.426 2.003-10.806 1.412l1.928-7.729c2.38.594 10.012 1.77 8.878 6.317zm1.086-11.312c-.99 3.966-7.1 1.951-9.082 1.457l1.748-7.01c1.982.494 8.365 1.416 7.334 5.553z"
@@ -20,6 +22,7 @@ export const Bitcoin = createIcon('Bitcoin', '15.57 11.15 30.61 40.52', () => (
   />
 ));
 
+/** Bitcoin Circle chain icon (monochrome). */
 export const BitcoinCircleMono = createIcon(
   'BitcoinCircleMono',
   '0 0 32 32',
@@ -32,6 +35,7 @@ export const BitcoinCircleMono = createIcon(
   'currentColor',
 );
 
+/** Bitcoin chain icon (monochrome). */
 export const BitcoinMono = createIcon(
   'BitcoinMono',
   '15.57 11.15 30.61 40.52',

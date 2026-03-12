@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Hardhat dev tool icon (colored). */
 export const Hardhat = createIcon(
   'Hardhat',
   '154.25 169.12 49.88 34.57',
@@ -79,6 +80,7 @@ export const Hardhat = createIcon(
   ),
 );
 
+/** Hardhat dev tool icon (monochrome). */
 export const HardhatMono = createIcon(
   'HardhatMono',
   '154.25 169.12 49.88 34.57',

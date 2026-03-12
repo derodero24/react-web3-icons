@@ -7,6 +7,7 @@ const COINPANDA_MARK =
 const COINPANDA_BG_SYMBOL =
   'M59.22 19.84c-4.455 0-8.097 3.548-8.247 7.967a19.83 19.83 0 0 0-15.948 0c-.151-4.418-3.793-7.968-8.247-7.968-4.549 0-8.251 3.702-8.251 8.252a8.24 8.24 0 0 0 7.097 8.162c-1.73 3.025-2.642 6.429-2.642 9.891 0 11.039 8.98 20.019 20.019 20.019s20.019-8.98 20.019-20.019c0-3.461-.912-6.865-2.642-9.891a8.24 8.24 0 0 0 7.098-8.162 8.27 8.27 0 0 0-8.255-8.251h0zM26.775 32.338c-2.34 0-4.246-1.905-4.246-4.246s1.905-4.247 4.246-4.247 4.247 1.905 4.247 4.247a4.25 4.25 0 0 1-4.247 4.246zm32.236 13.807c0 8.829-7.184 16.012-16.013 16.012s-16.013-7.183-16.013-16.012 7.184-16.013 16.013-16.013 16.013 7.184 16.013 16.013zm-4.039-18.052c0-2.342 1.905-4.247 4.247-4.247s4.247 1.905 4.247 4.247a4.25 4.25 0 0 1-4.247 4.246 4.25 4.25 0 0 1-4.247-4.246z';
 
+/** Coinpanda portfolio icon (colored). */
 export const Coinpanda = createIcon(
   'Coinpanda',
   '0 1.1 39.95 37.81',
@@ -14,6 +15,7 @@ export const Coinpanda = createIcon(
   '#246aff',
 );
 
+/** Coinpanda portfolio icon (monochrome). */
 export const CoinpandaMono = createIcon(
   'CoinpandaMono',
   '0 1.1 39.95 37.81',
@@ -21,6 +23,7 @@ export const CoinpandaMono = createIcon(
   'currentColor',
 );
 
+/** Coinpanda Circle portfolio icon (colored). */
 export const CoinpandaCircle = createIcon(
   'CoinpandaCircle',
   '0 0 86 86',
@@ -32,6 +35,7 @@ export const CoinpandaCircle = createIcon(
   ),
 );
 
+/** Coinpanda Square portfolio icon (colored). */
 export const CoinpandaSquare = createIcon(
   'CoinpandaSquare',
   '0 0 86 86',
@@ -43,6 +47,7 @@ export const CoinpandaSquare = createIcon(
   ),
 );
 
+/** Coinpanda Circle portfolio icon (monochrome). */
 export const CoinpandaCircleMono = createIcon(
   'CoinpandaCircleMono',
   '0 0 86 86',
@@ -60,6 +65,7 @@ export const CoinpandaCircleMono = createIcon(
   'currentColor',
 );
 
+/** Coinpanda Square portfolio icon (monochrome). */
 export const CoinpandaSquareMono = createIcon(
   'CoinpandaSquareMono',
   '0 0 86 86',

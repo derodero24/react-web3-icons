@@ -2,6 +2,7 @@ import { createIcon } from '../utils';
 
 // dRPC brand mark — three-dimensional diamond cluster
 // Three shades: bright (#49FF87), mid (#41E278), dark (#33B05D)
+/** Drpc node icon (colored). */
 export const Drpc = createIcon('Drpc', '0 1 38.14 44', () => (
   <>
     <path
@@ -43,6 +44,7 @@ export const Drpc = createIcon('Drpc', '0 1 38.14 44', () => (
   </>
 ));
 
+/** Drpc node icon (monochrome). */
 export const DrpcMono = createIcon(
   'DrpcMono',
   '0 1 38.14 44',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Basescan explorer icon (colored). */
 export const Basescan = createIcon('Basescan', '0 0 122 122', () => (
   <>
     <path
@@ -13,6 +14,7 @@ export const Basescan = createIcon('Basescan', '0 0 122 122', () => (
   </>
 ));
 
+/** Basescan Inverted explorer icon (colored). */
 export const BasescanInverted = createIcon(
   'BasescanInverted',
   '0 0 122 122',
@@ -30,6 +32,7 @@ export const BasescanInverted = createIcon(
   ),
 );
 
+/** Basescan explorer icon (monochrome). */
 export const BasescanMono = createIcon(
   'BasescanMono',
   '0 0 122 122',

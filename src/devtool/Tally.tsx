@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Tally dev tool icon (colored). */
 export const Tally = createIcon('Tally', '308.07 194 25 34.28', () => (
   <>
     <path
@@ -17,6 +18,7 @@ export const Tally = createIcon('Tally', '308.07 194 25 34.28', () => (
   </>
 ));
 
+/** Tally dev tool icon (monochrome). */
 export const TallyMono = createIcon(
   'TallyMono',
   '308.07 194 25 34.28',

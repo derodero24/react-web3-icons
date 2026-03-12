@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Keplr wallet icon (colored). */
 export const Keplr = createIcon('Keplr', '0 0 168 168', () => (
   <>
     <path
@@ -19,6 +20,7 @@ export const Keplr = createIcon('Keplr', '0 0 168 168', () => (
   </>
 ));
 
+/** Keplr wallet icon (monochrome). */
 export const KeplrMono = createIcon(
   'KeplrMono',
   '0 0 168 168',

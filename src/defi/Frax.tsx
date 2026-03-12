@@ -11,8 +11,10 @@ const fraxContent = () => (
   </>
 );
 
+/** Frax DeFi icon (colored). */
 export const Frax = createIcon('Frax', '0 0 444 444', fraxContent, '#000');
 
+/** Frax DeFi icon (monochrome). */
 export const FraxMono = createIcon(
   'FraxMono',
   '0 0 444 444',

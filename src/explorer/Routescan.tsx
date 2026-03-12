@@ -11,6 +11,7 @@ const RS_BOT_RIGHT = 'M20.9455 48L41.8883 36.0016L20.9455 24L20.9455 48Z';
 const RS_BOT_LEFT =
   'M0.00261818 36.0016L20.9455 48L20.9455 24L0.00261818 36.0016Z';
 
+/** Routescan explorer icon (colored). */
 export const Routescan = createIcon('Routescan', '0 0 42 48', () => (
   <>
     <path d={RS_TOP_LEFT} fill="#00FF7F" />
@@ -22,6 +23,7 @@ export const Routescan = createIcon('Routescan', '0 0 42 48', () => (
   </>
 ));
 
+/** Routescan explorer icon (monochrome). */
 export const RoutescanMono = createIcon(
   'RoutescanMono',
   '0 0 42 48',

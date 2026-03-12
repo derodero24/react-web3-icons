@@ -10,6 +10,7 @@ const rLegPath =
 const accentPath =
   'M32.6593 13.1888L34.3137 14.1079L35.968 13.1888V11.2467L34.3137 10.2877L32.6593 11.2467V13.1888Z';
 
+/** Raydium DEX icon (colored). */
 export const Raydium = createIcon(
   'Raydium',
   '0 0 40 40',
@@ -38,6 +39,7 @@ export const Raydium = createIcon(
   'none',
 );
 
+/** Raydium DEX icon (monochrome). */
 export const RaydiumMono = createIcon(
   'RaydiumMono',
   '0 0 40 40',

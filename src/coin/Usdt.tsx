@@ -9,6 +9,7 @@ const usdtContent = () => (
   </>
 );
 
+/** Usdt coin icon (colored). */
 export const Usdt = createIcon(
   'Usdt',
   '0.45 0.86 110.36 88.3',
@@ -16,6 +17,7 @@ export const Usdt = createIcon(
   '#26A17B',
 );
 
+/** Usdt coin icon (monochrome). */
 export const UsdtMono = createIcon(
   'UsdtMono',
   '0.45 0.86 110.36 88.3',
@@ -27,6 +29,7 @@ export const UsdtMono = createIcon(
 // Original viewBox 0.45 0.86 110.36 88.3 → scale 0.417, translate(8.9, 13.6)
 const USDT_CIRCLE_TX = 'translate(8.9 13.6) scale(0.417)';
 
+/** Usdt Circle coin icon (colored). */
 export const UsdtCircle = createIcon('UsdtCircle', '0 0 64 64', () => (
   <>
     <circle cx="32" cy="32" r="32" fill="#26A17B" />
@@ -39,6 +42,7 @@ export const UsdtCircle = createIcon('UsdtCircle', '0 0 64 64', () => (
   </>
 ));
 
+/** Usdt Circle coin icon (monochrome). */
 export const UsdtCircleMono = createIcon(
   'UsdtCircleMono',
   '0 0 64 64',

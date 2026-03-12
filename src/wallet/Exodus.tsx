@@ -7,6 +7,7 @@ const exodusContent = () => (
   </>
 );
 
+/** Exodus wallet icon (colored). */
 export const Exodus = createIcon(
   'Exodus',
   '0 0 24 24',
@@ -81,6 +82,7 @@ export const Exodus = createIcon(
   'none',
 );
 
+/** Exodus wallet icon (monochrome). */
 export const ExodusMono = createIcon(
   'ExodusMono',
   '0 0 24 24',

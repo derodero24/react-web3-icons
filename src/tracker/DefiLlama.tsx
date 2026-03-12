@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** DefiLlama tracker icon (colored). */
 export const DefiLlama = createIcon(
   'DefiLlama',
   '31.34 197.14 116.4 131.45',
@@ -122,6 +123,7 @@ export const DefiLlama = createIcon(
   ),
 );
 
+/** DefiLlama tracker icon (monochrome). */
 export const DefiLlamaMono = createIcon(
   'DefiLlamaMono',
   '31.34 197.14 116.4 131.45',

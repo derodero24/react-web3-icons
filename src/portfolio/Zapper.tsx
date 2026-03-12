@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Zapper portfolio icon (colored). */
 export const Zapper = createIcon('Zapper', '0 0 500 500', () => (
   <>
     <path
@@ -13,6 +14,7 @@ export const Zapper = createIcon('Zapper', '0 0 500 500', () => (
   </>
 ));
 
+/** Zapper portfolio icon (monochrome). */
 export const ZapperMono = createIcon(
   'ZapperMono',
   '0 0 500 500',

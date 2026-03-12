@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Oneinch DEX icon (colored). */
 export const Oneinch = createIcon(
   'Oneinch',
   '0 0 40 40',
@@ -23,6 +24,7 @@ export const Oneinch = createIcon(
   'none',
 );
 
+/** Oneinch DEX icon (monochrome). */
 export const OneinchMono = createIcon(
   'OneinchMono',
   '0 0 40 40',

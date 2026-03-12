@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Shib coin icon (colored). */
 export const Shib = createIcon('Shib', '0.12 -0.04 641.66 649.06', () => (
   <>
     <path
@@ -53,6 +54,7 @@ const SHIB_EYE_L =
 const SHIB_EYE_R =
   'M16.442 11.766c.3-.118.304.16.268.312v.232a1.04 1.04 0 0 1-.664.969c-.913.343-2.456.818-2.287.32.223-.655 2.306-1.684 2.683-1.833Z';
 
+/** Shib coin icon (monochrome). */
 export const ShibMono = createIcon(
   'ShibMono',
   '0 0 24 24',

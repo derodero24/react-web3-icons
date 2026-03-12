@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Phemex exchange icon (colored). */
 export const Phemex = createIcon('Phemex', '0 0 16 16', () => (
   <>
     <path
@@ -13,6 +14,7 @@ export const Phemex = createIcon('Phemex', '0 0 16 16', () => (
   </>
 ));
 
+/** Phemex exchange icon (monochrome). */
 export const PhemexMono = createIcon(
   'PhemexMono',
   '0 0 16 16',

@@ -7,6 +7,7 @@ const bitfinexContent = () => (
   </>
 );
 
+/** Bitfinex exchange icon (colored). */
 export const Bitfinex = createIcon(
   'Bitfinex',
   '313.79 237.52 20 20',
@@ -14,6 +15,7 @@ export const Bitfinex = createIcon(
   '#03ca9b',
 );
 
+/** Bitfinex exchange icon (monochrome). */
 export const BitfinexMono = createIcon(
   'BitfinexMono',
   '313.79 237.52 20 20',

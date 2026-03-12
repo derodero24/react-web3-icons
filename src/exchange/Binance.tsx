@@ -28,6 +28,7 @@ const binanceContent = () => (
   </>
 );
 
+/** Binance exchange icon (colored). */
 export const Binance = createIcon(
   'Binance',
   '0 0 126.611 126.611',
@@ -35,6 +36,7 @@ export const Binance = createIcon(
   '#F0B90B',
 );
 
+/** Binance exchange icon (monochrome). */
 export const BinanceMono = createIcon(
   'BinanceMono',
   '0 0 126.611 126.611',

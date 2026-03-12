@@ -8,6 +8,7 @@ const backpackWalletContent = () => (
   />
 );
 
+/** Backpack Wallet wallet icon (colored). */
 export const BackpackWallet = createIcon(
   'BackpackWallet',
   '0 0 240 240',
@@ -15,6 +16,7 @@ export const BackpackWallet = createIcon(
   '#E33E3F',
 );
 
+/** Backpack Wallet wallet icon (monochrome). */
 export const BackpackWalletMono = createIcon(
   'BackpackWalletMono',
   '0 0 240 240',

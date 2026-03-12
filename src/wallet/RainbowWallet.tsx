@@ -210,6 +210,7 @@ const rainbowArcPaths = () => (
 // Arc paths from viewBox 20 20 80 80 → scale 0.575, translate(-2.5, -2.5)
 const RBW_CIRCLE_TX = 'translate(-2.5 -2.5) scale(0.575)';
 
+/** Rainbow Wallet Circle wallet icon (colored). */
 export const RainbowWalletCircle = createIcon(
   'RainbowWalletCircle',
   '0 0 64 64',
@@ -352,6 +353,7 @@ export const RainbowWalletCircle = createIcon(
   ),
 );
 
+/** Rainbow Wallet Circle wallet icon (monochrome). */
 export const RainbowWalletCircleMono = createIcon(
   'RainbowWalletCircleMono',
   '0 0 64 64',
@@ -371,6 +373,7 @@ export const RainbowWalletCircleMono = createIcon(
   'currentColor',
 );
 
+/** Rainbow Wallet Square wallet icon (colored). */
 export const RainbowWalletSquare = createIcon(
   'RainbowWalletSquare',
   '0 0 64 64',
@@ -519,6 +522,7 @@ export const RainbowWalletSquare = createIcon(
   ),
 );
 
+/** Rainbow Wallet Square wallet icon (monochrome). */
 export const RainbowWalletSquareMono = createIcon(
   'RainbowWalletSquareMono',
   '0 0 64 64',
@@ -538,6 +542,7 @@ export const RainbowWalletSquareMono = createIcon(
   'currentColor',
 );
 
+/** Rainbow Wallet wallet icon (monochrome). */
 export const RainbowWalletMono = createIcon(
   'RainbowWalletMono',
   '0 0 120 120',
@@ -555,6 +560,7 @@ export const RainbowWalletMono = createIcon(
   'currentColor',
 );
 
+/** Rainbow Wallet Symbol wallet icon (monochrome). */
 export const RainbowWalletSymbolMono = createIcon(
   'RainbowWalletSymbolMono',
   '20 20 80 80',

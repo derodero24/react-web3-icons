@@ -9,6 +9,7 @@ const compoundContent = () => (
   />
 );
 
+/** Compound DeFi icon (colored). */
 export const Compound = createIcon(
   'Compound',
   '0 0 29 37',
@@ -16,6 +17,7 @@ export const Compound = createIcon(
   '#00D395',
 );
 
+/** Compound DeFi icon (monochrome). */
 export const CompoundMono = createIcon(
   'CompoundMono',
   '0 0 29 37',

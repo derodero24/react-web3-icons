@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Pepe coin icon (colored). */
 export const Pepe = createIcon('Pepe', '0 0 24 24', () => (
   <>
     <path fill="#4F9843" d="M3 3h18v18H3z" />
@@ -48,6 +49,7 @@ export const Pepe = createIcon('Pepe', '0 0 24 24', () => (
   </>
 ));
 
+/** Pepe coin icon (monochrome). */
 export const PepeMono = createIcon(
   'PepeMono',
   '0 0 24 24',

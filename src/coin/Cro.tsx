@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Cro coin icon (colored). */
 export const Cro = createIcon('Cro', '0 0 24 24', () => (
   <>
     <path
@@ -9,6 +10,7 @@ export const Cro = createIcon('Cro', '0 0 24 24', () => (
   </>
 ));
 
+/** Cro coin icon (monochrome). */
 export const CroMono = createIcon(
   'CroMono',
   '0 0 24 24',

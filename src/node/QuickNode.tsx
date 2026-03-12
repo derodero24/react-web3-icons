@@ -16,6 +16,7 @@ const quickNodeContent = (_id: string) => (
   </>
 );
 
+/** QuickNode node icon (colored). */
 export const QuickNode = createIcon(
   'QuickNode',
   '0 0 40 40',
@@ -23,6 +24,7 @@ export const QuickNode = createIcon(
   '#00a4d6',
 );
 
+/** QuickNode node icon (monochrome). */
 export const QuickNodeMono = createIcon(
   'QuickNodeMono',
   '0 0 40 40',

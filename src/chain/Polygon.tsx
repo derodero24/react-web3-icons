@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Polygon chain icon (colored). */
 export const Polygon = createIcon(
   'Polygon',
   '14.85 41.75 470.3 416.51',
@@ -27,6 +28,7 @@ export const Polygon = createIcon(
   ),
 );
 
+/** Polygon chain icon (monochrome). */
 export const PolygonMono = createIcon(
   'PolygonMono',
   '14.85 41.75 470.3 416.51',
@@ -39,6 +41,7 @@ export const PolygonMono = createIcon(
 // Square variant: original viewBox 14.85 41.75 470.3 416.51 → scale 0.09783, translate(7.55, 7.54)
 const POLYGON_SQUARE_TX = 'translate(7.55 7.54) scale(0.09783)';
 
+/** Polygon Square chain icon (colored). */
 export const PolygonSquare = createIcon('PolygonSquare', '0 0 64 64', _id => (
   <>
     <rect width="64" height="64" rx="12.8" fill="#7b3fe4" />
@@ -51,6 +54,7 @@ export const PolygonSquare = createIcon('PolygonSquare', '0 0 64 64', _id => (
   </>
 ));
 
+/** Polygon Square chain icon (monochrome). */
 export const PolygonSquareMono = createIcon(
   'PolygonSquareMono',
   '0 0 64 64',
@@ -70,6 +74,7 @@ export const PolygonSquareMono = createIcon(
   'currentColor',
 );
 
+/** Polygon Circle chain icon (colored). */
 export const PolygonCircle = createIcon(
   'PolygonCircle',
   '4.5 5.5 491 489',
@@ -104,6 +109,7 @@ export const PolygonCircle = createIcon(
   ),
 );
 
+/** Polygon Circle chain icon (monochrome). */
 export const PolygonCircleMono = createIcon(
   'PolygonCircleMono',
   '4.5 5.5 491 489',

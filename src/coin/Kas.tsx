@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Kas coin icon (colored). */
 export const Kas = createIcon('Kas', '0 0 24 24', () => (
   <path
     fill="#71C9BB"
@@ -7,6 +8,7 @@ export const Kas = createIcon('Kas', '0 0 24 24', () => (
   />
 ));
 
+/** Kas coin icon (monochrome). */
 export const KasMono = createIcon(
   'KasMono',
   '0 0 24 24',

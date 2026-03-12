@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Pancake Swap DEX icon (colored). */
 export const PancakeSwap = createIcon(
   'PancakeSwap',
   '3 0 191.25 198.61',
@@ -27,6 +28,7 @@ export const PancakeSwap = createIcon(
   'none',
 );
 
+/** Pancake Swap DEX icon (monochrome). */
 export const PancakeSwapMono = createIcon(
   'PancakeSwapMono',
   '3 0 191.25 198.61',

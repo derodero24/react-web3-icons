@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Looks coin icon (colored). */
 export const Looks = createIcon('Looks', '0 0 96 96', () => (
   <>
     <circle cx="48" cy="48" r="48" fill="#000" />
@@ -23,6 +24,7 @@ export const Looks = createIcon('Looks', '0 0 96 96', () => (
   </>
 ));
 
+/** Looks Alt coin icon (colored). */
 export const LooksAlt = createIcon('LooksAlt', '0 0 96 96', () => (
   <>
     <circle cx="48" cy="48" r="48" fill="#0CE466" />
@@ -37,6 +39,7 @@ export const LooksAlt = createIcon('LooksAlt', '0 0 96 96', () => (
   </>
 ));
 
+/** Looks coin icon (monochrome). */
 export const LooksMono = createIcon(
   'LooksMono',
   '0 0 96 96',

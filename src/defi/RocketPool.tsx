@@ -16,6 +16,7 @@ const rocketPoolMonoContent = () => (
   </>
 );
 
+/** Rocket Pool DeFi icon (colored). */
 export const RocketPool = createIcon(
   'RocketPool',
   '0 0 24 24',
@@ -63,6 +64,7 @@ export const RocketPool = createIcon(
   'none',
 );
 
+/** Rocket Pool DeFi icon (monochrome). */
 export const RocketPoolMono = createIcon(
   'RocketPoolMono',
   '0 0 24 24',

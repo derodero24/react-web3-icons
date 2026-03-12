@@ -5,6 +5,7 @@ import { createIcon } from '../utils';
  * mono variant (viewBox 0 0 1080 1080). Both are the official CoinGecko logo
  * in their respective styles.
  */
+/** CoinGecko tracker icon (colored). */
 export const CoinGecko = createIcon('CoinGecko', '0 0 276 276', () => (
   <>
     <path
@@ -50,6 +51,7 @@ export const CoinGecko = createIcon('CoinGecko', '0 0 276 276', () => (
   </>
 ));
 
+/** CoinGecko tracker icon (monochrome). */
 export const CoinGeckoMono = createIcon(
   'CoinGeckoMono',
   '0 0 1080 1080',
