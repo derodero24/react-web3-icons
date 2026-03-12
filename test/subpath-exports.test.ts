@@ -11,6 +11,7 @@ import * as exchange from '../src/exchange';
 import * as explorer from '../src/explorer';
 import * as marketplace from '../src/marketplace';
 import * as node from '../src/node';
+import * as oracle from '../src/oracle';
 import * as portfolio from '../src/portfolio';
 import * as storage from '../src/storage';
 import * as tracker from '../src/tracker';
@@ -88,6 +89,17 @@ describe('Category module exports', () => {
     expect(Object.keys(node)).toContain('AlchemyMono');
     expect(Object.keys(node)).toContain('Infura');
     expect(Object.keys(node)).toContain('InfuraMono');
+  });
+
+  it('exports oracle category icons', () => {
+    expect(Object.keys(oracle)).toContain('Pyth');
+    expect(Object.keys(oracle)).toContain('PythMono');
+    expect(Object.keys(oracle)).toContain('Band');
+    expect(Object.keys(oracle)).toContain('BandMono');
+    expect(Object.keys(oracle)).toContain('Api3');
+    expect(Object.keys(oracle)).toContain('Api3Mono');
+    expect(Object.keys(oracle)).toContain('RedStone');
+    expect(Object.keys(oracle)).toContain('RedStoneMono');
   });
 
   it('exports portfolio category icons', () => {

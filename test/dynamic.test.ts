@@ -9,9 +9,11 @@ import {
   resolveDefiExportName,
   resolveDexExportName,
   resolveExchangeExportName,
+  resolveOracleExportName,
   resolveWalletExportName,
 } from '../src/dynamic/resolve';
 import * as exchange from '../src/exchange';
+import * as oracle from '../src/oracle';
 import * as wallet from '../src/wallet';
 
 describe('resolveChainExportName', () => {
@@ -328,6 +330,43 @@ describe('resolveBridgeExportName', () => {
       expect(
         bridgeNames.has(name as string),
         `bridge slug '${slug}' resolves to '${name}' which is not exported`,
+      ).toBe(true);
+    }
+  });
+});
+
+describe('resolveOracleExportName', () => {
+  it('resolves known oracles', () => {
+    expect(resolveOracleExportName({ name: 'pyth' })).toBe('Pyth');
+    expect(resolveOracleExportName({ name: 'band' })).toBe('Band');
+    expect(resolveOracleExportName({ name: 'api3' })).toBe('Api3');
+    expect(resolveOracleExportName({ name: 'redstone' })).toBe('RedStone');
+  });
+
+  it('is case-insensitive', () => {
+    expect(resolveOracleExportName({ name: 'Pyth' })).toBe('Pyth');
+    expect(resolveOracleExportName({ name: 'BAND' })).toBe('Band');
+  });
+
+  it('resolves mono variant', () => {
+    expect(resolveOracleExportName({ name: 'pyth', variant: 'mono' })).toBe(
+      'PythMono',
+    );
+  });
+
+  it('returns null for unknown oracle', () => {
+    expect(resolveOracleExportName({ name: 'notanoracle' })).toBeNull();
+  });
+
+  it('every resolved name references an exported oracle icon', () => {
+    const oracleNames = new Set(Object.keys(oracle));
+    const slugs = ['api3', 'band', 'pyth', 'redstone'];
+    for (const slug of slugs) {
+      const name = resolveOracleExportName({ name: slug });
+      expect(name).not.toBeNull();
+      expect(
+        oracleNames.has(name as string),
+        `oracle slug '${slug}' resolves to '${name}' which is not exported`,
       ).toBe(true);
     }
   });

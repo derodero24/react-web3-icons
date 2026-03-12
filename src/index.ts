@@ -10,6 +10,14 @@ export * from './exchange';
 export * from './explorer';
 export * from './marketplace';
 export * from './node';
+export {
+  Api3,
+  Api3Mono,
+  Band,
+  BandMono,
+  RedStone,
+  RedStoneMono,
+} from './oracle';
 export * from './portfolio';
 export * from './storage';
 export * from './tracker';
