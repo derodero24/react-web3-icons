@@ -125,6 +125,7 @@
     "analyze": "size-limit --why",
     "build": "tsdown && node scripts/generate-svgs.mjs",
     "generate-svgs": "node scripts/generate-svgs.mjs",
+    "new-icon": "node scripts/new-icon.mjs",
     "check": "biome ci",
     "format": "biome format --write",
     "lint": "biome check",
