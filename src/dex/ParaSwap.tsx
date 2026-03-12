@@ -8,6 +8,7 @@ const paraSwapContent = () => (
   </>
 );
 
+/** Para Swap DEX icon (colored). */
 export const ParaSwap = createIcon(
   'ParaSwap',
   '0 0 24 24',
@@ -15,6 +16,7 @@ export const ParaSwap = createIcon(
   '#2669F5',
 );
 
+/** Para Swap DEX icon (monochrome). */
 export const ParaSwapMono = createIcon(
   'ParaSwapMono',
   '0 0 24 24',

@@ -46,6 +46,7 @@ export const AvalancheCircle = forwardRef<SVGSVGElement, AvalancheProps>(
   },
 );
 
+/** Avalanche chain icon (colored). */
 export const Avalanche = createIcon(
   'Avalanche',
   '320 280 869 771',
@@ -102,6 +103,7 @@ export const AvalancheCircleMono = forwardRef<SVGSVGElement, AvalancheProps>(
 // Full circle is 1502 wide → scale 0.0306, translate(9, 9)
 const AVAX_SQUARE_TX = 'translate(9 9) scale(0.0306)';
 
+/** Avalanche Square chain icon (colored). */
 export const AvalancheSquare = createIcon(
   'AvalancheSquare',
   '0 0 64 64',
@@ -124,6 +126,7 @@ export const AvalancheSquare = createIcon(
   ),
 );
 
+/** Avalanche Square chain icon (monochrome). */
 export const AvalancheSquareMono = createIcon(
   'AvalancheSquareMono',
   '0 0 64 64',
@@ -146,6 +149,7 @@ export const AvalancheSquareMono = createIcon(
   'currentColor',
 );
 
+/** Avalanche chain icon (monochrome). */
 export const AvalancheMono = createIcon(
   'AvalancheMono',
   '320 280 869 771',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Crypto Com exchange icon (colored). */
 export const CryptoCom = createIcon(
   'CryptoCom',
   '0 0 24 24',
@@ -15,6 +16,7 @@ export const CryptoCom = createIcon(
   'none',
 );
 
+/** Crypto Com exchange icon (monochrome). */
 export const CryptoComMono = createIcon(
   'CryptoComMono',
   '0 0 24 24',

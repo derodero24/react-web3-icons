@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** De Bank portfolio icon (colored). */
 export const DeBank = createIcon('DeBank', '51 39 177.12 201.35', () => (
   <>
     <path
@@ -19,6 +20,7 @@ export const DeBank = createIcon('DeBank', '51 39 177.12 201.35', () => (
   </>
 ));
 
+/** De Bank portfolio icon (monochrome). */
 export const DeBankMono = createIcon(
   'DeBankMono',
   '51 39 177.12 201.35',

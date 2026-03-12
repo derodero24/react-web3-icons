@@ -16,6 +16,7 @@ const morphoContent = () => (
   </>
 );
 
+/** Morpho DeFi icon (colored). */
 export const Morpho = createIcon(
   'Morpho',
   '0 0 22 20',
@@ -23,6 +24,7 @@ export const Morpho = createIcon(
   '#2470FF',
 );
 
+/** Morpho DeFi icon (monochrome). */
 export const MorphoMono = createIcon(
   'MorphoMono',
   '0 0 22 20',

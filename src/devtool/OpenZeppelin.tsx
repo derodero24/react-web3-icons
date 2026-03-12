@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Open Zeppelin dev tool icon (colored). */
 export const OpenZeppelin = createIcon(
   'OpenZeppelin',
   '0 0 29.86 33.62',
@@ -18,6 +19,7 @@ export const OpenZeppelin = createIcon(
   ),
 );
 
+/** Open Zeppelin dev tool icon (monochrome). */
 export const OpenZeppelinMono = createIcon(
   'OpenZeppelinMono',
   '0 0 29.86 33.62',

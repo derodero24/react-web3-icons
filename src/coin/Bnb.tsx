@@ -5,6 +5,7 @@ export {
   BinanceSmartChainCircleMono as BnbCircleMono,
 } from '../chain/BinanceSmartChain';
 
+/** Bnb coin icon (colored). */
 export const Bnb = createIcon('Bnb', '0 0 2496 2496', () => (
   <>
     <path
@@ -19,6 +20,7 @@ export const Bnb = createIcon('Bnb', '0 0 2496 2496', () => (
   </>
 ));
 
+/** Bnb coin icon (monochrome). */
 export const BnbMono = createIcon(
   'BnbMono',
   '0 0 2496 2496',

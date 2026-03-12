@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Chainlink dev tool icon (colored). */
 export const Chainlink = createIcon('Chainlink', '0 0 37.8 43.6', () => (
   <>
     <path
@@ -13,6 +14,7 @@ export const Chainlink = createIcon('Chainlink', '0 0 37.8 43.6', () => (
   </>
 ));
 
+/** Chainlink dev tool icon (monochrome). */
 export const ChainlinkMono = createIcon(
   'ChainlinkMono',
   '0 0 37.8 43.6',

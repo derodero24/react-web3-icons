@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** X2Y2 marketplace icon (colored). */
 export const X2Y2 = createIcon('X2Y2', '0 0 512 512', _id => (
   <>
     <path
@@ -31,6 +32,7 @@ export const X2Y2 = createIcon('X2Y2', '0 0 512 512', _id => (
   </>
 ));
 
+/** X2Y2 marketplace icon (monochrome). */
 export const X2Y2Mono = createIcon(
   'X2Y2Mono',
   '0 0 512 512',

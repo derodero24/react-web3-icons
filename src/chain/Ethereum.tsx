@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Ethereum chain icon (colored). */
 export const Ethereum = createIcon('Ethereum', '0 0 784.37 1277.39', () => (
   <>
     <path
@@ -21,6 +22,7 @@ export const Ethereum = createIcon('Ethereum', '0 0 784.37 1277.39', () => (
 // Original viewBox 0 0 784.37 1277.39 → scale 0.036, translate(17.9, 9)
 const ETH_CIRCLE_TX = 'translate(17.9 9) scale(0.036)';
 
+/** Ethereum Circle chain icon (colored). */
 export const EthereumCircle = createIcon('EthereumCircle', '0 0 64 64', () => (
   <>
     <circle cx="32" cy="32" r="32" fill="#343434" />
@@ -45,6 +47,7 @@ export const EthereumCircle = createIcon('EthereumCircle', '0 0 64 64', () => (
   </>
 ));
 
+/** Ethereum Circle chain icon (monochrome). */
 export const EthereumCircleMono = createIcon(
   'EthereumCircleMono',
   '0 0 64 64',
@@ -69,6 +72,7 @@ export const EthereumCircleMono = createIcon(
   'currentColor',
 );
 
+/** Ethereum Square chain icon (colored). */
 export const EthereumSquare = createIcon('EthereumSquare', '0 0 64 64', () => (
   <>
     <rect width="64" height="64" rx="12.8" fill="#343434" />
@@ -93,6 +97,7 @@ export const EthereumSquare = createIcon('EthereumSquare', '0 0 64 64', () => (
   </>
 ));
 
+/** Ethereum Square chain icon (monochrome). */
 export const EthereumSquareMono = createIcon(
   'EthereumSquareMono',
   '0 0 64 64',
@@ -117,6 +122,7 @@ export const EthereumSquareMono = createIcon(
   'currentColor',
 );
 
+/** Ethereum chain icon (monochrome). */
 export const EthereumMono = createIcon(
   'EthereumMono',
   '0 0 784.37 1277.39',

@@ -13,6 +13,7 @@ const blastscanContent = () => (
   </>
 );
 
+/** Blastscan explorer icon (colored). */
 export const Blastscan = createIcon(
   'Blastscan',
   '0 0 252 166',
@@ -20,6 +21,7 @@ export const Blastscan = createIcon(
   '#FCFC03',
 );
 
+/** Blastscan Light explorer icon (colored). */
 export const BlastscanLight = createIcon(
   'BlastscanLight',
   '0 0 252 166',
@@ -27,6 +29,7 @@ export const BlastscanLight = createIcon(
   '#000',
 );
 
+/** Blastscan explorer icon (monochrome). */
 export const BlastscanMono = createIcon(
   'BlastscanMono',
   '0 0 252 166',

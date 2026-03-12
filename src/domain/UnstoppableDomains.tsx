@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Unstoppable Domains domain icon (colored). */
 export const UnstoppableDomains = createIcon(
   'UnstoppableDomains',
   '61.35 162.28 43.49 39.01',
@@ -17,6 +18,7 @@ export const UnstoppableDomains = createIcon(
   ),
 );
 
+/** Unstoppable Domains domain icon (monochrome). */
 export const UnstoppableDomainsMono = createIcon(
   'UnstoppableDomainsMono',
   '61.35 162.28 43.49 39.01',

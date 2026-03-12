@@ -13,6 +13,7 @@ const ARB_BAR_LEFT =
 const ARB_BAR_RIGHT =
   'M149.095 63.7168H127.866C126.276 63.7168 124.855 64.7085 124.312 66.2054L72.3535 208.712L94.3117 221.399L150.872 66.2616C151.321 65.0266 150.404 63.7168 149.095 63.7168Z';
 
+/** Arbiscan explorer icon (colored). */
 export const Arbiscan = createIcon('Arbiscan', '0 0 238 238', () => (
   <>
     <path d={ARB_HEXAGON} fill="#213147" />
@@ -28,6 +29,7 @@ export const Arbiscan = createIcon('Arbiscan', '0 0 238 238', () => (
   </>
 ));
 
+/** Arbiscan explorer icon (monochrome). */
 export const ArbiscanMono = createIcon(
   'ArbiscanMono',
   '0 0 238 238',

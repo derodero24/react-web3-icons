@@ -2,6 +2,7 @@ import { createIcon } from '../utils';
 
 const zoraCircle = 'M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18';
 
+/** Zora chain icon (colored). */
 export const Zora = createIcon('Zora', '0 0 24 24', _id => (
   <>
     <path fill={`url(#${_id}-a)`} d={zoraCircle} />
@@ -25,6 +26,7 @@ export const Zora = createIcon('Zora', '0 0 24 24', _id => (
   </>
 ));
 
+/** Zora chain icon (monochrome). */
 export const ZoraMono = createIcon(
   'ZoraMono',
   '0 0 24 24',

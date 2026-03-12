@@ -19,6 +19,7 @@ const heliusContent = () => (
   </>
 );
 
+/** Helius node icon (colored). */
 export const Helius = createIcon(
   'Helius',
   '0 0 40 40',
@@ -26,6 +27,7 @@ export const Helius = createIcon(
   '#E84125',
 );
 
+/** Helius node icon (monochrome). */
 export const HeliusMono = createIcon(
   'HeliusMono',
   '0 0 40 40',

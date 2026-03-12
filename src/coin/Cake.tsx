@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Cake coin icon (colored). */
 export const Cake = createIcon('Cake', '0 0 96 96', _id => (
   <>
     <circle cx="48" cy="48" r="48" fill={`url(#${_id}-cake-a)`} />
@@ -40,6 +41,7 @@ export const Cake = createIcon('Cake', '0 0 96 96', _id => (
   </>
 ));
 
+/** Cake coin icon (monochrome). */
 export const CakeMono = createIcon(
   'CakeMono',
   '0 0 96 96',

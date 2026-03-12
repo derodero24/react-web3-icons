@@ -6,8 +6,10 @@ const xrpContent = () => (
   </>
 );
 
+/** Xrp coin icon (colored). */
 export const Xrp = createIcon('Xrp', '0 0 512 424', xrpContent, '#23292f');
 
+/** Xrp coin icon (monochrome). */
 export const XrpMono = createIcon(
   'XrpMono',
   '0 0 512 424',
@@ -15,6 +17,7 @@ export const XrpMono = createIcon(
   'currentColor',
 );
 
+/** Xrp Circle coin icon (colored). */
 export const XrpCircle = createIcon('XrpCircle', '0 0 704 704', () => (
   <>
     <path
@@ -28,6 +31,7 @@ export const XrpCircle = createIcon('XrpCircle', '0 0 704 704', () => (
   </>
 ));
 
+/** Xrp Circle coin icon (monochrome). */
 export const XrpCircleMono = createIcon(
   'XrpCircleMono',
   '0 0 704 704',

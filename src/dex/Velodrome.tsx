@@ -7,6 +7,7 @@ const VELODROME_PATH =
 
 const velodromeContent = () => <path d={VELODROME_PATH} />;
 
+/** Velodrome DEX icon (colored). */
 export const Velodrome = createIcon(
   'Velodrome',
   '0 0 24 24',
@@ -14,6 +15,7 @@ export const Velodrome = createIcon(
   '#DB2264',
 );
 
+/** Velodrome DEX icon (monochrome). */
 export const VelodromeMono = createIcon(
   'VelodromeMono',
   '0 0 24 24',

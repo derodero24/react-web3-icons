@@ -8,6 +8,7 @@ const SOL_BAR_B =
 const SOL_BAR_C =
   'M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z';
 
+/** Solana chain icon (colored). */
 export const Solana = createIcon('Solana', '-0.02 0 397.74 311.7', _id => (
   <>
     <linearGradient
@@ -53,6 +54,7 @@ export const Solana = createIcon('Solana', '-0.02 0 397.74 311.7', _id => (
 // Gradient coordinates pre-computed for 64×64 viewBox
 const SOL_CIRCLE_TX = 'translate(12.1 16.4) scale(0.1)';
 
+/** Solana Circle chain icon (colored). */
 export const SolanaCircle = createIcon('SolanaCircle', '0 0 64 64', _id => (
   <>
     <circle cx="32" cy="32" r="32" fill="#000" />
@@ -99,6 +101,7 @@ export const SolanaCircle = createIcon('SolanaCircle', '0 0 64 64', _id => (
   </>
 ));
 
+/** Solana Square chain icon (colored). */
 export const SolanaSquare = createIcon('SolanaSquare', '0 0 64 64', _id => (
   <>
     <rect width="64" height="64" rx="12.8" fill="#000" />
@@ -145,6 +148,7 @@ export const SolanaSquare = createIcon('SolanaSquare', '0 0 64 64', _id => (
   </>
 ));
 
+/** Solana Square chain icon (monochrome). */
 export const SolanaSquareMono = createIcon(
   'SolanaSquareMono',
   '0 0 64 64',
@@ -166,6 +170,7 @@ export const SolanaSquareMono = createIcon(
   'currentColor',
 );
 
+/** Solana Circle chain icon (monochrome). */
 export const SolanaCircleMono = createIcon(
   'SolanaCircleMono',
   '0 0 64 64',
@@ -187,6 +192,7 @@ export const SolanaCircleMono = createIcon(
   'currentColor',
 );
 
+/** Solana chain icon (monochrome). */
 export const SolanaMono = createIcon(
   'SolanaMono',
   '-0.02 0 397.74 311.7',

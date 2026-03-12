@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Moralis dev tool icon (colored). */
 export const Moralis = createIcon('Moralis', '0 0 256 206.7', _id => (
   <>
     <path
@@ -22,6 +23,7 @@ export const Moralis = createIcon('Moralis', '0 0 256 206.7', _id => (
   </>
 ));
 
+/** Moralis dev tool icon (monochrome). */
 export const MoralisMono = createIcon(
   'MoralisMono',
   '0 0 256 206.7',

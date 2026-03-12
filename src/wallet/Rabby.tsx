@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Rabby wallet icon (colored). */
 export const Rabby = createIcon(
   'Rabby',
   '0 0 24 24',
@@ -76,6 +77,7 @@ export const Rabby = createIcon(
   'none',
 );
 
+/** Rabby wallet icon (monochrome). */
 export const RabbyMono = createIcon(
   'RabbyMono',
   '0 0 24 24',

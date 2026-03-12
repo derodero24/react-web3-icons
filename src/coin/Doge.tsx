@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Doge coin icon (colored). */
 export const Doge = createIcon('Doge', '0 0 1875 1875', () => (
   <>
     <circle cx="937.5" cy="937.5" r="937.5" fill="#988430" />
@@ -590,6 +591,7 @@ const DOGE_CIRCLE = 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18';
 const DOGE_D =
   'M6.293 5.195v3.626h1.725v6.796H6.293v3.626h6.95q.135-.003.271-.017a6.1 6.1 0 0 0 2.595-.852c1.563-.944 2.915-2.792 2.915-5.926 0-3.293-1.29-5.255-2.854-6.291a5.9 5.9 0 0 0-2.923-.962zm6.892 10.422h-1.277V8.821h1.317c.053.01.145.018.263.044.237.053.545.158.843.352.483.324 1.247 1.08 1.247 3.23 0 1.844-.703 2.494-1.19 2.793a2.75 2.75 0 0 1-1.203.377';
 
+/** Doge coin icon (monochrome). */
 export const DogeMono = createIcon(
   'DogeMono',
   '0 0 24 24',
@@ -611,6 +613,7 @@ export const DogeMono = createIcon(
 // DogeMono viewBox 0 0 24 24 -> scale 1.917, translate(9, 9)
 const DOGE_CIRCLE_TX = 'translate(9 9) scale(1.917)';
 
+/** Doge Circle coin icon (colored). */
 export const DogeCircle = createIcon('DogeCircle', '0 0 64 64', () => (
   <>
     <circle cx="32" cy="32" r="32" fill="#C2A633" />
@@ -620,6 +623,7 @@ export const DogeCircle = createIcon('DogeCircle', '0 0 64 64', () => (
   </>
 ));
 
+/** Doge Circle coin icon (monochrome). */
 export const DogeCircleMono = createIcon(
   'DogeCircleMono',
   '0 0 64 64',

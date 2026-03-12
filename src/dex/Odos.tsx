@@ -8,8 +8,10 @@ const odosContent = () => (
   />
 );
 
+/** Odos DEX icon (colored). */
 export const Odos = createIcon('Odos', '0 0 24 24', odosContent, '#FF5100');
 
+/** Odos DEX icon (monochrome). */
 export const OdosMono = createIcon(
   'OdosMono',
   '0 0 24 24',

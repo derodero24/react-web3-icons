@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Gateio exchange icon (colored). */
 export const Gateio = createIcon('Gateio', '0 0 600 600', () => (
   <>
     <path
@@ -10,6 +11,7 @@ export const Gateio = createIcon('Gateio', '0 0 600 600', () => (
   </>
 ));
 
+/** Gateio exchange icon (monochrome). */
 export const GateioMono = createIcon(
   'GateioMono',
   '0 0 600 600',

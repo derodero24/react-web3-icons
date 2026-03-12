@@ -8,8 +8,10 @@ const tiaContent = () => (
   />
 );
 
+/** Tia coin icon (colored). */
 export const Tia = createIcon('Tia', '0 0 24 24', tiaContent, '#7A2BF9');
 
+/** Tia coin icon (monochrome). */
 export const TiaMono = createIcon(
   'TiaMono',
   '0 0 24 24',

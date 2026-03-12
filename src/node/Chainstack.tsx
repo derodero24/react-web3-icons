@@ -12,6 +12,7 @@ const chainstackContent = () => (
   </>
 );
 
+/** Chainstack node icon (colored). */
 export const Chainstack = createIcon(
   'Chainstack',
   '0 0 109 109',
@@ -19,6 +20,7 @@ export const Chainstack = createIcon(
   '#007BFF',
 );
 
+/** Chainstack node icon (monochrome). */
 export const ChainstackMono = createIcon(
   'ChainstackMono',
   '0 0 109 109',

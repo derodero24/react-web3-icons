@@ -29,6 +29,7 @@ const solidityContent = () => (
   </>
 );
 
+/** Solidity dev tool icon (colored). */
 export const Solidity = createIcon(
   'Solidity',
   '381.84 253.31 523.9 812.97',
@@ -36,6 +37,7 @@ export const Solidity = createIcon(
   '#2B247C',
 );
 
+/** Solidity dev tool icon (monochrome). */
 export const SolidityMono = createIcon(
   'SolidityMono',
   '381.84 253.31 523.9 812.97',

@@ -6,6 +6,7 @@ const ETHENA_CIRCLE =
 const ETHENA_E =
   'M153.405 104.362H149.248L146.552 107.527L76.9679 189.259L72.0008 195.094L76.9679 200.928L146.552 282.66L149.248 285.826H153.405H278.681H287.681V276.826V224.867H269.681V267.826H173.087L230.9 200.981L235.992 195.094L230.9 189.206L173.087 122.362H269.681V165.321H287.681V113.362V104.362H278.681H153.405ZM153.458 127.183L95.6407 195.094L153.458 263.005L212.193 195.094L153.458 127.183Z';
 
+/** Ethena DeFi icon (colored). */
 export const Ethena = createIcon('Ethena', '0 0 392 391', () => (
   <>
     <path d={ETHENA_CIRCLE} fill="#111111" />
@@ -13,6 +14,7 @@ export const Ethena = createIcon('Ethena', '0 0 392 391', () => (
   </>
 ));
 
+/** Ethena DeFi icon (monochrome). */
 export const EthenaMono = createIcon(
   'EthenaMono',
   '0 0 392 391',

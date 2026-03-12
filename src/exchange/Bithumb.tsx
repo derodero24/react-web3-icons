@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Bithumb exchange icon (colored). */
 export const Bithumb = createIcon('Bithumb', '0 0 24 24', _id => (
   <>
     <path
@@ -33,6 +34,7 @@ export const Bithumb = createIcon('Bithumb', '0 0 24 24', _id => (
   </>
 ));
 
+/** Bithumb exchange icon (monochrome). */
 export const BithumbMono = createIcon(
   'BithumbMono',
   '0 0 24 24',

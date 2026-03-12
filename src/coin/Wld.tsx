@@ -6,8 +6,10 @@ const wldPath =
 
 const wldContent = () => <path d={wldPath} />;
 
+/** Wld coin icon (colored). */
 export const Wld = createIcon('Wld', '0 0 24 24', wldContent, '#000');
 
+/** Wld coin icon (monochrome). */
 export const WldMono = createIcon(
   'WldMono',
   '0 0 24 24',

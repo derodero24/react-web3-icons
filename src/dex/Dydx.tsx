@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Dydx DEX icon (colored). */
 export const Dydx = createIcon(
   'Dydx',
   '41 38 100.77 108',
@@ -43,6 +44,7 @@ export const Dydx = createIcon(
   'none',
 );
 
+/** Dydx Square DEX icon (colored). */
 export const DydxSquare = createIcon('DydxSquare', '0 0 183 183', _id => (
   <>
     <rect
@@ -110,6 +112,7 @@ export const DydxSquare = createIcon('DydxSquare', '0 0 183 183', _id => (
   </>
 ));
 
+/** Dydx DEX icon (monochrome). */
 export const DydxMono = createIcon(
   'DydxMono',
   '41 38 100.77 108',
@@ -121,6 +124,7 @@ export const DydxMono = createIcon(
   'currentColor',
 );
 
+/** Dydx Square DEX icon (monochrome). */
 export const DydxSquareMono = createIcon(
   'DydxSquareMono',
   '0 0 183 183',

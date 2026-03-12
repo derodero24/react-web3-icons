@@ -21,6 +21,7 @@ const aerodromeContent = () => (
   </>
 );
 
+/** Aerodrome DEX icon (colored). */
 export const Aerodrome = createIcon(
   'Aerodrome',
   '0 0 40.25 40',
@@ -28,6 +29,7 @@ export const Aerodrome = createIcon(
   '#E84125',
 );
 
+/** Aerodrome DEX icon (monochrome). */
 export const AerodromeMono = createIcon(
   'AerodromeMono',
   '0 0 40.25 40',

@@ -17,6 +17,7 @@ const osmosisMono = () => (
   </>
 );
 
+/** Osmosis DEX icon (colored). */
 export const Osmosis = createIcon(
   'Osmosis',
   '0 0 24 24',
@@ -175,6 +176,7 @@ export const Osmosis = createIcon(
   'none',
 );
 
+/** Osmosis DEX icon (monochrome). */
 export const OsmosisMono = createIcon(
   'OsmosisMono',
   '0 0 24 24',

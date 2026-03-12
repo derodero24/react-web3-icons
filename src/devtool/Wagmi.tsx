@@ -8,6 +8,7 @@ const wagmiContent = () => (
   />
 );
 
+/** Wagmi dev tool icon (colored). */
 export const Wagmi = createIcon(
   'Wagmi',
   '0 0 629 629',
@@ -15,6 +16,7 @@ export const Wagmi = createIcon(
   '#1B1B1B',
 );
 
+/** Wagmi dev tool icon (monochrome). */
 export const WagmiMono = createIcon(
   'WagmiMono',
   '0 0 629 629',

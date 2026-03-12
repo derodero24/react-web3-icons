@@ -17,6 +17,7 @@ const magicEdenTextPaths = (
   </>
 );
 
+/** Magic Eden Wordmark marketplace icon (colored). */
 export const MagicEdenWordmark = createIcon(
   'MagicEdenWordmark',
   '40 55 119.58 89.7',
@@ -59,6 +60,7 @@ const magicEdenMonoContent = () => (
   </>
 );
 
+/** Magic Eden Wordmark Flat marketplace icon (colored). */
 export const MagicEdenWordmarkFlat = createIcon(
   'MagicEdenWordmarkFlat',
   '40 55 119.58 89.7',
@@ -66,6 +68,7 @@ export const MagicEdenWordmarkFlat = createIcon(
   '#e93a88',
 );
 
+/** Magic Eden Wordmark marketplace icon (monochrome). */
 export const MagicEdenWordmarkMono = createIcon(
   'MagicEdenWordmarkMono',
   '40 55 119.58 89.7',
@@ -76,6 +79,7 @@ export const MagicEdenWordmarkMono = createIcon(
 const magicEdenSmallPath =
   'M66.01 22.087l4.63 5.44 1.19 1.399c1.385 1.376 2.161 3.236 2.16 5.174-.13 2.286-1.62 3.843-3 5.509l-3.24 3.804-1.69 1.971a.46.46 0 0 0-.112.242c-.013.09.001.181.041.263s.102.15.181.197.169.07.261.067h16.89c2.58 0 5.83 2.168 5.64 5.46-.005 1.496-.611 2.929-1.684 3.987s-2.528 1.655-4.046 1.66H56.78c-1.74 0-6.42.187-7.73-3.804-.279-.834-.317-1.728-.11-2.582.381-1.263.983-2.45 1.78-3.508l4.19-5.854 5.56-7.48a.47.47 0 0 0 0-.581l-6.72-7.884a.47.47 0 0 0-.166-.135c-.065-.032-.137-.049-.209-.049s-.144.017-.209.049a.47.47 0 0 0-.166.135L41.64 40.713c-1.68 2.148-5.82 2.267-8.11 0L23.02 30.316a.48.48 0 0 0-.246-.13c-.093-.018-.19-.009-.278.027a.48.48 0 0 0-.216.175.47.47 0 0 0-.081.263v19.996a6.73 6.73 0 0 1-1.219 3.978 6.89 6.89 0 0 1-3.341 2.536 5.83 5.83 0 0 1-2.698.259 5.8 5.8 0 0 1-2.519-.989 5.69 5.69 0 0 1-1.779-2.016A5.6 5.6 0 0 1 10 51.82V15.869c.06-1.296.533-2.54 1.352-3.555s1.941-1.751 3.208-2.102a6.47 6.47 0 0 1 3.316.008 6.4 6.4 0 0 1 2.864 1.647L36.9 27.813a.47.47 0 0 0 .172.109c.065.024.134.033.203.027s.135-.026.195-.06a.47.47 0 0 0 .151-.136l11.48-15.66a5.72 5.72 0 0 1 1.949-1.505 5.8 5.8 0 0 1 2.411-.555h29.86c.817.001 1.625.175 2.368.508s1.407.82 1.944 1.426.938 1.319 1.174 2.09A5.58 5.58 0 0 1 89 16.44c-.21 1.385-.923 2.647-2.006 3.553s-2.463 1.394-3.884 1.374H66.39c-.084.002-.166.026-.237.07s-.129.106-.168.179-.057.156-.052.239a.46.46 0 0 0 .078.232z';
 
+/** Magic Eden marketplace icon (colored). */
 export const MagicEden = createIcon('MagicEden', '10 10 79.05 47.48', _id => (
   <>
     <path d={magicEdenSmallPath} fill={`url(#${_id}-mge-small-a)`} />
@@ -97,6 +101,7 @@ export const MagicEden = createIcon('MagicEden', '10 10 79.05 47.48', _id => (
 
 const magicEdenSmallContent = () => <path d={magicEdenSmallPath} />;
 
+/** Magic Eden Flat marketplace icon (colored). */
 export const MagicEdenFlat = createIcon(
   'MagicEdenFlat',
   '10 10 79.05 47.48',
@@ -104,6 +109,7 @@ export const MagicEdenFlat = createIcon(
   '#e93a88',
 );
 
+/** Magic Eden marketplace icon (monochrome). */
 export const MagicEdenMono = createIcon(
   'MagicEdenMono',
   '10 10 79.05 47.48',

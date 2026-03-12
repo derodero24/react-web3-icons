@@ -12,6 +12,7 @@ const aragonPaths = (
 
 const aragonContent = () => aragonPaths;
 
+/** Aragon dev tool icon (colored). */
 export const Aragon = createIcon(
   'Aragon',
   '26 34 189.77 190',
@@ -19,6 +20,7 @@ export const Aragon = createIcon(
   '#3164fa',
 );
 
+/** Aragon dev tool icon (monochrome). */
 export const AragonMono = createIcon(
   'AragonMono',
   '26 34 189.77 190',
@@ -26,6 +28,7 @@ export const AragonMono = createIcon(
   'currentColor',
 );
 
+/** Aragon Circle dev tool icon (colored). */
 export const AragonCircle = createIcon('AragonCircle', '0 0 248 248', () => (
   <>
     <rect width="248" height="248" rx="124" fill="#3164fa" />
@@ -33,6 +36,7 @@ export const AragonCircle = createIcon('AragonCircle', '0 0 248 248', () => (
   </>
 ));
 
+/** Aragon Circle dev tool icon (monochrome). */
 export const AragonCircleMono = createIcon(
   'AragonCircleMono',
   '0 0 248 248',

@@ -32,6 +32,7 @@ const ARBNOVA_CIRCLE2 =
 const ARBNOVA_WHITE =
   'M646.79 510.56h-52.87a9.44 9.44 0 0 0-8.87 6.21L414.94 983.11a4.73 4.73 0 0 0 4.44 6.34h52.87a9.44 9.44 0 0 0 8.87-6.21L651.23 516.9c1.12-3.08-1.16-6.34-4.43-6.34h0zm68.49 180.81c-1.51-4.14-7.36-4.14-8.87 0l-27.5 75.38c-.76 2.09-.76 4.38 0 6.47l76.61 210.01a9.44 9.44 0 0 0 8.87 6.21h52.87a4.72 4.72 0 0 0 4.43-6.34L715.27 691.37h0zm24-180.81h-52.87a9.44 9.44 0 0 0-8.87 6.21L507.43 983.11c-1.12 3.08 1.16 6.34 4.43 6.34h52.87a9.44 9.44 0 0 0 8.87-6.21L743.71 516.9c1.12-3.08-1.16-6.34-4.43-6.34h0zm22.24 54.03c-1.51-4.14-7.36-4.14-8.87 0l-27.5 75.38c-.76 2.09-.76 4.38 0 6.47L848 983.23a9.44 9.44 0 0 0 8.87 6.21h52.87a4.72 4.72 0 0 0 4.43-6.34L761.51 564.59h0zm319.1-54.03h-52.87a9.44 9.44 0 0 0-8.87 6.21L896.03 853.56c-.76 2.09-.76 4.38 0 6.47l27.5 75.38c1.51 4.14 7.36 4.14 8.87 0l152.66-418.51a4.73 4.73 0 0 0-4.44-6.34h0zM877.28 808.63c1.51 4.14 7.36 4.14 8.87 0L992.57 516.9c1.12-3.08-1.16-6.34-4.43-6.34h-52.87a9.44 9.44 0 0 0-8.87 6.21l-76.61 210.01c-.76 2.09-.76 4.38 0 6.47l27.5 75.38h0z';
 
+/** Arbitrum chain icon (colored). */
 export const Arbitrum = createIcon(
   'Arbitrum',
   '262.47 200 975.06 1099.98',
@@ -52,6 +53,7 @@ export const Arbitrum = createIcon(
   ),
 );
 
+/** Arbitrum Circle chain icon (colored). */
 export const ArbitrumCircle = createIcon(
   'ArbitrumCircle',
   '0 0 1226.88 1226.88',
@@ -72,6 +74,7 @@ export const ArbitrumCircle = createIcon(
   ),
 );
 
+/** Arbitrum chain icon (monochrome). */
 export const ArbitrumMono = createIcon(
   'ArbitrumMono',
   '262.47 200 975.06 1099.98',
@@ -85,6 +88,7 @@ export const ArbitrumMono = createIcon(
   'currentColor',
 );
 
+/** Arbitrum Circle chain icon (monochrome). */
 export const ArbitrumCircleMono = createIcon(
   'ArbitrumCircleMono',
   '0 0 1226.88 1226.88',
@@ -114,6 +118,7 @@ export const ArbitrumCircleMono = createIcon(
 // Square variant: original viewBox 262.47 200 975.06 1099.98 → scale 0.04182, translate(0.64, 0.64)
 const ARB_SQUARE_TX = 'translate(0.64 0.64) scale(0.04182)';
 
+/** Arbitrum Square chain icon (colored). */
 export const ArbitrumSquare = createIcon('ArbitrumSquare', '0 0 64 64', () => (
   <>
     <rect width="64" height="64" rx="12.8" fill="#213147" />
@@ -125,6 +130,7 @@ export const ArbitrumSquare = createIcon('ArbitrumSquare', '0 0 64 64', () => (
   </>
 ));
 
+/** Arbitrum Square chain icon (monochrome). */
 export const ArbitrumSquareMono = createIcon(
   'ArbitrumSquareMono',
   '0 0 64 64',
@@ -146,6 +152,7 @@ export const ArbitrumSquareMono = createIcon(
   'currentColor',
 );
 
+/** Arbitrum One chain icon (colored). */
 export const ArbitrumOne = createIcon(
   'ArbitrumOne',
   '200 228.16 1100 1100',
@@ -160,6 +167,7 @@ export const ArbitrumOne = createIcon(
   ),
 );
 
+/** Arbitrum One chain icon (monochrome). */
 export const ArbitrumOneMono = createIcon(
   'ArbitrumOneMono',
   '200 228.16 1100 1100',
@@ -184,6 +192,7 @@ const arbitrumOneFlatContent = () => (
   <path d="M1058.56 1007.08L869.85 489.75c-1.87-5.11-9.1-5.11-10.96 0l-33.99 93.18a11.7 11.7 0 0 0 0 8l151.86 416.31c1.68 4.61 6.06 7.67 10.96 7.67h65.36c4.05 0 6.87-4.03 5.48-7.83h0zM812.69 646.46c-1.86-5.11-9.1-5.11-10.96 0l-33.99 93.18a11.7 11.7 0 0 0 0 8l94.69 259.6c1.68 4.61 6.06 7.67 10.96 7.67h65.36c4.05 0 6.87-4.03 5.48-7.83L812.69 646.46h0zm-84.66-223.51h-65.36c-4.9 0-9.28 3.06-10.96 7.67l-210.28 576.45c-1.39 3.81 1.43 7.83 5.48 7.83h65.36c4.9 0 9.28-3.06 10.96-7.67L733.5 430.78c1.39-3.81-1.43-7.83-5.48-7.83h0zm114.33 0H777c-4.9 0-9.28 3.06-10.96 7.67l-210.27 576.45c-1.39 3.81 1.43 7.83 5.48 7.83h65.36c4.9 0 9.28-3.06 10.96-7.67l210.28-576.45c1.39-3.81-1.43-7.83-5.48-7.83h0zM750 260c66.18 0 130.34 12.95 190.71 38.48 58.34 24.68 110.75 60.02 155.77 105.04s80.36 97.43 105.04 155.77C1227.05 619.66 1240 683.83 1240 750s-12.95 130.34-38.48 190.71c-24.68 58.34-60.02 110.75-105.04 155.77s-97.43 80.36-155.77 105.04C880.34 1227.05 816.17 1240 750 1240s-130.34-12.95-190.71-38.48c-58.34-24.68-110.75-60.02-155.77-105.04s-80.36-97.43-105.04-155.77C272.95 880.34 260 816.17 260 750s12.95-130.34 38.48-190.71c24.68-58.34 60.02-110.75 105.04-155.77s97.43-80.36 155.77-105.04C619.66 272.95 683.83 260 750 260m0-60c-303.76 0-550 246.24-550 550s246.24 550 550 550 550-246.24 550-550-246.24-550-550-550h0z" />
 );
 
+/** Arbitrum One Flat chain icon (colored). */
 export const ArbitrumOneFlat = createIcon(
   'ArbitrumOneFlat',
   '200 200 1100 1100',
@@ -191,6 +200,7 @@ export const ArbitrumOneFlat = createIcon(
   '#1b4add',
 );
 
+/** Arbitrum One Flat chain icon (monochrome). */
 export const ArbitrumOneFlatMono = createIcon(
   'ArbitrumOneFlatMono',
   '200 200 1100 1100',
@@ -198,6 +208,7 @@ export const ArbitrumOneFlatMono = createIcon(
   'currentColor',
 );
 
+/** Arbitrum Nova chain icon (colored). */
 export const ArbitrumNova = createIcon(
   'ArbitrumNova',
   '200 200 1100 1100',
@@ -212,6 +223,7 @@ export const ArbitrumNova = createIcon(
   ),
 );
 
+/** Arbitrum Nova chain icon (monochrome). */
 export const ArbitrumNovaMono = createIcon(
   'ArbitrumNovaMono',
   '200 200 1100 1100',
@@ -236,6 +248,7 @@ const arbitrumNovaFlatContent = () => (
   <path d="M635.87 485.63H577.4c-4.39 0-8.31 2.74-9.81 6.86l-188.11 515.7c-1.24 3.41 1.28 7.01 4.9 7.01h58.47c4.39 0 8.31-2.74 9.81-6.86l188.11-515.7c1.24-3.41-1.28-7.01-4.9-7.01h0zm75.73 199.95c-1.67-4.57-8.14-4.57-9.81 0l-30.41 83.36c-.84 2.31-.84 4.85 0 7.16l84.71 232.24c1.5 4.12 5.42 6.86 9.81 6.86h58.47a5.22 5.22 0 0 0 4.9-7.01L711.59 685.58h0zm26.55-199.95h-58.47c-4.39 0-8.31 2.74-9.81 6.86l-188.11 515.7c-1.24 3.41 1.28 7.01 4.9 7.01h58.47c4.39 0 8.3-2.74 9.81-6.86l188.11-515.7c1.24-3.41-1.28-7.01-4.9-7.01h0zm24.59 59.75c-1.67-4.57-8.14-4.57-9.81 0l-30.41 83.36c-.84 2.31-.84 4.85 0 7.16l135.86 372.44c1.5 4.12 5.42 6.86 9.81 6.86h58.47a5.22 5.22 0 0 0 4.9-7.01L762.74 545.38h0zm352.88-59.75h-58.47c-4.39 0-8.31 2.74-9.81 6.86L911.49 864.93a10.46 10.46 0 0 0 0 7.15l30.41 83.36c1.67 4.57 8.14 4.57 9.81 0l168.82-462.81c1.24-3.41-1.28-7.01-4.91-7.01h0zM890.76 815.25c1.67 4.58 8.14 4.58 9.81 0l117.68-322.61c1.24-3.41-1.28-7.01-4.9-7.01h-58.47c-4.39 0-8.3 2.74-9.81 6.86l-84.71 232.24c-.84 2.31-.84 4.85 0 7.16l30.41 83.36h0zM750 260.41c66.18 0 130.34 12.95 190.71 38.48 58.34 24.68 110.75 60.02 155.77 105.04s80.36 97.43 105.04 155.77c25.53 60.37 38.48 124.54 38.48 190.71s-12.95 130.34-38.48 190.71c-24.68 58.34-60.02 110.75-105.04 155.77s-97.43 80.36-155.77 105.04c-60.37 25.53-124.54 38.48-190.71 38.48s-130.34-12.95-190.71-38.48c-58.34-24.68-110.75-60.02-155.77-105.04s-80.36-97.43-105.04-155.77C272.95 880.75 260 816.58 260 750.41s12.95-130.34 38.48-190.71c24.68-58.34 60.02-110.75 105.04-155.77s97.43-80.36 155.77-105.04c60.37-25.53 124.54-38.48 190.71-38.48m0-60c-303.76 0-550 246.24-550 550s246.24 550 550 550 550-246.24 550-550-246.24-550-550-550h0z" />
 );
 
+/** Arbitrum Nova Flat chain icon (colored). */
 export const ArbitrumNovaFlat = createIcon(
   'ArbitrumNovaFlat',
   '200 200.41 1100 1100',
@@ -243,6 +256,7 @@ export const ArbitrumNovaFlat = createIcon(
   '#e57310',
 );
 
+/** Arbitrum Nova Flat chain icon (monochrome). */
 export const ArbitrumNovaFlatMono = createIcon(
   'ArbitrumNovaFlatMono',
   '200 200.41 1100 1100',

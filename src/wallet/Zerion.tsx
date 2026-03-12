@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Zerion Circle wallet icon (colored). */
 export const ZerionCircle = createIcon('ZerionCircle', '0 0 1024 1024', _id => (
   <>
     <rect width="1024" height="1024" rx="512" fill={`url(#${_id}-zr-a)`} />
@@ -23,6 +24,7 @@ export const ZerionCircle = createIcon('ZerionCircle', '0 0 1024 1024', _id => (
   </>
 ));
 
+/** Zerion Square wallet icon (colored). */
 export const ZerionSquare = createIcon(
   'ZerionSquare',
   '279.67 178.83 40.15 40',
@@ -40,6 +42,7 @@ export const ZerionSquare = createIcon(
   ),
 );
 
+/** Zerion Circle wallet icon (monochrome). */
 export const ZerionCircleMono = createIcon(
   'ZerionCircleMono',
   '0 0 1024 1024',
@@ -65,6 +68,7 @@ export const ZerionCircleMono = createIcon(
   'currentColor',
 );
 
+/** Zerion Square wallet icon (monochrome). */
 export const ZerionSquareMono = createIcon(
   'ZerionSquareMono',
   '98.874 163.084 40.147 40',

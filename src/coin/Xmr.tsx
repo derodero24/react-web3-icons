@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Xmr coin icon (colored). */
 export const Xmr = createIcon('Xmr', '0 0 32 32', () => (
   <>
     <circle cx="16" cy="16" r="16" fill="#F60" />
@@ -10,6 +11,7 @@ export const Xmr = createIcon('Xmr', '0 0 32 32', () => (
   </>
 ));
 
+/** Xmr coin icon (monochrome). */
 export const XmrMono = createIcon(
   'XmrMono',
   '0 0 32 32',

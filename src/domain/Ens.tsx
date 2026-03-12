@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Ens domain icon (colored). */
 export const Ens = createIcon('Ens', '0 0 72.52 80.95', _id => (
   <>
     <defs>
@@ -67,6 +68,7 @@ export const Ens = createIcon('Ens', '0 0 72.52 80.95', _id => (
   </>
 ));
 
+/** Ens domain icon (monochrome). */
 export const EnsMono = createIcon(
   'EnsMono',
   '0 0 72.52 80.95',
@@ -78,6 +80,7 @@ export const EnsMono = createIcon(
   'currentColor',
 );
 
+/** Ens Circle domain icon (colored). */
 export const EnsCircle = createIcon(
   'EnsCircle',
   '296 100.4 712.4 712.4',
@@ -105,6 +108,7 @@ export const EnsCircle = createIcon(
   ),
 );
 
+/** Ens Circle domain icon (monochrome). */
 export const EnsCircleMono = createIcon(
   'EnsCircleMono',
   '296 100.4 712.4 712.4',

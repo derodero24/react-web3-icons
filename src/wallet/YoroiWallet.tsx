@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Yoroi Wallet wallet icon (colored). */
 export const YoroiWallet = createIcon(
   'YoroiWallet',
   '0 0 215.39 187.24',
@@ -26,6 +27,7 @@ export const YoroiWallet = createIcon(
   ),
 );
 
+/** Yoroi Wallet wallet icon (monochrome). */
 export const YoroiWalletMono = createIcon(
   'YoroiWalletMono',
   '0 0 215.39 187.24',

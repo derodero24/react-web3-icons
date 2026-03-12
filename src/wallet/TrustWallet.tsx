@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Trust Wallet Square wallet icon (colored). */
 export const TrustWalletSquare = createIcon(
   'TrustWalletSquare',
   '0 0 1024 1024',
@@ -21,6 +22,7 @@ export const TrustWalletSquare = createIcon(
   ),
 );
 
+/** Trust Wallet Circle wallet icon (colored). */
 export const TrustWalletCircle = createIcon(
   'TrustWalletCircle',
   '0 0 64 64',
@@ -39,6 +41,7 @@ export const TrustWalletCircle = createIcon(
   ),
 );
 
+/** Trust Wallet Square wallet icon (monochrome). */
 export const TrustWalletSquareMono = createIcon(
   'TrustWalletSquareMono',
   '0 0 1024 1024',
@@ -66,6 +69,7 @@ export const TrustWalletSquareMono = createIcon(
   'currentColor',
 );
 
+/** Trust Wallet Circle wallet icon (monochrome). */
 export const TrustWalletCircleMono = createIcon(
   'TrustWalletCircleMono',
   '0 0 64 64',

@@ -8,6 +8,7 @@ const enkryptContent = () => (
   />
 );
 
+/** Enkrypt wallet icon (colored). */
 export const Enkrypt = createIcon(
   'Enkrypt',
   '0 0 24 24',
@@ -15,6 +16,7 @@ export const Enkrypt = createIcon(
   '#C54AFF',
 );
 
+/** Enkrypt wallet icon (monochrome). */
 export const EnkryptMono = createIcon(
   'EnkryptMono',
   '0 0 24 24',

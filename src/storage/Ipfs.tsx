@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** Ipfs storage icon (colored). */
 export const Ipfs = createIcon('Ipfs', '0.3 0.5 168.1 194.7', () => (
   <>
     <path d="M.3 146l84 48.5 84-48.5V49L84.3.5.3 49z" fill="#469ea2" />
@@ -18,6 +19,7 @@ export const Ipfs = createIcon('Ipfs', '0.3 0.5 168.1 194.7', () => (
   </>
 ));
 
+/** Ipfs storage icon (monochrome). */
 export const IpfsMono = createIcon(
   'IpfsMono',
   '0.3 0.5 168.1 194.7',

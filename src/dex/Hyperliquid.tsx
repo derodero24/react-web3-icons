@@ -7,6 +7,7 @@ const hyperliquidPath =
 
 const hyperliquidContent = () => <path d={hyperliquidPath} />;
 
+/** Hyperliquid DEX icon (colored). */
 export const Hyperliquid = createIcon(
   'Hyperliquid',
   '0 0 24 24',
@@ -14,6 +15,7 @@ export const Hyperliquid = createIcon(
   '#50D2C1',
 );
 
+/** Hyperliquid DEX icon (monochrome). */
 export const HyperliquidMono = createIcon(
   'HyperliquidMono',
   '0 0 24 24',
