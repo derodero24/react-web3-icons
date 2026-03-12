@@ -207,15 +207,23 @@ describe('resolveDefiExportName', () => {
     expect(resolveDefiExportName({ name: 'notadefi' })).toBeNull();
   });
 
+  it('normalizes dots and hyphens in protocol names', () => {
+    expect(resolveDefiExportName({ name: 'ether.fi' })).toBe('EtherFi');
+    expect(resolveDefiExportName({ name: 'ether-fi' })).toBe('EtherFi');
+    expect(resolveDefiExportName({ name: 'etherfi' })).toBe('EtherFi');
+  });
+
   it('every resolved name references an exported defi icon', () => {
     const defiNames = new Set(Object.keys(defi));
     const slugs = [
       'aave',
+      'babylon',
       'balancer',
       'compound',
       'convex',
       'eigenlayer',
       'ethena',
+      'etherfi',
       'frax',
       'gmx',
       'lido',

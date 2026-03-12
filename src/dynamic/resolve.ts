@@ -78,7 +78,8 @@ export function resolveDefiExportName(props: {
   variant?: Variant;
 }): string | null {
   const variant = props.variant ?? 'colored';
-  const slug = props.name.toLowerCase().trim();
+  // Normalize dots and hyphens so e.g. "ether.fi" / "ether-fi" resolve to "etherfi"
+  const slug = props.name.toLowerCase().trim().replace(/[.-]/g, '');
   const baseName = Object.hasOwn(DEFI_SLUG_TO_NAME, slug)
     ? DEFI_SLUG_TO_NAME[slug as keyof typeof DEFI_SLUG_TO_NAME]
     : undefined;
