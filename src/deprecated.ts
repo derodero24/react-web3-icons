@@ -35,4 +35,11 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<string> = new Set([
   // TofuNFT marketplace shut down permanently in 2024
   'TofuNft',
   'TofuNftMono',
+  // Truffle Suite sunset by ConsenSys in September 2023
+  'Ganache',
+  'GanacheMono',
+  'Truffle',
+  'TruffleMono',
+  'Drizzle',
+  'DrizzleMono',
 ]);

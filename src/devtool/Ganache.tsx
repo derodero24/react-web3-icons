@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** @deprecated ConsenSys sunset Truffle Suite in September 2023. */
 export const Ganache = createIcon('Ganache', '0 0 190.3 214', () => (
   <>
     <path
@@ -17,6 +18,7 @@ export const Ganache = createIcon('Ganache', '0 0 190.3 214', () => (
   </>
 ));
 
+/** @deprecated ConsenSys sunset Truffle Suite in September 2023. */
 export const GanacheMono = createIcon(
   'GanacheMono',
   '-4 -4 198.3 222',

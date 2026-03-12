@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+/** @deprecated ConsenSys sunset Truffle Suite in September 2023. */
 export const Truffle = createIcon('Truffle', '0 0 206.83 204.29', () => (
   <>
     <ellipse cx="103.17" cy="102.14" rx="100.96" ry="102.14" fill="#5e464d" />
@@ -14,6 +15,7 @@ export const Truffle = createIcon('Truffle', '0 0 206.83 204.29', () => (
   </>
 ));
 
+/** @deprecated ConsenSys sunset Truffle Suite in September 2023. */
 export const TruffleMono = createIcon(
   'TruffleMono',
   '0 0 206.83 204.29',
