@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://polygon.technology
 export const Polygon = createIcon(
   'Polygon',
   '14.85 41.75 470.3 416.51',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://bitcoin.org
 export const BitcoinCircle = createIcon('BitcoinCircle', '0 0 64 64', () => (
   <>
     <path

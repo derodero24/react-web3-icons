@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://immutable.com
 export const ImmutableX = createIcon(
   'ImmutableX',
   '59.57 116.38 280 280',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://ethereum.org
 export const Ethereum = createIcon('Ethereum', '0 0 784.37 1277.39', () => (
   <>
     <path

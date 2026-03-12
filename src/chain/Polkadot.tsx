@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://polkadot.network
 const content = () => (
   <>
     <ellipse cx="1000" cy="441.78" rx="254.27" ry="147.95" />

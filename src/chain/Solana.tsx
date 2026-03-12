@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://solana.com
 // Shared Solana bar path data
 const SOL_BAR_A =
   'M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z';

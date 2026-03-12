@@ -4,6 +4,7 @@ import type { IconProps } from '../utils';
 import { createIcon } from '../utils';
 import { useIconContext } from '../utils/IconContext';
 
+// Source: https://avax.network
 interface AvalancheProps extends IconProps {
   withBackground?: boolean;
 }
