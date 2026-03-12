@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://pinata.cloud
 export const Pinata = createIcon('Pinata', '0 0 84 125', () => (
   <>
     <path

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://looksrare.org
 export const LooksRare = createIcon('LooksRare', '0 12.32 96 76.54', () => (
   <>
     <path d="M21.651 28.366c14.552-14.47 38.146-14.47 52.697 0l12.57 12.499-12.57 12.499c-14.552 14.47-38.146 14.47-52.698 0L9.081 40.865l12.57-12.499z" />

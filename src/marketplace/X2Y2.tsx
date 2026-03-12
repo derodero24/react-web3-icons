@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://x2y2.io
 export const X2Y2 = createIcon('X2Y2', '0 0 512 512', _id => (
   <>
     <path

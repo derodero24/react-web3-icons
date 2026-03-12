@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://debank.com
 export const DeBank = createIcon('DeBank', '51 39 177.12 201.35', () => (
   <>
     <path

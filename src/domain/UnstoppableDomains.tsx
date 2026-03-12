@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://unstoppabledomains.com
 export const UnstoppableDomains = createIcon(
   'UnstoppableDomains',
   '61.35 162.28 43.49 39.01',

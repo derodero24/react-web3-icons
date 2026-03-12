@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://coingecko.com
 /**
  * Colored variant uses a different SVG source (viewBox 0 0 276 276) than the
  * mono variant (viewBox 0 0 1080 1080). Both are the official CoinGecko logo

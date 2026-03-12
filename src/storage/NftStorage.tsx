@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://nft.storage (official brand, service sunset)
 export const NftStorage = createIcon(
   'NftStorage',
   '262.133 123.05 122.052 223.155',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://hop.exchange
 export const HopProtocol = createIcon(
   'HopProtocol',
   '0 0 32 32',

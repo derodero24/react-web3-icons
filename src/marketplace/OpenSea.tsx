@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://opensea.io
 export const OpenSea = createIcon('OpenSea', '0 0 90 90', () => (
   <>
     <path

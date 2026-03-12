@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://zapper.xyz
 export const Zapper = createIcon('Zapper', '0 0 500 500', () => (
   <>
     <path
