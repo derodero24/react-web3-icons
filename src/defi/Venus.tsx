@@ -7,10 +7,9 @@ const venusPath =
 
 export const Venus = createIcon('Venus', '0 0 38 34', _id => (
   <>
-    <path fill={`url(#${_id}-a)`} d={venusPath} />
     <defs>
       <linearGradient
-        id={`${_id}-a`}
+        id={`${_id}-venus-a`}
         x1="37.2475"
         y1="26.2516"
         x2="-5.57766"
@@ -22,6 +21,7 @@ export const Venus = createIcon('Venus', '0 0 38 34', _id => (
         <stop offset="1" stopColor="#5CFFA2" />
       </linearGradient>
     </defs>
+    <path fill={`url(#${_id}-venus-a)`} d={venusPath} />
   </>
 ));
 
