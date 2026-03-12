@@ -40,7 +40,7 @@ const ticker = getArg('--ticker');
 const chainId = getArg('--chain-id');
 const help = hasArg('--help') || hasArg('-h');
 
-if (help || !category || !name) {
+if (help) {
   console.log(`
 Usage: pnpm run new-icon --category <category> --name <ComponentName> [options]
 
@@ -63,6 +63,23 @@ Examples:
   pnpm run new-icon --category wallet --name Phantom --slug phantomwallet
 `);
   process.exit(0);
+}
+
+if (!category || !name) {
+  console.error('Error: --category and --name are required. Run with --help for usage.');
+  process.exit(1);
+}
+
+if (!/^[A-Z][A-Za-z0-9]*$/.test(name)) {
+  console.error(
+    `Error: --name must be a PascalCase TypeScript identifier (e.g. "EtherFi", "Bitcoin"). Got: "${name}"`,
+  );
+  process.exit(1);
+}
+
+if (chainId && !/^\d+$/.test(chainId)) {
+  console.error(`Error: --chain-id must be a positive integer. Got: "${chainId}"`);
+  process.exit(1);
 }
 
 // ── Validate category ─────────────────────────────────────────────────────────
@@ -151,22 +168,38 @@ if (svgPath) {
   if (innerMatch) {
     innerSvg = innerMatch[1]
       .trim()
-      // Basic SVG → JSX attribute conversions
+      // SVG → JSX attribute conversions
       .replace(/\bclass=/g, 'className=')
       .replace(/\bstroke-width=/g, 'strokeWidth=')
       .replace(/\bstroke-linecap=/g, 'strokeLinecap=')
       .replace(/\bstroke-linejoin=/g, 'strokeLinejoin=')
       .replace(/\bstroke-dasharray=/g, 'strokeDasharray=')
       .replace(/\bstroke-dashoffset=/g, 'strokeDashoffset=')
+      .replace(/\bstroke-miterlimit=/g, 'strokeMiterlimit=')
+      .replace(/\bstroke-opacity=/g, 'strokeOpacity=')
       .replace(/\bfill-rule=/g, 'fillRule=')
+      .replace(/\bfill-opacity=/g, 'fillOpacity=')
       .replace(/\bclip-rule=/g, 'clipRule=')
       .replace(/\bclip-path=/g, 'clipPath=')
       .replace(/\bstop-color=/g, 'stopColor=')
       .replace(/\bstop-opacity=/g, 'stopOpacity=')
       .replace(/\bfont-size=/g, 'fontSize=')
+      .replace(/\bfont-family=/g, 'fontFamily=')
       .replace(/\bfont-weight=/g, 'fontWeight=')
+      .replace(/\bfont-style=/g, 'fontStyle=')
       .replace(/\btext-anchor=/g, 'textAnchor=')
       .replace(/\bdominant-baseline=/g, 'dominantBaseline=')
+      .replace(/\bcolor-interpolation-filters=/g, 'colorInterpolationFilters=')
+      .replace(/\bflood-color=/g, 'floodColor=')
+      .replace(/\bflood-opacity=/g, 'floodOpacity=')
+      .replace(/\bimage-rendering=/g, 'imageRendering=')
+      .replace(/\bshape-rendering=/g, 'shapeRendering=')
+      .replace(/\bpaint-order=/g, 'paintOrder=')
+      .replace(/\bvector-effect=/g, 'vectorEffect=')
+      .replace(/\bmask-type=/g, 'maskType=')
+      .replace(/\bletter-spacing=/g, 'letterSpacing=')
+      .replace(/\bword-spacing=/g, 'wordSpacing=')
+      .replace(/\bbaseline-shift=/g, 'baselineShift=')
       .replace(/\bxlink:href=/g, 'xlinkHref=')
       .replace(/\bxmlns:xlink="[^"]*"/g, '')
       .trim();
@@ -209,7 +242,15 @@ const renderBody = innerSvg
 ;
 
 const monoRenderBody = innerSvg
-  ? `() => (
+  ? hasComplexElements
+    ? `_id => (
+  // TODO: Adjust for monochrome — remove hardcoded colors, rely on currentColor
+  // TODO: Replace static IDs with dynamic ones using _id
+  <>
+    ${innerSvg.replace(/\n/g, '\n    ')}
+  </>
+)`
+    : `() => (
   // TODO: Adjust for monochrome — remove hardcoded colors, rely on currentColor
   <>
     ${innerSvg.replace(/\n/g, '\n    ')}
@@ -311,7 +352,14 @@ const metaConfig = META_MAP_CONFIG[category];
 if (metaConfig) {
   let metaContent = readFileSync(metaFile, 'utf8');
 
-  function insertIntoMap(content, mapName, key, value, keyType) {
+  /**
+   * @param {string} content   - full file text
+   * @param {string} mapName   - e.g. "TICKER_TO_COIN"
+   * @param {string} rawKey    - unquoted raw key value (slug, ticker, or chain ID)
+   * @param {string} value     - component name to insert as the map value
+   * @param {'slug'|'ticker'|'number'} keyType
+   */
+  function insertIntoMap(content, mapName, rawKey, value, keyType) {
     const mapRegex = new RegExp(`(export const ${mapName} = \\{)([\\s\\S]*?)(\\} as const)`);
     const match = content.match(mapRegex);
     if (!match) {
@@ -319,11 +367,20 @@ if (metaConfig) {
       return content;
     }
 
-    const existing = match[2];
-    const keyStr = keyType === 'number' ? `  ${key}: '${value}'` : `  ${key}: '${value}'`;
+    // Compute the formatted key as it will appear in source
+    function formatKey(raw) {
+      if (keyType === 'number') return raw; // numeric literal: 1, 167000
+      // String key: quote if not a valid JS identifier
+      const isValidIdent = /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(raw);
+      return isValidIdent ? raw : `'${raw}'`;
+    }
 
+    const formattedKey = formatKey(rawKey);
+    const keyStr = `  ${formattedKey}: '${value}'`;
+
+    const existing = match[2];
     if (existing.includes(keyStr)) {
-      console.log(`  (meta map ${mapName} already has key ${key})`);
+      console.log(`  (meta map ${mapName} already has key ${formattedKey})`);
       return content;
     }
 
@@ -332,9 +389,9 @@ if (metaConfig) {
       .split('\n')
       .filter(l => l.trim() && l.includes(':'));
 
-    entryLines.push(`  ${key}: '${value}',`);
+    entryLines.push(`  ${formattedKey}: '${value}',`);
 
-    // Sort: numbers numerically, strings alphabetically
+    // Sort: numbers numerically, strings alphabetically (strip quotes for comparison)
     entryLines.sort((a, b) => {
       const ka = a.trim().split(':')[0].trim().replace(/['"]/g, '');
       const kb = b.trim().split(':')[0].trim().replace(/['"]/g, '');
@@ -351,9 +408,7 @@ if (metaConfig) {
   metaContent = insertIntoMap(
     metaContent,
     metaConfig.mapName,
-    metaConfig.keyType === 'ticker'
-      ? metaConfig.keyValue
-      : `'${metaConfig.keyValue}'`,
+    metaConfig.keyValue,
     name,
     metaConfig.keyType,
   );
