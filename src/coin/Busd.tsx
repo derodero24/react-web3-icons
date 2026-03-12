@@ -1,3 +1,4 @@
+// Source: https://binance.com
 import { createIcon } from '../utils';
 
 const busdContent = () => (

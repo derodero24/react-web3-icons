@@ -1,3 +1,4 @@
+// Source: https://celestia.org
 import { createIcon } from '../utils';
 
 const tiaContent = () => (

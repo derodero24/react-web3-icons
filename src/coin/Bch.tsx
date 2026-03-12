@@ -1,3 +1,4 @@
+// Source: https://bitcoincash.org
 import { createIcon } from '../utils';
 
 export const Bch = createIcon('Bch', '0 0 24 24', () => (

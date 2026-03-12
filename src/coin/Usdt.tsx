@@ -1,3 +1,4 @@
+// Source: https://tether.to
 import { createIcon } from '../utils';
 
 const USDT_MARK =

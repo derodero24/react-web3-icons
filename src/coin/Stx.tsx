@@ -1,3 +1,4 @@
+// Source: https://stacks.co
 import { createIcon } from '../utils';
 
 const stxContent = () => (

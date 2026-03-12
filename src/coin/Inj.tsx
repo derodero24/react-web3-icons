@@ -1,3 +1,4 @@
+// Source: https://injective.com
 import { createIcon } from '../utils';
 
 const injPath1 =

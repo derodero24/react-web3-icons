@@ -1,3 +1,4 @@
+// Source: https://kaspa.org
 import { createIcon } from '../utils';
 
 export const Kas = createIcon('Kas', '0 0 24 24', () => (

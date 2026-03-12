@@ -1,3 +1,4 @@
+// Source: https://vechain.org
 import { createIcon } from '../utils';
 
 const vetPath =

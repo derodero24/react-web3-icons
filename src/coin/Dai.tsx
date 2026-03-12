@@ -1,3 +1,4 @@
+// Source: https://makerdao.com
 import { createIcon } from '../utils';
 
 export const DaiCircle = createIcon('DaiCircle', '0 0 444.44 444.44', () => (

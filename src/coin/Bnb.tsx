@@ -1,3 +1,4 @@
+// Source: https://bnbchain.org
 import { createIcon } from '../utils';
 
 export {

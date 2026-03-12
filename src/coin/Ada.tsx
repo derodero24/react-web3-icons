@@ -1,3 +1,4 @@
+// Source: re-export of Cardano — see src/chain/Cardano.tsx
 export {
   Cardano as Ada,
   CardanoCircle as AdaCircle,

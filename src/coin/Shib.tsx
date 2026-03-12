@@ -1,3 +1,4 @@
+// Source: https://shibatoken.com
 import { createIcon } from '../utils';
 
 export const Shib = createIcon('Shib', '0.12 -0.04 641.66 649.06', () => (

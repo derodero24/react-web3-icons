@@ -1,3 +1,4 @@
+// Source: https://looksrare.org
 import { createIcon } from '../utils';
 
 export const Looks = createIcon('Looks', '0 0 96 96', () => (

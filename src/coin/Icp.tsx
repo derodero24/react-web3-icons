@@ -1,3 +1,4 @@
+// Source: https://internetcomputer.org
 import { createIcon } from '../utils';
 
 export const Icp = createIcon('Icp', '0 0 24 24', _id => (

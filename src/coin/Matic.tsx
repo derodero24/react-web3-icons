@@ -1,3 +1,4 @@
+// Source: re-export of Polygon (via Pol) — see src/coin/Pol.tsx and src/chain/Polygon.tsx
 import { Pol, PolCircle, PolCircleMono, PolMono } from './Pol';
 
 /** @deprecated Use `Pol` instead. */

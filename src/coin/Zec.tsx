@@ -1,3 +1,4 @@
+// Source: https://z.cash
 import { createIcon } from '../utils';
 
 export const Zec = createIcon('Zec', '0 0 32 32', () => (

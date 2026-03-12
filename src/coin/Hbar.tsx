@@ -1,3 +1,4 @@
+// Source: https://hedera.com
 import { createIcon } from '../utils';
 
 const hbarContent = () => (

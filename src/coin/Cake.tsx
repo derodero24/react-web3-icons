@@ -1,3 +1,4 @@
+// Source: https://pancakeswap.finance
 import { createIcon } from '../utils';
 
 export const Cake = createIcon('Cake', '0 0 96 96', _id => (

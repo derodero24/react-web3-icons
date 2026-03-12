@@ -1,3 +1,4 @@
+// Source: https://pepe.vip
 import { createIcon } from '../utils';
 
 export const Pepe = createIcon('Pepe', '0 0 24 24', () => (

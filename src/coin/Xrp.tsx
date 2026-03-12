@@ -1,3 +1,4 @@
+// Source: https://xrpl.org
 import { createIcon } from '../utils';
 
 const xrpContent = () => (

@@ -1,3 +1,4 @@
+// Source: https://circle.com
 import { createIcon } from '../utils';
 
 const USDC_MARK =

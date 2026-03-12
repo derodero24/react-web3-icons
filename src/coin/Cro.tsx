@@ -1,3 +1,4 @@
+// Source: https://crypto.com
 import { createIcon } from '../utils';
 
 export const Cro = createIcon('Cro', '0 0 24 24', () => (

@@ -1,3 +1,4 @@
+// Source: https://dogecoin.com
 import { createIcon } from '../utils';
 
 export const Doge = createIcon('Doge', '0 0 1875 1875', () => (

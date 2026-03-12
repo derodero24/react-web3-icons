@@ -1,3 +1,4 @@
+// Source: https://getmonero.org
 import { createIcon } from '../utils';
 
 export const Xmr = createIcon('Xmr', '0 0 32 32', () => (

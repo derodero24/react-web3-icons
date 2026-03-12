@@ -1,3 +1,4 @@
+// Source: https://litecoin.org
 import { createIcon } from '../utils';
 
 export const Ltc = createIcon('Ltc', '0 0 82.6 82.6', () => (
