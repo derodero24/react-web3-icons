@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://yoroi-wallet.com
+
 export const YoroiWallet = createIcon(
   'YoroiWallet',
   '0 0 215.39 187.24',

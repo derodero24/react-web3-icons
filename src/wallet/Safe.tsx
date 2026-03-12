@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 import { SAFE_PATH } from './safe-path';
 
+// Source: https://safe.global — path data shared with GnosisSafe via safe-path.ts
+
 const safeContent = () => <path d={SAFE_PATH} />;
 
 export const Safe = createIcon(

@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://keplr.app
+
 export const Keplr = createIcon('Keplr', '0 0 168 168', () => (
   <>
     <path

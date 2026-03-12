@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://solflare.com
+
 export const Solflare = createIcon('Solflare', '0 0 24 24', () => (
   <>
     <path fill="#FFEF46" d="M24 0H0v24h24z" />

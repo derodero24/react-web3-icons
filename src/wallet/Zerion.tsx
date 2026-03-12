@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://zerion.io
+
 export const ZerionCircle = createIcon('ZerionCircle', '0 0 1024 1024', _id => (
   <>
     <rect width="1024" height="1024" rx="512" fill={`url(#${_id}-zr-a)`} />

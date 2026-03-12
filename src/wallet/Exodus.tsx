@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://exodus.com
+
 const exodusContent = () => (
   <>
     <path d="M21 8.026 13.194 3v2.81l5.008 3.195-.59 1.83h-4.418v2.33h4.419l.589 1.83-5.008 3.195V21L21 15.99l-1.276-3.982z" />

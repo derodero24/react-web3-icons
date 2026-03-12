@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://wallet.coinbase.com
+
 export const CoinbaseWallet = createIcon(
   'CoinbaseWallet',
   '0 0 2500 2500',

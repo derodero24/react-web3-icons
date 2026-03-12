@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://rabby.io
+
 export const Rabby = createIcon(
   'Rabby',
   '0 0 24 24',

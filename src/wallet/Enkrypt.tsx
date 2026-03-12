@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://enkrypt.com
+
 const enkryptContent = () => (
   <path
     fillRule="evenodd"

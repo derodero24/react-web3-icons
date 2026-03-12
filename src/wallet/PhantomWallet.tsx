@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://phantom.app
+
 export const PhantomWallet = createIcon('PhantomWallet', '0 0 128 128', _id => (
   <>
     <circle cx="64" cy="64" r="64" fill={`url(#${_id}-phw-a)`} />

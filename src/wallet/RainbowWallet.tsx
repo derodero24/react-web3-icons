@@ -2,6 +2,8 @@ import { forwardRef, useId } from 'react';
 import { createIcon, type IconProps } from '../utils';
 import { useIconContext } from '../utils/IconContext';
 
+// Source: https://rainbow.me
+
 interface RainbowWalletProps extends IconProps {
   withBackground?: boolean;
 }

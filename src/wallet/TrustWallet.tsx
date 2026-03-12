@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://trustwallet.com
+
 export const TrustWalletSquare = createIcon(
   'TrustWalletSquare',
   '0 0 1024 1024',

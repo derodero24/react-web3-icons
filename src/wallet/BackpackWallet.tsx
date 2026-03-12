@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://backpack.app
+
 const backpackWalletContent = () => (
   <path
     fillRule="evenodd"

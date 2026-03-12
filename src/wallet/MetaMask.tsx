@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://metamask.io
+
 export const MetaMask = createIcon('MetaMask', '31.3 35 256 237.4', () => (
   <>
     <path fill="#e2761b" stroke="#e2761b" d="m274.1 35.5-99.5 73.9L193 65.8z" />

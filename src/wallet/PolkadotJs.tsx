@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://polkadot.js.org
+
 export const PolkadotJs = createIcon('PolkadotJs', '15 15 140 140', () => (
   <>
     <circle cx="85" cy="85" r="70" fill="#ff8c00" />
