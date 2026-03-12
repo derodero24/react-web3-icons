@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Meteora comet-stripe logo, traced from official brand mark on meteora.ag
-// 7 diagonal stripes forming a circle (right) with comet tail (bottom-left)
+// 6 diagonal stripes forming a circle (right) with comet tail (bottom-left)
 const TX = 'translate(0,1024) scale(0.1,-0.1)';
 const d0 =
   'M5070 7624c-234-37-441-112-685-248-78-44-147-104-247-214-147-163-334-381-440-513-46-57-93-115-105-129-12-14-34-42-50-62-15-21-87-115-159-210-72-95-137-184-145-198-8-14-23-36-35-50-29-34-74-103-74-113 0-14 40 12 230 150 217 157 212 154 400 304 239 193 284 229 290 237 3 5 30 28 61 53 63 49 181 150 249 213 25 23 106 95 180 161 74 66 144 129 155 140 11 11 92 88 179 170 162 152 308 299 314 316 4 11-11 10-118-7z';
