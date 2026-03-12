@@ -356,6 +356,18 @@ This is useful for visually verifying new icons after adding them.
 
 This project uses [Biome](https://biomejs.dev/) for linting and formatting. Run `pnpm run lint:fix` before committing. Git hooks (via [Lefthook](https://github.com/evilmartians/lefthook)) automatically check staged files on commit and run the full lint/test/build suite on push.
 
+### Commit messages
+
+Commit messages must follow the [Conventional Commits](https://www.conventionalcommits.org/) format:
+
+```text
+type(optional-scope): description
+```
+
+Common types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `ci`, `perf`, `build`, `style`, `revert`.
+
+The `commit-msg` hook validates this automatically via [commitlint](https://commitlint.js.org/).
+
 ## Submitting a Pull Request
 
 1. Fork the repository and create a feature branch from `develop`
