@@ -18,6 +18,8 @@ export * from './Ena';
 export * from './Eth';
 export * from './Fet';
 export * from './Fil';
+export * from './Flare';
+export * from './Flr';
 export * from './Ftm';
 export * from './Hbar';
 export * from './Icp';

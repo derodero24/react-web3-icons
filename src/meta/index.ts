@@ -142,6 +142,7 @@ export const TICKER_TO_COIN = {
   ENA: 'Ena',
   ETH: 'Eth',
   FIL: 'Fil',
+  FLR: 'Flr',
   FTM: 'Ftm',
   JUP: 'Jup',
   KAS: 'Kas',
