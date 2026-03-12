@@ -33,14 +33,19 @@ function CopyButton({ text }: { text: string }) {
   const { copied, copy } = useCopyAction();
 
   return (
-    <button
-      type="button"
-      onClick={() => copy(text)}
-      aria-label="Copy to clipboard"
-      className="flex min-h-11 min-w-11 items-center justify-center rounded text-white/50 transition-colors hover:bg-white/10 hover:text-white/60"
-    >
-      <CopyToggleIcon copied={copied} />
-    </button>
+    <>
+      <button
+        type="button"
+        onClick={() => copy(text)}
+        aria-label="Copy to clipboard"
+        className="flex min-h-11 min-w-11 items-center justify-center rounded text-white/50 transition-colors hover:bg-white/10 hover:text-white/60"
+      >
+        <CopyToggleIcon copied={copied} />
+      </button>
+      <span aria-live="polite" className="sr-only">
+        {copied ? 'Copied to clipboard' : ''}
+      </span>
+    </>
   );
 }
 

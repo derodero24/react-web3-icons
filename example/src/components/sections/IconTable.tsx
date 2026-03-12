@@ -186,6 +186,9 @@ export default function IconTable() {
       <p id="icon-count" className="sr-only" aria-live="polite">
         {resultsText}
       </p>
+      <p className="sr-only" aria-live="polite">
+        {linkedIcon ? `${linkedIcon} icon details opened` : ''}
+      </p>
 
       {isCategoryEmpty ? (
         <div className="mt-16 flex flex-col items-center gap-2 text-center text-white/50">
