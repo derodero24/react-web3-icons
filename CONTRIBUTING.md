@@ -361,10 +361,10 @@ This project uses [Biome](https://biomejs.dev/) for linting and formatting. Run 
 Commit messages must follow the [Conventional Commits](https://www.conventionalcommits.org/) format:
 
 ```text
-type(scope): description
+type(optional-scope): description
 ```
 
-Common types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `ci`, `perf`.
+Common types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `ci`, `perf`, `build`, `style`, `revert`.
 
 The `commit-msg` hook validates this automatically via [commitlint](https://commitlint.js.org/).
 
