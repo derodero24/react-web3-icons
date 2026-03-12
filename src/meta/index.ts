@@ -356,3 +356,23 @@ export const BRIDGE_SLUG_TO_NAME = {
 
 /** Lowercased bridge slug recognized by this package. */
 export type BridgeSlug = keyof typeof BRIDGE_SLUG_TO_NAME;
+
+/**
+ * Lowercased slug → oracle icon base name.
+ *
+ * Maps to exports from `react-web3-icons/oracle`:
+ * ```ts
+ * import { ORACLE_SLUG_TO_NAME } from 'react-web3-icons/meta';
+ *
+ * const name = ORACLE_SLUG_TO_NAME['pyth']; // 'Pyth'
+ * ```
+ */
+export const ORACLE_SLUG_TO_NAME = {
+  api3: 'Api3',
+  band: 'Band',
+  pyth: 'Pyth',
+  redstone: 'RedStone',
+} as const satisfies Record<string, string>;
+
+/** Lowercased oracle slug recognized by this package. */
+export type OracleSlug = keyof typeof ORACLE_SLUG_TO_NAME;

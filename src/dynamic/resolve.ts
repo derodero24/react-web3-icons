@@ -5,6 +5,7 @@ import {
   DEFI_SLUG_TO_NAME,
   DEX_SLUG_TO_NAME,
   EXCHANGE_SLUG_TO_NAME,
+  ORACLE_SLUG_TO_NAME,
   TICKER_TO_COIN,
   WALLET_SLUG_TO_NAME,
 } from '../meta';
@@ -105,6 +106,18 @@ export function resolveBridgeExportName(props: {
   const slug = props.name.toLowerCase().trim();
   const baseName = Object.hasOwn(BRIDGE_SLUG_TO_NAME, slug)
     ? BRIDGE_SLUG_TO_NAME[slug as keyof typeof BRIDGE_SLUG_TO_NAME]
+    : undefined;
+  return baseName ? withVariant(baseName, variant) : null;
+}
+
+export function resolveOracleExportName(props: {
+  name: string;
+  variant?: Variant;
+}): string | null {
+  const variant = props.variant ?? 'colored';
+  const slug = props.name.toLowerCase().trim();
+  const baseName = Object.hasOwn(ORACLE_SLUG_TO_NAME, slug)
+    ? ORACLE_SLUG_TO_NAME[slug as keyof typeof ORACLE_SLUG_TO_NAME]
     : undefined;
   return baseName ? withVariant(baseName, variant) : null;
 }

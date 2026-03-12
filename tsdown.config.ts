@@ -15,6 +15,7 @@ export default defineConfig({
     'src/explorer/index.ts',
     'src/marketplace/index.ts',
     'src/node/index.ts',
+    'src/oracle/index.ts',
     'src/portfolio/index.ts',
     'src/storage/index.ts',
     'src/tracker/index.ts',

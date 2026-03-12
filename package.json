@@ -19,6 +19,7 @@
     "dex",
     "bridge",
     "exchange",
+    "oracle",
     "explorer",
     "marketplace",
     "wallet",
@@ -91,6 +92,10 @@
     "./node": {
       "types": "./dist/node/index.d.mts",
       "default": "./dist/node/index.mjs"
+    },
+    "./oracle": {
+      "types": "./dist/oracle/index.d.mts",
+      "default": "./dist/oracle/index.mjs"
     },
     "./portfolio": {
       "types": "./dist/portfolio/index.d.mts",
@@ -173,7 +178,7 @@
     {
       "name": "full bundle",
       "path": "dist/index.mjs",
-      "limit": "150 KB"
+      "limit": "151 KB"
     },
     {
       "name": "deprecated",
@@ -236,6 +241,11 @@
       "limit": "5 KB"
     },
     {
+      "name": "oracle",
+      "path": "dist/oracle/index.mjs",
+      "limit": "10 KB"
+    },
+    {
       "name": "portfolio",
       "path": "dist/portfolio/index.mjs",
       "limit": "10 KB"
@@ -263,7 +273,7 @@
     {
       "name": "dynamic",
       "path": "dist/dynamic/index.mjs",
-      "limit": "119 KB"
+      "limit": "120 KB"
     }
   ]
 }
