@@ -24,7 +24,7 @@ A comprehensive React SVG icon library for Web3 — blockchains, wallets, DEXs, 
 
 ## Features
 
-- 270+ icons across 15 categories
+- 270+ icons across 16 categories
 - Colored and monochrome variants for every icon
 - Tree-shakeable — only import what you use (`sideEffects: false`)
 - Scales with font size (`1em` default)
@@ -293,7 +293,7 @@ function TokenIcon({ symbol }: { symbol: string }) {
 | `explorer` | Block explorers | Etherscan, Bscscan, Solscan |
 | `marketplace` | NFT marketplaces | OpenSea, MagicEden, LooksRare |
 | `node` | Node providers | Alchemy, Infura, QuickNode |
-| `oracle` | Oracle networks | Pyth, Chainlink, Band, API3, RedStone |
+| `oracle` | Oracle networks | Pyth, Band, API3, RedStone |
 | `portfolio` | Portfolio trackers | DeBank, Zapper, CoinLedger |
 | `storage` | Decentralized storage | Ipfs, Arweave, NftStorage |
 | `tracker` | Analytics & tracking | DefiLlama, CoinGecko, CoinMarketCap |
