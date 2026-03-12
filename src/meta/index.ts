@@ -284,6 +284,7 @@ export const DEFI_SLUG_TO_NAME = {
   safeprotocol: 'SafeProtocol',
   spark: 'Spark',
   synthetix: 'Synthetix',
+  venus: 'Venus',
   yearn: 'Yearn',
 } as const satisfies Record<string, string>;
 
