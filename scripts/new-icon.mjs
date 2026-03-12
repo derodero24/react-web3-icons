@@ -15,7 +15,7 @@
  *   5. Prints next steps (visual QA, changeset)
  */
 
-import { execSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { basename, resolve } from 'node:path';
 
@@ -124,15 +124,18 @@ if (svgPath) {
     process.exit(1);
   }
 
+  const optPath = `${absPath}.opt.svg`;
   console.log(`Optimizing SVG with SVGO…`);
   try {
-    execSync(`pnpm exec svgo --config svgo.config.js "${absPath}" -o "${absPath}.opt.svg"`, {
-      stdio: 'inherit',
-      cwd: ROOT,
-    });
-    svgContent = readFileSync(`${absPath}.opt.svg`, 'utf8');
+    const result = spawnSync(
+      'pnpm',
+      ['exec', 'svgo', '--config', 'svgo.config.js', absPath, '-o', optPath],
+      { stdio: 'inherit', cwd: ROOT },
+    );
+    if (result.status !== 0) throw new Error('svgo exited non-zero');
+    svgContent = readFileSync(optPath, 'utf8');
     // Clean up temp file
-    execSync(`rm "${absPath}.opt.svg"`);
+    spawnSync('rm', [optPath]);
   } catch {
     // Fall back to raw SVG if SVGO fails
     console.warn('SVGO optimization failed; using raw SVG.');
