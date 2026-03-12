@@ -265,22 +265,27 @@ export type ExchangeSlug = keyof typeof EXCHANGE_SLUG_TO_NAME;
  */
 export const DEFI_SLUG_TO_NAME = {
   aave: 'Aave',
+  babylon: 'Babylon',
   balancer: 'Balancer',
   compound: 'Compound',
   convex: 'Convex',
   eigenlayer: 'EigenLayer',
   ethena: 'Ethena',
+  etherfi: 'EtherFi',
   frax: 'Frax',
   gmx: 'Gmx',
+  kamino: 'Kamino',
   lido: 'Lido',
   liquity: 'Liquity',
   makerdao: 'MakerDao',
+  maple: 'Maple',
   morpho: 'Morpho',
   pendle: 'Pendle',
   rocketpool: 'RocketPool',
   safeprotocol: 'SafeProtocol',
   spark: 'Spark',
   synthetix: 'Synthetix',
+  venus: 'Venus',
   yearn: 'Yearn',
 } as const satisfies Record<string, string>;
 
