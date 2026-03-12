@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://etherscan.io (official brand)
 export const Etherscan = createIcon(
   'Etherscan',
   '0.5 0.68 121.68 121.46',

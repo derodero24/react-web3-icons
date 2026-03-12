@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://alchemy.com (official brand)
 export const Alchemy = createIcon('Alchemy', '0 0 1008 861', _id => (
   <>
     <path

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://blockscout.com (official brand)
 export const Blockscout = createIcon(
   'Blockscout',
   '0 0 20 20',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://basescan.org (official brand)
 export const Basescan = createIcon('Basescan', '0 0 122 122', () => (
   <>
     <path

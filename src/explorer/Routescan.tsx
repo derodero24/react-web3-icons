@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://routescan.io (official brand)
 // Routescan uses a 6-facet isometric cube logo
 const RS_TOP_LEFT = 'M20.9455 0L0.0026505 11.9984L20.9455 24V0Z';
 const RS_TOP_RIGHT = 'M41.8883 11.9984L20.9455 0V24L41.8883 11.9984Z';

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://solscan.io (official brand)
 const SOLSCAN_DOT =
   'M106.387 152.73a3.14 3.14 0 0 1-.088 6.311 3.14 3.14 0 1 1 .088-6.311z';
 const SOLSCAN_ARC =
