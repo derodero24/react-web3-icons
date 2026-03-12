@@ -122,9 +122,9 @@ const COMPARISON_ROWS: {
   },
   {
     feature: 'Raw SVG files',
-    ours: <CrossIcon />,
+    ours: <CheckIcon />,
     theirs: <CheckIcon />,
-    note: '@web3icons/core package',
+    note: 'dist/svg/<category>/<Name>.svg',
   },
   {
     feature: 'Figma plugin',
