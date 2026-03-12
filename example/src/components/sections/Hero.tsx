@@ -68,6 +68,9 @@ export default function Hero() {
               <CopyToggleIcon copied={copied} />
             </span>
           </button>
+          <span aria-live="polite" className="sr-only">
+            {copied ? 'Copied to clipboard' : ''}
+          </span>
         </div>
       </div>
     </section>

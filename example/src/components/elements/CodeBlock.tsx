@@ -30,6 +30,9 @@ export default function CodeBlock({
       >
         <CopyToggleIcon copied={copied} />
       </button>
+      <span aria-live="polite" className="sr-only">
+        {copied ? 'Copied to clipboard' : ''}
+      </span>
     </Wrapper>
   );
 }
