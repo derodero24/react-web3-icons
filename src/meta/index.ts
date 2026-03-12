@@ -73,6 +73,7 @@ export const CHAIN_SLUG_TO_NAME = {
   celestia: 'Celestia',
   celo: 'Celo',
   'cosmos-hub': 'CosmosHub',
+  eclipse: 'Eclipse',
   ethereum: 'Ethereum',
   fantom: 'Fantom',
   fraxtal: 'Fraxtal',
