@@ -28,4 +28,5 @@
 - [ ] Build succeeds (`pnpm run build`)
 - [ ] Changeset included (if `src/` changed): `pnpm changeset`
 - [ ] Official icon source and usage context documented above (or N/A)
+- [ ] `// Source:` comment added or verified in each icon `.tsx` file (or N/A)
 - [ ] Default icon geometry/colors match official asset (or N/A)

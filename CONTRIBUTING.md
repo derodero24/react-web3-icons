@@ -213,6 +213,27 @@ When adding a new icon, follow this workflow:
 
 Download from the project's official brand kit, GitHub repository, or press page. Always use the original vector file — never trace a raster image.
 
+### Source Attribution (Required)
+
+Every icon `.tsx` file must include a `// Source:` comment as the **first line after `import` statements**, documenting where the SVG path data originated. This survives the PR merge and makes future audits possible with `grep -r "// Source:" src/`.
+
+```tsx
+import { createIcon } from '../utils';
+
+// Source: <reference>
+
+export const MyToken = createIcon(...)
+```
+
+| Case | Example |
+| --- | --- |
+| Official SVG URL | `// Source: https://github.com/org/repo/blob/main/logo.svg` |
+| Brand asset page (no direct URL) | `// Source: https://brand.uniswap.org (official brand kit)` |
+| Third-party package (with license) | `// Source: @web3icons/react (MIT) — OSMO token SVG` |
+| App/favicon asset | `// Source: https://app.eigenlayer.xyz/logo/markLightA.svg` |
+| Hand-crafted / no public source | `// Source: hand-crafted — no public SVG; traced from https://...` |
+| Re-export (no own SVG paths) | `// Source: re-export of Bitcoin — see src/chain/Bitcoin.tsx` |
+
 ### Icon Authenticity Policy (Required)
 
 To protect icon quality and brand fidelity, all icon additions/updates must follow these rules:
