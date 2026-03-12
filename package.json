@@ -198,7 +198,7 @@
     {
       "name": "defi",
       "path": "dist/defi/index.mjs",
-      "limit": "8 KB"
+      "limit": "9 KB"
     },
     {
       "name": "devtool",

@@ -268,11 +268,13 @@ export type ExchangeSlug = keyof typeof EXCHANGE_SLUG_TO_NAME;
  */
 export const DEFI_SLUG_TO_NAME = {
   aave: 'Aave',
+  babylon: 'Babylon',
   balancer: 'Balancer',
   compound: 'Compound',
   convex: 'Convex',
   eigenlayer: 'EigenLayer',
   ethena: 'Ethena',
+  etherfi: 'EtherFi',
   frax: 'Frax',
   gmx: 'Gmx',
   lido: 'Lido',
