@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://deribit.com (official brand)
+
 const deribitContent = () => (
   <path
     fillRule="evenodd"

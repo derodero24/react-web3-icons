@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 import { SAFE_PATH } from '../wallet/safe-path';
 
+// Source: https://safe.global (official brand); path shared with wallet/safe-path.ts
+
 const safeProtocolContent = () => <path d={SAFE_PATH} />;
 
 export const SafeProtocol = createIcon(

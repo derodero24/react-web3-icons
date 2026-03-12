@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://binance.com (official brand)
+
 const binanceContent = () => (
   <>
     <polygon points="38.171,53.203 62.759,28.616 87.36,53.216 101.667,38.909 62.759,0 23.864,38.896 " />

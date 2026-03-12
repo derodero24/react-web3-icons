@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://bitget.com (official brand)
+
 const bitgetContent = () => (
   <>
     <path d="M11.121 9.46h4.283l4.381 4.555a.785.785 0 0 1 .003 1.076L14.17 21H9.757l1.334-1.357 4.898-5.092-4.836-5.092" />

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://gmx.io (official brand)
 // GMX perpetuals DEX — triangular "G" mark
 // Gradient: cyan #03D1CF (top) → indigo #4E09F8 (bottom), from official brand assets
 const GMX_PATH =

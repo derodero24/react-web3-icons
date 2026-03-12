@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://spark.fi (official brand)
 // Spark (SparkLend by MakerDAO) — lightning bolt mark
 // Gradient: pink #FA43BD → orange #FFA930, from official spark.fi brand
 const SPARK_BOLT =

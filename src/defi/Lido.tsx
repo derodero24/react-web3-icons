@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://lido.fi (official brand)
+
 const lidoContent = () => (
   <>
     <path

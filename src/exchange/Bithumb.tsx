@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://bithumb.com (official brand)
+
 export const Bithumb = createIcon('Bithumb', '0 0 24 24', _id => (
   <>
     <path

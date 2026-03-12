@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://yearn.fi (official brand)
+
 const yearnContent = () => (
   <path
     fillRule="evenodd"

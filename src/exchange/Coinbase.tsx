@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://coinbase.com (official brand)
+
 const COINBASE_BG =
   'M1250 0h0c690.2 0 1250 559.8 1250 1250h0c0 690.2-559.8 1250-1250 1250h0C559.8 2500 0 1940.2 0 1250h0C0 559.8 559.8 0 1250 0z';
 const COINBASE_C =

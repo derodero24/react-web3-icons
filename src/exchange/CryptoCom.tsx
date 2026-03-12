@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://crypto.com (official brand)
+
 export const CryptoCom = createIcon(
   'CryptoCom',
   '0 0 24 24',

@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://phemex.com (official brand)
+
 export const Phemex = createIcon('Phemex', '0 0 16 16', () => (
   <>
     <path

@@ -2,6 +2,8 @@ import { forwardRef } from 'react';
 import type { IconProps } from '../utils';
 import { useIconContext } from '../utils/IconContext';
 
+// Source: https://bybit.com (official brand)
+
 export interface BybitProps extends IconProps {
   fill1?: string;
   fill2?: string;

@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://gate.io (official brand)
+
 export const Gateio = createIcon('Gateio', '0 0 600 600', () => (
   <>
     <path

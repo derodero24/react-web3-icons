@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://bitstamp.net (official brand)
+
 export const Bitstamp = createIcon('Bitstamp', '0 0 145.2 221.1', () => (
   <>
     <path

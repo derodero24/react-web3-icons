@@ -1,5 +1,7 @@
 import { createIcon } from '../utils';
 
+// Source: https://bitfinex.com (official brand)
+
 const bitfinexContent = () => (
   <>
     <path d="M313.808 250.559c-.175-2.832 1.015-5.979 3.464-8.428 5.326-5.326 16.418-4.58 16.481-4.575-.03.044-8.139 11.801-17.748 12.9a16.34 16.34 0 0 1-2.197.104z" />
