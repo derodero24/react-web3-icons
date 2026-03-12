@@ -8,8 +8,9 @@
  * Output: dist/svg/<category>/<Name>.svg
  */
 
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
@@ -52,6 +53,9 @@ function cleanSvg(html) {
   );
 }
 
+// Clear stale SVGs from previous runs before writing fresh output
+rmSync(SVG_OUT, { recursive: true, force: true });
+
 let total = 0;
 let skipped = 0;
 
@@ -66,7 +70,7 @@ for (const category of CATEGORIES) {
   mkdirSync(outDir, { recursive: true });
 
   /** @type {Record<string, unknown>} */
-  const mod = await import(indexPath);
+  const mod = await import(pathToFileURL(indexPath).href);
 
   for (const [name, Component] of Object.entries(mod)) {
     if (SKIP_NAMES.has(name)) continue;
