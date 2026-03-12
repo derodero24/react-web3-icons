@@ -76,13 +76,13 @@ export default function Image() {
   const padding = 72;
 
   const totalWidth = gridCols * iconSize + (gridCols - 1) * gap;
-  const startX = (1200 - totalWidth) / 2;
+  const startX = (size.width - totalWidth) / 2;
 
   return new ImageResponse(
     <div
       style={{
-        width: '1200px',
-        height: '630px',
+        width: `${size.width}px`,
+        height: `${size.height}px`,
         background: '#080808',
         display: 'flex',
         flexDirection: 'column',
@@ -181,6 +181,6 @@ export default function Image() {
         ))}
       </div>
     </div>,
-    { width: 1200, height: 630 },
+    size,
   );
 }
