@@ -347,7 +347,10 @@ export const BRIDGE_SLUG_TO_NAME = {
   debridge: 'DeBridge',
   hopprotocol: 'HopProtocol',
   layerzero: 'LayerZero',
+  orbiter: 'Orbiter',
+  socket: 'Socket',
   stargate: 'Stargate',
+  synapse: 'Synapse',
   wormhole: 'Wormhole',
 } as const satisfies Record<string, string>;
 
