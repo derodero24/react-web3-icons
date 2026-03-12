@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://solflare.com
 /** Solflare wallet icon (colored). */
 export const Solflare = /* @__PURE__ */ createIcon(
   'Solflare',

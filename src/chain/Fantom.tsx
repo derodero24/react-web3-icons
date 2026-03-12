@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://fantom.foundation
 const FANTOM_GEM =
   'M11.97 3 6.602 6.046v11.817L11.97 21l5.432-3.137V6.046zm.032.9L7.95 6.33 12 8.692l4.05-2.362zM7.5 7.05v4.05l3.6-2.016zm4.951 2.924v4.05l3.6-2.015zm4.05-2.924v4.05l-3.6-2.016zm-4.95 2.923v4.05L7.95 12.009zm-4.05 2.73v4.698l4.5 2.698 4.5-2.7v-4.698l-4.5 2.448z';
 const FANTOM_BARS =

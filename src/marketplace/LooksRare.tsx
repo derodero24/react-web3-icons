@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://looksrare.org
 /** LooksRare marketplace icon (colored). */
 export const LooksRare = /* @__PURE__ */ createIcon(
   'LooksRare',

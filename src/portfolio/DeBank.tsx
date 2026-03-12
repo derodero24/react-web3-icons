@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://debank.com
 /** DeBank portfolio icon (colored). */
 export const DeBank = /* @__PURE__ */ createIcon(
   'DeBank',

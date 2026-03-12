@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://looksrare.org
 /** Looks coin icon (colored). */
 export const Looks = /* @__PURE__ */ createIcon('Looks', '0 0 96 96', () => (
   <>

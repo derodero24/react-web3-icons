@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://tenderly.co
 const TENDERLY_WING_RIGHT =
   'm15.152 6 5.235-2.917.004 5.665-4.055 2.259c-2.766 1.54-4.36 3.562-5.004 5.356-.644 1.794-.55 2.823-.57 3.271 0-2.856.01-3.71.01-6.115 0-.592.068-1.244.148-1.556 0 0 .688-3.99 4.232-5.964Z';
 const TENDERLY_WING_LEFT =

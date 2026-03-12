@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://ens.domains
 /** Ens domain icon (colored). */
 export const Ens = /* @__PURE__ */ createIcon('Ens', '0 0 72.52 80.95', _id => (
   <>

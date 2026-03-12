@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://shibatoken.com
 /** Shib coin icon (colored). */
 export const Shib = /* @__PURE__ */ createIcon(
   'Shib',

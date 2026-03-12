@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://web3js.org
 /** Web3Js dev tool icon (colored). */
 export const Web3Js = /* @__PURE__ */ createIcon(
   'Web3Js',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://alchemy.com (official brand)
 /** Alchemy node icon (colored). */
 export const Alchemy = /* @__PURE__ */ createIcon(
   'Alchemy',

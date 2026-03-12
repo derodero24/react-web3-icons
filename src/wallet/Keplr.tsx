@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://keplr.app
 /** Keplr wallet icon (colored). */
 export const Keplr = /* @__PURE__ */ createIcon('Keplr', '0 0 168 168', () => (
   <>

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://z.cash
 /** Zec coin icon (colored). */
 export const Zec = /* @__PURE__ */ createIcon('Zec', '0 0 32 32', () => (
   <>

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://stacks.co
 const stacksContent = () => (
   <path
     fillRule="evenodd"

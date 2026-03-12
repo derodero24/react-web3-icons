@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://yoroi-wallet.com
 /** Yoroi Wallet wallet icon (colored). */
 export const YoroiWallet = /* @__PURE__ */ createIcon(
   'YoroiWallet',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://internetcomputer.org
 /** Icp coin icon (colored). */
 export const Icp = /* @__PURE__ */ createIcon('Icp', '0 0 24 24', _id => (
   <>

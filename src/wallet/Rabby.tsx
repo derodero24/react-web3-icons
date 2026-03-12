@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://rabby.io
 /** Rabby wallet icon (colored). */
 export const Rabby = /* @__PURE__ */ createIcon(
   'Rabby',

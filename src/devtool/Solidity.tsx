@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://soliditylang.org
 const solidityContent = () => (
   <>
     <path

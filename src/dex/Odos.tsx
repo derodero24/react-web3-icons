@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://odos.xyz
 const odosContent = () => (
   <path
     fillRule="evenodd"

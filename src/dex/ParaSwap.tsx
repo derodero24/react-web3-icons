@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://paraswap.io
 const paraSwapContent = () => (
   <>
     <path d="M21 19.2 12.675 4.8 4.35 19.2z" />

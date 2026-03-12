@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://bithumb.com (official brand)
 /** Bithumb exchange icon (colored). */
 export const Bithumb = /* @__PURE__ */ createIcon(
   'Bithumb',

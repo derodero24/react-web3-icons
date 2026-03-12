@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://blast.io
 const blastContent = () => (
   <>
     <path d="m17.183 11.894 2.838-1.415L21 7.476l-1.957-1.424H6.013L3 8.29h15.316l-.813 2.518H11.36l-.591 1.841h6.142l-1.725 5.3 2.878-1.425 1.026-3.177-1.927-1.415z" />

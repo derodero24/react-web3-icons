@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://makerdao.com
 /** Dai Circle coin icon (colored). */
 export const DaiCircle = /* @__PURE__ */ createIcon(
   'DaiCircle',

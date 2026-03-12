@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://okx.com/web3
 const okxWalletContent = () => (
   <path
     fillRule="evenodd"

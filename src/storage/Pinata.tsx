@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://pinata.cloud
 /** Pinata storage icon (colored). */
 export const Pinata = /* @__PURE__ */ createIcon('Pinata', '0 0 84 125', () => (
   <>

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://github.com/ethereum/remix-project
 const remixContent = () => (
   <path
     fillRule="evenodd"

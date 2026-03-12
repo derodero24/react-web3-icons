@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://opensea.io
 /** OpenSea marketplace icon (colored). */
 export const OpenSea = /* @__PURE__ */ createIcon(
   'OpenSea',

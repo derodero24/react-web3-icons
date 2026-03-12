@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://phantom.app
 /** Phantom Wallet wallet icon (colored). */
 export const PhantomWallet = /* @__PURE__ */ createIcon(
   'PhantomWallet',

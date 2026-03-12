@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://phemex.com (official brand)
 /** Phemex exchange icon (colored). */
 export const Phemex = /* @__PURE__ */ createIcon('Phemex', '0 0 16 16', () => (
   <>

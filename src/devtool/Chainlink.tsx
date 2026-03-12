@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://chain.link
 /** Chainlink dev tool icon (colored). */
 export const Chainlink = /* @__PURE__ */ createIcon(
   'Chainlink',

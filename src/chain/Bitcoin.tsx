@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://bitcoin.org
 /** Bitcoin Circle chain icon (colored). */
 export const BitcoinCircle = /* @__PURE__ */ createIcon(
   'BitcoinCircle',

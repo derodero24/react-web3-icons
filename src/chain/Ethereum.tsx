@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://ethereum.org
 /** Ethereum chain icon (colored). */
 export const Ethereum = /* @__PURE__ */ createIcon(
   'Ethereum',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://defillama.com
 /** DefiLlama tracker icon (colored). */
 export const DefiLlama = /* @__PURE__ */ createIcon(
   'DefiLlama',

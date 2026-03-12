@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://collab.land
 /** CollabLand dev tool icon (colored). */
 export const CollabLand = /* @__PURE__ */ createIcon(
   'CollabLand',

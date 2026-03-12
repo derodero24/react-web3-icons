@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://polkadot.js.org
 /** PolkadotJs wallet icon (colored). */
 export const PolkadotJs = /* @__PURE__ */ createIcon(
   'PolkadotJs',

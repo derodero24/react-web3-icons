@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://unstoppabledomains.com
 /** UnstoppableDomains domain icon (colored). */
 export const UnstoppableDomains = /* @__PURE__ */ createIcon(
   'UnstoppableDomains',

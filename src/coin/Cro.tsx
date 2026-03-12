@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://crypto.com
 /** Cro coin icon (colored). */
 export const Cro = /* @__PURE__ */ createIcon('Cro', '0 0 24 24', () => (
   <>

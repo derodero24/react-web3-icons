@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://zerion.io
 /** Zerion Circle wallet icon (colored). */
 export const ZerionCircle = /* @__PURE__ */ createIcon(
   'ZerionCircle',
