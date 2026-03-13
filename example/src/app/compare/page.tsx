@@ -66,75 +66,177 @@ const TOC_ITEMS = [
   { id: 'features', label: 'Feature Matrix' },
 ] as const;
 
+// Competitors included in the feature matrix.
+// When adding a new feature to react-web3-icons, update the corresponding row
+// below. See CLAUDE.md § "Compare page maintenance" for the full checklist.
+const COMPETITORS = [
+  { key: 'web3icons', label: '@web3icons/react' },
+  { key: 'cryptocurrency-icons', label: 'cryptocurrency-icons' },
+  { key: 'ledger', label: '@ledgerhq/crypto-icons' },
+] as const;
+
+type CompetitorKey = (typeof COMPETITORS)[number]['key'];
+
 const COMPARISON_ROWS: {
   feature: string;
   ours: ReactNode;
-  theirs: ReactNode;
+  competitors: Record<CompetitorKey, ReactNode>;
   note?: string;
 }[] = [
   {
+    feature: 'React components',
+    ours: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CheckIcon />,
+    },
+    note: 'cryptocurrency-icons is asset-only',
+  },
+  {
     feature: 'Tree-shakeable',
     ours: <CheckIcon />,
-    theirs: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CrossIcon />,
+    },
   },
   {
     feature: 'TypeScript types',
     ours: <CheckIcon />,
-    theirs: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CheckIcon />,
+    },
   },
   {
     feature: 'Colored variant',
     ours: <CheckIcon />,
-    theirs: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CheckIcon />,
+      ledger: <CheckIcon />,
+    },
   },
   {
     feature: 'Mono variant',
     ours: <CheckIcon />,
-    theirs: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CrossIcon />,
+    },
   },
   {
     feature: 'Background variant',
     ours: <CrossIcon />,
-    theirs: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CrossIcon />,
+    },
   },
   {
     feature: 'Dynamic loading',
     ours: <CheckIcon />,
-    theirs: <CrossIcon />,
-    note: 'react-web3-icons/dynamic',
+    competitors: {
+      web3icons: <CrossIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CheckIcon />,
+    },
+    note: 'Ledger fetches from CDN at runtime',
   },
   {
     feature: 'Meta maps (chain ID → name)',
     ours: <CheckIcon />,
-    theirs: <CrossIcon />,
+    competitors: {
+      web3icons: <CrossIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CrossIcon />,
+    },
     note: 'react-web3-icons/meta',
   },
   {
     feature: 'JSDoc IDE hints',
     ours: <CheckIcon />,
-    theirs: <CrossIcon />,
+    competitors: {
+      web3icons: <CrossIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CrossIcon />,
+    },
   },
   {
     feature: 'Category subpath imports',
     ours: <CheckIcon />,
-    theirs: <CrossIcon />,
+    competitors: {
+      web3icons: <CrossIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CrossIcon />,
+    },
     note: '/chain, /coin, /wallet, …',
   },
   {
     feature: 'Raw SVG files',
     ours: <CheckIcon />,
-    theirs: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CheckIcon />,
+      ledger: <CrossIcon />,
+    },
     note: 'dist/svg/<category>/<Name>.svg',
   },
   {
     feature: 'Figma plugin',
     ours: <CrossIcon />,
-    theirs: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CrossIcon />,
+    },
+  },
+  {
+    feature: 'Actively maintained',
+    ours: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CheckIcon />,
+    },
+    note: 'cryptocurrency-icons last updated 2022',
+  },
+  {
+    feature: 'React Native support',
+    ours: <CrossIcon />,
+    competitors: {
+      web3icons: <CrossIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CheckIcon />,
+    },
+    note: '@ledgerhq/crypto-icons-ui',
   },
   {
     feature: 'Icon count',
     ours: <span className="text-sm text-white/70">~250</span>,
-    theirs: <span className="text-sm text-white/70">2,500+</span>,
+    competitors: {
+      web3icons: <span className="text-sm text-white/70">2,500+</span>,
+      'cryptocurrency-icons': (
+        <span className="text-sm text-white/70">~500</span>
+      ),
+      ledger: <span className="text-sm text-white/70">CDN-based</span>,
+    },
+  },
+  {
+    feature: 'npm weekly downloads',
+    ours: <span className="text-sm text-white/70">~100</span>,
+    competitors: {
+      web3icons: <span className="text-sm text-white/70">~24k</span>,
+      'cryptocurrency-icons': (
+        <span className="text-sm text-white/70">~14k</span>
+      ),
+      ledger: <span className="text-sm text-white/70">~13k</span>,
+    },
   },
 ];
 
@@ -151,21 +253,17 @@ export default function ComparePage() {
             <code className="rounded bg-surface px-1 py-0.5 font-mono text-sm text-white/60">
               react-web3-icons
             </code>{' '}
-            compares to{' '}
-            <code className="rounded bg-surface px-1 py-0.5 font-mono text-sm text-white/60">
-              @web3icons/react
-            </code>
-            , the other widely-used Web3 icon library for React.
+            compares to other Web3 / cryptocurrency icon libraries.
           </p>
 
           <div className="flex flex-col gap-10">
             {/* Overview */}
             <Section id="overview" title="Overview">
               <p className="mb-4 text-sm text-white/60">
-                Both libraries provide React SVG icon components for Web3
-                projects. They differ in scope and focus:
+                Several libraries provide cryptocurrency and Web3 icons. They
+                differ in scope, API design, and maintenance status:
               </p>
-              <ul className="mb-4 flex flex-col gap-2 text-sm text-white/60">
+              <ul className="mb-4 flex flex-col gap-3 text-sm text-white/60">
                 <li className="flex gap-2">
                   <span className="mt-0.5 shrink-0 text-accent">→</span>
                   <span>
@@ -174,8 +272,7 @@ export default function ComparePage() {
                     </strong>{' '}
                     prioritises a lean, production-ready bundle with
                     TypeScript-first ergonomics, per-category subpath imports,
-                    and utilities like dynamic loaders and chain ID maps that go
-                    beyond simple icon rendering.
+                    and utilities like dynamic loaders and chain ID maps.
                   </span>
                 </li>
                 <li className="flex gap-2">
@@ -185,8 +282,29 @@ export default function ComparePage() {
                       @web3icons/react
                     </strong>{' '}
                     offers a much larger catalogue (2,500+ icons), a raw SVG
-                    package for non-React consumers, and an accompanying Figma
-                    plugin.
+                    package for non-React consumers, and a Figma plugin.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="mt-0.5 shrink-0 text-accent">→</span>
+                  <span>
+                    <strong className="font-medium text-white/80">
+                      cryptocurrency-icons
+                    </strong>{' '}
+                    (spothq) is a framework-agnostic SVG/PNG asset pack with
+                    ~500 coins and 2,700+ GitHub stars, but has been dormant
+                    since 2022 and provides no React components.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="mt-0.5 shrink-0 text-accent">→</span>
+                  <span>
+                    <strong className="font-medium text-white/80">
+                      @ledgerhq/crypto-icons
+                    </strong>{' '}
+                    is a Ledger-ecosystem React component that fetches icons
+                    from their CDN at runtime with multi-tier fallback.
+                    Downloads are primarily driven by internal Ledger projects.
                   </span>
                 </li>
               </ul>
@@ -276,12 +394,7 @@ export default function ComparePage() {
             {/* API Comparison */}
             <Section id="api" title="API Comparison">
               <p className="mb-4 text-sm text-white/60">
-                Both libraries expose named React components with a{' '}
-                <code className="rounded bg-surface px-1 font-mono text-sm">
-                  size
-                </code>{' '}
-                prop and standard SVG passthrough. The main differences appear
-                when you need dynamic loading or metadata.
+                Each library takes a different approach to exposing icons:
               </p>
 
               <h3 className="mb-2 mt-6 text-sm font-semibold text-white/80">
@@ -306,12 +419,30 @@ const name = CHAIN_ID_TO_NAME[1]; // "Ethereum"`}</CodeBlock>
               <h3 className="mb-2 mt-6 text-sm font-semibold text-white/80">
                 @web3icons/react
               </h3>
-              <CodeBlock>{`// Named import
+              <CodeBlock>{`// Named import with variant prop
 import { IconEthereum } from '@web3icons/react';
 
 <IconEthereum size={32} variant="branded" />
 <IconEthereum size={32} variant="mono" />
 <IconEthereum size={32} variant="background" />`}</CodeBlock>
+
+              <h3 className="mb-2 mt-6 text-sm font-semibold text-white/80">
+                cryptocurrency-icons
+              </h3>
+              <CodeBlock>{`// Asset-only — no React components, just file paths
+import ethSvg from 'cryptocurrency-icons/svg/color/eth.svg';
+import btcPng from 'cryptocurrency-icons/128/color/btc.png';
+
+<img src={ethSvg} alt="Ethereum" width={32} height={32} />`}</CodeBlock>
+
+              <h3 className="mb-2 mt-6 text-sm font-semibold text-white/80">
+                @ledgerhq/crypto-icons
+              </h3>
+              <CodeBlock>{`// Single dynamic component — fetches from Ledger CDN
+import { CryptoIcon } from '@ledgerhq/crypto-icons';
+
+<CryptoIcon ledgerId="ethereum" size={32} />
+// Falls back to CoinGecko mapping, then letter icon`}</CodeBlock>
 
               <p className="mt-4 text-sm text-white/60">
                 Key differences:{' '}
@@ -334,7 +465,15 @@ import { IconEthereum } from '@web3icons/react';
                 <code className="rounded bg-surface px-1 font-mono text-sm">
                   variant
                 </code>{' '}
-                prop.
+                prop.{' '}
+                <code className="rounded bg-surface px-1 font-mono text-sm">
+                  cryptocurrency-icons
+                </code>{' '}
+                provides raw files only.{' '}
+                <code className="rounded bg-surface px-1 font-mono text-sm">
+                  @ledgerhq/crypto-icons
+                </code>{' '}
+                loads icons at runtime from a CDN.
               </p>
             </Section>
 
@@ -343,8 +482,7 @@ import { IconEthereum } from '@web3icons/react';
               <div className="overflow-x-auto rounded-lg border border-border">
                 <table className="w-full text-left">
                   <caption className="sr-only">
-                    Feature comparison between react-web3-icons and
-                    @web3icons/react
+                    Feature comparison across Web3 icon libraries
                   </caption>
                   <thead>
                     <tr className="border-b border-border bg-surface">
@@ -354,10 +492,15 @@ import { IconEthereum } from '@web3icons/react';
                       <th className="py-2 pr-4 text-center text-xs font-semibold uppercase tracking-wide text-white/50">
                         react-web3-icons
                       </th>
-                      <th className="py-2 pr-4 text-center text-xs font-semibold uppercase tracking-wide text-white/50">
-                        @web3icons/react
-                      </th>
-                      <th className="hidden py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-white/50 sm:table-cell">
+                      {COMPETITORS.map(c => (
+                        <th
+                          key={c.key}
+                          className="py-2 pr-4 text-center text-xs font-semibold uppercase tracking-wide text-white/50"
+                        >
+                          {c.label}
+                        </th>
+                      ))}
+                      <th className="hidden py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-white/50 xl:table-cell">
                         Note
                       </th>
                     </tr>
@@ -369,10 +512,12 @@ import { IconEthereum } from '@web3icons/react';
                           {row.feature}
                         </td>
                         <td className="py-2.5 pr-4 text-center">{row.ours}</td>
-                        <td className="py-2.5 pr-4 text-center">
-                          {row.theirs}
-                        </td>
-                        <td className="hidden py-2.5 pr-4 text-sm text-white/40 sm:table-cell">
+                        {COMPETITORS.map(c => (
+                          <td key={c.key} className="py-2.5 pr-4 text-center">
+                            {row.competitors[c.key]}
+                          </td>
+                        ))}
+                        <td className="hidden py-2.5 pr-4 text-sm text-white/40 xl:table-cell">
                           {row.note ?? ''}
                         </td>
                       </tr>
@@ -382,14 +527,32 @@ import { IconEthereum } from '@web3icons/react';
               </div>
 
               <p className="mt-4 text-sm text-white/40">
-                Data current as of March 2026.{' '}
+                Data current as of March 2026. Sources:{' '}
                 <a
                   href="https://github.com/0xa3k5/web3icons"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:text-white/60"
                 >
-                  @web3icons/react source
+                  @web3icons/react
+                </a>
+                ,{' '}
+                <a
+                  href="https://github.com/spothq/cryptocurrency-icons"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-white/60"
+                >
+                  cryptocurrency-icons
+                </a>
+                ,{' '}
+                <a
+                  href="https://github.com/LedgerHQ/crypto-icons"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-white/60"
+                >
+                  @ledgerhq/crypto-icons
                 </a>
                 .
               </p>
