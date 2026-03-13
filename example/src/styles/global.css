@@ -8,11 +8,14 @@
     "JetBrains Mono", ui-monospace, "Cascadia Code", "Source Code Pro", "Menlo",
     "Consolas", "DejaVu Sans Mono", monospace;
 
-  --color-surface: #111111;
-  --color-surface-hover: #1a1a1a;
-  --color-border: #222222;
+  --color-bg: #0f0f0f;
+  --color-bg-nav: #121212;
+  --color-surface: #181818;
+  --color-surface-hover: #222222;
+  --color-border: #2a2a2a;
   --color-accent: #6366f1;
   --color-accent-hover: #818cf8;
+  --color-fg: #ffffff;
 }
 
 @layer base {
@@ -22,8 +25,17 @@
 
   html,
   body {
-    @apply bg-[#080808] text-white;
+    @apply bg-bg text-fg;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  html[data-theme="light"] {
+    --color-bg: #ffffff;
+    --color-bg-nav: #f9f9f9;
+    --color-surface: #f3f3f5;
+    --color-surface-hover: #eaeaed;
+    --color-border: #e0e0e3;
+    --color-fg: #111111;
   }
 
   input {
@@ -61,6 +73,13 @@
     }
   }
 
+  .theme-transition {
+    transition:
+      background-color 300ms ease,
+      color 300ms ease,
+      border-color 300ms ease;
+  }
+
   input[type="range"] {
     &::-webkit-slider-thumb {
       @apply h-3.5 w-3.5 appearance-none rounded-full bg-accent;
@@ -70,10 +89,10 @@
       @apply h-3.5 w-3.5 appearance-none rounded-full border-none bg-accent;
     }
     &::-webkit-slider-runnable-track {
-      @apply h-1.5 rounded-full bg-white/10;
+      @apply h-1.5 rounded-full bg-fg/10;
     }
     &::-moz-range-track {
-      @apply h-1.5 rounded-full bg-white/10;
+      @apply h-1.5 rounded-full bg-fg/10;
     }
   }
 }

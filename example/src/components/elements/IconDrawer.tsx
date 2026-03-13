@@ -37,7 +37,7 @@ function CopyButton({ text }: { text: string }) {
       type="button"
       onClick={() => copy(text)}
       aria-label="Copy to clipboard"
-      className="flex min-h-11 min-w-11 items-center justify-center rounded text-white/50 transition-colors hover:bg-white/10 hover:text-white/60"
+      className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg/50 transition-colors hover:bg-fg/10 hover:text-fg/60"
     >
       <CopyToggleIcon copied={copied} />
     </button>
@@ -53,7 +53,7 @@ function ShareButton() {
       onClick={() => copy(window.location.href)}
       aria-label={copied ? 'Link copied' : 'Copy link to this icon'}
       title={copied ? 'Link copied!' : 'Copy link'}
-      className="flex min-h-11 min-w-11 items-center justify-center rounded text-white/50 transition-colors hover:bg-white/10 hover:text-white/60"
+      className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg/50 transition-colors hover:bg-fg/10 hover:text-fg/60"
     >
       {copied ? (
         <svg
@@ -235,21 +235,21 @@ export default function IconDrawer({
     >
       <div
         ref={drawerRef}
-        className={`flex h-full w-full flex-col overflow-y-auto border-l border-border bg-[#0a0a0a] transition-transform duration-300 ease-out sm:max-w-md ${open ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`flex h-full w-full flex-col overflow-y-auto border-l border-border bg-bg transition-transform duration-300 ease-out sm:max-w-md ${open ? 'translate-x-0' : 'translate-x-full'}`}
         role="dialog"
         aria-label={`${base} icon details`}
         aria-modal="true"
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-border px-5 py-4">
-          <h2 className="text-lg font-semibold text-white">{base}</h2>
+          <h2 className="text-lg font-semibold text-fg">{base}</h2>
           <div className="flex items-center gap-0.5">
             <ShareButton />
             <button
               type="button"
               onClick={onClose}
               aria-label="Close drawer"
-              className="rounded p-1 text-white/50 transition-colors hover:bg-white/10 hover:text-white"
+              className="rounded p-1 text-fg/50 transition-colors hover:bg-fg/10 hover:text-fg"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -269,7 +269,7 @@ export default function IconDrawer({
 
         {/* Preview background selector */}
         <div className="flex items-center gap-2 border-b border-border px-5 py-2">
-          <span className="text-xs text-white/50">BG</span>
+          <span className="text-xs text-fg/50">BG</span>
           {(['dark', 'light', 'checker'] as const).map(bg => (
             <button
               key={bg}
@@ -292,7 +292,7 @@ export default function IconDrawer({
               className={`rounded px-2 py-0.5 text-xs font-medium transition-colors ${
                 compareMode
                   ? 'bg-accent/20 text-accent'
-                  : 'bg-white/5 text-white/50 hover:text-white/60'
+                  : 'bg-fg/5 text-fg/50 hover:text-fg/60'
               }`}
             >
               Compare
@@ -319,7 +319,7 @@ export default function IconDrawer({
                       setSelected(v);
                       setCompareMode(false);
                     }}
-                    className="flex flex-col items-center gap-2 rounded-lg p-3 transition-colors hover:bg-white/5"
+                    className="flex flex-col items-center gap-2 rounded-lg p-3 transition-colors hover:bg-fg/5"
                   >
                     <div
                       className="flex items-center justify-center rounded-lg p-3"
@@ -375,7 +375,7 @@ export default function IconDrawer({
 
             {/* Variant selector */}
             <div className="border-b border-border px-5 py-4">
-              <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/50">
+              <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg/50">
                 Variants
               </p>
               <div
@@ -400,7 +400,7 @@ export default function IconDrawer({
                       className={`flex h-12 w-12 items-center justify-center rounded-lg border transition-colors ${
                         isSelected
                           ? 'border-accent bg-accent/10'
-                          : 'border-border bg-surface hover:border-white/20'
+                          : 'border-border bg-surface hover:border-fg/20'
                       }`}
                     >
                       {VariantIcon && <VariantIcon className="text-2xl" />}
@@ -415,10 +415,10 @@ export default function IconDrawer({
         {/* Size control */}
         <div className="border-b border-border px-5 py-4">
           <div className="mb-3 flex items-center justify-between">
-            <p className="text-xs font-medium uppercase tracking-wide text-white/50">
+            <p className="text-xs font-medium uppercase tracking-wide text-fg/50">
               Size
             </p>
-            <span className="font-mono text-xs text-white/50">
+            <span className="font-mono text-xs text-fg/50">
               {previewSize}px
             </span>
           </div>
@@ -429,7 +429,7 @@ export default function IconDrawer({
               max={128}
               value={previewSize}
               onChange={e => setPreviewSize(Number(e.target.value))}
-              className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full bg-white/10 accent-accent"
+              className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full bg-fg/10 accent-accent"
               aria-label="Preview size"
             />
           </div>
@@ -442,7 +442,7 @@ export default function IconDrawer({
                 className={`flex min-h-11 min-w-11 items-center justify-center rounded font-mono text-[10px] transition-colors ${
                   previewSize === size
                     ? 'bg-accent/20 text-accent'
-                    : 'bg-white/5 text-white/50 hover:text-white/60'
+                    : 'bg-fg/5 text-fg/50 hover:text-fg/60'
                 }`}
               >
                 {size}
@@ -453,7 +453,7 @@ export default function IconDrawer({
 
         {/* Color control */}
         <div className="border-b border-border px-5 py-4">
-          <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/50">
+          <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg/50">
             Color
           </p>
           <div className="flex flex-wrap items-center gap-2">
@@ -466,7 +466,7 @@ export default function IconDrawer({
                 className={`h-11 w-11 rounded-full border-2 transition-all ${
                   previewColor === c.value
                     ? 'border-accent scale-110'
-                    : 'border-transparent hover:border-white/20'
+                    : 'border-transparent hover:border-fg/20'
                 }`}
                 style={
                   c.value
@@ -487,7 +487,7 @@ export default function IconDrawer({
                 className="absolute inset-0 h-11 w-11 cursor-pointer opacity-0"
                 aria-label="Custom color"
               />
-              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-dashed border-white/20 text-white/50 transition-colors hover:border-white/40 hover:text-white/60">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-dashed border-fg/20 text-fg/50 transition-colors hover:border-fg/40 hover:text-fg/60">
                 <svg
                   viewBox="0 0 16 16"
                   className="h-3.5 w-3.5"
@@ -515,8 +515,8 @@ export default function IconDrawer({
                   onClick={() => setCodeTab(tab.key)}
                   className={`rounded-t-md px-3 py-1.5 text-xs font-medium transition-colors ${
                     effectiveTab === tab.key
-                      ? 'bg-surface text-white'
-                      : 'text-white/50 hover:text-white/60'
+                      ? 'bg-surface text-fg'
+                      : 'text-fg/50 hover:text-fg/60'
                   }`}
                 >
                   {tab.label}
@@ -525,7 +525,7 @@ export default function IconDrawer({
             </div>
             <CopyButton text={codeContent} />
           </div>
-          <pre className="overflow-x-auto rounded-b-lg rounded-tr-lg border border-border bg-surface p-4 font-mono text-sm text-white/80">
+          <pre className="overflow-x-auto rounded-b-lg rounded-tr-lg border border-border bg-surface p-4 font-mono text-sm text-fg/80">
             <code>{codeContent}</code>
           </pre>
 
@@ -533,7 +533,7 @@ export default function IconDrawer({
           <button
             type="button"
             onClick={() => downloadSvg(selected, iconRef.current)}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-border bg-surface py-2.5 text-sm font-medium text-white/60 transition-colors hover:bg-surface-hover hover:text-white"
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-border bg-surface py-2.5 text-sm font-medium text-fg/60 transition-colors hover:bg-surface-hover hover:text-fg"
           >
             <svg
               viewBox="0 0 16 16"
