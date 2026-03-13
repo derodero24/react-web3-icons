@@ -204,7 +204,7 @@ const COMPARISON_ROWS: {
       'cryptocurrency-icons': <CrossIcon />,
       ledger: <CheckIcon />,
     },
-    note: 'cryptocurrency-icons last updated 2022',
+    note: 'cryptocurrency-icons is no longer maintained',
   },
   {
     feature: 'React Native support',
@@ -225,17 +225,6 @@ const COMPARISON_ROWS: {
         <span className="text-sm text-white/70">~500</span>
       ),
       ledger: <span className="text-sm text-white/70">CDN-based</span>,
-    },
-  },
-  {
-    feature: 'npm weekly downloads',
-    ours: <span className="text-sm text-white/70">~100</span>,
-    competitors: {
-      web3icons: <span className="text-sm text-white/70">~24k</span>,
-      'cryptocurrency-icons': (
-        <span className="text-sm text-white/70">~14k</span>
-      ),
-      ledger: <span className="text-sm text-white/70">~13k</span>,
     },
   },
 ];
@@ -292,8 +281,8 @@ export default function ComparePage() {
                       cryptocurrency-icons
                     </strong>{' '}
                     (spothq) is a framework-agnostic SVG/PNG asset pack with
-                    ~500 coins and 2,700+ GitHub stars, but has been dormant
-                    since 2022 and provides no React components.
+                    ~500 coins, but is no longer actively maintained and
+                    provides no React components.
                   </span>
                 </li>
                 <li className="flex gap-2">
@@ -527,7 +516,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
               </div>
 
               <p className="mt-4 text-sm text-white/40">
-                Data current as of March 2026. Sources:{' '}
+                Sources:{' '}
                 <a
                   href="https://github.com/0xa3k5/web3icons"
                   target="_blank"
@@ -554,7 +543,16 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                 >
                   @ledgerhq/crypto-icons
                 </a>
-                .
+                . See{' '}
+                <a
+                  href="https://npmtrends.com/react-web3-icons-vs-@web3icons/react-vs-cryptocurrency-icons-vs-@ledgerhq/crypto-icons"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-white/60"
+                >
+                  npm trends
+                </a>{' '}
+                for live download stats.
               </p>
             </Section>
           </div>
