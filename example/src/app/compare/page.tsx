@@ -204,7 +204,7 @@ const COMPARISON_ROWS: {
       'cryptocurrency-icons': <CrossIcon />,
       ledger: <CheckIcon />,
     },
-    note: 'cryptocurrency-icons last updated 2022',
+    note: 'cryptocurrency-icons is no longer maintained',
   },
   {
     feature: 'React Native support',
@@ -281,8 +281,8 @@ export default function ComparePage() {
                       cryptocurrency-icons
                     </strong>{' '}
                     (spothq) is a framework-agnostic SVG/PNG asset pack with
-                    ~500 coins, but has been dormant since 2022 and provides no
-                    React components.
+                    ~500 coins, but is no longer actively maintained and
+                    provides no React components.
                   </span>
                 </li>
                 <li className="flex gap-2">
