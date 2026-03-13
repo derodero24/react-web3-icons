@@ -62,7 +62,7 @@ export default function SearchForm({
         ref={inputRef}
         type="search"
         id="search"
-        className="peer h-11 w-full rounded-lg border border-border bg-surface pl-10 pr-12 font-mono text-sm text-white placeholder-white/30 transition-colors focus:border-accent/60 focus:ring-1 focus:ring-accent/60"
+        className="peer h-11 w-full rounded-lg border border-border bg-surface pl-10 pr-12 font-mono text-sm text-fg placeholder-fg/30 transition-colors focus:border-accent/60 focus:ring-1 focus:ring-accent/60"
         placeholder="Search icons..."
         aria-describedby="icon-count"
         value={keyword}
@@ -77,7 +77,7 @@ export default function SearchForm({
         strokeLinejoin="round"
         width="1em"
         height="1em"
-        className="pointer-events-none absolute left-3 text-lg text-white/50 peer-focus:text-accent"
+        className="pointer-events-none absolute left-3 text-lg text-fg/50 peer-focus:text-accent"
         aria-hidden="true"
       >
         <circle cx={11} cy={11} r={8} />
@@ -85,12 +85,12 @@ export default function SearchForm({
       </svg>
       {keyword ? (
         <div className="pointer-events-none absolute right-3 flex items-center gap-2">
-          <span className="font-mono text-xs text-white/50">
+          <span className="font-mono text-xs text-fg/50">
             {resultCount}/{totalCount}
           </span>
         </div>
       ) : (
-        <kbd className="pointer-events-none absolute right-3 rounded border border-border bg-white/5 px-1.5 py-0.5 font-mono text-xs text-white/50 transition-opacity peer-focus:opacity-0">
+        <kbd className="pointer-events-none absolute right-3 rounded border border-border bg-fg/5 px-1.5 py-0.5 font-mono text-xs text-fg/50 transition-opacity peer-focus:opacity-0">
           /
         </kbd>
       )}

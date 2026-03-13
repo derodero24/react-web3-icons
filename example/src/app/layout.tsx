@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <meta name="theme-color" content="#080808" />
+        <meta name="theme-color" content="#0f0f0f" />
       </head>
       <body>
         <Providers>
@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           >
             Skip to icons
           </a>
-          <div className="flex min-h-svh flex-col">
+          <div className="flex min-h-svh flex-col theme-transition">
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />

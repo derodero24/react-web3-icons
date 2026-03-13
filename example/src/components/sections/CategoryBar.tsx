@@ -66,7 +66,7 @@ export default function CategoryBar() {
   return (
     <nav
       aria-label="Icon categories"
-      className="scrollbar-none sticky top-0 z-10 overflow-x-auto border-b border-border bg-[#0a0a0a] px-4 py-2 sm:px-6"
+      className="theme-transition scrollbar-none sticky top-0 z-10 overflow-x-auto border-b border-border bg-bg-nav px-4 py-2 sm:px-6"
     >
       <div ref={containerRef} className="relative flex gap-1">
         {/* Animated indicator */}
@@ -83,8 +83,8 @@ export default function CategoryBar() {
               href={item === 'all' ? '/' : `/?category=${item}`}
               className={`shrink-0 rounded-md px-3 py-1.5 text-sm font-medium capitalize transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                 isActive
-                  ? 'text-white'
-                  : 'text-white/50 hover:bg-white/5 hover:text-white/70'
+                  ? 'text-fg'
+                  : 'text-fg/50 hover:bg-fg/5 hover:text-fg/70'
               }`}
               aria-current={isActive ? 'page' : undefined}
             >
