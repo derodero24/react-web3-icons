@@ -44,6 +44,48 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
+function ShareButton() {
+  const { copied, copy } = useCopyAction();
+
+  return (
+    <button
+      type="button"
+      onClick={() => copy(window.location.href)}
+      aria-label={copied ? 'Link copied' : 'Copy link to this icon'}
+      title={copied ? 'Link copied!' : 'Copy link'}
+      className="flex min-h-11 min-w-11 items-center justify-center rounded text-white/50 transition-colors hover:bg-white/10 hover:text-white/60"
+    >
+      {copied ? (
+        <svg
+          viewBox="0 0 16 16"
+          className="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M2 8 6.5 13 14 4" />
+        </svg>
+      ) : (
+        <svg
+          viewBox="0 0 16 16"
+          className="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3M10 1h5v5M15 1 7 9" />
+        </svg>
+      )}
+    </button>
+  );
+}
+
 function downloadSvg(name: string, container: HTMLElement | null) {
   const svg = container?.querySelector('svg');
   if (!svg) return;
@@ -215,25 +257,28 @@ export default function IconDrawer({
         {/* Header */}
         <div className="flex items-center justify-between border-b border-border px-5 py-4">
           <h2 className="text-lg font-semibold text-white">{base}</h2>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close drawer"
-            className="rounded p-1 text-white/50 transition-colors hover:bg-white/10 hover:text-white"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-5 w-5"
-              aria-hidden="true"
+          <div className="flex items-center gap-0.5">
+            <ShareButton />
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close drawer"
+              className="rounded p-1 text-white/50 transition-colors hover:bg-white/10 hover:text-white"
             >
-              <path d="M18 6 6 18M6 6l12 12" />
-            </svg>
-          </button>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-5 w-5"
+                aria-hidden="true"
+              >
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Preview background selector */}
