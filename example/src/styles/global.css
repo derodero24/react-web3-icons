@@ -73,11 +73,14 @@
     }
   }
 
-  .theme-transition {
+  /* Applied temporarily by ThemeProvider during toggle for synchronized transition */
+  html.theme-changing,
+  html.theme-changing * {
     transition:
       background-color 300ms ease,
       color 300ms ease,
-      border-color 300ms ease;
+      border-color 300ms ease,
+      fill 300ms ease !important;
   }
 
   input[type="range"] {

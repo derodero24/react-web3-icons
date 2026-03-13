@@ -6,7 +6,7 @@ import GitHubButton from '../elements/GitHubButton';
 
 export default function Header() {
   return (
-    <header className="theme-transition flex items-center justify-between border-b border-border px-4 py-3 sm:px-6">
+    <header className="flex items-center justify-between border-b border-border px-4 py-3 sm:px-6">
       <div className="flex items-baseline gap-2">
         <h1 className="text-lg font-semibold tracking-tight sm:text-xl">
           <Link href="/" className="transition-opacity hover:opacity-80">

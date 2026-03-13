@@ -19,7 +19,7 @@ function Section({
 }) {
   return (
     <section id={id} className="scroll-mt-8">
-      <h2 className="mb-4 text-xl font-semibold text-white">{title}</h2>
+      <h2 className="mb-4 text-xl font-semibold text-fg">{title}</h2>
       {children}
     </section>
   );
@@ -47,7 +47,7 @@ function CrossIcon() {
     <svg
       viewBox="0 0 20 20"
       fill="currentColor"
-      className="mx-auto h-4 w-4 text-white/30"
+      className="mx-auto h-4 w-4 text-fg/30"
       aria-label="No"
     >
       <path
@@ -218,13 +218,11 @@ const COMPARISON_ROWS: {
   },
   {
     feature: 'Icon count',
-    ours: <span className="text-sm text-white/70">~250</span>,
+    ours: <span className="text-sm text-fg/70">~250</span>,
     competitors: {
-      web3icons: <span className="text-sm text-white/70">2,500+</span>,
-      'cryptocurrency-icons': (
-        <span className="text-sm text-white/70">~500</span>
-      ),
-      ledger: <span className="text-sm text-white/70">CDN-based</span>,
+      web3icons: <span className="text-sm text-fg/70">2,500+</span>,
+      'cryptocurrency-icons': <span className="text-sm text-fg/70">~500</span>,
+      ledger: <span className="text-sm text-fg/70">CDN-based</span>,
     },
   },
 ];
@@ -234,12 +232,12 @@ export default function ComparePage() {
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="lg:grid lg:grid-cols-[1fr_200px] lg:gap-8">
         <div>
-          <h1 className="mb-2 text-3xl font-bold text-white">
+          <h1 className="mb-2 text-3xl font-bold text-fg">
             Library Comparison
           </h1>
-          <p className="mb-10 text-white/50">
+          <p className="mb-10 text-fg/50">
             How{' '}
-            <code className="rounded bg-surface px-1 py-0.5 font-mono text-sm text-white/60">
+            <code className="rounded bg-surface px-1 py-0.5 font-mono text-sm text-fg/60">
               react-web3-icons
             </code>{' '}
             compares to other Web3 / cryptocurrency icon libraries.
@@ -248,15 +246,15 @@ export default function ComparePage() {
           <div className="flex flex-col gap-10">
             {/* Overview */}
             <Section id="overview" title="Overview">
-              <p className="mb-4 text-sm text-white/60">
+              <p className="mb-4 text-sm text-fg/60">
                 Several libraries provide cryptocurrency and Web3 icons. They
                 differ in scope, API design, and maintenance status:
               </p>
-              <ul className="mb-4 flex flex-col gap-3 text-sm text-white/60">
+              <ul className="mb-4 flex flex-col gap-3 text-sm text-fg/60">
                 <li className="flex gap-2">
                   <span className="mt-0.5 shrink-0 text-accent">→</span>
                   <span>
-                    <strong className="font-medium text-white/80">
+                    <strong className="font-medium text-fg/80">
                       react-web3-icons
                     </strong>{' '}
                     prioritises a lean, production-ready bundle with
@@ -267,7 +265,7 @@ export default function ComparePage() {
                 <li className="flex gap-2">
                   <span className="mt-0.5 shrink-0 text-accent">→</span>
                   <span>
-                    <strong className="font-medium text-white/80">
+                    <strong className="font-medium text-fg/80">
                       @web3icons/react
                     </strong>{' '}
                     offers a much larger catalogue (2,500+ icons), a raw SVG
@@ -277,7 +275,7 @@ export default function ComparePage() {
                 <li className="flex gap-2">
                   <span className="mt-0.5 shrink-0 text-accent">→</span>
                   <span>
-                    <strong className="font-medium text-white/80">
+                    <strong className="font-medium text-fg/80">
                       cryptocurrency-icons
                     </strong>{' '}
                     (spothq) is a framework-agnostic SVG/PNG asset pack with
@@ -288,7 +286,7 @@ export default function ComparePage() {
                 <li className="flex gap-2">
                   <span className="mt-0.5 shrink-0 text-accent">→</span>
                   <span>
-                    <strong className="font-medium text-white/80">
+                    <strong className="font-medium text-fg/80">
                       @ledgerhq/crypto-icons
                     </strong>{' '}
                     is a Ledger-ecosystem React component that fetches icons
@@ -301,7 +299,7 @@ export default function ComparePage() {
 
             {/* Bundle Size */}
             <Section id="bundle-size" title="Bundle Size">
-              <p className="mb-4 text-sm text-white/60">
+              <p className="mb-4 text-sm text-fg/60">
                 Because both libraries ship ES modules, your bundler tree-shakes
                 unused icons automatically. The numbers below reflect
                 gzip-compressed size for a handful of representative import
@@ -315,13 +313,13 @@ export default function ComparePage() {
                   </caption>
                   <thead>
                     <tr className="border-b border-border bg-surface">
-                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-white/50">
+                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-fg/50">
                         Import
                       </th>
-                      <th className="py-2 pr-4 text-right text-xs font-semibold uppercase tracking-wide text-white/50">
+                      <th className="py-2 pr-4 text-right text-xs font-semibold uppercase tracking-wide text-fg/50">
                         Raw
                       </th>
-                      <th className="py-2 pr-4 text-right text-xs font-semibold uppercase tracking-wide text-white/50">
+                      <th className="py-2 pr-4 text-right text-xs font-semibold uppercase tracking-wide text-fg/50">
                         Gzip
                       </th>
                     </tr>
@@ -355,13 +353,13 @@ export default function ComparePage() {
                       },
                     ].map(row => (
                       <tr key={row.label}>
-                        <td className="py-2 pr-4 pl-3 font-mono text-sm text-white/70">
+                        <td className="py-2 pr-4 pl-3 font-mono text-sm text-fg/70">
                           {row.label}
                         </td>
-                        <td className="py-2 pr-4 text-right font-mono text-sm text-white/50">
+                        <td className="py-2 pr-4 text-right font-mono text-sm text-fg/50">
                           {row.raw}
                         </td>
-                        <td className="py-2 pr-4 text-right font-mono text-sm text-white/50">
+                        <td className="py-2 pr-4 text-right font-mono text-sm text-fg/50">
                           {row.gzip}
                         </td>
                       </tr>
@@ -370,7 +368,7 @@ export default function ComparePage() {
                 </table>
               </div>
 
-              <p className="text-sm text-white/40">
+              <p className="text-sm text-fg/40">
                 Measured with{' '}
                 <code className="rounded bg-surface px-1 font-mono text-xs">
                   size-limit
@@ -382,11 +380,11 @@ export default function ComparePage() {
 
             {/* API Comparison */}
             <Section id="api" title="API Comparison">
-              <p className="mb-4 text-sm text-white/60">
+              <p className="mb-4 text-sm text-fg/60">
                 Each library takes a different approach to exposing icons:
               </p>
 
-              <h3 className="mb-2 mt-6 text-sm font-semibold text-white/80">
+              <h3 className="mb-2 mt-6 text-sm font-semibold text-fg/80">
                 react-web3-icons
               </h3>
               <CodeBlock>{`// Named import — fully tree-shakeable
@@ -405,7 +403,7 @@ import { ChainIcon } from 'react-web3-icons/dynamic';
 import { CHAIN_ID_TO_NAME } from 'react-web3-icons/meta';
 const name = CHAIN_ID_TO_NAME[1]; // "Ethereum"`}</CodeBlock>
 
-              <h3 className="mb-2 mt-6 text-sm font-semibold text-white/80">
+              <h3 className="mb-2 mt-6 text-sm font-semibold text-fg/80">
                 @web3icons/react
               </h3>
               <CodeBlock>{`// Named import with variant prop
@@ -415,7 +413,7 @@ import { IconEthereum } from '@web3icons/react';
 <IconEthereum size={32} variant="mono" />
 <IconEthereum size={32} variant="background" />`}</CodeBlock>
 
-              <h3 className="mb-2 mt-6 text-sm font-semibold text-white/80">
+              <h3 className="mb-2 mt-6 text-sm font-semibold text-fg/80">
                 cryptocurrency-icons
               </h3>
               <CodeBlock>{`// Asset-only — no React components, just file paths
@@ -424,7 +422,7 @@ import btcPng from 'cryptocurrency-icons/128/color/btc.png';
 
 <img src={ethSvg} alt="Ethereum" width={32} height={32} />`}</CodeBlock>
 
-              <h3 className="mb-2 mt-6 text-sm font-semibold text-white/80">
+              <h3 className="mb-2 mt-6 text-sm font-semibold text-fg/80">
                 @ledgerhq/crypto-icons
               </h3>
               <CodeBlock>{`// Single dynamic component — fetches from Ledger CDN
@@ -433,7 +431,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
 <CryptoIcon ledgerId="ethereum" size={32} />
 // Falls back to CoinGecko mapping, then letter icon`}</CodeBlock>
 
-              <p className="mt-4 text-sm text-white/60">
+              <p className="mt-4 text-sm text-fg/60">
                 Key differences:{' '}
                 <code className="rounded bg-surface px-1 font-mono text-sm">
                   react-web3-icons
@@ -475,21 +473,21 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                   </caption>
                   <thead>
                     <tr className="border-b border-border bg-surface">
-                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-white/50">
+                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-fg/50">
                         Feature
                       </th>
-                      <th className="py-2 pr-4 text-center text-xs font-semibold uppercase tracking-wide text-white/50">
+                      <th className="py-2 pr-4 text-center text-xs font-semibold uppercase tracking-wide text-fg/50">
                         react-web3-icons
                       </th>
                       {COMPETITORS.map(c => (
                         <th
                           key={c.key}
-                          className="py-2 pr-4 text-center text-xs font-semibold uppercase tracking-wide text-white/50"
+                          className="py-2 pr-4 text-center text-xs font-semibold uppercase tracking-wide text-fg/50"
                         >
                           {c.label}
                         </th>
                       ))}
-                      <th className="hidden py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-white/50 xl:table-cell">
+                      <th className="hidden py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-fg/50 xl:table-cell">
                         Note
                       </th>
                     </tr>
@@ -497,7 +495,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                   <tbody className="divide-y divide-border">
                     {COMPARISON_ROWS.map(row => (
                       <tr key={row.feature}>
-                        <td className="py-2.5 pr-4 pl-3 text-sm text-white/70">
+                        <td className="py-2.5 pr-4 pl-3 text-sm text-fg/70">
                           {row.feature}
                         </td>
                         <td className="py-2.5 pr-4 text-center">{row.ours}</td>
@@ -506,7 +504,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                             {row.competitors[c.key]}
                           </td>
                         ))}
-                        <td className="hidden py-2.5 pr-4 text-sm text-white/40 xl:table-cell">
+                        <td className="hidden py-2.5 pr-4 text-sm text-fg/40 xl:table-cell">
                           {row.note ?? ''}
                         </td>
                       </tr>
@@ -515,13 +513,13 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                 </table>
               </div>
 
-              <p className="mt-4 text-sm text-white/40">
+              <p className="mt-4 text-sm text-fg/40">
                 Sources:{' '}
                 <a
                   href="https://github.com/0xa3k5/web3icons"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-white/60"
+                  className="underline hover:text-fg/60"
                 >
                   @web3icons/react
                 </a>
@@ -530,7 +528,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                   href="https://github.com/spothq/cryptocurrency-icons"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-white/60"
+                  className="underline hover:text-fg/60"
                 >
                   cryptocurrency-icons
                 </a>
@@ -539,7 +537,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                   href="https://github.com/LedgerHQ/crypto-icons"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-white/60"
+                  className="underline hover:text-fg/60"
                 >
                   @ledgerhq/crypto-icons
                 </a>
@@ -548,7 +546,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                   href="https://npmtrends.com/react-web3-icons-vs-@web3icons/react-vs-cryptocurrency-icons-vs-@ledgerhq/crypto-icons"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-white/60"
+                  className="underline hover:text-fg/60"
                 >
                   npm trends
                 </a>{' '}
@@ -561,7 +559,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
         {/* Sticky sidebar TOC (desktop only) */}
         <aside className="hidden lg:block">
           <nav aria-label="Table of contents" className="sticky top-8">
-            <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/50">
+            <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg/50">
               On this page
             </p>
             <ul className="flex flex-col gap-1.5 border-l border-border pl-3">
@@ -569,7 +567,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
-                    className="text-sm text-white/50 transition-colors hover:text-white/80"
+                    className="text-sm text-fg/50 transition-colors hover:text-fg/80"
                   >
                     {item.label}
                   </a>

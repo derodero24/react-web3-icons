@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           >
             Skip to icons
           </a>
-          <div className="flex min-h-svh flex-col theme-transition">
+          <div className="flex min-h-svh flex-col">
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />

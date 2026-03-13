@@ -6,6 +6,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 
@@ -25,6 +26,7 @@ const STORAGE_KEY = 'rw3i-theme';
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark');
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Restore saved theme on mount
   useEffect(() => {
@@ -46,7 +48,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [theme]);
 
   const toggleTheme = useCallback(() => {
+    const root = document.documentElement;
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    root.classList.add('theme-changing');
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+    timeoutRef.current = setTimeout(() => {
+      root.classList.remove('theme-changing');
+      timeoutRef.current = null;
+    }, 300);
   }, []);
 
   return (
