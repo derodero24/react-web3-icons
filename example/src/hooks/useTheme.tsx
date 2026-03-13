@@ -31,16 +31,16 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === 'light' || saved === 'dark') {
       setTheme(saved);
-      document.documentElement.dataset.theme = saved;
+      document.documentElement.dataset['theme'] = saved;
     }
   }, []);
 
   // Apply data-theme attribute when theme changes
   useEffect(() => {
     if (theme === 'light') {
-      document.documentElement.dataset.theme = 'light';
+      document.documentElement.dataset['theme'] = 'light';
     } else {
-      delete document.documentElement.dataset.theme;
+      delete document.documentElement.dataset['theme'];
     }
     localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
