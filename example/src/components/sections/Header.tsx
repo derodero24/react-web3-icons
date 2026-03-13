@@ -22,6 +22,12 @@ export default function Header() {
         >
           Docs
         </Link>
+        <Link
+          href="/compare"
+          className="rounded text-sm font-medium text-white/60 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          Compare
+        </Link>
         <GitHubButton className="cursor-pointer text-2xl text-white/60 transition-colors hover:text-white focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" />
       </nav>
     </header>

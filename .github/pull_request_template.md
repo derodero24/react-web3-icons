@@ -29,3 +29,4 @@
 - [ ] Changeset included (if `src/` changed): `pnpm changeset`
 - [ ] Official icon source and usage context documented above (or N/A)
 - [ ] Default icon geometry/colors match official asset (or N/A)
+- [ ] Compare page updated if library features changed (`example/src/app/compare/page.tsx`, or N/A)
