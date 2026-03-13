@@ -1,19 +1,17 @@
 'use client';
 
 import { parseAsString, useQueryState } from 'nuqs';
+import type { CSSProperties } from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import * as iconModules from 'react-web3-icons';
 import { useIconFilter } from '../../hooks/useIconFilter';
 import type { IconComponent, Variant } from '../../types/icons';
-import { bgStyle, type PreviewBg } from '../../utils/bgStyle';
 import { groupIcons } from '../../utils/groupIcons';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 import IconCard from '../elements/IconCard';
 import IconDrawer from '../elements/IconDrawer';
 import SearchForm from '../elements/SearchForm';
-
-const BG_OPTIONS: PreviewBg[] = ['dark', 'light', 'checker'];
 
 const VARIANT_LABELS: Record<Variant, string> = {
   all: 'All',
@@ -24,6 +22,8 @@ const VARIANT_LABELS: Record<Variant, string> = {
 const VARIANTS: Variant[] = ['all', 'colored', 'mono'];
 
 const PAGE_SIZE = 120;
+
+type GridBg = 'dark' | 'light' | 'custom';
 
 export default function IconTable() {
   const [rawCategory] = useQueryState(
@@ -39,7 +39,8 @@ export default function IconTable() {
     parseAsString.withDefault('').withOptions({ history: 'push' }),
   );
   const [variant, setVariant] = useState<Variant>('all');
-  const [previewBg, setPreviewBg] = useState<PreviewBg>('dark');
+  const [gridBg, setGridBg] = useState<GridBg>('dark');
+  const [customColor, setCustomColor] = useState('#ffffff');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const validCategory = Object.hasOwn(REACT_WEB3_ICONS, rawCategory)
@@ -150,6 +151,15 @@ export default function IconTable() {
     }
   }, [linkedIcon, setLinkedIcon]);
 
+  // Grid background styling
+  const isLightMode = gridBg !== 'dark';
+  const gridPanelStyle: CSSProperties | undefined =
+    gridBg === 'light'
+      ? { backgroundColor: '#ffffff' }
+      : gridBg === 'custom'
+        ? { backgroundColor: customColor }
+        : undefined;
+
   return (
     <section
       id="icon-grid"
@@ -187,22 +197,75 @@ export default function IconTable() {
             ))}
           </fieldset>
 
-          <fieldset className="flex items-center gap-1.5 rounded-lg border border-border bg-surface px-2.5 py-2">
-            <legend className="sr-only">Preview background</legend>
-            <span className="text-xs text-white/50">BG</span>
-            {BG_OPTIONS.map(bg => (
-              <button
-                key={bg}
-                type="button"
-                onClick={() => setPreviewBg(bg)}
-                className={`h-5 w-5 rounded border transition-colors ${
-                  previewBg === bg ? 'border-accent' : 'border-border'
-                }`}
-                style={bgStyle(bg)}
-                aria-label={`${bg} background`}
-                aria-pressed={previewBg === bg}
+          <fieldset className="flex items-center gap-1 rounded-lg border border-border bg-surface px-1.5 py-1">
+            <legend className="sr-only">Grid background</legend>
+            {/* Dark button */}
+            <button
+              type="button"
+              onClick={() => setGridBg('dark')}
+              aria-label="Dark background"
+              aria-pressed={gridBg === 'dark'}
+              className={`flex h-8 w-8 items-center justify-center rounded transition-colors ${
+                gridBg === 'dark'
+                  ? 'bg-white/10 text-white'
+                  : 'text-white/40 hover:text-white/60'
+              }`}
+            >
+              <svg
+                viewBox="0 0 16 16"
+                className="h-4 w-4"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5a5.5 5.5 0 0 1 0-11v11Z" />
+              </svg>
+            </button>
+            {/* Light button */}
+            <button
+              type="button"
+              onClick={() => setGridBg('light')}
+              aria-label="Light background"
+              aria-pressed={gridBg === 'light'}
+              className={`flex h-8 w-8 items-center justify-center rounded transition-colors ${
+                gridBg === 'light'
+                  ? 'bg-white/10 text-white'
+                  : 'text-white/40 hover:text-white/60'
+              }`}
+            >
+              <svg
+                viewBox="0 0 16 16"
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                aria-hidden="true"
+              >
+                <circle cx={8} cy={8} r={3.5} />
+                <path d="M8 1.5v1M8 13.5v1M1.5 8h1M13.5 8h1M3.4 3.4l.7.7M11.9 11.9l.7.7M3.4 12.6l.7-.7M11.9 4.1l.7-.7" />
+              </svg>
+            </button>
+            {/* Custom color picker */}
+            <label
+              className={`relative flex h-8 w-8 cursor-pointer items-center justify-center rounded transition-colors ${
+                gridBg === 'custom' ? 'ring-2 ring-accent ring-inset' : ''
+              }`}
+            >
+              <input
+                type="color"
+                value={customColor}
+                onChange={e => {
+                  setCustomColor(e.target.value);
+                  setGridBg('custom');
+                }}
+                className="absolute inset-0 cursor-pointer opacity-0"
+                aria-label="Custom background color"
               />
-            ))}
+              <span
+                className="h-5 w-5 rounded-full border border-white/20"
+                style={{ backgroundColor: customColor }}
+              />
+            </label>
           </fieldset>
         </div>
       </div>
@@ -252,10 +315,13 @@ export default function IconTable() {
           <p className="text-sm">Try a different search term</p>
         </div>
       ) : (
-        <>
+        <div
+          className={`mt-6 rounded-xl transition-colors duration-200 ${isLightMode ? 'p-2' : ''}`}
+          style={gridPanelStyle}
+        >
           <ul
             key={`${validCategory}-${variant}`}
-            className="mt-6 grid list-none grid-cols-[repeat(auto-fill,minmax(88px,1fr))] gap-0 sm:grid-cols-[repeat(auto-fill,minmax(112px,1fr))]"
+            className="grid list-none grid-cols-[repeat(auto-fill,minmax(88px,1fr))] gap-0 sm:grid-cols-[repeat(auto-fill,minmax(112px,1fr))]"
           >
             {visibleGroups.map(group => (
               <li key={group.base} data-icon-name={group.base} className="p-2">
@@ -264,7 +330,7 @@ export default function IconTable() {
                   activeVariant={group.activeVariant}
                   components={group.components}
                   highlighted={linkedIcon === group.base}
-                  previewBg={previewBg}
+                  lightMode={isLightMode}
                   onClick={() => handleOpenDrawer(group.base)}
                 />
               </li>
@@ -279,7 +345,7 @@ export default function IconTable() {
               <div className="h-6 w-6 animate-spin rounded-full border-2 border-white/10 border-t-accent" />
             </div>
           )}
-        </>
+        </div>
       )}
 
       {/* Detail drawer */}
