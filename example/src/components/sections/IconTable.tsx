@@ -6,11 +6,14 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import * as iconModules from 'react-web3-icons';
 import { useIconFilter } from '../../hooks/useIconFilter';
 import type { IconComponent, Variant } from '../../types/icons';
+import { bgStyle, type PreviewBg } from '../../utils/bgStyle';
 import { groupIcons } from '../../utils/groupIcons';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 import IconCard from '../elements/IconCard';
 import IconDrawer from '../elements/IconDrawer';
 import SearchForm from '../elements/SearchForm';
+
+const BG_OPTIONS: PreviewBg[] = ['dark', 'light', 'checker'];
 
 const VARIANT_LABELS: Record<Variant, string> = {
   all: 'All',
@@ -36,6 +39,7 @@ export default function IconTable() {
     parseAsString.withDefault('').withOptions({ history: 'push' }),
   );
   const [variant, setVariant] = useState<Variant>('all');
+  const [previewBg, setPreviewBg] = useState<PreviewBg>('dark');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const validCategory = Object.hasOwn(REACT_WEB3_ICONS, rawCategory)
@@ -163,24 +167,44 @@ export default function IconTable() {
           />
         </div>
 
-        <fieldset className="flex shrink-0 overflow-hidden rounded-lg border border-border bg-surface">
-          <legend className="sr-only">Icon variant filter</legend>
-          {VARIANTS.map(v => (
-            <button
-              key={v}
-              type="button"
-              onClick={() => setVariant(v)}
-              aria-pressed={variant === v}
-              className={`h-11 px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent ${
-                variant === v
-                  ? 'bg-white/10 text-white'
-                  : 'text-white/50 hover:bg-white/5 hover:text-white/60'
-              }`}
-            >
-              {VARIANT_LABELS[v]}
-            </button>
-          ))}
-        </fieldset>
+        <div className="flex shrink-0 items-center gap-2">
+          <fieldset className="flex overflow-hidden rounded-lg border border-border bg-surface">
+            <legend className="sr-only">Icon variant filter</legend>
+            {VARIANTS.map(v => (
+              <button
+                key={v}
+                type="button"
+                onClick={() => setVariant(v)}
+                aria-pressed={variant === v}
+                className={`h-11 px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent ${
+                  variant === v
+                    ? 'bg-white/10 text-white'
+                    : 'text-white/50 hover:bg-white/5 hover:text-white/60'
+                }`}
+              >
+                {VARIANT_LABELS[v]}
+              </button>
+            ))}
+          </fieldset>
+
+          <fieldset className="flex items-center gap-1.5 rounded-lg border border-border bg-surface px-2.5 py-2">
+            <legend className="sr-only">Preview background</legend>
+            <span className="text-xs text-white/50">BG</span>
+            {BG_OPTIONS.map(bg => (
+              <button
+                key={bg}
+                type="button"
+                onClick={() => setPreviewBg(bg)}
+                className={`h-5 w-5 rounded border transition-colors ${
+                  previewBg === bg ? 'border-accent' : 'border-border'
+                }`}
+                style={bgStyle(bg)}
+                aria-label={`${bg} background`}
+                aria-pressed={previewBg === bg}
+              />
+            ))}
+          </fieldset>
+        </div>
       </div>
 
       <p id="icon-count" className="sr-only" aria-live="polite">
@@ -240,6 +264,7 @@ export default function IconTable() {
                   activeVariant={group.activeVariant}
                   components={group.components}
                   highlighted={linkedIcon === group.base}
+                  previewBg={previewBg}
                   onClick={() => handleOpenDrawer(group.base)}
                 />
               </li>

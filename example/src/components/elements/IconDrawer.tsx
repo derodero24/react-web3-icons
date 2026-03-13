@@ -1,10 +1,10 @@
 'use client';
 
-import type { CSSProperties } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useCopyAction } from '../../hooks/useCopyAction';
 import type { IconComponent } from '../../types/icons';
+import { bgStyle, type PreviewBg } from '../../utils/bgStyle';
 import CopyToggleIcon from './CopyToggleIcon';
 
 interface Props {
@@ -102,18 +102,6 @@ function downloadSvg(name: string, container: HTMLElement | null) {
   URL.revokeObjectURL(url);
 }
 
-/** Background style helper used in both normal and compare previews */
-function bgStyle(bg: 'dark' | 'light' | 'checker'): CSSProperties {
-  if (bg === 'light') return { backgroundColor: '#fff' };
-  if (bg === 'checker')
-    return {
-      backgroundImage:
-        'repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%)',
-      backgroundSize: '8px 8px',
-    };
-  return { backgroundColor: '#111' };
-}
-
 export default function IconDrawer({
   base,
   variants,
@@ -128,9 +116,7 @@ export default function IconDrawer({
   const [previewSize, setPreviewSize] = useState(64);
   const [previewColor, setPreviewColor] = useState('');
   const [compareMode, setCompareMode] = useState(false);
-  const [previewBg, setPreviewBg] = useState<'dark' | 'light' | 'checker'>(
-    'dark',
-  );
+  const [previewBg, setPreviewBg] = useState<PreviewBg>('dark');
   const [svgMarkup, setSvgMarkup] = useState('');
   const [open, setOpen] = useState(false);
   const iconRef = useRef<HTMLDivElement>(null);

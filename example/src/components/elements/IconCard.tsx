@@ -1,12 +1,14 @@
 'use client';
 
 import type { IconComponent } from '../../types/icons';
+import { bgStyle, type PreviewBg } from '../../utils/bgStyle';
 
 interface Props {
   base: string;
   activeVariant: string;
   components: Record<string, IconComponent>;
   highlighted?: boolean;
+  previewBg?: PreviewBg;
   onClick: () => void;
 }
 
@@ -15,9 +17,11 @@ export default function IconCard({
   activeVariant,
   components,
   highlighted = false,
+  previewBg = 'dark',
   onClick,
 }: Props) {
   const Icon = components[activeVariant] as IconComponent | undefined;
+  const showBg = previewBg !== 'dark';
 
   return (
     <button
@@ -28,7 +32,14 @@ export default function IconCard({
         highlighted ? 'border-accent bg-accent/10' : 'border-border bg-surface'
       }`}
     >
-      {Icon && <Icon className="text-4xl" />}
+      {Icon && (
+        <div
+          className={`flex items-center justify-center ${showBg ? 'rounded p-1' : ''}`}
+          style={showBg ? bgStyle(previewBg) : undefined}
+        >
+          <Icon className="text-4xl" />
+        </div>
+      )}
       <p className="w-full truncate text-center font-mono text-[11px] text-white/50">
         {base}
       </p>
