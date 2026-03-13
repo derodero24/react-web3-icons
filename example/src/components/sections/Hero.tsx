@@ -30,7 +30,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="theme-transition border-b border-border px-4 py-10 sm:px-6 sm:py-14">
+    <section className="border-b border-border px-4 py-10 sm:px-6 sm:py-14">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-2xl font-bold tracking-tight text-fg sm:text-3xl">
           {ICON_COUNT}+ Web3 icons for React

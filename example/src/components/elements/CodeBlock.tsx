@@ -19,14 +19,14 @@ export default function CodeBlock({
       className="group relative"
       {...(label ? { 'aria-label': label } : {})}
     >
-      <pre className="overflow-x-auto rounded-lg border border-border bg-surface p-4 pr-12 font-mono text-sm text-white/80">
+      <pre className="overflow-x-auto rounded-lg border border-border bg-surface p-4 pr-12 font-mono text-sm text-fg/80">
         <code>{children}</code>
       </pre>
       <button
         type="button"
         onClick={() => copy(children)}
         aria-label="Copy code"
-        className="absolute right-2 top-2 rounded p-1.5 text-white/20 opacity-0 transition-all hover:bg-white/10 hover:text-white/60 focus-visible:opacity-100 group-hover:opacity-100"
+        className="absolute right-2 top-2 rounded p-1.5 text-fg/20 opacity-0 transition-all hover:bg-fg/10 hover:text-fg/60 focus-visible:opacity-100 group-hover:opacity-100"
       >
         <CopyToggleIcon copied={copied} />
       </button>

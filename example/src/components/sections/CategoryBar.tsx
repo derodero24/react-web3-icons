@@ -66,7 +66,7 @@ export default function CategoryBar() {
   return (
     <nav
       aria-label="Icon categories"
-      className="theme-transition scrollbar-none sticky top-0 z-10 overflow-x-auto border-b border-border bg-bg-nav px-4 py-2 sm:px-6"
+      className="scrollbar-none sticky top-0 z-10 overflow-x-auto border-b border-border bg-bg-nav px-4 py-2 sm:px-6"
     >
       <div ref={containerRef} className="relative flex gap-1">
         {/* Animated indicator */}

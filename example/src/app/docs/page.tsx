@@ -18,7 +18,7 @@ function Section({
 }) {
   return (
     <section id={id} className="scroll-mt-8">
-      <h2 className="mb-4 text-xl font-semibold text-white">{title}</h2>
+      <h2 className="mb-4 text-xl font-semibold text-fg">{title}</h2>
       {children}
     </section>
   );
@@ -40,10 +40,10 @@ export default function DocsPage() {
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="lg:grid lg:grid-cols-[1fr_200px] lg:gap-8">
         <div>
-          <h1 className="mb-2 text-3xl font-bold text-white">API Reference</h1>
-          <p className="mb-10 text-white/50">
+          <h1 className="mb-2 text-3xl font-bold text-fg">API Reference</h1>
+          <p className="mb-10 text-fg/50">
             Usage guide and complete API reference for{' '}
-            <code className="rounded bg-surface px-1 py-0.5 font-mono text-sm text-white/60">
+            <code className="rounded bg-surface px-1 py-0.5 font-mono text-sm text-fg/60">
               react-web3-icons
             </code>
             .
@@ -52,7 +52,7 @@ export default function DocsPage() {
           <div className="flex flex-col gap-10">
             {/* Getting Started */}
             <Section id="getting-started" title="Getting Started">
-              <p className="mb-3 text-sm text-white/60">
+              <p className="mb-3 text-sm text-fg/60">
                 Install via your package manager:
               </p>
               <CodeBlock>{`npm install react-web3-icons
@@ -60,7 +60,7 @@ export default function DocsPage() {
 pnpm add react-web3-icons
 # or
 yarn add react-web3-icons`}</CodeBlock>
-              <p className="mt-4 mb-3 text-sm text-white/60">
+              <p className="mt-4 mb-3 text-sm text-fg/60">
                 Import and use any icon component:
               </p>
               <CodeBlock>{`import { Ethereum, BitcoinCircle, MetaMask } from 'react-web3-icons';
@@ -78,7 +78,7 @@ export function MyComponent() {
 
             {/* Icon Props */}
             <Section id="icon-props" title="Icon Props">
-              <p className="mb-4 text-sm text-white/60">
+              <p className="mb-4 text-sm text-fg/60">
                 All icon components accept the following props in addition to
                 standard SVG attributes.
               </p>
@@ -87,16 +87,16 @@ export function MyComponent() {
                   <caption className="sr-only">Icon component props</caption>
                   <thead>
                     <tr className="border-b border-border bg-surface">
-                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-white/50">
+                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-fg/50">
                         Prop
                       </th>
-                      <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-white/50">
+                      <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-fg/50">
                         Type
                       </th>
-                      <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-white/50">
+                      <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-fg/50">
                         Default
                       </th>
-                      <th className="py-2 text-xs font-semibold uppercase tracking-wide text-white/50">
+                      <th className="py-2 text-xs font-semibold uppercase tracking-wide text-fg/50">
                         Description
                       </th>
                     </tr>
@@ -106,13 +106,13 @@ export function MyComponent() {
                       <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                         size
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/60">
                         {'string | number'}
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/50">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/50">
                         {'"1em"'}
                       </td>
-                      <td className="py-2 align-top text-sm text-white/60">
+                      <td className="py-2 align-top text-sm text-fg/60">
                         Sets both{' '}
                         <code className="rounded bg-surface px-1">width</code>{' '}
                         and{' '}
@@ -125,13 +125,13 @@ export function MyComponent() {
                       <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                         className
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/60">
                         string
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/50">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/50">
                         —
                       </td>
-                      <td className="py-2 align-top text-sm text-white/60">
+                      <td className="py-2 align-top text-sm text-fg/60">
                         CSS class applied to the root{' '}
                         <code className="rounded bg-surface px-1">
                           {'<svg>'}
@@ -149,13 +149,13 @@ export function MyComponent() {
                       <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                         title
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/60">
                         string
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/50">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/50">
                         —
                       </td>
-                      <td className="py-2 align-top text-sm text-white/60">
+                      <td className="py-2 align-top text-sm text-fg/60">
                         Accessible label rendered as a{' '}
                         <code className="rounded bg-surface px-1">
                           {'<title>'}
@@ -171,13 +171,13 @@ export function MyComponent() {
                       <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                         titleId
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/60">
                         string
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/50">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/50">
                         —
                       </td>
-                      <td className="py-2 align-top text-sm text-white/60">
+                      <td className="py-2 align-top text-sm text-fg/60">
                         Optional ID for the{' '}
                         <code className="rounded bg-surface px-1">
                           {'<title>'}
@@ -197,13 +197,13 @@ export function MyComponent() {
                       <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                         aria-hidden
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/60">
                         boolean
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/50">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/50">
                         true
                       </td>
-                      <td className="py-2 align-top text-sm text-white/60">
+                      <td className="py-2 align-top text-sm text-fg/60">
                         Defaults to{' '}
                         <code className="rounded bg-surface px-1">true</code>{' '}
                         (decorative). Set to{' '}
@@ -217,13 +217,13 @@ export function MyComponent() {
                       <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                         style
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/60">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/60">
                         CSSProperties
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-white/50">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/50">
                         —
                       </td>
-                      <td className="py-2 align-top text-sm text-white/60">
+                      <td className="py-2 align-top text-sm text-fg/60">
                         Inline styles merged (shallow spread) on top of any{' '}
                         <code className="rounded bg-surface px-1">
                           IconContext
@@ -238,7 +238,7 @@ export function MyComponent() {
 
             {/* IconContext */}
             <Section id="icon-context" title="IconContext">
-              <p className="mb-3 text-sm text-white/60">
+              <p className="mb-3 text-sm text-fg/60">
                 Wrap a subtree with{' '}
                 <code className="rounded bg-surface px-1 font-mono text-sm">
                   IconContext.Provider
@@ -253,7 +253,7 @@ export function MyComponent() {
   <Ethereum />      {/* size=24, text-gray-700 */}
   <Bitcoin size={48} /> {/* size=48 (overrides context), text-gray-700 */}
 </IconContext.Provider>`}</CodeBlock>
-              <p className="mt-4 mb-3 text-sm text-white/60">
+              <p className="mt-4 mb-3 text-sm text-fg/60">
                 Context value accepts all{' '}
                 <a
                   href="#icon-props"
@@ -267,18 +267,18 @@ export function MyComponent() {
 
             {/* Import Patterns */}
             <Section id="import-patterns" title="Import Patterns">
-              <p className="mb-3 text-sm text-white/60">
+              <p className="mb-3 text-sm text-fg/60">
                 Two ways to import icons:
               </p>
               <div className="flex flex-col gap-4">
                 <div>
-                  <p className="mb-1.5 text-sm font-medium text-white/80">
+                  <p className="mb-1.5 text-sm font-medium text-fg/80">
                     Named import from root entry
                   </p>
                   <CodeBlock>{`import { Ethereum, BitcoinMono } from 'react-web3-icons';`}</CodeBlock>
                 </div>
                 <div>
-                  <p className="mb-1.5 text-sm font-medium text-white/80">
+                  <p className="mb-1.5 text-sm font-medium text-fg/80">
                     Category subpath (better tree-shaking)
                   </p>
                   <CodeBlock>{`import { Ethereum } from 'react-web3-icons/chain';
@@ -286,7 +286,7 @@ import { Bitcoin, Doge } from 'react-web3-icons/coin';
 import { MetaMask } from 'react-web3-icons/wallet';`}</CodeBlock>
                 </div>
                 <div>
-                  <p className="mb-1.5 text-sm font-medium text-white/80">
+                  <p className="mb-1.5 text-sm font-medium text-fg/80">
                     Available subpath categories
                   </p>
                   <CodeBlock>{`react-web3-icons/bridge
@@ -310,7 +310,7 @@ react-web3-icons/wallet`}</CodeBlock>
 
             {/* Naming Conventions */}
             <Section id="naming" title="Naming Conventions">
-              <p className="mb-4 text-sm text-white/60">
+              <p className="mb-4 text-sm text-fg/60">
                 Icon names use PascalCase. Variant suffixes describe visual
                 differences:
               </p>
@@ -321,10 +321,10 @@ react-web3-icons/wallet`}</CodeBlock>
                   </caption>
                   <thead>
                     <tr className="border-b border-border bg-surface">
-                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-white/50">
+                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-fg/50">
                         Suffix
                       </th>
-                      <th className="py-2 text-xs font-semibold uppercase tracking-wide text-white/50">
+                      <th className="py-2 text-xs font-semibold uppercase tracking-wide text-fg/50">
                         Description
                       </th>
                     </tr>
@@ -361,7 +361,7 @@ react-web3-icons/wallet`}</CodeBlock>
                         <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
                           {suffix}
                         </td>
-                        <td className="py-2 align-top text-sm text-white/60">
+                        <td className="py-2 align-top text-sm text-fg/60">
                           {desc}
                         </td>
                       </tr>
@@ -369,7 +369,7 @@ react-web3-icons/wallet`}</CodeBlock>
                   </tbody>
                 </table>
               </div>
-              <p className="mt-3 text-sm text-white/60">
+              <p className="mt-3 text-sm text-fg/60">
                 Example:{' '}
                 <code className="rounded bg-surface px-1 font-mono text-sm">
                   Ethereum
@@ -391,12 +391,12 @@ react-web3-icons/wallet`}</CodeBlock>
 
             {/* Deprecation */}
             <Section id="deprecation" title="Deprecation Policy">
-              <p className="mb-3 text-sm text-white/60">
+              <p className="mb-3 text-sm text-fg/60">
                 When a project rebrands, the old name stays as a deprecated
                 re-export alias and is removed only in a major release (after at
                 least one minor release and 90 days).
               </p>
-              <p className="mb-3 text-sm text-white/60">
+              <p className="mb-3 text-sm text-fg/60">
                 A{' '}
                 <code className="rounded bg-surface px-1 font-mono text-sm">
                   DEPRECATED_ICON_NAMES
@@ -420,7 +420,7 @@ const activeNames = Object.keys(icons).filter(
 
             {/* RSC */}
             <Section id="rsc" title="React Server Components">
-              <p className="mb-3 text-sm text-white/60">
+              <p className="mb-3 text-sm text-fg/60">
                 Icons use{' '}
                 <code className="rounded bg-surface px-1 font-mono text-sm">
                   useId
@@ -440,7 +440,7 @@ import { Ethereum } from 'react-web3-icons';
 export function MyComponent() {
   return <Ethereum size={24} />;
 }`}</CodeBlock>
-              <p className="mt-4 mb-3 text-sm text-white/60">
+              <p className="mt-4 mb-3 text-sm text-fg/60">
                 Alternatively, create a small re-export wrapper:
               </p>
               <CodeBlock>{`// icons.tsx — client boundary
@@ -450,7 +450,7 @@ export { Ethereum, Bitcoin } from 'react-web3-icons';`}</CodeBlock>
 
             {/* TypeScript */}
             <Section id="typescript" title="TypeScript">
-              <p className="mb-3 text-sm text-white/60">
+              <p className="mb-3 text-sm text-fg/60">
                 The{' '}
                 <code className="rounded bg-surface px-1 font-mono text-sm">
                   IconName
@@ -472,7 +472,7 @@ function DynamicIcon({ name, size }: { name: IconName; size?: number }) {
         {/* Sticky sidebar TOC (desktop only) */}
         <aside className="hidden lg:block">
           <nav aria-label="Table of contents" className="sticky top-8">
-            <p className="mb-3 text-xs font-medium uppercase tracking-wide text-white/50">
+            <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg/50">
               On this page
             </p>
             <ul className="flex flex-col gap-1.5 border-l border-border pl-3">
@@ -480,7 +480,7 @@ function DynamicIcon({ name, size }: { name: IconName; size?: number }) {
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
-                    className="text-sm text-white/50 transition-colors hover:text-white/80"
+                    className="text-sm text-fg/50 transition-colors hover:text-fg/80"
                   >
                     {item.label}
                   </a>

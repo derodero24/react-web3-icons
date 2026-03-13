@@ -46,7 +46,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [theme]);
 
   const toggleTheme = useCallback(() => {
+    const root = document.documentElement;
+    root.classList.add('theme-changing');
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+    setTimeout(() => root.classList.remove('theme-changing'), 300);
   }, []);
 
   return (
