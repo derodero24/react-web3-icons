@@ -307,7 +307,6 @@ export const DEX_SLUG_TO_NAME = {
   aerodrome: 'Aerodrome',
   camelot: 'Camelot',
   cowprotocol: 'CowProtocol',
-  curve: 'Curve',
   dydx: 'Dydx',
   ekubo: 'Ekubo',
   hyperliquid: 'Hyperliquid',

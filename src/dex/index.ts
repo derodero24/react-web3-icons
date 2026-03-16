@@ -1,7 +1,6 @@
 export * from './Aerodrome';
 export * from './Camelot';
 export * from './CowProtocol';
-export * from './Curve';
 export * from './Dydx';
 export * from './Ekubo';
 export * from './Hyperliquid';
