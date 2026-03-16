@@ -58,7 +58,7 @@ export default function Hero() {
           <button
             type="button"
             onClick={() => copy(INSTALL_CMDS[pkg])}
-            aria-label="Copy install command"
+            aria-label={`Copy ${INSTALL_CMDS[pkg]}`}
             className="flex items-center gap-3 rounded-lg border border-border bg-surface px-5 py-2.5 font-mono text-sm text-fg/80 transition-colors hover:bg-surface-hover"
           >
             <span className="select-all">{INSTALL_CMDS[pkg]}</span>
