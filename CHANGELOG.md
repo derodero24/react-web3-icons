@@ -1,5 +1,60 @@
 # Changelog
 
+## 3.1.0
+
+### Minor Changes
+
+- [`8dcbff3`](https://github.com/derodero24/react-web3-icons/commit/8dcbff3e8527251a667ea1e0f6759e00c5ef4bc9) Thanks [@derodero24](https://github.com/derodero24)! - Add Axelar and deBridge bridge icons
+
+- [`a5f969b`](https://github.com/derodero24/react-web3-icons/commit/a5f969bd38d4ff148889707f351c22faef92f16d) Thanks [@derodero24](https://github.com/derodero24)! - Add BCH (Bitcoin Cash), KAS (Kaspa), and CRO (Cronos) coin icons with colored and mono variants
+
+- [`f8743c5`](https://github.com/derodero24/react-web3-icons/commit/f8743c5ef133e988209d4a4ee0fe5de9acb4eba2) Thanks [@derodero24](https://github.com/derodero24)! - Add Taiko, World Chain, and Ink chain icons
+
+- [`393540e`](https://github.com/derodero24/react-web3-icons/commit/393540e0dafac8238cf02aad2a8bdc256f362138) Thanks [@derodero24](https://github.com/derodero24)! - Add DefiIcon, DexIcon, and BridgeIcon dynamic components for runtime icon loading by protocol name
+
+- [`0dd8a55`](https://github.com/derodero24/react-web3-icons/commit/0dd8a55f5ad4e2960b7d7ac1485a9216e839f103) Thanks [@derodero24](https://github.com/derodero24)! - feat(coin): add ENA and VET coin icons
+
+  Add colored and mono variants for:
+
+  - ENA (Ethena)
+  - VET (VeChain)
+
+- [#645](https://github.com/derodero24/react-web3-icons/pull/645) [`8e0107a`](https://github.com/derodero24/react-web3-icons/commit/8e0107a2d46d2f515fb6ee6f7d5e04bc7dcab8c3) Thanks [@derodero24](https://github.com/derodero24)! - Add EtherFi and Babylon DeFi protocol icons
+
+- [#635](https://github.com/derodero24/react-web3-icons/pull/635) [`bf69fdb`](https://github.com/derodero24/react-web3-icons/commit/bf69fdb18a28665b4ff6cc4b48054754bc285b7f) Thanks [@derodero24](https://github.com/derodero24)! - Add `Flare` / `FlareMono` coin icons for the Flare Network native token (FLR). `Flr` / `FlrMono` are available as ticker aliases. `FLR` is also registered in `TICKER_TO_COIN` for dynamic resolution.
+
+- [`fb336bf`](https://github.com/derodero24/react-web3-icons/commit/fb336bfe2916f7389f7cfaf0fdbe49f1a47b3d07) Thanks [@derodero24](https://github.com/derodero24)! - Add missing chain IDs and slugs to meta maps for supported chains
+
+- [`1e22da8`](https://github.com/derodero24/react-web3-icons/commit/1e22da8a3f356b7d668ffbabfe8575b3eb0a0a00) Thanks [@derodero24](https://github.com/derodero24)! - Add Odos and ParaSwap DEX icons
+
+- [`ac14b1c`](https://github.com/derodero24/react-web3-icons/commit/ac14b1c858d20abeca3528cfaff08c44dd3b789d) Thanks [@derodero24](https://github.com/derodero24)! - Add Solflare wallet icon (colored and mono variants)
+
+- [#653](https://github.com/derodero24/react-web3-icons/pull/653) [`a4f5664`](https://github.com/derodero24/react-web3-icons/commit/a4f5664e279ee85b3e8fa52b739a72f28d17d071) Thanks [@derodero24](https://github.com/derodero24)! - Add static SVG file exports to the npm package.
+
+  Running `pnpm run build` now also executes `scripts/generate-svgs.mjs`, which renders every icon component to a static `.svg` file and writes them to `dist/svg/<category>/<Name>.svg`. These files are included in the published package (already covered by the `"files": ["dist"]` field).
+
+  This enables use in non-React environments — Vue, Svelte, Angular, static HTML, CDN delivery, Figma plugins, and any toolchain that can import or reference plain SVG files.
+
+- [#637](https://github.com/derodero24/react-web3-icons/pull/637) [`c7a56a2`](https://github.com/derodero24/react-web3-icons/commit/c7a56a2134228c08e17b68dd3128bc97998ae405) Thanks [@derodero24](https://github.com/derodero24)! - Add `Venus` / `VenusMono` DeFi protocol icons for Venus Protocol.
+
+- [`8972524`](https://github.com/derodero24/react-web3-icons/commit/89725248780c66eef40573a1ffe02354c98ba85e) Thanks [@derodero24](https://github.com/derodero24)! - Add XMR (Monero) and ZEC (Zcash) coin icons with colored and mono variants
+
+- [`55d0389`](https://github.com/derodero24/react-web3-icons/commit/55d03899551111d6d98458deec70d813e9ce8891) Thanks [@derodero24](https://github.com/derodero24)! - Export WALLET_SLUG_TO_NAME and EXCHANGE_SLUG_TO_NAME from react-web3-icons/meta for runtime wallet/exchange lookups
+
+- [`219310b`](https://github.com/derodero24/react-web3-icons/commit/219310ba0ba0bd963c904549ef157f491eafd507) Thanks [@derodero24](https://github.com/derodero24)! - Add TypeScript autocomplete hints for dynamic icon component props
+
+### Patch Changes
+
+- [#647](https://github.com/derodero24/react-web3-icons/pull/647) [`125fc11`](https://github.com/derodero24/react-web3-icons/commit/125fc11d2accc5e0cead6435329a839b9062363f) Thanks [@derodero24](https://github.com/derodero24)! - Add JSDoc descriptions to all exported icon components for improved IDE intellisense
+
+- [#632](https://github.com/derodero24/react-web3-icons/pull/632) [`71c0518`](https://github.com/derodero24/react-web3-icons/commit/71c05186770aa3092975fcbc19e609a5143c34f3) Thanks [@derodero24](https://github.com/derodero24)! - Deprecate `TofuNft` and `TofuNftMono` — tofunft.com shut down permanently in 2024. Both icons are now marked `@deprecated` and included in `DEPRECATED_ICON_NAMES`.
+
+- [#642](https://github.com/derodero24/react-web3-icons/pull/642) [`2b9617b`](https://github.com/derodero24/react-web3-icons/commit/2b9617b9f6ced6662859407ea0c84d31ae157e9f) Thanks [@derodero24](https://github.com/derodero24)! - Deprecate `Ganache`, `GanacheMono`, `Truffle`, `TruffleMono`, `Drizzle`, and `DrizzleMono` — ConsenSys sunset Truffle Suite in September 2023.
+
+- [`883e6e6`](https://github.com/derodero24/react-web3-icons/commit/883e6e6e355353aa52fd97f6d3090ad21dbba11b) Thanks [@derodero24](https://github.com/derodero24)! - Log a development-mode warning when a dynamic icon component resolves a name that does not exist in the category module
+
+- [#655](https://github.com/derodero24/react-web3-icons/pull/655) [`5cb6d45`](https://github.com/derodero24/react-web3-icons/commit/5cb6d45ee239573084ef9f32336db783a2e56c90) Thanks [@derodero24](https://github.com/derodero24)! - Revert NftStorageMono to the original stroke-based implementation that was broken by [#644](https://github.com/derodero24/react-web3-icons/issues/644)
+
 ## 3.0.0
 
 > **Upgrading from v2?** See the [Migration Guide](./MIGRATION.md) for step-by-step instructions.
