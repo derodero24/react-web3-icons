@@ -15,5 +15,6 @@ export * from './Tenderly';
 export * from './TheGraph';
 export * from './Thirdweb';
 export * from './Truffle';
+export * from './Viem';
 export * from './Wagmi';
 export * from './Web3Js';
