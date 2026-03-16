@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.0
+
+### Minor Changes
+
+- [#675](https://github.com/derodero24/react-web3-icons/pull/675) [`bd1a278`](https://github.com/derodero24/react-web3-icons/commit/bd1a2780086e95f607c3efd350896b2d222fd8f4) Thanks [@derodero24](https://github.com/derodero24)! - Add Viem icon variants (Viem, ViemMono) to devtool category
+
 ## 3.1.0
 
 ### Minor Changes
