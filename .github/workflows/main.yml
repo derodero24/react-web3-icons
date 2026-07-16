@@ -89,3 +89,32 @@ jobs:
 
       - name: Build example app
         run: pnpm --filter react-web3-icons-example run build
+
+  package-checks:
+    name: Package validation (publint, attw)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Use Node 24.x
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24.x'
+          cache: pnpm
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build library
+        run: pnpm run build
+
+      - name: publint
+        run: pnpm dlx publint --strict
+
+      - name: Are the types wrong
+        run: pnpm dlx @arethetypeswrong/cli --pack . --profile esm-only
