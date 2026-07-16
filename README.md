@@ -24,7 +24,7 @@ A comprehensive React SVG icon library for Web3 — blockchains, wallets, DEXs, 
 
 ## Features
 
-- 270+ icons across 15 categories
+- 270+ icons across 16 categories
 - Colored and monochrome variants for every icon
 - Tree-shakeable — only import what you use (`sideEffects: false`)
 - Scales with font size (`1em` default)
@@ -197,16 +197,20 @@ function DynamicIcon({ name }: { name: IconName }) {
 
 ### Dynamic Icon Components
 
-The `react-web3-icons/dynamic` entry point provides components that lazily load icons at runtime by identifier (ticker, slug, or chain ID). Each category has a dedicated component:
+The `react-web3-icons/dynamic` entry point provides components that lazily load icons at runtime by identifier (ticker, slug, or chain ID). The following categories have dedicated dynamic components:
 
 ```tsx
-import { ChainIcon, CoinIcon, WalletIcon, ExchangeIcon } from 'react-web3-icons/dynamic';
+import { ChainIcon, CoinIcon, WalletIcon, ExchangeIcon, DefiIcon, DexIcon, BridgeIcon, OracleIcon } from 'react-web3-icons/dynamic';
 
 <ChainIcon chainId={1} />               // Ethereum by chain ID
 <ChainIcon name="arbitrum" />            // Arbitrum by slug
 <CoinIcon symbol="ETH" />               // ETH coin icon
 <WalletIcon name="metamask" />           // MetaMask wallet icon
 <ExchangeIcon name="binance" />          // Binance exchange icon
+<DefiIcon name="aave" />                // Aave DeFi protocol icon
+<DexIcon name="uniswap" />              // Uniswap DEX icon
+<BridgeIcon name="layerzero" />         // LayerZero bridge icon
+<OracleIcon name="pyth" />              // Pyth oracle icon
 ```
 
 Use the `variant` prop to switch between colored and monochrome:
@@ -242,8 +246,9 @@ The `react-web3-icons/meta` subpath exports lookup maps for resolving icons by c
 | `DEFI_SLUG_TO_NAME` | Lowercased slug (`'aave'`, …) | DeFi icon base name | `'aave'` → `'Aave'` |
 | `DEX_SLUG_TO_NAME` | Lowercased slug (`'uniswap'`, …) | DEX icon base name | `'uniswap'` → `'Uniswap'` |
 | `BRIDGE_SLUG_TO_NAME` | Lowercased slug (`'layerzero'`, …) | Bridge icon base name | `'layerzero'` → `'LayerZero'` |
+| `ORACLE_SLUG_TO_NAME` | Lowercased slug (`'pyth'`, …) | Oracle icon base name | `'pyth'` → `'Pyth'` |
 
-Each map exports a corresponding type (`ChainId`, `ChainSlug`, `Ticker`, `WalletSlug`, `ExchangeSlug`, `DefiSlug`, `DexSlug`, `BridgeSlug`) for type-safe key access.
+Each map exports a corresponding type (`ChainId`, `ChainSlug`, `Ticker`, `WalletSlug`, `ExchangeSlug`, `DefiSlug`, `DexSlug`, `BridgeSlug`, `OracleSlug`) for type-safe key access.
 
 #### Example: Resolve a chain icon from wagmi/viem
 
@@ -288,6 +293,7 @@ function TokenIcon({ symbol }: { symbol: string }) {
 | `explorer` | Block explorers | Etherscan, Bscscan, Solscan |
 | `marketplace` | NFT marketplaces | OpenSea, MagicEden, LooksRare |
 | `node` | Node providers | Alchemy, Infura, QuickNode |
+| `oracle` | Oracle networks | Pyth, Band, API3, RedStone |
 | `portfolio` | Portfolio trackers | DeBank, Zapper, CoinLedger |
 | `storage` | Decentralized storage | Ipfs, Arweave, NftStorage |
 | `tracker` | Analytics & tracking | DefiLlama, CoinGecko, CoinMarketCap |

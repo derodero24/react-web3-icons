@@ -73,6 +73,7 @@ export const CHAIN_SLUG_TO_NAME = {
   celestia: 'Celestia',
   celo: 'Celo',
   'cosmos-hub': 'CosmosHub',
+  eclipse: 'Eclipse',
   ethereum: 'Ethereum',
   fantom: 'Fantom',
   fraxtal: 'Fraxtal',
@@ -190,6 +191,7 @@ export const WALLET_SLUG_TO_NAME = {
   argent: 'Argent',
   backpackwallet: 'BackpackWallet',
   bitgetwallet: 'BitgetWallet',
+  brave: 'Brave',
   coinbasewallet: 'CoinbaseWallet',
   daedaluswallet: 'DaedalusWallet',
   enkrypt: 'Enkrypt',
@@ -200,6 +202,7 @@ export const WALLET_SLUG_TO_NAME = {
   metamask: 'MetaMask',
   namiwallet: 'NamiWallet',
   okxwallet: 'OKXWallet',
+  petra: 'Petra',
   phantomwallet: 'PhantomWallet',
   polkadotjs: 'PolkadotJs',
   rabby: 'Rabby',
@@ -210,7 +213,9 @@ export const WALLET_SLUG_TO_NAME = {
   tangem: 'Tangem',
   trezor: 'Trezor',
   trustwallet: 'TrustWallet',
+  uniswapwallet: 'UniswapWallet',
   walletconnect: 'WalletConnect',
+  xverse: 'Xverse',
   yoroiwallet: 'YoroiWallet',
   zerion: 'Zerion',
 } as const satisfies Record<string, string>;
@@ -277,9 +282,11 @@ export const DEFI_SLUG_TO_NAME = {
   etherfi: 'EtherFi',
   frax: 'Frax',
   gmx: 'Gmx',
+  kamino: 'Kamino',
   lido: 'Lido',
   liquity: 'Liquity',
   makerdao: 'MakerDao',
+  maple: 'Maple',
   morpho: 'Morpho',
   pendle: 'Pendle',
   rocketpool: 'RocketPool',
@@ -341,9 +348,32 @@ export const BRIDGE_SLUG_TO_NAME = {
   debridge: 'DeBridge',
   hopprotocol: 'HopProtocol',
   layerzero: 'LayerZero',
+  orbiter: 'Orbiter',
+  socket: 'Socket',
   stargate: 'Stargate',
+  synapse: 'Synapse',
   wormhole: 'Wormhole',
 } as const satisfies Record<string, string>;
 
 /** Lowercased bridge slug recognized by this package. */
 export type BridgeSlug = keyof typeof BRIDGE_SLUG_TO_NAME;
+
+/**
+ * Lowercased slug → oracle icon base name.
+ *
+ * Maps to exports from `react-web3-icons/oracle`:
+ * ```ts
+ * import { ORACLE_SLUG_TO_NAME } from 'react-web3-icons/meta';
+ *
+ * const name = ORACLE_SLUG_TO_NAME['pyth']; // 'Pyth'
+ * ```
+ */
+export const ORACLE_SLUG_TO_NAME = {
+  api3: 'Api3',
+  band: 'Band',
+  pyth: 'Pyth',
+  redstone: 'RedStone',
+} as const satisfies Record<string, string>;
+
+/** Lowercased oracle slug recognized by this package. */
+export type OracleSlug = keyof typeof ORACLE_SLUG_TO_NAME;

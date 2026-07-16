@@ -12,9 +12,11 @@ import {
   DEFI_SLUG_TO_NAME,
   DEX_SLUG_TO_NAME,
   EXCHANGE_SLUG_TO_NAME,
+  ORACLE_SLUG_TO_NAME,
   TICKER_TO_COIN,
   WALLET_SLUG_TO_NAME,
 } from '../src/meta';
+import * as oracle from '../src/oracle';
 import * as wallet from '../src/wallet';
 
 describe('CHAIN_ID_TO_NAME', () => {
@@ -223,6 +225,31 @@ describe('BRIDGE_SLUG_TO_NAME', () => {
       expect(
         bridgeNames.has(name),
         `BRIDGE_SLUG_TO_NAME['${slug}'] = '${name}' is not exported from bridge`,
+      ).toBe(true);
+    }
+  });
+});
+
+describe('ORACLE_SLUG_TO_NAME', () => {
+  it('maps known slugs', () => {
+    expect(ORACLE_SLUG_TO_NAME.pyth).toBe('Pyth');
+    expect(ORACLE_SLUG_TO_NAME.band).toBe('Band');
+    expect(ORACLE_SLUG_TO_NAME.api3).toBe('Api3');
+    expect(ORACLE_SLUG_TO_NAME.redstone).toBe('RedStone');
+  });
+
+  it('all keys are lowercase', () => {
+    for (const slug of Object.keys(ORACLE_SLUG_TO_NAME)) {
+      expect(slug).toBe(slug.toLowerCase());
+    }
+  });
+
+  it('every value references an exported oracle icon', () => {
+    const oracleNames = new Set(Object.keys(oracle));
+    for (const [slug, name] of Object.entries(ORACLE_SLUG_TO_NAME)) {
+      expect(
+        oracleNames.has(name),
+        `ORACLE_SLUG_TO_NAME['${slug}'] = '${name}' is not exported from oracle`,
       ).toBe(true);
     }
   });
