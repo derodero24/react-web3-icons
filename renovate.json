@@ -74,16 +74,6 @@
         "package.json"
       ],
       "automerge": false
-    },
-    {
-      "description": "Block TypeScript 7 until rolldown-plugin-dts supports it (see issue #717)",
-      "matchPackageNames": [
-        "typescript"
-      ],
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "enabled": false
     }
   ]
 }
