@@ -3,7 +3,6 @@ import { forwardRef } from 'react';
 // Source: https://avax.network
 import type { IconProps } from '../utils';
 import { createIcon } from '../utils';
-import { useIconContext } from '../utils/IconContext';
 
 interface AvalancheProps extends IconProps {
   withBackground?: boolean;
@@ -14,14 +13,7 @@ const AVALANCHE_PATH =
 
 export const AvalancheCircle = forwardRef<SVGSVGElement, AvalancheProps>(
   function AvalancheCircle({ withBackground = true, ...rawProps }, ref) {
-    const {
-      title,
-      titleId,
-      size = '1em',
-      width,
-      height,
-      ...props
-    } = useIconContext(rawProps);
+    const { title, titleId, size = '1em', width, height, ...props } = rawProps;
     const isDecorative = !(
       title ||
       props['aria-label'] ||
@@ -67,14 +59,7 @@ export const Avalanche = /* @__PURE__ */ createIcon(
 
 export const AvalancheCircleMono = forwardRef<SVGSVGElement, AvalancheProps>(
   function AvalancheCircleMono({ withBackground = false, ...rawProps }, ref) {
-    const {
-      title,
-      titleId,
-      size = '1em',
-      width,
-      height,
-      ...props
-    } = useIconContext(rawProps);
+    const { title, titleId, size = '1em', width, height, ...props } = rawProps;
     const isDecorative = !(
       title ||
       props['aria-label'] ||

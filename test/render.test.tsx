@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import * as icons from '../src';
 
 // Filter to only forwardRef icon components, excluding non-component exports
-// (IconContext, DEPRECATED_ICON_NAMES, type-only exports, etc.)
+// (DEPRECATED_ICON_NAMES, type-only exports, etc.)
 const FORWARD_REF = Symbol.for('react.forward_ref');
 const entries = Object.entries(icons).filter(
   ([, value]) =>

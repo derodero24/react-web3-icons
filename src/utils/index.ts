@@ -67,4 +67,3 @@ export interface IconProps extends SVGProps<SVGSVGElement> {
 }
 
 export { createIcon } from './createIcon';
-export { IconContext, type IconContextValue } from './IconContext';

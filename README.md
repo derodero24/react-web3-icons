@@ -26,6 +26,7 @@ A comprehensive React SVG icon library for Web3 — blockchains, wallets, DEXs, 
 
 - 270+ icons across 16 categories
 - Colored and monochrome variants for every icon
+- Server Components ready — no hooks, renders without `'use client'`
 - Tree-shakeable — only import what you use (`sideEffects: false`)
 - Scales with font size (`1em` default)
 - Full TypeScript support
@@ -151,53 +152,22 @@ https://cdn.jsdelivr.net/npm/react-web3-icons@latest/dist/svg/chain/Ethereum.svg
 https://unpkg.com/react-web3-icons@latest/dist/svg/chain/Ethereum.svg
 ```
 
-### IconContext
-
-Use `IconContext.Provider` to set default props for all icons in a subtree:
-
-```tsx
-import { IconContext } from 'react-web3-icons';
-
-<IconContext.Provider value={{ size: 32, className: 'my-icon' }}>
-  <Ethereum />
-  <Bitcoin />
-</IconContext.Provider>
-```
-
-Any prop that can be passed directly to an icon can be set via context (`size`, `className`, `style`, `fill`, etc.). Per-icon props always take precedence; `style` objects are merged rather than replaced.
-
 ### React Server Components (RSC)
 
-Icons use React hooks (`useId`, `useContext`) and therefore **cannot be rendered in React Server Components** directly. Add a `'use client'` directive (as the first statement in the file) to the component that renders icons, or to a small client-only re-export wrapper:
+Static icons are pure, hook-free components. They render in React Server Components with no `'use client'` directive:
 
 ```tsx
-// app/my-component.tsx
-'use client';
-
+// app/page.tsx — Server Component
 import { Ethereum, Bitcoin } from 'react-web3-icons';
 
-export function MyComponent() {
-  return <Ethereum />;
+export default function Page() {
+  return <Ethereum size={24} />;
 }
 ```
 
-Alternatively, create a small client-only re-export wrapper and import icons from it in your Client Components:
+Server-rendered icons ship zero client JavaScript. Only the [dynamic components](#dynamic-icon-components) (`react-web3-icons/dynamic`) are client-only, since they lazy-load icon chunks at runtime.
 
-```tsx
-// app/icons.tsx — must be a Client Component
-'use client';
-export { Ethereum, Bitcoin } from 'react-web3-icons';
-```
-
-```tsx
-// app/my-component.tsx — Client Component that renders icons
-'use client';
-import { Ethereum } from './icons';
-
-export function MyComponent() {
-  return <Ethereum />;
-}
-```
+Internal SVG ids (masks, gradients) are deterministic per component. Rendering the same icon multiple times on one page duplicates those ids; the duplicated definitions are identical, so the icons still render correctly.
 
 ### Type-Safe Dynamic Icon Lookup
 
@@ -345,7 +315,7 @@ All icons extend `SVGProps<SVGSVGElement>` with the following additions:
 | --- | --- | --- | --- |
 | `title` | `string` | — | Accessible title rendered as `<title>` inside the SVG |
 | `titleId` | `string` | — | ID applied to the `<title>` element; when provided together with `title`, `aria-labelledby` is automatically set to this value |
-| `size` | `string \| number` | `"1em"` | For icons created via `createIcon`/`useIconContext`, sets both width and height unless explicitly overridden |
+| `size` | `string \| number` | `"1em"` | Sets both width and height unless explicitly overridden |
 | `width` | `string \| number` | — | Icon width (overrides `size` for width only) |
 | `height` | `string \| number` | — | Icon height (overrides `size` for height only) |
 | `className` | `string` | — | CSS class name |
@@ -375,10 +345,7 @@ import { DEPRECATED_ICON_NAMES } from 'react-web3-icons';
 
 // Get current (non-deprecated) icon names, excluding non-icon exports
 const activeIconNames = Object.keys(icons).filter(
-  name =>
-    !DEPRECATED_ICON_NAMES.has(name) &&
-    name !== 'IconContext' &&
-    name !== 'DEPRECATED_ICON_NAMES',
+  name => !DEPRECATED_ICON_NAMES.has(name) && name !== 'DEPRECATED_ICON_NAMES',
 );
 ```
 

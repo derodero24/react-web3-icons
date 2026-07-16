@@ -1,6 +1,5 @@
-import { forwardRef, useId } from 'react';
+import { forwardRef } from 'react';
 import { createIcon, type IconProps } from '../utils';
-import { useIconContext } from '../utils/IconContext';
 
 // Source: https://rainbow.me
 interface RainbowWalletProps extends IconProps {
@@ -11,15 +10,10 @@ const RainbowWalletBase = forwardRef<
   SVGSVGElement,
   RainbowWalletProps & { withBackground: boolean }
 >(function RainbowWalletBase({ withBackground, ...rawProps }, ref) {
-  const {
-    title,
-    titleId,
-    size = '1em',
-    width,
-    height,
-    ...props
-  } = useIconContext(rawProps);
-  const _id = useId();
+  const { title, titleId, size = '1em', width, height, ...props } = rawProps;
+  // Deterministic prefix (RSC-compatible); both RainbowWallet and
+  // RainbowWalletSymbol render identical defs, so shared ids are safe.
+  const _id = 'w3i-rainbowwallet';
   const isDecorative = !(
     title ||
     props['aria-label'] ||
