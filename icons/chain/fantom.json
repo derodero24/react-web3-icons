@@ -12,5 +12,8 @@
       "file": "fantom.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "ftm"
+  ]
 }

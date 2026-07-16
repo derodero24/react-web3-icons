@@ -29,5 +29,8 @@
       "file": "polygon.circle-mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "matic"
+  ]
 }

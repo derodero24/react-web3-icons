@@ -296,7 +296,7 @@ import { ICON_MANIFEST, type IconManifestEntry } from 'react-web3-icons/manifest
 const chains = ICON_MANIFEST.filter(e => e.category === 'chain' && !e.deprecated);
 ```
 
-Each entry carries `name`, `category`, and — where registered in the [metadata maps](#metadata-lookups) — `chainId`, `slug`, or `ticker`, plus a `deprecated` flag for aliases. The same data ships as plain JSON for non-JavaScript consumers at `react-web3-icons/manifest.json` (also available on the CDN under `dist/manifest.json`).
+Each entry carries `name`, `category`, and — where registered in the [metadata maps](#metadata-lookups) — `chainId`, `slug`, or `ticker`, plus a `deprecated` flag for aliases. Base entries additionally list their `variants` (e.g. `['', 'Mono', 'Circle']`), extra lowercase search `aliases` (e.g. `'btc'` on `Bitcoin`), and the dominant `brandColor` of the colored artwork. The same data ships as plain JSON for non-JavaScript consumers at `react-web3-icons/manifest.json` (also available on the CDN under `dist/manifest.json`).
 
 ## Icon Categories
 

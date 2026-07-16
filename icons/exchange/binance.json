@@ -13,5 +13,8 @@
       "file": "binance.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "bnb"
+  ]
 }

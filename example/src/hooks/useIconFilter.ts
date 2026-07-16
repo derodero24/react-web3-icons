@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import * as iconModules from 'react-web3-icons';
+import { ICON_MANIFEST } from 'react-web3-icons/manifest';
 import {
   CHAIN_ID_TO_NAME,
   CHAIN_SLUG_TO_NAME,
@@ -17,37 +18,19 @@ const icons = Object.fromEntries(
   ),
 ) as Record<string, IconComponent>;
 
-// Common Web3 abbreviations and aliases that aren't covered by meta maps.
-const MANUAL_ALIASES: Record<string, string[]> = {
-  '1inch': ['Oneinch'],
-  arb1: ['ArbitrumOne'],
-  arw: ['Arweave'],
-  atom: ['Atom', 'CosmosHub'],
-  bnb: ['Binance', 'BinanceSmartChain', 'Bnb'],
-  bsc: ['BinanceSmartChain'],
-  btc: ['Bitcoin'],
-  cake: ['PancakeSwap'],
-  comp: ['Compound'],
-  dot: ['Polkadot'],
-  eigen: ['EigenLayer'],
-  fil: ['Filecoin'],
-  ftm: ['Fantom'],
-  gno: ['GnosisChain'],
-  gnosis: ['GnosisChain', 'Safe'],
-  grt: ['TheGraph'],
-  lz: ['LayerZero'],
-  manta: ['MantaPacific'],
-  matic: ['Polygon'],
-  metamask: ['MetaMask'],
-  okb: ['Okx'],
-  ray: ['Raydium'],
-  snx: ['Synthetix'],
-  steth: ['Lido'],
-  stg: ['Stargate'],
-  sushi: ['SushiSwap'],
-  wc: ['WalletConnect'],
-  zk: ['ZkSync'],
-};
+// Search aliases now live in the icon manifest (icons/<category>/<slug>.json
+// → ICON_MANIFEST[].aliases), so the demo and library share one source.
+const MANUAL_ALIASES: Record<string, string[]> = {};
+for (const entry of ICON_MANIFEST) {
+  for (const alias of entry.aliases ?? []) {
+    const existing = MANUAL_ALIASES[alias];
+    if (existing) {
+      if (!existing.includes(entry.name)) existing.push(entry.name);
+    } else {
+      MANUAL_ALIASES[alias] = [entry.name];
+    }
+  }
+}
 
 // Build search aliases by merging meta maps with manual overrides.
 // Chain IDs (e.g. "1" → Ethereum), slugs, and ticker symbols are all searchable.

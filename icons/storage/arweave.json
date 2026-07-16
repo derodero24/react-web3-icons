@@ -13,5 +13,8 @@
       "file": "arweave.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "arw"
+  ]
 }

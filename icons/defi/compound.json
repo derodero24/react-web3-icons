@@ -13,5 +13,8 @@
       "file": "compound.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "comp"
+  ]
 }

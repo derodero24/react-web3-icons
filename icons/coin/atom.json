@@ -13,5 +13,8 @@
       "file": "atom.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "atom"
+  ]
 }

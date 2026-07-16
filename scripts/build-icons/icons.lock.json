@@ -17,7 +17,7 @@
       "output": "c8e1cb89bc15a5f2"
     },
     "bridge/layer-zero": {
-      "input": "d4ac2632a9465d21",
+      "input": "b64c16ee675f2cb9",
       "output": "726d7a8d7ac9d222"
     },
     "bridge/orbiter": {
@@ -29,7 +29,7 @@
       "output": "b462256a7f50f0c6"
     },
     "bridge/stargate": {
-      "input": "041810dd56352fa9",
+      "input": "5838ac0b22165ebd",
       "output": "75cc9383f14d777c"
     },
     "bridge/synapse": {
@@ -49,7 +49,7 @@
       "output": "1ef0ded66bb045e4"
     },
     "chain/arbitrum": {
-      "input": "6ba7b25d3616eb97",
+      "input": "851204c8f707abe9",
       "output": "a8e376f62e4b9f89"
     },
     "chain/astar": {
@@ -68,11 +68,11 @@
       "output": "48ddea5b092369ad"
     },
     "chain/binance-smart-chain": {
-      "input": "1a568d6cb896fcb3",
+      "input": "aaacdb2fa0a7abc8",
       "output": "c6a533b56a631ffd"
     },
     "chain/bitcoin": {
-      "input": "2e9fd682c41c1362",
+      "input": "3e18231ea5420d7e",
       "output": "0caab628cae9e878"
     },
     "chain/blast": {
@@ -92,7 +92,7 @@
       "output": "b77d0ddbcde3fa50"
     },
     "chain/cosmos-hub": {
-      "input": "f72ce9e5e665a0be",
+      "input": "78303611b657664f",
       "output": "418bea972e3b3e3d"
     },
     "chain/eclipse": {
@@ -104,7 +104,7 @@
       "output": "44a0b6182854d2b7"
     },
     "chain/fantom": {
-      "input": "a585859b6dc07d4d",
+      "input": "a069773143db8794",
       "output": "1c07ddfa2af17671"
     },
     "chain/fraxtal": {
@@ -112,7 +112,7 @@
       "output": "0f5abc57d1713809"
     },
     "chain/gnosis-chain": {
-      "input": "6f8e659a35deb18d",
+      "input": "73db6de25e5bd48e",
       "output": "1679946ff97288a6"
     },
     "chain/hedera": {
@@ -140,7 +140,7 @@
       "output": "64f296c67d5e3bff"
     },
     "chain/manta-pacific": {
-      "input": "293b5fdc369db9a6",
+      "input": "65cd5de2d41c275c",
       "output": "12250f0e4cb67060"
     },
     "chain/mantle": {
@@ -164,11 +164,11 @@
       "output": "e4888b743b6935d3"
     },
     "chain/polkadot": {
-      "input": "f07c70e7a980e058",
+      "input": "58d566c05fc0c9b7",
       "output": "e4b21e801d02c5f0"
     },
     "chain/polygon": {
-      "input": "5f97b4713af82d8a",
+      "input": "a25595ee8760f1db",
       "output": "37ea7cc703c5d467"
     },
     "chain/scroll": {
@@ -216,7 +216,7 @@
       "output": "46c11e9b53957676"
     },
     "chain/zk-sync": {
-      "input": "79c1834f051e7461",
+      "input": "e521fd9dfda8ce9a",
       "output": "3dc2c17f30eb0fea"
     },
     "chain/zora": {
@@ -236,7 +236,7 @@
       "output": "c9286d6f91ff0753"
     },
     "coin/atom": {
-      "input": "5ad64fdcaaa1ed79",
+      "input": "6c37e961d8a23203",
       "output": "ee8a1479e8602556"
     },
     "coin/avax": {
@@ -248,7 +248,7 @@
       "output": "d70b603e58296f3a"
     },
     "coin/bnb": {
-      "input": "ece51191ce492c89",
+      "input": "1742ca32bbe44fd9",
       "output": "00fb396de486d3f7"
     },
     "coin/btc": {
@@ -456,7 +456,7 @@
       "output": "269c11716a50a4db"
     },
     "defi/compound": {
-      "input": "11fb8feebd56dba7",
+      "input": "729b0b741ce3bc6b",
       "output": "8b45c808bdf47154"
     },
     "defi/convex": {
@@ -464,7 +464,7 @@
       "output": "33fce3ea00a4d457"
     },
     "defi/eigen-layer": {
-      "input": "d03e490b56e0a7b3",
+      "input": "30bc470343feb7f8",
       "output": "07127076f19dffac"
     },
     "defi/ethena": {
@@ -488,7 +488,7 @@
       "output": "aae31f88e903a4b3"
     },
     "defi/lido": {
-      "input": "17357ee080c5dd83",
+      "input": "c2899b83613236cd",
       "output": "901b7f43666d9bdb"
     },
     "defi/liquity": {
@@ -524,7 +524,7 @@
       "output": "0a3082da3395b491"
     },
     "defi/synthetix": {
-      "input": "4065ae5d82a47667",
+      "input": "e5987ebd8a6a55ef",
       "output": "eb54f5940cb5ae74"
     },
     "defi/venus": {
@@ -592,7 +592,7 @@
       "output": "9b8e9fd053941bfa"
     },
     "devtool/the-graph": {
-      "input": "37f50363d11f6c20",
+      "input": "335540b42fd45c45",
       "output": "e9f9757a2a5444a3"
     },
     "devtool/thirdweb": {
@@ -648,7 +648,7 @@
       "output": "7a4b98c83fe82a50"
     },
     "dex/oneinch": {
-      "input": "2e82be80ec8cf7b2",
+      "input": "6787347a44942182",
       "output": "73026ed61ff77ec3"
     },
     "dex/osmosis": {
@@ -656,7 +656,7 @@
       "output": "c3e0b09aa3103fad"
     },
     "dex/pancake-swap": {
-      "input": "4d889528162205fa",
+      "input": "38a54c0af1d24169",
       "output": "ce6590065e05982d"
     },
     "dex/para-swap": {
@@ -664,11 +664,11 @@
       "output": "1674359ebdbfe74e"
     },
     "dex/raydium": {
-      "input": "0f6f822cd91eec5e",
+      "input": "606788303f99f83c",
       "output": "a0b5b45228ff0800"
     },
     "dex/sushi-swap": {
-      "input": "92f505e6a07cc0f2",
+      "input": "2b975cd4e2c68c06",
       "output": "68da34b1dba451c6"
     },
     "dex/uniswap": {
@@ -688,7 +688,7 @@
       "output": "364ae4f2139cd93a"
     },
     "exchange/binance": {
-      "input": "e32a97a846c05d82",
+      "input": "bc9d13d78842c0f5",
       "output": "7136012f2f619da8"
     },
     "exchange/bitfinex": {
@@ -751,7 +751,7 @@
       "output": "360b29c6c1d75fce"
     },
     "exchange/okx": {
-      "input": "8c4bb771464120ef",
+      "input": "e7beb56b95f5adb9",
       "output": "16ed90ef48c756c4"
     },
     "exchange/phemex": {
@@ -895,7 +895,7 @@
       "output": "5eadabc313fbc2b0"
     },
     "storage/arweave": {
-      "input": "81cf076756d8b6fa",
+      "input": "382253059bdd0424",
       "output": "ad0dec6e7783220a"
     },
     "storage/ipfs": {
@@ -971,7 +971,7 @@
       "output": "88057387089a6d8f"
     },
     "wallet/meta-mask": {
-      "input": "c151c4bc4ba63538",
+      "input": "382686496b468351",
       "output": "3907d930a02acb04"
     },
     "wallet/nami-wallet": {
@@ -1002,7 +1002,7 @@
       "input": "6c24a7a2ec6d0517"
     },
     "wallet/safe": {
-      "input": "2441d1c5976f3f50",
+      "input": "30b346791c722870",
       "output": "5cec591c325ba503"
     },
     "wallet/solflare": {
@@ -1030,7 +1030,7 @@
       "output": "28372a835fa0a945"
     },
     "wallet/wallet-connect": {
-      "input": "fda73727dccaca44",
+      "input": "6cc6017b7908ba28",
       "output": "ba230e2d26416a40"
     },
     "wallet/xverse": {

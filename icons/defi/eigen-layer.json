@@ -13,5 +13,8 @@
       "file": "eigen-layer.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "eigen"
+  ]
 }

@@ -31,5 +31,9 @@
       "file": "binance-smart-chain.circle-mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "bnb",
+    "bsc"
+  ]
 }

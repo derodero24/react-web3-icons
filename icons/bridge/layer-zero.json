@@ -13,5 +13,8 @@
       "file": "layer-zero.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "lz"
+  ]
 }

@@ -13,5 +13,9 @@
       "file": "gnosis-chain.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "gno",
+    "gnosis"
+  ]
 }

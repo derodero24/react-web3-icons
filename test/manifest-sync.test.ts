@@ -121,11 +121,68 @@ function deriveExpected(): IconManifestEntry[] {
   return entries;
 }
 
+function baseProjection(entry: IconManifestEntry): IconManifestEntry {
+  const { variants, aliases, brandColor, ...base } =
+    entry as IconManifestEntry & {
+      variants?: readonly string[];
+      aliases?: readonly string[];
+      brandColor?: string;
+    };
+  return base;
+}
+
+interface UnitMeta {
+  name: string;
+  aliases?: string[];
+  variants?: Record<string, unknown>;
+}
+
+async function loadIconUnits(): Promise<Map<string, UnitMeta>> {
+  const { readdirSync, readFileSync } = await import('node:fs');
+  const { join } = await import('node:path');
+  const iconsDir = join(import.meta.dirname, '../icons');
+  const unitByKey = new Map<string, UnitMeta>();
+  for (const category of readdirSync(iconsDir)) {
+    for (const file of readdirSync(join(iconsDir, category))) {
+      if (!file.endsWith('.json')) {
+        continue;
+      }
+      const meta = JSON.parse(
+        readFileSync(join(iconsDir, category, file), 'utf-8'),
+      ) as UnitMeta;
+      unitByKey.set(`${category}/${meta.name}`, meta);
+    }
+  }
+  return unitByKey;
+}
+
 describe('Icon manifest sync', () => {
   // Fails when icons, meta maps, or deprecations change without running:
   //   pnpm run build && pnpm run generate-manifest
   it('src/manifest/index.ts matches the actual category exports', () => {
-    expect(ICON_MANIFEST).toEqual(deriveExpected());
+    expect(ICON_MANIFEST.map(baseProjection)).toEqual(deriveExpected());
+  });
+
+  it('enrichment fields match the icons/ unit definitions', async () => {
+    const unitByKey = await loadIconUnits();
+    for (const entry of ICON_MANIFEST) {
+      const unit = unitByKey.get(`${entry.category}/${entry.name}`);
+      if (entry.variants) {
+        expect(entry.variants, `${entry.name} variants`).toEqual(
+          Object.keys(unit?.variants ?? {}),
+        );
+      }
+      if (entry.aliases) {
+        expect(entry.aliases, `${entry.name} aliases`).toEqual(
+          unit?.aliases ?? [],
+        );
+      }
+      if (entry.brandColor) {
+        expect(entry.brandColor, `${entry.name} brandColor`).toMatch(
+          /^#[0-9a-f]{6}$/,
+        );
+      }
+    }
   });
 
   it('has no duplicate name+category pairs', () => {

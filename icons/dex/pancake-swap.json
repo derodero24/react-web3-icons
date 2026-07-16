@@ -13,5 +13,8 @@
       "file": "pancake-swap.mono.svg",
       "fill": "none"
     }
-  }
+  },
+  "aliases": [
+    "cake"
+  ]
 }

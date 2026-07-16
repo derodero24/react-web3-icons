@@ -30,5 +30,8 @@
       "file": "wallet-connect.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "wc"
+  ]
 }

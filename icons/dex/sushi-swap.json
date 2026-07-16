@@ -14,5 +14,8 @@
       "file": "sushi-swap.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "sushi"
+  ]
 }

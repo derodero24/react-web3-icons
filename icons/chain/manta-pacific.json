@@ -12,5 +12,8 @@
       "file": "manta-pacific.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "manta"
+  ]
 }

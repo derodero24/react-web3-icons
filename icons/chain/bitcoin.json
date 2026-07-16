@@ -19,5 +19,8 @@
       "file": "bitcoin.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "btc"
+  ]
 }

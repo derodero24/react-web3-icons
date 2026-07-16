@@ -13,5 +13,8 @@
       "file": "cosmos-hub.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "atom"
+  ]
 }

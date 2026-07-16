@@ -14,12 +14,14 @@
  * with the actual category exports.
  */
 
-import { writeFileSync } from 'node:fs';
+import * as fsSync from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const DIST = resolve(ROOT, 'dist');
+const ICONS = resolve(ROOT, 'icons');
 
 const CATEGORIES = [
   'bridge',
@@ -46,6 +48,66 @@ async function importDist(subpath) {
   return import(pathToFileURL(resolve(DIST, subpath)).href);
 }
 
+/**
+ * Dominant brand color of a colored SVG: the most frequent fill/stop-color
+ * hex value, ignoring white and non-color values.
+ */
+function extractBrandColor(svgText) {
+  const counts = new Map();
+  for (const match of svgText.matchAll(/(?:fill|stop-color)="(#[0-9a-fA-F]{3,8})"/g)) {
+    let hex = match[1].toLowerCase();
+    if (hex.length === 4) {
+      hex = `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
+    }
+    hex = hex.slice(0, 7);
+    if (hex === '#ffffff') {
+      continue;
+    }
+    counts.set(hex, (counts.get(hex) ?? 0) + 1);
+  }
+  let best;
+  let bestCount = 0;
+  for (const [hex, count] of counts) {
+    if (count > bestCount) {
+      best = hex;
+      bestCount = count;
+    }
+  }
+  return best;
+}
+
+/** Loads per-unit enrichment (aliases, variants, brandColor) from icons/. */
+function loadUnitEnrichment() {
+  const { readdirSync } = fsSync;
+  const byKey = new Map(); // `${category}/${BaseName}` → { aliases, variants, brandColor }
+  for (const category of CATEGORIES) {
+    const dir = resolve(ICONS, category);
+    for (const file of readdirSync(dir)) {
+      if (!file.endsWith('.json')) {
+        continue;
+      }
+      const meta = JSON.parse(readFileSync(resolve(dir, file), 'utf-8'));
+      const enrichment = {};
+      if (meta.aliases?.length) {
+        enrichment.aliases = meta.aliases;
+      }
+      if (meta.variants) {
+        enrichment.variants = Object.keys(meta.variants);
+        const defaultVariant = meta.variants[''];
+        if (defaultVariant) {
+          const svg = readFileSync(resolve(dir, defaultVariant.file), 'utf-8');
+          const brandColor = extractBrandColor(svg);
+          if (brandColor) {
+            enrichment.brandColor = brandColor;
+          }
+        }
+      }
+      byKey.set(`${category}/${meta.name}`, enrichment);
+    }
+  }
+  return byKey;
+}
+
 /** Builds `name → identifier` reverse lookups from the meta maps. */
 function invert(map) {
   const out = new Map();
@@ -60,6 +122,7 @@ function invert(map) {
 async function buildEntries() {
   const meta = await importDist('meta/index.mjs');
   const { DEPRECATED_ICON_NAMES } = await importDist('deprecated.mjs');
+  const enrichment = loadUnitEnrichment();
 
   const idLookups = {
     chain: {
@@ -95,6 +158,18 @@ async function buildEntries() {
       if (DEPRECATED_ICON_NAMES.has(name)) {
         entry.deprecated = true;
       }
+      const extra = enrichment.get(`${category}/${name}`);
+      if (extra) {
+        if (extra.variants) {
+          entry.variants = extra.variants;
+        }
+        if (extra.aliases) {
+          entry.aliases = extra.aliases;
+        }
+        if (extra.brandColor) {
+          entry.brandColor = extra.brandColor;
+        }
+      }
       entries.push(entry);
     }
   }
@@ -120,6 +195,15 @@ function renderModule(entries) {
       }
       if (e.deprecated) {
         fields.push('deprecated: true');
+      }
+      if (e.variants) {
+        fields.push(`variants: [${e.variants.map(v => `'${v}'`).join(', ')}]`);
+      }
+      if (e.aliases) {
+        fields.push(`aliases: [${e.aliases.map(a => `'${a}'`).join(', ')}]`);
+      }
+      if (e.brandColor) {
+        fields.push(`brandColor: '${e.brandColor}'`);
       }
       return `  { ${fields.join(', ')} },`;
     })
@@ -147,6 +231,15 @@ export interface IconManifestEntry {
   readonly ticker?: string;
   /** Set when the export is a deprecated alias kept for backward compatibility. */
   readonly deprecated?: true;
+  /**
+   * Variant suffixes available for this base icon (\`''\` is the colored
+   * default). Present only on base entries of artwork units.
+   */
+  readonly variants?: readonly string[];
+  /** Extra lowercase search terms (e.g. \`'btc'\` on \`Bitcoin\`). Base entries only. */
+  readonly aliases?: readonly string[];
+  /** Dominant brand color of the colored artwork, as a \`#rrggbb\` hex. Base entries only. */
+  readonly brandColor?: string;
 }
 
 /**
@@ -169,9 +262,14 @@ if (process.argv.includes('--json')) {
   console.log(`dist/manifest.json written (${ICON_MANIFEST.length} entries).`);
 } else {
   const entries = await buildEntries();
-  writeFileSync(
-    resolve(ROOT, 'src/manifest/index.ts'),
-    renderModule(entries),
-  );
+  const outPath = resolve(ROOT, 'src/manifest/index.ts');
+  writeFileSync(outPath, renderModule(entries));
+  // Biome owns final formatting/style (e.g. numeric separators), keeping
+  // regeneration byte-stable against the committed file.
+  const { execFileSync } = await import('node:child_process');
+  execFileSync('pnpm', ['exec', 'biome', 'check', '--write', outPath], {
+    cwd: ROOT,
+    stdio: 'inherit',
+  });
   console.log(`src/manifest/index.ts written (${entries.length} entries).`);
 }
