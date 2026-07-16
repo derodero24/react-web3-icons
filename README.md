@@ -376,6 +376,19 @@ import { DEPRECATED_ICON_NAMES } from 'react-web3-icons/deprecated';
 
 Full process and test requirements: [CONTRIBUTING.md#icon-lifecycle-policy](CONTRIBUTING.md#icon-lifecycle-policy).
 
+## Trademarks
+
+All product names, logos, and brands contained in this library are the property
+of their respective owners and are used for identification purposes only. Their
+inclusion does not imply any affiliation with or endorsement by the trademark
+holders. The MIT license covers this library's code, not the trademarks
+themselves — your use of a logo remains subject to the brand guidelines of its
+owner.
+
+If you are a rights holder and would like an icon corrected or removed, please
+[open an issue](https://github.com/derodero24/react-web3-icons/issues/new/choose)
+and we will address it promptly.
+
 ## License
 
 [MIT](LICENSE)
