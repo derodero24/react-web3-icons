@@ -129,6 +129,28 @@ The root import still works and includes all icons:
 import { Ethereum } from 'react-web3-icons';
 ```
 
+### Raw SVG Files
+
+Every icon is also published as a plain, optimized SVG file under the `svg/` subpath — useful outside React (Vue, Svelte, static HTML, image pipelines, design tools):
+
+```
+react-web3-icons/svg/<category>/<Name>.svg
+```
+
+```ts
+// With a bundler (Vite, webpack, Next.js) — resolves to a URL or asset per your config
+import ethereumSvgUrl from 'react-web3-icons/svg/chain/Ethereum.svg';
+```
+
+The files have no fixed `width`/`height`, so they scale to their container. Mono variants use `currentColor` and inherit CSS `color`.
+
+You can also hotlink them from a CDN without installing the package:
+
+```
+https://cdn.jsdelivr.net/npm/react-web3-icons@latest/dist/svg/chain/Ethereum.svg
+https://unpkg.com/react-web3-icons@latest/dist/svg/chain/Ethereum.svg
+```
+
 ### IconContext
 
 Use `IconContext.Provider` to set default props for all icons in a subtree:
