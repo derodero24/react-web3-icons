@@ -23,6 +23,11 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<string> = new Set([
   'MaticCircle',
   'MaticMono',
   'MaticCircleMono',
+  // Fantom -> Sonic (Fantom Opera succeeded by Sonic; FTM upgraded 1:1 to S)
+  'Fantom',
+  'FantomMono',
+  'Ftm',
+  'FtmMono',
   // GnosisSafe -> Safe (Safe rebranded)
   'GnosisSafe',
   'GnosisSafeMono',

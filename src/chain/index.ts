@@ -35,6 +35,7 @@ export * from './Polygon';
 export * from './Scroll';
 export * from './Sei';
 export * from './Solana';
+export * from './Sonic';
 export * from './Stacks';
 export * from './StarkNet';
 export * from './Stellar';

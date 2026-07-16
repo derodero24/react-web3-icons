@@ -12,3 +12,4 @@ test/visual/__screenshots__/
 # Local development files
 CLAUDE.md
 .claude/
+.vitest-attachments/

@@ -15,5 +15,9 @@
   },
   "aliases": [
     "ftm"
-  ]
+  ],
+  "deprecated": {
+    "Fantom": "Fantom Opera was succeeded by Sonic \u2014 use `Sonic` instead.",
+    "FantomMono": "Use `SonicMono` instead."
+  }
 }
