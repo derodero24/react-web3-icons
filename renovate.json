@@ -8,6 +8,7 @@
     "before 4am on monday"
   ],
   "prConcurrentLimit": 10,
+  "minimumReleaseAge": "3 days",
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true,
