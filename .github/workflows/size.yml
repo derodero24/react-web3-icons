@@ -12,15 +12,76 @@ concurrency:
 jobs:
   size:
     runs-on: ubuntu-latest
-    env:
-      CI_JOB_NUMBER: 1
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
       - uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v6
         with:
           node-version: '24.x'
           cache: pnpm
-      - uses: andresz1/size-limit-action@94bc357df29c36c8f8d50ea497c3e225c3c95d1d # v1.8.0
+
+      - name: Measure PR bundle sizes
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm exec tsdown
+          pnpm exec size-limit --json > /tmp/size-pr.json
+
+      - name: Measure base branch bundle sizes
+        # Best-effort: if the base branch fails to build or measure, the
+        # report degrades to PR-only sizes instead of failing the job.
+        run: |
+          git worktree add /tmp/base-checkout ${{ github.event.pull_request.base.sha }}
+          cd /tmp/base-checkout
+          if pnpm install --frozen-lockfile && pnpm exec tsdown && pnpm exec size-limit --json > /tmp/size-base.json; then
+            echo "Base branch measured."
+          else
+            echo "::warning::Could not measure base branch; reporting PR sizes only."
+            rm -f /tmp/size-base.json
+          fi
+
+      - name: Render size report (fails when limits are exceeded)
+        run: |
+          if [ -f /tmp/size-base.json ]; then
+            node scripts/size-report.mjs /tmp/size-pr.json /tmp/size-base.json > /tmp/size-report.md
+          else
+            node scripts/size-report.mjs /tmp/size-pr.json > /tmp/size-report.md
+          fi
+
+      - name: Comment size report on PR
+        if: always()
+        uses: actions/github-script@v8
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { readFileSync, existsSync } = require('node:fs');
+            if (!existsSync('/tmp/size-report.md')) {
+              return;
+            }
+            const body = readFileSync('/tmp/size-report.md', 'utf-8');
+            const marker = '<!-- size-report -->';
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              per_page: 100,
+            });
+            const existing = comments.find(c => c.body?.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
