@@ -38,11 +38,16 @@ Internal `id` attributes (masks, gradients) previously used React's `useId` and 
 - Rendering the same icon multiple times on one page duplicates those ids. The duplicate definitions are identical, so icons render correctly — but if your tooling requires globally unique DOM ids, render such icons once and reuse via CSS.
 - Markup snapshots that captured the old `useId`-based values need to be regenerated.
 
+## 3. Node.js 20 support dropped
+
+`engines.node` is now `>=22.12.0`. Node 20 reached end-of-life on 2026-04-30. This only affects the declared support matrix — the published files are plain ESM and unchanged — but package managers will warn (or fail, with `engine-strict`) when installing on Node 20. Browsers and bundlers are unaffected.
+
 ## Checklist
 
 - [ ] Replace `IconContext.Provider` usages (font-size wrapper or explicit props)
 - [ ] Remove `IconContextValue` type imports
 - [ ] Regenerate any markup snapshots containing icon defs ids
+- [ ] Ensure CI/deploy environments run Node 22.12+ (if they install with `engine-strict`)
 
 ---
 
