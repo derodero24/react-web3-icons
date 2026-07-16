@@ -152,6 +152,20 @@ https://cdn.jsdelivr.net/npm/react-web3-icons@latest/dist/svg/chain/Ethereum.svg
 https://unpkg.com/react-web3-icons@latest/dist/svg/chain/Ethereum.svg
 ```
 
+### Iconify (Vue, Svelte, Tailwind, and more)
+
+The full set also ships as IconifyJSON collections — `react-web3-icons/iconify.json` (colored, prefix `web3`) and `react-web3-icons/iconify-mono.json` (`currentColor`, prefix `web3-mono`) — so the icons work outside React through the Iconify ecosystem:
+
+```tsx
+import { addCollection, Icon } from '@iconify/react';
+import web3Icons from 'react-web3-icons/iconify.json';
+
+addCollection(web3Icons);
+<Icon icon="web3:chain-ethereum" />;
+```
+
+Icon names are `<category>-<kebab-name>` (e.g. `chain-ethereum`, `coin-bitcoin`, `wallet-meta-mask`); ticker shorthands are registered as Iconify aliases (e.g. `coin-btc`). The same JSON works with Iconify's Vue/Svelte/Web Component packages and `unplugin-icons`.
+
 ### React Server Components (RSC)
 
 Static icons are pure, hook-free components. They render in React Server Components with no `'use client'` directive:
