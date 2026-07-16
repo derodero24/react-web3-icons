@@ -1,0 +1,20 @@
+{
+  "name": "Sonic",
+  "kind": "icon",
+  "source": [
+    "https://repository.sonic.soniclabs.com/validator/sonic.svg (official asset host, referenced from docs.soniclabs.com validator-node docs)"
+  ],
+  "variants": {
+    "": {
+      "file": "sonic.svg"
+    },
+    "Mono": {
+      "file": "sonic.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "aliases": [
+    "s",
+    "fantom"
+  ]
+}

@@ -47,6 +47,7 @@ export * from './Pyth';
 export * from './Sei';
 export * from './Shib';
 export * from './Sol';
+export * from './Sonic';
 export * from './Strk';
 export * from './Stx';
 export * from './Sui';

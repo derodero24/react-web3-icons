@@ -127,6 +127,8 @@ export const chainImports: Record<
   SolanaMono: () => import('../../chain/Solana'),
   SolanaSquare: () => import('../../chain/Solana'),
   SolanaSquareMono: () => import('../../chain/Solana'),
+  Sonic: () => import('../../chain/Sonic'),
+  SonicMono: () => import('../../chain/Sonic'),
   Stacks: () => import('../../chain/Stacks'),
   StacksMono: () => import('../../chain/Stacks'),
   StarkNet: () => import('../../chain/StarkNet'),

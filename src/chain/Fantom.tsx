@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://fantom.foundation
-/** Fantom chain icon (colored). */
+/** @deprecated Fantom Opera was succeeded by Sonic — use `Sonic` instead. */
 export const Fantom = /* @__PURE__ */ createIcon('Fantom', '0 0 24 24', () => (
   <>
     <path
@@ -17,7 +17,7 @@ export const Fantom = /* @__PURE__ */ createIcon('Fantom', '0 0 24 24', () => (
   </>
 ));
 
-/** Fantom chain icon (monochrome). */
+/** @deprecated Use `SonicMono` instead. */
 export const FantomMono = /* @__PURE__ */ createIcon(
   'FantomMono',
   '0 0 24 24',

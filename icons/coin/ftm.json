@@ -1,19 +1,25 @@
 {
   "name": "Ftm",
   "source": [
-    "re-export of Fantom — see src/chain/Fantom.tsx"
+    "re-export of Fantom \u2014 see src/chain/Fantom.tsx"
   ],
-  "kind": "reexport",
-  "reexport": {
-    "from": "../chain/Fantom",
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "../chain/Fantom",
+    "imports": [
+      "Fantom",
+      "FantomMono"
+    ],
     "exports": [
       {
-        "of": "Fantom",
-        "as": "Ftm"
+        "name": "Ftm",
+        "target": "Fantom",
+        "deprecated": "FTM was upgraded 1:1 to Sonic (S) \u2014 use `Sonic` from the coin subpath instead."
       },
       {
-        "of": "FantomMono",
-        "as": "FtmMono"
+        "name": "FtmMono",
+        "target": "FantomMono",
+        "deprecated": "Use `SonicMono` instead."
       }
     ]
   }

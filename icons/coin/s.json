@@ -1,0 +1,20 @@
+{
+  "name": "Sonic",
+  "source": [
+    "re-export of Sonic \u2014 see src/chain/Sonic.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Sonic",
+    "exports": [
+      {
+        "of": "Sonic",
+        "as": "Sonic"
+      },
+      {
+        "of": "SonicMono",
+        "as": "SonicMono"
+      }
+    ]
+  }
+}

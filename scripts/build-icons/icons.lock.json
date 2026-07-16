@@ -104,8 +104,8 @@
       "output": "44a0b6182854d2b7"
     },
     "chain/fantom": {
-      "input": "a069773143db8794",
-      "output": "1c07ddfa2af17671"
+      "input": "25214146f9d98348",
+      "output": "17aa0fc4833d722d"
     },
     "chain/fraxtal": {
       "input": "5cc24f36fcbc0d0a",
@@ -186,6 +186,10 @@
     "chain/solana": {
       "input": "8eae780dd66e6f39",
       "output": "b66da66a0fdbacd9"
+    },
+    "chain/sonic": {
+      "input": "db460f9bc18c0d4c",
+      "output": "47f20bf9b4ffd57b"
     },
     "chain/stacks": {
       "input": "c3e23cae11acc288",
@@ -332,8 +336,8 @@
       "output": "7e041212fff4065a"
     },
     "coin/ftm": {
-      "input": "717ca65b1a6a5f5f",
-      "output": "03a792014145ceab"
+      "input": "8e1dd1da1c99217c",
+      "output": "7921e0a141e8a8a5"
     },
     "coin/hbar": {
       "input": "3e505d7ed3ff5fe4",
@@ -410,6 +414,10 @@
     "coin/pyth": {
       "input": "8a9a07b7a76d7b66",
       "output": "f990a6c8a9237778"
+    },
+    "coin/s": {
+      "input": "395eb1bb766b897a",
+      "output": "b28abad849480524"
     },
     "coin/sei": {
       "input": "2a4710c8c5be1442",
@@ -1092,8 +1100,8 @@
   },
   "indexes": {
     "bridge": "4eb30417ccba06fc",
-    "chain": "76d602d0a322c3ef",
-    "coin": "400b2d35c363215e",
+    "chain": "990d14635649efa1",
+    "coin": "edbab19b80ef5fbe",
     "defi": "f29a151470e39a58",
     "devtool": "6cd17a7565b1b8e6",
     "dex": "af6f589c56c7b56d",
