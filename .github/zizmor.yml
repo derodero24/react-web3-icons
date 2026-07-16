@@ -1,0 +1,9 @@
+# zizmor configuration — https://docs.zizmor.sh/configuration/
+rules:
+  unpinned-uses:
+    config:
+      policies:
+        # Interim policy: require at least a ref (tag) pin everywhere.
+        # Tighten "*" to hash-pin once Renovate's pinGitHubActionDigests
+        # preset (renovate.json) has pinned all actions to commit SHAs.
+        '*': ref-pin
