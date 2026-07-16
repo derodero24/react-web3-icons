@@ -1,0 +1,20 @@
+{
+  "name": "Sui",
+  "source": [
+    "re-export of Sui \u2014 see src/chain/Sui.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Sui",
+    "exports": [
+      {
+        "of": "Sui",
+        "as": "Sui"
+      },
+      {
+        "of": "SuiMono",
+        "as": "SuiMono"
+      }
+    ]
+  }
+}

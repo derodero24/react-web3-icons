@@ -119,6 +119,10 @@
       "input": "4fafaf9dc7f5e17f",
       "output": "8173305e33d979d0"
     },
+    "chain/hyperliquid": {
+      "input": "8ab7ced99b7cfabe",
+      "output": "9e3be315386ded2d"
+    },
     "chain/immutable-x": {
       "input": "11dbac4754b06ef7",
       "output": "a6bf78f0d31351a3"
@@ -227,6 +231,10 @@
       "input": "65653ffd573e7501",
       "output": "0977ee3d70088678"
     },
+    "coin/algo": {
+      "input": "66d7e633b4fe3644",
+      "output": "e16ba5d80ea4b860"
+    },
     "coin/apt": {
       "input": "c00df5e075cf87c9",
       "output": "85762a7f448976f1"
@@ -234,6 +242,10 @@
     "coin/arb": {
       "input": "114619818daefbb8",
       "output": "c9286d6f91ff0753"
+    },
+    "coin/astr": {
+      "input": "a34830633b8379b5",
+      "output": "86e8bc5b4dcb08bf"
     },
     "coin/atom": {
       "input": "6c37e961d8a23203",
@@ -246,6 +258,10 @@
     "coin/bch": {
       "input": "f59df2c7ad9dbb89",
       "output": "d70b603e58296f3a"
+    },
+    "coin/bera": {
+      "input": "58cf91bd4a7c3274",
+      "output": "cc64ad352668e048"
     },
     "coin/bnb": {
       "input": "1742ca32bbe44fd9",
@@ -262,6 +278,10 @@
     "coin/cake": {
       "input": "83957d7f24df5791",
       "output": "4eb21d364082d9dd"
+    },
+    "coin/celo": {
+      "input": "e9860ebfe1c84fe6",
+      "output": "159896e20568ef5e"
     },
     "coin/cro": {
       "input": "0012087693390e75",
@@ -319,6 +339,10 @@
       "input": "3e505d7ed3ff5fe4",
       "output": "5ef341fb135f96c6"
     },
+    "coin/hype": {
+      "input": "1923794b75cfd074",
+      "output": "0b5667a65462139a"
+    },
     "coin/icp": {
       "input": "5c92d10e58bbf149",
       "output": "0716635ea16d387a"
@@ -334,6 +358,10 @@
     "coin/kas": {
       "input": "57a56cf6a05f0081",
       "output": "62112e5e61814a34"
+    },
+    "coin/kava": {
+      "input": "efa6a20b2aed145d",
+      "output": "99c3254a3d89f1c1"
     },
     "coin/ldo": {
       "input": "165e10a60f5b72c8",
@@ -383,6 +411,10 @@
       "input": "8a9a07b7a76d7b66",
       "output": "f990a6c8a9237778"
     },
+    "coin/sei": {
+      "input": "2a4710c8c5be1442",
+      "output": "cb892430eca12a07"
+    },
     "coin/shib": {
       "input": "d56dc92fd9faa192",
       "output": "48e6ca7101344779"
@@ -391,9 +423,21 @@
       "input": "1defbd40a40993f2",
       "output": "44c6fc3f01d8035b"
     },
+    "coin/strk": {
+      "input": "69981b3fa26c2a84",
+      "output": "ad5cad4e345a9e2e"
+    },
     "coin/stx": {
       "input": "4bac240c8514cd1d",
       "output": "2bf4b2075d649457"
+    },
+    "coin/sui": {
+      "input": "df9fc126214fc8aa",
+      "output": "6f6dc740b7bd58b7"
+    },
+    "coin/taiko": {
+      "input": "e4b7d9c30847dcf4",
+      "output": "d08e8b40c02c05da"
     },
     "coin/tia": {
       "input": "ef625ef9fe62dfb0",
@@ -1048,8 +1092,8 @@
   },
   "indexes": {
     "bridge": "4eb30417ccba06fc",
-    "chain": "d673a3e39a037777",
-    "coin": "7f0bb5079db61a75",
+    "chain": "76d602d0a322c3ef",
+    "coin": "400b2d35c363215e",
     "defi": "f29a151470e39a58",
     "devtool": "6cd17a7565b1b8e6",
     "dex": "af6f589c56c7b56d",

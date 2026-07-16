@@ -18,6 +18,7 @@ export * from './Fantom';
 export * from './Fraxtal';
 export * from './GnosisChain';
 export * from './Hedera';
+export * from './Hyperliquid';
 export * from './ImmutableX';
 export * from './Injective';
 export * from './Ink';
