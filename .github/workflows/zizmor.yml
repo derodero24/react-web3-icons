@@ -1,0 +1,33 @@
+name: Workflow security
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - '.github/workflows/**'
+      - '.github/zizmor.yml'
+  pull_request:
+    branches: [develop]
+    paths:
+      - '.github/workflows/**'
+      - '.github/zizmor.yml'
+
+permissions: {}
+
+jobs:
+  zizmor:
+    name: zizmor (GitHub Actions security lint)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      # Version-pinned via pipx to avoid an extra action dependency.
+      # Gates on medium+ severity; low-level notes still appear in logs.
+      - name: Run zizmor
+        run: pipx run zizmor==1.27.0 --no-progress --min-severity=medium .github/workflows/
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
