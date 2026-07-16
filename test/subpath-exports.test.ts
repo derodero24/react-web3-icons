@@ -129,3 +129,14 @@ describe('Category module exports', () => {
     expect(Object.keys(wallet)).toContain('CoinbaseWalletMono');
   });
 });
+
+describe('package.json exports map', () => {
+  it('exposes raw SVG files via the ./svg/* wildcard subpath', async () => {
+    const { readFileSync } = await import('node:fs');
+    const { join } = await import('node:path');
+    const pkg = JSON.parse(
+      readFileSync(join(import.meta.dirname, '../package.json'), 'utf-8'),
+    ) as { exports: Record<string, unknown> };
+    expect(pkg.exports['./svg/*']).toBe('./dist/svg/*');
+  });
+});

@@ -114,7 +114,8 @@
     "./dynamic": {
       "types": "./dist/dynamic/index.d.mts",
       "default": "./dist/dynamic/index.mjs"
-    }
+    },
+    "./svg/*": "./dist/svg/*"
   },
   "sideEffects": false,
   "files": [
