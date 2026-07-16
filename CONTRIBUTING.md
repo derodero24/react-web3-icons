@@ -2,6 +2,8 @@
 
 Thanks for your interest in contributing! This guide covers how to add icons, fix bugs, and get your changes merged.
 
+By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## Getting Started
 
 ```sh
