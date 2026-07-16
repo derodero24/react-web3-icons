@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://polygon.technology
 /** Polygon chain icon (colored). */
 export const Polygon = /* @__PURE__ */ createIcon(
   'Polygon',

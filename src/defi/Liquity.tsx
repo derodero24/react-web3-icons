@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://liquity.org (official brand)
 // Liquity V2 logo: light-blue circle + indigo column/arc overlay
 const liquityContent = () => (
   <>

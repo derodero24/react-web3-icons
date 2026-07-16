@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://binance.com
 const busdContent = () => (
   <>
     <path d="M168.2.71l41.5 42.5-104.5 104.5-41.5-41.5zm63 63l41.5 42.5-167.5 167.5-41.5-41.5zm-189 63l41.5 42.5-41.5 41.5-41.5-41.5zm252 0l41.5 42.5-167.5 167.5-41.5-41.5z" />

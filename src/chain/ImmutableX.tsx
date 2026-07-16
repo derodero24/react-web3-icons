@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://immutable.com
 /** ImmutableX chain icon (colored). */
 export const ImmutableX = /* @__PURE__ */ createIcon(
   'ImmutableX',

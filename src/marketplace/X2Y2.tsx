@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://x2y2.io
 /** X2Y2 marketplace icon (colored). */
 export const X2Y2 = /* @__PURE__ */ createIcon('X2Y2', '0 0 512 512', _id => (
   <>

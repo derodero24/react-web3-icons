@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://bitstamp.net (official brand)
 /** Bitstamp exchange icon (colored). */
 export const Bitstamp = /* @__PURE__ */ createIcon(
   'Bitstamp',

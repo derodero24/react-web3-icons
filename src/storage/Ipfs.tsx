@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://ipfs.tech
 /** Ipfs storage icon (colored). */
 export const Ipfs = /* @__PURE__ */ createIcon(
   'Ipfs',

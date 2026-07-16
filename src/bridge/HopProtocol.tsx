@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://hop.exchange
 /** HopProtocol bridge icon (colored). */
 export const HopProtocol = /* @__PURE__ */ createIcon(
   'HopProtocol',

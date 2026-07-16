@@ -1,3 +1,4 @@
+// Source: re-export of Avalanche — see src/chain/Avalanche.tsx
 export {
   Avalanche as Avax,
   AvalancheCircle as AvaxCircle,

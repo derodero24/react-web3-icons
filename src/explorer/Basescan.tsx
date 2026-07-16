@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://basescan.org (official brand)
 /** Basescan explorer icon (colored). */
 export const Basescan = /* @__PURE__ */ createIcon(
   'Basescan',

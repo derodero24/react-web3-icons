@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://bnbchain.org
 export {
   BinanceSmartChainCircle as BnbCircle,
   BinanceSmartChainCircleMono as BnbCircleMono,

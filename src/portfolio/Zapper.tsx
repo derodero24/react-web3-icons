@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://zapper.xyz
 /** Zapper portfolio icon (colored). */
 export const Zapper = /* @__PURE__ */ createIcon(
   'Zapper',

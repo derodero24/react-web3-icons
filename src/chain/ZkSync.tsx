@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://zksync.io
 const ZKSYNC_ARROWS =
   'm32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7l6.954-6.922ZM7.75 20.005l6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7L7.75 20.004Z';
 

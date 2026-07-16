@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://bitcoincash.org
 /** Bch coin icon (colored). */
 export const Bch = /* @__PURE__ */ createIcon('Bch', '0 0 24 24', () => (
   <path

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://frax.finance (official brand)
 // Frax Finance target/crosshair mark; strictly black-and-white brand
 const fraxContent = () => (
   <>

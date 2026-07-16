@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://kaspa.org
 /** Kas coin icon (colored). */
 export const Kas = /* @__PURE__ */ createIcon('Kas', '0 0 24 24', () => (
   <path

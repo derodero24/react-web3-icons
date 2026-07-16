@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://etherscan.io (official brand)
 /** Etherscan explorer icon (colored). */
 export const Etherscan = /* @__PURE__ */ createIcon(
   'Etherscan',

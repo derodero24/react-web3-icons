@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://getmonero.org
 /** Xmr coin icon (colored). */
 export const Xmr = /* @__PURE__ */ createIcon('Xmr', '0 0 32 32', () => (
   <>

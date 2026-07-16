@@ -1,3 +1,4 @@
+// Source: re-export of Bitcoin — see src/chain/Bitcoin.tsx
 export {
   Bitcoin as Btc,
   BitcoinCircle as BtcCircle,

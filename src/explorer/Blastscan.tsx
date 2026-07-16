@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://blastscan.io (official brand)
 // Blastscan uses the Blast L2 geometric "BLAST" wordmark as its brandmark
 const BLASTSCAN_A =
   'M197.902 81.513L237.51 61.7769L251.163 19.8713L223.857 0H42.0407L0 31.2264H213.718L202.363 66.373H116.66L108.414 92.057H194.117L170.055 166L210.204 146.129L224.533 101.79L197.632 82.0538L197.902 81.513Z';

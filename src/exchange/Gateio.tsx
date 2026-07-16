@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://gate.io (official brand)
 /** Gateio exchange icon (colored). */
 export const Gateio = /* @__PURE__ */ createIcon(
   'Gateio',

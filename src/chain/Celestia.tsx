@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://celestia.org
 const celestiaContent = () => (
   <path
     fillRule="evenodd"

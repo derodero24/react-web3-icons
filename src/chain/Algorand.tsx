@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://algorand.com
 /** Algorand chain icon (colored). */
 export const Algorand = /* @__PURE__ */ createIcon(
   'Algorand',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://wagmi.sh
 const wagmiContent = () => (
   <path
     fillRule="evenodd"

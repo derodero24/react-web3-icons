@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://wallet.coinbase.com
 /** Coinbase Wallet wallet icon (colored). */
 export const CoinbaseWallet = /* @__PURE__ */ createIcon(
   'CoinbaseWallet',

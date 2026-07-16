@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://litecoin.org
 /** Ltc coin icon (colored). */
 export const Ltc = /* @__PURE__ */ createIcon('Ltc', '0 0 82.6 82.6', () => (
   <>

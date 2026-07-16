@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://trustwallet.com
 /** Trust Wallet Square wallet icon (colored). */
 export const TrustWalletSquare = /* @__PURE__ */ createIcon(
   'TrustWalletSquare',

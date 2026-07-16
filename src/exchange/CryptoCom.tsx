@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://crypto.com (official brand)
 /** CryptoCom exchange icon (colored). */
 export const CryptoCom = /* @__PURE__ */ createIcon(
   'CryptoCom',

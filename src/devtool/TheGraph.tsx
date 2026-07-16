@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://thegraph.com
 /** TheGraph dev tool icon (colored). */
 export const TheGraph = /* @__PURE__ */ createIcon(
   'TheGraph',

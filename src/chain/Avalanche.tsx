@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 
+// Source: https://avax.network
 import type { IconProps } from '../utils';
 import { createIcon } from '../utils';
 import { useIconContext } from '../utils/IconContext';

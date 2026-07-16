@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://pancakeswap.finance
 /** Cake coin icon (colored). */
 export const Cake = /* @__PURE__ */ createIcon('Cake', '0 0 96 96', _id => (
   <>

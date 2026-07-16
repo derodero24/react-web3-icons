@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://openzeppelin.com
 /** OpenZeppelin dev tool icon (colored). */
 export const OpenZeppelin = /* @__PURE__ */ createIcon(
   'OpenZeppelin',

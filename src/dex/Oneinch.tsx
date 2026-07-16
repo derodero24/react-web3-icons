@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://1inch.io
 /** Oneinch DEX icon (colored). */
 export const Oneinch = /* @__PURE__ */ createIcon(
   'Oneinch',

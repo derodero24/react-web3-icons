@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://metamask.io
 /** MetaMask wallet icon (colored). */
 export const MetaMask = /* @__PURE__ */ createIcon(
   'MetaMask',

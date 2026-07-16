@@ -1,3 +1,4 @@
+// Source: re-export of Ethereum — see src/chain/Ethereum.tsx
 export {
   Ethereum as Eth,
   EthereumCircle as EthCircle,

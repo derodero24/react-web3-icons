@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://pepe.vip
 /** Pepe coin icon (colored). */
 export const Pepe = /* @__PURE__ */ createIcon('Pepe', '0 0 24 24', () => (
   <>

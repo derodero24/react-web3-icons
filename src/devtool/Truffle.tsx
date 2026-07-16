@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://trufflesuite.com
 /** @deprecated ConsenSys sunset Truffle Suite in September 2023. */
 export const Truffle = /* @__PURE__ */ createIcon(
   'Truffle',

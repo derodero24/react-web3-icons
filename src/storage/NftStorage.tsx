@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://nft.storage (official brand, service sunset)
 /** NftStorage storage icon (colored). */
 export const NftStorage = /* @__PURE__ */ createIcon(
   'NftStorage',

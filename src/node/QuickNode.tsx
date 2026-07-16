@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://quicknode.com (official brand)
 const quickNodeContent = (_id: string) => (
   <>
     <g clipPath={`url(#${_id}-qn-a)`}>

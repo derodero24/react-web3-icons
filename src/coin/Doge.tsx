@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://dogecoin.com
 /** Doge coin icon (colored). */
 export const Doge = /* @__PURE__ */ createIcon('Doge', '0 0 1875 1875', () => (
   <>

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://thirdweb.com
 /** Thirdweb dev tool icon (colored). */
 export const Thirdweb = /* @__PURE__ */ createIcon(
   'Thirdweb',

@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://dydx.exchange
 /** Dydx DEX icon (colored). */
 export const Dydx = /* @__PURE__ */ createIcon(
   'Dydx',

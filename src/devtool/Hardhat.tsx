@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://hardhat.org
 /** Hardhat dev tool icon (colored). */
 export const Hardhat = /* @__PURE__ */ createIcon(
   'Hardhat',

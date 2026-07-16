@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://tally.xyz
 /** Tally dev tool icon (colored). */
 export const Tally = /* @__PURE__ */ createIcon(
   'Tally',
