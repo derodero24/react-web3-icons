@@ -22,6 +22,7 @@ export default defineConfig({
     'src/wallet/index.ts',
     'src/meta/index.ts',
     'src/dynamic/index.ts',
+    'src/manifest/index.ts',
   ],
   format: ['esm'],
   dts: true,

@@ -117,6 +117,11 @@
       "types": "./dist/dynamic/index.d.mts",
       "default": "./dist/dynamic/index.mjs"
     },
+    "./manifest": {
+      "types": "./dist/manifest/index.d.mts",
+      "default": "./dist/manifest/index.mjs"
+    },
+    "./manifest.json": "./dist/manifest.json",
     "./svg/*": "./dist/svg/*"
   },
   "sideEffects": false,
@@ -125,7 +130,7 @@
   ],
   "scripts": {
     "analyze": "size-limit --why",
-    "build": "tsdown && node scripts/generate-svgs.mjs",
+    "build": "tsdown && node scripts/generate-svgs.mjs && node scripts/generate-manifest.mjs --json",
     "generate-svgs": "node scripts/generate-svgs.mjs",
     "new-icon": "node scripts/new-icon.mjs",
     "check": "biome ci",
@@ -140,7 +145,8 @@
     "test": "vitest run",
     "test:visual": "vitest run --config vitest.config.visual.ts",
     "test:visual:update": "vitest run --config vitest.config.visual.ts --update",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate-manifest": "node scripts/generate-manifest.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.3",
@@ -281,6 +287,11 @@
       "name": "dynamic",
       "path": "dist/dynamic/index.mjs",
       "limit": "125 KB"
+    },
+    {
+      "name": "manifest",
+      "path": "dist/manifest/index.mjs",
+      "limit": "8 KB"
     }
   ]
 }

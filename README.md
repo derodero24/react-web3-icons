@@ -300,6 +300,20 @@ function TokenIcon({ symbol }: { symbol: string }) {
 }
 ```
 
+### Icon Manifest
+
+The `react-web3-icons/manifest` subpath exports a flat, machine-readable catalog of every icon export — ideal for building icon pickers, search indexes, or docs without importing the component bundles:
+
+```ts
+import { ICON_MANIFEST, type IconManifestEntry } from 'react-web3-icons/manifest';
+
+// [{ name: 'Ethereum', category: 'chain', chainId: 1, slug: 'ethereum' },
+//  { name: 'EthereumMono', category: 'chain' }, ...]
+const chains = ICON_MANIFEST.filter(e => e.category === 'chain' && !e.deprecated);
+```
+
+Each entry carries `name`, `category`, and — where registered in the [metadata maps](#metadata-lookups) — `chainId`, `slug`, or `ticker`, plus a `deprecated` flag for aliases. The same data ships as plain JSON for non-JavaScript consumers at `react-web3-icons/manifest.json` (also available on the CDN under `dist/manifest.json`).
+
 ## Icon Categories
 
 | Category | Description | Examples |
