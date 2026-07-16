@@ -18,12 +18,22 @@ export default defineConfig({
             threshold: 0.1,
             allowedMismatchedPixelRatio: 0.005,
           },
+          // vitest 4.1 passes testFileDirectory relative to root; the path
+          // must be absolute or writes fail ("Couldn't write file to fs").
           resolveScreenshotPath: ({
             arg,
             ext,
+            root,
             testFileDirectory,
             testFileName,
-          }) => join(testFileDirectory, '__screenshots__', testFileName, `${arg}${ext}`),
+          }) =>
+            join(
+              root,
+              testFileDirectory,
+              '__screenshots__',
+              testFileName,
+              `${arg}${ext}`,
+            ),
         },
       },
     },
