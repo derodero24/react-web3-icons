@@ -14,6 +14,14 @@ import type {
 } from '../meta';
 import type { IconProps } from '../utils';
 import { createDynamicIcon } from './DynamicIcon';
+import { bridgeImports } from './imports/bridge';
+import { chainImports } from './imports/chain';
+import { coinImports } from './imports/coin';
+import { defiImports } from './imports/defi';
+import { dexImports } from './imports/dex';
+import { exchangeImports } from './imports/exchange';
+import { oracleImports } from './imports/oracle';
+import { walletImports } from './imports/wallet';
 import {
   resolveBridgeExportName,
   resolveChainExportName,
@@ -83,55 +91,55 @@ const SYMBOL_STRIP = ['symbol', 'variant', 'fallback'] as const;
 /** Lazily loads a chain icon by chain ID or slug. */
 export const ChainIcon = createDynamicIcon<ChainIconProps>(
   resolveChainExportName,
-  () => import('../chain'),
+  chainImports,
   CHAIN_STRIP,
 );
 
 /** Lazily loads a coin icon by ticker symbol. */
 export const CoinIcon = createDynamicIcon<CoinIconProps>(
   resolveCoinExportName,
-  () => import('../coin'),
+  coinImports,
   SYMBOL_STRIP,
 );
 
 /** Lazily loads a wallet icon by name. */
 export const WalletIcon = createDynamicIcon<WalletIconProps>(
   resolveWalletExportName,
-  () => import('../wallet'),
+  walletImports,
   NAME_STRIP,
 );
 
 /** Lazily loads an exchange icon by name. */
 export const ExchangeIcon = createDynamicIcon<ExchangeIconProps>(
   resolveExchangeExportName,
-  () => import('../exchange'),
+  exchangeImports,
   NAME_STRIP,
 );
 
 /** Lazily loads a DeFi protocol icon by name. */
 export const DefiIcon = createDynamicIcon<DefiIconProps>(
   resolveDefiExportName,
-  () => import('../defi'),
+  defiImports,
   NAME_STRIP,
 );
 
 /** Lazily loads a DEX icon by name. */
 export const DexIcon = createDynamicIcon<DexIconProps>(
   resolveDexExportName,
-  () => import('../dex'),
+  dexImports,
   NAME_STRIP,
 );
 
 /** Lazily loads a bridge icon by name. */
 export const BridgeIcon = createDynamicIcon<BridgeIconProps>(
   resolveBridgeExportName,
-  () => import('../bridge'),
+  bridgeImports,
   NAME_STRIP,
 );
 
 /** Lazily loads an oracle icon by name. */
 export const OracleIcon = createDynamicIcon<OracleIconProps>(
   resolveOracleExportName,
-  () => import('../oracle'),
+  oracleImports,
   NAME_STRIP,
 );

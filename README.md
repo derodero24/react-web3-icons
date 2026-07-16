@@ -189,7 +189,7 @@ function DynamicIcon({ name }: { name: IconName }) {
 
 ### Dynamic Icon Components
 
-The `react-web3-icons/dynamic` entry point provides components that lazily load icons at runtime by identifier (ticker, slug, or chain ID). The following categories have dedicated dynamic components:
+The `react-web3-icons/dynamic` entry point provides components that lazily load icons at runtime by identifier (ticker, slug, or chain ID). Each resolved icon is fetched as its own small chunk — rendering one icon does not download the whole category. The following categories have dedicated dynamic components:
 
 ```tsx
 import { ChainIcon, CoinIcon, WalletIcon, ExchangeIcon, DefiIcon, DexIcon, BridgeIcon, OracleIcon } from 'react-web3-icons/dynamic';

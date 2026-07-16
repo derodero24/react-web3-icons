@@ -25,6 +25,7 @@ export default defineConfig({
     'src/manifest/index.ts',
   ],
   format: ['esm'],
+  unbundle: true,
   dts: true,
   sourcemap: true,
   clean: true,

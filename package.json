@@ -284,9 +284,9 @@
       "limit": "2 KB"
     },
     {
-      "name": "dynamic",
+      "name": "dynamic (worst case: bundler without code splitting)",
       "path": "dist/dynamic/index.mjs",
-      "limit": "125 KB"
+      "limit": "130 KB"
     },
     {
       "name": "manifest",
