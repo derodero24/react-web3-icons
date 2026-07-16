@@ -1,0 +1,20 @@
+{
+  "name": "Cronos",
+  "source": [
+    "re-export of Cro \u2014 see src/coin/Cro.tsx (Cronos chain uses the CRO mark)"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../coin/Cro",
+    "exports": [
+      {
+        "of": "Cro",
+        "as": "Cronos"
+      },
+      {
+        "of": "CroMono",
+        "as": "CronosMono"
+      }
+    ]
+  }
+}

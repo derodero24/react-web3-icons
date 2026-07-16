@@ -1,0 +1,19 @@
+{
+  "name": "Kaia",
+  "kind": "icon",
+  "source": [
+    "https://docs.kaia.io/misc/brand/ (official brand guidelines, KAIA coin symbol_SVG.svg from the linked asset pack)"
+  ],
+  "variants": {
+    "": {
+      "file": "kaia.svg"
+    },
+    "Mono": {
+      "file": "kaia.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "aliases": [
+    "klaytn"
+  ]
+}

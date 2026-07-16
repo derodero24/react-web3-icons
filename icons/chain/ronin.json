@@ -1,0 +1,20 @@
+{
+  "name": "Ronin",
+  "kind": "icon",
+  "source": [
+    "https://wiki.roninchain.com/brand-kit (official brand kit, Ronin_Mark_Blue.svg from the linked asset drive)"
+  ],
+  "variants": {
+    "": {
+      "file": "ronin.svg"
+    },
+    "Mono": {
+      "file": "ronin.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "aliases": [
+    "ron",
+    "axie"
+  ]
+}
