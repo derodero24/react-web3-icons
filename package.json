@@ -122,6 +122,8 @@
       "default": "./dist/manifest/index.mjs"
     },
     "./manifest.json": "./dist/manifest.json",
+    "./iconify.json": "./dist/iconify.json",
+    "./iconify-mono.json": "./dist/iconify-mono.json",
     "./svg/*": "./dist/svg/*"
   },
   "sideEffects": false,
@@ -130,7 +132,7 @@
   ],
   "scripts": {
     "analyze": "size-limit --why",
-    "build": "tsdown && node scripts/build-icons/emit-dist-svg.mjs && node scripts/generate-manifest.mjs --json",
+    "build": "tsdown && node scripts/build-icons/emit-dist-svg.mjs && node scripts/build-icons/emit-iconify.mjs && node scripts/generate-manifest.mjs --json",
     "new-icon": "node scripts/new-icon.mjs",
     "check": "biome ci",
     "format": "biome format --write",
@@ -154,6 +156,7 @@
     "@changesets/cli": "^2.29.8",
     "@commitlint/cli": "^20.4.4",
     "@commitlint/config-conventional": "^20.4.4",
+    "@iconify/utils": "^3.1.4",
     "@size-limit/preset-small-lib": "^12.0.0",
     "@tsconfig/strictest": "^2.0.8",
     "@types/node": "^25.3.5",
