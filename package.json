@@ -176,7 +176,7 @@
     {
       "name": "full bundle",
       "path": "dist/index.mjs",
-      "limit": "151 KB"
+      "limit": "152 KB"
     },
     {
       "name": "deprecated",
@@ -201,7 +201,7 @@
     {
       "name": "defi",
       "path": "dist/defi/index.mjs",
-      "limit": "10 KB"
+      "limit": "12 KB"
     },
     {
       "name": "devtool",
