@@ -13,5 +13,8 @@
       "file": "okx.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "okb"
+  ]
 }

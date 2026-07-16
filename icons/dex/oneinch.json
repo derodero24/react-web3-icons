@@ -13,5 +13,8 @@
       "file": "oneinch.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "1inch"
+  ]
 }

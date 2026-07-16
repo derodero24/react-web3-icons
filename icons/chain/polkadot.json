@@ -13,5 +13,8 @@
       "file": "polkadot.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "dot"
+  ]
 }

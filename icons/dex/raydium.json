@@ -13,5 +13,8 @@
       "file": "raydium.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "ray"
+  ]
 }

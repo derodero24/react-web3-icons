@@ -13,5 +13,8 @@
       "file": "synthetix.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "snx"
+  ]
 }

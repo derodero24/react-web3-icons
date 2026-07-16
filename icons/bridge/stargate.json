@@ -15,5 +15,8 @@
       "file": "stargate.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "stg"
+  ]
 }

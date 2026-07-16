@@ -29,5 +29,8 @@
       "file": "zk-sync.circle-mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "zk"
+  ]
 }

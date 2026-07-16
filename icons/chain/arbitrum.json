@@ -63,5 +63,8 @@
       "file": "arbitrum.nova-flat-mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "arb1"
+  ]
 }

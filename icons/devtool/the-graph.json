@@ -13,5 +13,8 @@
       "file": "the-graph.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "grt"
+  ]
 }

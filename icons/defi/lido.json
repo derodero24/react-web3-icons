@@ -13,5 +13,8 @@
       "file": "lido.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "aliases": [
+    "steth"
+  ]
 }
