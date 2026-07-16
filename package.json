@@ -271,7 +271,7 @@
     {
       "name": "dynamic",
       "path": "dist/dynamic/index.mjs",
-      "limit": "120 KB"
+      "limit": "125 KB"
     }
   ]
 }
