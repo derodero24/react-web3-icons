@@ -1,0 +1,20 @@
+{
+  "name": "Kaia",
+  "source": [
+    "re-export of Kaia \u2014 see src/chain/Kaia.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Kaia",
+    "exports": [
+      {
+        "of": "Kaia",
+        "as": "Kaia"
+      },
+      {
+        "of": "KaiaMono",
+        "as": "KaiaMono"
+      }
+    ]
+  }
+}

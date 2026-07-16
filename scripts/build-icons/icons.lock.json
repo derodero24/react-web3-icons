@@ -95,6 +95,10 @@
       "input": "78303611b657664f",
       "output": "418bea972e3b3e3d"
     },
+    "chain/cronos": {
+      "input": "a7c99489b98ce2cc",
+      "output": "169a8d99f4ffe1c3"
+    },
     "chain/eclipse": {
       "input": "a05f3dcbda640c31",
       "output": "81d71b4f571635b9"
@@ -135,6 +139,10 @@
       "input": "b09182cb37a38db9",
       "output": "f36685478a11c1dc"
     },
+    "chain/kaia": {
+      "input": "f9ca1434caf56a19",
+      "output": "670ef1e747335179"
+    },
     "chain/kava": {
       "input": "58fa683796158f67",
       "output": "a66798554c9cdce9"
@@ -159,6 +167,10 @@
       "input": "dc92d38e1f3b317f",
       "output": "43f3f6197d418ca6"
     },
+    "chain/monad": {
+      "input": "2725c8ede227a34d",
+      "output": "b12f62a14c7fced8"
+    },
     "chain/near": {
       "input": "7cfce257f547dee7",
       "output": "a3fa95aa967eb61e"
@@ -174,6 +186,10 @@
     "chain/polygon": {
       "input": "a25595ee8760f1db",
       "output": "37ea7cc703c5d467"
+    },
+    "chain/ronin": {
+      "input": "7e01a568fac8de76",
+      "output": "061a7cb1385ccb30"
     },
     "chain/scroll": {
       "input": "79033c4151e5bb26",
@@ -359,6 +375,10 @@
       "input": "b42bf327599caa49",
       "output": "e0296f807630c30b"
     },
+    "coin/kaia": {
+      "input": "b96f1e86dff9690c",
+      "output": "d67614c16e692fdb"
+    },
     "coin/kas": {
       "input": "57a56cf6a05f0081",
       "output": "62112e5e61814a34"
@@ -395,6 +415,10 @@
       "input": "f047136692e0a5d2",
       "output": "4e03a3ca11c67929"
     },
+    "coin/mon": {
+      "input": "963c2c36c0b5e75c",
+      "output": "6611d4b3ff1ae049"
+    },
     "coin/near": {
       "input": "234d595435f24e60",
       "output": "09cea0387d9ba508"
@@ -414,6 +438,10 @@
     "coin/pyth": {
       "input": "8a9a07b7a76d7b66",
       "output": "f990a6c8a9237778"
+    },
+    "coin/ron": {
+      "input": "490c1433ece554e5",
+      "output": "d2984223d91c7c24"
     },
     "coin/s": {
       "input": "395eb1bb766b897a",
@@ -1100,8 +1128,8 @@
   },
   "indexes": {
     "bridge": "4eb30417ccba06fc",
-    "chain": "990d14635649efa1",
-    "coin": "edbab19b80ef5fbe",
+    "chain": "601334e5b6898eb3",
+    "coin": "2e40b7d2492973f6",
     "defi": "f29a151470e39a58",
     "devtool": "6cd17a7565b1b8e6",
     "dex": "af6f589c56c7b56d",

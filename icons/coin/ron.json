@@ -1,0 +1,20 @@
+{
+  "name": "Ronin",
+  "source": [
+    "re-export of Ronin \u2014 see src/chain/Ronin.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Ronin",
+    "exports": [
+      {
+        "of": "Ronin",
+        "as": "Ronin"
+      },
+      {
+        "of": "RoninMono",
+        "as": "RoninMono"
+      }
+    ]
+  }
+}

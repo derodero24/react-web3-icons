@@ -1,0 +1,20 @@
+{
+  "name": "Monad",
+  "source": [
+    "re-export of Monad \u2014 see src/chain/Monad.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Monad",
+    "exports": [
+      {
+        "of": "Monad",
+        "as": "Monad"
+      },
+      {
+        "of": "MonadMono",
+        "as": "MonadMono"
+      }
+    ]
+  }
+}
