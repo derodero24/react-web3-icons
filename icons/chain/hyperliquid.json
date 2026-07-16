@@ -1,0 +1,20 @@
+{
+  "name": "Hyperliquid",
+  "source": [
+    "re-export of Hyperliquid \u2014 see src/dex/Hyperliquid.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../dex/Hyperliquid",
+    "exports": [
+      {
+        "of": "Hyperliquid",
+        "as": "Hyperliquid"
+      },
+      {
+        "of": "HyperliquidMono",
+        "as": "HyperliquidMono"
+      }
+    ]
+  }
+}

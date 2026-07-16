@@ -81,6 +81,8 @@ export const chainImports: Record<
   GnosisChainMono: () => import('../../chain/GnosisChain'),
   Hedera: () => import('../../chain/Hedera'),
   HederaMono: () => import('../../chain/Hedera'),
+  Hyperliquid: () => import('../../chain/Hyperliquid'),
+  HyperliquidMono: () => import('../../chain/Hyperliquid'),
   ImmutableX: () => import('../../chain/ImmutableX'),
   ImmutableXMono: () => import('../../chain/ImmutableX'),
   Injective: () => import('../../chain/Injective'),

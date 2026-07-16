@@ -1,0 +1,20 @@
+{
+  "name": "Celo",
+  "source": [
+    "re-export of Celo \u2014 see src/chain/Celo.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Celo",
+    "exports": [
+      {
+        "of": "Celo",
+        "as": "Celo"
+      },
+      {
+        "of": "CeloMono",
+        "as": "CeloMono"
+      }
+    ]
+  }
+}

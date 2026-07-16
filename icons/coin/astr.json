@@ -1,0 +1,20 @@
+{
+  "name": "Astr",
+  "source": [
+    "re-export of Astar \u2014 see src/chain/Astar.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Astar",
+    "exports": [
+      {
+        "of": "Astar",
+        "as": "Astr"
+      },
+      {
+        "of": "AstarMono",
+        "as": "AstrMono"
+      }
+    ]
+  }
+}

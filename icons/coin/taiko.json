@@ -1,0 +1,20 @@
+{
+  "name": "Taiko",
+  "source": [
+    "re-export of Taiko \u2014 see src/chain/Taiko.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Taiko",
+    "exports": [
+      {
+        "of": "Taiko",
+        "as": "Taiko"
+      },
+      {
+        "of": "TaikoMono",
+        "as": "TaikoMono"
+      }
+    ]
+  }
+}
