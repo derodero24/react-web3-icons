@@ -1,0 +1,17 @@
+{
+  "name": "LayerZero",
+  "notes": [
+    "Paths sourced from layerzero.network header logo (the \"L0\" glyph)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "layer-zero.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "layer-zero.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

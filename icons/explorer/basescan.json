@@ -1,0 +1,19 @@
+{
+  "name": "Basescan",
+  "source": [
+    "https://basescan.org (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "basescan.svg"
+    },
+    "Inverted": {
+      "file": "basescan.inverted.svg"
+    },
+    "Mono": {
+      "file": "basescan.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Bitcoin",
+  "source": [
+    "https://bitcoin.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "Circle": {
+      "file": "bitcoin.circle.svg"
+    },
+    "": {
+      "file": "bitcoin.svg"
+    },
+    "CircleMono": {
+      "file": "bitcoin.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Mono": {
+      "file": "bitcoin.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Link",
+  "source": [
+    "re-export of Chainlink — see src/devtool/Chainlink.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../devtool/Chainlink",
+    "exports": [
+      {
+        "of": "Chainlink",
+        "as": "Link"
+      },
+      {
+        "of": "ChainlinkMono",
+        "as": "LinkMono"
+      }
+    ]
+  }
+}

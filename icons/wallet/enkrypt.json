@@ -1,0 +1,17 @@
+{
+  "name": "Enkrypt",
+  "source": [
+    "https://enkrypt.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "enkrypt.svg",
+      "fill": "#C54AFF"
+    },
+    "Mono": {
+      "file": "enkrypt.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

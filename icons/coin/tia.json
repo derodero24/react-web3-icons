@@ -1,0 +1,17 @@
+{
+  "name": "Tia",
+  "source": [
+    "https://celestia.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "tia.svg",
+      "fill": "#7A2BF9"
+    },
+    "Mono": {
+      "file": "tia.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

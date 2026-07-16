@@ -1,0 +1,17 @@
+{
+  "name": "Crv",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT) — CRV (Curve Finance) token SVG"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "crv.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "crv.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

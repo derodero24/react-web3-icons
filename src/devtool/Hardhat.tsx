@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://hardhat.org
-/** Hardhat dev tool icon (colored). */
+/** Hardhat devtool icon (colored). */
 export const Hardhat = /* @__PURE__ */ createIcon(
   'Hardhat',
   '154.25 169.12 49.88 34.57',
@@ -81,7 +81,7 @@ export const Hardhat = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** Hardhat dev tool icon (monochrome). */
+/** Hardhat devtool icon (monochrome). */
 export const HardhatMono = /* @__PURE__ */ createIcon(
   'HardhatMono',
   '154.25 169.12 49.88 34.57',

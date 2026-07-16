@@ -1,0 +1,17 @@
+{
+  "name": "HopProtocol",
+  "source": [
+    "https://hop.exchange"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "hop-protocol.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "hop-protocol.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

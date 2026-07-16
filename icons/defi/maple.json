@@ -1,0 +1,18 @@
+{
+  "name": "Maple",
+  "notes": [
+    "Maple Finance — orange circle with white maple leaf details",
+    "Paths sourced from CoinSpace/crypto-db: logo/maple-finance.svg"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "maple.svg",
+      "fill": "#FC784A"
+    },
+    "Mono": {
+      "file": "maple.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

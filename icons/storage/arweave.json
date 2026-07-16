@@ -1,0 +1,17 @@
+{
+  "name": "Arweave",
+  "source": [
+    "https://arweave.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "arweave.svg",
+      "fill": "#222326"
+    },
+    "Mono": {
+      "file": "arweave.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

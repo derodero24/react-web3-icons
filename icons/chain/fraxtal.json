@@ -1,0 +1,17 @@
+{
+  "name": "Fraxtal",
+  "source": [
+    "https://frax.finance"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "fraxtal.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "fraxtal.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

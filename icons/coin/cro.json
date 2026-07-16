@@ -1,0 +1,16 @@
+{
+  "name": "Cro",
+  "source": [
+    "https://crypto.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "cro.svg"
+    },
+    "Mono": {
+      "file": "cro.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

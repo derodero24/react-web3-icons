@@ -1,0 +1,33 @@
+{
+  "name": "Zerion",
+  "source": [
+    "https://zerion.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "Circle": {
+      "file": "zerion.circle.svg"
+    },
+    "Square": {
+      "file": "zerion.square.svg"
+    },
+    "CircleMono": {
+      "file": "zerion.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "SquareMono": {
+      "file": "zerion.square-mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "localAliases": [
+    {
+      "name": "Zerion",
+      "target": "ZerionCircle"
+    },
+    {
+      "name": "ZerionMono",
+      "target": "ZerionCircleMono"
+    }
+  ]
+}

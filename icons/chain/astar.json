@@ -1,0 +1,16 @@
+{
+  "name": "Astar",
+  "source": [
+    "https://astar.network"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "astar.svg"
+    },
+    "Mono": {
+      "file": "astar.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

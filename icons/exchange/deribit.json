@@ -1,0 +1,17 @@
+{
+  "name": "Deribit",
+  "source": [
+    "https://deribit.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "deribit.svg",
+      "fill": "#2DAE9A"
+    },
+    "Mono": {
+      "file": "deribit.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Dot",
+  "source": [
+    "re-export of Polkadot — see src/chain/Polkadot.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Polkadot",
+    "exports": [
+      {
+        "of": "Polkadot",
+        "as": "Dot"
+      },
+      {
+        "of": "PolkadotMono",
+        "as": "DotMono"
+      }
+    ]
+  }
+}

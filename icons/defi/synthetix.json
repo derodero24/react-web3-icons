@@ -1,0 +1,17 @@
+{
+  "name": "Synthetix",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "synthetix.svg",
+      "fill": "#1B1230"
+    },
+    "Mono": {
+      "file": "synthetix.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

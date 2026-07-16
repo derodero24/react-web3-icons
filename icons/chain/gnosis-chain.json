@@ -1,0 +1,17 @@
+{
+  "name": "GnosisChain",
+  "source": [
+    "https://gnosis.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "gnosis-chain.svg",
+      "fill": "#3E6957"
+    },
+    "Mono": {
+      "file": "gnosis-chain.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

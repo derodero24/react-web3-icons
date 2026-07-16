@@ -1,0 +1,16 @@
+{
+  "name": "Near",
+  "source": [
+    "https://near.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "near.svg"
+    },
+    "Mono": {
+      "file": "near.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

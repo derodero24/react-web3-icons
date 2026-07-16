@@ -1,0 +1,16 @@
+{
+  "name": "Gateio",
+  "source": [
+    "https://gate.io (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "gateio.svg"
+    },
+    "Mono": {
+      "file": "gateio.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

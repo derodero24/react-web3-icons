@@ -1,0 +1,20 @@
+{
+  "name": "Ftm",
+  "source": [
+    "re-export of Fantom — see src/chain/Fantom.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Fantom",
+    "exports": [
+      {
+        "of": "Fantom",
+        "as": "Ftm"
+      },
+      {
+        "of": "FantomMono",
+        "as": "FtmMono"
+      }
+    ]
+  }
+}

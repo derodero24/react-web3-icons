@@ -1,0 +1,17 @@
+{
+  "name": "Celestia",
+  "source": [
+    "https://celestia.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "celestia.svg",
+      "fill": "#7A2BF9"
+    },
+    "Mono": {
+      "file": "celestia.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

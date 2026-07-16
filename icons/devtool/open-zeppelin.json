@@ -1,0 +1,16 @@
+{
+  "name": "OpenZeppelin",
+  "source": [
+    "https://openzeppelin.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "open-zeppelin.svg"
+    },
+    "Mono": {
+      "file": "open-zeppelin.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

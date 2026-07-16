@@ -1,0 +1,19 @@
+{
+  "name": "Liquity",
+  "source": [
+    "https://liquity.org (official brand)"
+  ],
+  "notes": [
+    "Liquity V2 logo: light-blue circle + indigo column/arc overlay"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "liquity.svg"
+    },
+    "Mono": {
+      "file": "liquity.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

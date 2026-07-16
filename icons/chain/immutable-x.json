@@ -1,0 +1,16 @@
+{
+  "name": "ImmutableX",
+  "source": [
+    "https://immutable.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "immutable-x.svg"
+    },
+    "Mono": {
+      "file": "immutable-x.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

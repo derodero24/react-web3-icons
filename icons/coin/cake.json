@@ -1,0 +1,16 @@
+{
+  "name": "Cake",
+  "source": [
+    "https://pancakeswap.finance"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "cake.svg"
+    },
+    "Mono": {
+      "file": "cake.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

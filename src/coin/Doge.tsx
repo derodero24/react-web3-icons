@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
 // Source: https://dogecoin.com
+// Simplified Doge "D" mark scaled to fit in a 64x64 circle (~72% fill).
+// DogeMono viewBox 0 0 24 24 -> scale 1.917, translate(9, 9)
 /** Doge coin icon (colored). */
 export const Doge = /* @__PURE__ */ createIcon('Doge', '0 0 1875 1875', () => (
   <>
@@ -588,31 +590,26 @@ export const Doge = /* @__PURE__ */ createIcon('Doge', '0 0 1875 1875', () => (
   </>
 ));
 
-const DOGE_CIRCLE = 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18';
-const DOGE_D =
-  'M6.293 5.195v3.626h1.725v6.796H6.293v3.626h6.95q.135-.003.271-.017a6.1 6.1 0 0 0 2.595-.852c1.563-.944 2.915-2.792 2.915-5.926 0-3.293-1.29-5.255-2.854-6.291a5.9 5.9 0 0 0-2.923-.962zm6.892 10.422h-1.277V8.821h1.317c.053.01.145.018.263.044.237.053.545.158.843.352.483.324 1.247 1.08 1.247 3.23 0 1.844-.703 2.494-1.19 2.793a2.75 2.75 0 0 1-1.203.377';
-
 /** Doge coin icon (monochrome). */
 export const DogeMono = /* @__PURE__ */ createIcon(
   'DogeMono',
   '0 0 24 24',
   _id => (
     <>
-      <path d={DOGE_CIRCLE} mask={`url(#${_id}-a)`} />
+      <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18" mask={`url(#${_id}-a)`} />
       <defs>
         <mask id={`${_id}-a`}>
           <rect width="100%" height="100%" fill="#fff" />
-          <path d={DOGE_D} fill="#000" />
+          <path
+            d="M6.293 5.195v3.626h1.725v6.796H6.293v3.626h6.95q.135-.003.271-.017a6.1 6.1 0 0 0 2.595-.852c1.563-.944 2.915-2.792 2.915-5.926 0-3.293-1.29-5.255-2.854-6.291a5.9 5.9 0 0 0-2.923-.962zm6.892 10.422h-1.277V8.821h1.317c.053.01.145.018.263.044.237.053.545.158.843.352.483.324 1.247 1.08 1.247 3.23 0 1.844-.703 2.494-1.19 2.793a2.75 2.75 0 0 1-1.203.377"
+            fill="#000"
+          />
         </mask>
       </defs>
     </>
   ),
   'currentColor',
 );
-
-// Simplified Doge "D" mark scaled to fit in a 64x64 circle (~72% fill).
-// DogeMono viewBox 0 0 24 24 -> scale 1.917, translate(9, 9)
-const DOGE_CIRCLE_TX = 'translate(9 9) scale(1.917)';
 
 /** Doge Circle coin icon (colored). */
 export const DogeCircle = /* @__PURE__ */ createIcon(
@@ -621,8 +618,11 @@ export const DogeCircle = /* @__PURE__ */ createIcon(
   () => (
     <>
       <circle cx="32" cy="32" r="32" fill="#C2A633" />
-      <g transform={DOGE_CIRCLE_TX}>
-        <path d={DOGE_D} fill="#fff" />
+      <g transform="translate(9 9) scale(1.917)">
+        <path
+          d="M6.293 5.195v3.626h1.725v6.796H6.293v3.626h6.95q.135-.003.271-.017a6.1 6.1 0 0 0 2.595-.852c1.563-.944 2.915-2.792 2.915-5.926 0-3.293-1.29-5.255-2.854-6.291a5.9 5.9 0 0 0-2.923-.962zm6.892 10.422h-1.277V8.821h1.317c.053.01.145.018.263.044.237.053.545.158.843.352.483.324 1.247 1.08 1.247 3.23 0 1.844-.703 2.494-1.19 2.793a2.75 2.75 0 0 1-1.203.377"
+          fill="#fff"
+        />
       </g>
     </>
   ),
@@ -638,8 +638,11 @@ export const DogeCircleMono = /* @__PURE__ */ createIcon(
       <defs>
         <mask id={`${_id}-dogec-a`}>
           <rect width="100%" height="100%" fill="#fff" />
-          <g transform={DOGE_CIRCLE_TX}>
-            <path d={DOGE_D} fill="#000" />
+          <g transform="translate(9 9) scale(1.917)">
+            <path
+              d="M6.293 5.195v3.626h1.725v6.796H6.293v3.626h6.95q.135-.003.271-.017a6.1 6.1 0 0 0 2.595-.852c1.563-.944 2.915-2.792 2.915-5.926 0-3.293-1.29-5.255-2.854-6.291a5.9 5.9 0 0 0-2.923-.962zm6.892 10.422h-1.277V8.821h1.317c.053.01.145.018.263.044.237.053.545.158.843.352.483.324 1.247 1.08 1.247 3.23 0 1.844-.703 2.494-1.19 2.793a2.75 2.75 0 0 1-1.203.377"
+              fill="#000"
+            />
           </g>
         </mask>
       </defs>

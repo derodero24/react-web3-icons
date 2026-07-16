@@ -1,0 +1,34 @@
+{
+  "name": "Ethereum",
+  "source": [
+    "https://ethereum.org"
+  ],
+  "notes": [
+    "Ethereum diamond paths scaled to fit in a 64×64 circle (≈72% fill).",
+    "Original viewBox 0 0 784.37 1277.39 → scale 0.036, translate(17.9, 9)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ethereum.svg"
+    },
+    "Circle": {
+      "file": "ethereum.circle.svg"
+    },
+    "CircleMono": {
+      "file": "ethereum.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "ethereum.square.svg"
+    },
+    "SquareMono": {
+      "file": "ethereum.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "Mono": {
+      "file": "ethereum.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "RedStone",
+  "notes": [
+    "Paths sourced from redstone-finance/redstone-fuel-dex (MIT)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "red-stone.svg",
+      "fill": "#FF0000"
+    },
+    "Mono": {
+      "file": "red-stone.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

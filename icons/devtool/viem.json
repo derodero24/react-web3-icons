@@ -1,0 +1,17 @@
+{
+  "name": "Viem",
+  "source": [
+    "https://github.com/wevm/viem/blob/main/site/public/logo-light-hug.svg"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "viem.svg",
+      "fill": "#1E1E20"
+    },
+    "Mono": {
+      "file": "viem.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

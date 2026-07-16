@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://collab.land
-/** CollabLand dev tool icon (colored). */
+/** Collab Land devtool icon (colored). */
 export const CollabLand = /* @__PURE__ */ createIcon(
   'CollabLand',
   '0 0 43.62 33.95',
@@ -30,7 +30,7 @@ export const CollabLand = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** CollabLand dev tool icon (monochrome). */
+/** Collab Land devtool icon (monochrome). */
 export const CollabLandMono = /* @__PURE__ */ createIcon(
   'CollabLandMono',
   '0 0 43.62 33.95',

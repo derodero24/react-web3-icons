@@ -1,7 +1,6 @@
 import { createIcon } from '../utils';
 
 // Paths sourced from @web3icons/react (MIT) — HT (Huobi Token) SVG
-
 /** Htx exchange icon (colored). */
 export const Htx = /* @__PURE__ */ createIcon(
   'Htx',

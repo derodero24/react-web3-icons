@@ -1,0 +1,16 @@
+{
+  "name": "Bch",
+  "source": [
+    "https://bitcoincash.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "bch.svg"
+    },
+    "Mono": {
+      "file": "bch.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

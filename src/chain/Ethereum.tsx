@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
 // Source: https://ethereum.org
+// Ethereum diamond paths scaled to fit in a 64×64 circle (≈72% fill).
+// Original viewBox 0 0 784.37 1277.39 → scale 0.036, translate(17.9, 9)
 /** Ethereum chain icon (colored). */
 export const Ethereum = /* @__PURE__ */ createIcon(
   'Ethereum',
@@ -23,10 +25,6 @@ export const Ethereum = /* @__PURE__ */ createIcon(
   ),
 );
 
-// Ethereum diamond paths scaled to fit in a 64×64 circle (≈72% fill).
-// Original viewBox 0 0 784.37 1277.39 → scale 0.036, translate(17.9, 9)
-const ETH_CIRCLE_TX = 'translate(17.9 9) scale(0.036)';
-
 /** Ethereum Circle chain icon (colored). */
 export const EthereumCircle = /* @__PURE__ */ createIcon(
   'EthereumCircle',
@@ -34,7 +32,7 @@ export const EthereumCircle = /* @__PURE__ */ createIcon(
   () => (
     <>
       <circle cx="32" cy="32" r="32" fill="#343434" />
-      <g transform={ETH_CIRCLE_TX}>
+      <g transform="translate(17.9 9) scale(0.036)">
         <path
           fill="#fff"
           d="M392.07 0l-8.57 29.11v844.63l8.57 8.55 392.06-231.75z"
@@ -66,7 +64,7 @@ export const EthereumCircleMono = /* @__PURE__ */ createIcon(
       <defs>
         <mask id={`${_id}-ethc-a`}>
           <rect width="100%" height="100%" fill="#fff" />
-          <g transform={ETH_CIRCLE_TX} fill="#000">
+          <g transform="translate(17.9 9) scale(0.036)" fill="#000">
             <path d="M392.07 0l-8.57 29.11v844.63l8.57 8.55 392.06-231.75z" />
             <path d="M392.07 0L0 650.54l392.07 231.75V472.33z" />
             <path d="M392.07 956.52l-4.83 5.89v300.87l4.83 14.1 392.3-552.49z" />
@@ -88,7 +86,7 @@ export const EthereumSquare = /* @__PURE__ */ createIcon(
   () => (
     <>
       <rect width="64" height="64" rx="12.8" fill="#343434" />
-      <g transform={ETH_CIRCLE_TX}>
+      <g transform="translate(17.9 9) scale(0.036)">
         <path
           fill="#fff"
           d="M392.07 0l-8.57 29.11v844.63l8.57 8.55 392.06-231.75z"
@@ -120,7 +118,7 @@ export const EthereumSquareMono = /* @__PURE__ */ createIcon(
       <defs>
         <mask id={`${_id}-eths-a`}>
           <rect width="100%" height="100%" fill="#fff" />
-          <g transform={ETH_CIRCLE_TX} fill="#000">
+          <g transform="translate(17.9 9) scale(0.036)" fill="#000">
             <path d="M392.07 0l-8.57 29.11v844.63l8.57 8.55 392.06-231.75z" />
             <path d="M392.07 0L0 650.54l392.07 231.75V472.33z" />
             <path d="M392.07 956.52l-4.83 5.89v300.87l4.83 14.1 392.3-552.49z" />

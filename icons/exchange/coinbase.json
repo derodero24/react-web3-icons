@@ -1,0 +1,27 @@
+{
+  "name": "Coinbase",
+  "source": [
+    "https://coinbase.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "Circle": {
+      "file": "coinbase.circle.svg"
+    },
+    "CircleAlt": {
+      "file": "coinbase.circle-alt.svg"
+    },
+    "": {
+      "file": "coinbase.svg",
+      "fill": "#0052ff"
+    },
+    "CircleMono": {
+      "file": "coinbase.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Mono": {
+      "file": "coinbase.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Okx",
+  "source": [
+    "https://okx.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "okx.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "okx.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

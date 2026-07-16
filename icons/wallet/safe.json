@@ -1,0 +1,17 @@
+{
+  "name": "Safe",
+  "source": [
+    "https://safe.global"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "safe.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "safe.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

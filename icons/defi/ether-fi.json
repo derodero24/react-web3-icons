@@ -1,0 +1,16 @@
+{
+  "name": "EtherFi",
+  "source": [
+    "https://github.com/etherfi-protocol/.github/blob/master/etherfi-logo.svg"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ether-fi.svg"
+    },
+    "Mono": {
+      "file": "ether-fi.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

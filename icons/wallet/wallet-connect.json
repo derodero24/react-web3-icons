@@ -1,0 +1,34 @@
+{
+  "name": "WalletConnect",
+  "source": [
+    "https://walletconnect.com"
+  ],
+  "notes": [
+    "Original viewBox 45.52 99.74 387.64 237.59 → scale 0.119, translate(3.6, 6.1)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "Circle": {
+      "file": "wallet-connect.circle.svg"
+    },
+    "CircleMono": {
+      "file": "wallet-connect.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "wallet-connect.square.svg"
+    },
+    "SquareMono": {
+      "file": "wallet-connect.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "": {
+      "file": "wallet-connect.svg",
+      "fill": "#3396FF"
+    },
+    "Mono": {
+      "file": "wallet-connect.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,15 +1,6 @@
 import { createIcon } from '../utils';
 
 // Paths sourced from @web3icons/react (MIT) — MX token SVG (MEXC exchange)
-
-const mexcMonoContent = () => (
-  <>
-    <path d="M7.2 7.406a2.113 2.113 0 0 1 3.701 0l5.813 10.281H5.201c-1.691 0-2.748-1.871-1.905-3.369z" />
-    <path d="M16.8 7.406a2.113 2.113 0 0 0-3.701 0l-4.122 7.296c-.753 1.327.185 2.985 1.682 2.985h8.14c1.691 0 2.748-1.871 1.905-3.369z" />
-    <path d="M10.659 17.687h6.055L12 9.347l-3.028 5.355c-.748 1.326.19 2.985 1.687 2.985" />
-  </>
-);
-
 /** Mexc exchange icon (colored). */
 export const Mexc = /* @__PURE__ */ createIcon(
   'Mexc',
@@ -26,7 +17,7 @@ export const Mexc = /* @__PURE__ */ createIcon(
           gradientUnits="userSpaceOnUse"
         >
           <stop offset=".12" stopColor="#1C6AD9" />
-          <stop offset=".76" stopColor="#1C6AD9" stopOpacity={0} />
+          <stop offset=".76" stopColor="#1C6AD9" stopOpacity="0" />
         </linearGradient>
       </defs>
       <path
@@ -50,6 +41,12 @@ export const Mexc = /* @__PURE__ */ createIcon(
 export const MexcMono = /* @__PURE__ */ createIcon(
   'MexcMono',
   '0 0 24 24',
-  mexcMonoContent,
+  () => (
+    <>
+      <path d="M7.2 7.406a2.113 2.113 0 0 1 3.701 0l5.813 10.281H5.201c-1.691 0-2.748-1.871-1.905-3.369z" />
+      <path d="M16.8 7.406a2.113 2.113 0 0 0-3.701 0l-4.122 7.296c-.753 1.327.185 2.985 1.682 2.985h8.14c1.691 0 2.748-1.871 1.905-3.369z" />
+      <path d="M10.659 17.687h6.055L12 9.347l-3.028 5.355c-.748 1.326.19 2.985 1.687 2.985" />
+    </>
+  ),
   'currentColor',
 );

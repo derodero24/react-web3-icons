@@ -1,0 +1,21 @@
+{
+  "name": "TofuNft",
+  "source": [
+    "https://tofunft.com (service discontinued, SVG from former official site)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "tofu-nft.svg",
+      "fill": "#141416"
+    },
+    "Mono": {
+      "file": "tofu-nft.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "deprecated": {
+    "TofuNft": "tofunft.com shut down permanently in 2024.",
+    "TofuNftMono": "tofunft.com shut down permanently in 2024."
+  }
+}

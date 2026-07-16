@@ -1,0 +1,17 @@
+{
+  "name": "Spark",
+  "notes": [
+    "Spark (SparkLend by MakerDAO) — lightning bolt mark",
+    "Gradient: pink #FA43BD → orange #FFA930, from official spark.fi brand"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "spark.svg"
+    },
+    "Mono": {
+      "file": "spark.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

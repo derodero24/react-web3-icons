@@ -1,0 +1,17 @@
+{
+  "name": "Metis",
+  "source": [
+    "https://metis.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "metis.svg",
+      "fill": "#00D8C1"
+    },
+    "Mono": {
+      "file": "metis.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

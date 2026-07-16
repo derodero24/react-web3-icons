@@ -1,0 +1,17 @@
+{
+  "name": "DaedalusWallet",
+  "source": [
+    "https://daedaluswallet.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "daedalus-wallet.svg",
+      "fill": "#82ff65"
+    },
+    "Mono": {
+      "file": "daedalus-wallet.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

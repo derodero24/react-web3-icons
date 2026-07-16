@@ -1,0 +1,27 @@
+{
+  "name": "OpenSea",
+  "source": [
+    "https://opensea.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "open-sea.svg"
+    },
+    "Alt": {
+      "file": "open-sea.alt.svg"
+    },
+    "Mono": {
+      "file": "open-sea.mono.svg",
+      "fill": "currentColor"
+    },
+    "Symbol": {
+      "file": "open-sea.symbol.svg",
+      "fill": "#2081e2"
+    },
+    "SymbolMono": {
+      "file": "open-sea.symbol-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

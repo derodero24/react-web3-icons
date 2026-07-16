@@ -1,0 +1,20 @@
+{
+  "name": "Ton",
+  "source": [
+    "re-export of Ton — see src/chain/Ton.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Ton",
+    "exports": [
+      {
+        "of": "Ton",
+        "as": "Ton"
+      },
+      {
+        "of": "TonMono",
+        "as": "TonMono"
+      }
+    ]
+  }
+}

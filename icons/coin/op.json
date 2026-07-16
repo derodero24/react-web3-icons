@@ -1,0 +1,28 @@
+{
+  "name": "Op",
+  "source": [
+    "re-export of Optimism — see src/chain/Optimism.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Optimism",
+    "exports": [
+      {
+        "of": "Optimism",
+        "as": "Op"
+      },
+      {
+        "of": "OptimismCircle",
+        "as": "OpCircle"
+      },
+      {
+        "of": "OptimismCircleMono",
+        "as": "OpCircleMono"
+      },
+      {
+        "of": "OptimismMono",
+        "as": "OpMono"
+      }
+    ]
+  }
+}

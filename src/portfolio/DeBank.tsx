@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://debank.com
-/** DeBank portfolio icon (colored). */
+/** De Bank portfolio icon (colored). */
 export const DeBank = /* @__PURE__ */ createIcon(
   'DeBank',
   '51 39 177.12 201.35',
@@ -25,7 +25,7 @@ export const DeBank = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** DeBank portfolio icon (monochrome). */
+/** De Bank portfolio icon (monochrome). */
 export const DeBankMono = /* @__PURE__ */ createIcon(
   'DeBankMono',
   '51 39 177.12 201.35',

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="41 38 100.77 108" fill="none">
+  <path d="M116.379 38L41 145.991h23.143L139.912 38h-23.533z" fill="#fff"/>
+  <path d="M66.554 38l22.179 31.821-11.571 17.357L42.929 38h23.625z" fill="url(#dydx-a)"/>
+  <path d="M118.625 146l-24.589-35.196 11.571-16.875L141.768 146h-23.143z" fill="url(#dydx-b)"/>
+  <defs>
+    <linearGradient id="dydx-a" x1="61.25" y1="44.75" x2="93" y2="83.079" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".55"/>
+    </linearGradient>
+    <linearGradient id="dydx-b" x1="123.929" y1="137.804" x2="84.92" y2="85.216" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6966ff"/>
+      <stop offset="1" stop-color="#6966ff" stop-opacity=".36"/>
+    </linearGradient>
+  </defs>
+</svg>

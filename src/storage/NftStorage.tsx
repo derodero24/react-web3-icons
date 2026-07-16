@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://nft.storage (official brand, service sunset)
-/** NftStorage storage icon (colored). */
+/** Nft Storage storage icon (colored). */
 export const NftStorage = /* @__PURE__ */ createIcon(
   'NftStorage',
   '262.133 123.05 122.052 223.155',
@@ -130,7 +130,7 @@ export const NftStorage = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** NftStorage storage icon (monochrome). */
+/** Nft Storage storage icon (monochrome). */
 export const NftStorageMono = /* @__PURE__ */ createIcon(
   'NftStorageMono',
   '262.133 123.05 122.052 223.155',

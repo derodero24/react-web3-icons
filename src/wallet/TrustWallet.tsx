@@ -95,8 +95,8 @@ export const TrustWalletCircleMono = /* @__PURE__ */ createIcon(
   'currentColor',
 );
 
-/** Base alias — TrustWallet's primary brand mark is the shield on a square background. */
+/** Trust Wallet wallet icon (colored). */
 export const TrustWallet = TrustWalletSquare;
 
-/** Base mono alias. */
+/** Trust Wallet wallet icon (monochrome). */
 export const TrustWalletMono = TrustWalletSquareMono;

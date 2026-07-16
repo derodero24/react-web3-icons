@@ -1,0 +1,17 @@
+{
+  "name": "PancakeSwap",
+  "source": [
+    "https://pancakeswap.finance"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "pancake-swap.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "pancake-swap.mono.svg",
+      "fill": "none"
+    }
+  }
+}

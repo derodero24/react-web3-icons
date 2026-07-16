@@ -1,0 +1,17 @@
+{
+  "name": "QuickNode",
+  "source": [
+    "https://quicknode.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "quick-node.svg",
+      "fill": "#00a4d6"
+    },
+    "Mono": {
+      "file": "quick-node.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

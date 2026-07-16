@@ -1,0 +1,17 @@
+{
+  "name": "Stx",
+  "source": [
+    "https://stacks.co"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "stx.svg",
+      "fill": "#7023EB"
+    },
+    "Mono": {
+      "file": "stx.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

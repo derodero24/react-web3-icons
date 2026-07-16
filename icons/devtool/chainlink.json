@@ -1,0 +1,16 @@
+{
+  "name": "Chainlink",
+  "source": [
+    "https://chain.link"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "chainlink.svg"
+    },
+    "Mono": {
+      "file": "chainlink.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

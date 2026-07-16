@@ -1,0 +1,21 @@
+{
+  "name": "Flr",
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "./Flare",
+    "imports": [
+      "Flare",
+      "FlareMono"
+    ],
+    "exports": [
+      {
+        "name": "Flr",
+        "target": "Flare"
+      },
+      {
+        "name": "FlrMono",
+        "target": "FlareMono"
+      }
+    ]
+  }
+}

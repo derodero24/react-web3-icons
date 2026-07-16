@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://chain.link
-/** Chainlink dev tool icon (colored). */
+/** Chainlink devtool icon (colored). */
 export const Chainlink = /* @__PURE__ */ createIcon(
   'Chainlink',
   '0 0 37.8 43.6',
@@ -19,7 +19,7 @@ export const Chainlink = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** Chainlink dev tool icon (monochrome). */
+/** Chainlink devtool icon (monochrome). */
 export const ChainlinkMono = /* @__PURE__ */ createIcon(
   'ChainlinkMono',
   '0 0 37.8 43.6',

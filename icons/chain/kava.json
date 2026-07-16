@@ -1,0 +1,17 @@
+{
+  "name": "Kava",
+  "source": [
+    "https://kava.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "kava.svg",
+      "fill": "#FF564F"
+    },
+    "Mono": {
+      "file": "kava.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

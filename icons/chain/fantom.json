@@ -1,0 +1,16 @@
+{
+  "name": "Fantom",
+  "source": [
+    "https://fantom.foundation"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "fantom.svg"
+    },
+    "Mono": {
+      "file": "fantom.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

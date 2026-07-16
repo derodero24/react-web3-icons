@@ -1,0 +1,35 @@
+{
+  "name": "Solana",
+  "source": [
+    "https://solana.com"
+  ],
+  "notes": [
+    "Shared Solana bar path data",
+    "Circle variant: scale 0.1, translate(12.1, 16.4)",
+    "Gradient coordinates pre-computed for 64×64 viewBox"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "solana.svg"
+    },
+    "Circle": {
+      "file": "solana.circle.svg"
+    },
+    "Square": {
+      "file": "solana.square.svg"
+    },
+    "SquareMono": {
+      "file": "solana.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "CircleMono": {
+      "file": "solana.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Mono": {
+      "file": "solana.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

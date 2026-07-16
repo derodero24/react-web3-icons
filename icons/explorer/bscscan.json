@@ -1,0 +1,19 @@
+{
+  "name": "Bscscan",
+  "source": [
+    "https://bscscan.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "bscscan.svg"
+    },
+    "Inverted": {
+      "file": "bscscan.inverted.svg"
+    },
+    "Mono": {
+      "file": "bscscan.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Socket",
+  "notes": [
+    "Paths sourced from SocketDotTech/socket-landing-page (public/assets/socket-black.svg)",
+    "The \"S\" icon mark is cropped from the full wordmark SVG (viewBox 402 163 755 755).",
+    "Brand color: #7F1FFF (electric violet), sourced from public/assets/socket-electric-violet.svg",
+    "Outer square boundary of the icon mark",
+    "White region forming the S-curve (outer ring of both C-shapes)",
+    "Inner filled region (center of the S-curve) re-fills the hole"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "socket.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "socket.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

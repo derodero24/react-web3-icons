@@ -59,98 +59,84 @@ test/           # Vitest test suite
 
 ## Adding a New Icon
 
+Icons are **SVG-first**: the source of truth is the `icons/` tree, and the React
+components under `src/<category>/` are generated from it. Never edit generated
+`.tsx` files by hand — a sync test will fail. The three hand-written exceptions
+(`Avalanche`, `Bybit`, `RainbowWallet`, marked `"kind": "custom"`) are the only
+icon modules maintained as TSX.
+
 ### Quick Start (Scaffolding)
 
-Use the scaffolding script to set up the boilerplate automatically:
+```sh
+pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.svg \
+  [--mono path/to/icon.mono.svg] [--source <official URL>]
+```
+
+This optimizes the SVG with SVGO, writes `icons/<category>/<slug>.svg` and
+`<slug>.json`, and regenerates `src/<category>/`. Follow the printed next steps
+(meta maps, manifest, changeset).
+
+### Anatomy of an icon unit
+
+```
+icons/chain/ethereum.svg          # colored artwork (root: xmlns + viewBox [+ fill])
+icons/chain/ethereum.mono.svg     # monochrome artwork (fill="currentColor")
+icons/chain/ethereum.json         # metadata:
+```
+
+```json
+{
+  "name": "Ethereum",
+  "kind": "icon",
+  "source": ["https://ethereum.org"],
+  "variants": {
+    "": { "file": "ethereum.svg" },
+    "Mono": { "file": "ethereum.mono.svg", "fill": "currentColor" }
+  }
+}
+```
+
+- `name` is the canonical PascalCase export name; each variant key is an export
+  suffix (`""` → `Ethereum`, `"Mono"` → `EthereumMono`, `"CircleMono"` → `EthereumCircleMono`).
+- Internal `id` attributes (masks, gradients, clip paths) can stay as plain
+  static ids in the SVG — the generator rewrites them to collision-free
+  `useId`-based ids automatically.
+- The root element may only carry `xmlns`, `viewBox`, and `fill`. No fixed
+  `width`/`height`, no `<style>` tags, no text content.
+- `deprecated` (map of export name → message) marks deprecated artwork exports.
+
+### Aliases and re-exports
+
+Ticker aliases and deprecated renames are JSON-only units:
+
+```json
+{
+  "name": "Mtkn",
+  "kind": "reexport",
+  "reexport": {
+    "from": "./MyToken",
+    "exports": [
+      { "of": "MyToken", "as": "Mtkn" },
+      { "of": "MyTokenMono", "as": "MtknMono" }
+    ]
+  }
+}
+```
+
+Deprecated aliases use `"kind": "alias"` with an `aliasConst` block so the
+generator emits `/** @deprecated … */ export const Old = New;` (see
+`icons/coin/matic.json` for a real example).
+
+### Regenerating
 
 ```sh
-pnpm run new-icon --category <category> --name <ComponentName> [--svg path/to/icon.svg] [--slug <slug>]
+pnpm run generate-icons     # icons/ → src/<category>/ (+ lock file)
+pnpm run build              # dist + static SVGs + manifest.json
+pnpm run generate-manifest  # refresh src/manifest after icon changes
 ```
 
-This creates the component file, adds the export to the category index, and inserts the slug/ticker entry into the meta map (for applicable categories). For example:
-
-```sh
-# DeFi protocol (with SVG file)
-pnpm run new-icon --category defi --name EtherFi --svg ./etherfi.svg --slug etherfi
-
-# Coin (with ticker)
-pnpm run new-icon --category coin --name Bitcoin --svg ./btc.svg --ticker BTC
-
-# Chain (with chain ID)
-pnpm run new-icon --category chain --name Taiko --svg ./taiko.svg --slug taiko --chain-id 167000
-
-# Without SVG (generates a placeholder to fill in)
-pnpm run new-icon --category wallet --name Phantom --slug phantomwallet
-```
-
-After running the script, open the generated file and:
-
-1. Paste or review the SVG content in the render function
-2. Replace any static `id` attributes with dynamic ones using `_id` (if the SVG has gradients or masks)
-3. Add the `// Source: <URL>` comment pointing to the official asset
-4. Adjust the `Mono` variant to use `currentColor` correctly
-
-Then continue with the [manual steps](#1-create-the-icon-component) below for the parts that still need attention.
-
----
-
-### 1. Create the Icon Component
-
-Each icon is created using the `createIcon` factory function. Place your file in the appropriate category directory under `src/`.
-
-```tsx
-import { createIcon } from '../utils';
-
-export const MyToken = createIcon('MyToken', '0 0 24 24', () => (
-  <path d="..." fill="#..." />
-));
-```
-
-The factory handles `forwardRef`, `useId`, `size` prop, `title`/`titleId`, and `aria-hidden` automatically.
-
-**Key conventions:**
-
-- Use `createIcon` for all new icons
-- Use named exports (no default exports)
-- Component names use PascalCase matching the token/project name
-- The render callback receives an `_id` parameter for dynamic SVG element IDs
-
-### 2. Add a Monochrome Variant (Optional)
-
-Pass `'currentColor'` as the fourth argument to `createIcon`. This sets `fill="currentColor"` on the root `<svg>`, allowing the icon color to be controlled via CSS `color`.
-
-```tsx
-export const MyTokenMono = createIcon(
-  'MyTokenMono',
-  '0 0 24 24',
-  () => <path d="..." />,
-  'currentColor',
-);
-```
-
-### 3. Export from the Category Barrel
-
-Add your icon to the category's `index.ts` (e.g., `src/coin/index.ts`):
-
-```tsx
-export * from './MyToken';
-```
-
-The top-level `src/index.ts` already re-exports all categories, so you don't need to modify it unless you're creating a new category.
-
-### 4. Add Aliases (If Applicable)
-
-If the token has a common ticker symbol, add an alias re-export file (e.g., `src/coin/Mtkn.tsx`):
-
-```tsx
-export { MyToken as Mtkn, MyTokenMono as MtknMono } from './MyToken';
-```
-
-Then add the alias file to the same category barrel (`src/coin/index.ts`):
-
-```tsx
-export * from './Mtkn';
-```
+`test/icons-sync.test.ts` fails CI whenever `icons/` and `src/` drift, and the
+snapshot/visual suites verify rendered output.
 
 ## Icon Variant Naming Convention
 

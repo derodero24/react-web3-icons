@@ -1,0 +1,17 @@
+{
+  "name": "Bitfinex",
+  "source": [
+    "https://bitfinex.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "bitfinex.svg",
+      "fill": "#03ca9b"
+    },
+    "Mono": {
+      "file": "bitfinex.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

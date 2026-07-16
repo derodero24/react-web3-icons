@@ -1,0 +1,17 @@
+{
+  "name": "Chainstack",
+  "source": [
+    "https://chainstack.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "chainstack.svg",
+      "fill": "#007BFF"
+    },
+    "Mono": {
+      "file": "chainstack.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://crypto.com (official brand)
-/** CryptoCom exchange icon (colored). */
+/** Crypto Com exchange icon (colored). */
 export const CryptoCom = /* @__PURE__ */ createIcon(
   'CryptoCom',
   '0 0 24 24',
@@ -17,7 +17,7 @@ export const CryptoCom = /* @__PURE__ */ createIcon(
   'none',
 );
 
-/** CryptoCom exchange icon (monochrome). */
+/** Crypto Com exchange icon (monochrome). */
 export const CryptoComMono = /* @__PURE__ */ createIcon(
   'CryptoComMono',
   '0 0 24 24',

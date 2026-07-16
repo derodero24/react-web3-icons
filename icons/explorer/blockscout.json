@@ -1,0 +1,17 @@
+{
+  "name": "Blockscout",
+  "source": [
+    "https://blockscout.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "blockscout.svg",
+      "fill": "#1258F6"
+    },
+    "Mono": {
+      "file": "blockscout.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

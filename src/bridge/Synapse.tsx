@@ -2,7 +2,7 @@ import { createIcon } from '../utils';
 
 // Paths sourced from synapsecns/sanguine (docs/bridge/static/brand-assets/synapse-mark.svg)
 // Brand colors: linear gradient from hsl(285deg 100% 65%) to hsl(265deg 100% 75%) (#BC68FF to #9C72FF)
-
+/** Synapse bridge icon (colored). */
 export const Synapse = /* @__PURE__ */ createIcon(
   'Synapse',
   '-24 -24 48 48',
@@ -38,6 +38,7 @@ export const Synapse = /* @__PURE__ */ createIcon(
   'none',
 );
 
+/** Synapse bridge icon (monochrome). */
 export const SynapseMono = /* @__PURE__ */ createIcon(
   'SynapseMono',
   '-24 -24 48 48',

@@ -1,0 +1,16 @@
+{
+  "name": "UniswapWallet",
+  "notes": [
+    "Uniswap Wallet icon paths — from the 28×28 branded SVG (clipped to 4 4 19 20)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "uniswap-wallet.svg"
+    },
+    "Mono": {
+      "file": "uniswap-wallet.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

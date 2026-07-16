@@ -1,0 +1,17 @@
+{
+  "name": "BitgetWallet",
+  "source": [
+    "https://bitget.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "bitget-wallet.svg",
+      "fill": "#00F0FF"
+    },
+    "Mono": {
+      "file": "bitget-wallet.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

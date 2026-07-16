@@ -1,0 +1,16 @@
+{
+  "name": "Ink",
+  "source": [
+    "https://inkonchain.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ink.svg"
+    },
+    "Mono": {
+      "file": "ink.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

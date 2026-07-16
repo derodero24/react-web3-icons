@@ -1,0 +1,17 @@
+{
+  "name": "Raydium",
+  "notes": [
+    "Paths sourced from official raydium.io logo"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "raydium.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "raydium.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

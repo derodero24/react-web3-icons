@@ -1,0 +1,34 @@
+{
+  "name": "StarkNet",
+  "source": [
+    "https://starknet.io"
+  ],
+  "notes": [
+    "Circle variant: 24×24 content scaled to ~46px centered in 64×64",
+    "Gradient coordinates pre-computed: new = 9 + original * 1.917"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "stark-net.svg"
+    },
+    "Mono": {
+      "file": "stark-net.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "stark-net.circle.svg"
+    },
+    "Square": {
+      "file": "stark-net.square.svg"
+    },
+    "SquareMono": {
+      "file": "stark-net.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "CircleMono": {
+      "file": "stark-net.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

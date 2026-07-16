@@ -1,0 +1,23 @@
+{
+  "name": "Bitstamp",
+  "source": [
+    "https://bitstamp.net (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "bitstamp.svg"
+    },
+    "Circle": {
+      "file": "bitstamp.circle.svg"
+    },
+    "Mono": {
+      "file": "bitstamp.mono.svg",
+      "fill": "currentColor"
+    },
+    "CircleMono": {
+      "file": "bitstamp.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

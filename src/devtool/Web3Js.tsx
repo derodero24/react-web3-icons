@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://web3js.org
-/** Web3Js dev tool icon (colored). */
+/** Web3 Js devtool icon (colored). */
 export const Web3Js = /* @__PURE__ */ createIcon(
   'Web3Js',
   '1169.7 378.4 1500.3 1403.25',
@@ -23,7 +23,7 @@ export const Web3Js = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** Web3Js dev tool icon (monochrome). */
+/** Web3 Js devtool icon (monochrome). */
 export const Web3JsMono = /* @__PURE__ */ createIcon(
   'Web3JsMono',
   '1169.7 378.4 1500.3 1403.25',

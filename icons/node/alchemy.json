@@ -1,0 +1,16 @@
+{
+  "name": "Alchemy",
+  "source": [
+    "https://alchemy.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "alchemy.svg"
+    },
+    "Mono": {
+      "file": "alchemy.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

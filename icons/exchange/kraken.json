@@ -1,0 +1,17 @@
+{
+  "name": "Kraken",
+  "source": [
+    "https://kraken.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "kraken.svg",
+      "fill": "#5841D8"
+    },
+    "Mono": {
+      "file": "kraken.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

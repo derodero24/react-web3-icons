@@ -1,0 +1,16 @@
+{
+  "name": "Ltc",
+  "source": [
+    "https://litecoin.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ltc.svg"
+    },
+    "Mono": {
+      "file": "ltc.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

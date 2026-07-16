@@ -1,0 +1,17 @@
+{
+  "name": "Remix",
+  "source": [
+    "https://github.com/ethereum/remix-project"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "remix.svg",
+      "fill": "#000000"
+    },
+    "Mono": {
+      "file": "remix.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

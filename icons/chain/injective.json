@@ -1,0 +1,17 @@
+{
+  "name": "Injective",
+  "source": [
+    "https://injective.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "injective.svg",
+      "fill": "#4D3DFF"
+    },
+    "Mono": {
+      "file": "injective.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

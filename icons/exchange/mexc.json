@@ -1,0 +1,17 @@
+{
+  "name": "Mexc",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT) — MX token SVG (MEXC exchange)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "mexc.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "mexc.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

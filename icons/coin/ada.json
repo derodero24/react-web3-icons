@@ -1,0 +1,28 @@
+{
+  "name": "Ada",
+  "source": [
+    "re-export of Cardano — see src/chain/Cardano.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Cardano",
+    "exports": [
+      {
+        "of": "Cardano",
+        "as": "Ada"
+      },
+      {
+        "of": "CardanoCircle",
+        "as": "AdaCircle"
+      },
+      {
+        "of": "CardanoCircleMono",
+        "as": "AdaCircleMono"
+      },
+      {
+        "of": "CardanoMono",
+        "as": "AdaMono"
+      }
+    ]
+  }
+}

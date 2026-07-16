@@ -1,0 +1,16 @@
+{
+  "name": "Thirdweb",
+  "source": [
+    "https://thirdweb.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "thirdweb.svg"
+    },
+    "Mono": {
+      "file": "thirdweb.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

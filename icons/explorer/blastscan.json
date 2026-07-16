@@ -1,0 +1,24 @@
+{
+  "name": "Blastscan",
+  "source": [
+    "https://blastscan.io (official brand)"
+  ],
+  "notes": [
+    "Blastscan uses the Blast L2 geometric \"BLAST\" wordmark as its brandmark"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "blastscan.svg",
+      "fill": "#FCFC03"
+    },
+    "Light": {
+      "file": "blastscan.light.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "blastscan.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

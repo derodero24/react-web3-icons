@@ -1,0 +1,24 @@
+{
+  "name": "Dydx",
+  "source": [
+    "https://dydx.exchange"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "dydx.svg",
+      "fill": "none"
+    },
+    "Square": {
+      "file": "dydx.square.svg"
+    },
+    "Mono": {
+      "file": "dydx.mono.svg",
+      "fill": "currentColor"
+    },
+    "SquareMono": {
+      "file": "dydx.square-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

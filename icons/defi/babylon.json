@@ -1,0 +1,16 @@
+{
+  "name": "Babylon",
+  "source": [
+    "https://github.com/babylonlabs-io/simple-staking/blob/main/src/ui/common/assets/icon-black.svg"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "babylon.svg"
+    },
+    "Mono": {
+      "file": "babylon.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

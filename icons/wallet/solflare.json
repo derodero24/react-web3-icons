@@ -1,0 +1,16 @@
+{
+  "name": "Solflare",
+  "source": [
+    "https://solflare.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "solflare.svg"
+    },
+    "Mono": {
+      "file": "solflare.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

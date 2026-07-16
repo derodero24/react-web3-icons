@@ -1,0 +1,17 @@
+{
+  "name": "Ekubo",
+  "notes": [
+    "Ekubo DEX icon — chain-link/infinity mark on circular background",
+    "From ekubo.org/logo.svg (official); gradient #661CC4 → #000"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ekubo.svg"
+    },
+    "Mono": {
+      "file": "ekubo.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

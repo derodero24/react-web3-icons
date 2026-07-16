@@ -1,0 +1,20 @@
+{
+  "name": "Frax",
+  "source": [
+    "https://frax.finance (official brand)"
+  ],
+  "notes": [
+    "Frax Finance target/crosshair mark; strictly black-and-white brand"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "frax.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "frax.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

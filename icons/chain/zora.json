@@ -1,0 +1,16 @@
+{
+  "name": "Zora",
+  "source": [
+    "https://zora.co"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "zora.svg"
+    },
+    "Mono": {
+      "file": "zora.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "NftStorage",
+  "source": [
+    "https://nft.storage (official brand, service sunset)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "nft-storage.svg"
+    },
+    "Mono": {
+      "file": "nft-storage.mono.svg",
+      "fill": "none"
+    }
+  }
+}

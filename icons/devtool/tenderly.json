@@ -1,0 +1,16 @@
+{
+  "name": "Tenderly",
+  "source": [
+    "https://tenderly.co"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "tenderly.svg"
+    },
+    "Mono": {
+      "file": "tenderly.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

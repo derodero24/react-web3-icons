@@ -1,0 +1,17 @@
+{
+  "name": "Wld",
+  "notes": [
+    "Path sourced from @web3icons/react (MIT) — world network SVG"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "wld.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "wld.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "Usdt",
+  "source": [
+    "https://tether.to"
+  ],
+  "notes": [
+    "USDT mark scaled to fit in a 64×64 circle (≈72% fill).",
+    "Original viewBox 0.45 0.86 110.36 88.3 → scale 0.417, translate(8.9, 13.6)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "usdt.svg",
+      "fill": "#26A17B"
+    },
+    "Mono": {
+      "file": "usdt.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "usdt.circle.svg"
+    },
+    "CircleMono": {
+      "file": "usdt.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

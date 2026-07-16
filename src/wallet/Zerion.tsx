@@ -97,8 +97,8 @@ export const ZerionSquareMono = /* @__PURE__ */ createIcon(
   'currentColor',
 );
 
-/** Base alias — Zerion's primary brand mark is the circle variant. */
+/** Zerion wallet icon (colored). */
 export const Zerion = ZerionCircle;
 
-/** Base mono alias. */
+/** Zerion wallet icon (monochrome). */
 export const ZerionMono = ZerionCircleMono;

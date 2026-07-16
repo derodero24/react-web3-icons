@@ -1,0 +1,16 @@
+{
+  "name": "Icp",
+  "source": [
+    "https://internetcomputer.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "icp.svg"
+    },
+    "Mono": {
+      "file": "icp.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

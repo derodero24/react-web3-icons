@@ -1,0 +1,16 @@
+{
+  "name": "DeBank",
+  "source": [
+    "https://debank.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "de-bank.svg"
+    },
+    "Mono": {
+      "file": "de-bank.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

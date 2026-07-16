@@ -1,0 +1,17 @@
+{
+  "name": "Argent",
+  "source": [
+    "https://argent.xyz"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "argent.svg",
+      "fill": "#ff875b"
+    },
+    "Mono": {
+      "file": "argent.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "MakerDao",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "maker-dao.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "maker-dao.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

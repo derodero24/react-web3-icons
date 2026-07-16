@@ -1,0 +1,16 @@
+{
+  "name": "Petra",
+  "notes": [
+    "Petra \"P\" symbol — two white paths from the 3000×3000 source SVG"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "petra.svg"
+    },
+    "Mono": {
+      "file": "petra.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

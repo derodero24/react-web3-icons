@@ -1,0 +1,17 @@
+{
+  "name": "Busd",
+  "source": [
+    "https://binance.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "busd.svg",
+      "fill": "#f0b90b"
+    },
+    "Mono": {
+      "file": "busd.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

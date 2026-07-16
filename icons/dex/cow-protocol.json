@@ -1,0 +1,17 @@
+{
+  "name": "CowProtocol",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "cow-protocol.svg",
+      "fill": "#004293"
+    },
+    "Mono": {
+      "file": "cow-protocol.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

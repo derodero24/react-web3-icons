@@ -1,0 +1,67 @@
+{
+  "name": "Arbitrum",
+  "source": [
+    "https://arbitrum.io"
+  ],
+  "notes": [
+    "Arbitrum (original) shared paths",
+    "ArbitrumCircle variant shared paths",
+    "ArbitrumOne shared paths",
+    "ArbitrumNova shared paths",
+    "Square variant: original viewBox 262.47 200 975.06 1099.98 → scale 0.04182, translate(0.64, 0.64)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "arbitrum.svg"
+    },
+    "Circle": {
+      "file": "arbitrum.circle.svg"
+    },
+    "Mono": {
+      "file": "arbitrum.mono.svg",
+      "fill": "currentColor"
+    },
+    "CircleMono": {
+      "file": "arbitrum.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "arbitrum.square.svg"
+    },
+    "SquareMono": {
+      "file": "arbitrum.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "One": {
+      "file": "arbitrum.one.svg"
+    },
+    "OneMono": {
+      "file": "arbitrum.one-mono.svg",
+      "fill": "currentColor"
+    },
+    "OneFlat": {
+      "file": "arbitrum.one-flat.svg",
+      "fill": "#1b4add"
+    },
+    "OneFlatMono": {
+      "file": "arbitrum.one-flat-mono.svg",
+      "fill": "currentColor"
+    },
+    "Nova": {
+      "file": "arbitrum.nova.svg"
+    },
+    "NovaMono": {
+      "file": "arbitrum.nova-mono.svg",
+      "fill": "currentColor"
+    },
+    "NovaFlat": {
+      "file": "arbitrum.nova-flat.svg",
+      "fill": "#e57310"
+    },
+    "NovaFlatMono": {
+      "file": "arbitrum.nova-flat-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

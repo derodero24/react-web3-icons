@@ -1,0 +1,16 @@
+{
+  "name": "UnstoppableDomains",
+  "source": [
+    "https://unstoppabledomains.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "unstoppable-domains.svg"
+    },
+    "Mono": {
+      "file": "unstoppable-domains.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

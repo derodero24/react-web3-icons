@@ -1,0 +1,16 @@
+{
+  "name": "PolkadotJs",
+  "source": [
+    "https://polkadot.js.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "polkadot-js.svg"
+    },
+    "Mono": {
+      "file": "polkadot-js.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

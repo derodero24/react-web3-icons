@@ -1,0 +1,19 @@
+{
+  "name": "Stargate",
+  "notes": [
+    "Paths sourced from stargate.finance/static/logo-mobile-dark.svg",
+    "Corner arc shapes (outer, gray in original)",
+    "Center star shape (white in original)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "stargate.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "stargate.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

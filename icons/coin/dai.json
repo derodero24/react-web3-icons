@@ -1,0 +1,24 @@
+{
+  "name": "Dai",
+  "source": [
+    "https://makerdao.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "Circle": {
+      "file": "dai.circle.svg"
+    },
+    "CircleMono": {
+      "file": "dai.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "": {
+      "file": "dai.svg",
+      "fill": "#f5ac37"
+    },
+    "Mono": {
+      "file": "dai.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

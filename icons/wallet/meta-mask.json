@@ -1,0 +1,37 @@
+{
+  "name": "MetaMask",
+  "source": [
+    "https://metamask.io"
+  ],
+  "notes": [
+    "MetaMask fox silhouette paths (shared between Mono, Circle, and CircleMono)",
+    "Original viewBox 31.3 35 256 237.4 → scale 0.18, translate(3.3, 4.3)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "meta-mask.svg"
+    },
+    "Mono": {
+      "file": "meta-mask.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "meta-mask.circle.svg"
+    },
+    "CircleMono": {
+      "file": "meta-mask.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "meta-mask.square.svg"
+    },
+    "SquareMono": {
+      "file": "meta-mask.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "Alt": {
+      "file": "meta-mask.alt.svg"
+    }
+  }
+}

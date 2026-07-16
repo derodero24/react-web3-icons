@@ -1,12 +1,10 @@
 import { createIcon } from '../utils';
 
 // Source: https://zora.co
-const zoraCircle = 'M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18';
-
 /** Zora chain icon (colored). */
 export const Zora = /* @__PURE__ */ createIcon('Zora', '0 0 24 24', _id => (
   <>
-    <path fill={`url(#${_id}-a)`} d={zoraCircle} />
+    <path fill={`url(#${_id}-a)`} d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18" />
     <defs>
       <radialGradient
         id={`${_id}-a`}
@@ -31,6 +29,6 @@ export const Zora = /* @__PURE__ */ createIcon('Zora', '0 0 24 24', _id => (
 export const ZoraMono = /* @__PURE__ */ createIcon(
   'ZoraMono',
   '0 0 24 24',
-  () => <path d={zoraCircle} />,
+  () => <path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18" />,
   'currentColor',
 );

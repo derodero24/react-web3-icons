@@ -1,0 +1,17 @@
+{
+  "name": "Odos",
+  "source": [
+    "https://odos.xyz"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "odos.svg",
+      "fill": "#FF5100"
+    },
+    "Mono": {
+      "file": "odos.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

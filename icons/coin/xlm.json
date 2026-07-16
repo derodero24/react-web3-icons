@@ -1,0 +1,20 @@
+{
+  "name": "Xlm",
+  "source": [
+    "re-export of Stellar — see src/chain/Stellar.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Stellar",
+    "exports": [
+      {
+        "of": "Stellar",
+        "as": "Xlm"
+      },
+      {
+        "of": "StellarMono",
+        "as": "XlmMono"
+      }
+    ]
+  }
+}

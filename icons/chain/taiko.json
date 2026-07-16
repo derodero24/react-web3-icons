@@ -1,0 +1,16 @@
+{
+  "name": "Taiko",
+  "source": [
+    "https://taiko.xyz"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "taiko.svg"
+    },
+    "Mono": {
+      "file": "taiko.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

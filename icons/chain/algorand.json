@@ -1,0 +1,23 @@
+{
+  "name": "Algorand",
+  "source": [
+    "https://algorand.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "algorand.svg"
+    },
+    "Mono": {
+      "file": "algorand.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "algorand.circle.svg"
+    },
+    "CircleMono": {
+      "file": "algorand.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

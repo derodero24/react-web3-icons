@@ -1,0 +1,16 @@
+{
+  "name": "Web3Js",
+  "source": [
+    "https://web3js.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "web3-js.svg"
+    },
+    "Mono": {
+      "file": "web3-js.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Near",
+  "source": [
+    "re-export of Near — see src/chain/Near.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Near",
+    "exports": [
+      {
+        "of": "Near",
+        "as": "Near"
+      },
+      {
+        "of": "NearMono",
+        "as": "NearMono"
+      }
+    ]
+  }
+}

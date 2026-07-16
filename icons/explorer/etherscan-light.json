@@ -1,0 +1,17 @@
+{
+  "name": "EtherscanLight",
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "./Etherscan",
+    "imports": [
+      "EtherscanInverted"
+    ],
+    "exports": [
+      {
+        "name": "EtherscanLight",
+        "target": "EtherscanInverted",
+        "deprecated": "Use `EtherscanInverted` instead."
+      }
+    ]
+  }
+}

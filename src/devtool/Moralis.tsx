@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://moralis.io
-/** Moralis dev tool icon (colored). */
+/** Moralis devtool icon (colored). */
 export const Moralis = /* @__PURE__ */ createIcon(
   'Moralis',
   '0 0 256 206.7',
@@ -28,7 +28,7 @@ export const Moralis = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** Moralis dev tool icon (monochrome). */
+/** Moralis devtool icon (monochrome). */
 export const MoralisMono = /* @__PURE__ */ createIcon(
   'MoralisMono',
   '0 0 256 206.7',

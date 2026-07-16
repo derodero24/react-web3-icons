@@ -1,0 +1,17 @@
+{
+  "name": "Gmx",
+  "notes": [
+    "GMX perpetuals DEX — triangular \"G\" mark",
+    "Gradient: cyan #03D1CF (top) → indigo #4E09F8 (bottom), from official brand assets"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "gmx.svg"
+    },
+    "Mono": {
+      "file": "gmx.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

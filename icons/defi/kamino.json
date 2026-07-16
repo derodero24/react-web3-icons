@@ -1,0 +1,17 @@
+{
+  "name": "Kamino",
+  "notes": [
+    "Kamino Finance — dark navy background with stylized \"K\" mark in cyan",
+    "Paths sourced from cdn.kamino.finance/kamino.svg"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "kamino.svg"
+    },
+    "Mono": {
+      "file": "kamino.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

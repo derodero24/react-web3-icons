@@ -1,0 +1,16 @@
+{
+  "name": "Berachain",
+  "source": [
+    "https://berachain.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "berachain.svg"
+    },
+    "Mono": {
+      "file": "berachain.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

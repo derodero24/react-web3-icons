@@ -1,0 +1,20 @@
+{
+  "name": "Mkr",
+  "source": [
+    "re-export of MakerDao — see src/defi/MakerDao.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/MakerDao",
+    "exports": [
+      {
+        "of": "MakerDao",
+        "as": "Mkr"
+      },
+      {
+        "of": "MakerDaoMono",
+        "as": "MkrMono"
+      }
+    ]
+  }
+}

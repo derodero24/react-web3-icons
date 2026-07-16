@@ -1,0 +1,16 @@
+{
+  "name": "CollabLand",
+  "source": [
+    "https://collab.land"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "collab-land.svg"
+    },
+    "Mono": {
+      "file": "collab-land.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

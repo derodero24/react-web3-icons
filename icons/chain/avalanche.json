@@ -1,0 +1,36 @@
+{
+  "name": "Avalanche",
+  "source": [
+    "https://avax.network"
+  ],
+  "notes": [
+    "Square variant: AVALANCHE_PATH in 1502×1502 space → scale to fit ~46px in 64×64",
+    "Full circle is 1502 wide → scale 0.0306, translate(9, 9)"
+  ],
+  "kind": "custom",
+  "variants": {
+    "Circle": {
+      "file": "avalanche.circle.svg",
+      "fill": "#e84142"
+    },
+    "": {
+      "file": "avalanche.svg",
+      "fill": "#e84142"
+    },
+    "CircleMono": {
+      "file": "avalanche.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "avalanche.square.svg"
+    },
+    "SquareMono": {
+      "file": "avalanche.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "Mono": {
+      "file": "avalanche.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

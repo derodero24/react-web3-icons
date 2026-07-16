@@ -1,0 +1,17 @@
+{
+  "name": "ParaSwap",
+  "source": [
+    "https://paraswap.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "para-swap.svg",
+      "fill": "#2669F5"
+    },
+    "Mono": {
+      "file": "para-swap.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

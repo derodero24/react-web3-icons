@@ -1,0 +1,17 @@
+{
+  "name": "Pendle",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "pendle.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "pendle.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://defillama.com
-/** DefiLlama tracker icon (colored). */
+/** Defi Llama tracker icon (colored). */
 export const DefiLlama = /* @__PURE__ */ createIcon(
   'DefiLlama',
   '31.34 197.14 116.4 131.45',
@@ -124,7 +124,7 @@ export const DefiLlama = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** DefiLlama tracker icon (monochrome). */
+/** Defi Llama tracker icon (monochrome). */
 export const DefiLlamaMono = /* @__PURE__ */ createIcon(
   'DefiLlamaMono',
   '31.34 197.14 116.4 131.45',

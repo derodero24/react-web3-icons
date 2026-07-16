@@ -1,0 +1,17 @@
+{
+  "name": "CoinMarketCap",
+  "source": [
+    "https://coinmarketcap.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "coin-market-cap.svg",
+      "fill": "#3861FB"
+    },
+    "Mono": {
+      "file": "coin-market-cap.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

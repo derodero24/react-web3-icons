@@ -1,0 +1,16 @@
+{
+  "name": "Vet",
+  "source": [
+    "https://vechain.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "vet.svg"
+    },
+    "Mono": {
+      "file": "vet.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

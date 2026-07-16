@@ -1,0 +1,17 @@
+{
+  "name": "Atom",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "atom.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "atom.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

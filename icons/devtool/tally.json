@@ -1,0 +1,16 @@
+{
+  "name": "Tally",
+  "source": [
+    "https://tally.xyz"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "tally.svg"
+    },
+    "Mono": {
+      "file": "tally.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

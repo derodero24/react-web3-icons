@@ -1,0 +1,17 @@
+{
+  "name": "Stacks",
+  "source": [
+    "https://stacks.co"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "stacks.svg",
+      "fill": "#141414"
+    },
+    "Mono": {
+      "file": "stacks.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

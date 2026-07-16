@@ -1,0 +1,17 @@
+{
+  "name": "Binance",
+  "source": [
+    "https://binance.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "binance.svg",
+      "fill": "#F0B90B"
+    },
+    "Mono": {
+      "file": "binance.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

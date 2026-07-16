@@ -1,0 +1,17 @@
+{
+  "name": "CoinLedger",
+  "source": [
+    "https://coinledger.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "coin-ledger.svg",
+      "fill": "#00c2ff"
+    },
+    "Mono": {
+      "file": "coin-ledger.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

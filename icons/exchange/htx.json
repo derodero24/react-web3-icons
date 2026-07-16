@@ -1,0 +1,17 @@
+{
+  "name": "Htx",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT) — HT (Huobi Token) SVG"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "htx.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "htx.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

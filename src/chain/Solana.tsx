@@ -2,13 +2,8 @@ import { createIcon } from '../utils';
 
 // Source: https://solana.com
 // Shared Solana bar path data
-const SOL_BAR_A =
-  'M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z';
-const SOL_BAR_B =
-  'M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z';
-const SOL_BAR_C =
-  'M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z';
-
+// Circle variant: scale 0.1, translate(12.1, 16.4)
+// Gradient coordinates pre-computed for 64×64 viewBox
 /** Solana chain icon (colored). */
 export const Solana = /* @__PURE__ */ createIcon(
   'Solana',
@@ -26,7 +21,10 @@ export const Solana = /* @__PURE__ */ createIcon(
         <stop offset="0" stopColor="#00ffa3" />
         <stop offset="1" stopColor="#dc1fff" />
       </linearGradient>
-      <path d={SOL_BAR_A} fill={`url(#${_id}-sln-a)`} />
+      <path
+        d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z"
+        fill={`url(#${_id}-sln-a)`}
+      />
       <linearGradient
         id={`${_id}-sln-b`}
         gradientUnits="userSpaceOnUse"
@@ -38,7 +36,10 @@ export const Solana = /* @__PURE__ */ createIcon(
         <stop offset="0" stopColor="#00ffa3" />
         <stop offset="1" stopColor="#dc1fff" />
       </linearGradient>
-      <path d={SOL_BAR_B} fill={`url(#${_id}-sln-b)`} />
+      <path
+        d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z"
+        fill={`url(#${_id}-sln-b)`}
+      />
       <linearGradient
         id={`${_id}-sln-c`}
         gradientUnits="userSpaceOnUse"
@@ -50,14 +51,13 @@ export const Solana = /* @__PURE__ */ createIcon(
         <stop offset="0" stopColor="#00ffa3" />
         <stop offset="1" stopColor="#dc1fff" />
       </linearGradient>
-      <path d={SOL_BAR_C} fill={`url(#${_id}-sln-c)`} />
+      <path
+        d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z"
+        fill={`url(#${_id}-sln-c)`}
+      />
     </>
   ),
 );
-
-// Circle variant: scale 0.1, translate(12.1, 16.4)
-// Gradient coordinates pre-computed for 64×64 viewBox
-const SOL_CIRCLE_TX = 'translate(12.1 16.4) scale(0.1)';
 
 /** Solana Circle chain icon (colored). */
 export const SolanaCircle = /* @__PURE__ */ createIcon(
@@ -101,10 +101,19 @@ export const SolanaCircle = /* @__PURE__ */ createIcon(
           <stop offset="1" stopColor="#dc1fff" />
         </linearGradient>
       </defs>
-      <g transform={SOL_CIRCLE_TX}>
-        <path d={SOL_BAR_A} fill={`url(#${_id}-slnc-a)`} />
-        <path d={SOL_BAR_B} fill={`url(#${_id}-slnc-b)`} />
-        <path d={SOL_BAR_C} fill={`url(#${_id}-slnc-c)`} />
+      <g transform="translate(12.1 16.4) scale(0.1)">
+        <path
+          d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z"
+          fill={`url(#${_id}-slnc-a)`}
+        />
+        <path
+          d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z"
+          fill={`url(#${_id}-slnc-b)`}
+        />
+        <path
+          d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z"
+          fill={`url(#${_id}-slnc-c)`}
+        />
       </g>
     </>
   ),
@@ -152,10 +161,19 @@ export const SolanaSquare = /* @__PURE__ */ createIcon(
           <stop offset="1" stopColor="#dc1fff" />
         </linearGradient>
       </defs>
-      <g transform={SOL_CIRCLE_TX}>
-        <path d={SOL_BAR_A} fill={`url(#${_id}-slns-a)`} />
-        <path d={SOL_BAR_B} fill={`url(#${_id}-slns-b)`} />
-        <path d={SOL_BAR_C} fill={`url(#${_id}-slns-c)`} />
+      <g transform="translate(12.1 16.4) scale(0.1)">
+        <path
+          d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z"
+          fill={`url(#${_id}-slns-a)`}
+        />
+        <path
+          d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z"
+          fill={`url(#${_id}-slns-b)`}
+        />
+        <path
+          d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z"
+          fill={`url(#${_id}-slns-c)`}
+        />
       </g>
     </>
   ),
@@ -171,10 +189,10 @@ export const SolanaSquareMono = /* @__PURE__ */ createIcon(
       <defs>
         <mask id={`${_id}-solsm-a`}>
           <rect width="100%" height="100%" fill="#fff" />
-          <g transform={SOL_CIRCLE_TX} fill="#000">
-            <path d={SOL_BAR_A} />
-            <path d={SOL_BAR_B} />
-            <path d={SOL_BAR_C} />
+          <g transform="translate(12.1 16.4) scale(0.1)" fill="#000">
+            <path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" />
+            <path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" />
+            <path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" />
           </g>
         </mask>
       </defs>
@@ -193,10 +211,10 @@ export const SolanaCircleMono = /* @__PURE__ */ createIcon(
       <defs>
         <mask id={`${_id}-solcm-a`}>
           <rect width="100%" height="100%" fill="#fff" />
-          <g transform={SOL_CIRCLE_TX} fill="#000">
-            <path d={SOL_BAR_A} />
-            <path d={SOL_BAR_B} />
-            <path d={SOL_BAR_C} />
+          <g transform="translate(12.1 16.4) scale(0.1)" fill="#000">
+            <path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" />
+            <path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" />
+            <path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" />
           </g>
         </mask>
       </defs>
@@ -211,9 +229,9 @@ export const SolanaMono = /* @__PURE__ */ createIcon(
   '-0.02 0 397.74 311.7',
   () => (
     <>
-      <path d={SOL_BAR_A} />
-      <path d={SOL_BAR_B} />
-      <path d={SOL_BAR_C} />
+      <path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" />
+      <path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" />
+      <path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" />
     </>
   ),
   'currentColor',

@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://looksrare.org
-/** LooksRare marketplace icon (colored). */
+/** Looks Rare marketplace icon (colored). */
 export const LooksRare = /* @__PURE__ */ createIcon(
   'LooksRare',
   '0 12.32 96 76.54',
@@ -23,7 +23,7 @@ export const LooksRare = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** LooksRare Flat marketplace icon (colored). */
+/** Looks Rare Flat marketplace icon (colored). */
 export const LooksRareFlat = /* @__PURE__ */ createIcon(
   'LooksRareFlat',
   '0 12.32 96 76.54',
@@ -33,7 +33,7 @@ export const LooksRareFlat = /* @__PURE__ */ createIcon(
   '#04cd58',
 );
 
-/** LooksRare marketplace icon (monochrome). */
+/** Looks Rare marketplace icon (monochrome). */
 export const LooksRareMono = /* @__PURE__ */ createIcon(
   'LooksRareMono',
   '0 12.32 96 76.54',

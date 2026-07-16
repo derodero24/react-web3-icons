@@ -1,0 +1,19 @@
+{
+  "name": "Ethena",
+  "source": [
+    "https://ethena.fi (official brand)"
+  ],
+  "notes": [
+    "Ethena — dark circle with white \"E\" lettermark; background is integral to the brand"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ethena.svg"
+    },
+    "Mono": {
+      "file": "ethena.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Ens",
+  "source": [
+    "https://ens.domains"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ens.svg"
+    },
+    "Mono": {
+      "file": "ens.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "ens.circle.svg"
+    },
+    "CircleMono": {
+      "file": "ens.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

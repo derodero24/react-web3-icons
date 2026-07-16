@@ -1,0 +1,19 @@
+{
+  "name": "Routescan",
+  "source": [
+    "https://routescan.io (official brand)"
+  ],
+  "notes": [
+    "Routescan uses a 6-facet isometric cube logo"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "routescan.svg"
+    },
+    "Mono": {
+      "file": "routescan.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

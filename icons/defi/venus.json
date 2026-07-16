@@ -1,0 +1,16 @@
+{
+  "name": "Venus",
+  "source": [
+    "https://github.com/VenusProtocol/venus-protocol-interface/blob/main/apps/evm/src/assets/img/venusLogo.svg"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "venus.svg"
+    },
+    "Mono": {
+      "file": "venus.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

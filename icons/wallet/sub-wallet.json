@@ -1,0 +1,16 @@
+{
+  "name": "SubWallet",
+  "source": [
+    "https://subwallet.app"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "sub-wallet.svg"
+    },
+    "Mono": {
+      "file": "sub-wallet.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}
