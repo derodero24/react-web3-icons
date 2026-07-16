@@ -1,0 +1,17 @@
+{
+  "name": "BasescanLight",
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "./Basescan",
+    "imports": [
+      "BasescanInverted"
+    ],
+    "exports": [
+      {
+        "name": "BasescanLight",
+        "target": "BasescanInverted",
+        "deprecated": "Use `BasescanInverted` instead."
+      }
+    ]
+  }
+}

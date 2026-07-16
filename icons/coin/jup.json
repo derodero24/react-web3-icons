@@ -1,0 +1,20 @@
+{
+  "name": "Jup",
+  "source": [
+    "re-export of Jupiter — see src/dex/Jupiter.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../dex/Jupiter",
+    "exports": [
+      {
+        "of": "Jupiter",
+        "as": "Jup"
+      },
+      {
+        "of": "JupiterMono",
+        "as": "JupMono"
+      }
+    ]
+  }
+}

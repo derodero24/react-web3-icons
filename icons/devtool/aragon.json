@@ -1,0 +1,24 @@
+{
+  "name": "Aragon",
+  "source": [
+    "https://aragon.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "aragon.svg",
+      "fill": "#3164fa"
+    },
+    "Mono": {
+      "file": "aragon.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "aragon.circle.svg"
+    },
+    "CircleMono": {
+      "file": "aragon.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

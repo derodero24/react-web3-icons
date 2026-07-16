@@ -1,0 +1,17 @@
+{
+  "name": "Ankr",
+  "source": [
+    "https://ankr.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ankr.svg",
+      "fill": "#356DF3"
+    },
+    "Mono": {
+      "file": "ankr.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

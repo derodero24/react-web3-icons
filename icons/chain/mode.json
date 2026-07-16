@@ -1,0 +1,17 @@
+{
+  "name": "Mode",
+  "source": [
+    "https://mode.network"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "mode.svg",
+      "fill": "#DFFE00"
+    },
+    "Mono": {
+      "file": "mode.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

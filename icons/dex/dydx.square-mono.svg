@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183 183" fill="currentColor">
+  <rect x="1" y="1" width="181" height="181" rx="37" mask="url(#dydxm2-a)"/>
+  <defs>
+    <mask id="dydxm2-a">
+      <rect width="100%" height="100%" fill="#fff"/>
+      <path d="M115.316 43L45 141.992h21.588L137.269 43h-21.953zm-46.478 0l20.689 29.17-10.795 15.91L46.799 43h22.038zm48.573 99l-22.937-32.263 10.794-15.469L139 142h-21.589z" fill="#000"/>
+    </mask>
+  </defs>
+</svg>

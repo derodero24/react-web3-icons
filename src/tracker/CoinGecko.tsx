@@ -1,12 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://coingecko.com
-/**
- * Colored variant uses a different SVG source (viewBox 0 0 276 276) than the
- * mono variant (viewBox 0 0 1080 1080). Both are the official CoinGecko logo
- * in their respective styles.
- */
-/** CoinGecko tracker icon (colored). */
+/** Coin Gecko tracker icon (colored). */
 export const CoinGecko = /* @__PURE__ */ createIcon(
   'CoinGecko',
   '0 0 276 276',
@@ -56,7 +51,7 @@ export const CoinGecko = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** CoinGecko tracker icon (monochrome). */
+/** Coin Gecko tracker icon (monochrome). */
 export const CoinGeckoMono = /* @__PURE__ */ createIcon(
   'CoinGeckoMono',
   '0 0 1080 1080',

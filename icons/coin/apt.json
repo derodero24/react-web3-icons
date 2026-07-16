@@ -1,0 +1,20 @@
+{
+  "name": "Apt",
+  "source": [
+    "re-export of Aptos — see src/chain/Aptos.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Aptos",
+    "exports": [
+      {
+        "of": "Aptos",
+        "as": "Apt"
+      },
+      {
+        "of": "AptosMono",
+        "as": "AptMono"
+      }
+    ]
+  }
+}

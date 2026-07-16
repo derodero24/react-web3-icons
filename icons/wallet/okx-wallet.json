@@ -1,0 +1,17 @@
+{
+  "name": "OKXWallet",
+  "source": [
+    "https://okx.com/web3"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "okx-wallet.svg",
+      "fill": "#000000"
+    },
+    "Mono": {
+      "file": "okx-wallet.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

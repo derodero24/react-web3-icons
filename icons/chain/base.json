@@ -1,0 +1,33 @@
+{
+  "name": "Base",
+  "source": [
+    "https://base.org"
+  ],
+  "notes": [
+    "Circle variant: 28×28 content scaled to ~46px centered in 64×64"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "base.svg"
+    },
+    "Mono": {
+      "file": "base.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "base.circle.svg"
+    },
+    "Square": {
+      "file": "base.square.svg"
+    },
+    "SquareMono": {
+      "file": "base.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "CircleMono": {
+      "file": "base.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Drizzle",
+  "source": [
+    "https://trufflesuite.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "drizzle.svg"
+    },
+    "Mono": {
+      "file": "drizzle.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "deprecated": {
+    "Drizzle": "ConsenSys sunset Truffle Suite in September 2023.",
+    "DrizzleMono": "ConsenSys sunset Truffle Suite in September 2023."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "ImToken",
+  "source": [
+    "https://token.im"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "im-token.svg"
+    },
+    "Mono": {
+      "file": "im-token.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

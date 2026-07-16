@@ -1,0 +1,28 @@
+{
+  "name": "Avax",
+  "source": [
+    "re-export of Avalanche — see src/chain/Avalanche.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Avalanche",
+    "exports": [
+      {
+        "of": "Avalanche",
+        "as": "Avax"
+      },
+      {
+        "of": "AvalancheCircle",
+        "as": "AvaxCircle"
+      },
+      {
+        "of": "AvalancheCircleMono",
+        "as": "AvaxCircleMono"
+      },
+      {
+        "of": "AvalancheMono",
+        "as": "AvaxMono"
+      }
+    ]
+  }
+}

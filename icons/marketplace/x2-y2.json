@@ -1,0 +1,16 @@
+{
+  "name": "X2Y2",
+  "source": [
+    "https://x2y2.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "x2-y2.svg"
+    },
+    "Mono": {
+      "file": "x2-y2.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

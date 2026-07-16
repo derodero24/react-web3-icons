@@ -1,0 +1,17 @@
+{
+  "name": "Helius",
+  "source": [
+    "https://helius.dev (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "helius.svg",
+      "fill": "#E84125"
+    },
+    "Mono": {
+      "file": "helius.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

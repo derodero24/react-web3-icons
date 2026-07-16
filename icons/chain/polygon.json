@@ -1,0 +1,33 @@
+{
+  "name": "Polygon",
+  "source": [
+    "https://polygon.technology"
+  ],
+  "notes": [
+    "Square variant: original viewBox 14.85 41.75 470.3 416.51 → scale 0.09783, translate(7.55, 7.54)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "polygon.svg"
+    },
+    "Mono": {
+      "file": "polygon.mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "polygon.square.svg"
+    },
+    "SquareMono": {
+      "file": "polygon.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "polygon.circle.svg"
+    },
+    "CircleMono": {
+      "file": "polygon.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

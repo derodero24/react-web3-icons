@@ -1,0 +1,16 @@
+{
+  "name": "Aptos",
+  "source": [
+    "https://aptoslabs.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "aptos.svg"
+    },
+    "Mono": {
+      "file": "aptos.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "DefiLlama",
+  "source": [
+    "https://defillama.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "defi-llama.svg"
+    },
+    "Mono": {
+      "file": "defi-llama.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

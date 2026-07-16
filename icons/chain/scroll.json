@@ -1,0 +1,16 @@
+{
+  "name": "Scroll",
+  "source": [
+    "https://scroll.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "scroll.svg"
+    },
+    "Mono": {
+      "file": "scroll.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

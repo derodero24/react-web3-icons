@@ -1,0 +1,19 @@
+{
+  "name": "Etherscan",
+  "source": [
+    "https://etherscan.io (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "etherscan.svg"
+    },
+    "Inverted": {
+      "file": "etherscan.inverted.svg"
+    },
+    "Mono": {
+      "file": "etherscan.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

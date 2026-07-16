@@ -1,0 +1,17 @@
+{
+  "name": "Morpho",
+  "notes": [
+    "Paths sourced from backend.morpho.org/uploads/2024/11/morpho.svg (official brand asset)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "morpho.svg",
+      "fill": "#2470FF"
+    },
+    "Mono": {
+      "file": "morpho.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

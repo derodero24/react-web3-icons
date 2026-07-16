@@ -1,0 +1,20 @@
+{
+  "name": "Trx",
+  "source": [
+    "re-export of Tron — see src/chain/Tron.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Tron",
+    "exports": [
+      {
+        "of": "Tron",
+        "as": "Trx"
+      },
+      {
+        "of": "TronMono",
+        "as": "TrxMono"
+      }
+    ]
+  }
+}

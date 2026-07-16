@@ -1,0 +1,17 @@
+{
+  "name": "Compound",
+  "notes": [
+    "Paths sourced from compound-finance/compound-components compound-mark.svg"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "compound.svg",
+      "fill": "#00D395"
+    },
+    "Mono": {
+      "file": "compound.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Doge",
+  "source": [
+    "https://dogecoin.com"
+  ],
+  "notes": [
+    "Simplified Doge \"D\" mark scaled to fit in a 64x64 circle (~72% fill).",
+    "DogeMono viewBox 0 0 24 24 -> scale 1.917, translate(9, 9)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "doge.svg"
+    },
+    "Mono": {
+      "file": "doge.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "doge.circle.svg"
+    },
+    "CircleMono": {
+      "file": "doge.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

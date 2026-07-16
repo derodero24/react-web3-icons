@@ -1,0 +1,38 @@
+{
+  "name": "PhantomWallet",
+  "source": [
+    "https://phantom.app"
+  ],
+  "notes": [
+    "Ghost silhouette path data (shared across Circle variants)",
+    "Original viewBox 0 0 128 128 → scale 0.36, translate(9, 9)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "phantom-wallet.svg"
+    },
+    "Mono": {
+      "file": "phantom-wallet.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "phantom-wallet.circle.svg"
+    },
+    "CircleMono": {
+      "file": "phantom-wallet.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "phantom-wallet.square.svg"
+    },
+    "SquareMono": {
+      "file": "phantom-wallet.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "SymbolMono": {
+      "file": "phantom-wallet.symbol-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

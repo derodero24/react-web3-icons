@@ -1,0 +1,16 @@
+{
+  "name": "YoroiWallet",
+  "source": [
+    "https://yoroi-wallet.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "yoroi-wallet.svg"
+    },
+    "Mono": {
+      "file": "yoroi-wallet.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

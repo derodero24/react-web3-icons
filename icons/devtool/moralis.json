@@ -1,0 +1,16 @@
+{
+  "name": "Moralis",
+  "source": [
+    "https://moralis.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "moralis.svg"
+    },
+    "Mono": {
+      "file": "moralis.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

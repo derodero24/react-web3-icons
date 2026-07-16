@@ -1,0 +1,17 @@
+{
+  "name": "DeBridge",
+  "notes": [
+    "Paths sourced from debridge.com/assets/img/logo/debridge-icon.svg"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "de-bridge.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "de-bridge.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

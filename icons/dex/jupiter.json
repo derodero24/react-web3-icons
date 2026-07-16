@@ -1,0 +1,17 @@
+{
+  "name": "Jupiter",
+  "notes": [
+    "Paths sourced from official jup.ag favicon (six layered arc segments)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "jupiter.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "jupiter.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

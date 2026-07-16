@@ -1,0 +1,14 @@
+{
+  "name": "Brave",
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "brave.svg",
+      "fill": "#FF2000"
+    },
+    "Mono": {
+      "file": "brave.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

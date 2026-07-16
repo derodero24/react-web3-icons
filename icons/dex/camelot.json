@@ -1,0 +1,17 @@
+{
+  "name": "Camelot",
+  "notes": [
+    "Camelot DEX shield/crest emblem extracted from camelot.exchange/img/logo.svg (official)",
+    "Orange outer shield (#f58b00) with cream inner detail bands (#fff3d4)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "camelot.svg"
+    },
+    "Mono": {
+      "file": "camelot.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Pinata",
+  "source": [
+    "https://pinata.cloud"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "pinata.svg"
+    },
+    "Mono": {
+      "file": "pinata.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

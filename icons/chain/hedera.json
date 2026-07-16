@@ -1,0 +1,16 @@
+{
+  "name": "Hedera",
+  "source": [
+    "https://hedera.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "hedera.svg"
+    },
+    "Mono": {
+      "file": "hedera.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

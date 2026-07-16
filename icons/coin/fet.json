@@ -1,0 +1,17 @@
+{
+  "name": "Fet",
+  "source": [
+    "https://fetch.ai"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "fet.svg",
+      "fill": "#1A1E21"
+    },
+    "Mono": {
+      "file": "fet.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

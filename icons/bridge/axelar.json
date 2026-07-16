@@ -1,0 +1,17 @@
+{
+  "name": "Axelar",
+  "notes": [
+    "Path sourced from axelarnetwork/axelar-docs (public/images/chains/axelar.svg)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "axelar.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "axelar.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

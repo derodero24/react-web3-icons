@@ -1,0 +1,17 @@
+{
+  "name": "Yearn",
+  "source": [
+    "https://yearn.fi (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "yearn.svg",
+      "fill": "#0657F9"
+    },
+    "Mono": {
+      "file": "yearn.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

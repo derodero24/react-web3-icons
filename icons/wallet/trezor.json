@@ -1,0 +1,17 @@
+{
+  "name": "Trezor",
+  "source": [
+    "https://trezor.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "trezor.svg",
+      "fill": "#000000"
+    },
+    "Mono": {
+      "file": "trezor.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

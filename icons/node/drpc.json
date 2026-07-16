@@ -1,0 +1,20 @@
+{
+  "name": "Drpc",
+  "source": [
+    "https://drpc.org (official brand)"
+  ],
+  "notes": [
+    "dRPC brand mark — three-dimensional diamond cluster",
+    "Three shades: bright (#49FF87), mid (#41E278), dark (#33B05D)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "drpc.svg"
+    },
+    "Mono": {
+      "file": "drpc.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

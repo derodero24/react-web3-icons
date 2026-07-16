@@ -1,0 +1,17 @@
+{
+  "name": "WorldChain",
+  "source": [
+    "https://worldcoin.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "world-chain.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "world-chain.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

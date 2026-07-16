@@ -1,0 +1,17 @@
+{
+  "name": "Hyperliquid",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT) — ExchangeHyperliquid SVG"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "hyperliquid.svg",
+      "fill": "#50D2C1"
+    },
+    "Mono": {
+      "file": "hyperliquid.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

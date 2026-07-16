@@ -1,13 +1,6 @@
 import { createIcon } from '../utils';
 
 // Paths sourced from @web3icons/react (MIT)
-const pendleMonoContent = () => (
-  <>
-    <path d="M8.76 21a3.961 3.961 0 1 0 .001-7.922 3.961 3.961 0 0 0 0 7.922" />
-    <path d="M8.326 4.007v10.017h.883V3.56q-.459.194-.883.446" />
-  </>
-);
-
 /** Pendle DeFi icon (colored). */
 export const Pendle = /* @__PURE__ */ createIcon(
   'Pendle',
@@ -35,6 +28,11 @@ export const Pendle = /* @__PURE__ */ createIcon(
 export const PendleMono = /* @__PURE__ */ createIcon(
   'PendleMono',
   '0 0 24 24',
-  pendleMonoContent,
+  () => (
+    <>
+      <path d="M8.76 21a3.961 3.961 0 1 0 .001-7.922 3.961 3.961 0 0 0 0 7.922" />
+      <path d="M8.326 4.007v10.017h.883V3.56q-.459.194-.883.446" />
+    </>
+  ),
   'currentColor',
 );

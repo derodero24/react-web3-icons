@@ -1,0 +1,17 @@
+{
+  "name": "BackpackWallet",
+  "source": [
+    "https://backpack.app"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "backpack-wallet.svg",
+      "fill": "#E33E3F"
+    },
+    "Mono": {
+      "file": "backpack-wallet.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

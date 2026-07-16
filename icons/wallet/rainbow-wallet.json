@@ -1,0 +1,40 @@
+{
+  "name": "RainbowWallet",
+  "source": [
+    "https://rainbow.me"
+  ],
+  "notes": [
+    "Arc paths from viewBox 20 20 80 80 → scale 0.575, translate(-2.5, -2.5)"
+  ],
+  "kind": "custom",
+  "variants": {
+    "": {
+      "file": "rainbow-wallet.svg"
+    },
+    "Symbol": {
+      "file": "rainbow-wallet.symbol.svg"
+    },
+    "Circle": {
+      "file": "rainbow-wallet.circle.svg"
+    },
+    "CircleMono": {
+      "file": "rainbow-wallet.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "rainbow-wallet.square.svg"
+    },
+    "SquareMono": {
+      "file": "rainbow-wallet.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "Mono": {
+      "file": "rainbow-wallet.mono.svg",
+      "fill": "currentColor"
+    },
+    "SymbolMono": {
+      "file": "rainbow-wallet.symbol-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

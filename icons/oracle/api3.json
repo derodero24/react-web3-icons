@@ -1,0 +1,17 @@
+{
+  "name": "Api3",
+  "notes": [
+    "Paths sourced from api3dao/logos (MIT)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "api3.svg",
+      "fill": "#4B6EFF"
+    },
+    "Mono": {
+      "file": "api3.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

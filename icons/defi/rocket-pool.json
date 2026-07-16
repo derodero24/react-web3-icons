@@ -1,0 +1,17 @@
+{
+  "name": "RocketPool",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "rocket-pool.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "rocket-pool.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

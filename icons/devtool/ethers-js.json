@@ -1,0 +1,17 @@
+{
+  "name": "EthersJs",
+  "source": [
+    "https://docs.ethers.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ethers-js.svg",
+      "fill": "#24339b"
+    },
+    "Mono": {
+      "file": "ethers-js.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

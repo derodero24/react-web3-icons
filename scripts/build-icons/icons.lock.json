@@ -1,0 +1,1067 @@
+{
+  "units": {
+    "bridge/across": {
+      "input": "a56446d09f68709c",
+      "output": "b4a34c56743de960"
+    },
+    "bridge/axelar": {
+      "input": "dbea1e2ee460cfda",
+      "output": "78745c16a160c46e"
+    },
+    "bridge/de-bridge": {
+      "input": "0724fb10d7286d1c",
+      "output": "84c7c42711089c0a"
+    },
+    "bridge/hop-protocol": {
+      "input": "5e3d01a3fdccdd33",
+      "output": "c8e1cb89bc15a5f2"
+    },
+    "bridge/layer-zero": {
+      "input": "d4ac2632a9465d21",
+      "output": "726d7a8d7ac9d222"
+    },
+    "bridge/orbiter": {
+      "input": "8ddd3c53ba09bd9b",
+      "output": "6f28737d85e6947f"
+    },
+    "bridge/socket": {
+      "input": "e11c49de7c3820a3",
+      "output": "b462256a7f50f0c6"
+    },
+    "bridge/stargate": {
+      "input": "041810dd56352fa9",
+      "output": "75cc9383f14d777c"
+    },
+    "bridge/synapse": {
+      "input": "073ca93f5c4f8dd0",
+      "output": "99de32fa6b035528"
+    },
+    "bridge/wormhole": {
+      "input": "346fd1e88988c498",
+      "output": "eab5709b35dba8c0"
+    },
+    "chain/algorand": {
+      "input": "b6098dd04935680b",
+      "output": "7f4d3dc8825a5c5c"
+    },
+    "chain/aptos": {
+      "input": "c573b894ca400541",
+      "output": "1ef0ded66bb045e4"
+    },
+    "chain/arbitrum": {
+      "input": "6ba7b25d3616eb97",
+      "output": "a8e376f62e4b9f89"
+    },
+    "chain/astar": {
+      "input": "549768dd3bf9b522",
+      "output": "4c2a9a394b5123ca"
+    },
+    "chain/avalanche": {
+      "input": "30df9c85095d260d"
+    },
+    "chain/base": {
+      "input": "cd745be9703b5d1a",
+      "output": "adfa8952729a8ad4"
+    },
+    "chain/berachain": {
+      "input": "df01d0bd2e705468",
+      "output": "48ddea5b092369ad"
+    },
+    "chain/binance-smart-chain": {
+      "input": "1a568d6cb896fcb3",
+      "output": "c6a533b56a631ffd"
+    },
+    "chain/bitcoin": {
+      "input": "2e9fd682c41c1362",
+      "output": "0caab628cae9e878"
+    },
+    "chain/blast": {
+      "input": "830f2d0b01a03d4b",
+      "output": "8d1367175e402170"
+    },
+    "chain/cardano": {
+      "input": "5e183be6073ed83f",
+      "output": "370bd1b37cbb5170"
+    },
+    "chain/celestia": {
+      "input": "f53807e5270d9900",
+      "output": "c042ed37a63b24e5"
+    },
+    "chain/celo": {
+      "input": "8be83e37e76f58a5",
+      "output": "b77d0ddbcde3fa50"
+    },
+    "chain/cosmos-hub": {
+      "input": "f72ce9e5e665a0be",
+      "output": "418bea972e3b3e3d"
+    },
+    "chain/eclipse": {
+      "input": "a05f3dcbda640c31",
+      "output": "81d71b4f571635b9"
+    },
+    "chain/ethereum": {
+      "input": "d5c5970f9c852c50",
+      "output": "44a0b6182854d2b7"
+    },
+    "chain/fantom": {
+      "input": "a585859b6dc07d4d",
+      "output": "1c07ddfa2af17671"
+    },
+    "chain/fraxtal": {
+      "input": "5cc24f36fcbc0d0a",
+      "output": "0f5abc57d1713809"
+    },
+    "chain/gnosis-chain": {
+      "input": "6f8e659a35deb18d",
+      "output": "1679946ff97288a6"
+    },
+    "chain/hedera": {
+      "input": "4fafaf9dc7f5e17f",
+      "output": "8173305e33d979d0"
+    },
+    "chain/immutable-x": {
+      "input": "11dbac4754b06ef7",
+      "output": "a6bf78f0d31351a3"
+    },
+    "chain/injective": {
+      "input": "12fe6f70be4516ee",
+      "output": "ba16879ed1bfb196"
+    },
+    "chain/ink": {
+      "input": "b09182cb37a38db9",
+      "output": "f36685478a11c1dc"
+    },
+    "chain/kava": {
+      "input": "58fa683796158f67",
+      "output": "a66798554c9cdce9"
+    },
+    "chain/linea": {
+      "input": "4a6cf793d86acd54",
+      "output": "64f296c67d5e3bff"
+    },
+    "chain/manta-pacific": {
+      "input": "293b5fdc369db9a6",
+      "output": "12250f0e4cb67060"
+    },
+    "chain/mantle": {
+      "input": "1ecc4a28c5ad3451",
+      "output": "686df18ce47cd52a"
+    },
+    "chain/metis": {
+      "input": "b626ca41d2118574",
+      "output": "16283357d70c7ee4"
+    },
+    "chain/mode": {
+      "input": "dc92d38e1f3b317f",
+      "output": "43f3f6197d418ca6"
+    },
+    "chain/near": {
+      "input": "7cfce257f547dee7",
+      "output": "a3fa95aa967eb61e"
+    },
+    "chain/optimism": {
+      "input": "56f3cef50b243137",
+      "output": "e4888b743b6935d3"
+    },
+    "chain/polkadot": {
+      "input": "f07c70e7a980e058",
+      "output": "e4b21e801d02c5f0"
+    },
+    "chain/polygon": {
+      "input": "5f97b4713af82d8a",
+      "output": "37ea7cc703c5d467"
+    },
+    "chain/scroll": {
+      "input": "79033c4151e5bb26",
+      "output": "d5b24a0b16a14a69"
+    },
+    "chain/sei": {
+      "input": "2b19c18f7eb4b23c",
+      "output": "6fac7564b5cb1ceb"
+    },
+    "chain/solana": {
+      "input": "8eae780dd66e6f39",
+      "output": "b66da66a0fdbacd9"
+    },
+    "chain/stacks": {
+      "input": "c3e23cae11acc288",
+      "output": "7b69cd5dd325c986"
+    },
+    "chain/stark-net": {
+      "input": "b1861095a5c21cd0",
+      "output": "e4864c65c330d496"
+    },
+    "chain/stellar": {
+      "input": "c3dac139d5ee270e",
+      "output": "3d086e3d9adae753"
+    },
+    "chain/sui": {
+      "input": "3931c08aa3257ffd",
+      "output": "80e987b32f810820"
+    },
+    "chain/taiko": {
+      "input": "b447137126056482",
+      "output": "f44dcd6697c2a1a8"
+    },
+    "chain/ton": {
+      "input": "a4ad137c1baaea9e",
+      "output": "75d93e5818669a16"
+    },
+    "chain/tron": {
+      "input": "afac7108c4a3c1ae",
+      "output": "057468de96259414"
+    },
+    "chain/world-chain": {
+      "input": "3b3572246b21ce1d",
+      "output": "46c11e9b53957676"
+    },
+    "chain/zk-sync": {
+      "input": "79c1834f051e7461",
+      "output": "3dc2c17f30eb0fea"
+    },
+    "chain/zora": {
+      "input": "449aac66b7e135fb",
+      "output": "f79b7501f112059c"
+    },
+    "coin/ada": {
+      "input": "65653ffd573e7501",
+      "output": "0977ee3d70088678"
+    },
+    "coin/apt": {
+      "input": "c00df5e075cf87c9",
+      "output": "85762a7f448976f1"
+    },
+    "coin/arb": {
+      "input": "114619818daefbb8",
+      "output": "c9286d6f91ff0753"
+    },
+    "coin/atom": {
+      "input": "5ad64fdcaaa1ed79",
+      "output": "ee8a1479e8602556"
+    },
+    "coin/avax": {
+      "input": "bd96cd67ab41a95c",
+      "output": "ac56a45020dbaf8d"
+    },
+    "coin/bch": {
+      "input": "f59df2c7ad9dbb89",
+      "output": "d70b603e58296f3a"
+    },
+    "coin/bnb": {
+      "input": "ece51191ce492c89",
+      "output": "00fb396de486d3f7"
+    },
+    "coin/btc": {
+      "input": "1b8e6396bae9d0b5",
+      "output": "75a06ed04878b0f5"
+    },
+    "coin/busd": {
+      "input": "a1094579de0cb5af",
+      "output": "1deb2cfe5a2f150a"
+    },
+    "coin/cake": {
+      "input": "83957d7f24df5791",
+      "output": "4eb21d364082d9dd"
+    },
+    "coin/cro": {
+      "input": "0012087693390e75",
+      "output": "7082830c961e155a"
+    },
+    "coin/crv": {
+      "input": "db0c10330c8b0a62",
+      "output": "06aab7592e65120d"
+    },
+    "coin/dai": {
+      "input": "5c3f73bd742f8432",
+      "output": "175da646fe031971"
+    },
+    "coin/doge": {
+      "input": "321a0c4148d13501",
+      "output": "d59e6b90d17bab8d"
+    },
+    "coin/dot": {
+      "input": "1268233e15d3c253",
+      "output": "342cfc15884511ba"
+    },
+    "coin/eigen": {
+      "input": "f58cba6fb678cc42",
+      "output": "58b0476afda06a27"
+    },
+    "coin/ena": {
+      "input": "7959d60d7f291dfc",
+      "output": "c0ce65e56028a074"
+    },
+    "coin/eth": {
+      "input": "18223a5511876bc9",
+      "output": "a73b638ba04b0f68"
+    },
+    "coin/fet": {
+      "input": "6f1ae1564c4c47be",
+      "output": "889a0a80813c1bff"
+    },
+    "coin/fil": {
+      "input": "35a9e337d056aef9",
+      "output": "292d34bb5fa1b7d9"
+    },
+    "coin/flare": {
+      "input": "4eaa226315fcb955",
+      "output": "1d3867cba426625e"
+    },
+    "coin/flr": {
+      "input": "a173ea94a9923aa6",
+      "output": "7e041212fff4065a"
+    },
+    "coin/ftm": {
+      "input": "717ca65b1a6a5f5f",
+      "output": "03a792014145ceab"
+    },
+    "coin/hbar": {
+      "input": "3e505d7ed3ff5fe4",
+      "output": "5ef341fb135f96c6"
+    },
+    "coin/icp": {
+      "input": "5c92d10e58bbf149",
+      "output": "0716635ea16d387a"
+    },
+    "coin/inj": {
+      "input": "947a160348033b6f",
+      "output": "cc84eb964cb15971"
+    },
+    "coin/jup": {
+      "input": "b42bf327599caa49",
+      "output": "e0296f807630c30b"
+    },
+    "coin/kas": {
+      "input": "57a56cf6a05f0081",
+      "output": "62112e5e61814a34"
+    },
+    "coin/ldo": {
+      "input": "165e10a60f5b72c8",
+      "output": "a618fe9a78f8c708"
+    },
+    "coin/link": {
+      "input": "638875d58d76a00b",
+      "output": "78466e940454c531"
+    },
+    "coin/looks": {
+      "input": "9e81685225d36a36",
+      "output": "2fc936f7332596d4"
+    },
+    "coin/ltc": {
+      "input": "cd6f552580e74add",
+      "output": "7e2bd2d4adff32f5"
+    },
+    "coin/matic": {
+      "input": "d1021e7299604865",
+      "output": "945346ee95927ce0"
+    },
+    "coin/mkr": {
+      "input": "415a25aec20427a2",
+      "output": "f13f28fb07385b2a"
+    },
+    "coin/mnt": {
+      "input": "f047136692e0a5d2",
+      "output": "4e03a3ca11c67929"
+    },
+    "coin/near": {
+      "input": "234d595435f24e60",
+      "output": "09cea0387d9ba508"
+    },
+    "coin/op": {
+      "input": "241f3ecc5a0f9ed6",
+      "output": "75843c5aee4181e2"
+    },
+    "coin/pepe": {
+      "input": "161146dacc0a2ef8",
+      "output": "4ac09b83840e0d9a"
+    },
+    "coin/pol": {
+      "input": "893a86e8261cec18",
+      "output": "0820822677881414"
+    },
+    "coin/pyth": {
+      "input": "8a9a07b7a76d7b66",
+      "output": "f990a6c8a9237778"
+    },
+    "coin/shib": {
+      "input": "d56dc92fd9faa192",
+      "output": "48e6ca7101344779"
+    },
+    "coin/sol": {
+      "input": "1defbd40a40993f2",
+      "output": "44c6fc3f01d8035b"
+    },
+    "coin/stx": {
+      "input": "4bac240c8514cd1d",
+      "output": "2bf4b2075d649457"
+    },
+    "coin/tia": {
+      "input": "ef625ef9fe62dfb0",
+      "output": "b41e36df1c547bfd"
+    },
+    "coin/ton": {
+      "input": "3c35003523b0855e",
+      "output": "e41c4d9d1b08dea9"
+    },
+    "coin/trx": {
+      "input": "e9a108ce941604d4",
+      "output": "5c87de6b41073891"
+    },
+    "coin/uni": {
+      "input": "6e50be3ed9628a10",
+      "output": "85fb3b99ea87bba6"
+    },
+    "coin/usdc": {
+      "input": "b83ea3d37e066d58",
+      "output": "fbb3b662efbb81ca"
+    },
+    "coin/usdt": {
+      "input": "a6cf0feb15891706",
+      "output": "c12ffd8a2e12f2c3"
+    },
+    "coin/vet": {
+      "input": "38a538b2d2265de5",
+      "output": "af02a48b29857457"
+    },
+    "coin/wld": {
+      "input": "f5ce689c04a224ea",
+      "output": "77ca2367c072a6bf"
+    },
+    "coin/xlm": {
+      "input": "76f38463a6e7e72b",
+      "output": "a5996b73a02ebde6"
+    },
+    "coin/xmr": {
+      "input": "40c48ae36b879dd0",
+      "output": "a12f42761f9e70be"
+    },
+    "coin/xrp": {
+      "input": "a6a8538a97ef57b0",
+      "output": "126e94f1ca691c47"
+    },
+    "coin/zec": {
+      "input": "dd5c0a8df69b8cb9",
+      "output": "3870a78f697f3bb5"
+    },
+    "defi/aave": {
+      "input": "f6bb918891be33d2",
+      "output": "18d37fa4db4df75c"
+    },
+    "defi/babylon": {
+      "input": "aa0d0b4c291c26c3",
+      "output": "ae301274a2a73b6f"
+    },
+    "defi/balancer": {
+      "input": "7e0ee3a45163d365",
+      "output": "269c11716a50a4db"
+    },
+    "defi/compound": {
+      "input": "11fb8feebd56dba7",
+      "output": "8b45c808bdf47154"
+    },
+    "defi/convex": {
+      "input": "d306b2958fa677f3",
+      "output": "33fce3ea00a4d457"
+    },
+    "defi/eigen-layer": {
+      "input": "d03e490b56e0a7b3",
+      "output": "07127076f19dffac"
+    },
+    "defi/ethena": {
+      "input": "6e764ed5c4b6ae56",
+      "output": "ef33c2d4ed83d8b0"
+    },
+    "defi/ether-fi": {
+      "input": "7aa1bb7cba585e7b",
+      "output": "258f3188ee379273"
+    },
+    "defi/frax": {
+      "input": "8c47c4ba00f051c3",
+      "output": "fe9a329c7d8fca6b"
+    },
+    "defi/gmx": {
+      "input": "9de2919af06e743f",
+      "output": "0aa498518b7bdf5d"
+    },
+    "defi/kamino": {
+      "input": "7cf9db078cca0a8b",
+      "output": "aae31f88e903a4b3"
+    },
+    "defi/lido": {
+      "input": "17357ee080c5dd83",
+      "output": "901b7f43666d9bdb"
+    },
+    "defi/liquity": {
+      "input": "5377ab5abd4fa8eb",
+      "output": "2c1b939e8f6bcad5"
+    },
+    "defi/maker-dao": {
+      "input": "fafdc88b36dd10ac",
+      "output": "91457b4d64288727"
+    },
+    "defi/maple": {
+      "input": "1cd2b777f143645b",
+      "output": "73df41b46d316f27"
+    },
+    "defi/morpho": {
+      "input": "1d43d759bc888bdc",
+      "output": "618c66ca938a105e"
+    },
+    "defi/pendle": {
+      "input": "2af5a12debab05e5",
+      "output": "b04e7bf4bc7ecd8f"
+    },
+    "defi/rocket-pool": {
+      "input": "81a93d5cb3e8fe62",
+      "output": "5848bd5c00e3be38"
+    },
+    "defi/safe-protocol": {
+      "input": "635239804f4d7d66",
+      "output": "e76aad72537cbd25"
+    },
+    "defi/spark": {
+      "input": "c253cd8715a68d79",
+      "output": "0a3082da3395b491"
+    },
+    "defi/synthetix": {
+      "input": "4065ae5d82a47667",
+      "output": "eb54f5940cb5ae74"
+    },
+    "defi/venus": {
+      "input": "26988d9d42cdfc0d",
+      "output": "2d0bf31f32898657"
+    },
+    "defi/yearn": {
+      "input": "574905ed70e9830f",
+      "output": "587ddc94617180d5"
+    },
+    "devtool/aragon": {
+      "input": "eb8a3355327efe97",
+      "output": "5358f24b62a4209f"
+    },
+    "devtool/chainlink": {
+      "input": "374b0dd333770771",
+      "output": "98dbebea9a63881e"
+    },
+    "devtool/collab-land": {
+      "input": "a8c4137983832c9a",
+      "output": "9bfaab5efa992b8e"
+    },
+    "devtool/drizzle": {
+      "input": "f4e961d2c7e849fa",
+      "output": "7dc1b386a5459891"
+    },
+    "devtool/ethers-js": {
+      "input": "29bc19b3e4b12123",
+      "output": "dee74167f7dcc641"
+    },
+    "devtool/ganache": {
+      "input": "0ce8448158c61334",
+      "output": "8e680d16cd5109bb"
+    },
+    "devtool/hardhat": {
+      "input": "4279250666b906db",
+      "output": "e8bb23499607a26f"
+    },
+    "devtool/moralis": {
+      "input": "c83007ddcdcbcdab",
+      "output": "78b93e048aa2e72f"
+    },
+    "devtool/open-zeppelin": {
+      "input": "672a566b26bdfb1f",
+      "output": "af89b0cd613d7b43"
+    },
+    "devtool/privy": {
+      "input": "4f79781f79534765",
+      "output": "52fc18bb92f2a9da"
+    },
+    "devtool/remix": {
+      "input": "f9f9ce17054aea74",
+      "output": "21f42a109bf974f1"
+    },
+    "devtool/solidity": {
+      "input": "e4a1d9cc5dd1f7d3",
+      "output": "0d2aabe846d5acb5"
+    },
+    "devtool/tally": {
+      "input": "a3f6b90dd8f70155",
+      "output": "4b96217d361e8e49"
+    },
+    "devtool/tenderly": {
+      "input": "af3e81ba21df4e68",
+      "output": "9b8e9fd053941bfa"
+    },
+    "devtool/the-graph": {
+      "input": "37f50363d11f6c20",
+      "output": "e9f9757a2a5444a3"
+    },
+    "devtool/thirdweb": {
+      "input": "42d42c97f52113bd",
+      "output": "fd6a154f79b95cc1"
+    },
+    "devtool/truffle": {
+      "input": "427139cd5d71fb84",
+      "output": "eaeefe9915beae67"
+    },
+    "devtool/viem": {
+      "input": "65be0ed017dad427",
+      "output": "d1f696f2f79e83c9"
+    },
+    "devtool/wagmi": {
+      "input": "131c8a7b0becb789",
+      "output": "ca29e8781cb4badc"
+    },
+    "devtool/web3-js": {
+      "input": "33d55b13b2fe5392",
+      "output": "c6a830bddb9bcd34"
+    },
+    "dex/aerodrome": {
+      "input": "6d6cfd2a66cdc724",
+      "output": "cff1ca53a0221ec9"
+    },
+    "dex/camelot": {
+      "input": "aa4fad7c18b1b7e3",
+      "output": "e485ec2482d69f7b"
+    },
+    "dex/cow-protocol": {
+      "input": "3311d3935f57aeb7",
+      "output": "9a5497f49b3d9ae7"
+    },
+    "dex/dydx": {
+      "input": "d0106c72a6fa995b",
+      "output": "0af428835c429bd5"
+    },
+    "dex/ekubo": {
+      "input": "7dff6d628ec16863",
+      "output": "014663dd7c7cf366"
+    },
+    "dex/hyperliquid": {
+      "input": "48efefc02d7b45ad",
+      "output": "004cb0993b2885f1"
+    },
+    "dex/jupiter": {
+      "input": "935b8403ca730006",
+      "output": "0b7eb1c380379cb3"
+    },
+    "dex/odos": {
+      "input": "9922e2787365d442",
+      "output": "7a4b98c83fe82a50"
+    },
+    "dex/oneinch": {
+      "input": "2e82be80ec8cf7b2",
+      "output": "73026ed61ff77ec3"
+    },
+    "dex/osmosis": {
+      "input": "487114e6a99e39bf",
+      "output": "c3e0b09aa3103fad"
+    },
+    "dex/pancake-swap": {
+      "input": "4d889528162205fa",
+      "output": "ce6590065e05982d"
+    },
+    "dex/para-swap": {
+      "input": "3827cc98133cf89b",
+      "output": "1674359ebdbfe74e"
+    },
+    "dex/raydium": {
+      "input": "0f6f822cd91eec5e",
+      "output": "a0b5b45228ff0800"
+    },
+    "dex/sushi-swap": {
+      "input": "92f505e6a07cc0f2",
+      "output": "68da34b1dba451c6"
+    },
+    "dex/uniswap": {
+      "input": "47c45e16f7e3fe79",
+      "output": "0a73a3e0306f6dff"
+    },
+    "dex/velodrome": {
+      "input": "3532d830947cac78",
+      "output": "69be5aaa34e3f2da"
+    },
+    "domain/ens": {
+      "input": "6727183802baa6ed",
+      "output": "5af06260ab776439"
+    },
+    "domain/unstoppable-domains": {
+      "input": "fab257165a0a6bb2",
+      "output": "364ae4f2139cd93a"
+    },
+    "exchange/binance": {
+      "input": "e32a97a846c05d82",
+      "output": "7136012f2f619da8"
+    },
+    "exchange/bitfinex": {
+      "input": "ff6282640e4c9a87",
+      "output": "3d6a4e9c15aea751"
+    },
+    "exchange/bitget": {
+      "input": "f9259fe723bed0af",
+      "output": "d539127e40bff52b"
+    },
+    "exchange/bithumb": {
+      "input": "2dc7a408a7c88ce6",
+      "output": "54217dd840e8d125"
+    },
+    "exchange/bitstamp": {
+      "input": "4d2cc86660d02f49",
+      "output": "9a4a574e9679088a"
+    },
+    "exchange/bybit-light": {
+      "input": "3ea3247f4c98b805",
+      "output": "569b01e99d85cefc"
+    },
+    "exchange/bybit": {
+      "input": "423d708178a657ef"
+    },
+    "exchange/coinbase": {
+      "input": "086e9c673cb93890",
+      "output": "cd17a73ad4aa058f"
+    },
+    "exchange/crypto-com": {
+      "input": "c494f45c78e47012",
+      "output": "faa3cd042c903864"
+    },
+    "exchange/deribit": {
+      "input": "ee7df311532848b1",
+      "output": "d258a91cb0920889"
+    },
+    "exchange/gateio": {
+      "input": "94f9c36d5132071d",
+      "output": "de4e1a55d6f84d6c"
+    },
+    "exchange/gemini": {
+      "input": "777de3c220e90f12",
+      "output": "0ce581a88c10692e"
+    },
+    "exchange/htx": {
+      "input": "d5a1c5f86dc6109c",
+      "output": "6d6fbe31db9c5250"
+    },
+    "exchange/kraken": {
+      "input": "a816959b7c409d9e",
+      "output": "901ca1759611aed3"
+    },
+    "exchange/ku-coin": {
+      "input": "06b8fda707a18b92",
+      "output": "5224da44b3d537aa"
+    },
+    "exchange/mexc": {
+      "input": "d6471c96e4913f37",
+      "output": "360b29c6c1d75fce"
+    },
+    "exchange/okx": {
+      "input": "8c4bb771464120ef",
+      "output": "16ed90ef48c756c4"
+    },
+    "exchange/phemex": {
+      "input": "20f20e83b60ea250",
+      "output": "a0ffe5729abf7f90"
+    },
+    "exchange/upbit": {
+      "input": "15e7705251bfd9bf",
+      "output": "fd108df51aa71dd2"
+    },
+    "explorer/arbiscan": {
+      "input": "6f88a6d92b53b58a",
+      "output": "6f50facf3bc74d88"
+    },
+    "explorer/avascan": {
+      "input": "3f3b2f2d9577e8c7",
+      "output": "10e2e27a8810173b"
+    },
+    "explorer/basescan-light": {
+      "input": "fe9326ac0d758d0e",
+      "output": "465f0e56674ef9de"
+    },
+    "explorer/basescan": {
+      "input": "2c6bcf4790d0ca10",
+      "output": "8a9e59337c1356fd"
+    },
+    "explorer/blastscan": {
+      "input": "be63e37a92b2f3bf",
+      "output": "ee67859cc8d45387"
+    },
+    "explorer/blockscout": {
+      "input": "126a6f3adb9630bb",
+      "output": "c878b47ed94f59be"
+    },
+    "explorer/bscscan-light": {
+      "input": "ed24618cbe7d1e39",
+      "output": "ebf6d56708701b6e"
+    },
+    "explorer/bscscan": {
+      "input": "9f1e5c1246ad2c53",
+      "output": "bf9939edaa43a2a3"
+    },
+    "explorer/celoscan": {
+      "input": "caf24d0aebb7567a",
+      "output": "acb4355af3b6b52a"
+    },
+    "explorer/etherscan-light": {
+      "input": "69afeea18b34578f",
+      "output": "91130e2133a7727b"
+    },
+    "explorer/etherscan": {
+      "input": "9c9517e111b4ffcf",
+      "output": "a9a40cd28941fa60"
+    },
+    "explorer/routescan": {
+      "input": "b412c79e43283e9d",
+      "output": "3181a0abeafe7b46"
+    },
+    "explorer/solscan": {
+      "input": "78aa4eed98521592",
+      "output": "ffd16327cc4c7939"
+    },
+    "marketplace/looks-rare": {
+      "input": "de87b0a68ba2f546",
+      "output": "fb93bca8a8df6ac9"
+    },
+    "marketplace/magic-eden": {
+      "input": "34c0d814e397e148",
+      "output": "78941714f0361346"
+    },
+    "marketplace/open-sea": {
+      "input": "9777c4c6f1a06bb2",
+      "output": "366e01c21914893c"
+    },
+    "marketplace/tofu-nft": {
+      "input": "4c1df64c420c86b9",
+      "output": "e613b24de71111ec"
+    },
+    "marketplace/x2-y2": {
+      "input": "04e6500bcb1d96af",
+      "output": "944dbedb304a9407"
+    },
+    "node/alchemy": {
+      "input": "8f24e55329c0234f",
+      "output": "062a36f640f9f063"
+    },
+    "node/ankr": {
+      "input": "d626fd2dc843b5b5",
+      "output": "17fa02b0139acb98"
+    },
+    "node/chainstack": {
+      "input": "b89a226dec20b424",
+      "output": "40bb6c763b0bb6d2"
+    },
+    "node/drpc": {
+      "input": "7fe71105fc7f6e2a",
+      "output": "7feea5d4cd03c7be"
+    },
+    "node/helius": {
+      "input": "5db0c57b75e4c913",
+      "output": "0ef232919ce03bf6"
+    },
+    "node/infura": {
+      "input": "785caf8d3b5f8537",
+      "output": "4c32fca609039cd1"
+    },
+    "node/quick-node": {
+      "input": "8c8d58fc24aa9b3b",
+      "output": "44700d850015efa7"
+    },
+    "oracle/api3": {
+      "input": "a93e1a4739b2f9bb",
+      "output": "3e980aa1decb3239"
+    },
+    "oracle/band": {
+      "input": "64f42e36315c1c9a",
+      "output": "527eb22e7723f6e1"
+    },
+    "oracle/pyth": {
+      "input": "ce9c5d5bcaaad6bc",
+      "output": "7fe2a2b56b9a49cb"
+    },
+    "oracle/red-stone": {
+      "input": "52ef3d94a57c2fc2",
+      "output": "86a077a5f9f88f1b"
+    },
+    "portfolio/coin-ledger": {
+      "input": "a776b45ef4b66ef7",
+      "output": "016fda6abd3f153c"
+    },
+    "portfolio/coinpanda": {
+      "input": "346c55b616de890f",
+      "output": "0b0d3cf454671116"
+    },
+    "portfolio/de-bank": {
+      "input": "e45a79cbf2223ccb",
+      "output": "1e625618c3084ddf"
+    },
+    "portfolio/zapper": {
+      "input": "f2f1e65da2164175",
+      "output": "5eadabc313fbc2b0"
+    },
+    "storage/arweave": {
+      "input": "81cf076756d8b6fa",
+      "output": "ad0dec6e7783220a"
+    },
+    "storage/ipfs": {
+      "input": "cf58487e91597def",
+      "output": "3ada59a04b86943e"
+    },
+    "storage/nft-storage": {
+      "input": "27c8cec2bb4b0a1c",
+      "output": "438acd6c8c2bc138"
+    },
+    "storage/pinata": {
+      "input": "5c90804098f3e614",
+      "output": "79ea773980b28063"
+    },
+    "tracker/coin-gecko": {
+      "input": "980572b2af8f34e3",
+      "output": "1782902732ac7e79"
+    },
+    "tracker/coin-market-cap": {
+      "input": "f3e52d1347fca5cc",
+      "output": "1051e589f34e94ce"
+    },
+    "tracker/defi-llama": {
+      "input": "07d33f9a867a25bc",
+      "output": "d5220af2d6e2fce8"
+    },
+    "wallet/argent": {
+      "input": "57010b781e6433b7",
+      "output": "5a1aa76aab01c198"
+    },
+    "wallet/backpack-wallet": {
+      "input": "f773d233547d8811",
+      "output": "f786c6999f6bc843"
+    },
+    "wallet/bitget-wallet": {
+      "input": "9649cbc5f22ef21c",
+      "output": "3a7c2164c7a49b2e"
+    },
+    "wallet/brave": {
+      "input": "eab08b3a73f555f7",
+      "output": "57b30271b292610d"
+    },
+    "wallet/coinbase-wallet": {
+      "input": "4ef62b1fa7170779",
+      "output": "9b3007b7b634a343"
+    },
+    "wallet/daedalus-wallet": {
+      "input": "40371b9788c619b7",
+      "output": "1cd2d8993bea9154"
+    },
+    "wallet/enkrypt": {
+      "input": "b4a67350cc100233",
+      "output": "39f8d647f35c2bf1"
+    },
+    "wallet/exodus": {
+      "input": "fa97892b71a46ffd",
+      "output": "22e1f02458f11856"
+    },
+    "wallet/gnosis-safe": {
+      "input": "614c14bb4919cc59",
+      "output": "86df6320b54a3f00"
+    },
+    "wallet/im-token": {
+      "input": "4e1ef76803cbdad2",
+      "output": "55221d86011c8a80"
+    },
+    "wallet/keplr": {
+      "input": "31293304d23e3ae0",
+      "output": "5a98476815ba3456"
+    },
+    "wallet/ledger": {
+      "input": "1fd7d3d7ac9dcd5b",
+      "output": "88057387089a6d8f"
+    },
+    "wallet/meta-mask": {
+      "input": "c151c4bc4ba63538",
+      "output": "3907d930a02acb04"
+    },
+    "wallet/nami-wallet": {
+      "input": "c3834fc2ef1168cc",
+      "output": "f4fad83286c7c008"
+    },
+    "wallet/okx-wallet": {
+      "input": "d24518671398f4ab",
+      "output": "1a6880ad6cf12672"
+    },
+    "wallet/petra": {
+      "input": "f085b3a7d08c5381",
+      "output": "e6e857595c6abd83"
+    },
+    "wallet/phantom-wallet": {
+      "input": "c08ad17c7d2ecc33",
+      "output": "ca4a523cb5643abf"
+    },
+    "wallet/polkadot-js": {
+      "input": "6830f6dae4eb4af2",
+      "output": "d30e421d9c3e077b"
+    },
+    "wallet/rabby": {
+      "input": "0839bf889b90b7af",
+      "output": "67b6723e0f366ea3"
+    },
+    "wallet/rainbow-wallet": {
+      "input": "6c24a7a2ec6d0517"
+    },
+    "wallet/safe": {
+      "input": "2441d1c5976f3f50",
+      "output": "5cec591c325ba503"
+    },
+    "wallet/solflare": {
+      "input": "cfb230d791e6e345",
+      "output": "c7811d05b046dd42"
+    },
+    "wallet/sub-wallet": {
+      "input": "37f4b79e4a339ad5",
+      "output": "8fecb692a9f24f96"
+    },
+    "wallet/tangem": {
+      "input": "270e25d5e0ef8f33",
+      "output": "f6f986b911f10e13"
+    },
+    "wallet/trezor": {
+      "input": "bcf37196d71b89db",
+      "output": "8778b267d1851341"
+    },
+    "wallet/trust-wallet": {
+      "input": "f99581bc223b3487",
+      "output": "ead735b8537635cd"
+    },
+    "wallet/uniswap-wallet": {
+      "input": "0bdc6eda93ad5552",
+      "output": "28372a835fa0a945"
+    },
+    "wallet/wallet-connect": {
+      "input": "fda73727dccaca44",
+      "output": "ba230e2d26416a40"
+    },
+    "wallet/xverse": {
+      "input": "6c4122ca84fae4da",
+      "output": "629c8709c7d2b6ac"
+    },
+    "wallet/yoroi-wallet": {
+      "input": "72856940942fd187",
+      "output": "7defe2d138d781d6"
+    },
+    "wallet/zerion": {
+      "input": "8f3a77e4e8788191",
+      "output": "67216db7b2ee7f32"
+    }
+  },
+  "indexes": {
+    "bridge": "4eb30417ccba06fc",
+    "chain": "d673a3e39a037777",
+    "coin": "7f0bb5079db61a75",
+    "defi": "f29a151470e39a58",
+    "devtool": "6cd17a7565b1b8e6",
+    "dex": "af6f589c56c7b56d",
+    "domain": "9351335ce540086d",
+    "exchange": "e0efe6bfc409d3dd",
+    "explorer": "238b8daf97883514",
+    "marketplace": "1475f38c3c48fc61",
+    "node": "a6eb5c7732385dcb",
+    "oracle": "c6720abb46627159",
+    "portfolio": "fc16de53af0655e4",
+    "storage": "78476b436623cada",
+    "tracker": "2d331667ae829661",
+    "wallet": "6f895c4e4b628278"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Wormhole",
+  "notes": [
+    "Paths sourced from wormhole.com/assets/dark.svg"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "wormhole.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "wormhole.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

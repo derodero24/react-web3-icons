@@ -1,0 +1,17 @@
+{
+  "name": "Wagmi",
+  "source": [
+    "https://wagmi.sh"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "wagmi.svg",
+      "fill": "#1B1B1B"
+    },
+    "Mono": {
+      "file": "wagmi.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Bithumb",
+  "source": [
+    "https://bithumb.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "bithumb.svg"
+    },
+    "Mono": {
+      "file": "bithumb.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Linea",
+  "source": [
+    "https://linea.build"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "linea.svg"
+    },
+    "Mono": {
+      "file": "linea.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

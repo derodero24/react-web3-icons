@@ -1,0 +1,16 @@
+{
+  "name": "Shib",
+  "source": [
+    "https://shibatoken.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "shib.svg"
+    },
+    "Mono": {
+      "file": "shib.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Osmosis",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT) — OSMO token SVG"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "osmosis.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "osmosis.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

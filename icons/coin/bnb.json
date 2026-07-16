@@ -1,0 +1,29 @@
+{
+  "name": "Bnb",
+  "source": [
+    "https://bnbchain.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "bnb.svg"
+    },
+    "Mono": {
+      "file": "bnb.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "reexport": {
+    "from": "../chain/BinanceSmartChain",
+    "exports": [
+      {
+        "of": "BinanceSmartChainCircle",
+        "as": "BnbCircle"
+      },
+      {
+        "of": "BinanceSmartChainCircleMono",
+        "as": "BnbCircleMono"
+      }
+    ]
+  }
+}

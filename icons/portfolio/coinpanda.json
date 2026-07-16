@@ -1,0 +1,34 @@
+{
+  "name": "Coinpanda",
+  "source": [
+    "https://coinpanda.io"
+  ],
+  "notes": [
+    "Scaled version used in the 86×86 background variants"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "coinpanda.svg",
+      "fill": "#246aff"
+    },
+    "Mono": {
+      "file": "coinpanda.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "coinpanda.circle.svg"
+    },
+    "Square": {
+      "file": "coinpanda.square.svg"
+    },
+    "CircleMono": {
+      "file": "coinpanda.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "SquareMono": {
+      "file": "coinpanda.square-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

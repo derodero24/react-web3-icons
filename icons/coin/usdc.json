@@ -1,0 +1,27 @@
+{
+  "name": "Usdc",
+  "source": [
+    "https://circle.com"
+  ],
+  "notes": [
+    "USDC mark scaled to fit in a 64x64 circle (~72% fill).",
+    "Original viewBox 0 0 2000 2000 -> scale 0.0244, translate(7.6, 7.6)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "usdc.svg"
+    },
+    "Mono": {
+      "file": "usdc.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "usdc.circle.svg"
+    },
+    "CircleMono": {
+      "file": "usdc.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

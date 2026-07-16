@@ -1,0 +1,17 @@
+{
+  "name": "KuCoin",
+  "source": [
+    "https://kucoin.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ku-coin.svg",
+      "fill": "#23AF91"
+    },
+    "Mono": {
+      "file": "ku-coin.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

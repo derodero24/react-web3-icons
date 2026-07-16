@@ -1,0 +1,17 @@
+{
+  "name": "Privy",
+  "notes": [
+    "Paths sourced from privy-io/examples (MIT) — Privy logomark (circle + shadow ellipse)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "privy.svg",
+      "fill": "#5B4FFF"
+    },
+    "Mono": {
+      "file": "privy.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

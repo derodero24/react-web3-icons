@@ -1,0 +1,20 @@
+{
+  "name": "Eigen",
+  "source": [
+    "re-export of EigenLayer — see src/defi/EigenLayer.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/EigenLayer",
+    "exports": [
+      {
+        "of": "EigenLayer",
+        "as": "Eigen"
+      },
+      {
+        "of": "EigenLayerMono",
+        "as": "EigenMono"
+      }
+    ]
+  }
+}

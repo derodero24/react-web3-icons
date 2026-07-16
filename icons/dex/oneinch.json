@@ -1,0 +1,17 @@
+{
+  "name": "Oneinch",
+  "source": [
+    "https://1inch.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "oneinch.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "oneinch.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

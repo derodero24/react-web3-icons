@@ -1,0 +1,28 @@
+{
+  "name": "Arb",
+  "source": [
+    "re-export of Arbitrum — see src/chain/Arbitrum.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Arbitrum",
+    "exports": [
+      {
+        "of": "Arbitrum",
+        "as": "Arb"
+      },
+      {
+        "of": "ArbitrumCircle",
+        "as": "ArbCircle"
+      },
+      {
+        "of": "ArbitrumCircleMono",
+        "as": "ArbCircleMono"
+      },
+      {
+        "of": "ArbitrumMono",
+        "as": "ArbMono"
+      }
+    ]
+  }
+}

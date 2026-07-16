@@ -1,0 +1,23 @@
+{
+  "name": "GnosisSafe",
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "./Safe",
+    "imports": [
+      "Safe",
+      "SafeMono"
+    ],
+    "exports": [
+      {
+        "name": "GnosisSafe",
+        "target": "Safe",
+        "deprecated": "Use `Safe` instead."
+      },
+      {
+        "name": "GnosisSafeMono",
+        "target": "SafeMono",
+        "deprecated": "Use `SafeMono` instead."
+      }
+    ]
+  }
+}

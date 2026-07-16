@@ -1,0 +1,17 @@
+{
+  "name": "BscscanLight",
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "./Bscscan",
+    "imports": [
+      "BscscanInverted"
+    ],
+    "exports": [
+      {
+        "name": "BscscanLight",
+        "target": "BscscanInverted",
+        "deprecated": "Use `BscscanInverted` instead."
+      }
+    ]
+  }
+}

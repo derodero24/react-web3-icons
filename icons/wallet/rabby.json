@@ -1,0 +1,17 @@
+{
+  "name": "Rabby",
+  "source": [
+    "https://rabby.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "rabby.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "rabby.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

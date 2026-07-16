@@ -1,0 +1,17 @@
+{
+  "name": "CryptoCom",
+  "source": [
+    "https://crypto.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "crypto-com.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "crypto-com.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

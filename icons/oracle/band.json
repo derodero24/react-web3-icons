@@ -1,0 +1,17 @@
+{
+  "name": "Band",
+  "notes": [
+    "Paths sourced from bandprotocol/governance-portal (Apache-2.0)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "band.svg",
+      "fill": "#516BF0"
+    },
+    "Mono": {
+      "file": "band.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

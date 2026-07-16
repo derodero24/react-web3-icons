@@ -1,0 +1,16 @@
+{
+  "name": "Flare",
+  "source": [
+    "https://flare.network/api/media/file/Flare.svg"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "flare.svg"
+    },
+    "Mono": {
+      "file": "flare.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

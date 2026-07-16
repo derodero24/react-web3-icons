@@ -1,0 +1,16 @@
+{
+  "name": "Phemex",
+  "source": [
+    "https://phemex.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "phemex.svg"
+    },
+    "Mono": {
+      "file": "phemex.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

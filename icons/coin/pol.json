@@ -1,0 +1,28 @@
+{
+  "name": "Pol",
+  "source": [
+    "re-export of Polygon — see src/chain/Polygon.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Polygon",
+    "exports": [
+      {
+        "of": "Polygon",
+        "as": "Pol"
+      },
+      {
+        "of": "PolygonCircle",
+        "as": "PolCircle"
+      },
+      {
+        "of": "PolygonCircleMono",
+        "as": "PolCircleMono"
+      },
+      {
+        "of": "PolygonMono",
+        "as": "PolMono"
+      }
+    ]
+  }
+}

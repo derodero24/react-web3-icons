@@ -1,0 +1,17 @@
+{
+  "name": "Ledger",
+  "source": [
+    "https://ledger.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ledger.svg",
+      "fill": "#000000"
+    },
+    "Mono": {
+      "file": "ledger.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Aave",
+  "source": [
+    "https://aave.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "aave.svg",
+      "fill": "#9391F7"
+    },
+    "Mono": {
+      "file": "aave.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

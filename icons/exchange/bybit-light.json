@@ -1,0 +1,20 @@
+{
+  "name": "BybitLight",
+  "source": [
+    "https://bybit.com (light variant, same brand)"
+  ],
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "./Bybit",
+    "imports": [
+      "BybitInverted"
+    ],
+    "exports": [
+      {
+        "name": "BybitLight",
+        "target": "BybitInverted",
+        "deprecated": "Use `BybitInverted` instead."
+      }
+    ]
+  }
+}

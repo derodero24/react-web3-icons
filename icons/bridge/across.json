@@ -1,0 +1,18 @@
+{
+  "name": "Across",
+  "notes": [
+    "Paths sourced from across.to — the circular logomark",
+    "X-shaped crossing path (dark foreground)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "across.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "across.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

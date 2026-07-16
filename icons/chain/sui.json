@@ -1,0 +1,16 @@
+{
+  "name": "Sui",
+  "source": [
+    "https://sui.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "sui.svg"
+    },
+    "Mono": {
+      "file": "sui.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

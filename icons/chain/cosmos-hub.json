@@ -1,0 +1,17 @@
+{
+  "name": "CosmosHub",
+  "source": [
+    "https://cosmos.network"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "cosmos-hub.svg",
+      "fill": "#BA3FD9"
+    },
+    "Mono": {
+      "file": "cosmos-hub.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

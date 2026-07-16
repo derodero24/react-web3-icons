@@ -1,0 +1,28 @@
+{
+  "name": "Sol",
+  "source": [
+    "re-export of Solana — see src/chain/Solana.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Solana",
+    "exports": [
+      {
+        "of": "Solana",
+        "as": "Sol"
+      },
+      {
+        "of": "SolanaCircle",
+        "as": "SolCircle"
+      },
+      {
+        "of": "SolanaCircleMono",
+        "as": "SolCircleMono"
+      },
+      {
+        "of": "SolanaMono",
+        "as": "SolMono"
+      }
+    ]
+  }
+}

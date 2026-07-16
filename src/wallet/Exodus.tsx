@@ -1,13 +1,6 @@
 import { createIcon } from '../utils';
 
 // Source: https://exodus.com
-const exodusContent = () => (
-  <>
-    <path d="M21 8.026 13.194 3v2.81l5.008 3.195-.59 1.83h-4.418v2.33h4.419l.589 1.83-5.008 3.195V21L21 15.99l-1.276-3.982z" />
-    <path d="M6.404 13.164h4.401v-2.328H6.387l-.572-1.83 4.99-3.196V3L3 8.026l1.276 3.982L3 15.99 10.822 21v-2.81l-5.007-3.195z" />
-  </>
-);
-
 /** Exodus wallet icon (colored). */
 export const Exodus = /* @__PURE__ */ createIcon(
   'Exodus',
@@ -87,6 +80,11 @@ export const Exodus = /* @__PURE__ */ createIcon(
 export const ExodusMono = /* @__PURE__ */ createIcon(
   'ExodusMono',
   '0 0 24 24',
-  exodusContent,
+  () => (
+    <>
+      <path d="M21 8.026 13.194 3v2.81l5.008 3.195-.59 1.83h-4.418v2.33h4.419l.589 1.83-5.008 3.195V21L21 15.99l-1.276-3.982z" />
+      <path d="M6.404 13.164h4.401v-2.328H6.387l-.572-1.83 4.99-3.196V3L3 8.026l1.276 3.982L3 15.99 10.822 21v-2.81l-5.007-3.195z" />
+    </>
+  ),
   'currentColor',
 );

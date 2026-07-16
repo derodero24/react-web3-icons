@@ -1,0 +1,20 @@
+{
+  "name": "Ganache",
+  "source": [
+    "https://trufflesuite.com/ganache"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ganache.svg"
+    },
+    "Mono": {
+      "file": "ganache.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "deprecated": {
+    "Ganache": "ConsenSys sunset Truffle Suite in September 2023.",
+    "GanacheMono": "ConsenSys sunset Truffle Suite in September 2023."
+  }
+}

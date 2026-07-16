@@ -1,0 +1,16 @@
+{
+  "name": "Zapper",
+  "source": [
+    "https://zapper.xyz"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "zapper.svg"
+    },
+    "Mono": {
+      "file": "zapper.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

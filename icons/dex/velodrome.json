@@ -1,0 +1,18 @@
+{
+  "name": "Velodrome",
+  "notes": [
+    "Velodrome Finance icon mark — curved swoosh + circular dot",
+    "Sourced from @web3icons/react (MIT), viewBox 0 0 24 24"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "velodrome.svg",
+      "fill": "#DB2264"
+    },
+    "Mono": {
+      "file": "velodrome.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

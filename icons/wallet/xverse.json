@@ -1,0 +1,17 @@
+{
+  "name": "Xverse",
+  "notes": [
+    "Xverse \"X\" main body — white diagonal bar",
+    "Xverse \"X\" top-right orange accent"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "xverse.svg"
+    },
+    "Mono": {
+      "file": "xverse.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://thirdweb.com
-/** Thirdweb dev tool icon (colored). */
+/** Thirdweb devtool icon (colored). */
 export const Thirdweb = /* @__PURE__ */ createIcon(
   'Thirdweb',
   '0 0 516 321',
@@ -67,7 +67,7 @@ export const Thirdweb = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** Thirdweb dev tool icon (monochrome). */
+/** Thirdweb devtool icon (monochrome). */
 export const ThirdwebMono = /* @__PURE__ */ createIcon(
   'ThirdwebMono',
   '0 0 516 321',

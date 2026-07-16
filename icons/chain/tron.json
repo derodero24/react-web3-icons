@@ -1,0 +1,16 @@
+{
+  "name": "Tron",
+  "source": [
+    "https://tron.network"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "tron.svg"
+    },
+    "Mono": {
+      "file": "tron.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

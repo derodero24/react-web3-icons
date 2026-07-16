@@ -1,0 +1,17 @@
+{
+  "name": "Blast",
+  "source": [
+    "https://blast.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "blast.svg",
+      "fill": "#FCFC03"
+    },
+    "Mono": {
+      "file": "blast.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

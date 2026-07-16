@@ -1,0 +1,17 @@
+{
+  "name": "Hbar",
+  "source": [
+    "https://hedera.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "hbar.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "hbar.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

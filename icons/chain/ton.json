@@ -1,0 +1,17 @@
+{
+  "name": "Ton",
+  "source": [
+    "https://ton.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ton.svg",
+      "fill": "#0098EA"
+    },
+    "Mono": {
+      "file": "ton.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

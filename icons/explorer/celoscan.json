@@ -1,0 +1,25 @@
+{
+  "name": "Celoscan",
+  "notes": [
+    "Celoscan uses the Celo \"C\" mark — a square path forming an open C shape.",
+    "viewBox is trimmed to the 180×180 mark area (offset 70,70 in the source 320×320 SVG)."
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "celoscan.svg",
+      "fill": "#35D07F"
+    },
+    "Square": {
+      "file": "celoscan.square.svg"
+    },
+    "Mono": {
+      "file": "celoscan.mono.svg",
+      "fill": "currentColor"
+    },
+    "SquareMono": {
+      "file": "celoscan.square-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

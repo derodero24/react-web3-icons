@@ -1,0 +1,31 @@
+{
+  "name": "MagicEden",
+  "source": [
+    "https://magiceden.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "Wordmark": {
+      "file": "magic-eden.wordmark.svg"
+    },
+    "WordmarkFlat": {
+      "file": "magic-eden.wordmark-flat.svg",
+      "fill": "#e93a88"
+    },
+    "WordmarkMono": {
+      "file": "magic-eden.wordmark-mono.svg",
+      "fill": "currentColor"
+    },
+    "": {
+      "file": "magic-eden.svg"
+    },
+    "Flat": {
+      "file": "magic-eden.flat.svg",
+      "fill": "#e93a88"
+    },
+    "Mono": {
+      "file": "magic-eden.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

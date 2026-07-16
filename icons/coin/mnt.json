@@ -1,0 +1,20 @@
+{
+  "name": "Mnt",
+  "source": [
+    "re-export of Mantle — see src/chain/Mantle.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Mantle",
+    "exports": [
+      {
+        "of": "Mantle",
+        "as": "Mnt"
+      },
+      {
+        "of": "MantleMono",
+        "as": "MntMono"
+      }
+    ]
+  }
+}

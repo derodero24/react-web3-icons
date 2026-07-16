@@ -1,0 +1,16 @@
+{
+  "name": "Keplr",
+  "source": [
+    "https://keplr.app"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "keplr.svg"
+    },
+    "Mono": {
+      "file": "keplr.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

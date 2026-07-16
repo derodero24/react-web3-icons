@@ -1,0 +1,17 @@
+{
+  "name": "Convex",
+  "notes": [
+    "Convex Finance stepped \"C\" bracket mark; extracted from official wordmark"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "convex.svg",
+      "fill": "#FF5C29"
+    },
+    "Mono": {
+      "file": "convex.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

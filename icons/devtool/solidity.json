@@ -1,0 +1,17 @@
+{
+  "name": "Solidity",
+  "source": [
+    "https://soliditylang.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "solidity.svg",
+      "fill": "#2B247C"
+    },
+    "Mono": {
+      "file": "solidity.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

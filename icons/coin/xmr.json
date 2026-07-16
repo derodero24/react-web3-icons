@@ -1,0 +1,16 @@
+{
+  "name": "Xmr",
+  "source": [
+    "https://getmonero.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "xmr.svg"
+    },
+    "Mono": {
+      "file": "xmr.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

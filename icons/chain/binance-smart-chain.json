@@ -1,0 +1,35 @@
+{
+  "name": "BinanceSmartChain",
+  "source": [
+    "https://bnbchain.org"
+  ],
+  "notes": [
+    "BNB diamond mark scaled to fit in a 64x64 circle (~72% fill).",
+    "Original viewBox 166.6 0 2166.7 2499.9 -> scale 0.0184, translate(9, 9)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "binance-smart-chain.svg",
+      "fill": "#f0b90b"
+    },
+    "Mono": {
+      "file": "binance-smart-chain.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "binance-smart-chain.circle.svg"
+    },
+    "Square": {
+      "file": "binance-smart-chain.square.svg"
+    },
+    "SquareMono": {
+      "file": "binance-smart-chain.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "CircleMono": {
+      "file": "binance-smart-chain.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

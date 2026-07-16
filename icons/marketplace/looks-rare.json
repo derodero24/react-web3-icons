@@ -1,0 +1,20 @@
+{
+  "name": "LooksRare",
+  "source": [
+    "https://looksrare.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "looks-rare.svg"
+    },
+    "Flat": {
+      "file": "looks-rare.flat.svg",
+      "fill": "#04cd58"
+    },
+    "Mono": {
+      "file": "looks-rare.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

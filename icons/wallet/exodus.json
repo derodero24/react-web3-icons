@@ -1,0 +1,17 @@
+{
+  "name": "Exodus",
+  "source": [
+    "https://exodus.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "exodus.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "exodus.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

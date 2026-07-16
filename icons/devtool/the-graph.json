@@ -1,0 +1,17 @@
+{
+  "name": "TheGraph",
+  "source": [
+    "https://thegraph.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "the-graph.svg",
+      "fill": "#6F4CFF"
+    },
+    "Mono": {
+      "file": "the-graph.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

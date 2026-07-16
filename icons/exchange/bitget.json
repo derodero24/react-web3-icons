@@ -1,0 +1,17 @@
+{
+  "name": "Bitget",
+  "source": [
+    "https://bitget.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "bitget.svg",
+      "fill": "#00F0FF"
+    },
+    "Mono": {
+      "file": "bitget.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

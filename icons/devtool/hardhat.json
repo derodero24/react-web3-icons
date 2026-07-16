@@ -1,0 +1,15 @@
+{
+  "name": "Hardhat",
+  "source": [
+    "https://hardhat.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "hardhat.svg"
+    },
+    "Mono": {
+      "file": "hardhat.mono.svg"
+    }
+  }
+}

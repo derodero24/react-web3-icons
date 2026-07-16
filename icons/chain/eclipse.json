@@ -1,0 +1,14 @@
+{
+  "name": "Eclipse",
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "eclipse.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "eclipse.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

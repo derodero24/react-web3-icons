@@ -1,0 +1,24 @@
+{
+  "name": "Xrp",
+  "source": [
+    "https://xrpl.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "xrp.svg",
+      "fill": "#23292f"
+    },
+    "Mono": {
+      "file": "xrp.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "xrp.circle.svg"
+    },
+    "CircleMono": {
+      "file": "xrp.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

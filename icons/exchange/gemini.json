@@ -1,0 +1,17 @@
+{
+  "name": "Gemini",
+  "source": [
+    "https://gemini.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "gemini.svg",
+      "fill": "#26DDF9"
+    },
+    "Mono": {
+      "file": "gemini.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

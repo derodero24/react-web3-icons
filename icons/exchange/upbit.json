@@ -1,0 +1,16 @@
+{
+  "name": "Upbit",
+  "source": [
+    "https://upbit.com (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "upbit.svg"
+    },
+    "Mono": {
+      "file": "upbit.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

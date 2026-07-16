@@ -1,0 +1,33 @@
+{
+  "name": "TrustWallet",
+  "source": [
+    "https://trustwallet.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "Square": {
+      "file": "trust-wallet.square.svg"
+    },
+    "Circle": {
+      "file": "trust-wallet.circle.svg"
+    },
+    "SquareMono": {
+      "file": "trust-wallet.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "CircleMono": {
+      "file": "trust-wallet.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "localAliases": [
+    {
+      "name": "TrustWallet",
+      "target": "TrustWalletSquare"
+    },
+    {
+      "name": "TrustWalletMono",
+      "target": "TrustWalletSquareMono"
+    }
+  ]
+}

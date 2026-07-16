@@ -1,0 +1,17 @@
+{
+  "name": "Pyth",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "pyth.svg",
+      "fill": "#110F24"
+    },
+    "Mono": {
+      "file": "pyth.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

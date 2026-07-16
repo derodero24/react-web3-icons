@@ -1,0 +1,16 @@
+{
+  "name": "MantaPacific",
+  "source": [
+    "https://manta.network"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "manta-pacific.svg"
+    },
+    "Mono": {
+      "file": "manta-pacific.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Arbiscan",
+  "source": [
+    "https://arbiscan.io (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "arbiscan.svg"
+    },
+    "Mono": {
+      "file": "arbiscan.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

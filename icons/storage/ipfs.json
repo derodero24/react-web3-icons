@@ -1,0 +1,16 @@
+{
+  "name": "Ipfs",
+  "source": [
+    "https://ipfs.tech"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ipfs.svg"
+    },
+    "Mono": {
+      "file": "ipfs.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

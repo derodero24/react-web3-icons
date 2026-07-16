@@ -1,0 +1,17 @@
+{
+  "name": "Balancer",
+  "notes": [
+    "Paths sourced from balancer/balancer-v2-monorepo logo.svg"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "balancer.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "balancer.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

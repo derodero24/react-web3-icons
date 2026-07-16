@@ -1,0 +1,16 @@
+{
+  "name": "CoinGecko",
+  "source": [
+    "https://coingecko.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "coin-gecko.svg"
+    },
+    "Mono": {
+      "file": "coin-gecko.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

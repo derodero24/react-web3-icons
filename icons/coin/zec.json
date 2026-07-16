@@ -1,0 +1,16 @@
+{
+  "name": "Zec",
+  "source": [
+    "https://z.cash"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "zec.svg"
+    },
+    "Mono": {
+      "file": "zec.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Lido",
+  "source": [
+    "https://lido.fi (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "lido.svg",
+      "fill": "#00A3FF"
+    },
+    "Mono": {
+      "file": "lido.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

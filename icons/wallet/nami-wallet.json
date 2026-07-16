@@ -1,0 +1,17 @@
+{
+  "name": "NamiWallet",
+  "source": [
+    "https://namiwallet.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "nami-wallet.svg",
+      "fill": "#349ea3"
+    },
+    "Mono": {
+      "file": "nami-wallet.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

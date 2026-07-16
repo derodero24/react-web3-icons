@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://immutable.com
-/** ImmutableX chain icon (colored). */
+/** Immutable X chain icon (colored). */
 export const ImmutableX = /* @__PURE__ */ createIcon(
   'ImmutableX',
   '59.57 116.38 280 280',
@@ -10,7 +10,7 @@ export const ImmutableX = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** ImmutableX chain icon (monochrome). */
+/** Immutable X chain icon (monochrome). */
 export const ImmutableXMono = /* @__PURE__ */ createIcon(
   'ImmutableXMono',
   '59.57 116.38 280 280',

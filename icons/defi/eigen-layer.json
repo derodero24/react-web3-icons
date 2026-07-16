@@ -1,0 +1,17 @@
+{
+  "name": "EigenLayer",
+  "source": [
+    "https://app.eigenlayer.xyz/logo/markLightA.svg (now 403; path data preserved from original retrieval)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "eigen-layer.svg",
+      "fill": "#1A0C6D"
+    },
+    "Mono": {
+      "file": "eigen-layer.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

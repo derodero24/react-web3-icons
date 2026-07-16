@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://tally.xyz
-/** Tally dev tool icon (colored). */
+/** Tally devtool icon (colored). */
 export const Tally = /* @__PURE__ */ createIcon(
   'Tally',
   '308.07 194 25 34.28',
@@ -23,7 +23,7 @@ export const Tally = /* @__PURE__ */ createIcon(
   ),
 );
 
-/** Tally dev tool icon (monochrome). */
+/** Tally devtool icon (monochrome). */
 export const TallyMono = /* @__PURE__ */ createIcon(
   'TallyMono',
   '308.07 194 25 34.28',

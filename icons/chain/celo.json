@@ -1,0 +1,17 @@
+{
+  "name": "Celo",
+  "source": [
+    "https://celo.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "celo.svg",
+      "fill": "#FCFE52"
+    },
+    "Mono": {
+      "file": "celo.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

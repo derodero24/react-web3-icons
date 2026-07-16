@@ -1,0 +1,16 @@
+{
+  "name": "Solscan",
+  "source": [
+    "https://solscan.io (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "solscan.svg"
+    },
+    "Mono": {
+      "file": "solscan.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Cardano",
+  "source": [
+    "https://cardano.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "cardano.svg",
+      "fill": "#0033ad"
+    },
+    "Mono": {
+      "file": "cardano.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "cardano.circle.svg"
+    },
+    "CircleMono": {
+      "file": "cardano.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

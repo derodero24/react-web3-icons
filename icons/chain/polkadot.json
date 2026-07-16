@@ -1,0 +1,17 @@
+{
+  "name": "Polkadot",
+  "source": [
+    "https://polkadot.network"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "polkadot.svg",
+      "fill": "#e6007a"
+    },
+    "Mono": {
+      "file": "polkadot.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

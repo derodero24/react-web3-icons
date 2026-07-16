@@ -1,0 +1,34 @@
+{
+  "name": "CoinbaseWallet",
+  "source": [
+    "https://wallet.coinbase.com"
+  ],
+  "notes": [
+    "Coinbase \"C\" symbol paths (white circle + blue inner rect) shared across variants",
+    "Original viewBox 0 0 2500 2500 → scale 0.0256 (64/2500)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "coinbase-wallet.svg"
+    },
+    "Circle": {
+      "file": "coinbase-wallet.circle.svg"
+    },
+    "CircleMono": {
+      "file": "coinbase-wallet.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "coinbase-wallet.square.svg"
+    },
+    "SquareMono": {
+      "file": "coinbase-wallet.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "Mono": {
+      "file": "coinbase-wallet.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

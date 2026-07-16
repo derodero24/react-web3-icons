@@ -1,0 +1,28 @@
+{
+  "name": "Btc",
+  "source": [
+    "re-export of Bitcoin — see src/chain/Bitcoin.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Bitcoin",
+    "exports": [
+      {
+        "of": "Bitcoin",
+        "as": "Btc"
+      },
+      {
+        "of": "BitcoinCircle",
+        "as": "BtcCircle"
+      },
+      {
+        "of": "BitcoinCircleMono",
+        "as": "BtcCircleMono"
+      },
+      {
+        "of": "BitcoinMono",
+        "as": "BtcMono"
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Tangem",
+  "source": [
+    "https://tangem.com"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "tangem.svg",
+      "fill": "#1E1E1E"
+    },
+    "Mono": {
+      "file": "tangem.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

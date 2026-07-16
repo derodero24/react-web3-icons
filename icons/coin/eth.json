@@ -1,0 +1,28 @@
+{
+  "name": "Eth",
+  "source": [
+    "re-export of Ethereum — see src/chain/Ethereum.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Ethereum",
+    "exports": [
+      {
+        "of": "Ethereum",
+        "as": "Eth"
+      },
+      {
+        "of": "EthereumCircle",
+        "as": "EthCircle"
+      },
+      {
+        "of": "EthereumCircleMono",
+        "as": "EthCircleMono"
+      },
+      {
+        "of": "EthereumMono",
+        "as": "EthMono"
+      }
+    ]
+  }
+}

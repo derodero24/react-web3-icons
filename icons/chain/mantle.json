@@ -1,0 +1,16 @@
+{
+  "name": "Mantle",
+  "source": [
+    "https://mantle.xyz"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "mantle.svg"
+    },
+    "Mono": {
+      "file": "mantle.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

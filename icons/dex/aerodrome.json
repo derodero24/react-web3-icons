@@ -1,0 +1,18 @@
+{
+  "name": "Aerodrome",
+  "notes": [
+    "Icon mark paths extracted from aerodrome.finance/logo.svg (official website)",
+    "All paths use the same orange-red palette (#E35930→#E84125); simplified to flat #E84125"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "aerodrome.svg",
+      "fill": "#E84125"
+    },
+    "Mono": {
+      "file": "aerodrome.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

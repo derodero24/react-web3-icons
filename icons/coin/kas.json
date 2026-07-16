@@ -1,0 +1,16 @@
+{
+  "name": "Kas",
+  "source": [
+    "https://kaspa.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "kas.svg"
+    },
+    "Mono": {
+      "file": "kas.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

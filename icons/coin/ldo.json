@@ -1,0 +1,20 @@
+{
+  "name": "Ldo",
+  "source": [
+    "re-export of Lido — see src/defi/Lido.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Lido",
+    "exports": [
+      {
+        "of": "Lido",
+        "as": "Ldo"
+      },
+      {
+        "of": "LidoMono",
+        "as": "LdoMono"
+      }
+    ]
+  }
+}

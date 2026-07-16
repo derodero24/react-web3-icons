@@ -1,0 +1,16 @@
+{
+  "name": "Pepe",
+  "source": [
+    "https://pepe.vip"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "pepe.svg"
+    },
+    "Mono": {
+      "file": "pepe.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

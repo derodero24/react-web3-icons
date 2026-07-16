@@ -1,0 +1,17 @@
+{
+  "name": "SafeProtocol",
+  "source": [
+    "https://safe.global (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "safe-protocol.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "safe-protocol.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

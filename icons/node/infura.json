@@ -1,0 +1,17 @@
+{
+  "name": "Infura",
+  "source": [
+    "https://infura.io (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "infura.svg",
+      "fill": "#ff6b4a"
+    },
+    "Mono": {
+      "file": "infura.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

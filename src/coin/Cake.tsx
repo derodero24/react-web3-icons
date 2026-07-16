@@ -54,7 +54,6 @@ export const CakeMono = /* @__PURE__ */ createIcon(
           id={`${_id}-cakem-a`}
           d="M40.592 54.047c0 3.11-1.455 4.729-3.249 4.729s-3.249-1.62-3.249-4.729 1.455-4.729 3.249-4.729 3.249 1.62 3.249 4.729z"
         />
-
         <mask id={`${_id}-cakem-b`}>
           <rect width="100%" height="100%" fill="#fff" />
           <path

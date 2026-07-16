@@ -1,0 +1,16 @@
+{
+  "name": "Stellar",
+  "source": [
+    "https://stellar.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "stellar.svg"
+    },
+    "Mono": {
+      "file": "stellar.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

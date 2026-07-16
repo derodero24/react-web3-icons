@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
 // Source: https://wallet.coinbase.com
+// Coinbase "C" symbol paths (white circle + blue inner rect) shared across variants
+// Original viewBox 0 0 2500 2500 → scale 0.0256 (64/2500)
 /** Coinbase Wallet wallet icon (colored). */
 export const CoinbaseWallet = /* @__PURE__ */ createIcon(
   'CoinbaseWallet',
@@ -23,15 +25,6 @@ export const CoinbaseWallet = /* @__PURE__ */ createIcon(
   ),
 );
 
-// Coinbase "C" symbol paths (white circle + blue inner rect) shared across variants
-const CB_WHITE_CIRCLE =
-  'M1250 362.1c490.4 0 887.9 397.5 887.9 887.9 0 490.4-397.5 887.9-887.9 887.9-490.4 0-887.9-397.5-887.9-887.9 0-490.4 397.5-887.9 887.9-887.9z';
-const CB_INNER_RECT =
-  'M1031.3 966.2h437.3c36 0 65.1 31.4 65.1 70v427.5c0 38.7-29.2 70-65.1 70h-437.3c-36 0-65.1-31.4-65.1-70v-427.5c0-38.6 29.2-70 65.1-70z';
-
-// Original viewBox 0 0 2500 2500 → scale 0.0256 (64/2500)
-const CB_CIRCLE_TX = 'translate(0 0) scale(0.0256)';
-
 /** Coinbase Wallet Circle wallet icon (colored). */
 export const CoinbaseWalletCircle = /* @__PURE__ */ createIcon(
   'CoinbaseWalletCircle',
@@ -39,8 +32,16 @@ export const CoinbaseWalletCircle = /* @__PURE__ */ createIcon(
   () => (
     <>
       <circle cx="32" cy="32" r="32" fill="#0052ff" />
-      <path d={CB_WHITE_CIRCLE} transform={CB_CIRCLE_TX} fill="#fff" />
-      <path d={CB_INNER_RECT} transform={CB_CIRCLE_TX} fill="#0052ff" />
+      <path
+        d="M1250 362.1c490.4 0 887.9 397.5 887.9 887.9 0 490.4-397.5 887.9-887.9 887.9-490.4 0-887.9-397.5-887.9-887.9 0-490.4 397.5-887.9 887.9-887.9z"
+        transform="translate(0 0) scale(0.0256)"
+        fill="#fff"
+      />
+      <path
+        d="M1031.3 966.2h437.3c36 0 65.1 31.4 65.1 70v427.5c0 38.7-29.2 70-65.1 70h-437.3c-36 0-65.1-31.4-65.1-70v-427.5c0-38.6 29.2-70 65.1-70z"
+        transform="translate(0 0) scale(0.0256)"
+        fill="#0052ff"
+      />
     </>
   ),
 );
@@ -55,10 +56,17 @@ export const CoinbaseWalletCircleMono = /* @__PURE__ */ createIcon(
       <defs>
         <mask id={`${_id}-cbcm-a`}>
           <rect width="100%" height="100%" fill="#fff" />
-          <path d={CB_WHITE_CIRCLE} transform={CB_CIRCLE_TX} fill="#000" />
+          <path
+            d="M1250 362.1c490.4 0 887.9 397.5 887.9 887.9 0 490.4-397.5 887.9-887.9 887.9-490.4 0-887.9-397.5-887.9-887.9 0-490.4 397.5-887.9 887.9-887.9z"
+            transform="translate(0 0) scale(0.0256)"
+            fill="#000"
+          />
         </mask>
       </defs>
-      <path d={CB_INNER_RECT} transform={CB_CIRCLE_TX} />
+      <path
+        d="M1031.3 966.2h437.3c36 0 65.1 31.4 65.1 70v427.5c0 38.7-29.2 70-65.1 70h-437.3c-36 0-65.1-31.4-65.1-70v-427.5c0-38.6 29.2-70 65.1-70z"
+        transform="translate(0 0) scale(0.0256)"
+      />
     </>
   ),
   'currentColor',
@@ -71,8 +79,16 @@ export const CoinbaseWalletSquare = /* @__PURE__ */ createIcon(
   () => (
     <>
       <rect width="64" height="64" rx="12.8" fill="#0052ff" />
-      <path d={CB_WHITE_CIRCLE} transform={CB_CIRCLE_TX} fill="#fff" />
-      <path d={CB_INNER_RECT} transform={CB_CIRCLE_TX} fill="#0052ff" />
+      <path
+        d="M1250 362.1c490.4 0 887.9 397.5 887.9 887.9 0 490.4-397.5 887.9-887.9 887.9-490.4 0-887.9-397.5-887.9-887.9 0-490.4 397.5-887.9 887.9-887.9z"
+        transform="translate(0 0) scale(0.0256)"
+        fill="#fff"
+      />
+      <path
+        d="M1031.3 966.2h437.3c36 0 65.1 31.4 65.1 70v427.5c0 38.7-29.2 70-65.1 70h-437.3c-36 0-65.1-31.4-65.1-70v-427.5c0-38.6 29.2-70 65.1-70z"
+        transform="translate(0 0) scale(0.0256)"
+        fill="#0052ff"
+      />
     </>
   ),
 );
@@ -87,10 +103,17 @@ export const CoinbaseWalletSquareMono = /* @__PURE__ */ createIcon(
       <defs>
         <mask id={`${_id}-cbsqm-a`}>
           <rect width="100%" height="100%" fill="#fff" />
-          <path d={CB_WHITE_CIRCLE} transform={CB_CIRCLE_TX} fill="#000" />
+          <path
+            d="M1250 362.1c490.4 0 887.9 397.5 887.9 887.9 0 490.4-397.5 887.9-887.9 887.9-490.4 0-887.9-397.5-887.9-887.9 0-490.4 397.5-887.9 887.9-887.9z"
+            transform="translate(0 0) scale(0.0256)"
+            fill="#000"
+          />
         </mask>
       </defs>
-      <path d={CB_INNER_RECT} transform={CB_CIRCLE_TX} />
+      <path
+        d="M1031.3 966.2h437.3c36 0 65.1 31.4 65.1 70v427.5c0 38.7-29.2 70-65.1 70h-437.3c-36 0-65.1-31.4-65.1-70v-427.5c0-38.6 29.2-70 65.1-70z"
+        transform="translate(0 0) scale(0.0256)"
+      />
     </>
   ),
   'currentColor',

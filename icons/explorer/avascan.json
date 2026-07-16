@@ -1,0 +1,25 @@
+{
+  "name": "Avascan",
+  "source": [
+    "https://avascan.info (official brand)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "Wordmark": {
+      "file": "avascan.wordmark.svg",
+      "fill": "#6d6df2"
+    },
+    "WordmarkMono": {
+      "file": "avascan.wordmark-mono.svg",
+      "fill": "currentColor"
+    },
+    "": {
+      "file": "avascan.svg",
+      "fill": "#6d6df2"
+    },
+    "Mono": {
+      "file": "avascan.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

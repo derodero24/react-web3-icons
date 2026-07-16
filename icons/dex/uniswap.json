@@ -1,0 +1,17 @@
+{
+  "name": "Uniswap",
+  "source": [
+    "https://uniswap.org"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "uniswap.svg",
+      "fill": "#FF007A"
+    },
+    "Mono": {
+      "file": "uniswap.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

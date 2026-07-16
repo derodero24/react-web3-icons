@@ -1,0 +1,15 @@
+{
+  "name": "Ena",
+  "source": [
+    "https://ethena.fi"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ena.svg"
+    },
+    "Mono": {
+      "file": "ena.mono.svg"
+    }
+  }
+}

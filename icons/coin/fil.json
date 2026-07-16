@@ -1,0 +1,17 @@
+{
+  "name": "Fil",
+  "notes": [
+    "Paths sourced from @web3icons/react (MIT)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "fil.svg",
+      "fill": "#0090FF"
+    },
+    "Mono": {
+      "file": "fil.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

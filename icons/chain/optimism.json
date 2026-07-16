@@ -1,0 +1,33 @@
+{
+  "name": "Optimism",
+  "source": [
+    "https://optimism.io"
+  ],
+  "notes": [
+    "Circle variant: 28×28 content scaled to ~46px centered in 64×64"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "optimism.svg"
+    },
+    "Mono": {
+      "file": "optimism.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "optimism.circle.svg"
+    },
+    "Square": {
+      "file": "optimism.square.svg"
+    },
+    "SquareMono": {
+      "file": "optimism.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "CircleMono": {
+      "file": "optimism.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

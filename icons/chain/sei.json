@@ -1,0 +1,16 @@
+{
+  "name": "Sei",
+  "source": [
+    "https://sei.io"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "sei.svg"
+    },
+    "Mono": {
+      "file": "sei.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

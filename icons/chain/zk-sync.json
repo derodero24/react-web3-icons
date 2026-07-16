@@ -1,0 +1,33 @@
+{
+  "name": "ZkSync",
+  "source": [
+    "https://zksync.io"
+  ],
+  "notes": [
+    "Circle variant: 40×40 content scaled to ~46px centered in 64×64"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "zk-sync.svg"
+    },
+    "Mono": {
+      "file": "zk-sync.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "zk-sync.circle.svg"
+    },
+    "Square": {
+      "file": "zk-sync.square.svg"
+    },
+    "SquareMono": {
+      "file": "zk-sync.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "CircleMono": {
+      "file": "zk-sync.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}
