@@ -31,6 +31,8 @@
   "type": "module",
   "repository": "github:derodero24/react-web3-icons",
   "homepage": "https://react-web3-icons.vercel.app/",
+  "bugs": "https://github.com/derodero24/react-web3-icons/issues",
+  "funding": "https://github.com/sponsors/derodero24",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.mts",
