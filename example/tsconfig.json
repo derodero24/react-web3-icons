@@ -3,7 +3,8 @@
   "compilerOptions": {
     "paths": {
       "react-web3-icons": ["../src/index.ts"],
-      "react-web3-icons/meta": ["../src/meta/index.ts"]
+      "react-web3-icons/meta": ["../src/meta/index.ts"],
+      "react-web3-icons/manifest": ["../src/manifest/index.ts"]
     },
     "module": "ESNext",
     "moduleResolution": "Bundler",

@@ -92,9 +92,10 @@ jobs:
       - name: Install deps
         run: pnpm install --frozen-lockfile
 
-      - name: Build library
-        run: pnpm run build
-
+      # Intentionally no library build: Vercel deploys the example with only
+      # `next build` (see example/vercel.json), resolving the workspace
+      # package from source via next.config/tsconfig aliases. Building dist
+      # here would mask missing-alias failures that then break deploys.
       - name: Build example app
         run: pnpm --filter react-web3-icons-example run build
 
