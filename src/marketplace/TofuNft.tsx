@@ -5,7 +5,7 @@ const tofuNftContent = () => (
 );
 
 /** @deprecated tofunft.com shut down permanently in 2024. */
-export const TofuNft = createIcon(
+export const TofuNft = /* @__PURE__ */ createIcon(
   'TofuNft',
   '0 0.12 38.97 36',
   tofuNftContent,
@@ -13,7 +13,7 @@ export const TofuNft = createIcon(
 );
 
 /** @deprecated tofunft.com shut down permanently in 2024. */
-export const TofuNftMono = createIcon(
+export const TofuNftMono = /* @__PURE__ */ createIcon(
   'TofuNftMono',
   '0 0.12 38.97 36',
   tofuNftContent,

@@ -5,10 +5,15 @@ const content = () => (
 );
 
 /** Ton chain icon (colored). */
-export const Ton = createIcon('Ton', '0 0 236.408 236.408', content, '#0098EA');
+export const Ton = /* @__PURE__ */ createIcon(
+  'Ton',
+  '0 0 236.408 236.408',
+  content,
+  '#0098EA',
+);
 
 /** Ton chain icon (monochrome). */
-export const TonMono = createIcon(
+export const TonMono = /* @__PURE__ */ createIcon(
   'TonMono',
   '0 0 236.408 236.408',
   content,

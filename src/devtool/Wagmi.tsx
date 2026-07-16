@@ -9,7 +9,7 @@ const wagmiContent = () => (
 );
 
 /** Wagmi dev tool icon (colored). */
-export const Wagmi = createIcon(
+export const Wagmi = /* @__PURE__ */ createIcon(
   'Wagmi',
   '0 0 629 629',
   wagmiContent,
@@ -17,7 +17,7 @@ export const Wagmi = createIcon(
 );
 
 /** Wagmi dev tool icon (monochrome). */
-export const WagmiMono = createIcon(
+export const WagmiMono = /* @__PURE__ */ createIcon(
   'WagmiMono',
   '0 0 629 629',
   wagmiContent,

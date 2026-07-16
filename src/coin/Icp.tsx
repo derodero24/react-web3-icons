@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Icp coin icon (colored). */
-export const Icp = createIcon('Icp', '0 0 24 24', _id => (
+export const Icp = /* @__PURE__ */ createIcon('Icp', '0 0 24 24', _id => (
   <>
     <path
       fill={`url(#${_id}-a)`}
@@ -51,7 +51,7 @@ const ICP_RIGHT =
 const ICP_LEFT =
   'm12.054 13.44-.09-.09c-1.274 1.264-3.15 2.772-4.838 2.772A4.09 4.09 0 0 1 3 12.072c0-2.237 1.845-4.05 4.126-4.05 1.773 0 3.42 1.399 4.806 2.893l.122-.126zm-4.869 1.043c-1.409 0-2.547-1.08-2.547-2.412S5.776 9.66 7.185 9.66c1.408 0 2.78 1.305 3.744 2.412-.639.72-2.34 2.412-3.744 2.412';
 /** Icp coin icon (monochrome). */
-export const IcpMono = createIcon(
+export const IcpMono = /* @__PURE__ */ createIcon(
   'IcpMono',
   '0 0 24 24',
   _id => (

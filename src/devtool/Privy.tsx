@@ -10,7 +10,7 @@ const privyContent = () => (
 );
 
 /** Privy dev tool icon (colored). */
-export const Privy = createIcon(
+export const Privy = /* @__PURE__ */ createIcon(
   'Privy',
   '126 148 136 175',
   privyContent,
@@ -18,7 +18,7 @@ export const Privy = createIcon(
 );
 
 /** Privy dev tool icon (monochrome). */
-export const PrivyMono = createIcon(
+export const PrivyMono = /* @__PURE__ */ createIcon(
   'PrivyMono',
   '126 148 136 175',
   privyContent,

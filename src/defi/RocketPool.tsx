@@ -17,7 +17,7 @@ const rocketPoolMonoContent = () => (
 );
 
 /** Rocket Pool DeFi icon (colored). */
-export const RocketPool = createIcon(
+export const RocketPool = /* @__PURE__ */ createIcon(
   'RocketPool',
   '0 0 24 24',
   _id => (
@@ -65,7 +65,7 @@ export const RocketPool = createIcon(
 );
 
 /** Rocket Pool DeFi icon (monochrome). */
-export const RocketPoolMono = createIcon(
+export const RocketPoolMono = /* @__PURE__ */ createIcon(
   'RocketPoolMono',
   '0 0 24 24',
   rocketPoolMonoContent,

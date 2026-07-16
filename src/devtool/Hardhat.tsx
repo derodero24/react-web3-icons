@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Hardhat dev tool icon (colored). */
-export const Hardhat = createIcon(
+export const Hardhat = /* @__PURE__ */ createIcon(
   'Hardhat',
   '154.25 169.12 49.88 34.57',
   _id => (
@@ -81,7 +81,7 @@ export const Hardhat = createIcon(
 );
 
 /** Hardhat dev tool icon (monochrome). */
-export const HardhatMono = createIcon(
+export const HardhatMono = /* @__PURE__ */ createIcon(
   'HardhatMono',
   '154.25 169.12 49.88 34.57',
   _id => (

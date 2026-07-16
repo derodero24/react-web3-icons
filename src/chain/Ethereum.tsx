@@ -1,54 +1,62 @@
 import { createIcon } from '../utils';
 
 /** Ethereum chain icon (colored). */
-export const Ethereum = createIcon('Ethereum', '0 0 784.37 1277.39', () => (
-  <>
-    <path
-      fill="#343434"
-      d="M392.07 0l-8.57 29.11v844.63l8.57 8.55 392.06-231.75z"
-    />
-    <path fill="#8c8c8c" d="M392.07 0L0 650.54l392.07 231.75V472.33z" />
-    <path
-      fill="#3c3c3b"
-      d="M392.07 956.52l-4.83 5.89v300.87l4.83 14.1 392.3-552.49z"
-    />
-    <path fill="#8c8c8c" d="M392.07 1277.38V956.52L0 724.89z" />
-    <path fill="#141414" d="M392.07 882.29l392.06-231.75-392.06-178.21z" />
-    <path fill="#393939" d="M0 650.54l392.07 231.75V472.33z" />
-  </>
-));
+export const Ethereum = /* @__PURE__ */ createIcon(
+  'Ethereum',
+  '0 0 784.37 1277.39',
+  () => (
+    <>
+      <path
+        fill="#343434"
+        d="M392.07 0l-8.57 29.11v844.63l8.57 8.55 392.06-231.75z"
+      />
+      <path fill="#8c8c8c" d="M392.07 0L0 650.54l392.07 231.75V472.33z" />
+      <path
+        fill="#3c3c3b"
+        d="M392.07 956.52l-4.83 5.89v300.87l4.83 14.1 392.3-552.49z"
+      />
+      <path fill="#8c8c8c" d="M392.07 1277.38V956.52L0 724.89z" />
+      <path fill="#141414" d="M392.07 882.29l392.06-231.75-392.06-178.21z" />
+      <path fill="#393939" d="M0 650.54l392.07 231.75V472.33z" />
+    </>
+  ),
+);
 
 // Ethereum diamond paths scaled to fit in a 64×64 circle (≈72% fill).
 // Original viewBox 0 0 784.37 1277.39 → scale 0.036, translate(17.9, 9)
 const ETH_CIRCLE_TX = 'translate(17.9 9) scale(0.036)';
 
 /** Ethereum Circle chain icon (colored). */
-export const EthereumCircle = createIcon('EthereumCircle', '0 0 64 64', () => (
-  <>
-    <circle cx="32" cy="32" r="32" fill="#343434" />
-    <g transform={ETH_CIRCLE_TX}>
-      <path
-        fill="#fff"
-        d="M392.07 0l-8.57 29.11v844.63l8.57 8.55 392.06-231.75z"
-      />
-      <path
-        fill="#fff"
-        opacity="0.6"
-        d="M392.07 0L0 650.54l392.07 231.75V472.33z"
-      />
-      <path
-        fill="#fff"
-        d="M392.07 956.52l-4.83 5.89v300.87l4.83 14.1 392.3-552.49z"
-      />
-      <path fill="#fff" opacity="0.6" d="M392.07 1277.38V956.52L0 724.89z" />
-      <path fill="#fff" d="M392.07 882.29l392.06-231.75-392.06-178.21z" />
-      <path fill="#fff" opacity="0.6" d="M0 650.54l392.07 231.75V472.33z" />
-    </g>
-  </>
-));
+export const EthereumCircle = /* @__PURE__ */ createIcon(
+  'EthereumCircle',
+  '0 0 64 64',
+  () => (
+    <>
+      <circle cx="32" cy="32" r="32" fill="#343434" />
+      <g transform={ETH_CIRCLE_TX}>
+        <path
+          fill="#fff"
+          d="M392.07 0l-8.57 29.11v844.63l8.57 8.55 392.06-231.75z"
+        />
+        <path
+          fill="#fff"
+          opacity="0.6"
+          d="M392.07 0L0 650.54l392.07 231.75V472.33z"
+        />
+        <path
+          fill="#fff"
+          d="M392.07 956.52l-4.83 5.89v300.87l4.83 14.1 392.3-552.49z"
+        />
+        <path fill="#fff" opacity="0.6" d="M392.07 1277.38V956.52L0 724.89z" />
+        <path fill="#fff" d="M392.07 882.29l392.06-231.75-392.06-178.21z" />
+        <path fill="#fff" opacity="0.6" d="M0 650.54l392.07 231.75V472.33z" />
+      </g>
+    </>
+  ),
+);
 
 /** Ethereum Circle chain icon (monochrome). */
-export const EthereumCircleMono = createIcon(
+export const EthereumCircleMono = /* @__PURE__ */ createIcon(
   'EthereumCircleMono',
   '0 0 64 64',
   _id => (
@@ -73,32 +81,36 @@ export const EthereumCircleMono = createIcon(
 );
 
 /** Ethereum Square chain icon (colored). */
-export const EthereumSquare = createIcon('EthereumSquare', '0 0 64 64', () => (
-  <>
-    <rect width="64" height="64" rx="12.8" fill="#343434" />
-    <g transform={ETH_CIRCLE_TX}>
-      <path
-        fill="#fff"
-        d="M392.07 0l-8.57 29.11v844.63l8.57 8.55 392.06-231.75z"
-      />
-      <path
-        fill="#fff"
-        opacity="0.6"
-        d="M392.07 0L0 650.54l392.07 231.75V472.33z"
-      />
-      <path
-        fill="#fff"
-        d="M392.07 956.52l-4.83 5.89v300.87l4.83 14.1 392.3-552.49z"
-      />
-      <path fill="#fff" opacity="0.6" d="M392.07 1277.38V956.52L0 724.89z" />
-      <path fill="#fff" d="M392.07 882.29l392.06-231.75-392.06-178.21z" />
-      <path fill="#fff" opacity="0.6" d="M0 650.54l392.07 231.75V472.33z" />
-    </g>
-  </>
-));
+export const EthereumSquare = /* @__PURE__ */ createIcon(
+  'EthereumSquare',
+  '0 0 64 64',
+  () => (
+    <>
+      <rect width="64" height="64" rx="12.8" fill="#343434" />
+      <g transform={ETH_CIRCLE_TX}>
+        <path
+          fill="#fff"
+          d="M392.07 0l-8.57 29.11v844.63l8.57 8.55 392.06-231.75z"
+        />
+        <path
+          fill="#fff"
+          opacity="0.6"
+          d="M392.07 0L0 650.54l392.07 231.75V472.33z"
+        />
+        <path
+          fill="#fff"
+          d="M392.07 956.52l-4.83 5.89v300.87l4.83 14.1 392.3-552.49z"
+        />
+        <path fill="#fff" opacity="0.6" d="M392.07 1277.38V956.52L0 724.89z" />
+        <path fill="#fff" d="M392.07 882.29l392.06-231.75-392.06-178.21z" />
+        <path fill="#fff" opacity="0.6" d="M0 650.54l392.07 231.75V472.33z" />
+      </g>
+    </>
+  ),
+);
 
 /** Ethereum Square chain icon (monochrome). */
-export const EthereumSquareMono = createIcon(
+export const EthereumSquareMono = /* @__PURE__ */ createIcon(
   'EthereumSquareMono',
   '0 0 64 64',
   _id => (
@@ -123,7 +135,7 @@ export const EthereumSquareMono = createIcon(
 );
 
 /** Ethereum chain icon (monochrome). */
-export const EthereumMono = createIcon(
+export const EthereumMono = /* @__PURE__ */ createIcon(
   'EthereumMono',
   '0 0 784.37 1277.39',
   () => (

@@ -18,7 +18,7 @@ const worldContent = () => (
 );
 
 /** World Chain chain icon (colored). */
-export const WorldChain = createIcon(
+export const WorldChain = /* @__PURE__ */ createIcon(
   'WorldChain',
   '0 0 24 24',
   worldContent,
@@ -26,7 +26,7 @@ export const WorldChain = createIcon(
 );
 
 /** World Chain chain icon (monochrome). */
-export const WorldChainMono = createIcon(
+export const WorldChainMono = /* @__PURE__ */ createIcon(
   'WorldChainMono',
   '0 0 24 24',
   worldContent,

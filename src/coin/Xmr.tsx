@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Xmr coin icon (colored). */
-export const Xmr = createIcon('Xmr', '0 0 32 32', () => (
+export const Xmr = /* @__PURE__ */ createIcon('Xmr', '0 0 32 32', () => (
   <>
     <circle cx="16" cy="16" r="16" fill="#F60" />
     <path
@@ -12,7 +12,7 @@ export const Xmr = createIcon('Xmr', '0 0 32 32', () => (
 ));
 
 /** Xmr coin icon (monochrome). */
-export const XmrMono = createIcon(
+export const XmrMono = /* @__PURE__ */ createIcon(
   'XmrMono',
   '0 0 32 32',
   () => (

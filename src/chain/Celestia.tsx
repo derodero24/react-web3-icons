@@ -9,7 +9,7 @@ const celestiaContent = () => (
 );
 
 /** Celestia chain icon (colored). */
-export const Celestia = createIcon(
+export const Celestia = /* @__PURE__ */ createIcon(
   'Celestia',
   '0 0 24 24',
   celestiaContent,
@@ -17,7 +17,7 @@ export const Celestia = createIcon(
 );
 
 /** Celestia chain icon (monochrome). */
-export const CelestiaMono = createIcon(
+export const CelestiaMono = /* @__PURE__ */ createIcon(
   'CelestiaMono',
   '0 0 24 24',
   celestiaContent,

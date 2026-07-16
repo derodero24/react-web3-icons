@@ -7,10 +7,15 @@ const xrpContent = () => (
 );
 
 /** Xrp coin icon (colored). */
-export const Xrp = createIcon('Xrp', '0 0 512 424', xrpContent, '#23292f');
+export const Xrp = /* @__PURE__ */ createIcon(
+  'Xrp',
+  '0 0 512 424',
+  xrpContent,
+  '#23292f',
+);
 
 /** Xrp coin icon (monochrome). */
-export const XrpMono = createIcon(
+export const XrpMono = /* @__PURE__ */ createIcon(
   'XrpMono',
   '0 0 512 424',
   xrpContent,
@@ -18,21 +23,25 @@ export const XrpMono = createIcon(
 );
 
 /** Xrp Circle coin icon (colored). */
-export const XrpCircle = createIcon('XrpCircle', '0 0 704 704', () => (
-  <>
-    <path
-      d="M352 704c167.93.002 312.476-118.622 345.239-283.325S641.857 91.061 486.71 26.795 152.625 16.809 59.327 156.437-15.644 482.155 103.1 600.9A352 352 0 0 0 352 704z"
-      fill="#23292f"
-    />
-    <path
-      d="M480.79 202.09h52.93L423.66 311.9c-39.828 39.8-104.372 39.8-144.2 0L169.71 202.09h52.87l83.6 83.41c25.229 25.198 66.101 25.198 91.33 0zM222.33 507.51h-52.62L280.15 397c39.828-39.8 104.372-39.8 144.2 0L535 507.51h-52.82L398 423.41c-25.229-25.198-66.101-25.198-91.33 0z"
-      fill="#fff"
-    />
-  </>
-));
+export const XrpCircle = /* @__PURE__ */ createIcon(
+  'XrpCircle',
+  '0 0 704 704',
+  () => (
+    <>
+      <path
+        d="M352 704c167.93.002 312.476-118.622 345.239-283.325S641.857 91.061 486.71 26.795 152.625 16.809 59.327 156.437-15.644 482.155 103.1 600.9A352 352 0 0 0 352 704z"
+        fill="#23292f"
+      />
+      <path
+        d="M480.79 202.09h52.93L423.66 311.9c-39.828 39.8-104.372 39.8-144.2 0L169.71 202.09h52.87l83.6 83.41c25.229 25.198 66.101 25.198 91.33 0zM222.33 507.51h-52.62L280.15 397c39.828-39.8 104.372-39.8 144.2 0L535 507.51h-52.82L398 423.41c-25.229-25.198-66.101-25.198-91.33 0z"
+        fill="#fff"
+      />
+    </>
+  ),
+);
 
 /** Xrp Circle coin icon (monochrome). */
-export const XrpCircleMono = createIcon(
+export const XrpCircleMono = /* @__PURE__ */ createIcon(
   'XrpCircleMono',
   '0 0 704 704',
   _id => (

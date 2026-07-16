@@ -9,10 +9,15 @@ const pythContent = () => (
 );
 
 /** Pyth coin icon (colored). */
-export const Pyth = createIcon('Pyth', '0 0 24 24', pythContent, '#110F24');
+export const Pyth = /* @__PURE__ */ createIcon(
+  'Pyth',
+  '0 0 24 24',
+  pythContent,
+  '#110F24',
+);
 
 /** Pyth coin icon (monochrome). */
-export const PythMono = createIcon(
+export const PythMono = /* @__PURE__ */ createIcon(
   'PythMono',
   '0 0 24 24',
   pythContent,

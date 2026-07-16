@@ -5,10 +5,15 @@ const stxContent = () => (
 );
 
 /** Stx coin icon (colored). */
-export const Stx = createIcon('Stx', '0 0 24 24', stxContent, '#7023EB');
+export const Stx = /* @__PURE__ */ createIcon(
+  'Stx',
+  '0 0 24 24',
+  stxContent,
+  '#7023EB',
+);
 
 /** Stx coin icon (monochrome). */
-export const StxMono = createIcon(
+export const StxMono = /* @__PURE__ */ createIcon(
   'StxMono',
   '0 0 24 24',
   stxContent,

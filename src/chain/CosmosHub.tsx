@@ -22,7 +22,7 @@ const cosmosHubContent = () => (
 );
 
 /** CosmosHub chain icon (colored). */
-export const CosmosHub = createIcon(
+export const CosmosHub = /* @__PURE__ */ createIcon(
   'CosmosHub',
   '0 0 24 24',
   cosmosHubContent,
@@ -30,7 +30,7 @@ export const CosmosHub = createIcon(
 );
 
 /** CosmosHub chain icon (monochrome). */
-export const CosmosHubMono = createIcon(
+export const CosmosHubMono = /* @__PURE__ */ createIcon(
   'CosmosHubMono',
   '0 0 24 24',
   cosmosHubContent,

@@ -7,7 +7,7 @@ const UPBIT_P =
   'm11.45 15.226 1.606-4.878.773.252-.552-1.826h4.778c.868 0 1.319.774 1.007 1.727l-.303.922-.013.036-.012.033q-.127.342-.343.635c-.455.619-1.147 1.02-1.764 1.023h-2.399l-.68 2.075zm3.132-3.153h1.273c.319 0 .67-.284.785-.634l.313-.952c.115-.35-.05-.634-.369-.634h-1.273z';
 
 /** Upbit exchange icon (colored). */
-export const Upbit = createIcon('Upbit', '0 0 24 24', () => (
+export const Upbit = /* @__PURE__ */ createIcon('Upbit', '0 0 24 24', () => (
   <>
     <path fill="#093687" d={UPBIT_CIRCLE} />
     <path fill="#fff" d={UPBIT_U} />
@@ -16,7 +16,7 @@ export const Upbit = createIcon('Upbit', '0 0 24 24', () => (
 ));
 
 /** Upbit exchange icon (monochrome). */
-export const UpbitMono = createIcon(
+export const UpbitMono = /* @__PURE__ */ createIcon(
   'UpbitMono',
   '0 0 24 24',
   _id => (

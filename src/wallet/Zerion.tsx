@@ -1,31 +1,35 @@
 import { createIcon } from '../utils';
 
 /** Zerion Circle wallet icon (colored). */
-export const ZerionCircle = createIcon('ZerionCircle', '0 0 1024 1024', _id => (
-  <>
-    <rect width="1024" height="1024" rx="512" fill={`url(#${_id}-zr-a)`} />
-    <path
-      d="M258.644 288c-15.355 0-21.271 18.987-8.387 26.918l322.327 194.353c8.036 4.946 18.751 2.992 24.283-4.43L738.586 318.79c9.635-12.925-.1-30.79-16.779-30.79H258.644zm506.608 448c15.352 0 21.422-19.09 8.54-27.019L451.371 514.652c-8.034-4.945-18.49-2.743-24.021 4.677L285.356 705.344c-9.633 12.922.407 30.656 17.082 30.656h462.814z"
-      fill="#fff"
-    />
-    <defs>
-      <linearGradient
-        id={`${_id}-zr-a`}
-        x1="0"
-        y1="0"
-        x2="1209.97"
-        y2="704.696"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#2962ef" />
-        <stop offset="1" stopColor="#255ce5" />
-      </linearGradient>
-    </defs>
-  </>
-));
+export const ZerionCircle = /* @__PURE__ */ createIcon(
+  'ZerionCircle',
+  '0 0 1024 1024',
+  _id => (
+    <>
+      <rect width="1024" height="1024" rx="512" fill={`url(#${_id}-zr-a)`} />
+      <path
+        d="M258.644 288c-15.355 0-21.271 18.987-8.387 26.918l322.327 194.353c8.036 4.946 18.751 2.992 24.283-4.43L738.586 318.79c9.635-12.925-.1-30.79-16.779-30.79H258.644zm506.608 448c15.352 0 21.422-19.09 8.54-27.019L451.371 514.652c-8.034-4.945-18.49-2.743-24.021 4.677L285.356 705.344c-9.633 12.922.407 30.656 17.082 30.656h462.814z"
+        fill="#fff"
+      />
+      <defs>
+        <linearGradient
+          id={`${_id}-zr-a`}
+          x1="0"
+          y1="0"
+          x2="1209.97"
+          y2="704.696"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#2962ef" />
+          <stop offset="1" stopColor="#255ce5" />
+        </linearGradient>
+      </defs>
+    </>
+  ),
+);
 
 /** Zerion Square wallet icon (colored). */
-export const ZerionSquare = createIcon(
+export const ZerionSquare = /* @__PURE__ */ createIcon(
   'ZerionSquare',
   '279.67 178.83 40.15 40',
   () => (
@@ -43,7 +47,7 @@ export const ZerionSquare = createIcon(
 );
 
 /** Zerion Circle wallet icon (monochrome). */
-export const ZerionCircleMono = createIcon(
+export const ZerionCircleMono = /* @__PURE__ */ createIcon(
   'ZerionCircleMono',
   '0 0 1024 1024',
   _id => (
@@ -69,7 +73,7 @@ export const ZerionCircleMono = createIcon(
 );
 
 /** Zerion Square wallet icon (monochrome). */
-export const ZerionSquareMono = createIcon(
+export const ZerionSquareMono = /* @__PURE__ */ createIcon(
   'ZerionSquareMono',
   '98.874 163.084 40.147 40',
   _id => (

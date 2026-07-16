@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** OpenZeppelin dev tool icon (colored). */
-export const OpenZeppelin = createIcon(
+export const OpenZeppelin = /* @__PURE__ */ createIcon(
   'OpenZeppelin',
   '0 0 29.86 33.62',
   () => (
@@ -20,7 +20,7 @@ export const OpenZeppelin = createIcon(
 );
 
 /** OpenZeppelin dev tool icon (monochrome). */
-export const OpenZeppelinMono = createIcon(
+export const OpenZeppelinMono = /* @__PURE__ */ createIcon(
   'OpenZeppelinMono',
   '0 0 29.86 33.62',
   () => (

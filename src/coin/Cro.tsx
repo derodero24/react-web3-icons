@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Cro coin icon (colored). */
-export const Cro = createIcon('Cro', '0 0 24 24', () => (
+export const Cro = /* @__PURE__ */ createIcon('Cro', '0 0 24 24', () => (
   <>
     <path
       fill="#2E4B9F"
@@ -11,7 +11,7 @@ export const Cro = createIcon('Cro', '0 0 24 24', () => (
 ));
 
 /** Cro coin icon (monochrome). */
-export const CroMono = createIcon(
+export const CroMono = /* @__PURE__ */ createIcon(
   'CroMono',
   '0 0 24 24',
   () => (

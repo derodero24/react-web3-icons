@@ -9,7 +9,7 @@ const deribitContent = () => (
 );
 
 /** Deribit exchange icon (colored). */
-export const Deribit = createIcon(
+export const Deribit = /* @__PURE__ */ createIcon(
   'Deribit',
   '0 0 179.25 174.75',
   deribitContent,
@@ -17,7 +17,7 @@ export const Deribit = createIcon(
 );
 
 /** Deribit exchange icon (monochrome). */
-export const DeribitMono = createIcon(
+export const DeribitMono = /* @__PURE__ */ createIcon(
   'DeribitMono',
   '0 0 179.25 174.75',
   deribitContent,

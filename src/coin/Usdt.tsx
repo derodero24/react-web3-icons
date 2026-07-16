@@ -10,7 +10,7 @@ const usdtContent = () => (
 );
 
 /** Usdt coin icon (colored). */
-export const Usdt = createIcon(
+export const Usdt = /* @__PURE__ */ createIcon(
   'Usdt',
   '0.45 0.86 110.36 88.3',
   usdtContent,
@@ -18,7 +18,7 @@ export const Usdt = createIcon(
 );
 
 /** Usdt coin icon (monochrome). */
-export const UsdtMono = createIcon(
+export const UsdtMono = /* @__PURE__ */ createIcon(
   'UsdtMono',
   '0.45 0.86 110.36 88.3',
   usdtContent,
@@ -30,20 +30,24 @@ export const UsdtMono = createIcon(
 const USDT_CIRCLE_TX = 'translate(8.9 13.6) scale(0.417)';
 
 /** Usdt Circle coin icon (colored). */
-export const UsdtCircle = createIcon('UsdtCircle', '0 0 64 64', () => (
-  <>
-    <circle cx="32" cy="32" r="32" fill="#26A17B" />
-    <path
-      transform={USDT_CIRCLE_TX}
-      fillRule="evenodd"
-      d={USDT_MARK}
-      fill="#fff"
-    />
-  </>
-));
+export const UsdtCircle = /* @__PURE__ */ createIcon(
+  'UsdtCircle',
+  '0 0 64 64',
+  () => (
+    <>
+      <circle cx="32" cy="32" r="32" fill="#26A17B" />
+      <path
+        transform={USDT_CIRCLE_TX}
+        fillRule="evenodd"
+        d={USDT_MARK}
+        fill="#fff"
+      />
+    </>
+  ),
+);
 
 /** Usdt Circle coin icon (monochrome). */
-export const UsdtCircleMono = createIcon(
+export const UsdtCircleMono = /* @__PURE__ */ createIcon(
   'UsdtCircleMono',
   '0 0 64 64',
   _id => (

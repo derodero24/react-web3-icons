@@ -8,7 +8,7 @@ const XVERSE_BODY =
 const XVERSE_ACCENT =
   'M10.781 7.771h1.299a.139.139 0 0 1 .139.139v1.299a.139.139 0 0 0 .237.098l1.782-1.785a.139.139 0 0 0 .041-.097V5.862a.139.139 0 0 0-.139-.139l-1.586-.002a.139.139 0 0 0-.099.042L10.268 7.54a.139.139 0 0 0 .098.232h.415Z';
 
-export const Xverse = createIcon('Xverse', '0 0 20 20', () => (
+export const Xverse = /* @__PURE__ */ createIcon('Xverse', '0 0 20 20', () => (
   <>
     <rect width="20" height="20" rx="10" fill="#181818" />
     <path d={XVERSE_BODY} fill="#fff" />
@@ -16,7 +16,7 @@ export const Xverse = createIcon('Xverse', '0 0 20 20', () => (
   </>
 ));
 
-export const XverseMono = createIcon(
+export const XverseMono = /* @__PURE__ */ createIcon(
   'XverseMono',
   '0 0 20 20',
   _id => (

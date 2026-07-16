@@ -8,7 +8,7 @@ const namiWalletContent = () => (
 );
 
 /** Nami Wallet wallet icon (colored). */
-export const NamiWallet = createIcon(
+export const NamiWallet = /* @__PURE__ */ createIcon(
   'NamiWallet',
   '-0.01 0 486.18 499.86',
   namiWalletContent,
@@ -16,7 +16,7 @@ export const NamiWallet = createIcon(
 );
 
 /** Nami Wallet wallet icon (monochrome). */
-export const NamiWalletMono = createIcon(
+export const NamiWalletMono = /* @__PURE__ */ createIcon(
   'NamiWalletMono',
   '-0.01 0 486.18 499.86',
   namiWalletContent,

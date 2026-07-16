@@ -5,10 +5,15 @@ const kavaContent = () => (
 );
 
 /** Kava chain icon (colored). */
-export const Kava = createIcon('Kava', '0 0 24 24', kavaContent, '#FF564F');
+export const Kava = /* @__PURE__ */ createIcon(
+  'Kava',
+  '0 0 24 24',
+  kavaContent,
+  '#FF564F',
+);
 
 /** Kava chain icon (monochrome). */
-export const KavaMono = createIcon(
+export const KavaMono = /* @__PURE__ */ createIcon(
   'KavaMono',
   '0 0 24 24',
   kavaContent,

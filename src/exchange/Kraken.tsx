@@ -5,7 +5,7 @@ const krakenContent = () => (
 );
 
 /** Kraken exchange icon (colored). */
-export const Kraken = createIcon(
+export const Kraken = /* @__PURE__ */ createIcon(
   'Kraken',
   '-0.2 264.35 2500.2 1971.32',
   krakenContent,
@@ -13,7 +13,7 @@ export const Kraken = createIcon(
 );
 
 /** Kraken exchange icon (monochrome). */
-export const KrakenMono = createIcon(
+export const KrakenMono = /* @__PURE__ */ createIcon(
   'KrakenMono',
   '-0.2 264.35 2500.2 1971.32',
   krakenContent,

@@ -14,23 +14,27 @@ const ARB_BAR_RIGHT =
   'M149.095 63.7168H127.866C126.276 63.7168 124.855 64.7085 124.312 66.2054L72.3535 208.712L94.3117 221.399L150.872 66.2616C151.321 65.0266 150.404 63.7168 149.095 63.7168Z';
 
 /** Arbiscan explorer icon (colored). */
-export const Arbiscan = createIcon('Arbiscan', '0 0 238 238', () => (
-  <>
-    <path d={ARB_HEXAGON} fill="#213147" />
-    <path d={ARB_CHEVRON_1} fill="#12AAFF" />
-    <path d={ARB_CHEVRON_2} fill="#12AAFF" />
-    <path d={ARB_RING} fill="#9DCCED" fillRule="evenodd" />
-    <path
-      d="M63.6191 203.698L71.3251 182.591L86.8304 195.483L72.3351 208.731L63.6191 203.698Z"
-      fill="#213147"
-    />
-    <path d={ARB_BAR_LEFT} fill="#fff" />
-    <path d={ARB_BAR_RIGHT} fill="#fff" />
-  </>
-));
+export const Arbiscan = /* @__PURE__ */ createIcon(
+  'Arbiscan',
+  '0 0 238 238',
+  () => (
+    <>
+      <path d={ARB_HEXAGON} fill="#213147" />
+      <path d={ARB_CHEVRON_1} fill="#12AAFF" />
+      <path d={ARB_CHEVRON_2} fill="#12AAFF" />
+      <path d={ARB_RING} fill="#9DCCED" fillRule="evenodd" />
+      <path
+        d="M63.6191 203.698L71.3251 182.591L86.8304 195.483L72.3351 208.731L63.6191 203.698Z"
+        fill="#213147"
+      />
+      <path d={ARB_BAR_LEFT} fill="#fff" />
+      <path d={ARB_BAR_RIGHT} fill="#fff" />
+    </>
+  ),
+);
 
 /** Arbiscan explorer icon (monochrome). */
-export const ArbiscanMono = createIcon(
+export const ArbiscanMono = /* @__PURE__ */ createIcon(
   'ArbiscanMono',
   '0 0 238 238',
   _id => (

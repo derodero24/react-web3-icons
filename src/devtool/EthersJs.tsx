@@ -5,7 +5,7 @@ const ethersJsContent = () => (
 );
 
 /** EthersJs dev tool icon (colored). */
-export const EthersJs = createIcon(
+export const EthersJs = /* @__PURE__ */ createIcon(
   'EthersJs',
   '0 0 256 161.35',
   ethersJsContent,
@@ -13,7 +13,7 @@ export const EthersJs = createIcon(
 );
 
 /** EthersJs dev tool icon (monochrome). */
-export const EthersJsMono = createIcon(
+export const EthersJsMono = /* @__PURE__ */ createIcon(
   'EthersJsMono',
   '0 0 256 161.35',
   ethersJsContent,

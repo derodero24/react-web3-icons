@@ -7,7 +7,7 @@ const argentContent = () => (
 );
 
 /** Argent wallet icon (colored). */
-export const Argent = createIcon(
+export const Argent = /* @__PURE__ */ createIcon(
   'Argent',
   '0 0 39.38 36',
   argentContent,
@@ -15,7 +15,7 @@ export const Argent = createIcon(
 );
 
 /** Argent wallet icon (monochrome). */
-export const ArgentMono = createIcon(
+export const ArgentMono = /* @__PURE__ */ createIcon(
   'ArgentMono',
   '0 0 39.38 36',
   argentContent,

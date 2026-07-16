@@ -9,7 +9,7 @@ const avascanContent2 = () => (
 );
 
 /** Avascan Wordmark explorer icon (colored). */
-export const AvascanWordmark = createIcon(
+export const AvascanWordmark = /* @__PURE__ */ createIcon(
   'AvascanWordmark',
   '0.04 -0.03 139.76 76.24',
   avascanContent,
@@ -17,7 +17,7 @@ export const AvascanWordmark = createIcon(
 );
 
 /** Avascan Wordmark explorer icon (monochrome). */
-export const AvascanWordmarkMono = createIcon(
+export const AvascanWordmarkMono = /* @__PURE__ */ createIcon(
   'AvascanWordmarkMono',
   '0.04 -0.03 139.76 76.24',
   avascanContent,
@@ -25,7 +25,7 @@ export const AvascanWordmarkMono = createIcon(
 );
 
 /** Avascan explorer icon (colored). */
-export const Avascan = createIcon(
+export const Avascan = /* @__PURE__ */ createIcon(
   'Avascan',
   '152.19 197.21 139.67 48.01',
   avascanContent2,
@@ -33,7 +33,7 @@ export const Avascan = createIcon(
 );
 
 /** Avascan explorer icon (monochrome). */
-export const AvascanMono = createIcon(
+export const AvascanMono = /* @__PURE__ */ createIcon(
   'AvascanMono',
   '152.19 197.21 139.67 48.01',
   avascanContent2,

@@ -15,7 +15,7 @@ const orbiterPath5 =
 const orbiterPath6 =
   'M1.68604 2.32041C2.06494 2.32041 2.37209 2.02483 2.37209 1.66021C2.37209 1.29558 2.06494 1 1.68604 1C1.30715 1 1 1.29558 1 1.66021C1 2.02483 1.30715 2.32041 1.68604 2.32041Z';
 
-export const Orbiter = createIcon(
+export const Orbiter = /* @__PURE__ */ createIcon(
   'Orbiter',
   '0 0 20 20',
   () => (
@@ -31,7 +31,7 @@ export const Orbiter = createIcon(
   'none',
 );
 
-export const OrbiterMono = createIcon(
+export const OrbiterMono = /* @__PURE__ */ createIcon(
   'OrbiterMono',
   '0 0 20 20',
   () => (

@@ -11,56 +11,60 @@ const STARKNET_DOT =
   'M15.541 15.885a1.026 1.026 0 1 0 2.051 0 1.026 1.026 0 0 0-2.051 0';
 
 /** StarkNet chain icon (colored). */
-export const StarkNet = createIcon('StarkNet', '0 0 24 24', _id => (
-  <>
-    <path
-      d={STARKNET_CIRCLE}
-      fill="#0C0C4F"
-      fillRule="evenodd"
-      clipRule="evenodd"
-    />
-    <path
-      d={STARKNET_STAR}
-      fill="#FAFAFA"
-      fillRule="evenodd"
-      clipRule="evenodd"
-    />
-    <path
-      d={STARKNET_SNAKE_A}
-      fill={`url(#${_id}-grad)`}
-      fillRule="evenodd"
-      clipRule="evenodd"
-    />
-    <path
-      d={STARKNET_SNAKE_B}
-      fill="#FAFAFA"
-      fillRule="evenodd"
-      clipRule="evenodd"
-    />
-    <path
-      d={STARKNET_DOT}
-      fill="#EC796B"
-      fillRule="evenodd"
-      clipRule="evenodd"
-    />
-    <defs>
-      <linearGradient
-        id={`${_id}-grad`}
-        x1="20.903"
-        x2="-13.607"
-        y1="3.792"
-        y2="13.742"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#EC796B" />
-        <stop offset="1" stopColor="#D672EF" />
-      </linearGradient>
-    </defs>
-  </>
-));
+export const StarkNet = /* @__PURE__ */ createIcon(
+  'StarkNet',
+  '0 0 24 24',
+  _id => (
+    <>
+      <path
+        d={STARKNET_CIRCLE}
+        fill="#0C0C4F"
+        fillRule="evenodd"
+        clipRule="evenodd"
+      />
+      <path
+        d={STARKNET_STAR}
+        fill="#FAFAFA"
+        fillRule="evenodd"
+        clipRule="evenodd"
+      />
+      <path
+        d={STARKNET_SNAKE_A}
+        fill={`url(#${_id}-grad)`}
+        fillRule="evenodd"
+        clipRule="evenodd"
+      />
+      <path
+        d={STARKNET_SNAKE_B}
+        fill="#FAFAFA"
+        fillRule="evenodd"
+        clipRule="evenodd"
+      />
+      <path
+        d={STARKNET_DOT}
+        fill="#EC796B"
+        fillRule="evenodd"
+        clipRule="evenodd"
+      />
+      <defs>
+        <linearGradient
+          id={`${_id}-grad`}
+          x1="20.903"
+          x2="-13.607"
+          y1="3.792"
+          y2="13.742"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#EC796B" />
+          <stop offset="1" stopColor="#D672EF" />
+        </linearGradient>
+      </defs>
+    </>
+  ),
+);
 
 /** StarkNet chain icon (monochrome). */
-export const StarkNetMono = createIcon(
+export const StarkNetMono = /* @__PURE__ */ createIcon(
   'StarkNetMono',
   '0 0 24 24',
   _id => (
@@ -92,59 +96,67 @@ export const StarkNetMono = createIcon(
 const STARKNET_CIRCLE_TX = 'translate(9 9) scale(1.917)';
 
 /** StarkNet Circle chain icon (colored). */
-export const StarkNetCircle = createIcon('StarkNetCircle', '0 0 64 64', _id => (
-  <>
-    <circle cx="32" cy="32" r="32" fill="#0C0C4F" />
-    <g transform={STARKNET_CIRCLE_TX} fillRule="evenodd" clipRule="evenodd">
-      <path d={STARKNET_STAR} fill="#FAFAFA" />
-      <path d={STARKNET_SNAKE_A} fill={`url(#${_id}-snkc-grad)`} />
-      <path d={STARKNET_SNAKE_B} fill="#FAFAFA" />
-      <path d={STARKNET_DOT} fill="#EC796B" />
-    </g>
-    <defs>
-      <linearGradient
-        id={`${_id}-snkc-grad`}
-        x1="49.07"
-        x2="-17.08"
-        y1="16.27"
-        y2="35.34"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#EC796B" />
-        <stop offset="1" stopColor="#D672EF" />
-      </linearGradient>
-    </defs>
-  </>
-));
+export const StarkNetCircle = /* @__PURE__ */ createIcon(
+  'StarkNetCircle',
+  '0 0 64 64',
+  _id => (
+    <>
+      <circle cx="32" cy="32" r="32" fill="#0C0C4F" />
+      <g transform={STARKNET_CIRCLE_TX} fillRule="evenodd" clipRule="evenodd">
+        <path d={STARKNET_STAR} fill="#FAFAFA" />
+        <path d={STARKNET_SNAKE_A} fill={`url(#${_id}-snkc-grad)`} />
+        <path d={STARKNET_SNAKE_B} fill="#FAFAFA" />
+        <path d={STARKNET_DOT} fill="#EC796B" />
+      </g>
+      <defs>
+        <linearGradient
+          id={`${_id}-snkc-grad`}
+          x1="49.07"
+          x2="-17.08"
+          y1="16.27"
+          y2="35.34"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#EC796B" />
+          <stop offset="1" stopColor="#D672EF" />
+        </linearGradient>
+      </defs>
+    </>
+  ),
+);
 
 /** StarkNet Square chain icon (colored). */
-export const StarkNetSquare = createIcon('StarkNetSquare', '0 0 64 64', _id => (
-  <>
-    <rect width="64" height="64" rx="12.8" fill="#0C0C4F" />
-    <g transform={STARKNET_CIRCLE_TX} fillRule="evenodd" clipRule="evenodd">
-      <path d={STARKNET_STAR} fill="#FAFAFA" />
-      <path d={STARKNET_SNAKE_A} fill={`url(#${_id}-snks-grad)`} />
-      <path d={STARKNET_SNAKE_B} fill="#FAFAFA" />
-      <path d={STARKNET_DOT} fill="#EC796B" />
-    </g>
-    <defs>
-      <linearGradient
-        id={`${_id}-snks-grad`}
-        x1="49.07"
-        x2="-17.08"
-        y1="16.27"
-        y2="35.34"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#EC796B" />
-        <stop offset="1" stopColor="#D672EF" />
-      </linearGradient>
-    </defs>
-  </>
-));
+export const StarkNetSquare = /* @__PURE__ */ createIcon(
+  'StarkNetSquare',
+  '0 0 64 64',
+  _id => (
+    <>
+      <rect width="64" height="64" rx="12.8" fill="#0C0C4F" />
+      <g transform={STARKNET_CIRCLE_TX} fillRule="evenodd" clipRule="evenodd">
+        <path d={STARKNET_STAR} fill="#FAFAFA" />
+        <path d={STARKNET_SNAKE_A} fill={`url(#${_id}-snks-grad)`} />
+        <path d={STARKNET_SNAKE_B} fill="#FAFAFA" />
+        <path d={STARKNET_DOT} fill="#EC796B" />
+      </g>
+      <defs>
+        <linearGradient
+          id={`${_id}-snks-grad`}
+          x1="49.07"
+          x2="-17.08"
+          y1="16.27"
+          y2="35.34"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#EC796B" />
+          <stop offset="1" stopColor="#D672EF" />
+        </linearGradient>
+      </defs>
+    </>
+  ),
+);
 
 /** StarkNet Square chain icon (monochrome). */
-export const StarkNetSquareMono = createIcon(
+export const StarkNetSquareMono = /* @__PURE__ */ createIcon(
   'StarkNetSquareMono',
   '0 0 64 64',
   _id => (
@@ -172,7 +184,7 @@ export const StarkNetSquareMono = createIcon(
 );
 
 /** StarkNet Circle chain icon (monochrome). */
-export const StarkNetCircleMono = createIcon(
+export const StarkNetCircleMono = /* @__PURE__ */ createIcon(
   'StarkNetCircleMono',
   '0 0 64 64',
   _id => (

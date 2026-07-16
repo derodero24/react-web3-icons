@@ -5,7 +5,7 @@ const geminiContent = () => (
 );
 
 /** Gemini exchange icon (colored). */
-export const Gemini = createIcon(
+export const Gemini = /* @__PURE__ */ createIcon(
   'Gemini',
   '132.9 202.31 44.98 44.98',
   geminiContent,
@@ -13,7 +13,7 @@ export const Gemini = createIcon(
 );
 
 /** Gemini exchange icon (monochrome). */
-export const GeminiMono = createIcon(
+export const GeminiMono = /* @__PURE__ */ createIcon(
   'GeminiMono',
   '132.9 202.31 44.98 44.98',
   geminiContent,

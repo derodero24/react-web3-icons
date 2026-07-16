@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** TheGraph dev tool icon (colored). */
-export const TheGraph = createIcon(
+export const TheGraph = /* @__PURE__ */ createIcon(
   'TheGraph',
   '0 0 362.8 467.6',
   () => (
@@ -15,7 +15,7 @@ export const TheGraph = createIcon(
 );
 
 /** TheGraph dev tool icon (monochrome). */
-export const TheGraphMono = createIcon(
+export const TheGraphMono = /* @__PURE__ */ createIcon(
   'TheGraphMono',
   '0 0 362.8 467.6',
   () => (

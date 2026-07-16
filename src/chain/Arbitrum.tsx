@@ -33,7 +33,7 @@ const ARBNOVA_WHITE =
   'M646.79 510.56h-52.87a9.44 9.44 0 0 0-8.87 6.21L414.94 983.11a4.73 4.73 0 0 0 4.44 6.34h52.87a9.44 9.44 0 0 0 8.87-6.21L651.23 516.9c1.12-3.08-1.16-6.34-4.43-6.34h0zm68.49 180.81c-1.51-4.14-7.36-4.14-8.87 0l-27.5 75.38c-.76 2.09-.76 4.38 0 6.47l76.61 210.01a9.44 9.44 0 0 0 8.87 6.21h52.87a4.72 4.72 0 0 0 4.43-6.34L715.27 691.37h0zm24-180.81h-52.87a9.44 9.44 0 0 0-8.87 6.21L507.43 983.11c-1.12 3.08 1.16 6.34 4.43 6.34h52.87a9.44 9.44 0 0 0 8.87-6.21L743.71 516.9c1.12-3.08-1.16-6.34-4.43-6.34h0zm22.24 54.03c-1.51-4.14-7.36-4.14-8.87 0l-27.5 75.38c-.76 2.09-.76 4.38 0 6.47L848 983.23a9.44 9.44 0 0 0 8.87 6.21h52.87a4.72 4.72 0 0 0 4.43-6.34L761.51 564.59h0zm319.1-54.03h-52.87a9.44 9.44 0 0 0-8.87 6.21L896.03 853.56c-.76 2.09-.76 4.38 0 6.47l27.5 75.38c1.51 4.14 7.36 4.14 8.87 0l152.66-418.51a4.73 4.73 0 0 0-4.44-6.34h0zM877.28 808.63c1.51 4.14 7.36 4.14 8.87 0L992.57 516.9c1.12-3.08-1.16-6.34-4.43-6.34h-52.87a9.44 9.44 0 0 0-8.87 6.21l-76.61 210.01c-.76 2.09-.76 4.38 0 6.47l27.5 75.38h0z';
 
 /** Arbitrum chain icon (colored). */
-export const Arbitrum = createIcon(
+export const Arbitrum = /* @__PURE__ */ createIcon(
   'Arbitrum',
   '262.47 200 975.06 1099.98',
   () => (
@@ -54,7 +54,7 @@ export const Arbitrum = createIcon(
 );
 
 /** Arbitrum Circle chain icon (colored). */
-export const ArbitrumCircle = createIcon(
+export const ArbitrumCircle = /* @__PURE__ */ createIcon(
   'ArbitrumCircle',
   '0 0 1226.88 1226.88',
   () => (
@@ -75,7 +75,7 @@ export const ArbitrumCircle = createIcon(
 );
 
 /** Arbitrum chain icon (monochrome). */
-export const ArbitrumMono = createIcon(
+export const ArbitrumMono = /* @__PURE__ */ createIcon(
   'ArbitrumMono',
   '262.47 200 975.06 1099.98',
   () => (
@@ -89,7 +89,7 @@ export const ArbitrumMono = createIcon(
 );
 
 /** Arbitrum Circle chain icon (monochrome). */
-export const ArbitrumCircleMono = createIcon(
+export const ArbitrumCircleMono = /* @__PURE__ */ createIcon(
   'ArbitrumCircleMono',
   '0 0 1226.88 1226.88',
   _id => (
@@ -119,19 +119,23 @@ export const ArbitrumCircleMono = createIcon(
 const ARB_SQUARE_TX = 'translate(0.64 0.64) scale(0.04182)';
 
 /** Arbitrum Square chain icon (colored). */
-export const ArbitrumSquare = createIcon('ArbitrumSquare', '0 0 64 64', () => (
-  <>
-    <rect width="64" height="64" rx="12.8" fill="#213147" />
-    <g transform={ARB_SQUARE_TX}>
-      <path d={ARB_BLUE} fill="#12aaff" />
-      <path d={ARB_BORDER} fill="#9dcced" />
-      <path d={ARB_WHITE} fill="#fff" />
-    </g>
-  </>
-));
+export const ArbitrumSquare = /* @__PURE__ */ createIcon(
+  'ArbitrumSquare',
+  '0 0 64 64',
+  () => (
+    <>
+      <rect width="64" height="64" rx="12.8" fill="#213147" />
+      <g transform={ARB_SQUARE_TX}>
+        <path d={ARB_BLUE} fill="#12aaff" />
+        <path d={ARB_BORDER} fill="#9dcced" />
+        <path d={ARB_WHITE} fill="#fff" />
+      </g>
+    </>
+  ),
+);
 
 /** Arbitrum Square chain icon (monochrome). */
-export const ArbitrumSquareMono = createIcon(
+export const ArbitrumSquareMono = /* @__PURE__ */ createIcon(
   'ArbitrumSquareMono',
   '0 0 64 64',
   _id => (
@@ -153,7 +157,7 @@ export const ArbitrumSquareMono = createIcon(
 );
 
 /** Arbitrum One chain icon (colored). */
-export const ArbitrumOne = createIcon(
+export const ArbitrumOne = /* @__PURE__ */ createIcon(
   'ArbitrumOne',
   '200 228.16 1100 1100',
   () => (
@@ -168,7 +172,7 @@ export const ArbitrumOne = createIcon(
 );
 
 /** Arbitrum One chain icon (monochrome). */
-export const ArbitrumOneMono = createIcon(
+export const ArbitrumOneMono = /* @__PURE__ */ createIcon(
   'ArbitrumOneMono',
   '200 228.16 1100 1100',
   _id => (
@@ -193,7 +197,7 @@ const arbitrumOneFlatContent = () => (
 );
 
 /** Arbitrum One Flat chain icon (colored). */
-export const ArbitrumOneFlat = createIcon(
+export const ArbitrumOneFlat = /* @__PURE__ */ createIcon(
   'ArbitrumOneFlat',
   '200 200 1100 1100',
   arbitrumOneFlatContent,
@@ -201,7 +205,7 @@ export const ArbitrumOneFlat = createIcon(
 );
 
 /** Arbitrum One Flat chain icon (monochrome). */
-export const ArbitrumOneFlatMono = createIcon(
+export const ArbitrumOneFlatMono = /* @__PURE__ */ createIcon(
   'ArbitrumOneFlatMono',
   '200 200 1100 1100',
   arbitrumOneFlatContent,
@@ -209,7 +213,7 @@ export const ArbitrumOneFlatMono = createIcon(
 );
 
 /** Arbitrum Nova chain icon (colored). */
-export const ArbitrumNova = createIcon(
+export const ArbitrumNova = /* @__PURE__ */ createIcon(
   'ArbitrumNova',
   '200 200 1100 1100',
   () => (
@@ -224,7 +228,7 @@ export const ArbitrumNova = createIcon(
 );
 
 /** Arbitrum Nova chain icon (monochrome). */
-export const ArbitrumNovaMono = createIcon(
+export const ArbitrumNovaMono = /* @__PURE__ */ createIcon(
   'ArbitrumNovaMono',
   '200 200 1100 1100',
   _id => (
@@ -249,7 +253,7 @@ const arbitrumNovaFlatContent = () => (
 );
 
 /** Arbitrum Nova Flat chain icon (colored). */
-export const ArbitrumNovaFlat = createIcon(
+export const ArbitrumNovaFlat = /* @__PURE__ */ createIcon(
   'ArbitrumNovaFlat',
   '200 200.41 1100 1100',
   arbitrumNovaFlatContent,
@@ -257,7 +261,7 @@ export const ArbitrumNovaFlat = createIcon(
 );
 
 /** Arbitrum Nova Flat chain icon (monochrome). */
-export const ArbitrumNovaFlatMono = createIcon(
+export const ArbitrumNovaFlatMono = /* @__PURE__ */ createIcon(
   'ArbitrumNovaFlatMono',
   '200 200.41 1100 1100',
   arbitrumNovaFlatContent,

@@ -9,10 +9,15 @@ const aaveContent = () => (
 );
 
 /** Aave DeFi icon (colored). */
-export const Aave = createIcon('Aave', '0 0 266 139', aaveContent, '#9391F7');
+export const Aave = /* @__PURE__ */ createIcon(
+  'Aave',
+  '0 0 266 139',
+  aaveContent,
+  '#9391F7',
+);
 
 /** Aave DeFi icon (monochrome). */
-export const AaveMono = createIcon(
+export const AaveMono = /* @__PURE__ */ createIcon(
   'AaveMono',
   '0 0 266 139',
   aaveContent,

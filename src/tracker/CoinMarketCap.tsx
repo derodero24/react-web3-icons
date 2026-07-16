@@ -5,7 +5,7 @@ const path = (
 );
 
 /** CoinMarketCap tracker icon (colored). */
-export const CoinMarketCap = createIcon(
+export const CoinMarketCap = /* @__PURE__ */ createIcon(
   'CoinMarketCap',
   '98.25 154.48 40.39 41',
   () => path,
@@ -13,7 +13,7 @@ export const CoinMarketCap = createIcon(
 );
 
 /** CoinMarketCap tracker icon (monochrome). */
-export const CoinMarketCapMono = createIcon(
+export const CoinMarketCapMono = /* @__PURE__ */ createIcon(
   'CoinMarketCapMono',
   '98.25 154.48 40.39 41',
   () => path,

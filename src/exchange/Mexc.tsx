@@ -11,7 +11,7 @@ const mexcMonoContent = () => (
 );
 
 /** Mexc exchange icon (colored). */
-export const Mexc = createIcon(
+export const Mexc = /* @__PURE__ */ createIcon(
   'Mexc',
   '0 0 24 24',
   _id => (
@@ -47,7 +47,7 @@ export const Mexc = createIcon(
 );
 
 /** Mexc exchange icon (monochrome). */
-export const MexcMono = createIcon(
+export const MexcMono = /* @__PURE__ */ createIcon(
   'MexcMono',
   '0 0 24 24',
   mexcMonoContent,

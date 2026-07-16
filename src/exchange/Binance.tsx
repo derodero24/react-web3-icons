@@ -29,7 +29,7 @@ const binanceContent = () => (
 );
 
 /** Binance exchange icon (colored). */
-export const Binance = createIcon(
+export const Binance = /* @__PURE__ */ createIcon(
   'Binance',
   '0 0 126.611 126.611',
   binanceContent,
@@ -37,7 +37,7 @@ export const Binance = createIcon(
 );
 
 /** Binance exchange icon (monochrome). */
-export const BinanceMono = createIcon(
+export const BinanceMono = /* @__PURE__ */ createIcon(
   'BinanceMono',
   '0 0 126.611 126.611',
   binanceContent,

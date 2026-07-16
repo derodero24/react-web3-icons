@@ -5,7 +5,7 @@ const gnosisChainContent = () => (
 );
 
 /** Gnosis Chain chain icon (colored). */
-export const GnosisChain = createIcon(
+export const GnosisChain = /* @__PURE__ */ createIcon(
   'GnosisChain',
   '0 0 24 24',
   gnosisChainContent,
@@ -13,7 +13,7 @@ export const GnosisChain = createIcon(
 );
 
 /** Gnosis Chain chain icon (monochrome). */
-export const GnosisChainMono = createIcon(
+export const GnosisChainMono = /* @__PURE__ */ createIcon(
   'GnosisChainMono',
   '0 0 24 24',
   gnosisChainContent,

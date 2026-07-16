@@ -5,7 +5,7 @@ const infuraContent = () => (
 );
 
 /** Infura node icon (colored). */
-export const Infura = createIcon(
+export const Infura = /* @__PURE__ */ createIcon(
   'Infura',
   '78.33 78.33 184.68 156.67',
   infuraContent,
@@ -13,7 +13,7 @@ export const Infura = createIcon(
 );
 
 /** Infura node icon (monochrome). */
-export const InfuraMono = createIcon(
+export const InfuraMono = /* @__PURE__ */ createIcon(
   'InfuraMono',
   '78.33 78.33 184.68 156.67',
   infuraContent,

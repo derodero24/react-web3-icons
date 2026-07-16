@@ -9,7 +9,7 @@ const remixContent = () => (
 );
 
 /** Remix dev tool icon (colored). */
-export const Remix = createIcon(
+export const Remix = /* @__PURE__ */ createIcon(
   'Remix',
   '0 0 165 165',
   remixContent,
@@ -17,7 +17,7 @@ export const Remix = createIcon(
 );
 
 /** Remix dev tool icon (monochrome). */
-export const RemixMono = createIcon(
+export const RemixMono = /* @__PURE__ */ createIcon(
   'RemixMono',
   '0 0 165 165',
   remixContent,

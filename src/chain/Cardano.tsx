@@ -5,7 +5,7 @@ const cardanoContent = () => (
 );
 
 /** Cardano chain icon (colored). */
-export const Cardano = createIcon(
+export const Cardano = /* @__PURE__ */ createIcon(
   'Cardano',
   '0 0 375 346.51',
   cardanoContent,
@@ -13,7 +13,7 @@ export const Cardano = createIcon(
 );
 
 /** Cardano chain icon (monochrome). */
-export const CardanoMono = createIcon(
+export const CardanoMono = /* @__PURE__ */ createIcon(
   'CardanoMono',
   '0 0 375 346.51',
   cardanoContent,
@@ -21,7 +21,7 @@ export const CardanoMono = createIcon(
 );
 
 /** Cardano Circle chain icon (colored). */
-export const CardanoCircle = createIcon(
+export const CardanoCircle = /* @__PURE__ */ createIcon(
   'CardanoCircle',
   '375 125.5 950 950',
   () => (
@@ -39,7 +39,7 @@ export const CardanoCircle = createIcon(
 );
 
 /** Cardano Circle chain icon (monochrome). */
-export const CardanoCircleMono = createIcon(
+export const CardanoCircleMono = /* @__PURE__ */ createIcon(
   'CardanoCircleMono',
   '375 125.5 950 950',
   _id => (

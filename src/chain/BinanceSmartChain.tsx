@@ -6,7 +6,7 @@ const BNB_MARK =
 const content = () => <path d={BNB_MARK} />;
 
 /** Binance Smart Chain chain icon (colored). */
-export const BinanceSmartChain = createIcon(
+export const BinanceSmartChain = /* @__PURE__ */ createIcon(
   'BinanceSmartChain',
   '166.6 0 2166.7 2499.9',
   content,
@@ -14,7 +14,7 @@ export const BinanceSmartChain = createIcon(
 );
 
 /** Binance Smart Chain chain icon (monochrome). */
-export const BinanceSmartChainMono = createIcon(
+export const BinanceSmartChainMono = /* @__PURE__ */ createIcon(
   'BinanceSmartChainMono',
   '166.6 0 2166.7 2499.9',
   content,
@@ -26,7 +26,7 @@ export const BinanceSmartChainMono = createIcon(
 const BNB_CIRCLE_TX = 'translate(9 9) scale(0.0184)';
 
 /** Binance Smart Chain Circle chain icon (colored). */
-export const BinanceSmartChainCircle = createIcon(
+export const BinanceSmartChainCircle = /* @__PURE__ */ createIcon(
   'BinanceSmartChainCircle',
   '0 0 64 64',
   () => (
@@ -38,7 +38,7 @@ export const BinanceSmartChainCircle = createIcon(
 );
 
 /** Binance Smart Chain Square chain icon (colored). */
-export const BinanceSmartChainSquare = createIcon(
+export const BinanceSmartChainSquare = /* @__PURE__ */ createIcon(
   'BinanceSmartChainSquare',
   '0 0 64 64',
   () => (
@@ -50,7 +50,7 @@ export const BinanceSmartChainSquare = createIcon(
 );
 
 /** Binance Smart Chain Square chain icon (monochrome). */
-export const BinanceSmartChainSquareMono = createIcon(
+export const BinanceSmartChainSquareMono = /* @__PURE__ */ createIcon(
   'BinanceSmartChainSquareMono',
   '0 0 64 64',
   _id => (
@@ -68,7 +68,7 @@ export const BinanceSmartChainSquareMono = createIcon(
 );
 
 /** Binance Smart Chain Circle chain icon (monochrome). */
-export const BinanceSmartChainCircleMono = createIcon(
+export const BinanceSmartChainCircleMono = /* @__PURE__ */ createIcon(
   'BinanceSmartChainCircleMono',
   '0 0 64 64',
   _id => (

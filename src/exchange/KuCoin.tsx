@@ -5,7 +5,7 @@ const kuCoinContent = () => (
 );
 
 /** KuCoin exchange icon (colored). */
-export const KuCoin = createIcon(
+export const KuCoin = /* @__PURE__ */ createIcon(
   'KuCoin',
   '276.7 115.5 246.65 268.9',
   kuCoinContent,
@@ -13,7 +13,7 @@ export const KuCoin = createIcon(
 );
 
 /** KuCoin exchange icon (monochrome). */
-export const KuCoinMono = createIcon(
+export const KuCoinMono = /* @__PURE__ */ createIcon(
   'KuCoinMono',
   '276.7 115.5 246.65 268.9',
   kuCoinContent,

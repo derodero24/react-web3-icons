@@ -9,7 +9,7 @@ const pendleMonoContent = () => (
 );
 
 /** Pendle DeFi icon (colored). */
-export const Pendle = createIcon(
+export const Pendle = /* @__PURE__ */ createIcon(
   'Pendle',
   '0 0 24 24',
   () => (
@@ -32,7 +32,7 @@ export const Pendle = createIcon(
 );
 
 /** Pendle DeFi icon (monochrome). */
-export const PendleMono = createIcon(
+export const PendleMono = /* @__PURE__ */ createIcon(
   'PendleMono',
   '0 0 24 24',
   pendleMonoContent,

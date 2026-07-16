@@ -6,7 +6,7 @@ const HEDERA_H =
 const HEDERA_BAR = 'M9.54 12.553h5.03v-1.255H9.54z';
 
 /** Hedera chain icon (colored). */
-export const Hedera = createIcon('Hedera', '0 0 24 24', () => (
+export const Hedera = /* @__PURE__ */ createIcon('Hedera', '0 0 24 24', () => (
   <>
     <path d={HEDERA_CIRCLE} fill="#000" />
     <path d={HEDERA_H} fill="#fff" />
@@ -15,7 +15,7 @@ export const Hedera = createIcon('Hedera', '0 0 24 24', () => (
 ));
 
 /** Hedera chain icon (monochrome). */
-export const HederaMono = createIcon(
+export const HederaMono = /* @__PURE__ */ createIcon(
   'HederaMono',
   '0 0 24 24',
   _id => (

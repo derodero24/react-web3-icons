@@ -12,19 +12,23 @@ const RS_BOT_LEFT =
   'M0.00261818 36.0016L20.9455 48L20.9455 24L0.00261818 36.0016Z';
 
 /** Routescan explorer icon (colored). */
-export const Routescan = createIcon('Routescan', '0 0 42 48', () => (
-  <>
-    <path d={RS_TOP_LEFT} fill="#00FF7F" />
-    <path d={RS_TOP_RIGHT} fill="#FBEC0D" />
-    <path d={RS_MID_LEFT} fill="#4A9DFF" />
-    <path d={RS_MID_RIGHT} fill="#FFB100" />
-    <path d={RS_BOT_RIGHT} fill="#FF4500" />
-    <path d={RS_BOT_LEFT} fill="#A46BFF" />
-  </>
-));
+export const Routescan = /* @__PURE__ */ createIcon(
+  'Routescan',
+  '0 0 42 48',
+  () => (
+    <>
+      <path d={RS_TOP_LEFT} fill="#00FF7F" />
+      <path d={RS_TOP_RIGHT} fill="#FBEC0D" />
+      <path d={RS_MID_LEFT} fill="#4A9DFF" />
+      <path d={RS_MID_RIGHT} fill="#FFB100" />
+      <path d={RS_BOT_RIGHT} fill="#FF4500" />
+      <path d={RS_BOT_LEFT} fill="#A46BFF" />
+    </>
+  ),
+);
 
 /** Routescan explorer icon (monochrome). */
-export const RoutescanMono = createIcon(
+export const RoutescanMono = /* @__PURE__ */ createIcon(
   'RoutescanMono',
   '0 0 42 48',
   () => (

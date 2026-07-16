@@ -9,10 +9,15 @@ const tiaContent = () => (
 );
 
 /** Tia coin icon (colored). */
-export const Tia = createIcon('Tia', '0 0 24 24', tiaContent, '#7A2BF9');
+export const Tia = /* @__PURE__ */ createIcon(
+  'Tia',
+  '0 0 24 24',
+  tiaContent,
+  '#7A2BF9',
+);
 
 /** Tia coin icon (monochrome). */
-export const TiaMono = createIcon(
+export const TiaMono = /* @__PURE__ */ createIcon(
   'TiaMono',
   '0 0 24 24',
   tiaContent,

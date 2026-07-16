@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Pepe coin icon (colored). */
-export const Pepe = createIcon('Pepe', '0 0 24 24', () => (
+export const Pepe = /* @__PURE__ */ createIcon('Pepe', '0 0 24 24', () => (
   <>
     <path fill="#4F9843" d="M3 3h18v18H3z" />
     <path
@@ -50,7 +50,7 @@ export const Pepe = createIcon('Pepe', '0 0 24 24', () => (
 ));
 
 /** Pepe coin icon (monochrome). */
-export const PepeMono = createIcon(
+export const PepeMono = /* @__PURE__ */ createIcon(
   'PepeMono',
   '0 0 24 24',
   _id => (

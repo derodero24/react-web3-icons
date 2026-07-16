@@ -8,9 +8,14 @@ const bandContent = () => (
   />
 );
 
-export const Band = createIcon('Band', '0 0 93 93', bandContent, '#516BF0');
+export const Band = /* @__PURE__ */ createIcon(
+  'Band',
+  '0 0 93 93',
+  bandContent,
+  '#516BF0',
+);
 
-export const BandMono = createIcon(
+export const BandMono = /* @__PURE__ */ createIcon(
   'BandMono',
   '0 0 93 93',
   bandContent,

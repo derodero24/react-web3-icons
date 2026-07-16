@@ -8,7 +8,7 @@ const VELODROME_PATH =
 const velodromeContent = () => <path d={VELODROME_PATH} />;
 
 /** Velodrome DEX icon (colored). */
-export const Velodrome = createIcon(
+export const Velodrome = /* @__PURE__ */ createIcon(
   'Velodrome',
   '0 0 24 24',
   velodromeContent,
@@ -16,7 +16,7 @@ export const Velodrome = createIcon(
 );
 
 /** Velodrome DEX icon (monochrome). */
-export const VelodromeMono = createIcon(
+export const VelodromeMono = /* @__PURE__ */ createIcon(
   'VelodromeMono',
   '0 0 24 24',
   velodromeContent,

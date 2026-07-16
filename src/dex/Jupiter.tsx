@@ -15,7 +15,7 @@ const d5 =
   'M30.143 15.314c-1.835-3.01-4.97-5.904-8.827-8.144-3.857-2.239-7.918-3.53-11.443-3.633-2.688-.078-4.77.574-5.848 1.804 4.48-.76 10.392.517 16.121 3.845 5.73 3.329 9.767 7.832 11.326 12.1.534-1.545.07-3.676-1.329-5.972Z';
 
 /** Jupiter DEX icon (colored). */
-export const Jupiter = createIcon(
+export const Jupiter = /* @__PURE__ */ createIcon(
   'Jupiter',
   '0 0 33 32',
   _id => (
@@ -45,7 +45,7 @@ export const Jupiter = createIcon(
 );
 
 /** Jupiter DEX icon (monochrome). */
-export const JupiterMono = createIcon(
+export const JupiterMono = /* @__PURE__ */ createIcon(
   'JupiterMono',
   '0 0 33 32',
   () => (

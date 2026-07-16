@@ -8,10 +8,15 @@ const metisContent = () => (
 );
 
 /** Metis chain icon (colored). */
-export const Metis = createIcon('Metis', '0 0 24 24', metisContent, '#00D8C1');
+export const Metis = /* @__PURE__ */ createIcon(
+  'Metis',
+  '0 0 24 24',
+  metisContent,
+  '#00D8C1',
+);
 
 /** Metis chain icon (monochrome). */
-export const MetisMono = createIcon(
+export const MetisMono = /* @__PURE__ */ createIcon(
   'MetisMono',
   '0 0 24 24',
   metisContent,

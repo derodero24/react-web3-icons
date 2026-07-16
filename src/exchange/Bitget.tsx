@@ -8,7 +8,7 @@ const bitgetContent = () => (
 );
 
 /** Bitget exchange icon (colored). */
-export const Bitget = createIcon(
+export const Bitget = /* @__PURE__ */ createIcon(
   'Bitget',
   '0 0 24 24',
   bitgetContent,
@@ -16,7 +16,7 @@ export const Bitget = createIcon(
 );
 
 /** Bitget exchange icon (monochrome). */
-export const BitgetMono = createIcon(
+export const BitgetMono = /* @__PURE__ */ createIcon(
   'BitgetMono',
   '0 0 24 24',
   bitgetContent,

@@ -7,10 +7,15 @@ const viemContent = () => (
 );
 
 /** Viem dev tool icon (colored). */
-export const Viem = createIcon('Viem', '0 70 162 152', viemContent, '#1E1E20');
+export const Viem = /* @__PURE__ */ createIcon(
+  'Viem',
+  '0 70 162 152',
+  viemContent,
+  '#1E1E20',
+);
 
 /** Viem dev tool icon (monochrome). */
-export const ViemMono = createIcon(
+export const ViemMono = /* @__PURE__ */ createIcon(
   'ViemMono',
   '0 70 162 152',
   viemContent,

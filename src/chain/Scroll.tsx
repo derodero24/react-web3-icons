@@ -12,7 +12,7 @@ const SCROLL_LINES =
   'M24.644 20.928H16.23V19.54h8.414c.379 0 .694.306.694.693a.683.683 0 0 1-.694.694ZM26.13 17.649h-9.9v-1.397h9.892c.378 0 .693.307.693.694a.677.677 0 0 1-.684.703Z';
 
 /** Scroll chain icon (colored). */
-export const Scroll = createIcon('Scroll', '0 0 40 40', () => (
+export const Scroll = /* @__PURE__ */ createIcon('Scroll', '0 0 40 40', () => (
   <>
     <path d="M0 0h40v40H0z" fill="#FFEEDA" />
     <path d={SCROLL_BODY} fill="#FFEEDA" />
@@ -24,7 +24,7 @@ export const Scroll = createIcon('Scroll', '0 0 40 40', () => (
 ));
 
 /** Scroll chain icon (monochrome). */
-export const ScrollMono = createIcon(
+export const ScrollMono = /* @__PURE__ */ createIcon(
   'ScrollMono',
   '0 0 40 40',
   _id => (

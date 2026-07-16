@@ -13,14 +13,14 @@ const eclipseContent = () => (
   </>
 );
 
-export const Eclipse = createIcon(
+export const Eclipse = /* @__PURE__ */ createIcon(
   'Eclipse',
   '0 0 508 500',
   eclipseContent,
   '#000',
 );
 
-export const EclipseMono = createIcon(
+export const EclipseMono = /* @__PURE__ */ createIcon(
   'EclipseMono',
   '0 0 508 500',
   eclipseContent,
