@@ -8,6 +8,9 @@ export default function Footer() {
           <span className="font-medium text-fg/60">React Web3 Icons</span>
           <span className="font-mono">v{pkg.version}</span>
           <span>MIT</span>
+          <span className="hidden sm:inline">
+            All logos are trademarks of their respective owners.
+          </span>
         </div>
         <div className="flex items-center gap-4">
           <a
