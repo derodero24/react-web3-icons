@@ -5,11 +5,11 @@ import { describe, expect, it } from 'vitest';
 import * as icons from '../src';
 
 // All exported names (excluding non-component exports)
-const allNames = Object.keys(icons).filter(name => name !== 'IconContext');
+const allNames = Object.keys(icons);
 
 // Dynamically discover all Mono variants from exports
-const monoEntries = Object.entries(icons).filter(
-  ([name]) => /Mono$/.test(name) && name !== 'IconContext',
+const monoEntries = Object.entries(icons).filter(([name]) =>
+  /Mono$/.test(name),
 ) as [string, ComponentType][];
 
 describe('Mono variant icons', () => {

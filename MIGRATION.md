@@ -1,3 +1,51 @@
+# Migrating from v3 to v4
+
+v4 makes every static icon a pure, hook-free component so icons render in React Server Components without `'use client'`. See [CHANGELOG.md](./CHANGELOG.md) for full release notes.
+
+## 1. `IconContext` removed
+
+Icons no longer read defaults from context (`useContext` prevented server rendering). The `IconContext` export and `IconContextValue` type are gone.
+
+Migration options, depending on what you used it for:
+
+```diff
+- <IconContext.Provider value={{ size: 32 }}>
+-   <Ethereum />
+-   <Bitcoin />
+- </IconContext.Provider>
++ {/* Icons default to 1em — font-size scales them together */}
++ <div style={{ fontSize: 32 }}>
++   <Ethereum />
++   <Bitcoin />
++ </div>
+```
+
+For `className`/`style`/other defaults, wrap once yourself:
+
+```tsx
+import type { IconProps } from 'react-web3-icons';
+
+const withDefaults =
+  (Icon: React.ComponentType<IconProps>) => (props: IconProps) => (
+    <Icon size={32} className="my-icon" {...props} />
+  );
+```
+
+## 2. Deterministic internal SVG ids
+
+Internal `id` attributes (masks, gradients) previously used React's `useId` and changed between renders. They are now stable, derived from the component name (e.g. `w3i-ethereumcirclemono-…`).
+
+- Rendering the same icon multiple times on one page duplicates those ids. The duplicate definitions are identical, so icons render correctly — but if your tooling requires globally unique DOM ids, render such icons once and reuse via CSS.
+- Markup snapshots that captured the old `useId`-based values need to be regenerated.
+
+## Checklist
+
+- [ ] Replace `IconContext.Provider` usages (font-size wrapper or explicit props)
+- [ ] Remove `IconContextValue` type imports
+- [ ] Regenerate any markup snapshots containing icon defs ids
+
+---
+
 # Migrating from v2 to v3
 
 This guide covers all breaking changes in v3. See [CHANGELOG.md](./CHANGELOG.md) for the full release notes.

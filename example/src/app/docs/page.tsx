@@ -27,7 +27,6 @@ function Section({
 const TOC_ITEMS = [
   { id: 'getting-started', label: 'Getting Started' },
   { id: 'icon-props', label: 'Icon Props' },
-  { id: 'icon-context', label: 'IconContext' },
   { id: 'import-patterns', label: 'Import Patterns' },
   { id: 'naming', label: 'Naming' },
   { id: 'deprecation', label: 'Deprecation' },
@@ -224,45 +223,12 @@ export function MyComponent() {
                         —
                       </td>
                       <td className="py-2 align-top text-sm text-fg/60">
-                        Inline styles merged (shallow spread) on top of any{' '}
-                        <code className="rounded bg-surface px-1">
-                          IconContext
-                        </code>{' '}
-                        defaults.
+                        Inline styles applied to the SVG element.
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-            </Section>
-
-            {/* IconContext */}
-            <Section id="icon-context" title="IconContext">
-              <p className="mb-3 text-sm text-fg/60">
-                Wrap a subtree with{' '}
-                <code className="rounded bg-surface px-1 font-mono text-sm">
-                  IconContext.Provider
-                </code>{' '}
-                to apply default props to every icon inside it. Per-icon props
-                always take precedence over context defaults.
-              </p>
-              <CodeBlock>{`import { IconContext } from 'react-web3-icons';
-
-// Apply a default size and color to all icons in the subtree
-<IconContext.Provider value={{ size: 24, className: 'text-gray-700' }}>
-  <Ethereum />      {/* size=24, text-gray-700 */}
-  <Bitcoin size={48} /> {/* size=48 (overrides context), text-gray-700 */}
-</IconContext.Provider>`}</CodeBlock>
-              <p className="mt-4 mb-3 text-sm text-fg/60">
-                Context value accepts all{' '}
-                <a
-                  href="#icon-props"
-                  className="text-accent underline hover:text-accent-hover"
-                >
-                  IconProps
-                </a>
-                .
-              </p>
             </Section>
 
             {/* Import Patterns */}
@@ -412,40 +378,33 @@ import { DEPRECATED_ICON_NAMES } from 'react-web3-icons/deprecated';
 import * as icons from 'react-web3-icons';
 const activeNames = Object.keys(icons).filter(
   name =>
-    !DEPRECATED_ICON_NAMES.has(name) &&
-    name !== 'IconContext' &&
-    name !== 'DEPRECATED_ICON_NAMES',
+    !DEPRECATED_ICON_NAMES.has(name) && name !== 'DEPRECATED_ICON_NAMES',
 );`}</CodeBlock>
             </Section>
 
             {/* RSC */}
             <Section id="rsc" title="React Server Components">
               <p className="mb-3 text-sm text-fg/60">
-                Icons use{' '}
+                Static icons are pure, hook-free components — they render in
+                React Server Components with no{' '}
                 <code className="rounded bg-surface px-1 font-mono text-sm">
-                  useId
+                  &apos;use client&apos;
                 </code>{' '}
-                and{' '}
-                <code className="rounded bg-surface px-1 font-mono text-sm">
-                  useContext
-                </code>
-                , so they cannot render in React Server Components directly.
-                Mark the importing file as a Client Component:
+                directive:
               </p>
-              <CodeBlock>{`// my-component.tsx
-'use client';
-
+              <CodeBlock>{`// app/page.tsx — Server Component, no directive needed
 import { Ethereum } from 'react-web3-icons';
 
-export function MyComponent() {
+export default function Page() {
   return <Ethereum size={24} />;
 }`}</CodeBlock>
               <p className="mt-4 mb-3 text-sm text-fg/60">
-                Alternatively, create a small re-export wrapper:
+                Only the dynamic components (
+                <code className="rounded bg-surface px-1 font-mono text-sm">
+                  react-web3-icons/dynamic
+                </code>
+                ) are client-only — they lazy-load icon chunks at runtime.
               </p>
-              <CodeBlock>{`// icons.tsx — client boundary
-'use client';
-export { Ethereum, Bitcoin } from 'react-web3-icons';`}</CodeBlock>
             </Section>
 
             {/* TypeScript */}

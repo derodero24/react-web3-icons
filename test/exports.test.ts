@@ -19,15 +19,11 @@ describe('Export integrity', () => {
     expect(entries.length).toBeGreaterThanOrEqual(100);
   });
 
-  it('exports IconContext', () => {
-    expect(names.has('IconContext')).toBe(true);
-  });
-
   it('IconName covers all icon component names', () => {
     // Compile-time: IconName must be exactly the set of exported icon names
     type ExportedIconNames = Exclude<
       keyof typeof icons,
-      'IconContext' | 'DEPRECATED_ICON_NAMES'
+      'DEPRECATED_ICON_NAMES'
     >;
     expectTypeOf<IconName>().toEqualTypeOf<ExportedIconNames>();
 
@@ -36,11 +32,11 @@ describe('Export integrity', () => {
     expectTypeOf<'NonExistentIcon'>().not.toMatchTypeOf<IconName>();
 
     // Runtime: confirm the set is non-empty
-    const componentCount = entries.filter(([name, v]) => {
+    const componentCount = entries.filter(([, v]) => {
       const isComponent =
         typeof v === 'function' ||
         (typeof v === 'object' && v !== null && '$$typeof' in (v as object));
-      return isComponent && name !== 'IconContext';
+      return isComponent;
     }).length;
     expect(componentCount).toBeGreaterThan(0);
   });

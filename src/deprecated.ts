@@ -13,7 +13,6 @@
  * const activeIconNames = Object.keys(icons).filter(
  *   name =>
  *     !DEPRECATED_ICON_NAMES.has(name) &&
- *     name !== 'IconContext' &&
  *     name !== 'DEPRECATED_ICON_NAMES',
  * );
  * ```
