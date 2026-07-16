@@ -7,14 +7,18 @@ const babylonRingPath =
 const babylonDotPath =
   'M20.42928,17.46477 C20.42928,19.44427 18.83098,21.04887 16.85948,21.04887 C14.88808,21.04887 13.28978,19.44427 13.28978,17.46477 C13.28978,15.48547 14.88808,13.88087 16.85948,13.88087 C18.83098,13.88087 20.42928,15.48547 20.42928,17.46477 Z';
 
-export const Babylon = createIcon('Babylon', '0 0 35 36', () => (
-  <g transform="translate(0.33362, 0.52783)">
-    <path d={babylonRingPath} fill="#0A1418" />
-    <path d={babylonDotPath} fill="#FF7C2B" />
-  </g>
-));
+export const Babylon = /* @__PURE__ */ createIcon(
+  'Babylon',
+  '0 0 35 36',
+  () => (
+    <g transform="translate(0.33362, 0.52783)">
+      <path d={babylonRingPath} fill="#0A1418" />
+      <path d={babylonDotPath} fill="#FF7C2B" />
+    </g>
+  ),
+);
 
-export const BabylonMono = createIcon(
+export const BabylonMono = /* @__PURE__ */ createIcon(
   'BabylonMono',
   '0 0 35 36',
   () => (

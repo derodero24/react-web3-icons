@@ -5,10 +5,15 @@ const hbarContent = () => (
 );
 
 /** Hbar coin icon (colored). */
-export const Hbar = createIcon('Hbar', '0 0 24 24', hbarContent, '#000');
+export const Hbar = /* @__PURE__ */ createIcon(
+  'Hbar',
+  '0 0 24 24',
+  hbarContent,
+  '#000',
+);
 
 /** Hbar coin icon (monochrome). */
-export const HbarMono = createIcon(
+export const HbarMono = /* @__PURE__ */ createIcon(
   'HbarMono',
   '0 0 24 24',
   hbarContent,

@@ -8,7 +8,7 @@ const bitgetWalletContent = () => (
 );
 
 /** Bitget Wallet wallet icon (colored). */
-export const BitgetWallet = createIcon(
+export const BitgetWallet = /* @__PURE__ */ createIcon(
   'BitgetWallet',
   '0 0 24 24',
   bitgetWalletContent,
@@ -16,7 +16,7 @@ export const BitgetWallet = createIcon(
 );
 
 /** Bitget Wallet wallet icon (monochrome). */
-export const BitgetWalletMono = createIcon(
+export const BitgetWalletMono = /* @__PURE__ */ createIcon(
   'BitgetWalletMono',
   '0 0 24 24',
   bitgetWalletContent,

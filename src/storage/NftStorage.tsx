@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** NftStorage storage icon (colored). */
-export const NftStorage = createIcon(
+export const NftStorage = /* @__PURE__ */ createIcon(
   'NftStorage',
   '262.133 123.05 122.052 223.155',
   _id => (
@@ -130,7 +130,7 @@ export const NftStorage = createIcon(
 );
 
 /** NftStorage storage icon (monochrome). */
-export const NftStorageMono = createIcon(
+export const NftStorageMono = /* @__PURE__ */ createIcon(
   'NftStorageMono',
   '262.133 123.05 122.052 223.155',
   _id => (

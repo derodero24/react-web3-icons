@@ -6,7 +6,7 @@ const GMX_PATH =
   'M21 19.0001L12.015 5L3 19.0001H15.5599L12.01 13.655L10.26 16.5H8.38501L12.015 10.85L17.26 19.0001H21Z';
 
 /** Gmx DeFi icon (colored). */
-export const Gmx = createIcon('Gmx', '0 0 24 24', _id => (
+export const Gmx = /* @__PURE__ */ createIcon('Gmx', '0 0 24 24', _id => (
   <>
     <defs>
       <linearGradient
@@ -26,7 +26,7 @@ export const Gmx = createIcon('Gmx', '0 0 24 24', _id => (
 ));
 
 /** Gmx DeFi icon (monochrome). */
-export const GmxMono = createIcon(
+export const GmxMono = /* @__PURE__ */ createIcon(
   'GmxMono',
   '0 0 24 24',
   () => <path d={GMX_PATH} />,

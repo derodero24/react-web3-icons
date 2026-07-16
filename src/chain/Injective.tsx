@@ -5,7 +5,7 @@ const injectiveContent = () => (
 );
 
 /** Injective chain icon (colored). */
-export const Injective = createIcon(
+export const Injective = /* @__PURE__ */ createIcon(
   'Injective',
   '0 0 24 24',
   injectiveContent,
@@ -13,7 +13,7 @@ export const Injective = createIcon(
 );
 
 /** Injective chain icon (monochrome). */
-export const InjectiveMono = createIcon(
+export const InjectiveMono = /* @__PURE__ */ createIcon(
   'InjectiveMono',
   '0 0 24 24',
   injectiveContent,

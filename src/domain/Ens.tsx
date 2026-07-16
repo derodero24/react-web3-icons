@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Ens domain icon (colored). */
-export const Ens = createIcon('Ens', '0 0 72.52 80.95', _id => (
+export const Ens = /* @__PURE__ */ createIcon('Ens', '0 0 72.52 80.95', _id => (
   <>
     <defs>
       <linearGradient
@@ -69,7 +69,7 @@ export const Ens = createIcon('Ens', '0 0 72.52 80.95', _id => (
 ));
 
 /** Ens domain icon (monochrome). */
-export const EnsMono = createIcon(
+export const EnsMono = /* @__PURE__ */ createIcon(
   'EnsMono',
   '0 0 72.52 80.95',
   () => (
@@ -81,7 +81,7 @@ export const EnsMono = createIcon(
 );
 
 /** Ens Circle domain icon (colored). */
-export const EnsCircle = createIcon(
+export const EnsCircle = /* @__PURE__ */ createIcon(
   'EnsCircle',
   '296 100.4 712.4 712.4',
   _id => (
@@ -109,7 +109,7 @@ export const EnsCircle = createIcon(
 );
 
 /** Ens Circle domain icon (monochrome). */
-export const EnsCircleMono = createIcon(
+export const EnsCircleMono = /* @__PURE__ */ createIcon(
   'EnsCircleMono',
   '296 100.4 712.4 712.4',
   _id => (

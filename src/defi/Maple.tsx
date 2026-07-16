@@ -9,7 +9,7 @@ const MAPLE_LEAF_1 =
 const MAPLE_LEAF_2 =
   'M14.8 8.788c-1.775 1.819-5.204 2.356-9.7 2.356v1.09c4.728 0 9.687-.722 9.7-3.446';
 
-export const Maple = createIcon(
+export const Maple = /* @__PURE__ */ createIcon(
   'Maple',
   '0 0 20 20',
   () => (
@@ -22,7 +22,7 @@ export const Maple = createIcon(
   '#FC784A',
 );
 
-export const MapleMono = createIcon(
+export const MapleMono = /* @__PURE__ */ createIcon(
   'MapleMono',
   '0 0 20 20',
   _id => (

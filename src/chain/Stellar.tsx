@@ -5,10 +5,14 @@ const content = () => (
 );
 
 /** Stellar chain icon (colored). */
-export const Stellar = createIcon('Stellar', '0 0 236.36 199.98', content);
+export const Stellar = /* @__PURE__ */ createIcon(
+  'Stellar',
+  '0 0 236.36 199.98',
+  content,
+);
 
 /** Stellar chain icon (monochrome). */
-export const StellarMono = createIcon(
+export const StellarMono = /* @__PURE__ */ createIcon(
   'StellarMono',
   '0 0 236.36 199.98',
   content,

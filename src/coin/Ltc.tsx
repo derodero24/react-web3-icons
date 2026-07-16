@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Ltc coin icon (colored). */
-export const Ltc = createIcon('Ltc', '0 0 82.6 82.6', () => (
+export const Ltc = /* @__PURE__ */ createIcon('Ltc', '0 0 82.6 82.6', () => (
   <>
     <circle cx="41.3" cy="41.3" r="36.83" fill="#fff" />
     <path
@@ -12,7 +12,7 @@ export const Ltc = createIcon('Ltc', '0 0 82.6 82.6', () => (
 ));
 
 /** Ltc coin icon (monochrome). */
-export const LtcMono = createIcon(
+export const LtcMono = /* @__PURE__ */ createIcon(
   'LtcMono',
   '0 0 82.6 82.6',
   () => (

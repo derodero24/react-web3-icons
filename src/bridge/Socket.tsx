@@ -14,7 +14,7 @@ const socketSWhite =
 const socketSInner =
   'M543.911 582.919c-9.926-15.973-14.888-32.622-12.177-51.343 3.604-24.89 16.153-43.579 38.126-55.462 24.024-12.993 55.171-10.779 77.172 5.459 16.38 12.09 26.918 28.19 29.496 48.313 2.88 22.482-2.326 43.066-18.247 60.306-16.499 17.865-37.009 25.462-60.788 23.601-20.149-1.577-37.089-10.316-49.862-26.389a129.16 129.16 0 0 1-3.72-4.485z';
 
-export const Socket = createIcon(
+export const Socket = /* @__PURE__ */ createIcon(
   'Socket',
   '402 163 755 755',
   () => (
@@ -27,7 +27,7 @@ export const Socket = createIcon(
   'none',
 );
 
-export const SocketMono = createIcon(
+export const SocketMono = /* @__PURE__ */ createIcon(
   'SocketMono',
   '402 163 755 755',
   _id => (

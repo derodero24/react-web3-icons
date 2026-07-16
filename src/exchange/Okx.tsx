@@ -5,7 +5,7 @@ const okxContent = () => (
 );
 
 /** Okx exchange icon (colored). */
-export const Okx = createIcon(
+export const Okx = /* @__PURE__ */ createIcon(
   'Okx',
   '560.1 549.1 1401.7 1400.2',
   okxContent,
@@ -13,7 +13,7 @@ export const Okx = createIcon(
 );
 
 /** Okx exchange icon (monochrome). */
-export const OkxMono = createIcon(
+export const OkxMono = /* @__PURE__ */ createIcon(
   'OkxMono',
   '560.1 549.1 1401.7 1400.2',
   okxContent,

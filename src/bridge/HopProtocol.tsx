@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** HopProtocol bridge icon (colored). */
-export const HopProtocol = createIcon(
+export const HopProtocol = /* @__PURE__ */ createIcon(
   'HopProtocol',
   '0 0 32 32',
   _id => (
@@ -50,7 +50,7 @@ export const HopProtocol = createIcon(
 );
 
 /** HopProtocol bridge icon (monochrome). */
-export const HopProtocolMono = createIcon(
+export const HopProtocolMono = /* @__PURE__ */ createIcon(
   'HopProtocolMono',
   '0 0 32 32',
   () => (

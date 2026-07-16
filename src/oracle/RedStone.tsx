@@ -12,14 +12,14 @@ const redStoneContent = () => (
   </g>
 );
 
-export const RedStone = createIcon(
+export const RedStone = /* @__PURE__ */ createIcon(
   'RedStone',
   '0 0 150 126',
   redStoneContent,
   '#FF0000',
 );
 
-export const RedStoneMono = createIcon(
+export const RedStoneMono = /* @__PURE__ */ createIcon(
   'RedStoneMono',
   '0 0 150 126',
   redStoneContent,

@@ -8,9 +8,14 @@ const pythContent = () => (
   </>
 );
 
-export const Pyth = createIcon('Pyth', '0 0 24 24', pythContent, '#9945FF');
+export const Pyth = /* @__PURE__ */ createIcon(
+  'Pyth',
+  '0 0 24 24',
+  pythContent,
+  '#9945FF',
+);
 
-export const PythMono = createIcon(
+export const PythMono = /* @__PURE__ */ createIcon(
   'PythMono',
   '0 0 24 24',
   pythContent,

@@ -5,7 +5,7 @@ const ledgerContent = () => (
 );
 
 /** Ledger wallet icon (colored). */
-export const Ledger = createIcon(
+export const Ledger = /* @__PURE__ */ createIcon(
   'Ledger',
   '0 0 29 24',
   ledgerContent,
@@ -13,7 +13,7 @@ export const Ledger = createIcon(
 );
 
 /** Ledger wallet icon (monochrome). */
-export const LedgerMono = createIcon(
+export const LedgerMono = /* @__PURE__ */ createIcon(
   'LedgerMono',
   '0 0 29 24',
   ledgerContent,

@@ -5,7 +5,7 @@ const markPath =
   'M150 300L150 0L0 0L0 300V600H150H225H300H375H450V450H375H300V300H375H450V150H525V0L450 0V150H375V0H303L300 0H228V75H300V300H225V450H150L150 300Z';
 
 /** Eigen Layer DeFi icon (colored). */
-export const EigenLayer = createIcon(
+export const EigenLayer = /* @__PURE__ */ createIcon(
   'EigenLayer',
   '0 0 525 600',
   () => <path fillRule="evenodd" clipRule="evenodd" d={markPath} />,
@@ -13,7 +13,7 @@ export const EigenLayer = createIcon(
 );
 
 /** Eigen Layer DeFi icon (monochrome). */
-export const EigenLayerMono = createIcon(
+export const EigenLayerMono = /* @__PURE__ */ createIcon(
   'EigenLayerMono',
   '0 0 525 600',
   () => <path fillRule="evenodd" clipRule="evenodd" d={markPath} />,

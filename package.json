@@ -176,7 +176,13 @@
     {
       "name": "full bundle",
       "path": "dist/index.mjs",
-      "limit": "152 KB"
+      "limit": "155 KB"
+    },
+    {
+      "name": "single icon (tree-shaken)",
+      "path": "dist/index.mjs",
+      "import": "{ Ethereum }",
+      "limit": "4 KB"
     },
     {
       "name": "deprecated",

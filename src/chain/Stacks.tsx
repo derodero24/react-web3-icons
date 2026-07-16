@@ -9,7 +9,7 @@ const stacksContent = () => (
 );
 
 /** Stacks chain icon (colored). */
-export const Stacks = createIcon(
+export const Stacks = /* @__PURE__ */ createIcon(
   'Stacks',
   '0 0 24 24',
   stacksContent,
@@ -17,7 +17,7 @@ export const Stacks = createIcon(
 );
 
 /** Stacks chain icon (monochrome). */
-export const StacksMono = createIcon(
+export const StacksMono = /* @__PURE__ */ createIcon(
   'StacksMono',
   '0 0 24 24',
   stacksContent,

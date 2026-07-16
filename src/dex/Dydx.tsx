@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Dydx DEX icon (colored). */
-export const Dydx = createIcon(
+export const Dydx = /* @__PURE__ */ createIcon(
   'Dydx',
   '41 38 100.77 108',
   _id => (
@@ -45,75 +45,79 @@ export const Dydx = createIcon(
 );
 
 /** Dydx Square DEX icon (colored). */
-export const DydxSquare = createIcon('DydxSquare', '0 0 183 183', _id => (
-  <>
-    <rect
-      x="1"
-      y="1"
-      width="181"
-      height="181"
-      rx="37"
-      fill={`url(#${_id}-dydx-2a)`}
-    />
-    <path d="M115.316 43L45 141.992h21.588L137.269 43h-21.953z" fill="#fff" />
-    <path
-      d="M68.838 43l20.689 29.17L78.732 88.08 46.799 43h22.038z"
-      fill={`url(#${_id}-dydx-2b)`}
-    />
-    <path
-      d="M117.411 142l-22.937-32.263 10.794-15.469L139 142h-21.589z"
-      fill={`url(#${_id}-dydx-2c)`}
-    />
-    <rect
-      x="1"
-      y="1"
-      width="181"
-      height="181"
-      rx="37"
-      stroke="#2d2d3d"
-      strokeWidth="2"
-      fill="none"
-    />
-    <defs>
-      <linearGradient
-        id={`${_id}-dydx-2a`}
-        x1="147.5"
-        y1="-24.5"
-        x2="103"
-        y2="160.5"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#2c2c3d" />
-        <stop offset="1" stopColor="#1a1a27" />
-      </linearGradient>
-      <linearGradient
-        id={`${_id}-dydx-2b`}
-        x1="63.89"
-        y1="49.188"
-        x2="92.895"
-        y2="84.821"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#fff" />
-        <stop offset="1" stopColor="#fff" stopOpacity=".55" />
-      </linearGradient>
-      <linearGradient
-        id={`${_id}-dydx-2c`}
-        x1="122.359"
-        y1="134.487"
-        x2="86.787"
-        y2="85.686"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#6966ff" />
-        <stop offset="1" stopColor="#6966ff" stopOpacity=".36" />
-      </linearGradient>
-    </defs>
-  </>
-));
+export const DydxSquare = /* @__PURE__ */ createIcon(
+  'DydxSquare',
+  '0 0 183 183',
+  _id => (
+    <>
+      <rect
+        x="1"
+        y="1"
+        width="181"
+        height="181"
+        rx="37"
+        fill={`url(#${_id}-dydx-2a)`}
+      />
+      <path d="M115.316 43L45 141.992h21.588L137.269 43h-21.953z" fill="#fff" />
+      <path
+        d="M68.838 43l20.689 29.17L78.732 88.08 46.799 43h22.038z"
+        fill={`url(#${_id}-dydx-2b)`}
+      />
+      <path
+        d="M117.411 142l-22.937-32.263 10.794-15.469L139 142h-21.589z"
+        fill={`url(#${_id}-dydx-2c)`}
+      />
+      <rect
+        x="1"
+        y="1"
+        width="181"
+        height="181"
+        rx="37"
+        stroke="#2d2d3d"
+        strokeWidth="2"
+        fill="none"
+      />
+      <defs>
+        <linearGradient
+          id={`${_id}-dydx-2a`}
+          x1="147.5"
+          y1="-24.5"
+          x2="103"
+          y2="160.5"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#2c2c3d" />
+          <stop offset="1" stopColor="#1a1a27" />
+        </linearGradient>
+        <linearGradient
+          id={`${_id}-dydx-2b`}
+          x1="63.89"
+          y1="49.188"
+          x2="92.895"
+          y2="84.821"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#fff" />
+          <stop offset="1" stopColor="#fff" stopOpacity=".55" />
+        </linearGradient>
+        <linearGradient
+          id={`${_id}-dydx-2c`}
+          x1="122.359"
+          y1="134.487"
+          x2="86.787"
+          y2="85.686"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#6966ff" />
+          <stop offset="1" stopColor="#6966ff" stopOpacity=".36" />
+        </linearGradient>
+      </defs>
+    </>
+  ),
+);
 
 /** Dydx DEX icon (monochrome). */
-export const DydxMono = createIcon(
+export const DydxMono = /* @__PURE__ */ createIcon(
   'DydxMono',
   '41 38 100.77 108',
   () => (
@@ -125,7 +129,7 @@ export const DydxMono = createIcon(
 );
 
 /** Dydx Square DEX icon (monochrome). */
-export const DydxSquareMono = createIcon(
+export const DydxSquareMono = /* @__PURE__ */ createIcon(
   'DydxSquareMono',
   '0 0 183 183',
   _id => (

@@ -5,7 +5,7 @@ const trezorContent = () => (
 );
 
 /** Trezor wallet icon (colored). */
-export const Trezor = createIcon(
+export const Trezor = /* @__PURE__ */ createIcon(
   'Trezor',
   '0 0 177 256',
   trezorContent,
@@ -13,7 +13,7 @@ export const Trezor = createIcon(
 );
 
 /** Trezor wallet icon (monochrome). */
-export const TrezorMono = createIcon(
+export const TrezorMono = /* @__PURE__ */ createIcon(
   'TrezorMono',
   '0 0 177 256',
   trezorContent,

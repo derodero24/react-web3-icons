@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Zec coin icon (colored). */
-export const Zec = createIcon('Zec', '0 0 32 32', () => (
+export const Zec = /* @__PURE__ */ createIcon('Zec', '0 0 32 32', () => (
   <>
     <circle cx="16" cy="16" r="16" fill="#ECB244" />
     <path
@@ -12,7 +12,7 @@ export const Zec = createIcon('Zec', '0 0 32 32', () => (
 ));
 
 /** Zec coin icon (monochrome). */
-export const ZecMono = createIcon(
+export const ZecMono = /* @__PURE__ */ createIcon(
   'ZecMono',
   '0 0 32 32',
   () => (

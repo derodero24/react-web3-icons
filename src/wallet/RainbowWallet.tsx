@@ -211,7 +211,7 @@ const rainbowArcPaths = () => (
 const RBW_CIRCLE_TX = 'translate(-2.5 -2.5) scale(0.575)';
 
 /** Rainbow Wallet Circle wallet icon (colored). */
-export const RainbowWalletCircle = createIcon(
+export const RainbowWalletCircle = /* @__PURE__ */ createIcon(
   'RainbowWalletCircle',
   '0 0 64 64',
   _id => (
@@ -354,7 +354,7 @@ export const RainbowWalletCircle = createIcon(
 );
 
 /** Rainbow Wallet Circle wallet icon (monochrome). */
-export const RainbowWalletCircleMono = createIcon(
+export const RainbowWalletCircleMono = /* @__PURE__ */ createIcon(
   'RainbowWalletCircleMono',
   '0 0 64 64',
   _id => (
@@ -374,7 +374,7 @@ export const RainbowWalletCircleMono = createIcon(
 );
 
 /** Rainbow Wallet Square wallet icon (colored). */
-export const RainbowWalletSquare = createIcon(
+export const RainbowWalletSquare = /* @__PURE__ */ createIcon(
   'RainbowWalletSquare',
   '0 0 64 64',
   _id => (
@@ -523,7 +523,7 @@ export const RainbowWalletSquare = createIcon(
 );
 
 /** Rainbow Wallet Square wallet icon (monochrome). */
-export const RainbowWalletSquareMono = createIcon(
+export const RainbowWalletSquareMono = /* @__PURE__ */ createIcon(
   'RainbowWalletSquareMono',
   '0 0 64 64',
   _id => (
@@ -543,7 +543,7 @@ export const RainbowWalletSquareMono = createIcon(
 );
 
 /** Rainbow Wallet wallet icon (monochrome). */
-export const RainbowWalletMono = createIcon(
+export const RainbowWalletMono = /* @__PURE__ */ createIcon(
   'RainbowWalletMono',
   '0 0 120 120',
   _id => (
@@ -561,7 +561,7 @@ export const RainbowWalletMono = createIcon(
 );
 
 /** Rainbow Wallet Symbol wallet icon (monochrome). */
-export const RainbowWalletSymbolMono = createIcon(
+export const RainbowWalletSymbolMono = /* @__PURE__ */ createIcon(
   'RainbowWalletSymbolMono',
   '20 20 80 80',
   rainbowArcPaths,

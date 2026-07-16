@@ -10,7 +10,7 @@ const walletConnectContent = () => (
 const WC_CIRCLE_TX = 'translate(3.6 6.1) scale(0.119)';
 
 /** Wallet Connect Circle wallet icon (colored). */
-export const WalletConnectCircle = createIcon(
+export const WalletConnectCircle = /* @__PURE__ */ createIcon(
   'WalletConnectCircle',
   '0 0 64 64',
   () => (
@@ -24,7 +24,7 @@ export const WalletConnectCircle = createIcon(
 );
 
 /** Wallet Connect Circle wallet icon (monochrome). */
-export const WalletConnectCircleMono = createIcon(
+export const WalletConnectCircleMono = /* @__PURE__ */ createIcon(
   'WalletConnectCircleMono',
   '0 0 64 64',
   _id => (
@@ -44,7 +44,7 @@ export const WalletConnectCircleMono = createIcon(
 );
 
 /** Wallet Connect Square wallet icon (colored). */
-export const WalletConnectSquare = createIcon(
+export const WalletConnectSquare = /* @__PURE__ */ createIcon(
   'WalletConnectSquare',
   '0 0 64 64',
   () => (
@@ -58,7 +58,7 @@ export const WalletConnectSquare = createIcon(
 );
 
 /** Wallet Connect Square wallet icon (monochrome). */
-export const WalletConnectSquareMono = createIcon(
+export const WalletConnectSquareMono = /* @__PURE__ */ createIcon(
   'WalletConnectSquareMono',
   '0 0 64 64',
   _id => (
@@ -78,7 +78,7 @@ export const WalletConnectSquareMono = createIcon(
 );
 
 /** Wallet Connect wallet icon (colored). */
-export const WalletConnect = createIcon(
+export const WalletConnect = /* @__PURE__ */ createIcon(
   'WalletConnect',
   '45.52 99.74 387.64 237.59',
   walletConnectContent,
@@ -86,7 +86,7 @@ export const WalletConnect = createIcon(
 );
 
 /** Wallet Connect wallet icon (monochrome). */
-export const WalletConnectMono = createIcon(
+export const WalletConnectMono = /* @__PURE__ */ createIcon(
   'WalletConnectMono',
   '45.52 99.74 387.64 237.59',
   walletConnectContent,

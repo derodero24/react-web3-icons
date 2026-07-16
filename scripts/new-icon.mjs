@@ -264,13 +264,13 @@ const tsxContent = `import { createIcon } from '../utils';
 
 ${sourceComment}
 
-export const ${name} = createIcon(
+export const ${name} = /* @__PURE__ */ createIcon(
   '${name}',
   '${viewBox}',
   ${renderBody},
 );
 
-export const ${name}Mono = createIcon(
+export const ${name}Mono = /* @__PURE__ */ createIcon(
   '${name}Mono',
   '${viewBox}',
   ${monoRenderBody},

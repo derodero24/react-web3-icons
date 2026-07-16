@@ -7,7 +7,7 @@ const busdContent = () => (
 );
 
 /** Busd coin icon (colored). */
-export const Busd = createIcon(
+export const Busd = /* @__PURE__ */ createIcon(
   'Busd',
   '0.2 0.21 336 337',
   busdContent,
@@ -15,7 +15,7 @@ export const Busd = createIcon(
 );
 
 /** Busd coin icon (monochrome). */
-export const BusdMono = createIcon(
+export const BusdMono = /* @__PURE__ */ createIcon(
   'BusdMono',
   '0.2 0.21 336 337',
   busdContent,

@@ -5,10 +5,15 @@ const fetContent = () => (
 );
 
 /** Fet coin icon (colored). */
-export const Fet = createIcon('Fet', '0 0 24 24', fetContent, '#1A1E21');
+export const Fet = /* @__PURE__ */ createIcon(
+  'Fet',
+  '0 0 24 24',
+  fetContent,
+  '#1A1E21',
+);
 
 /** Fet coin icon (monochrome). */
-export const FetMono = createIcon(
+export const FetMono = /* @__PURE__ */ createIcon(
   'FetMono',
   '0 0 24 24',
   fetContent,

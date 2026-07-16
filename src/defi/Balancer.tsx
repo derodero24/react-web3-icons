@@ -6,7 +6,7 @@ const balancerContent = () => (
 );
 
 /** Balancer DeFi icon (colored). */
-export const Balancer = createIcon(
+export const Balancer = /* @__PURE__ */ createIcon(
   'Balancer',
   '0 0 930 744',
   _id => (
@@ -34,7 +34,7 @@ export const Balancer = createIcon(
 );
 
 /** Balancer DeFi icon (monochrome). */
-export const BalancerMono = createIcon(
+export const BalancerMono = /* @__PURE__ */ createIcon(
   'BalancerMono',
   '0 0 930 744',
   balancerContent,

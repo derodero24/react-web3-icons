@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** DefiLlama tracker icon (colored). */
-export const DefiLlama = createIcon(
+export const DefiLlama = /* @__PURE__ */ createIcon(
   'DefiLlama',
   '31.34 197.14 116.4 131.45',
   _id => (
@@ -124,7 +124,7 @@ export const DefiLlama = createIcon(
 );
 
 /** DefiLlama tracker icon (monochrome). */
-export const DefiLlamaMono = createIcon(
+export const DefiLlamaMono = /* @__PURE__ */ createIcon(
   'DefiLlamaMono',
   '31.34 197.14 116.4 131.45',
   () => (

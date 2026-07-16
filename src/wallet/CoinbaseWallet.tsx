@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Coinbase Wallet wallet icon (colored). */
-export const CoinbaseWallet = createIcon(
+export const CoinbaseWallet = /* @__PURE__ */ createIcon(
   'CoinbaseWallet',
   '0 0 2500 2500',
   () => (
@@ -32,7 +32,7 @@ const CB_INNER_RECT =
 const CB_CIRCLE_TX = 'translate(0 0) scale(0.0256)';
 
 /** Coinbase Wallet Circle wallet icon (colored). */
-export const CoinbaseWalletCircle = createIcon(
+export const CoinbaseWalletCircle = /* @__PURE__ */ createIcon(
   'CoinbaseWalletCircle',
   '0 0 64 64',
   () => (
@@ -45,7 +45,7 @@ export const CoinbaseWalletCircle = createIcon(
 );
 
 /** Coinbase Wallet Circle wallet icon (monochrome). */
-export const CoinbaseWalletCircleMono = createIcon(
+export const CoinbaseWalletCircleMono = /* @__PURE__ */ createIcon(
   'CoinbaseWalletCircleMono',
   '0 0 64 64',
   _id => (
@@ -64,7 +64,7 @@ export const CoinbaseWalletCircleMono = createIcon(
 );
 
 /** Coinbase Wallet Square wallet icon (colored). */
-export const CoinbaseWalletSquare = createIcon(
+export const CoinbaseWalletSquare = /* @__PURE__ */ createIcon(
   'CoinbaseWalletSquare',
   '0 0 64 64',
   () => (
@@ -77,7 +77,7 @@ export const CoinbaseWalletSquare = createIcon(
 );
 
 /** Coinbase Wallet Square wallet icon (monochrome). */
-export const CoinbaseWalletSquareMono = createIcon(
+export const CoinbaseWalletSquareMono = /* @__PURE__ */ createIcon(
   'CoinbaseWalletSquareMono',
   '0 0 64 64',
   _id => (
@@ -96,7 +96,7 @@ export const CoinbaseWalletSquareMono = createIcon(
 );
 
 /** Coinbase Wallet wallet icon (monochrome). */
-export const CoinbaseWalletMono = createIcon(
+export const CoinbaseWalletMono = /* @__PURE__ */ createIcon(
   'CoinbaseWalletMono',
   '0 0 2500 2500',
   _id => (

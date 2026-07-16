@@ -8,7 +8,7 @@ const atomDots =
   'M12 13.115a1.115 1.115 0 1 0 0-2.23 1.115 1.115 0 0 0 0 2.23m-6.41-2.23a.837.837 0 1 0-.001-1.673.837.837 0 0 0 0 1.674m5.016 7.805a.837.837 0 1 0 .054-1.674.837.837 0 0 0-.054 1.674M16.18 8.656a.836.836 0 1 0 0-1.673.836.836 0 0 0 0 1.673';
 
 /** Atom coin icon (colored). */
-export const Atom = createIcon(
+export const Atom = /* @__PURE__ */ createIcon(
   'Atom',
   '0 0 24 24',
   () => (
@@ -25,7 +25,7 @@ export const Atom = createIcon(
 );
 
 /** Atom coin icon (monochrome). */
-export const AtomMono = createIcon(
+export const AtomMono = /* @__PURE__ */ createIcon(
   'AtomMono',
   '0 0 24 24',
   () => (

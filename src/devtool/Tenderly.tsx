@@ -8,16 +8,20 @@ const TENDERLY_BAR =
   'M15.144 6c2.113-1.161 3.647-2.032 5.242-2.916-.401.203-1.259.793-3.15 1.115a10.505 10.505 0 0 1-7.293-1.405L5.925.365.98 3.161l5.406 2.902c1.347.808 4.709 2.161 8.758-.063Z';
 
 /** Tenderly dev tool icon (colored). */
-export const Tenderly = createIcon('Tenderly', '0 0 21 20', () => (
-  <>
-    <path d={TENDERLY_WING_RIGHT} fill="#9573F5" />
-    <path d={TENDERLY_WING_LEFT} fill="#6837F1" />
-    <path d={TENDERLY_BAR} fill="#D2C3FB" />
-  </>
-));
+export const Tenderly = /* @__PURE__ */ createIcon(
+  'Tenderly',
+  '0 0 21 20',
+  () => (
+    <>
+      <path d={TENDERLY_WING_RIGHT} fill="#9573F5" />
+      <path d={TENDERLY_WING_LEFT} fill="#6837F1" />
+      <path d={TENDERLY_BAR} fill="#D2C3FB" />
+    </>
+  ),
+);
 
 /** Tenderly dev tool icon (monochrome). */
-export const TenderlyMono = createIcon(
+export const TenderlyMono = /* @__PURE__ */ createIcon(
   'TenderlyMono',
   '0 0 21 20',
   () => (

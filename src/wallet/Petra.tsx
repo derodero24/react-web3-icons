@@ -8,14 +8,18 @@ const petraSymbolPaths = () => (
   </>
 );
 
-export const Petra = createIcon('Petra', '0 0 3000 3000', () => (
-  <>
-    <rect width="3000" height="3000" rx="580.27" fill="#FF5F5F" />
-    <g fill="#fff">{petraSymbolPaths()}</g>
-  </>
-));
+export const Petra = /* @__PURE__ */ createIcon(
+  'Petra',
+  '0 0 3000 3000',
+  () => (
+    <>
+      <rect width="3000" height="3000" rx="580.27" fill="#FF5F5F" />
+      <g fill="#fff">{petraSymbolPaths()}</g>
+    </>
+  ),
+);
 
-export const PetraMono = createIcon(
+export const PetraMono = /* @__PURE__ */ createIcon(
   'PetraMono',
   '0 0 3000 3000',
   _id => (

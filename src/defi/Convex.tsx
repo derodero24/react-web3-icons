@@ -6,7 +6,7 @@ const convexContent = () => (
 );
 
 /** Convex DeFi icon (colored). */
-export const Convex = createIcon(
+export const Convex = /* @__PURE__ */ createIcon(
   'Convex',
   '0 0 22.38 28.04',
   convexContent,
@@ -14,7 +14,7 @@ export const Convex = createIcon(
 );
 
 /** Convex DeFi icon (monochrome). */
-export const ConvexMono = createIcon(
+export const ConvexMono = /* @__PURE__ */ createIcon(
   'ConvexMono',
   '0 0 22.38 28.04',
   convexContent,

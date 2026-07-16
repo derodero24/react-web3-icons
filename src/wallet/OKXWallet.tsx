@@ -9,7 +9,7 @@ const okxWalletContent = () => (
 );
 
 /** OKXWallet wallet icon (colored). */
-export const OKXWallet = createIcon(
+export const OKXWallet = /* @__PURE__ */ createIcon(
   'OKXWallet',
   '0 0 28 28',
   okxWalletContent,
@@ -17,7 +17,7 @@ export const OKXWallet = createIcon(
 );
 
 /** OKXWallet wallet icon (monochrome). */
-export const OKXWalletMono = createIcon(
+export const OKXWalletMono = /* @__PURE__ */ createIcon(
   'OKXWalletMono',
   '0 0 28 28',
   okxWalletContent,

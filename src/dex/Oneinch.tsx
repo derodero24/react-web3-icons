@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Oneinch DEX icon (colored). */
-export const Oneinch = createIcon(
+export const Oneinch = /* @__PURE__ */ createIcon(
   'Oneinch',
   '0 0 40 40',
   () => (
@@ -25,7 +25,7 @@ export const Oneinch = createIcon(
 );
 
 /** Oneinch DEX icon (monochrome). */
-export const OneinchMono = createIcon(
+export const OneinchMono = /* @__PURE__ */ createIcon(
   'OneinchMono',
   '0 0 40 40',
   _id => (

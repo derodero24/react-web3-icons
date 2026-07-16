@@ -9,9 +9,14 @@ const api3Content = () => (
   />
 );
 
-export const Api3 = createIcon('Api3', '0 0 42 42', api3Content, '#4B6EFF');
+export const Api3 = /* @__PURE__ */ createIcon(
+  'Api3',
+  '0 0 42 42',
+  api3Content,
+  '#4B6EFF',
+);
 
-export const Api3Mono = createIcon(
+export const Api3Mono = /* @__PURE__ */ createIcon(
   'Api3Mono',
   '0 0 42 42',
   api3Content,

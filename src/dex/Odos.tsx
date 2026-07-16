@@ -9,10 +9,15 @@ const odosContent = () => (
 );
 
 /** Odos DEX icon (colored). */
-export const Odos = createIcon('Odos', '0 0 24 24', odosContent, '#FF5100');
+export const Odos = /* @__PURE__ */ createIcon(
+  'Odos',
+  '0 0 24 24',
+  odosContent,
+  '#FF5100',
+);
 
 /** Odos DEX icon (monochrome). */
-export const OdosMono = createIcon(
+export const OdosMono = /* @__PURE__ */ createIcon(
   'OdosMono',
   '0 0 24 24',
   odosContent,

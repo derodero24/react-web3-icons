@@ -5,10 +5,15 @@ const modeContent = () => (
 );
 
 /** Mode chain icon (colored). */
-export const Mode = createIcon('Mode', '0 0 24 24', modeContent, '#DFFE00');
+export const Mode = /* @__PURE__ */ createIcon(
+  'Mode',
+  '0 0 24 24',
+  modeContent,
+  '#DFFE00',
+);
 
 /** Mode chain icon (monochrome). */
-export const ModeMono = createIcon(
+export const ModeMono = /* @__PURE__ */ createIcon(
   'ModeMono',
   '0 0 24 24',
   modeContent,

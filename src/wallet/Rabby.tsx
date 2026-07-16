@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Rabby wallet icon (colored). */
-export const Rabby = createIcon(
+export const Rabby = /* @__PURE__ */ createIcon(
   'Rabby',
   '0 0 24 24',
   _id => (
@@ -78,7 +78,7 @@ export const Rabby = createIcon(
 );
 
 /** Rabby wallet icon (monochrome). */
-export const RabbyMono = createIcon(
+export const RabbyMono = /* @__PURE__ */ createIcon(
   'RabbyMono',
   '0 0 24 24',
   () => (

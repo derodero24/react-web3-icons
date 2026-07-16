@@ -6,7 +6,7 @@ export {
 } from '../chain/BinanceSmartChain';
 
 /** Bnb coin icon (colored). */
-export const Bnb = createIcon('Bnb', '0 0 2496 2496', () => (
+export const Bnb = /* @__PURE__ */ createIcon('Bnb', '0 0 2496 2496', () => (
   <>
     <path
       d="M1248 0c689.3 0 1248 558.7 1248 1248s-558.7 1248-1248 1248S0 1937.3 0 1248 558.7 0 1248 0h0z"
@@ -21,7 +21,7 @@ export const Bnb = createIcon('Bnb', '0 0 2496 2496', () => (
 ));
 
 /** Bnb coin icon (monochrome). */
-export const BnbMono = createIcon(
+export const BnbMono = /* @__PURE__ */ createIcon(
   'BnbMono',
   '0 0 2496 2496',
   _id => (

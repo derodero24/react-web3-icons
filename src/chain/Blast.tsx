@@ -8,10 +8,15 @@ const blastContent = () => (
 );
 
 /** Blast chain icon (colored). */
-export const Blast = createIcon('Blast', '0 0 24 24', blastContent, '#FCFC03');
+export const Blast = /* @__PURE__ */ createIcon(
+  'Blast',
+  '0 0 24 24',
+  blastContent,
+  '#FCFC03',
+);
 
 /** Blast chain icon (monochrome). */
-export const BlastMono = createIcon(
+export const BlastMono = /* @__PURE__ */ createIcon(
   'BlastMono',
   '0 0 24 24',
   blastContent,

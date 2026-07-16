@@ -24,7 +24,7 @@ const crvMonoContent = () => (
 );
 
 /** Crv coin icon (colored). */
-export const Crv = createIcon(
+export const Crv = /* @__PURE__ */ createIcon(
   'Crv',
   '0 0 24 24',
   _id => (
@@ -299,7 +299,7 @@ export const Crv = createIcon(
 );
 
 /** Crv coin icon (monochrome). */
-export const CrvMono = createIcon(
+export const CrvMono = /* @__PURE__ */ createIcon(
   'CrvMono',
   '0 0 24 24',
   crvMonoContent,

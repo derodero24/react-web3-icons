@@ -14,14 +14,18 @@ const uniswapWalletPaths = () => (
   </>
 );
 
-export const UniswapWallet = createIcon('UniswapWallet', '0 0 28 28', () => (
-  <>
-    <rect width="28" height="28" fill="#FFD8EA" />
-    <g fill="#FF007A">{uniswapWalletPaths()}</g>
-  </>
-));
+export const UniswapWallet = /* @__PURE__ */ createIcon(
+  'UniswapWallet',
+  '0 0 28 28',
+  () => (
+    <>
+      <rect width="28" height="28" fill="#FFD8EA" />
+      <g fill="#FF007A">{uniswapWalletPaths()}</g>
+    </>
+  ),
+);
 
-export const UniswapWalletMono = createIcon(
+export const UniswapWalletMono = /* @__PURE__ */ createIcon(
   'UniswapWalletMono',
   '0 0 28 28',
   _id => (

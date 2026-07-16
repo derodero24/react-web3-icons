@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** X2Y2 marketplace icon (colored). */
-export const X2Y2 = createIcon('X2Y2', '0 0 512 512', _id => (
+export const X2Y2 = /* @__PURE__ */ createIcon('X2Y2', '0 0 512 512', _id => (
   <>
     <path
       d="M459.265 100.353C420.038 62.023 366.378 38.4 307.2 38.4 187.023 38.4 89.6 135.823 89.6 256s97.423 217.6 217.6 217.6c59.177 0 112.838-23.623 152.065-61.953C412.474 472.661 338.831 512 256 512 114.615 512 0 397.385 0 256S114.615 0 256 0c82.831 0 156.474 39.339 203.265 100.353z"
@@ -33,7 +33,7 @@ export const X2Y2 = createIcon('X2Y2', '0 0 512 512', _id => (
 ));
 
 /** X2Y2 marketplace icon (monochrome). */
-export const X2Y2Mono = createIcon(
+export const X2Y2Mono = /* @__PURE__ */ createIcon(
   'X2Y2Mono',
   '0 0 512 512',
   () => (

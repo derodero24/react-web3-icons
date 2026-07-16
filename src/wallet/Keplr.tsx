@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Keplr wallet icon (colored). */
-export const Keplr = createIcon('Keplr', '0 0 168 168', () => (
+export const Keplr = /* @__PURE__ */ createIcon('Keplr', '0 0 168 168', () => (
   <>
     <path
       d="M0 84C0 54.5973 0 39.8959 5.72216 28.6655C10.7555 18.787 18.787 10.7555 28.6655 5.72219C39.8959 3.05176e-05 54.5972 3.05176e-05 84 3.05176e-05C113.403 3.05176e-05 128.104 3.05176e-05 139.335 5.72219C149.213 10.7555 157.244 18.787 162.278 28.6655C168 39.8959 168 54.5973 168 84C168 113.403 168 128.104 162.278 139.335C157.244 149.213 149.213 157.245 139.335 162.278C128.104 168 113.403 168 84 168C54.5972 168 39.8959 168 28.6655 162.278C18.787 157.245 10.7555 149.213 5.72216 139.335C0 128.104 0 113.403 0 84Z"
@@ -21,7 +21,7 @@ export const Keplr = createIcon('Keplr', '0 0 168 168', () => (
 ));
 
 /** Keplr wallet icon (monochrome). */
-export const KeplrMono = createIcon(
+export const KeplrMono = /* @__PURE__ */ createIcon(
   'KeplrMono',
   '0 0 168 168',
   _id => (

@@ -9,7 +9,7 @@ const tangemContent = () => (
 );
 
 /** Tangem wallet icon (colored). */
-export const Tangem = createIcon(
+export const Tangem = /* @__PURE__ */ createIcon(
   'Tangem',
   '0 0 98 98',
   tangemContent,
@@ -17,7 +17,7 @@ export const Tangem = createIcon(
 );
 
 /** Tangem wallet icon (monochrome). */
-export const TangemMono = createIcon(
+export const TangemMono = /* @__PURE__ */ createIcon(
   'TangemMono',
   '0 0 98 98',
   tangemContent,

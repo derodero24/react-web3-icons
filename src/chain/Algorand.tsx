@@ -1,12 +1,16 @@
 import { createIcon } from '../utils';
 
 /** Algorand chain icon (colored). */
-export const Algorand = createIcon('Algorand', '0 0 113 113.4', () => (
-  <path d="M19.6 113.4L36 85l16.4-28.3 16.3-28.4 2.7-4.5 1.2 4.5 5 18.7-5.6 9.7L55.6 85l-16.3 28.4h19.6L75.3 85l8.5-14.7 4 14.7 7.6 28.4H113L105.4 85l-7.6-28.3-2-7.3L108 28.3H90.2l-.6-2.1L83.4 3l-.8-3H65.5l-.4.6-16 27.7-16.4 28.4L16.4 85 0 113.4h19.6z" />
-));
+export const Algorand = /* @__PURE__ */ createIcon(
+  'Algorand',
+  '0 0 113 113.4',
+  () => (
+    <path d="M19.6 113.4L36 85l16.4-28.3 16.3-28.4 2.7-4.5 1.2 4.5 5 18.7-5.6 9.7L55.6 85l-16.3 28.4h19.6L75.3 85l8.5-14.7 4 14.7 7.6 28.4H113L105.4 85l-7.6-28.3-2-7.3L108 28.3H90.2l-.6-2.1L83.4 3l-.8-3H65.5l-.4.6-16 27.7-16.4 28.4L16.4 85 0 113.4h19.6z" />
+  ),
+);
 
 /** Algorand chain icon (monochrome). */
-export const AlgorandMono = createIcon(
+export const AlgorandMono = /* @__PURE__ */ createIcon(
   'AlgorandMono',
   '0 0 113 113.4',
   () => (
@@ -16,7 +20,7 @@ export const AlgorandMono = createIcon(
 );
 
 /** Algorand Circle chain icon (colored). */
-export const AlgorandCircle = createIcon(
+export const AlgorandCircle = /* @__PURE__ */ createIcon(
   'AlgorandCircle',
   '0 0 2500 2500',
   () => (
@@ -31,7 +35,7 @@ export const AlgorandCircle = createIcon(
 );
 
 /** Algorand Circle chain icon (monochrome). */
-export const AlgorandCircleMono = createIcon(
+export const AlgorandCircleMono = /* @__PURE__ */ createIcon(
   'AlgorandCircleMono',
   '0 0 2500 2500',
   _id => (

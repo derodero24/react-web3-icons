@@ -6,7 +6,7 @@ const CELOSCAN_C =
   'M250 70H70V250H249.995V187.169H220.125C209.828 210.09 186.649 226.055 160.125 226.055C123.557 226.055 93.9445 196.188 93.9445 159.873C93.9445 123.558 123.557 93.9499 160.125 93.9499C187.161 93.9499 210.34 110.432 220.641 133.865H250V70Z';
 
 /** Celoscan explorer icon (colored). */
-export const Celoscan = createIcon(
+export const Celoscan = /* @__PURE__ */ createIcon(
   'Celoscan',
   '70 70 180 180',
   () => <path d={CELOSCAN_C} />,
@@ -14,7 +14,7 @@ export const Celoscan = createIcon(
 );
 
 /** Celoscan Square explorer icon (colored). */
-export const CeloscanSquare = createIcon(
+export const CeloscanSquare = /* @__PURE__ */ createIcon(
   'CeloscanSquare',
   '0 0 320 320',
   () => (
@@ -26,7 +26,7 @@ export const CeloscanSquare = createIcon(
 );
 
 /** Celoscan explorer icon (monochrome). */
-export const CeloscanMono = createIcon(
+export const CeloscanMono = /* @__PURE__ */ createIcon(
   'CeloscanMono',
   '70 70 180 180',
   () => <path d={CELOSCAN_C} />,
@@ -34,7 +34,7 @@ export const CeloscanMono = createIcon(
 );
 
 /** Celoscan Square explorer icon (monochrome). */
-export const CeloscanSquareMono = createIcon(
+export const CeloscanSquareMono = /* @__PURE__ */ createIcon(
   'CeloscanSquareMono',
   '0 0 320 320',
   _id => (

@@ -14,7 +14,7 @@ const blastscanContent = () => (
 );
 
 /** Blastscan explorer icon (colored). */
-export const Blastscan = createIcon(
+export const Blastscan = /* @__PURE__ */ createIcon(
   'Blastscan',
   '0 0 252 166',
   blastscanContent,
@@ -22,7 +22,7 @@ export const Blastscan = createIcon(
 );
 
 /** BlastscanLight explorer icon (colored). */
-export const BlastscanLight = createIcon(
+export const BlastscanLight = /* @__PURE__ */ createIcon(
   'BlastscanLight',
   '0 0 252 166',
   blastscanContent,
@@ -30,7 +30,7 @@ export const BlastscanLight = createIcon(
 );
 
 /** Blastscan explorer icon (monochrome). */
-export const BlastscanMono = createIcon(
+export const BlastscanMono = /* @__PURE__ */ createIcon(
   'BlastscanMono',
   '0 0 252 166',
   blastscanContent,

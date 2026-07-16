@@ -8,10 +8,15 @@ const ankrContent = () => (
 );
 
 /** Ankr node icon (colored). */
-export const Ankr = createIcon('Ankr', '0 2 29 31', ankrContent, '#356DF3');
+export const Ankr = /* @__PURE__ */ createIcon(
+  'Ankr',
+  '0 2 29 31',
+  ankrContent,
+  '#356DF3',
+);
 
 /** Ankr node icon (monochrome). */
-export const AnkrMono = createIcon(
+export const AnkrMono = /* @__PURE__ */ createIcon(
   'AnkrMono',
   '0 2 29 31',
   ankrContent,

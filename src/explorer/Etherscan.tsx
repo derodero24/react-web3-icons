@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 /** Etherscan explorer icon (colored). */
-export const Etherscan = createIcon(
+export const Etherscan = /* @__PURE__ */ createIcon(
   'Etherscan',
   '0.5 0.68 121.68 121.46',
   () => (
@@ -19,7 +19,7 @@ export const Etherscan = createIcon(
 );
 
 /** Etherscan Inverted explorer icon (colored). */
-export const EtherscanInverted = createIcon(
+export const EtherscanInverted = /* @__PURE__ */ createIcon(
   'EtherscanInverted',
   '0.5 0.68 121.68 121.46',
   () => (
@@ -37,7 +37,7 @@ export const EtherscanInverted = createIcon(
 );
 
 /** Etherscan explorer icon (monochrome). */
-export const EtherscanMono = createIcon(
+export const EtherscanMono = /* @__PURE__ */ createIcon(
   'EtherscanMono',
   '0.5 0.68 121.68 121.46',
   () => (

@@ -5,7 +5,7 @@ const coinLedgerContent = () => (
 );
 
 /** CoinLedger portfolio icon (colored). */
-export const CoinLedger = createIcon(
+export const CoinLedger = /* @__PURE__ */ createIcon(
   'CoinLedger',
   '0 0 132 132.4',
   coinLedgerContent,
@@ -13,7 +13,7 @@ export const CoinLedger = createIcon(
 );
 
 /** CoinLedger portfolio icon (monochrome). */
-export const CoinLedgerMono = createIcon(
+export const CoinLedgerMono = /* @__PURE__ */ createIcon(
   'CoinLedgerMono',
   '0 0 132 132.4',
   coinLedgerContent,

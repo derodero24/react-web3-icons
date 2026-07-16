@@ -1,42 +1,46 @@
 import { createIcon } from '../utils';
 
 /** Phantom Wallet wallet icon (colored). */
-export const PhantomWallet = createIcon('PhantomWallet', '0 0 128 128', _id => (
-  <>
-    <circle cx="64" cy="64" r="64" fill={`url(#${_id}-phw-a)`} />
-    <path
-      d="M110.584 64.914H99.142C99.142 41.765 80.173 23 56.772 23c-23.111 0-41.901 18.306-42.361 41.058C13.936 87.577 36.241 108 60.019 108h2.991c20.963 0 49.06-16.233 53.45-36.013.811-3.646-2.101-7.073-5.875-7.073zm-70.815 1.031c0 3.096-2.559 5.627-5.689 5.627s-5.689-2.533-5.689-5.627v-9.104c0-3.096 2.559-5.627 5.689-5.627s5.689 2.532 5.689 5.627v9.104zm19.753 0c0 3.096-2.559 5.627-5.689 5.627s-5.689-2.533-5.689-5.627v-9.104c0-3.096 2.56-5.627 5.689-5.627s5.689 2.532 5.689 5.627v9.104z"
-      fill={`url(#${_id}-phw-b)`}
-    />
-    <defs>
-      <linearGradient
-        id={`${_id}-phw-a`}
-        x1="64"
-        y1="0"
-        x2="64"
-        y2="128"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#534bb1" />
-        <stop offset="1" stopColor="#551bf9" />
-      </linearGradient>
-      <linearGradient
-        id={`${_id}-phw-b`}
-        x1="65.5"
-        y1="23"
-        x2="65.5"
-        y2="108"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#fff" />
-        <stop offset="1" stopColor="#fff" stopOpacity=".82" />
-      </linearGradient>
-    </defs>
-  </>
-));
+export const PhantomWallet = /* @__PURE__ */ createIcon(
+  'PhantomWallet',
+  '0 0 128 128',
+  _id => (
+    <>
+      <circle cx="64" cy="64" r="64" fill={`url(#${_id}-phw-a)`} />
+      <path
+        d="M110.584 64.914H99.142C99.142 41.765 80.173 23 56.772 23c-23.111 0-41.901 18.306-42.361 41.058C13.936 87.577 36.241 108 60.019 108h2.991c20.963 0 49.06-16.233 53.45-36.013.811-3.646-2.101-7.073-5.875-7.073zm-70.815 1.031c0 3.096-2.559 5.627-5.689 5.627s-5.689-2.533-5.689-5.627v-9.104c0-3.096 2.559-5.627 5.689-5.627s5.689 2.532 5.689 5.627v9.104zm19.753 0c0 3.096-2.559 5.627-5.689 5.627s-5.689-2.533-5.689-5.627v-9.104c0-3.096 2.56-5.627 5.689-5.627s5.689 2.532 5.689 5.627v9.104z"
+        fill={`url(#${_id}-phw-b)`}
+      />
+      <defs>
+        <linearGradient
+          id={`${_id}-phw-a`}
+          x1="64"
+          y1="0"
+          x2="64"
+          y2="128"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#534bb1" />
+          <stop offset="1" stopColor="#551bf9" />
+        </linearGradient>
+        <linearGradient
+          id={`${_id}-phw-b`}
+          x1="65.5"
+          y1="23"
+          x2="65.5"
+          y2="108"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#fff" />
+          <stop offset="1" stopColor="#fff" stopOpacity=".82" />
+        </linearGradient>
+      </defs>
+    </>
+  ),
+);
 
 /** Phantom Wallet wallet icon (monochrome). */
-export const PhantomWalletMono = createIcon(
+export const PhantomWalletMono = /* @__PURE__ */ createIcon(
   'PhantomWalletMono',
   '0 0 128 128',
   _id => (
@@ -64,7 +68,7 @@ const PHANTOM_GHOST =
 const PH_CIRCLE_TX = 'translate(9 9) scale(0.36)';
 
 /** Phantom Wallet Circle wallet icon (colored). */
-export const PhantomWalletCircle = createIcon(
+export const PhantomWalletCircle = /* @__PURE__ */ createIcon(
   'PhantomWalletCircle',
   '0 0 64 64',
   _id => (
@@ -89,7 +93,7 @@ export const PhantomWalletCircle = createIcon(
 );
 
 /** Phantom Wallet Circle wallet icon (monochrome). */
-export const PhantomWalletCircleMono = createIcon(
+export const PhantomWalletCircleMono = /* @__PURE__ */ createIcon(
   'PhantomWalletCircleMono',
   '0 0 64 64',
   _id => (
@@ -107,7 +111,7 @@ export const PhantomWalletCircleMono = createIcon(
 );
 
 /** Phantom Wallet Square wallet icon (colored). */
-export const PhantomWalletSquare = createIcon(
+export const PhantomWalletSquare = /* @__PURE__ */ createIcon(
   'PhantomWalletSquare',
   '0 0 64 64',
   _id => (
@@ -132,7 +136,7 @@ export const PhantomWalletSquare = createIcon(
 );
 
 /** Phantom Wallet Square wallet icon (monochrome). */
-export const PhantomWalletSquareMono = createIcon(
+export const PhantomWalletSquareMono = /* @__PURE__ */ createIcon(
   'PhantomWalletSquareMono',
   '0 0 64 64',
   _id => (
@@ -150,7 +154,7 @@ export const PhantomWalletSquareMono = createIcon(
 );
 
 /** Phantom Wallet Symbol wallet icon (monochrome). */
-export const PhantomWalletSymbolMono = createIcon(
+export const PhantomWalletSymbolMono = /* @__PURE__ */ createIcon(
   'PhantomWalletSymbolMono',
   '0 0 128 106',
   () => (

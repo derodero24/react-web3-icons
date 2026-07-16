@@ -5,10 +5,15 @@ const celoContent = () => (
 );
 
 /** Celo chain icon (colored). */
-export const Celo = createIcon('Celo', '0 0 24 24', celoContent, '#FCFE52');
+export const Celo = /* @__PURE__ */ createIcon(
+  'Celo',
+  '0 0 24 24',
+  celoContent,
+  '#FCFE52',
+);
 
 /** Celo chain icon (monochrome). */
-export const CeloMono = createIcon(
+export const CeloMono = /* @__PURE__ */ createIcon(
   'CeloMono',
   '0 0 24 24',
   celoContent,
