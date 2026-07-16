@@ -30,11 +30,9 @@ afterEach(() => {
 
 describe('createDynamicIcon fallback rendering', () => {
   it('renders fallback immediately when resolveExportName returns null', () => {
-    const DynIcon = createDynamicIcon<{ name: string }>(
-      () => null,
-      () => Promise.resolve({}),
-      ['name'],
-    );
+    const DynIcon = createDynamicIcon<{ name: string }>(() => null, {}, [
+      'name',
+    ]);
 
     const container = renderSync(
       createElement(DynIcon, {
@@ -47,11 +45,9 @@ describe('createDynamicIcon fallback rendering', () => {
   });
 
   it('renders nothing when resolveExportName returns null and no fallback is provided', () => {
-    const DynIcon = createDynamicIcon<{ name: string }>(
-      () => null,
-      () => Promise.resolve({}),
-      ['name'],
-    );
+    const DynIcon = createDynamicIcon<{ name: string }>(() => null, {}, [
+      'name',
+    ]);
 
     const container = renderSync(createElement(DynIcon, { name: 'anything' }));
 
@@ -63,7 +59,7 @@ describe('createDynamicIcon fallback rendering', () => {
 
     const DynIcon = createDynamicIcon<{ name: string }>(
       () => 'testIcon',
-      () => Promise.resolve(fakeModule),
+      { testIcon: () => Promise.resolve(fakeModule) },
       ['name'],
     );
 
@@ -89,8 +85,8 @@ describe('createDynamicIcon fallback rendering', () => {
     vi.spyOn(console, 'warn').mockImplementation(noop);
 
     const DynIcon = createDynamicIcon<{ name: string }>(
-      () => 'MissingIcon',
-      () => Promise.resolve(fakeModule),
+      () => 'missingIcon',
+      { missingIcon: () => Promise.resolve(fakeModule) },
       ['name'],
     );
 
@@ -116,8 +112,8 @@ describe('createDynamicIcon fallback rendering', () => {
     const fakeModule = {};
 
     const DynIcon = createDynamicIcon<{ name: string }>(
-      () => 'NonExistent',
-      () => Promise.resolve(fakeModule),
+      () => 'nonExistent',
+      { nonExistent: () => Promise.resolve(fakeModule) },
       ['name'],
     );
 
@@ -129,7 +125,7 @@ describe('createDynamicIcon fallback rendering', () => {
     });
 
     expect(warnSpy).toHaveBeenCalledWith(
-      '[react-web3-icons] Icon "NonExistent" not found in module.',
+      '[react-web3-icons] Icon "nonExistent" not found.',
     );
     root.unmount();
   });
@@ -139,8 +135,8 @@ describe('createDynamicIcon fallback rendering', () => {
     const fakeModule = {};
 
     const DynIcon = createDynamicIcon<{ name: string }>(
-      () => 'DuplicateWarnTest',
-      () => Promise.resolve(fakeModule),
+      () => 'duplicateWarnTest',
+      { duplicateWarnTest: () => Promise.resolve(fakeModule) },
       ['name'],
     );
 
@@ -157,10 +153,29 @@ describe('createDynamicIcon fallback rendering', () => {
 
     const relevant = warnSpy.mock.calls.filter(
       args =>
-        typeof args[0] === 'string' && args[0].includes('DuplicateWarnTest'),
+        typeof args[0] === 'string' && args[0].includes('duplicateWarnTest'),
     );
     expect(relevant).toHaveLength(1);
     root.unmount();
+  });
+
+  it('renders fallback and warns when the name is missing from the import map', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(noop);
+    const DynIcon = createDynamicIcon<{ name: string }>(() => 'unmapped', {}, [
+      'name',
+    ]);
+
+    const container = renderSync(
+      createElement(DynIcon, {
+        name: 'anything',
+        fallback: createElement('span', null, 'fallback-text'),
+      }),
+    );
+
+    expect(container.innerHTML).toContain('fallback-text');
+    expect(warnSpy).toHaveBeenCalledWith(
+      '[react-web3-icons] Icon "unmapped" not found.',
+    );
   });
 
   it('strips category-specific props before forwarding to the icon', async () => {
@@ -174,7 +189,7 @@ describe('createDynamicIcon fallback rendering', () => {
 
     const DynIcon = createDynamicIcon<{ name: string }>(
       () => 'spyExport',
-      () => Promise.resolve(fakeModule),
+      { spyExport: () => Promise.resolve(fakeModule) },
       ['name'],
     );
 

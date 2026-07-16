@@ -17,6 +17,8 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import {
   CATEGORIES,
+  DYNAMIC_CATEGORIES,
+  emitDynamicImports,
   generateCategory,
   loadCategory,
   sha256,
@@ -42,6 +44,12 @@ for (const category of CATEGORIES) {
   const indexPath = join(SRC, category, 'index.ts');
   writeFileSync(indexPath, indexTs);
   written.push(indexPath);
+
+  if (DYNAMIC_CATEGORIES.includes(category)) {
+    const importsPath = join(SRC, 'dynamic/imports', `${category}.ts`);
+    writeFileSync(importsPath, emitDynamicImports(category, units));
+    written.push(importsPath);
+  }
 
   for (const unit of units) {
     const inputHash = sha256(
