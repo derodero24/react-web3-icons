@@ -185,8 +185,13 @@ that swapping colored → mono changes only the coloring, never the impression:
    background (`color` set to a light value) before submitting.
 
 `node scripts/audit-mono.mjs` rasterizes every colored/mono pair and reports
-outliers (silhouette IoU, ink ratio, edge-detail ratio) — run it after adding
-or reworking mono artwork. Intentional rendering changes to existing icons
+outliers — run it after adding or reworking mono artwork. Besides silhouette
+IoU / ink ratio / edge-detail ratio, it binarizes the colored artwork by
+luminance (best-threshold sweep) and reports the pixel disagreement with the
+mono (`refMiss`); a high value means the mono departs from a straight
+black-and-white reading of the original. When subject and background
+luminance are too close the reference is reported as `degenerate` — judge
+those icons visually instead. Intentional rendering changes to existing icons
 need the `visual-baseline-update` label on the PR so the visual-regression
 job regenerates baselines instead of comparing against develop.
 

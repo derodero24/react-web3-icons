@@ -102,19 +102,52 @@ const results = await page.evaluate(async (pairs) => {
       const md = await raster(p.mono, true);
       const cm = mask(cd), mm = mask(md);
       const cf = filled(cm), mf = filled(mm);
-      out.push({ id: p.id, iou: iou(cf, mf), ink: ink(mf) / Math.max(ink(cf), 1), edge: edges(mm) / Math.max(colorEdges(cd), 1) });
+      // Threshold reference: binarize the colored art by luminance (best
+      // threshold sweep) and measure disagreement with the mono ink. When
+      // subject and background luminance are too close, the reference
+      // degenerates to a near-solid or near-empty field -> flag instead.
+      const monoInk = new Uint8Array(N * N);
+      for (let i = 0; i < N * N; i++) {
+        const a = md[i * 4 + 3];
+        monoInk[i] = a > 128 && (md[i * 4] * 0.2126 + md[i * 4 + 1] * 0.7152 + md[i * 4 + 2] * 0.0722) < 128 ? 1 : 0;
+      }
+      const lum = new Float32Array(N * N);
+      for (let i = 0; i < N * N; i++) {
+        const a = cd[i * 4 + 3] / 255;
+        const L = cd[i * 4] * 0.2126 + cd[i * 4 + 1] * 0.7152 + cd[i * 4 + 2] * 0.0722;
+        lum[i] = L * a + 255 * (1 - a);
+      }
+      let bestT = 128, bestMiss = Infinity;
+      for (let T = 40; T <= 240; T += 5) {
+        let miss = 0;
+        for (let i = 0; i < N * N; i++) miss += (lum[i] < T ? 1 : 0) !== monoInk[i] ? 1 : 0;
+        if (miss < bestMiss) { bestMiss = miss; bestT = T; }
+      }
+      let refInk = 0;
+      const bbox = ink(cf);
+      for (let i = 0; i < N * N; i++) refInk += lum[i] < bestT ? 1 : 0;
+      const refFrac = refInk / Math.max(bbox, 1);
+      const refDegenerate = refFrac > 0.9 || refFrac < 0.08;
+      out.push({ id: p.id, iou: iou(cf, mf), ink: ink(mf) / Math.max(ink(cf), 1), edge: edges(mm) / Math.max(colorEdges(cd), 1), refT: bestT, refMiss: +(100 * bestMiss / (N * N)).toFixed(2), refDegenerate });
     } catch { out.push({ id: p.id, error: true }); }
   }
   return out;
 }, pairs);
 await browser.close();
 
-const flag = r => r.error || r.iou < 0.85 || r.ink < 0.7 || r.edge < 0.3;
+// Owner-approved designs that intentionally trip the generic thresholds
+// (knockout polarity inversions, degenerate threshold references, wavy
+// footprints). Reviewed on component-rendered proof sheets — see #746/#748.
+const APPROVED = new Set([
+  'coin/Cake',      // knockout polarity; threshold reference degenerate
+  'dex/Osmosis',    // wavy liquid surface narrows the flood-filled footprint
+]);
+const flag = r => !APPROVED.has(r.id) && (r.error || r.iou < 0.85 || r.ink < 0.7 || r.edge < 0.3 || (!r.refDegenerate && r.refMiss > 8));
 const rows = results.filter(r => showAll || flag(r)).sort((a, b) => (a.iou ?? 0) - (b.iou ?? 0));
 console.log(`pairs: ${results.length}, flagged: ${results.filter(flag).length}`);
 for (const r of rows) {
   console.log(r.error
     ? `${r.id.padEnd(48)} RENDER ERROR`
-    : `${r.id.padEnd(48)} iou=${r.iou.toFixed(2)} ink=${r.ink.toFixed(2)} edge=${r.edge.toFixed(2)}${flag(r) ? '  ⚠' : ''}`);
+    : `${r.id.padEnd(48)} iou=${r.iou.toFixed(2)} ink=${r.ink.toFixed(2)} edge=${r.edge.toFixed(2)} refMiss=${r.refDegenerate ? 'degenerate' : r.refMiss + '%'}${flag(r) ? '  ⚠' : ''}`);
 }
 process.exitCode = 0;
