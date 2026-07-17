@@ -141,6 +141,7 @@ await browser.close();
 const APPROVED = new Set([
   'coin/Cake',      // knockout polarity; threshold reference degenerate
   'dex/Osmosis',    // wavy liquid surface narrows the flood-filled footprint
+  'bridge/Stargate', // open petal ring: flood fill enters the gaps (refMiss 0.07%)
 ]);
 const flag = r => !APPROVED.has(r.id) && (r.error || r.iou < 0.85 || r.ink < 0.7 || r.edge < 0.3 || (!r.refDegenerate && r.refMiss > 8));
 const rows = results.filter(r => showAll || flag(r)).sort((a, b) => (a.iou ?? 0) - (b.iou ?? 0));

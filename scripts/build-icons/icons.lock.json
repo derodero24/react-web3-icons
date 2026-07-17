@@ -9,8 +9,8 @@
       "output": "78745c16a160c46e"
     },
     "bridge/de-bridge": {
-      "input": "0724fb10d7286d1c",
-      "output": "84c7c42711089c0a"
+      "input": "5cd23fe68743c548",
+      "output": "73a4cd6a066d6828"
     },
     "bridge/hop-protocol": {
       "input": "5e3d01a3fdccdd33",
@@ -29,8 +29,8 @@
       "output": "b462256a7f50f0c6"
     },
     "bridge/stargate": {
-      "input": "5838ac0b22165ebd",
-      "output": "75cc9383f14d777c"
+      "input": "9af4dfbdfa11915d",
+      "output": "f0afef392756759d"
     },
     "bridge/synapse": {
       "input": "073ca93f5c4f8dd0",
@@ -176,8 +176,8 @@
       "output": "a3fa95aa967eb61e"
     },
     "chain/optimism": {
-      "input": "56f3cef50b243137",
-      "output": "e4888b743b6935d3"
+      "input": "3770353ff6288c5c",
+      "output": "072840020e6c282c"
     },
     "chain/polkadot": {
       "input": "58d566c05fc0c9b7",
@@ -592,8 +592,8 @@
       "output": "b04e7bf4bc7ecd8f"
     },
     "defi/rocket-pool": {
-      "input": "81a93d5cb3e8fe62",
-      "output": "5848bd5c00e3be38"
+      "input": "b193e5e2a100525b",
+      "output": "765a1f4ad09aa561"
     },
     "defi/safe-protocol": {
       "input": "635239804f4d7d66",
