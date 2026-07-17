@@ -9,8 +9,8 @@
       "output": "78745c16a160c46e"
     },
     "bridge/de-bridge": {
-      "input": "0724fb10d7286d1c",
-      "output": "84c7c42711089c0a"
+      "input": "5cd23fe68743c548",
+      "output": "73a4cd6a066d6828"
     },
     "bridge/hop-protocol": {
       "input": "5e3d01a3fdccdd33",
@@ -29,8 +29,8 @@
       "output": "b462256a7f50f0c6"
     },
     "bridge/stargate": {
-      "input": "5838ac0b22165ebd",
-      "output": "75cc9383f14d777c"
+      "input": "f71c3109fa3cb69f",
+      "output": "aa732a31d606d0f6"
     },
     "bridge/synapse": {
       "input": "073ca93f5c4f8dd0",
@@ -60,8 +60,8 @@
       "input": "30df9c85095d260d"
     },
     "chain/base": {
-      "input": "cd745be9703b5d1a",
-      "output": "adfa8952729a8ad4"
+      "input": "ec808085336447f8",
+      "output": "9261b4220d3881c8"
     },
     "chain/berachain": {
       "input": "df01d0bd2e705468",
@@ -176,8 +176,8 @@
       "output": "a3fa95aa967eb61e"
     },
     "chain/optimism": {
-      "input": "56f3cef50b243137",
-      "output": "e4888b743b6935d3"
+      "input": "3770353ff6288c5c",
+      "output": "072840020e6c282c"
     },
     "chain/polkadot": {
       "input": "58d566c05fc0c9b7",
@@ -296,8 +296,8 @@
       "output": "1deb2cfe5a2f150a"
     },
     "coin/cake": {
-      "input": "83957d7f24df5791",
-      "output": "4eb21d364082d9dd"
+      "input": "79dd6897cdd05185",
+      "output": "ca39bc122e5b7654"
     },
     "coin/celo": {
       "input": "e9860ebfe1c84fe6",
@@ -308,16 +308,16 @@
       "output": "7082830c961e155a"
     },
     "coin/crv": {
-      "input": "db0c10330c8b0a62",
-      "output": "06aab7592e65120d"
+      "input": "facefb8c6e2f9bda",
+      "output": "8d2a412886474df7"
     },
     "coin/dai": {
       "input": "5c3f73bd742f8432",
       "output": "175da646fe031971"
     },
     "coin/doge": {
-      "input": "321a0c4148d13501",
-      "output": "d59e6b90d17bab8d"
+      "input": "99e3e3aacb531828",
+      "output": "171417d33eda8911"
     },
     "coin/dot": {
       "input": "1268233e15d3c253",
@@ -428,8 +428,8 @@
       "output": "75843c5aee4181e2"
     },
     "coin/pepe": {
-      "input": "161146dacc0a2ef8",
-      "output": "4ac09b83840e0d9a"
+      "input": "d1481db42aff476d",
+      "output": "62903b1a017e862a"
     },
     "coin/pol": {
       "input": "893a86e8261cec18",
@@ -512,16 +512,16 @@
       "output": "a5996b73a02ebde6"
     },
     "coin/xmr": {
-      "input": "40c48ae36b879dd0",
-      "output": "a12f42761f9e70be"
+      "input": "e2aba35b33631238",
+      "output": "95d0fbf3f3767db8"
     },
     "coin/xrp": {
       "input": "a6a8538a97ef57b0",
       "output": "126e94f1ca691c47"
     },
     "coin/zec": {
-      "input": "dd5c0a8df69b8cb9",
-      "output": "3870a78f697f3bb5"
+      "input": "73fa7c370adb0c40",
+      "output": "790d8aa2b5b147e1"
     },
     "defi/aave": {
       "input": "f6bb918891be33d2",
@@ -572,8 +572,8 @@
       "output": "901b7f43666d9bdb"
     },
     "defi/liquity": {
-      "input": "5377ab5abd4fa8eb",
-      "output": "2c1b939e8f6bcad5"
+      "input": "a36bee32a65c4a7d",
+      "output": "7e8a376fbe7c2986"
     },
     "defi/maker-dao": {
       "input": "fafdc88b36dd10ac",
@@ -592,8 +592,8 @@
       "output": "b04e7bf4bc7ecd8f"
     },
     "defi/rocket-pool": {
-      "input": "81a93d5cb3e8fe62",
-      "output": "5848bd5c00e3be38"
+      "input": "b193e5e2a100525b",
+      "output": "765a1f4ad09aa561"
     },
     "defi/safe-protocol": {
       "input": "635239804f4d7d66",
@@ -624,12 +624,12 @@
       "output": "98dbebea9a63881e"
     },
     "devtool/collab-land": {
-      "input": "a8c4137983832c9a",
-      "output": "9bfaab5efa992b8e"
+      "input": "8bf5ed14eae39732",
+      "output": "0ae4289443d8df5b"
     },
     "devtool/drizzle": {
-      "input": "f4e961d2c7e849fa",
-      "output": "7dc1b386a5459891"
+      "input": "c48de90b6092bdb5",
+      "output": "1f471c9ae98b2613"
     },
     "devtool/ethers-js": {
       "input": "29bc19b3e4b12123",
@@ -664,8 +664,8 @@
       "output": "0d2aabe846d5acb5"
     },
     "devtool/tally": {
-      "input": "a3f6b90dd8f70155",
-      "output": "4b96217d361e8e49"
+      "input": "e1ddb58054c97bdf",
+      "output": "65f908b1e5461eb3"
     },
     "devtool/tenderly": {
       "input": "af3e81ba21df4e68",
@@ -680,8 +680,8 @@
       "output": "fd6a154f79b95cc1"
     },
     "devtool/truffle": {
-      "input": "427139cd5d71fb84",
-      "output": "eaeefe9915beae67"
+      "input": "c4291604e15c6913",
+      "output": "4334c8d158927a10"
     },
     "devtool/viem": {
       "input": "65be0ed017dad427",
@@ -700,8 +700,8 @@
       "output": "cff1ca53a0221ec9"
     },
     "dex/camelot": {
-      "input": "aa4fad7c18b1b7e3",
-      "output": "e485ec2482d69f7b"
+      "input": "c450c6a1183703c1",
+      "output": "2524fb98cfba4d1b"
     },
     "dex/cow-protocol": {
       "input": "3311d3935f57aeb7",
@@ -712,8 +712,8 @@
       "output": "0af428835c429bd5"
     },
     "dex/ekubo": {
-      "input": "7dff6d628ec16863",
-      "output": "014663dd7c7cf366"
+      "input": "834d873d229ba78a",
+      "output": "e69015d702879138"
     },
     "dex/hyperliquid": {
       "input": "48efefc02d7b45ad",
@@ -732,8 +732,8 @@
       "output": "73026ed61ff77ec3"
     },
     "dex/osmosis": {
-      "input": "487114e6a99e39bf",
-      "output": "c3e0b09aa3103fad"
+      "input": "6c2ef8eccc843b07",
+      "output": "6379daf6c876e78d"
     },
     "dex/pancake-swap": {
       "input": "38a54c0af1d24169",
@@ -991,8 +991,8 @@
       "output": "79ea773980b28063"
     },
     "tracker/coin-gecko": {
-      "input": "980572b2af8f34e3",
-      "output": "1782902732ac7e79"
+      "input": "f9ed3981902483e8",
+      "output": "20b42fa9511c4f1c"
     },
     "tracker/coin-market-cap": {
       "input": "f3e52d1347fca5cc",
@@ -1067,8 +1067,8 @@
       "output": "e6e857595c6abd83"
     },
     "wallet/phantom-wallet": {
-      "input": "c08ad17c7d2ecc33",
-      "output": "ca4a523cb5643abf"
+      "input": "afa17d8d40b2c635",
+      "output": "8fd6d3052a64cb30"
     },
     "wallet/polkadot-js": {
       "input": "6830f6dae4eb4af2",

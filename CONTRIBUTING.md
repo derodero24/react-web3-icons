@@ -161,6 +161,35 @@ Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The bas
 | `Symbol` | Standalone symbol without container (when base has one) | `RainbowWalletSymbol` |
 | `SymbolMono` | Monochrome standalone symbol without container | `OpenSeaSymbolMono` |
 
+### Mono design rules
+
+Every `*Mono` variant is judged against its colored counterpart. The goal is
+that swapping colored → mono changes only the coloring, never the impression:
+
+1. **Same silhouette**: the mono covers the same footprint as the colored
+   variant at the same scale in the same viewBox. If the colored artwork has a
+   container (circle / rounded square / shield), the mono keeps it: render the
+   container filled in `currentColor` and knock the glyph out (a single
+   `fill-rule="evenodd"` path is the preferred form). Never reduce a filled
+   container to an outline ring, and never drop the container entirely — that
+   is what the `Symbol` / `SymbolMono` variants are for.
+2. **One color only**: monos use `currentColor` exclusively — no fixed fills,
+   no grays. Prefer binary ink (fill or hole); translucent `currentColor`
+   shading is acceptable only where the mark's structure genuinely needs it
+   (e.g. distinguishing cube faces), never to imitate decorative gradients.
+3. **Keep identifying detail**: facial features, letterforms, and other
+   details that make the mark recognizable must survive; decorative gradients
+   and shading may be dropped. If a detail can't be expressed in one color,
+   simplify it rather than delete it.
+4. **Verify both polarities**: check the mono on white *and* on a dark
+   background (`color` set to a light value) before submitting.
+
+`node scripts/audit-mono.mjs` rasterizes every colored/mono pair and reports
+outliers (silhouette IoU, ink ratio, edge-detail ratio) — run it after adding
+or reworking mono artwork. Intentional rendering changes to existing icons
+need the `visual-baseline-update` label on the PR so the visual-regression
+job regenerates baselines instead of comparing against develop.
+
 ### Rules
 
 1. **Base = standalone**: The unsuffixed name is always the standalone symbol. If the brand's primary mark is a circle (e.g., OpenSea ship on blue circle), the base name keeps the circle shape and `SymbolMono` provides the symbol-only mono variant.

@@ -74,9 +74,17 @@ jobs:
         if: github.event_name == 'push' && steps.screenshots-cache-develop.outputs.cache-hit != 'true'
         run: pnpm test:visual:update
 
+      # PRs labeled 'visual-baseline-update' intentionally change icon
+      # rendering: skip the develop-baseline comparison and only verify that
+      # every icon still renders (fresh baselines are generated from this
+      # branch; the post-merge develop run rebuilds the cache).
+      - name: Regenerate baselines (intentional visual change)
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'visual-baseline-update')
+        run: pnpm test:visual:update
+
       # On PRs: restore develop baseline and compare
       - name: Restore reference screenshots from develop (PR)
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'visual-baseline-update')
         id: screenshots-cache-pr
         uses: actions/cache/restore@v5
         with:
@@ -86,7 +94,7 @@ jobs:
             visual-screenshots-develop-
 
       - name: Check for existing screenshots (PR)
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'visual-baseline-update')
         id: check-screenshots
         run: |
           if [ -d "test/visual/__screenshots__" ] && [ -n "$(ls -A test/visual/__screenshots__ 2>/dev/null)" ]; then
@@ -96,13 +104,13 @@ jobs:
           fi
 
       - name: Generate baseline if none cached (PR)
-        if: github.event_name == 'pull_request' && steps.check-screenshots.outputs.exists != 'true'
+        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'visual-baseline-update') && steps.check-screenshots.outputs.exists != 'true'
         run: |
           echo "::warning::No reference screenshots from develop found. Generating baseline for this run."
           pnpm test:visual:update
 
       - name: Generate screenshots for new icons (PR)
-        if: github.event_name == 'pull_request' && steps.check-screenshots.outputs.exists == 'true'
+        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'visual-baseline-update') && steps.check-screenshots.outputs.exists == 'true'
         run: |
           # Build to make the dist available for the node script
           pnpm build --silent
@@ -127,7 +135,7 @@ jobs:
           fi
 
       - name: Run visual regression tests
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'visual-baseline-update')
         run: pnpm test:visual
 
       - name: Upload screenshot diffs on failure
