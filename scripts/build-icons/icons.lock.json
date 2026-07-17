@@ -60,8 +60,8 @@
       "input": "30df9c85095d260d"
     },
     "chain/base": {
-      "input": "cd745be9703b5d1a",
-      "output": "adfa8952729a8ad4"
+      "input": "ec808085336447f8",
+      "output": "9261b4220d3881c8"
     },
     "chain/berachain": {
       "input": "df01d0bd2e705468",
@@ -512,16 +512,16 @@
       "output": "a5996b73a02ebde6"
     },
     "coin/xmr": {
-      "input": "40c48ae36b879dd0",
-      "output": "a12f42761f9e70be"
+      "input": "e2aba35b33631238",
+      "output": "95d0fbf3f3767db8"
     },
     "coin/xrp": {
       "input": "a6a8538a97ef57b0",
       "output": "126e94f1ca691c47"
     },
     "coin/zec": {
-      "input": "dd5c0a8df69b8cb9",
-      "output": "3870a78f697f3bb5"
+      "input": "73fa7c370adb0c40",
+      "output": "790d8aa2b5b147e1"
     },
     "defi/aave": {
       "input": "f6bb918891be33d2",
@@ -1067,8 +1067,8 @@
       "output": "e6e857595c6abd83"
     },
     "wallet/phantom-wallet": {
-      "input": "c08ad17c7d2ecc33",
-      "output": "ca4a523cb5643abf"
+      "input": "afa17d8d40b2c635",
+      "output": "8fd6d3052a64cb30"
     },
     "wallet/polkadot-js": {
       "input": "6830f6dae4eb4af2",
