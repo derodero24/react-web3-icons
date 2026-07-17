@@ -296,8 +296,8 @@
       "output": "1deb2cfe5a2f150a"
     },
     "coin/cake": {
-      "input": "79dd6897cdd05185",
-      "output": "ca39bc122e5b7654"
+      "input": "8b5ae93d84dbcba4",
+      "output": "ca0b9479314c996e"
     },
     "coin/celo": {
       "input": "e9860ebfe1c84fe6",
@@ -732,8 +732,8 @@
       "output": "73026ed61ff77ec3"
     },
     "dex/osmosis": {
-      "input": "6c2ef8eccc843b07",
-      "output": "6379daf6c876e78d"
+      "input": "ca328e3eb6005c60",
+      "output": "4de86a2f2c41c24a"
     },
     "dex/pancake-swap": {
       "input": "38a54c0af1d24169",
@@ -991,8 +991,8 @@
       "output": "79ea773980b28063"
     },
     "tracker/coin-gecko": {
-      "input": "980572b2af8f34e3",
-      "output": "1782902732ac7e79"
+      "input": "b6e4ecddfcbfb7e2",
+      "output": "66e77d1f8b148c02"
     },
     "tracker/coin-market-cap": {
       "input": "f3e52d1347fca5cc",
