@@ -195,6 +195,25 @@ those icons visually instead. Intentional rendering changes to existing icons
 need the `visual-baseline-update` label on the PR so the visual-regression
 job regenerates baselines instead of comparing against develop.
 
+### Vocabulary notes
+
+- **Suffixes compose**: style suffixes may combine when the artwork calls for
+  it (`CoinbaseCircleAlt`, `MagicEdenWordmarkFlat`), with `Mono` always last.
+- **Multiword brands as variants**: sibling brands sharing one artwork family
+  may live as variants of a single unit — e.g. the `Arbitrum` unit also emits
+  `ArbitrumOne*` and `ArbitrumNova*`. `One`/`Nova` there are brand-name parts,
+  not style suffixes.
+- **Brand-intrinsic digits**: the no-trailing-digit rule bans version-style
+  names (`Foo2`), not brands whose name contains digits (`X2Y2`, `Api3`).
+  Such brands are allowlisted in `scripts/audit-naming.mjs`.
+- **Mono pairing**: every base and every `Circle`/`Square` variant ships a
+  mono. `Alt`/`Inverted`/`Flat`/`Wordmark` variants may omit one when a mono
+  would be redundant (an `Inverted` variant already is the dark-context
+  rendition); such gaps are reported informationally by the audit.
+
+`node scripts/audit-naming.mjs` checks all of the above across `icons/` and
+fails on hard violations.
+
 ### Rules
 
 1. **Base = standalone**: The unsuffixed name is always the standalone symbol. If the brand's primary mark is a circle (e.g., OpenSea ship on blue circle), the base name keeps the circle shape and `SymbolMono` provides the symbol-only mono variant.
