@@ -37,7 +37,7 @@ export const TallyMono = /* @__PURE__ */ createIcon(
       <defs>
         <mask id={`${_id}-tlym-a`}>
           <rect width="100%" height="100%" fill="#fff" />
-          <g fill="#fff" stroke="#000">
+          <g fill="#fff" stroke="#000" strokeWidth="0.5">
             <path d="M333.069 204.706v7.681l-6.064-3.43v15.828l-6.81-3.854v-15.825l-6.064-3.43v-7.681l18.938 10.711z" />
             <path d="M330.037 206.452v7.681l-6.06-3.43v15.828l-6.813-3.854v-15.825l-6.061-3.43v-7.681l18.934 10.711z" />
             <path d="M327.005 208.199v7.681l-6.06-3.43v15.828l-6.81-3.854v-15.825l-6.064-3.43v-7.681l18.934 10.711z" />

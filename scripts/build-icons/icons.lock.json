@@ -9,8 +9,8 @@
       "output": "78745c16a160c46e"
     },
     "bridge/de-bridge": {
-      "input": "0724fb10d7286d1c",
-      "output": "84c7c42711089c0a"
+      "input": "8bfb01a7cb97d76e",
+      "output": "a77e608b60940062"
     },
     "bridge/hop-protocol": {
       "input": "5e3d01a3fdccdd33",
@@ -29,8 +29,8 @@
       "output": "b462256a7f50f0c6"
     },
     "bridge/stargate": {
-      "input": "5838ac0b22165ebd",
-      "output": "75cc9383f14d777c"
+      "input": "0e045d604d095da3",
+      "output": "2f096213d1d70d8d"
     },
     "bridge/synapse": {
       "input": "073ca93f5c4f8dd0",
@@ -176,8 +176,8 @@
       "output": "a3fa95aa967eb61e"
     },
     "chain/optimism": {
-      "input": "56f3cef50b243137",
-      "output": "e4888b743b6935d3"
+      "input": "8d50def12ead433c",
+      "output": "1bff39bed36d8684"
     },
     "chain/polkadot": {
       "input": "58d566c05fc0c9b7",
@@ -572,8 +572,8 @@
       "output": "901b7f43666d9bdb"
     },
     "defi/liquity": {
-      "input": "5377ab5abd4fa8eb",
-      "output": "2c1b939e8f6bcad5"
+      "input": "bf16ec8451aa0f2f",
+      "output": "e3ed205c9673cb50"
     },
     "defi/maker-dao": {
       "input": "fafdc88b36dd10ac",
@@ -592,8 +592,8 @@
       "output": "b04e7bf4bc7ecd8f"
     },
     "defi/rocket-pool": {
-      "input": "81a93d5cb3e8fe62",
-      "output": "5848bd5c00e3be38"
+      "input": "b193e5e2a100525b",
+      "output": "765a1f4ad09aa561"
     },
     "defi/safe-protocol": {
       "input": "635239804f4d7d66",
@@ -664,8 +664,8 @@
       "output": "0d2aabe846d5acb5"
     },
     "devtool/tally": {
-      "input": "a3f6b90dd8f70155",
-      "output": "4b96217d361e8e49"
+      "input": "5799c7dfc7fca491",
+      "output": "3630c8ee8c4a070f"
     },
     "devtool/tenderly": {
       "input": "af3e81ba21df4e68",
@@ -700,8 +700,8 @@
       "output": "cff1ca53a0221ec9"
     },
     "dex/camelot": {
-      "input": "aa4fad7c18b1b7e3",
-      "output": "e485ec2482d69f7b"
+      "input": "d6532f1c3c1a24d7",
+      "output": "daed2fd71f939f56"
     },
     "dex/cow-protocol": {
       "input": "3311d3935f57aeb7",
