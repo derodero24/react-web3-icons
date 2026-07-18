@@ -1,7 +1,7 @@
 {
   "name": "Pendle",
   "notes": [
-    "Paths sourced from @web3icons/react (MIT)"
+    "Logomark re-drawn to match the official pendle.finance logo (gray backdrop disc, two-tone pendulum ball); original paths from @web3icons/react (MIT)"
   ],
   "kind": "icon",
   "variants": {

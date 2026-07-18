@@ -192,8 +192,8 @@
       "output": "061a7cb1385ccb30"
     },
     "chain/scroll": {
-      "input": "79033c4151e5bb26",
-      "output": "d5b24a0b16a14a69"
+      "input": "2814f0f3f02ebb79",
+      "output": "e78f0b3793a4926f"
     },
     "chain/sei": {
       "input": "2b19c18f7eb4b23c",
@@ -588,8 +588,8 @@
       "output": "618c66ca938a105e"
     },
     "defi/pendle": {
-      "input": "2af5a12debab05e5",
-      "output": "b04e7bf4bc7ecd8f"
+      "input": "88acc806b305783b",
+      "output": "f13c95c26fbec750"
     },
     "defi/rocket-pool": {
       "input": "b193e5e2a100525b",
@@ -875,8 +875,8 @@
       "output": "bf9939edaa43a2a3"
     },
     "explorer/celoscan": {
-      "input": "caf24d0aebb7567a",
-      "output": "acb4355af3b6b52a"
+      "input": "7f357c8cbfa43565",
+      "output": "5c43ee245ad6298d"
     },
     "explorer/etherscan-light": {
       "input": "69afeea18b34578f",
@@ -895,8 +895,8 @@
       "output": "ffd16327cc4c7939"
     },
     "marketplace/looks-rare": {
-      "input": "de87b0a68ba2f546",
-      "output": "fb93bca8a8df6ac9"
+      "input": "3f13ff3edfbc6f8e",
+      "output": "51de8cdfabc708ff"
     },
     "marketplace/magic-eden": {
       "input": "34c0d814e397e148",
@@ -999,8 +999,8 @@
       "output": "1051e589f34e94ce"
     },
     "tracker/defi-llama": {
-      "input": "07d33f9a867a25bc",
-      "output": "d5220af2d6e2fce8"
+      "input": "ec41c2bd3747aaa9",
+      "output": "f67497575b92955d"
     },
     "wallet/argent": {
       "input": "57010b781e6433b7",

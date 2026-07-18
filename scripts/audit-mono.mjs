@@ -144,6 +144,24 @@ const APPROVED = new Set([
   'bridge/Stargate', // open petal ring: flood fill enters the gaps (refMiss 0.07%)
   'devtool/Drizzle', // threshold-faithful (refMiss 2.0%); kept as-is
   'defi/Liquity',    // light-only palette degenerates the reference; ring+wave design owner-reviewed
+  'dex/Camelot',     // owner-approved v5 (shield+plates+sword); plate mask trips the ref compare
+  'coin/Doge',       // D-in-circle mark; gold gradient coin face degenerates the reference
+  'coin/Crv',        // solid silhouette of the rainbow blob (refMiss 0.27%); edge metric starved
+  'coin/Pepe',       // dark square + face lines matches ref (refMiss 4.8%); low edge by design
+  'coin/Shib',       // hand-tuned 24px redraw of the intricate shiba art; ref degenerate at T=40
+  'dex/Dydx',        // official art is white-on-transparent (dark-bg brand); ref cannot binarize it
+  'node/Drpc',       // structural translucency for isometric facets; threshold cannot represent tiers
+  'chain/Astar',     // bold solid swirl matches ref (refMiss 0.66%); gradient softness starves edge
+  'storage/Ipfs',    // cube outline matches ref (refMiss 4.1%); thin strokes starve the edge metric
+  'chain/Zora',      // gradient orb -> solid disc is the only faithful mono; no internal edges exist
+  'wallet/MetaMask', // flat fox silhouette matches ref (refMiss 0.8%); facet lines are all mid-tone
+  'wallet/PhantomWalletSquare', // matches ref (refMiss 0.04%); big solid areas starve the edge metric
+  'wallet/ZerionCircle',        // matches ref (refMiss 0.05%); big solid areas starve the edge metric
+  'explorer/Arbiscan', // hexagon mark matches ref (refMiss 0.7%); near-bg outer ring skews footprint iou
+  'defi/Pendle',     // backdrop disc is translucent in mono (structural); iou counts only solid ink
+  'chain/Scroll',    // near-bg beige square dropped; mono is the scroll glyph (refMiss 0.1%)
+  'explorer/CeloscanSquare', // near-bg yellow square dropped; mono is the square-C glyph (refMiss 0%)
+  'tracker/DefiLlama', // llama knockout reaches the bottom edge, so flood fill shrinks the footprint
 ]);
 const flag = r => !APPROVED.has(r.id) && (r.error || r.iou < 0.85 || r.ink < 0.7 || r.edge < 0.3 || (!r.refDegenerate && r.refMiss > 8));
 const rows = results.filter(r => showAll || flag(r)).sort((a, b) => (a.iou ?? 0) - (b.iou ?? 0));

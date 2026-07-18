@@ -4,12 +4,12 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 const S = process.argv[2];
 const targets = JSON.parse(process.argv[3]); // [[cat,slug,suffix?],...]
-const pairs = targets.map(([cat, slug]) => {
+const pairs = targets.map(([cat, slug, suffix = '']) => {
   const meta = JSON.parse(readFileSync(`icons/${cat}/${slug}.json`, 'utf8'));
   return {
-    id: `${cat}/${meta.name}`,
-    colored: readFileSync(`icons/${cat}/${meta.variants[''].file}`, 'utf8'),
-    mono: readFileSync(`icons/${cat}/${meta.variants['Mono'].file}`, 'utf8'),
+    id: `${cat}/${meta.name}${suffix}`,
+    colored: readFileSync(`icons/${cat}/${meta.variants[suffix].file}`, 'utf8'),
+    mono: readFileSync(`icons/${cat}/${meta.variants[`${suffix}Mono`].file}`, 'utf8'),
   };
 });
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium/chrome-linux/chrome' }).catch(() => chromium.launch());
