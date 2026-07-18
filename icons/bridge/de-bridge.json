@@ -1,17 +1,19 @@
 {
   "name": "DeBridge",
   "notes": [
-    "Paths sourced from debridge.com/assets/img/logo/debridge-icon.svg"
+    "Official standalone logomark (fan without the avatar tile)"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "de-bridge.svg",
-      "fill": "none"
+      "file": "de-bridge.svg"
     },
     "Mono": {
       "file": "de-bridge.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "source": [
+    "https://debridge.com/brand/ (official brand kit, logomark.svg \u2014 standalone mark without the avatar tile)"
+  ]
 }

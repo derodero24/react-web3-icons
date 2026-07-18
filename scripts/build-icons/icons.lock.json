@@ -9,8 +9,8 @@
       "output": "78745c16a160c46e"
     },
     "bridge/de-bridge": {
-      "input": "5cd23fe68743c548",
-      "output": "73a4cd6a066d6828"
+      "input": "8bfb01a7cb97d76e",
+      "output": "a77e608b60940062"
     },
     "bridge/hop-protocol": {
       "input": "5e3d01a3fdccdd33",
@@ -29,8 +29,8 @@
       "output": "b462256a7f50f0c6"
     },
     "bridge/stargate": {
-      "input": "9af4dfbdfa11915d",
-      "output": "f0afef392756759d"
+      "input": "0e045d604d095da3",
+      "output": "2f096213d1d70d8d"
     },
     "bridge/synapse": {
       "input": "073ca93f5c4f8dd0",
@@ -176,8 +176,8 @@
       "output": "a3fa95aa967eb61e"
     },
     "chain/optimism": {
-      "input": "3770353ff6288c5c",
-      "output": "072840020e6c282c"
+      "input": "8d50def12ead433c",
+      "output": "1bff39bed36d8684"
     },
     "chain/polkadot": {
       "input": "58d566c05fc0c9b7",
@@ -572,8 +572,8 @@
       "output": "901b7f43666d9bdb"
     },
     "defi/liquity": {
-      "input": "6f7e2713fd088091",
-      "output": "e125fcad56dd1659"
+      "input": "bf16ec8451aa0f2f",
+      "output": "e3ed205c9673cb50"
     },
     "defi/maker-dao": {
       "input": "fafdc88b36dd10ac",
@@ -664,8 +664,8 @@
       "output": "0d2aabe846d5acb5"
     },
     "devtool/tally": {
-      "input": "0e0fa8e58b3c68a8",
-      "output": "0e8fded02e5a3334"
+      "input": "5799c7dfc7fca491",
+      "output": "3630c8ee8c4a070f"
     },
     "devtool/tenderly": {
       "input": "af3e81ba21df4e68",
