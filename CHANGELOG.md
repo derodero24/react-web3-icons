@@ -1,5 +1,67 @@
 # Changelog
 
+## 4.0.0
+
+### Major Changes
+
+- [#739](https://github.com/derodero24/react-web3-icons/pull/739) [`713bd16`](https://github.com/derodero24/react-web3-icons/commit/713bd168a8f811ac064cd0572ad4ea9425b7d02b) Thanks [@derodero24](https://github.com/derodero24)! - Drop Node.js 20 support: `engines.node` is now `>=22.12.0`. Node 20 (Iron) reached end-of-life on 2026-04-30 and the build toolchain (tsdown 0.22 / rolldown 1.0) no longer runs on it. The library itself is plain ESM + React and is unaffected at runtime — this only changes the declared support matrix and the CI test matrix (Node 22 and 24).
+
+- [#734](https://github.com/derodero24/react-web3-icons/pull/734) [`92c5d08`](https://github.com/derodero24/react-web3-icons/commit/92c5d08278d2069905e1402ff6c6c984ca49d03c) Thanks [@derodero24](https://github.com/derodero24)! - Icons are now pure, hook-free components that render in React Server Components without `'use client'`. Breaking changes:
+
+  - **`IconContext` and `IconContextValue` are removed.** Icons no longer read defaults from context (the `useContext` call forced a client boundary). Use font-size scaling (icons default to `1em`) or a small wrapper component to apply shared defaults — see MIGRATION.md.
+  - **Internal SVG ids are deterministic** (derived from the component name) instead of `useId`-based. Rendering the same icon twice duplicates those ids with identical definitions; rendering output is otherwise unchanged. Markup snapshots that captured the old ids need regeneration.
+
+### Minor Changes
+
+- [#722](https://github.com/derodero24/react-web3-icons/pull/722) [`9386cf8`](https://github.com/derodero24/react-web3-icons/commit/9386cf8f26378dbd3aba3c635fcaf161cd1ea2bf) Thanks [@derodero24](https://github.com/derodero24)! - Add Orbiter Finance, Synapse, and Socket bridge icons
+
+- [#722](https://github.com/derodero24/react-web3-icons/pull/722) [`9386cf8`](https://github.com/derodero24/react-web3-icons/commit/9386cf8f26378dbd3aba3c635fcaf161cd1ea2bf) Thanks [@derodero24](https://github.com/derodero24)! - Add Eclipse chain icon
+
+- [#722](https://github.com/derodero24/react-web3-icons/pull/722) [`9386cf8`](https://github.com/derodero24/react-web3-icons/commit/9386cf8f26378dbd3aba3c635fcaf161cd1ea2bf) Thanks [@derodero24](https://github.com/derodero24)! - Add Maple Finance and Kamino DeFi protocol icons (restores the remaining icons from [#618](https://github.com/derodero24/react-web3-icons/issues/618), which was lost from develop)
+
+- [#732](https://github.com/derodero24/react-web3-icons/pull/732) [`3227ae8`](https://github.com/derodero24/react-web3-icons/commit/3227ae8499c42a75d532748129cb9ff0b491b2db) Thanks [@derodero24](https://github.com/derodero24)! - Add `react-web3-icons/manifest`: a machine-readable catalog of every icon export (`name`, `category`, `chainId`/`slug`/`ticker` identifiers, `deprecated` flag), plus a plain-JSON variant at `react-web3-icons/manifest.json`. Useful for building icon pickers, search indexes, and docs without importing the component bundles. The manifest is auto-generated and guarded by a sync test.
+
+- [#722](https://github.com/derodero24/react-web3-icons/pull/722) [`9386cf8`](https://github.com/derodero24/react-web3-icons/commit/9386cf8f26378dbd3aba3c635fcaf161cd1ea2bf) Thanks [@derodero24](https://github.com/derodero24)! - Add oracle category with Pyth Network, Band Protocol, API3, and RedStone icons
+
+- [#724](https://github.com/derodero24/react-web3-icons/pull/724) [`b38b435`](https://github.com/derodero24/react-web3-icons/commit/b38b43590ccd9950833120de515ba5f766d47c88) Thanks [@derodero24](https://github.com/derodero24)! - Expose the generated raw SVG files through a `./svg/*` subpath export (`react-web3-icons/svg/<category>/<Name>.svg`). The files were already shipped in the package but were unreachable because the `exports` map blocked the subpath. Also documents bundler and CDN (jsdelivr/unpkg) usage in the README.
+
+- [#722](https://github.com/derodero24/react-web3-icons/pull/722) [`9386cf8`](https://github.com/derodero24/react-web3-icons/commit/9386cf8f26378dbd3aba3c635fcaf161cd1ea2bf) Thanks [@derodero24](https://github.com/derodero24)! - Add Brave, Petra, Uniswap Wallet, and Xverse wallet icons
+
+- [#736](https://github.com/derodero24/react-web3-icons/pull/736) [`542e82c`](https://github.com/derodero24/react-web3-icons/commit/542e82c4987f8905af39449a8e67d8cd68a4455c) Thanks [@derodero24](https://github.com/derodero24)! - Ship IconifyJSON collections: `react-web3-icons/iconify.json` (colored, prefix `web3`) and `react-web3-icons/iconify-mono.json` (`currentColor`, prefix `web3-mono`), generated from the icon source tree and validated with `@iconify/utils`. This makes the full set usable from Vue, Svelte, Web Components, `unplugin-icons`, and the rest of the Iconify ecosystem; ticker and deprecated re-exports are registered as Iconify aliases.
+
+- [#744](https://github.com/derodero24/react-web3-icons/pull/744) [`f1e5966`](https://github.com/derodero24/react-web3-icons/commit/f1e596662bb12a6386e4c0944813f5f4ce4edc1b) Thanks [@derodero24](https://github.com/derodero24)! - Add four missing major chains ([#706](https://github.com/derodero24/react-web3-icons/issues/706) batch 1), all registered in `CHAIN_ID_TO_NAME` / `CHAIN_SLUG_TO_NAME` with native-token coin entries in `TICKER_TO_COIN`:
+
+  - **Cronos** (chain id 25, `CRO`) — re-exports the existing CRO coin mark
+  - **Monad** (chain id 143, `MON`) — official logomark from monad.xyz's brand & media kit
+  - **Ronin** (chain id 2020, `RON`) — official mark from the wiki.roninchain.com brand kit
+  - **Kaia** (chain id 8217, `KAIA`) — official coin symbol from the docs.kaia.io brand asset pack; the legacy `klaytn` slug also resolves
+
+  All chain ids verified against chainlist.org.
+
+- [#737](https://github.com/derodero24/react-web3-icons/pull/737) [`c9d0246`](https://github.com/derodero24/react-web3-icons/commit/c9d0246ae7dd36b3d7d3e6afad7b9ab594fc587a) Thanks [@derodero24](https://github.com/derodero24)! - Enrich the icon manifest: base entries now include `variants` (available export suffixes), `aliases` (extra lowercase search terms, sourced from the icon unit definitions), and `brandColor` (dominant hex color of the colored artwork). The demo app's search aliases now come from the manifest, so library consumers and the icon browser share one source of truth.
+
+- [#748](https://github.com/derodero24/react-web3-icons/pull/748) [`7a02767`](https://github.com/derodero24/react-web3-icons/commit/7a02767f95a58fdb7724a42c2ce5b3d5ac4440e5) Thanks [@derodero24](https://github.com/derodero24)! - Rebuild four monochrome variants to match their colored counterparts (owner-approved proof sheet): `BaseMono` (outline ring → filled circle with bar knockout), `ZecMono` (container restored around the Z), `XmrMono` (corrected undersized footprint), and `PhantomWalletMono` (ghost proportions aligned with the colored mark).
+
+- [#749](https://github.com/derodero24/react-web3-icons/pull/749) [`989f39e`](https://github.com/derodero24/react-web3-icons/commit/989f39eabf9748c5275fb5b5d7955d0c3911a6ca) Thanks [@derodero24](https://github.com/derodero24)! - Rebuild three monochrome variants to match their colored counterparts (owner-approved proof sheet): `EkuboMono` (container restored around the goggles), `OsmosisMono` (abstract half-circle replaced with the potion-orb silhouette), `CakeMono` (bunny face aligned with the colored mark, both eyes restored), and `CoinGeckoMono` (missing head crest added to the existing artwork).
+
+- [#750](https://github.com/derodero24/react-web3-icons/pull/750) [`93955a7`](https://github.com/derodero24/react-web3-icons/commit/93955a79e1a394944b8e65c44e543660c4596f65) Thanks [@derodero24](https://github.com/derodero24)! - Mono redo batch 3 (owner-reviewed): `OptimismMono` now renders the OP Mainnet sun (arc + center diamond) and the **colored `Optimism` artwork is fixed** — a missing `fill-rule="evenodd"` was hiding the sun's red core; `RocketPoolMono` restored from an outline ring to the filled coin with rocket knockout; `StargateMono` rebuilt as petals plus the center star (visible in the colored mark on dark backgrounds); `DeBridge` (colored **and** mono) replaced with the official standalone logomark from debridge.com/brand — the previous artwork was the avatar tile, not the brand mark.
+
+- [#750](https://github.com/derodero24/react-web3-icons/pull/750) [`93955a7`](https://github.com/derodero24/react-web3-icons/commit/93955a79e1a394944b8e65c44e543660c4596f65) Thanks [@derodero24](https://github.com/derodero24)! - Mono redo batch 4 (owner-reviewed): `LiquityMono` rebuilt as the full-circle silhouette with the light wedge knocked out (thin containing ring); `TallyMono` keeps its solid stacked-plane design with the separation strokes halved for a lighter outline. `CamelotMono` gains the sword hilt that extends above the shield (matching the colored mark's dark-background silhouette). `TruffleMono` and `DrizzleMono` were audited against the threshold reference and confirmed already faithful — no artwork change.
+
+- [#741](https://github.com/derodero24/react-web3-icons/pull/741) [`0421a87`](https://github.com/derodero24/react-web3-icons/commit/0421a87130ef488fdd8434e1273e787fb968a2f7) Thanks [@derodero24](https://github.com/derodero24)! - Add native-token coin exports for chains already in the library — `ALGO`, `SEI`, `SUI`, `BERA`, `STRK`, `CELO`, `KAVA`, `ASTR`, `TAIKO` — plus `HYPE` and the Hyperliquid chain entry (EVM chain id 999, HyperEVM). All of them re-export existing artwork (no duplicated SVG paths), so `<CoinIcon symbol="SUI" />`, `<ChainIcon chainId={999} />`, and the corresponding `TICKER_TO_COIN` / `CHAIN_ID_TO_NAME` / `CHAIN_SLUG_TO_NAME` lookups now resolve.
+
+- [#735](https://github.com/derodero24/react-web3-icons/pull/735) [`2e13781`](https://github.com/derodero24/react-web3-icons/commit/2e1378163238184c740c3a228de5743c1f54a58c) Thanks [@derodero24](https://github.com/derodero24)! - Dynamic components (`react-web3-icons/dynamic`) now lazy-load exactly one per-icon chunk per resolved identifier instead of the entire category bundle — with code splitting, rendering `<CoinIcon symbol="ETH" />` downloads a ~7 KB gzip entry plus a small per-icon chunk rather than the ~50 KB category module. The dist output is also unbundled (one module per icon), which improves file-level tree-shaking for all bundlers: a single static icon import now costs ~0.5 KB brotli.
+
+- [#742](https://github.com/derodero24/react-web3-icons/pull/742) [`c36c3dd`](https://github.com/derodero24/react-web3-icons/commit/c36c3ddd892a3be6a1db0f9e43c7c972d4e25f71) Thanks [@derodero24](https://github.com/derodero24)! - Add `Sonic` / `SonicMono` chain icons (EVM chain id 146, slug `sonic`, ticker `S`) from the official Sonic Labs asset, exposed from both the chain and coin subpaths. Following the icon lifecycle policy for the Fantom → Sonic rebrand, `Fantom`, `FantomMono`, `Ftm`, and `FtmMono` still work but are now marked `@deprecated` (pointing at their Sonic replacements) and are listed in `DEPRECATED_ICON_NAMES`; removal will follow the documented policy (a future major, ≥90 days out).
+
+### Patch Changes
+
+- [#720](https://github.com/derodero24/react-web3-icons/pull/720) [`399312c`](https://github.com/derodero24/react-web3-icons/commit/399312c5649d0200be257711b7ab581737452fc9) Thanks [@derodero24](https://github.com/derodero24)! - Fix the `./deprecated` subpath export: its `require` condition pointed to `dist/deprecated.cjs` / `dist/deprecated.d.cts`, which are never produced by the ESM-only build, so `require('react-web3-icons/deprecated')` failed with a missing-file error. The subpath now declares only the ESM entry, consistent with every other subpath.
+
+- [#723](https://github.com/derodero24/react-web3-icons/pull/723) [`e658a7f`](https://github.com/derodero24/react-web3-icons/commit/e658a7ff9fa088accb569e4573b0a22f94f08bde) Thanks [@derodero24](https://github.com/derodero24)! - Fix tree-shaking: annotate every `createIcon` call with `/* @__PURE__ */`. Without the annotation, bundlers had to assume the calls were side-effectful and kept the whole category chunk, so importing a single icon bundled ~55–150 KB. A single-icon import now bundles ~3.3 KB minified (~1.5 KB gzip) in webpack, Rollup, and esbuild. A size-limit scenario and a source-level test now guard the annotation.
+
+- [#733](https://github.com/derodero24/react-web3-icons/pull/733) [`a3353fc`](https://github.com/derodero24/react-web3-icons/commit/a3353fcbc8ea7ccd3ccdc258c7b87a0d793bc6bf) Thanks [@derodero24](https://github.com/derodero24)! - Internal architecture: icons are now generated from an SVG-first source tree (`icons/`) instead of hand-written TSX. Rendered output is verified byte-identical (all snapshots unchanged), so nothing changes for consumers — except the static files under `react-web3-icons/svg/*`, which now ship with clean, stable internal ids instead of render-generated ones.
+
 ## 3.2.0
 
 ### Minor Changes
