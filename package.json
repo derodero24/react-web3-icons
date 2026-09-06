@@ -151,7 +151,7 @@
     "generate-icons": "node scripts/build-icons/cli.mjs"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.3",
+    "@biomejs/biome": "2.5.12",
     "@changesets/changelog-github": "^0.7.0",
     "@changesets/cli": "^2.29.8",
     "@commitlint/cli": "^20.4.4",
