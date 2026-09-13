@@ -135,6 +135,18 @@ interface UnitMeta {
   name: string;
   aliases?: string[];
   variants?: Record<string, unknown>;
+  localAliases?: { name: string; target: string; deprecated?: boolean }[];
+}
+
+/** Same variant derivation as scripts/generate-manifest.mjs. */
+function expectedVariants(unit: UnitMeta | undefined): string[] {
+  if (!unit) {
+    return [];
+  }
+  const aliasSuffixes = (unit.localAliases ?? [])
+    .filter(a => !a.deprecated && a.name.startsWith(unit.name))
+    .map(a => a.name.slice(unit.name.length));
+  return [...aliasSuffixes, ...Object.keys(unit.variants ?? {})];
 }
 
 async function loadIconUnits(): Promise<Map<string, UnitMeta>> {
@@ -156,6 +168,20 @@ async function loadIconUnits(): Promise<Map<string, UnitMeta>> {
   return unitByKey;
 }
 
+/** Variant suffixes whose `name + suffix` is not a component export. */
+function missingVariantExports(
+  entry: IconManifestEntry,
+  variants: readonly string[],
+): string[] {
+  const mod = CATEGORY_MODULES[entry.category] as Record<string, unknown>;
+  return variants.filter(suffix => {
+    const exported = mod[entry.name + suffix] as
+      | { $$typeof?: symbol }
+      | undefined;
+    return exported?.$$typeof !== FORWARD_REF;
+  });
+}
+
 describe('Icon manifest sync', () => {
   // Fails when icons, meta maps, or deprecations change without running:
   //   pnpm run build && pnpm run generate-manifest
@@ -169,8 +195,12 @@ describe('Icon manifest sync', () => {
       const unit = unitByKey.get(`${entry.category}/${entry.name}`);
       if (entry.variants) {
         expect(entry.variants, `${entry.name} variants`).toEqual(
-          Object.keys(unit?.variants ?? {}),
+          expectedVariants(unit),
         );
+        expect(
+          missingVariantExports(entry, entry.variants),
+          `${entry.name} variants must all be exports`,
+        ).toEqual([]);
       }
       if (entry.aliases) {
         expect(entry.aliases, `${entry.name} aliases`).toEqual(
