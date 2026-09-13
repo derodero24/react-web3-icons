@@ -3,7 +3,6 @@ rules:
   unpinned-uses:
     config:
       policies:
-        # Interim policy: require at least a ref (tag) pin everywhere.
-        # Tighten "*" to hash-pin once Renovate's pinGitHubActionDigests
-        # preset (renovate.json) has pinned all actions to commit SHAs.
-        '*': ref-pin
+        # Every action must be pinned to a full commit SHA. Renovate's
+        # pinGitHubActionDigests preset (renovate.json) keeps the digests fresh.
+        '*': hash-pin
