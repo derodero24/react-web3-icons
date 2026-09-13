@@ -74,10 +74,15 @@ function toIconifyIcon(svgText, iconName, mono) {
     namespaceIds(root, iconName, ids);
   }
   let body = root.children.map(child => serializeSvg(child)).join('');
-  if (mono) {
-    // Our mono SVGs rely on a root fill="currentColor"; Iconify keeps only
-    // the body, so re-establish inheritance with a wrapping group.
-    body = `<g fill="currentColor">${body}</g>`;
+  // Iconify keeps only the body, but many sources declare their fill on the
+  // root <svg> (brand colour, currentColor, or none for stroke-only art) and
+  // let the shapes inherit it. Re-establish that inheritance with a group.
+  // Mono icons without an explicit root fill still default to currentColor.
+  const rootFill =
+    root.attrs.find(([k]) => k === 'fill')?.[1] ??
+    (mono ? 'currentColor' : undefined);
+  if (rootFill !== undefined) {
+    body = `<g fill="${rootFill}">${body}</g>`;
   }
   const icon = { body, width, height };
   if (left !== 0) {
