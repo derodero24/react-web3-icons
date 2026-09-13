@@ -33,19 +33,20 @@ describe('Per-icon dynamic import maps', () => {
   // Guards against icons added without regenerating the maps
   // (pnpm run generate-icons) — a missing entry would make the dynamic
   // component silently render its fallback.
-  it.each(
-    CASES,
-  )('%s map covers every exported icon component', (_name, mod, imports) => {
-    const componentNames = Object.entries(mod)
-      .filter(
-        ([, v]) =>
-          (v as { $$typeof?: symbol } | null)?.$$typeof === FORWARD_REF,
-      )
-      .map(([n]) => n)
-      .sort();
-    const mapped = Object.keys(imports).sort();
-    expect(mapped).toEqual(componentNames);
-  });
+  it.each(CASES)(
+    '%s map covers every exported icon component',
+    (_name, mod, imports) => {
+      const componentNames = Object.entries(mod)
+        .filter(
+          ([, v]) =>
+            (v as { $$typeof?: symbol } | null)?.$$typeof === FORWARD_REF,
+        )
+        .map(([n]) => n)
+        .sort();
+      const mapped = Object.keys(imports).sort();
+      expect(mapped).toEqual(componentNames);
+    },
+  );
 
   it('map entries load the module that exports the icon', async () => {
     // biome-ignore lint/complexity/useLiteralKeys: map has an index signature, TS requires bracket access

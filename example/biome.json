@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.13/schema.json",
   "root": false,
   "files": {
     "includes": ["src/**"]
@@ -36,13 +36,14 @@
       "tailwind": "recommended"
     },
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
       "correctness": {
         "noUnusedImports": "warn",
         "noUnusedVariables": "warn",
         "noUnusedFunctionParameters": "warn"
       },
       "complexity": {
+        "noImportantStyles": "off",
         "useLiteralKeys": "off"
       },
       "performance": {
