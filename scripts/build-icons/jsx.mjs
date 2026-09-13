@@ -2,7 +2,7 @@
  * SVG AST → createIcon TSX emitter.
  *
  * The emitted component must render byte-identically to the source SVG
- * (modulo the `useId`-based prefix on internal ids), which the generator's
+ * (modulo the per-icon `w3i-` prefix on internal ids), which the generator's
  * verification step and the snapshot test suite both enforce.
  */
 
