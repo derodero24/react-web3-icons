@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import { ICON_MANIFEST } from 'react-web3-icons/manifest';
 import CodeBlock from '../../components/elements/CodeBlock';
 
 export const metadata: Metadata = {
@@ -76,6 +77,13 @@ const COMPETITORS = [
 ] as const;
 
 type CompetitorKey = (typeof COMPETITORS)[number]['key'];
+
+// Derived from the manifest so the compare page cannot drift from the package:
+// distinct artwork units (base entries) and total non-deprecated exports.
+const ICON_UNIT_COUNT = ICON_MANIFEST.filter(
+  e => e.variants && !e.deprecated,
+).length;
+const EXPORT_COUNT = ICON_MANIFEST.filter(e => !e.deprecated).length;
 
 const COMPARISON_ROWS: {
   feature: string;
@@ -205,7 +213,7 @@ const COMPARISON_ROWS: {
       'cryptocurrency-icons': <CheckIcon />,
       ledger: <CrossIcon />,
     },
-    note: 'react-web3-icons/iconify.json (web3, web3-mono); competitors: token, cryptocurrency',
+    note: 'iconify.json (web3) + iconify-mono.json (web3-mono); competitors: token, cryptocurrency',
   },
   {
     feature: 'Icon metadata catalog',
@@ -248,7 +256,11 @@ const COMPARISON_ROWS: {
   },
   {
     feature: 'Icon count',
-    ours: <span className="text-sm text-fg/70">270+</span>,
+    ours: (
+      <span className="text-sm text-fg/70">
+        {ICON_UNIT_COUNT} ({EXPORT_COUNT} exports)
+      </span>
+    ),
     competitors: {
       web3icons: <span className="text-sm text-fg/70">2,500+</span>,
       'cryptocurrency-icons': <span className="text-sm text-fg/70">~500</span>,
