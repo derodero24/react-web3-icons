@@ -283,8 +283,9 @@ artifacts are the SVG files and the unit JSON. The exception is the handful of
 `"kind": "custom"` units (`Avalanche`, `Bybit`, `RainbowWallet`): their TSX is
 hand-maintained and skipped by the TSX generator, but their SVGs in `icons/`
 are still real inputs — the build copies them into `dist/svg` and the Iconify
-collections, and the sync tests compare them against the TSX — so keep both in
-step.
+collections. `test/icons-sync.test.ts` only checks that every declared variant
+is exported from the TSX, not that the geometry matches, so when you touch a
+custom unit update the SVG and the TSX together and verify them visually.
 
 ### 1. Source the SVG
 
