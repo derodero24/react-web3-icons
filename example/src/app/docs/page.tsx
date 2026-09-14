@@ -433,15 +433,17 @@ export default function Page() {
                 currentColor) work with Iconify&apos;s React, Vue, Svelte, and
                 Web Component packages and with unplugin-icons:
               </p>
+              <CodeBlock>{`npm install @iconify/react`}</CodeBlock>
               <CodeBlock>{`import { addCollection, Icon } from '@iconify/react';
 import web3Icons from 'react-web3-icons/iconify.json';
 
 addCollection(web3Icons);
 <Icon icon="web3:chain-ethereum" />;`}</CodeBlock>
               <p className="mt-4 mb-3 text-sm text-fg/60">
-                The manifest is a flat catalog of every export — name, category,
-                chain ID / slug / ticker, variants, aliases, and brand color —
-                for icon pickers and search indexes:
+                The manifest is a flat catalog of every export (name, category,
+                and any registered chain ID / slug / ticker); base entries of
+                each artwork unit also carry variants, search aliases, and the
+                brand color. Built for icon pickers and search indexes:
               </p>
               <CodeBlock>{`import { ICON_MANIFEST } from 'react-web3-icons/manifest';
 
