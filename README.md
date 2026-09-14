@@ -24,7 +24,7 @@ A comprehensive React SVG icon library for Web3 — blockchains, wallets, DEXs, 
 
 ## Features
 
-- 270+ icons across 16 categories
+- 230+ icons (700+ component exports including mono and container variants) across 16 categories
 - Colored and monochrome variants for every icon
 - Server Components ready — no hooks, renders without `'use client'`
 - Tree-shakeable — only import what you use (`sideEffects: false`)
