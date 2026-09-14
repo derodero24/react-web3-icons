@@ -279,7 +279,10 @@ When adding a new icon, follow this workflow:
 ```
 
 Everything under `src/<category>/` is generated from `icons/`; the only manual
-artifacts are the SVG files and the unit JSON.
+artifacts are the SVG files and the unit JSON. The exception is the handful of
+`"kind": "custom"` units (`Avalanche`, `Bybit`, `RainbowWallet`): their TSX is
+hand-maintained and skipped by the generator, and their SVGs in `icons/` are
+kept only as the reference the sync tests compare against.
 
 ### 1. Source the SVG
 
@@ -287,11 +290,14 @@ Download from the project's official brand kit, GitHub repository, or press page
 
 ### Source Attribution (Required)
 
-Every unit records where its artwork came from in the `source` array of
+Every new unit records where its artwork came from in the `source` array of
 `icons/<category>/<slug>.json` (pass `--source` to `pnpm run new-icon`, or edit
-the JSON). The generator emits it as a `// Source:` comment right after the
-imports in the generated `.tsx`, so `grep -r "// Source:" src/` still works for
-audits. Never edit that comment by hand — change the JSON and regenerate.
+the JSON). For generated units the generator emits it as a `// Source:` comment
+right after the imports in the `.tsx`, so `grep -r "// Source:" src/` still
+works for audits — never edit that comment by hand; change the JSON and
+regenerate. For `"kind": "custom"` units, keep the `// Source:` comment in the
+hand-written TSX yourself. A few older units predate the `source` field; add it
+when you touch them.
 
 ```json
 {
@@ -429,8 +435,8 @@ Run the example app and verify:
 
 - **Use `viewBox`** instead of fixed `width`/`height` in the SVG source. The component sets `width="1em"` and `height="1em"` as defaults.
 - **Avoid `<style>` tags** inside SVGs. Use inline `style` props or direct fill/stroke attributes instead.
-- **Static IDs are fine in the SVG source** (`id="mtc-a"`). The generator rewrites them to `${_id}-mtc-a` (`_id` = `w3i-<lowercased component name>`), so multiple icons on a page never collide.
-- **For large files** with multiple variants sharing the same paths, extract repeated `d` attribute values into constants at the top of the file.
+- **Static IDs are fine in the SVG source** (`id="mtc-a"`). The generator rewrites them to `${_id}-mtc-a` (`_id` = `w3i-<lowercased component name>`), so different icons on the same page never collide. Rendering the same component twice repeats its ids with identical definitions, which is a documented trade-off of the deterministic prefix (see `createIcon`) and does not affect rendering.
+- **Repeated geometry belongs in the SVG source**, not in the TSX. Variants that share a mark keep one copy per SVG file; document the shared transform in the unit's `notes` so the copies can be kept in sync. Do not hand-edit generated `.tsx` files to extract constants.
 
 ## Running the Example App
 

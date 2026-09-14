@@ -7,7 +7,7 @@ export default {
       params: {
         overrides: {
           // Keep IDs — used by <mask>, <linearGradient>, <clipPath>, <filter>
-          // (IDs are converted to dynamic useId()-based IDs during component creation)
+          // (the icon generator namespaces them per component as `${_id}-…`)
           cleanupIds: false,
 
           // Don't merge paths — destroys multi-colored brand designs
