@@ -99,8 +99,10 @@ icons/chain/ethereum.json         # metadata:
 - `name` is the canonical PascalCase export name; each variant key is an export
   suffix (`""` → `Ethereum`, `"Mono"` → `EthereumMono`, `"CircleMono"` → `EthereumCircleMono`).
 - Internal `id` attributes (masks, gradients, clip paths) can stay as plain
-  static ids in the SVG — the generator rewrites them to collision-free
-  `useId`-based ids automatically.
+  static IDs in the SVG (`id="ethc-a"`). The generator rewrites them to
+  `${_id}-ethc-a` in the TSX, where `_id` is the deterministic per-component
+  prefix `w3i-<lowercased name>` that `createIcon` passes to the render
+  function — so the DOM ends up with `w3i-ethereumcirclemono-ethc-a`.
 - The root element may only carry `xmlns`, `viewBox`, and `fill`. No fixed
   `width`/`height`, no `<style>` tags, no text content.
 - `deprecated` (map of export name → message) marks deprecated artwork exports.
@@ -131,11 +133,19 @@ generator emits `/** @deprecated … */ export const Old = New;` (see
 
 ```sh
 pnpm run generate-icons     # icons/ → src/<category>/ (+ lock file)
-pnpm run build              # dist + static SVGs + manifest.json
-pnpm run generate-manifest  # refresh src/manifest after icon changes
+pnpm run build              # dist + static SVGs + Iconify JSON + manifest.json
+pnpm run generate-manifest  # refresh src/manifest from the built dist
+pnpm run build              # optional: refresh dist/manifest.json from the new src/manifest
 ```
 
-`test/icons-sync.test.ts` fails CI whenever `icons/` and `src/` drift, and the
+`generate-manifest` reads the built `dist/` and rewrites `src/manifest/index.ts`,
+so `dist/manifest.json` is one step behind until the next `pnpm run build`.
+That is fine for day-to-day work (tests import `src/`), and publishing always
+rebuilds (`prepublishOnly`); the final `build` above is only needed when you
+want to inspect `dist/manifest.json` locally.
+
+`test/icons-sync.test.ts` fails CI whenever `icons/` and `src/` drift,
+`test/manifest-sync.test.ts` does the same for the manifest, and the
 snapshot/visual suites verify rendered output.
 
 ## Icon Variant Naming Convention
@@ -265,8 +275,17 @@ For intentional breaking renames in a major release, document the exception in t
 When adding a new icon, follow this workflow:
 
 ```text
-1. Download official SVG  →  2. Optimize with SVGO  →  3. Convert to React component  →  4. Manual refinement  →  5. Visual QA
+1. Source the SVG  →  2. Scaffold (SVGO + icons/ + generated TSX)  →  3. Add variants  →  4. Review the generated output  →  5. Visual QA
 ```
+
+Everything under `src/<category>/` is generated from `icons/`; the only manual
+artifacts are the SVG files and the unit JSON. The exception is the handful of
+`"kind": "custom"` units (`Avalanche`, `Bybit`, `RainbowWallet`): their TSX is
+hand-maintained and skipped by the TSX generator, but their SVGs in `icons/`
+are still real inputs — the build copies them into `dist/svg` and the Iconify
+collections. `test/icons-sync.test.ts` only checks that every declared variant
+is exported from the TSX, not that the geometry matches, so when you touch a
+custom unit update the SVG and the TSX together and verify them visually.
 
 ### 1. Source the SVG
 
@@ -274,24 +293,32 @@ Download from the project's official brand kit, GitHub repository, or press page
 
 ### Source Attribution (Required)
 
-Every icon `.tsx` file must include a `// Source:` comment as the **first line after `import` statements**, documenting where the SVG path data originated. This survives the PR merge and makes future audits possible with `grep -r "// Source:" src/`.
+Every new unit records where its artwork came from in the `source` array of
+`icons/<category>/<slug>.json` (pass `--source` to `pnpm run new-icon`, or edit
+the JSON). For generated units the generator emits it as a `// Source:` comment
+right after the imports in the `.tsx`, so `grep -r "// Source:" src/` still
+works for audits — never edit that comment by hand; change the JSON and
+regenerate. For `"kind": "custom"` units, keep the `// Source:` comment in the
+hand-written TSX yourself. A few older units predate the `source` field; add it
+when you touch them.
 
-```tsx
-import { createIcon } from '../utils';
-
-// Source: <reference>
-
-export const MyToken = createIcon(...)
+```json
+{
+  "name": "MyToken",
+  "source": ["https://github.com/org/repo/blob/main/logo.svg"],
+  "kind": "icon",
+  "variants": { "": { "file": "my-token.svg" } }
+}
 ```
 
-| Case | Example |
+| Case | Example `source` entry |
 | --- | --- |
-| Official SVG URL | `// Source: https://github.com/org/repo/blob/main/logo.svg` |
-| Brand asset page (no direct URL) | `// Source: https://brand.uniswap.org (official brand kit)` |
-| Third-party package (with license) | `// Source: @web3icons/react (MIT) — OSMO token SVG` |
-| App/favicon asset | `// Source: https://app.eigenlayer.xyz/logo/markLightA.svg` |
-| Hand-crafted / no public source | `// Source: hand-crafted — no public SVG; traced from https://...` |
-| Re-export (no own SVG paths) | `// Source: re-export of Bitcoin — see src/chain/Bitcoin.tsx` |
+| Official SVG URL | `https://github.com/org/repo/blob/main/logo.svg` |
+| Brand asset page (no direct URL) | `https://brand.uniswap.org (official brand kit)` |
+| Third-party package (with license) | `@web3icons/react (MIT) — OSMO token SVG` |
+| App/favicon asset | `https://app.eigenlayer.xyz/logo/markLightA.svg` |
+| Hand-crafted / no public source | `hand-crafted — no public SVG; traced from https://...` |
+| Re-export / alias unit (no own artwork) | `re-export of Bitcoin — see src/chain/Bitcoin.tsx` |
 
 ### Icon Authenticity Policy (Required)
 
@@ -304,10 +331,9 @@ To protect icon quality and brand fidelity, all icon additions/updates must foll
 
 Allowed transformations:
 
-- SVGO optimization using this repository's `svgo.config.js`
-- JSX conversion and React component wrapping (`createIcon`)
-- Dynamic ID wiring (`_id`) for gradients/masks/clip paths
-- Readability refactors (extracting repeated path constants, formatting)
+- SVGO optimization using this repository's `svgo.config.js` (done by `pnpm run new-icon`, or manually with `pnpm run optimize:svg`)
+- Root-element normalization to `xmlns`, `viewBox`, and an optional `fill` (done by `pnpm run new-icon`)
+- Internal id namespacing and JSX conversion, both performed by the generator
 - Optional mono variants using `currentColor`
 
 Prohibited transformations:
@@ -317,75 +343,75 @@ Prohibited transformations:
 - Mixing logo elements from different logo versions/brands
 - "Stylizing" official marks to make them look different from the source
 
-### 2. Optimize with SVGO
-
-Run the bundled SVGO configuration against the raw SVG:
+### 2. Scaffold the unit
 
 ```sh
-pnpm run optimize:svg path/to/icon.svg
+pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.svg \
+  --source <official URL> [--mono path/to/icon.mono.svg]
 ```
 
-This removes metadata, strips fixed dimensions, and cleans up the markup while preserving brand colors, IDs, and multi-colored paths.
+`--source` is technically optional for the script, but omitting it leaves the
+unit without the required attribution (and the generated TSX without its
+`// Source:` comment), so always pass it or add `source` to the JSON before
+regenerating.
 
-You can also optimize a directory of SVGs:
+This runs SVGO with the bundled configuration (removes metadata, strips fixed
+dimensions, keeps brand colors, ids, and multi-colored paths), normalizes the
+root element, writes `icons/<category>/<slug>.svg` (+ `.mono.svg`) and
+`<slug>.json`, and regenerates `src/<category>/`. Follow the printed next steps
+(meta maps, manifest, changeset).
+
+To optimize an SVG without scaffolding a unit:
 
 ```sh
-pnpm run optimize:svg -r path/to/svgs/
+pnpm run optimize:svg path/to/icon.svg      # one file
+pnpm run optimize:svg -r path/to/svgs/      # a directory
 ```
 
-### 3. Convert to a React Component
+### 3. Add variants
 
-Create a `.tsx` file in the appropriate category directory and wrap the optimized SVG content using `createIcon`:
+Each key in the unit's `variants` map is an export suffix backed by one SVG
+file. For generated (`"kind": "icon"`) units, mono variants set
+`"fill": "currentColor"` (or `"none"` for stroke-only artwork) and that value
+becomes the default `fill` on the rendered `<svg>`; custom units handle it in
+their hand-written TSX.
 
-```tsx
-import { createIcon } from '../utils';
+#### Circle / Square Variants
 
-export const MyToken = createIcon('MyToken', '0 0 24 24', () => (
-  <path d="..." fill="#..." />
-));
+To add a Circle (or Square) variant, create 64×64 SVG files with a branded
+background and the mark scaled to ~72% fill, then register them:
 
-export const MyTokenMono = createIcon(
-  'MyTokenMono',
-  '0 0 24 24',
-  () => <path d="..." />,
-  'currentColor',
-);
+`icons/chain/my-token.circle.svg` (no XML comments — the pipeline's SVG parser
+rejects them):
+
+```xml
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle cx="32" cy="32" r="32" fill="#brandColor"/>
+  <path transform="translate(9 9) scale(1.917)" d="M10 2 L20 22 ..." fill="#fff"/>
+</svg>
 ```
 
-### Circle / Square Variants
+`icons/chain/my-token.circle-mono.svg`:
 
-To add a Circle (or Square) variant, create a 64×64 icon with a branded background and the symbol scaled to ~72% fill:
+```xml
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor">
+  <circle cx="32" cy="32" r="32" mask="url(#mtc-a)"/>
+  <defs>
+    <mask id="mtc-a">
+      <rect width="100%" height="100%" fill="#fff"/>
+      <path transform="translate(9 9) scale(1.917)" d="M10 2 L20 22 ..." fill="#000"/>
+    </mask>
+  </defs>
+</svg>
+```
 
-```tsx
-// Extract shared path constant (reused by base, Mono, Circle, CircleMono)
-const MY_TOKEN_MARK = 'M10 2 L20 22 ...';
-
-// Scale + center: target ~46px mark inside 64px circle
-const MY_TOKEN_CIRCLE_TX = 'translate(9 9) scale(1.917)';
-
-export const MyTokenCircle = createIcon('MyTokenCircle', '0 0 64 64', () => (
-  <>
-    <circle cx="32" cy="32" r="32" fill="#brandColor" />
-    <path transform={MY_TOKEN_CIRCLE_TX} d={MY_TOKEN_MARK} fill="#fff" />
-  </>
-));
-
-export const MyTokenCircleMono = createIcon(
-  'MyTokenCircleMono',
-  '0 0 64 64',
-  _id => (
-    <>
-      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-mtc-a)`} />
-      <defs>
-        <mask id={`${_id}-mtc-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
-          <path transform={MY_TOKEN_CIRCLE_TX} d={MY_TOKEN_MARK} fill="#000" />
-        </mask>
-      </defs>
-    </>
-  ),
-  'currentColor',
-);
+```json
+"variants": {
+  "": { "file": "my-token.svg" },
+  "Mono": { "file": "my-token.mono.svg", "fill": "currentColor" },
+  "Circle": { "file": "my-token.circle.svg" },
+  "CircleMono": { "file": "my-token.circle-mono.svg", "fill": "currentColor" }
+}
 ```
 
 Key points:
@@ -394,15 +420,20 @@ Key points:
 - Colored variant: brand color background + white icon mark
 - Mono variant: `currentColor` circle + mask that punches out the icon mark
 - For icons with gradients, **pre-compute** gradient coordinates in the 64×64 space — do **not** use `gradientTransform`
-- Always extract shared path constants to avoid duplication
+- Short static IDs (`mtc-a`) are fine; the generator namespaces them per icon
+- Record the scale/translate math in the unit's `notes` array (see `icons/chain/ethereum.json`) so the next person can reproduce it
 
-### 4. Manual Refinement
+### 4. Review the generated output
 
-After the initial conversion, check for:
+After `pnpm run generate-icons`, open `src/<category>/<Name>.tsx` and check:
 
-- **SVG IDs** (`<mask>`, `<linearGradient>`, `<clipPath>`, `<filter>`): Replace static IDs with dynamic ones using the `_id` parameter from `createIcon`'s render callback (e.g., `id={`${\_id}-mytoken-a`}`)
-- **Shared path data**: Extract repeated `d` attribute values into constants at the top of the file
-- **Mono variants**: Ensure `fill="none"` is present on stroke-only elements, and remove hardcoded colors that should inherit `currentColor`
+- The `// Source:` comment and the `/* @__PURE__ */` annotation are present (both emitted by the generator; `test/pure-annotations.test.ts` enforces the latter)
+- Internal IDs were rewritten to `${_id}-…` references (rendered as `w3i-<name>-…`, see "Anatomy of an icon unit") and every `url(#…)` / `href="#…"` still resolves
+- Mono variants: stroke-only elements carry `fill="none"` and no hardcoded color remains where `currentColor` should be inherited
+
+Fix problems in the SVG source (or the JSON) and regenerate — never edit the
+generated `.tsx`; `test/icons-sync.test.ts` fails when `icons/` and `src/`
+drift.
 
 ### 5. Visual QA
 
@@ -417,8 +448,8 @@ Run the example app and verify:
 
 - **Use `viewBox`** instead of fixed `width`/`height` in the SVG source. The component sets `width="1em"` and `height="1em"` as defaults.
 - **Avoid `<style>` tags** inside SVGs. Use inline `style` props or direct fill/stroke attributes instead.
-- **Use dynamic IDs** via the `_id` parameter from `createIcon` to prevent collisions when multiple icons render on the same page.
-- **For large files** with multiple variants sharing the same paths, extract repeated `d` attribute values into constants at the top of the file.
+- **Static IDs are fine in the SVG source** (`id="mtc-a"`). The generator rewrites them to `${_id}-mtc-a` (`_id` = `w3i-<lowercased component name>`), so different icons on the same page never collide. Rendering the same component twice repeats its ids with identical definitions, which is a documented trade-off of the deterministic prefix (see `createIcon`) and does not affect rendering.
+- **Repeated geometry belongs in the SVG source**, not in the TSX. Variants that share a mark keep one copy per SVG file; document the shared transform in the unit's `notes` so the copies can be kept in sync. Do not hand-edit generated `.tsx` files to extract constants.
 
 ## Running the Example App
 
