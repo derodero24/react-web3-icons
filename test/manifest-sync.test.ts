@@ -1,3 +1,5 @@
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import * as bridge from '../src/bridge';
 import * as chain from '../src/chain';
@@ -134,12 +136,58 @@ function baseProjection(entry: IconManifestEntry): IconManifestEntry {
 interface UnitMeta {
   name: string;
   aliases?: string[];
-  variants?: Record<string, unknown>;
+  variants?: Record<string, { file: string }>;
+  localAliases?: { name: string; target: string; deprecated?: boolean }[];
+  /** Directory the unit was loaded from (set by loadIconUnits). */
+  dir?: string;
 }
 
-async function loadIconUnits(): Promise<Map<string, UnitMeta>> {
-  const { readdirSync, readFileSync } = await import('node:fs');
-  const { join } = await import('node:path');
+/**
+ * True when the unit's colored default artwork (the `""` variant, or the
+ * variant behind a `""` local alias) declares at least one hex colour, i.e.
+ * when the generator must have been able to derive a `brandColor`.
+ */
+function defaultArtworkHasHexColor(unit: UnitMeta): boolean {
+  const variants = unit.variants ?? {};
+  const aliasTarget = (unit.localAliases ?? []).find(
+    a => !a.deprecated && a.name === unit.name,
+  )?.target;
+  const suffix =
+    '' in variants
+      ? ''
+      : aliasTarget?.startsWith(unit.name)
+        ? aliasTarget.slice(unit.name.length)
+        : undefined;
+  const file = suffix === undefined ? undefined : variants[suffix]?.file;
+  if (!(file && unit.dir)) {
+    return false;
+  }
+  const svg = readFileSync(join(unit.dir, file), 'utf-8');
+  // Mirror the generator: white (#fff / #ffffff) never counts as a brand colour.
+  return [...svg.matchAll(/(?:fill|stroke|stop-color)="(#[0-9a-fA-F]{3,8})"/g)]
+    .map(m => m[1]?.toLowerCase() ?? '')
+    .some(hex => !/^#(?:fff|ffffff)(?:[0-9a-f]{2})?$/.test(hex));
+}
+
+/** Same variant derivation as scripts/generate-manifest.mjs. */
+function expectedVariants(unit: UnitMeta | undefined): string[] {
+  if (!unit) {
+    return [];
+  }
+  const variants = unit.variants ?? {};
+  const aliasSuffixes = (unit.localAliases ?? [])
+    .filter(
+      a =>
+        !a.deprecated &&
+        a.name.startsWith(unit.name) &&
+        a.target.startsWith(unit.name) &&
+        a.target.slice(unit.name.length) in variants,
+    )
+    .map(a => a.name.slice(unit.name.length));
+  return [...aliasSuffixes, ...Object.keys(variants)];
+}
+
+function loadIconUnits(): Map<string, UnitMeta> {
   const iconsDir = join(import.meta.dirname, '../icons');
   const unitByKey = new Map<string, UnitMeta>();
   for (const category of readdirSync(iconsDir)) {
@@ -150,10 +198,41 @@ async function loadIconUnits(): Promise<Map<string, UnitMeta>> {
       const meta = JSON.parse(
         readFileSync(join(iconsDir, category, file), 'utf-8'),
       ) as UnitMeta;
+      meta.dir = join(iconsDir, category);
       unitByKey.set(`${category}/${meta.name}`, meta);
     }
   }
   return unitByKey;
+}
+
+/** Variant suffixes whose `name + suffix` is not a component export. */
+function missingVariantExports(
+  entry: IconManifestEntry,
+  variants: readonly string[],
+): string[] {
+  const mod = CATEGORY_MODULES[entry.category] as Record<string, unknown>;
+  return variants.filter(suffix => {
+    const exported = mod[entry.name + suffix] as
+      | { $$typeof?: symbol }
+      | undefined;
+    return exported?.$$typeof !== FORWARD_REF;
+  });
+}
+
+/** Why an entry's `brandColor` is wrong, or undefined when it is fine. */
+function brandColorProblem(
+  entry: IconManifestEntry,
+  unit: UnitMeta | undefined,
+): string | undefined {
+  if (entry.brandColor) {
+    return /^#[0-9a-f]{6}$/.test(entry.brandColor)
+      ? undefined
+      : `brandColor ${entry.brandColor} is not #rrggbb`;
+  }
+  if (entry.variants && unit && defaultArtworkHasHexColor(unit)) {
+    return 'default artwork declares hex colours but no brandColor was derived';
+  }
+  return undefined;
 }
 
 describe('Icon manifest sync', () => {
@@ -163,25 +242,27 @@ describe('Icon manifest sync', () => {
     expect(ICON_MANIFEST.map(baseProjection)).toEqual(deriveExpected());
   });
 
-  it('enrichment fields match the icons/ unit definitions', async () => {
-    const unitByKey = await loadIconUnits();
+  it('enrichment fields match the icons/ unit definitions', () => {
+    const unitByKey = loadIconUnits();
     for (const entry of ICON_MANIFEST) {
       const unit = unitByKey.get(`${entry.category}/${entry.name}`);
-      if (entry.variants) {
-        expect(entry.variants, `${entry.name} variants`).toEqual(
-          Object.keys(unit?.variants ?? {}),
+      // Guard on the unit too, so a manifest entry that dropped `variants`
+      // entirely fails instead of being skipped.
+      if (unit?.variants || entry.variants) {
+        expect(entry.variants ?? [], `${entry.name} variants`).toEqual(
+          expectedVariants(unit),
         );
+        expect(
+          missingVariantExports(entry, entry.variants ?? []),
+          `${entry.name} variants must all be exports`,
+        ).toEqual([]);
       }
       if (entry.aliases) {
         expect(entry.aliases, `${entry.name} aliases`).toEqual(
           unit?.aliases ?? [],
         );
       }
-      if (entry.brandColor) {
-        expect(entry.brandColor, `${entry.name} brandColor`).toMatch(
-          /^#[0-9a-f]{6}$/,
-        );
-      }
+      expect(brandColorProblem(entry, unit), entry.name).toBeUndefined();
     }
   });
 

@@ -49,12 +49,14 @@ async function importDist(subpath) {
 }
 
 /**
- * Dominant brand color of a colored SVG: the most frequent fill/stop-color
- * hex value, ignoring white and non-color values.
+ * Dominant brand color of a colored SVG: the most frequent fill/stroke/
+ * stop-color hex value, ignoring white and non-color values.
  */
 function extractBrandColor(svgText) {
   const counts = new Map();
-  for (const match of svgText.matchAll(/(?:fill|stop-color)="(#[0-9a-fA-F]{3,8})"/g)) {
+  for (const match of svgText.matchAll(
+    /(?:fill|stroke|stop-color)="(#[0-9a-fA-F]{3,8})"/g,
+  )) {
     let hex = match[1].toLowerCase();
     if (hex.length === 4) {
       hex = `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
@@ -76,6 +78,28 @@ function extractBrandColor(svgText) {
   return best;
 }
 
+/**
+ * Non-deprecated `localAliases` entries that point at one of the unit's own
+ * variants, i.e. extra export suffixes of the unit (`TrustWallet` →
+ * `TrustWalletSquare` yields `''`).
+ */
+function localAliasVariants(meta) {
+  return (meta.localAliases ?? []).flatMap(alias => {
+    if (
+      alias.deprecated ||
+      !alias.name.startsWith(meta.name) ||
+      !alias.target.startsWith(meta.name)
+    ) {
+      return [];
+    }
+    const target = meta.variants[alias.target.slice(meta.name.length)];
+    if (!target) {
+      return [];
+    }
+    return [{ suffix: alias.name.slice(meta.name.length), target }];
+  });
+}
+
 /** Loads per-unit enrichment (aliases, variants, brandColor) from icons/. */
 function loadUnitEnrichment() {
   const { readdirSync } = fsSync;
@@ -92,8 +116,17 @@ function loadUnitEnrichment() {
         enrichment.aliases = meta.aliases;
       }
       if (meta.variants) {
-        enrichment.variants = Object.keys(meta.variants);
-        const defaultVariant = meta.variants[''];
+        // Units may expose their default export through `localAliases`
+        // (e.g. TrustWallet → TrustWalletSquare) instead of a `""` variant;
+        // those aliases are variants of the unit as far as consumers go.
+        const aliasVariants = localAliasVariants(meta);
+        enrichment.variants = [
+          ...aliasVariants.map(v => v.suffix),
+          ...Object.keys(meta.variants),
+        ];
+        const defaultVariant =
+          meta.variants[''] ??
+          aliasVariants.find(v => v.suffix === '')?.target;
         if (defaultVariant) {
           const svg = readFileSync(resolve(dir, defaultVariant.file), 'utf-8');
           const brandColor = extractBrandColor(svg);
