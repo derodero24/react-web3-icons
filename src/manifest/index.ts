@@ -2182,6 +2182,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'trustwallet',
     variants: ['', 'Mono', 'Square', 'Circle', 'SquareMono', 'CircleMono'],
+    brandColor: '#0a64bc',
   },
   { name: 'TrustWalletCircle', category: 'wallet' },
   { name: 'TrustWalletCircleMono', category: 'wallet' },

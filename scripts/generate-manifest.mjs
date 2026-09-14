@@ -49,12 +49,14 @@ async function importDist(subpath) {
 }
 
 /**
- * Dominant brand color of a colored SVG: the most frequent fill/stop-color
- * hex value, ignoring white and non-color values.
+ * Dominant brand color of a colored SVG: the most frequent fill/stroke/
+ * stop-color hex value, ignoring white and non-color values.
  */
 function extractBrandColor(svgText) {
   const counts = new Map();
-  for (const match of svgText.matchAll(/(?:fill|stop-color)="(#[0-9a-fA-F]{3,8})"/g)) {
+  for (const match of svgText.matchAll(
+    /(?:fill|stroke|stop-color)="(#[0-9a-fA-F]{3,8})"/g,
+  )) {
     let hex = match[1].toLowerCase();
     if (hex.length === 4) {
       hex = `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
