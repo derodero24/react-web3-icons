@@ -14,12 +14,13 @@
 import { writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { CATEGORIES, loadCategory } from './lib.mjs';
-import { parseSvg, serializeSvg } from './xml.mjs';
+import { encodeAttr, parseSvg, serializeSvg } from './xml.mjs';
 
 const ROOT = resolve(import.meta.dirname, '../..');
 const ICONS = join(ROOT, 'icons');
 
-const kebab = name =>
+/** Iconify icon-name segment for a PascalCase export name. */
+export const kebab = name =>
   name
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
     .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
@@ -82,7 +83,7 @@ function toIconifyIcon(svgText, iconName, mono) {
     root.attrs.find(([k]) => k === 'fill')?.[1] ??
     (mono ? 'currentColor' : undefined);
   if (rootFill !== undefined) {
-    body = `<g fill="${rootFill}">${body}</g>`;
+    body = `<g fill="${encodeAttr(rootFill)}">${body}</g>`;
   }
   const icon = { body, width, height };
   if (left !== 0) {

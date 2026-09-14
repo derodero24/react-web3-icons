@@ -2,20 +2,14 @@ import { join } from 'node:path';
 import { quicklyValidateIconSet } from '@iconify/utils';
 import { describe, expect, it } from 'vitest';
 // @ts-expect-error — plain .mjs pipeline module without type declarations
-import { buildIconifySets } from '../scripts/build-icons/emit-iconify.mjs';
+import * as iconify from '../scripts/build-icons/emit-iconify.mjs';
 // @ts-expect-error — plain .mjs pipeline module without type declarations
 import { CATEGORIES, loadCategory } from '../scripts/build-icons/lib.mjs';
 import { ICON_MANIFEST } from '../src/manifest';
 
 const ICONS = join(import.meta.dirname, '../icons');
 
-const kebab = (name: string) =>
-  name
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
-    .toLowerCase();
-
-const sets = buildIconifySets() as {
+const sets = iconify.buildIconifySets() as {
   colored: Record<string, unknown> & {
     icons: Record<string, { body: string }>;
     aliases: Record<string, { parent: string }>;
@@ -60,7 +54,7 @@ function sourceRootFills(): {
           if (rootFill === undefined) {
             return [];
           }
-          const iconName = `${category}-${kebab(unit.meta.name + suffix)}`;
+          const iconName = `${category}-${(iconify.kebab as (n: string) => string)(unit.meta.name + suffix)}`;
           return [{ iconName, mono, rootFill }];
         }),
       ),
