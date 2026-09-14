@@ -143,10 +143,17 @@ function expectedVariants(unit: UnitMeta | undefined): string[] {
   if (!unit) {
     return [];
   }
+  const variants = unit.variants ?? {};
   const aliasSuffixes = (unit.localAliases ?? [])
-    .filter(a => !a.deprecated && a.name.startsWith(unit.name))
+    .filter(
+      a =>
+        !a.deprecated &&
+        a.name.startsWith(unit.name) &&
+        a.target.startsWith(unit.name) &&
+        a.target.slice(unit.name.length) in variants,
+    )
     .map(a => a.name.slice(unit.name.length));
-  return [...aliasSuffixes, ...Object.keys(unit.variants ?? {})];
+  return [...aliasSuffixes, ...Object.keys(variants)];
 }
 
 async function loadIconUnits(): Promise<Map<string, UnitMeta>> {

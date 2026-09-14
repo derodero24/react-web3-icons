@@ -76,13 +76,26 @@ function extractBrandColor(svgText) {
   return best;
 }
 
-/** Variant definition behind a `localAliases` entry named `exportName`, if any. */
-function resolveLocalAlias(meta, exportName) {
-  const alias = meta.localAliases?.find(a => a.name === exportName);
-  if (!alias || !alias.target.startsWith(meta.name)) {
-    return undefined;
-  }
-  return meta.variants[alias.target.slice(meta.name.length)];
+/**
+ * Non-deprecated `localAliases` entries that point at one of the unit's own
+ * variants, i.e. extra export suffixes of the unit (`TrustWallet` →
+ * `TrustWalletSquare` yields `''`).
+ */
+function localAliasVariants(meta) {
+  return (meta.localAliases ?? []).flatMap(alias => {
+    if (
+      alias.deprecated ||
+      !alias.name.startsWith(meta.name) ||
+      !alias.target.startsWith(meta.name)
+    ) {
+      return [];
+    }
+    const target = meta.variants[alias.target.slice(meta.name.length)];
+    if (!target) {
+      return [];
+    }
+    return [{ suffix: alias.name.slice(meta.name.length), target }];
+  });
 }
 
 /** Loads per-unit enrichment (aliases, variants, brandColor) from icons/. */
@@ -104,12 +117,14 @@ function loadUnitEnrichment() {
         // Units may expose their default export through `localAliases`
         // (e.g. TrustWallet → TrustWalletSquare) instead of a `""` variant;
         // those aliases are variants of the unit as far as consumers go.
-        const aliasSuffixes = (meta.localAliases ?? [])
-          .filter(a => !a.deprecated && a.name.startsWith(meta.name))
-          .map(a => a.name.slice(meta.name.length));
-        enrichment.variants = [...aliasSuffixes, ...Object.keys(meta.variants)];
+        const aliasVariants = localAliasVariants(meta);
+        enrichment.variants = [
+          ...aliasVariants.map(v => v.suffix),
+          ...Object.keys(meta.variants),
+        ];
         const defaultVariant =
-          meta.variants[''] ?? resolveLocalAlias(meta, meta.name);
+          meta.variants[''] ??
+          aliasVariants.find(v => v.suffix === '')?.target;
         if (defaultVariant) {
           const svg = readFileSync(resolve(dir, defaultVariant.file), 'utf-8');
           const brandColor = extractBrandColor(svg);
