@@ -281,8 +281,10 @@ When adding a new icon, follow this workflow:
 Everything under `src/<category>/` is generated from `icons/`; the only manual
 artifacts are the SVG files and the unit JSON. The exception is the handful of
 `"kind": "custom"` units (`Avalanche`, `Bybit`, `RainbowWallet`): their TSX is
-hand-maintained and skipped by the generator, and their SVGs in `icons/` are
-kept only as the reference the sync tests compare against.
+hand-maintained and skipped by the TSX generator, but their SVGs in `icons/`
+are still real inputs — the build copies them into `dist/svg` and the Iconify
+collections, and the sync tests compare them against the TSX — so keep both in
+step.
 
 ### 1. Source the SVG
 
@@ -344,8 +346,13 @@ Prohibited transformations:
 
 ```sh
 pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.svg \
-  [--mono path/to/icon.mono.svg] [--source <official URL>]
+  --source <official URL> [--mono path/to/icon.mono.svg]
 ```
+
+`--source` is technically optional for the script, but omitting it leaves the
+unit without the required attribution (and the generated TSX without its
+`// Source:` comment), so always pass it or add `source` to the JSON before
+regenerating.
 
 This runs SVGO with the bundled configuration (removes metadata, strips fixed
 dimensions, keeps brand colors, ids, and multi-colored paths), normalizes the
@@ -363,24 +370,29 @@ pnpm run optimize:svg -r path/to/svgs/      # a directory
 ### 3. Add variants
 
 Each key in the unit's `variants` map is an export suffix backed by one SVG
-file. Mono variants set `"fill": "currentColor"` (or `"none"` for stroke-only
-artwork); that value becomes the default `fill` on the rendered `<svg>`.
+file. For generated (`"kind": "icon"`) units, mono variants set
+`"fill": "currentColor"` (or `"none"` for stroke-only artwork) and that value
+becomes the default `fill` on the rendered `<svg>`; custom units handle it in
+their hand-written TSX.
 
 #### Circle / Square Variants
 
 To add a Circle (or Square) variant, create 64×64 SVG files with a branded
 background and the mark scaled to ~72% fill, then register them:
 
+`icons/chain/my-token.circle.svg` (no XML comments — the pipeline's SVG parser
+rejects them):
+
 ```xml
-<!-- icons/chain/my-token.circle.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <circle cx="32" cy="32" r="32" fill="#brandColor"/>
   <path transform="translate(9 9) scale(1.917)" d="M10 2 L20 22 ..." fill="#fff"/>
 </svg>
 ```
 
+`icons/chain/my-token.circle-mono.svg`:
+
 ```xml
-<!-- icons/chain/my-token.circle-mono.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor">
   <circle cx="32" cy="32" r="32" mask="url(#mtc-a)"/>
   <defs>
