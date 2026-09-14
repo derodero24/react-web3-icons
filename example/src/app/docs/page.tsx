@@ -31,6 +31,7 @@ const TOC_ITEMS = [
   { id: 'naming', label: 'Naming' },
   { id: 'deprecation', label: 'Deprecation' },
   { id: 'rsc', label: 'RSC' },
+  { id: 'distribution', label: 'Beyond React' },
   { id: 'typescript', label: 'TypeScript' },
 ] as const;
 
@@ -405,6 +406,49 @@ export default function Page() {
                 </code>
                 ) are client-only — they lazy-load icon chunks at runtime.
               </p>
+            </Section>
+
+            {/* Distribution formats */}
+            <Section id="distribution" title="Beyond React">
+              <p className="mb-3 text-sm text-fg/60">
+                The same icon set ships in three framework-agnostic forms. Raw
+                SVG files live under the{' '}
+                <code className="rounded bg-surface px-1 font-mono text-sm">
+                  svg/
+                </code>{' '}
+                subpath:
+              </p>
+              <CodeBlock>{`import ethereumSvgUrl from 'react-web3-icons/svg/chain/Ethereum.svg';
+// or on a CDN:
+// https://cdn.jsdelivr.net/npm/react-web3-icons/dist/svg/chain/Ethereum.svg`}</CodeBlock>
+              <p className="mt-4 mb-3 text-sm text-fg/60">
+                IconifyJSON collections (
+                <code className="rounded bg-surface px-1 font-mono text-sm">
+                  web3
+                </code>{' '}
+                colored,{' '}
+                <code className="rounded bg-surface px-1 font-mono text-sm">
+                  web3-mono
+                </code>{' '}
+                currentColor) work with Iconify&apos;s React, Vue, Svelte, and
+                Web Component packages and with unplugin-icons:
+              </p>
+              <CodeBlock>{`import { addCollection, Icon } from '@iconify/react';
+import web3Icons from 'react-web3-icons/iconify.json';
+
+addCollection(web3Icons);
+<Icon icon="web3:chain-ethereum" />;`}</CodeBlock>
+              <p className="mt-4 mb-3 text-sm text-fg/60">
+                The manifest is a flat catalog of every export — name, category,
+                chain ID / slug / ticker, variants, aliases, and brand color —
+                for icon pickers and search indexes:
+              </p>
+              <CodeBlock>{`import { ICON_MANIFEST } from 'react-web3-icons/manifest';
+
+const chains = ICON_MANIFEST.filter(
+  e => e.category === 'chain' && !e.deprecated && e.variants,
+);
+// [{ name: 'Ethereum', chainId: 1, slug: 'ethereum', variants: ['', 'Mono', …], brandColor: '#…' }, …]`}</CodeBlock>
             </Section>
 
             {/* TypeScript */}

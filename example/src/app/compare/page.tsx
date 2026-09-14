@@ -185,7 +185,37 @@ const COMPARISON_ROWS: {
       'cryptocurrency-icons': <CheckIcon />,
       ledger: <CrossIcon />,
     },
-    note: 'dist/svg/<category>/<Name>.svg',
+    note: 'react-web3-icons/svg/<category>/<Name>.svg',
+  },
+  {
+    feature: 'React Server Components',
+    ours: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CrossIcon />,
+    },
+    note: 'Static icons are hook-free; Ledger renders through a runtime hook',
+  },
+  {
+    feature: 'Iconify collection',
+    ours: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CheckIcon />,
+      ledger: <CrossIcon />,
+    },
+    note: 'react-web3-icons/iconify.json (web3, web3-mono); competitors: token, cryptocurrency',
+  },
+  {
+    feature: 'Icon metadata catalog',
+    ours: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CheckIcon />,
+      ledger: <CrossIcon />,
+    },
+    note: 'react-web3-icons/manifest (+ manifest.json); @web3icons/common, manifest.json',
   },
   {
     feature: 'Figma plugin',
@@ -218,7 +248,7 @@ const COMPARISON_ROWS: {
   },
   {
     feature: 'Icon count',
-    ours: <span className="text-sm text-fg/70">~250</span>,
+    ours: <span className="text-sm text-fg/70">270+</span>,
     competitors: {
       web3icons: <span className="text-sm text-fg/70">2,500+</span>,
       'cryptocurrency-icons': <span className="text-sm text-fg/70">~500</span>,
