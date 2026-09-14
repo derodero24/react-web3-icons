@@ -163,7 +163,10 @@ function defaultArtworkHasHexColor(unit: UnitMeta): boolean {
     return false;
   }
   const svg = readFileSync(join(unit.dir, file), 'utf-8');
-  return /(?:fill|stroke|stop-color)="#/.test(svg);
+  // Mirror the generator: white (#fff / #ffffff) never counts as a brand colour.
+  return [...svg.matchAll(/(?:fill|stroke|stop-color)="(#[0-9a-fA-F]{3,8})"/g)]
+    .map(m => m[1]?.toLowerCase() ?? '')
+    .some(hex => !/^#(?:fff|ffffff)(?:[0-9a-f]{2})?$/.test(hex));
 }
 
 /** Same variant derivation as scripts/generate-manifest.mjs. */
@@ -243,12 +246,14 @@ describe('Icon manifest sync', () => {
     const unitByKey = loadIconUnits();
     for (const entry of ICON_MANIFEST) {
       const unit = unitByKey.get(`${entry.category}/${entry.name}`);
-      if (entry.variants) {
-        expect(entry.variants, `${entry.name} variants`).toEqual(
+      // Guard on the unit too, so a manifest entry that dropped `variants`
+      // entirely fails instead of being skipped.
+      if (unit?.variants || entry.variants) {
+        expect(entry.variants ?? [], `${entry.name} variants`).toEqual(
           expectedVariants(unit),
         );
         expect(
-          missingVariantExports(entry, entry.variants),
+          missingVariantExports(entry, entry.variants ?? []),
           `${entry.name} variants must all be exports`,
         ).toEqual([]);
       }
