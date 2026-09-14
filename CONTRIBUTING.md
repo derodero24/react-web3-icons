@@ -99,8 +99,10 @@ icons/chain/ethereum.json         # metadata:
 - `name` is the canonical PascalCase export name; each variant key is an export
   suffix (`""` → `Ethereum`, `"Mono"` → `EthereumMono`, `"CircleMono"` → `EthereumCircleMono`).
 - Internal `id` attributes (masks, gradients, clip paths) can stay as plain
-  static ids in the SVG — the generator rewrites them to deterministic,
-  per-icon prefixed ids (`w3i-<name>-…`) automatically.
+  static IDs in the SVG (`id="ethc-a"`). The generator rewrites them to
+  `${_id}-ethc-a` in the TSX, where `_id` is the deterministic per-component
+  prefix `w3i-<lowercased name>` that `createIcon` passes to the render
+  function — so the DOM ends up with `w3i-ethereumcirclemono-ethc-a`.
 - The root element may only carry `xmlns`, `viewBox`, and `fill`. No fixed
   `width`/`height`, no `<style>` tags, no text content.
 - `deprecated` (map of export name → message) marks deprecated artwork exports.
@@ -133,13 +135,14 @@ generator emits `/** @deprecated … */ export const Old = New;` (see
 pnpm run generate-icons     # icons/ → src/<category>/ (+ lock file)
 pnpm run build              # dist + static SVGs + Iconify JSON + manifest.json
 pnpm run generate-manifest  # refresh src/manifest from the built dist
+pnpm run build              # optional: refresh dist/manifest.json from the new src/manifest
 ```
 
 `generate-manifest` reads the built `dist/` and rewrites `src/manifest/index.ts`,
 so `dist/manifest.json` is one step behind until the next `pnpm run build`.
 That is fine for day-to-day work (tests import `src/`), and publishing always
-rebuilds (`prepublishOnly`). Run `build` again if you need an up-to-date
-`dist/manifest.json` locally.
+rebuilds (`prepublishOnly`); the final `build` above is only needed when you
+want to inspect `dist/manifest.json` locally.
 
 `test/icons-sync.test.ts` fails CI whenever `icons/` and `src/` drift,
 `test/manifest-sync.test.ts` does the same for the manifest, and the
@@ -398,7 +401,7 @@ Key points:
 - Colored variant: brand color background + white icon mark
 - Mono variant: `currentColor` circle + mask that punches out the icon mark
 - For icons with gradients, **pre-compute** gradient coordinates in the 64×64 space — do **not** use `gradientTransform`
-- Short static ids (`mtc-a`) are fine; the generator namespaces them per icon
+- Short static IDs (`mtc-a`) are fine; the generator namespaces them per icon
 - Record the scale/translate math in the unit's `notes` array (see `icons/chain/ethereum.json`) so the next person can reproduce it
 
 ### 4. Review the generated output
@@ -406,7 +409,7 @@ Key points:
 After `pnpm run generate-icons`, open `src/<category>/<Name>.tsx` and check:
 
 - The `// Source:` comment and the `/* @__PURE__ */` annotation are present (both emitted by the generator; `test/pure-annotations.test.ts` enforces the latter)
-- Internal ids were rewritten to `${_id}-…` references and every `url(#…)` / `href="#…"` still resolves
+- Internal IDs were rewritten to `${_id}-…` references (rendered as `w3i-<name>-…`, see "Anatomy of an icon unit") and every `url(#…)` / `href="#…"` still resolves
 - Mono variants: stroke-only elements carry `fill="none"` and no hardcoded color remains where `currentColor` should be inherited
 
 Fix problems in the SVG source (or the JSON) and regenerate — never edit the
@@ -426,7 +429,7 @@ Run the example app and verify:
 
 - **Use `viewBox`** instead of fixed `width`/`height` in the SVG source. The component sets `width="1em"` and `height="1em"` as defaults.
 - **Avoid `<style>` tags** inside SVGs. Use inline `style` props or direct fill/stroke attributes instead.
-- **Static ids are fine in the SVG source** (`id="mtc-a"`). The generator rewrites them to `${_id}-mtc-a`, so multiple icons on a page never collide.
+- **Static IDs are fine in the SVG source** (`id="mtc-a"`). The generator rewrites them to `${_id}-mtc-a` (`_id` = `w3i-<lowercased component name>`), so multiple icons on a page never collide.
 - **For large files** with multiple variants sharing the same paths, extract repeated `d` attribute values into constants at the top of the file.
 
 ## Running the Example App
