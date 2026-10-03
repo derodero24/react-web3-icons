@@ -16,9 +16,10 @@ jobs:
       #   - src/**                          compiled by tsdown into dist/
       #   - icons/**                        SVG sources: dist/svg/*, iconify JSON
       #   - tsdown.config.ts, tsconfig.json build entries/options, emitted types
-      #   - scripts/build-icons/*.mjs       dist emitters and their helpers
-      #     (except cli.mjs, which only writes src/ and is covered by src/**)
-      #   - scripts/generate-manifest.mjs   emits dist/manifest.json
+      #   - scripts/build-icons/*.ts        dist emitters and their helpers
+      #     (except cli.ts, which only writes src/ and is covered by src/**)
+      #   - scripts/guards.ts               runtime guards shared by the emitters
+      #   - scripts/generate-manifest.ts    emits dist/manifest.json
       #   - package.json                    only fields that ship to consumers
       #     (exports, engines, peerDependencies, sideEffects, ...); dev-only
       #     fields are ignored (see DEV_ONLY_FIELDS) so Renovate devDependency
@@ -37,9 +38,9 @@ jobs:
               f => f === 'tsdown.config.ts' || f === 'tsconfig.json',
               f =>
                 f.startsWith('scripts/build-icons/') &&
-                f.endsWith('.mjs') &&
-                f !== 'scripts/build-icons/cli.mjs',
-              f => f === 'scripts/generate-manifest.mjs',
+                f.endsWith('.ts') &&
+                f !== 'scripts/build-icons/cli.ts',
+              f => f === 'scripts/guards.ts' || f === 'scripts/generate-manifest.ts',
             ];
             const DEV_ONLY_FIELDS = [
               'devDependencies',

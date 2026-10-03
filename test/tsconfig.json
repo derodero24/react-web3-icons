@@ -1,7 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "types": ["node"]
+    "types": ["node"],
+    // Tests import the TypeScript pipeline in scripts/ by its .ts path.
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   },
   "include": [".", "../src"],
   "exclude": ["consumer"]

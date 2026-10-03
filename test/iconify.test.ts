@@ -1,36 +1,16 @@
 import { join } from 'node:path';
 import { quicklyValidateIconSet } from '@iconify/utils';
 import { describe, expect, it } from 'vitest';
-// @ts-expect-error — plain .mjs pipeline module without type declarations
-import * as iconify from '../scripts/build-icons/emit-iconify.mjs';
-// @ts-expect-error — plain .mjs pipeline module without type declarations
-import { CATEGORIES, loadCategory } from '../scripts/build-icons/lib.mjs';
+import {
+  buildIconifySets,
+  kebab,
+} from '../scripts/build-icons/emit-iconify.ts';
+import { CATEGORIES, loadCategory } from '../scripts/build-icons/lib.ts';
 import { ICON_MANIFEST } from '../src/manifest';
 
 const ICONS = join(import.meta.dirname, '../icons');
 
-const sets = iconify.buildIconifySets() as {
-  colored: Record<string, unknown> & {
-    icons: Record<string, { body: string }>;
-    aliases: Record<string, { parent: string }>;
-    info: { total: number };
-  };
-  mono: Record<string, unknown> & {
-    icons: Record<string, { body: string }>;
-    aliases: Record<string, { parent: string }>;
-    info: { total: number };
-  };
-};
-
-interface SourceUnit {
-  meta: { name: string; kind: string };
-  svgs: Record<string, string>;
-}
-
-const loadUnits = loadCategory as (
-  iconsDir: string,
-  category: string,
-) => SourceUnit[];
+const sets = buildIconifySets();
 
 /**
  * Every artwork variant whose colour is declared on the source root element,
@@ -42,22 +22,20 @@ function sourceRootFills(): {
   mono: boolean;
   rootFill: string;
 }[] {
-  return (CATEGORIES as string[]).flatMap(category =>
-    loadUnits(ICONS, category)
-      .filter(unit => unit.meta.kind === 'icon' || unit.meta.kind === 'custom')
-      .flatMap(unit =>
-        Object.entries(unit.svgs).flatMap(([suffix, svgText]) => {
-          const mono = suffix.endsWith('Mono');
-          const rootFill =
-            /<svg\b[^>]*\bfill="([^"]*)"/.exec(svgText)?.[1] ??
-            (mono ? 'currentColor' : undefined);
-          if (rootFill === undefined) {
-            return [];
-          }
-          const iconName = `${category}-${(iconify.kebab as (n: string) => string)(unit.meta.name + suffix)}`;
-          return [{ iconName, mono, rootFill }];
-        }),
-      ),
+  return CATEGORIES.flatMap(category =>
+    loadCategory(ICONS, category).flatMap(unit =>
+      unit.variants.flatMap(({ suffix, exportName, svg }) => {
+        const mono = suffix.endsWith('Mono');
+        const rootFill =
+          /<svg\b[^>]*\bfill="([^"]*)"/.exec(svg)?.[1] ??
+          (mono ? 'currentColor' : undefined);
+        if (rootFill === undefined) {
+          return [];
+        }
+        const iconName = `${category}-${kebab(exportName)}`;
+        return [{ iconName, mono, rootFill }];
+      }),
+    ),
   );
 }
 

@@ -104,7 +104,7 @@ function deriveEntry(
   return entry;
 }
 
-/** Same derivation as scripts/generate-manifest.mjs, but from src modules. */
+/** Same derivation as scripts/generate-manifest.ts, but from src modules. */
 function deriveExpected(): IconManifestEntry[] {
   const entries: IconManifestEntry[] = [];
   for (const [category, mod] of Object.entries(CATEGORY_MODULES)) {
@@ -169,7 +169,7 @@ function defaultArtworkHasHexColor(unit: UnitMeta): boolean {
     .some(hex => !/^#(?:fff|ffffff)(?:[0-9a-f]{2})?$/.test(hex));
 }
 
-/** Same variant derivation as scripts/generate-manifest.mjs. */
+/** Same variant derivation as scripts/generate-manifest.ts. */
 function expectedVariants(unit: UnitMeta | undefined): string[] {
   if (!unit) {
     return [];

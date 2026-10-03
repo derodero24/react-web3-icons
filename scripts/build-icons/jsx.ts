@@ -6,11 +6,14 @@
  * verification step and the snapshot test suite both enforce.
  */
 
+import { collectIds, type IdRefRenderer, rewriteIdRefs } from './ids.ts';
+import type { XmlNode } from './xml.ts';
+
 /** Attribute names kept verbatim (React passes these through unchanged). */
 const KEEP_VERBATIM = /^(data-|aria-)/;
 
 /** Special-cased attribute renames that plain camelCasing would get wrong. */
-const SPECIAL = new Map([
+const SPECIAL: ReadonlyMap<string, string> = new Map([
   ['class', 'className'],
   ['xlink:href', 'xlinkHref'],
   ['xml:space', 'xmlSpace'],
@@ -18,33 +21,41 @@ const SPECIAL = new Map([
   ['xmlns:xlink', 'xmlnsXlink'],
 ]);
 
-function jsxAttrName(name) {
+/** Root <svg> attributes the pipeline accepts (see CONTRIBUTING.md). */
+export const ROOT_ATTRS: readonly string[] = ['xmlns', 'viewBox', 'fill'];
+
+const upper = (_: string, c: string): string => c.toUpperCase();
+
+function jsxAttrName(name: string): string {
   if (KEEP_VERBATIM.test(name)) {
     return name;
   }
-  const special = SPECIAL.get(name);
-  if (special) {
-    return special;
-  }
-  return name.replace(/[-:]([a-z])/g, (_, c) => c.toUpperCase());
+  return SPECIAL.get(name) ?? name.replace(/[-:]([a-z])/g, upper);
 }
 
-function cssPropName(name) {
-  return name.startsWith('--')
-    ? name
-    : name.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+function cssPropName(name: string): string {
+  return name.startsWith('--') ? name : name.replace(/-([a-z])/g, upper);
 }
 
-function quote(value) {
+function quote(value: string): string {
   return `'${value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
 }
 
-function template(value) {
-  return value.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$\{/g, '\\${');
+function template(value: string): string {
+  return value
+    .replace(/\\/g, '\\\\')
+    .replace(/`/g, '\\`')
+    .replace(/\$\{/g, '\\${');
 }
 
+/** Renders internal-id references as `${_id}-…` template-literal parts. */
+const ID_TEMPLATE: IdRefRenderer = {
+  text: template,
+  id: id => `\${_id}-${template(id)}`,
+};
+
 /** style="a: b; c: d" → style={{ a: 'b', c: 'd' }} */
-function styleObject(value) {
+function styleObject(value: string): string {
   const entries = value
     .split(';')
     .map(part => part.trim())
@@ -65,51 +76,30 @@ function styleObject(value) {
  * Renders an attribute value, rewriting references to internal ids so they
  * are prefixed with the component's unique `_id` at runtime.
  */
-function attrValue(name, value, ids) {
+function attrValue(
+  name: string,
+  value: string,
+  ids: ReadonlySet<string>,
+): string {
   if (name === 'style') {
     return styleObject(value);
   }
-  if (name === 'id' && ids.has(value)) {
-    return `{\`\${_id}-${template(value)}\`}`;
-  }
-  if ((name === 'href' || name === 'xlink:href') && value.startsWith('#')) {
-    const target = value.slice(1);
-    if (ids.has(target)) {
-      return `{\`#\${_id}-${template(target)}\`}`;
-    }
-  }
-  if (value.includes('url(#')) {
-    let dynamic = false;
-    const tpl = template(value).replace(/url\(#([^)]+)\)/g, (whole, id) => {
-      if (ids.has(id)) {
-        dynamic = true;
-        return `url(#\${_id}-${id})`;
-      }
-      return whole;
-    });
-    if (dynamic) {
-      return `{\`${tpl}\`}`;
-    }
+  const dynamic = rewriteIdRefs(name, value, ids, ID_TEMPLATE);
+  if (dynamic !== undefined) {
+    return `{\`${dynamic}\`}`;
   }
   return `"${value.replace(/"/g, '&quot;')}"`;
 }
 
-/** Collects every id="…" value in the subtree. */
-export function collectIds(node, ids = new Set()) {
-  for (const [name, value] of node.attrs) {
-    if (name === 'id') {
-      ids.add(value);
-    }
-  }
-  for (const child of node.children) {
-    collectIds(child, ids);
-  }
-  return ids;
-}
-
-function emitNode(node, ids, indent) {
+function emitNode(
+  node: XmlNode,
+  ids: ReadonlySet<string>,
+  indent: string,
+): string {
   const attrs = node.attrs
-    .map(([name, value]) => ` ${jsxAttrName(name)}=${attrValue(name, value, ids)}`)
+    .map(
+      ([name, value]) => ` ${jsxAttrName(name)}=${attrValue(name, value, ids)}`,
+    )
     .join('');
   if (node.children.length === 0) {
     return `${indent}<${node.tag}${attrs} />`;
@@ -120,13 +110,20 @@ function emitNode(node, ids, indent) {
   return `${indent}<${node.tag}${attrs}>\n${children}\n${indent}</${node.tag}>`;
 }
 
+export interface RenderedIcon {
+  /** JSX expression for the `createIcon` render callback. */
+  readonly body: string;
+  /** Whether the body references the per-component `_id` prefix. */
+  readonly usesId: boolean;
+  readonly viewBox: string;
+  readonly fill: string | undefined;
+}
+
 /**
  * Emits the render callback body for `createIcon` from the root <svg> node's
  * children.
- *
- * @returns {{ body: string, usesId: boolean, viewBox: string, fill: string | undefined }}
  */
-export function emitRender(svgRoot) {
+export function emitRender(svgRoot: XmlNode): RenderedIcon {
   const rootAttrs = new Map(svgRoot.attrs);
   const viewBox = rootAttrs.get('viewBox');
   if (!viewBox) {
@@ -134,17 +131,19 @@ export function emitRender(svgRoot) {
   }
   const fill = rootAttrs.get('fill');
   for (const [name] of svgRoot.attrs) {
-    if (!['xmlns', 'viewBox', 'fill'].includes(name)) {
+    if (!ROOT_ATTRS.includes(name)) {
       throw new Error(`unexpected root <svg> attribute: ${name}`);
     }
   }
   const ids = collectIds(svgRoot);
-  const children = svgRoot.children;
-  let body;
-  if (children.length === 1) {
-    body = emitNode(children[0], ids, '  ').trimStart();
+  const [first, ...rest] = svgRoot.children;
+  let body: string;
+  if (first !== undefined && rest.length === 0) {
+    body = emitNode(first, ids, '  ').trimStart();
   } else {
-    const inner = children.map(child => emitNode(child, ids, '    ')).join('\n');
+    const inner = svgRoot.children
+      .map(child => emitNode(child, ids, '    '))
+      .join('\n');
     body = `<>\n${inner}\n  </>`;
   }
   return { body, usesId: ids.size > 0, viewBox, fill };

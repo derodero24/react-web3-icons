@@ -23,15 +23,22 @@ import {
   generateCategory,
   loadCategory,
   sha256,
-} from './lib.mjs';
+} from './lib.ts';
 
 const ROOT = resolve(import.meta.dirname, '../..');
 const ICONS = join(ROOT, 'icons');
 const SRC = join(ROOT, 'src');
 const LOCK = join(ROOT, 'scripts/build-icons/icons.lock.json');
 
-const lock = { units: {}, indexes: {}, dynamicImports: {} };
-const written = [];
+interface LockedUnit {
+  readonly key: string;
+  readonly input: string;
+  /** Generated module, or `undefined` for hand-written (custom) units. */
+  readonly outputPath: string | undefined;
+}
+
+const lockedUnits: LockedUnit[] = [];
+const written: string[] = [];
 
 for (const category of CATEGORIES) {
   const units = loadCategory(ICONS, category);
@@ -53,10 +60,17 @@ for (const category of CATEGORIES) {
   }
 
   for (const unit of units) {
-    const inputHash = sha256(
-      JSON.stringify(unit.meta) + Object.values(unit.svgs).join('\n'),
-    );
-    lock.units[`${category}/${unit.slug}`] = { input: inputHash };
+    lockedUnits.push({
+      key: `${category}/${unit.slug}`,
+      input: sha256(
+        JSON.stringify(unit.meta) +
+          unit.variants.map(variant => variant.svg).join('\n'),
+      ),
+      outputPath:
+        unit.meta.kind === 'custom'
+          ? undefined
+          : join(SRC, category, `${unit.meta.name}.tsx`),
+    });
   }
 }
 
@@ -67,26 +81,32 @@ execFileSync('pnpm', ['exec', 'biome', 'format', '--write', ...written], {
   stdio: 'inherit',
 });
 
-for (const category of CATEGORIES) {
-  const units = loadCategory(ICONS, category);
-  for (const unit of units) {
-    if (unit.meta.kind === 'custom') {
-      continue;
-    }
-    const path = join(SRC, category, `${unit.meta.name}.tsx`);
-    lock.units[`${category}/${unit.slug}`].output = sha256(
-      readFileSync(path, 'utf-8'),
-    );
-  }
-  lock.indexes[category] = sha256(
-    readFileSync(join(SRC, category, 'index.ts'), 'utf-8'),
-  );
-  if (DYNAMIC_CATEGORIES.includes(category)) {
-    lock.dynamicImports[category] = sha256(
-      readFileSync(join(SRC, 'dynamic/imports', `${category}.ts`), 'utf-8'),
-    );
-  }
-}
+const hashFile = (path: string): string => sha256(readFileSync(path, 'utf-8'));
+
+const lock = {
+  units: Object.fromEntries(
+    lockedUnits.map(({ key, input, outputPath }) => [
+      key,
+      outputPath === undefined
+        ? { input }
+        : { input, output: hashFile(outputPath) },
+    ]),
+  ),
+  indexes: Object.fromEntries(
+    CATEGORIES.map(category => [
+      category,
+      hashFile(join(SRC, category, 'index.ts')),
+    ]),
+  ),
+  dynamicImports: Object.fromEntries(
+    CATEGORIES.filter(category => DYNAMIC_CATEGORIES.includes(category)).map(
+      category => [
+        category,
+        hashFile(join(SRC, 'dynamic/imports', `${category}.ts`)),
+      ],
+    ),
+  ),
+};
 
 writeFileSync(LOCK, `${JSON.stringify(lock, null, 2)}\n`);
 console.log(

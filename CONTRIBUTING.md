@@ -19,7 +19,9 @@ pnpm install
 - **pnpm** 10.x
 
 Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/activates the required Node version if missing).
-`pnpm install` fails fast on unsupported Node versions because `engine-strict=true` is enforced.
+`pnpm install` fails fast on unsupported Node versions: the `prepare` script checks the range above (the build scripts
+run through Node's built-in TypeScript type stripping), and `engine-strict=true` enforces the toolchain dependencies'
+own `engines`.
 
 ### Useful Commands
 
@@ -27,6 +29,7 @@ Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/ac
 | ---------------------- | ------------------------------- |
 | `pnpm run lint`        | Run Biome linter                |
 | `pnpm run lint:fix`    | Auto-fix lint and format issues |
+| `pnpm run typecheck`   | Type-check all TS projects      |
 | `pnpm test`            | Run tests                       |
 | `pnpm run build`       | Build the package               |
 | `pnpm run new-icon`    | Scaffold a new icon component   |
@@ -53,9 +56,16 @@ src/
   wallet/       # Wallet icons (MetaMask, Phantom, etc.)
   utils/        # Shared types (IconProps)
   index.ts      # Public exports (re-exports all categories)
+scripts/        # Icon pipeline and tooling (TypeScript, run directly by Node)
 example/        # Next.js demo app
 test/           # Vitest test suite
 ```
+
+The scripts under `scripts/` are plain TypeScript executed by Node's built-in
+type stripping (`node scripts/<name>.ts`, no build step), so they may only use
+erasable syntax (no `enum`, `namespace`, or parameter properties) and import
+relative modules with an explicit `.ts` extension. `scripts/tsconfig.json`
+type-checks them with the same `strictest` settings as `src`.
 
 ## Adding a New Icon
 
@@ -73,8 +83,9 @@ pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.s
 ```
 
 This optimizes the SVG with SVGO, writes `icons/<category>/<slug>.svg` and
-`<slug>.json`, and regenerates `src/<category>/`. Follow the printed next steps
-(meta maps, manifest, changeset).
+`<slug>.json`, and regenerates `src/<category>/` (the input SVGs are only
+read, never modified). Follow the printed next steps (meta maps, manifest,
+changeset).
 
 ### Anatomy of an icon unit
 
@@ -195,7 +206,7 @@ that swapping colored → mono changes only the coloring, never the impression:
 4. **Verify both polarities**: check the mono on white *and* on a dark
    background (`color` set to a light value) before submitting.
 
-`node scripts/audit-mono.mjs` rasterizes every colored/mono pair and reports
+`node scripts/audit-mono.ts` rasterizes every colored/mono pair and reports
 outliers — run it after adding or reworking mono artwork. Besides silhouette
 IoU / ink ratio / edge-detail ratio, it binarizes the colored artwork by
 luminance (best-threshold sweep) and reports the pixel disagreement with the

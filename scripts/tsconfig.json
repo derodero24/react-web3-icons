@@ -1,0 +1,22 @@
+{
+  // Node-side tooling: the icon pipeline under scripts/ runs directly through
+  // Node's built-in type stripping (Node 22.18+), so only erasable syntax is
+  // allowed and relative imports spell out their `.ts` extension. The root
+  // config files are checked here too, since they also run in Node.
+  "extends": "@tsconfig/strictest/tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2023",
+    // DOM: audit-mono.ts runs part of its code in the browser via Playwright.
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "types": ["node"],
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "checkJs": true
+  },
+  "include": ["**/*.ts", "../*.config.ts", "../*.config.*.ts", "../*.config.js"]
+}
