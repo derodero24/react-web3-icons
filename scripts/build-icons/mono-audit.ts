@@ -244,6 +244,11 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'Knockout seams keep the prism faces apart and open the enclosed play triangle to the background, so the footprint flood fill enters it.',
   },
+  'tracker/CoinGecko': {
+    kind: 'false-positive',
+    reason:
+      "The mono is CoinGecko's official one-colour symbol (CG-Symbol-2.svg): a ring with the gecko drawn apart from it, which a luminance threshold of the yellow coin and green gecko does not reproduce.",
+  },
   'tracker/DefiLlama': {
     kind: 'false-positive',
     reason:

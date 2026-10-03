@@ -1909,7 +1909,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'CoinGecko',
     category: 'tracker',
     variants: ['', 'Mono'],
-    brandColor: '#8bc53f',
+    brandColor: '#4bcc00',
   },
   { name: 'CoinGeckoMono', category: 'tracker' },
   {
