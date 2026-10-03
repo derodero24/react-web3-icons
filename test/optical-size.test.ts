@@ -2,6 +2,7 @@
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { snapHalfCircleArcs } from '../scripts/build-icons/arcs.ts';
 import { CATEGORIES, loadCategory } from '../scripts/build-icons/lib.ts';
 import {
   CANONICAL_VIEWBOX,
@@ -189,5 +190,41 @@ describe('rewriting a source onto the grid', () => {
     expect(
       toCanonicalGrid(root, { scale: 1, tx: 0, ty: 0 }).children[0]?.tag,
     ).toBe('path');
+  });
+});
+
+describe('half-circle arcs after rounding', () => {
+  it('rounds radii down when they exceed the half chord by one step', () => {
+    // r 15.87 over a 31.73 chord: no longer a half circle once rounded.
+    expect(
+      snapHalfCircleArcs('M32 52.13V43.6a15.87 15.87 0 0 0 0-31.73', 2),
+    ).toBe('M32 52.13V43.6a15.86 15.86 0 0 0 0-31.73');
+    expect(snapHalfCircleArcs('M10 10A5.01 5.01 0 1 0 10 20z', 2)).toBe(
+      'M10 10A5 5 0 1 0 10 20z',
+    );
+    // Packed flags, and numbers kept apart.
+    expect(snapHalfCircleArcs('m1 1a.5.5 0 01.99 0', 2)).toBe(
+      'm1 1a.49 .49 0 01.99 0',
+    );
+  });
+
+  it('leaves other arcs and unparsable data alone', () => {
+    for (const d of [
+      'M0 32a32 32 0 1 0 64 0A32 32 0 1 0 0 32', // exact half circles
+      'M0 0a10 10 0 0 1 15 0', // a shallow arc
+      'M0 0a5.1 5.1 0 0 1 10 0', // more than one step too large
+      'M0 0A1 2 30 1 1 3 4z', // radii too small already
+      'M0 0h1x', // not path data
+      'M0 0l1', // an incomplete argument group
+    ]) {
+      expect(snapHalfCircleArcs(d, 2), d).toBe(d);
+    }
+  });
+
+  it('tracks the pen through every command', () => {
+    // The arc spans 10 units only if every command moved the pen right.
+    const d =
+      'M0 0H4V4h-4v-4L2 2l1 1C3 3 3 3 4 4c0 0 0 0 1 1S5 5 6 6s0 0 1 1Q7 7 8 8q0 0 1 1T10 10t1 1zm2 2 1 1A5.01 5.01 0 0 0 13 3';
+    expect(snapHalfCircleArcs(d, 2)).toBe(d.replace('A5.01 5.01', 'A5 5'));
   });
 });

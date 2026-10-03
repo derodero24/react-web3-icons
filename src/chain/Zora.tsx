@@ -14,7 +14,7 @@ export const Zora = /* @__PURE__ */ createIcon(
           cx="0"
           cy="0"
           r="1"
-          gradientTransform="translate(16.086 7.84)scale(-15.2029)"
+          gradientTransform="translate(16.09 7.84)scale(-15.2029)"
           gradientUnits="userSpaceOnUse"
         >
           <stop offset=".01" stopColor="#F2CEFE" />

@@ -2,7 +2,7 @@
   <g transform="translate(-10.63 -10.64)scale(3.55337)">
     <path fill="url(#a)" d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18"/>
     <defs>
-      <radialGradient id="a" cx="0" cy="0" r="1" gradientTransform="translate(16.086 7.84)scale(-15.2029)" gradientUnits="userSpaceOnUse">
+      <radialGradient id="a" cx="0" cy="0" r="1" gradientTransform="translate(16.09 7.84)scale(-15.2029)" gradientUnits="userSpaceOnUse">
         <stop offset=".01" stop-color="#F2CEFE"/>
         <stop offset=".19" stop-color="#AFBAF1"/>
         <stop offset=".5" stop-color="#4281D3"/>

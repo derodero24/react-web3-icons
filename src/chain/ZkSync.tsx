@@ -12,7 +12,7 @@ export const ZkSync = /* @__PURE__ */ createIcon(
       <path
         fill="#fff"
         fillRule="evenodd"
-        d="M51.6 32.008 40.474 20.933v8.105l-11.042 8.125h11.042v5.92zm-39.2 0 11.126 11.077v-8.058l11.042-8.19H23.526v-5.92z"
+        d="M51.6 32 40.47 20.94v8.1l-11.04 8.13h11.04v5.92zm-39.2 0 11.13 11.08v-8.05l11.04-8.2H23.53v-5.91z"
         clipRule="evenodd"
       />
     </>
@@ -33,7 +33,7 @@ export const ZkSyncMono = /* @__PURE__ */ createIcon(
           <path
             fill="#000"
             fillRule="evenodd"
-            d="m32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7zm-24.5 0 6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7z"
+            d="m32.25 20-6.95-6.92v5.07l-6.9 5.08h6.9v3.7zm-24.5 0 6.95 6.93v-5.04l6.9-5.12h-6.9v-3.7z"
             clipRule="evenodd"
           />
         </mask>
@@ -54,7 +54,7 @@ export const ZkSyncCircle = /* @__PURE__ */ createIcon(
         <path
           fill="#fff"
           fillRule="evenodd"
-          d="m46.088 32.006-7.998-7.96v5.825l-7.936 5.84h7.936v4.255zm-28.175 0 7.997 7.961v-5.791l7.936-5.887H25.91v-4.255l-7.997 7.97Z"
+          d="m46.09 32-8-7.95v5.82l-7.94 5.84h7.94v4.26zM17.9 32l8 7.97v-5.8l7.94-5.88H25.9v-4.26z"
           clipRule="evenodd"
         />
       </g>
@@ -74,7 +74,7 @@ export const ZkSyncSquare = /* @__PURE__ */ createIcon(
         <path
           fill="#fff"
           fillRule="evenodd"
-          d="m46.088 32.006-7.998-7.96v5.825l-7.936 5.84h7.936v4.255zm-28.175 0 7.997 7.961v-5.791l7.936-5.887H25.91v-4.255l-7.997 7.97Z"
+          d="m46.09 32-8-7.95v5.82l-7.94 5.84h7.94v4.26zM17.9 32l8 7.97v-5.8l7.94-5.88H25.9v-4.26z"
           clipRule="evenodd"
         />
       </g>
@@ -96,7 +96,7 @@ export const ZkSyncSquareMono = /* @__PURE__ */ createIcon(
           <g fill="#000">
             <path
               fillRule="evenodd"
-              d="m46.088 32.006-7.998-7.96v5.825l-7.936 5.84h7.936v4.255zm-28.175 0 7.997 7.961v-5.791l7.936-5.887H25.91v-4.255l-7.997 7.97Z"
+              d="m46.09 32-8-7.95v5.82l-7.94 5.84h7.94v4.26zM17.9 32l8 7.97v-5.8l7.94-5.88H25.9v-4.26z"
               clipRule="evenodd"
             />
           </g>
@@ -120,7 +120,7 @@ export const ZkSyncCircleMono = /* @__PURE__ */ createIcon(
           <g fill="#000">
             <path
               fillRule="evenodd"
-              d="m46.088 32.006-7.998-7.96v5.825l-7.936 5.84h7.936v4.255zm-28.175 0 7.997 7.961v-5.791l7.936-5.887H25.91v-4.255l-7.997 7.97Z"
+              d="m46.09 32-8-7.95v5.82l-7.94 5.84h7.94v4.26zM17.9 32l8 7.97v-5.8l7.94-5.88H25.9v-4.26z"
               clipRule="evenodd"
             />
           </g>

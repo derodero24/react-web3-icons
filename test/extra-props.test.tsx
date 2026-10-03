@@ -39,7 +39,7 @@ function pathFills(svg: SVGSVGElement): (string | null)[] {
 
 describe('Avalanche withBackground', () => {
   // The white fill behind the glyph, on the 64×64 grid.
-  const background = 'M12.208 10.95H51.75v35.963H12.208z';
+  const background = 'M12.2 10.95h39.55v35.96H12.21z';
   const hasBackground = (svg: SVGSVGElement) =>
     svg.querySelector(`path[d="${background}"]`) !== null;
 

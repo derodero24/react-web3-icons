@@ -11,8 +11,9 @@
  *
  * Every rewritten source is pixel-checked against the original (rendered
  * old-at-new-position vs new); the script refuses to write when a check
- * fails. Sources already on the grid that follow the rule are left alone,
- * so re-running it is a no-op. Run `pnpm run generate-icons` afterwards.
+ * fails. Sources already on the grid that follow the rule keep their
+ * geometry and only go through SVGO, so re-running it is a no-op. Run
+ * `pnpm run generate-icons` afterwards.
  * Needs Chromium through Playwright.
  */
 
@@ -103,7 +104,7 @@ const measuredContainers = files.filter(
 );
 
 console.log(
-  `${files.length} sources: ${changed.length} ${values.check ? 'not normalized' : 'rewritten'}, ${files.length - changed.length} already on the grid.`,
+  `${files.length} sources: ${changed.length} ${values.check ? 'not normalized' : 'rewritten'}, ${files.length - changed.length} unchanged.`,
 );
 console.log(
   `containers: ${files.filter(f => f.plan.kind === 'container').length} (${measuredContainers.length} detected by measurement):`,

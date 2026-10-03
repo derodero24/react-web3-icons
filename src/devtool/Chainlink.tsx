@@ -9,12 +9,9 @@ export const Chainlink = /* @__PURE__ */ createIcon(
     <>
       <path
         fill="#2A5ADA"
-        d="m32 4-5.137 2.954-14 8.092L7.725 18v28l5.138 2.954 14.128 8.092L32.129 60l5.137-2.954 13.872-8.092L56.275 46V18l-5.137-2.954-14-8.092z"
+        d="m32 4-5.14 2.95-14 8.1L7.73 18v28l5.13 2.95L27 57.05 32.13 60l5.14-2.95 13.87-8.1L56.28 46V18l-5.14-2.95-14-8.1z"
       />
-      <path
-        fill="#fff"
-        d="M18 40.092V23.908l14-8.092 14 8.092v16.184l-14 8.091z"
-      />
+      <path fill="#fff" d="M18 40.1V23.9l14-8.08 14 8.09v16.18l-14 8.1z" />
     </>
   ),
   {},
@@ -25,7 +22,7 @@ export const ChainlinkMono = /* @__PURE__ */ createIcon(
   'ChainlinkMono',
   '0 0 64 64',
   (_props, _id) => (
-    <g transform="translate(7.725 4)scale(1.2844)">
+    <g transform="translate(7.72 4)scale(1.2844)">
       <defs>
         <mask id={`${_id}-chl-a`}>
           <rect width="37.8" height="43.6" fill="#fff" />

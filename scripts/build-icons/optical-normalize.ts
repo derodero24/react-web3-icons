@@ -21,6 +21,7 @@ import {
   fillDeviation,
   GRID,
   gridViewOf,
+  IDENTITY,
   KEEP_VIEWBOX_CLIP,
   type MeasuredVariant,
   mapBox,
@@ -52,13 +53,14 @@ export interface NormalizedFile {
   readonly before: string;
   readonly after: string;
   readonly plan: FilePlan;
-  /** False when the source already followed the fill rule on the grid. */
+  /** False when the source needs no change (on the grid, SVGO-normalized). */
   readonly changed: boolean;
 }
 
 /**
- * A source already on the grid is left alone when its fitted box is within
- * this many units of the fill rule (avoids churn on re-runs).
+ * A source already on the grid keeps its geometry (only SVGO runs on it)
+ * when its fitted box is within this many units of the fill rule (avoids
+ * churn on re-runs).
  */
 const SETTLED = 0.25;
 
@@ -157,13 +159,20 @@ export function normalizeUnit(
       getAttr(root, 'viewBox') === CANONICAL_VIEWBOX &&
       fillDeviation(plan.fitted, plan.kind) <= SETTLED;
     if (settled) {
+      // Kept where it is, but still brought to SVGO's fixed point.
+      const after = `${serializeSvg(
+        parseSvg(
+          optimizeToFixedPoint(optimize, source.svg, source.path),
+          source.path,
+        ),
+      )}\n`;
       return {
         file: plan.file,
         path: source.path,
         before: source.svg,
-        after: source.svg,
-        plan,
-        changed: false,
+        after,
+        plan: { ...plan, transform: IDENTITY, clip: false },
+        changed: after !== source.svg,
       };
     }
     const rewritten = serializeSvg(

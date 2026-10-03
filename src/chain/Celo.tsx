@@ -5,9 +5,7 @@ import { createIcon } from '../utils';
 export const Celo = /* @__PURE__ */ createIcon(
   'Celo',
   '0 0 64 64',
-  () => (
-    <path d="M4.009 4.009h55.983v19.995h-9.676a19.995 19.995 0 1 0 0 15.992h9.676v19.996H4.009z" />
-  ),
+  () => <path d="M4 4h56v20h-9.68a20 20 0 1 0 0 16h9.67v20H4.01z" />,
   { fill: '#FCFE52' },
 );
 
@@ -15,8 +13,6 @@ export const Celo = /* @__PURE__ */ createIcon(
 export const CeloMono = /* @__PURE__ */ createIcon(
   'CeloMono',
   '0 0 64 64',
-  () => (
-    <path d="M4.009 4.009h55.983v19.995h-9.676a19.995 19.995 0 1 0 0 15.992h9.676v19.996H4.009z" />
-  ),
+  () => <path d="M4 4h56v20h-9.68a20 20 0 1 0 0 16h9.67v20H4.01z" />,
   { fill: 'currentColor' },
 );

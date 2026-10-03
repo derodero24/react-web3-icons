@@ -4,7 +4,7 @@
     <mask id="zkss-a">
       <rect width="100%" height="100%" fill="#fff"/>
       <g fill="#000">
-        <path fill-rule="evenodd" d="m46.088 32.006-7.998-7.96v5.825l-7.936 5.84h7.936v4.255zm-28.175 0 7.997 7.961v-5.791l7.936-5.887H25.91v-4.255l-7.997 7.97Z" clip-rule="evenodd"/>
+        <path fill-rule="evenodd" d="m46.09 32-8-7.95v5.82l-7.94 5.84h7.94v4.26zM17.9 32l8 7.97v-5.8l7.94-5.88H25.9v-4.26z" clip-rule="evenodd"/>
       </g>
     </mask>
   </defs>

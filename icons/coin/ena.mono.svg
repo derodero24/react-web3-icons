@@ -3,7 +3,7 @@
     <defs>
       <mask id="mask" width="392" height="392" x="0" y="0" maskUnits="userSpaceOnUse">
         <rect width="392" height="392" fill="white"/>
-        <path fill="black" fill-rule="evenodd" d="M153.405 104.362h-4.157l-2.696 3.165-69.584 81.732-4.967 5.835 4.967 5.834 69.584 81.732 2.696 3.166h138.433v-60.959h-18v42.959h-96.594l57.813-66.845 5.092-5.887-5.092-5.888-57.813-66.844h96.594v42.959h18v-60.959zm.053 22.821-57.817 67.911 57.817 67.911 58.735-67.911z" clip-rule="evenodd"/>
+        <path fill="black" fill-rule="evenodd" d="M153.4 104.36h-4.15l-2.7 3.17-69.58 81.73-4.97 5.83 4.97 5.84 69.58 81.73 2.7 3.17h138.43v-60.96h-18v42.96h-96.6l57.82-66.85 5.1-5.89-5.1-5.88-57.81-66.85h96.6v42.96h18v-60.96zm.06 22.82L95.64 195.1l57.82 67.9 58.73-67.9z" clip-rule="evenodd"/>
       </mask>
     </defs>
     <circle cx="196" cy="196" r="196" fill="currentColor" mask="url(#mask)"/>

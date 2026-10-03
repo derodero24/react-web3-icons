@@ -6,7 +6,7 @@ export const PolkadotJs = /* @__PURE__ */ createIcon(
   'PolkadotJs',
   '0 0 64 64',
   () => (
-    <g transform="translate(-6.857 -6.857)scale(.45714)">
+    <g transform="translate(-6.86 -6.86)scale(.45714)">
       <circle cx="85" cy="85" r="70" fill="#ff8c00" />
       <path
         fill="#fff"
@@ -22,7 +22,7 @@ export const PolkadotJsMono = /* @__PURE__ */ createIcon(
   'PolkadotJsMono',
   '0 0 64 64',
   (_props, _id) => (
-    <g transform="translate(-6.857 -6.857)scale(.45714)">
+    <g transform="translate(-6.86 -6.86)scale(.45714)">
       <defs>
         <mask id={`${_id}-pdjm-a`}>
           <rect width="168" height="168" fill="#fff" />

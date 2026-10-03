@@ -1,3 +1,5 @@
+import { snapHalfCircleArcs } from './scripts/build-icons/arcs.ts';
+
 /**
  * An icon's root `fill` is the default `fill` of its component (the
  * variant's `"fill"` in icons/<category>/<unit>.json), not a redundant
@@ -40,9 +42,41 @@ const restoreRootFill = {
   }),
 };
 
+/** Decimals of path data, transform offsets and numeric attributes. */
+const PRECISION = 2;
+
+/**
+ * Rounds the radii of half-circle arcs down after convertPathData (see
+ * scripts/build-icons/arcs.ts): independently rounded radii and end points
+ * would otherwise flatten or bulge them.
+ * @type {import('svgo').CustomPlugin}
+ */
+const snapHalfCircleArcsPlugin = {
+  name: 'snapHalfCircleArcs',
+  fn: () => ({
+    element: {
+      enter(node) {
+        const d = node.attributes['d'];
+        if (d !== undefined) {
+          node.attributes['d'] = snapHalfCircleArcs(d, PRECISION);
+        }
+      },
+    },
+  }),
+};
+
 /** @type {import('svgo').Config} */
 export default {
   multipass: true,
+
+  // Rounds path data, transform offsets and plain numeric attributes (x,
+  // width, r, stroke-width, …) to 2 decimals. Every icon is drawn on the
+  // 64×64 grid (CONTRIBUTING.md, "Optical size"), where 0.01 units is
+  // 0.04 px at 256 px; transform scale factors keep convertTransform's
+  // 5-significant-digit transformPrecision. Half-circle arcs are kept
+  // exact by snapHalfCircleArcsPlugin.
+  floatPrecision: PRECISION,
+
   plugins: [
     stashRootFill,
 
@@ -66,12 +100,12 @@ export default {
           // Preserve brand colors exactly (disable hex shortening, name conversion, etc.)
           convertColors: false,
 
-          // Rounds plain numeric attributes (x, width, r, stroke-width, …) to
-          // 2 decimals. Path data and transforms are not affected: they keep
-          // the 3-decimal default of convertPathData / convertTransform
-          // (lowering those would rewrite most committed artwork).
-          cleanupNumericValues: {
-            floatPrecision: 2,
+          // makeArcs replaces curves by arcs that fit within threshold ×
+          // 10^-PRECISION units; 0.25 keeps the 0.0025-unit fit of the
+          // default 2.5 at 3 decimals (a looser fit visibly reshapes round
+          // holes, e.g. Solscan's).
+          convertPathData: {
+            makeArcs: { threshold: 0.25, tolerance: 0.5 },
           },
 
           // Remove every <desc>, not only editor boilerplate: the icon
@@ -89,6 +123,8 @@ export default {
 
     // Strip fixed width/height — sizing is controlled via component props
     'removeDimensions',
+
+    snapHalfCircleArcsPlugin,
 
     restoreRootFill,
   ],

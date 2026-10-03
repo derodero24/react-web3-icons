@@ -10,10 +10,10 @@ export const Oneinch = /* @__PURE__ */ createIcon(
       <rect width="40" height="40" fill="#E82219" rx="8" />
       <path
         fill="#FFFFFF"
-        d="M12.996 30.337h14.008v-2.95h-5.161V9.665h-3.067c-.118 2.477-.826 3.096-4.217 3.096h-1.563v2.831h5.16v11.797h-5.16z"
+        d="M13 30.34h14v-2.95h-5.16V9.66h-3.06c-.12 2.48-.83 3.1-4.22 3.1H13v2.83h5.16v11.8H13z"
       />
-      <path fill="#FFFFFF" d="M28.479 15.592V9.664h-2.95v5.928z" />
-      <path fill="#FFFFFF" d="M33.665 15.592V9.664h-2.95v5.928z" />
+      <path fill="#FFFFFF" d="M28.48 15.6V9.65h-2.95v5.93z" />
+      <path fill="#FFFFFF" d="M33.67 15.6V9.65h-2.95v5.93z" />
     </g>
   ),
   { fill: 'none' },
@@ -31,10 +31,10 @@ export const OneinchMono = /* @__PURE__ */ createIcon(
           <rect width="40" height="40" fill="white" />
           <path
             fill="black"
-            d="M12.996 30.337h14.008v-2.95h-5.161V9.665h-3.067c-.118 2.477-.826 3.096-4.217 3.096h-1.563v2.831h5.16v11.797h-5.16z"
+            d="M13 30.34h14v-2.95h-5.16V9.66h-3.06c-.12 2.48-.83 3.1-4.22 3.1H13v2.83h5.16v11.8H13z"
           />
-          <path fill="black" d="M28.479 15.592V9.664h-2.95v5.928z" />
-          <path fill="black" d="M33.665 15.592V9.664h-2.95v5.928z" />
+          <path fill="black" d="M28.48 15.6V9.65h-2.95v5.93z" />
+          <path fill="black" d="M33.67 15.6V9.65h-2.95v5.93z" />
         </mask>
       </defs>
     </g>
