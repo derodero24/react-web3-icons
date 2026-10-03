@@ -1,5 +1,5 @@
 ---
-"react-web3-icons": patch
+"react-web3-icons": minor
 ---
 
 Refresh outdated or wrong chain, bridge, oracle, domain and node artwork with the brands' current official files (#835). Export names are unchanged.
