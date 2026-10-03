@@ -26,6 +26,11 @@ import {
   loadCategory,
   parseViewBox,
 } from '../scripts/build-icons/lib.ts';
+import {
+  createOptimizer,
+  isSvgoNormalized,
+  normalizeRoot,
+} from '../scripts/build-icons/normalize.ts';
 import { applyOutputs, diffOutputs } from '../scripts/build-icons/outputs.ts';
 import {
   assertUnitMeta,
@@ -458,5 +463,44 @@ describe('published artifacts', () => {
       height: 48,
     });
     expect(buildIconifySets().colored.info).not.toHaveProperty('height');
+  });
+});
+
+describe('new-icon normalization', () => {
+  it('moves inherited root attributes onto a group instead of dropping them', () => {
+    const root = normalizeRoot(
+      parseSvg(
+        `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 0"/></svg>`,
+      ),
+      false,
+    );
+    expect(serializeSvg(root)).toBe(
+      `<svg ${XMLNS} viewBox="0 0 24 24" fill="none">\n  <g stroke="currentColor" stroke-width="2">\n    <path d="M0 0"/>\n  </g>\n</svg>`,
+    );
+  });
+
+  it('defaults mono artwork to currentColor and requires a viewBox', () => {
+    const mono = normalizeRoot(parseSvg(`<svg viewBox="0 0 1 1"/>`), true);
+    expect(mono.attrs).toContainEqual(['fill', 'currentColor']);
+    expect(() => normalizeRoot(parseSvg('<svg/>'), false)).toThrow(
+      /needs a viewBox/,
+    );
+  });
+
+  it('SVGO strips <title> and <desc>, which the parser would reject', async () => {
+    const optimize = await createOptimizer(ROOT);
+    const optimized = optimize(
+      `<svg ${XMLNS} viewBox="0 0 24 24"><title>T</title><desc>D</desc><path d="M0 0h24"/></svg>`,
+      'in.svg',
+    );
+    expect(() => parseSvg(optimized)).not.toThrow();
+    expect(isSvgoNormalized(optimize, optimized, 'in.svg')).toBe(true);
+    expect(
+      isSvgoNormalized(
+        optimize,
+        `<svg ${XMLNS} viewBox="0 0 24 24"><path d="M 0 0 L 24 0"/></svg>`,
+        'in.svg',
+      ),
+    ).toBe(false);
   });
 });

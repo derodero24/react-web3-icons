@@ -142,6 +142,7 @@
     "prepare": "node -e \"const [major, minor] = process.versions.node.split('.').map(Number); if (!((major === 22 && minor >= 18) || (major === 24 && minor >= 11) || major > 24)) { console.error('Node.js ^22.18.0 || >=24.11.0 is required (found ' + process.version + '); scripts/**/*.ts run through its built-in type stripping. Run nvm install.'); process.exit(1); }\" && lefthook install",
     "prepublishOnly": "pnpm run build",
     "optimize:svg": "svgo --config svgo.config.js",
+    "check:svgo": "node scripts/check-svgo.ts",
     "size": "size-limit",
     "start": "tsdown --watch",
     "test": "vitest run",

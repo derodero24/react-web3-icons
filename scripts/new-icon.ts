@@ -15,13 +15,21 @@
  */
 
 import { execFileSync } from 'node:child_process';
-import { existsSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { ROOT_ATTRS } from './build-icons/jsx.ts';
-import { CATEGORIES, isCategory } from './build-icons/lib.ts';
-import type { IconUnitMeta, Variant } from './build-icons/unit.ts';
-import { parseSvg, serializeSvg, type XmlAttr } from './build-icons/xml.ts';
+import { CATEGORIES, isCategory, kebab } from './build-icons/lib.ts';
+import {
+  createOptimizer,
+  normalizeRoot,
+  type Optimizer,
+} from './build-icons/normalize.ts';
+import {
+  type IconUnitMeta,
+  SCHEMA_REF,
+  type Variant,
+} from './build-icons/unit.ts';
+import { getAttr, parseSvg, serializeSvg } from './build-icons/xml.ts';
 
 const ROOT = resolve(import.meta.dirname, '..');
 
@@ -72,10 +80,7 @@ if (!/^[A-Z][A-Za-z0-9]*$/.test(name)) {
   process.exit(2);
 }
 
-const slug = name
-  .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-  .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
-  .toLowerCase();
+const slug = kebab(name);
 const dir = join(ROOT, 'icons', category);
 const jsonPath = join(dir, `${slug}.json`);
 if (existsSync(jsonPath)) {
@@ -84,48 +89,56 @@ if (existsSync(jsonPath)) {
 }
 
 /**
- * Optimizes `fromPath` with SVGO (output captured from stdout, so the input
- * file is left untouched), normalizes the root element for the pipeline, and
- * writes the result to `icons/<category>/<file>`.
- *
- * @returns the variant metadata for the written file
+ * Optimizes `fromPath` with SVGO and normalizes it for the pipeline (see
+ * build-icons/normalize.ts). Nothing is written yet, and the input file is
+ * only read.
  */
-function ingest(fromPath: string, file: string, isMono: boolean): Variant {
-  const optimized = execFileSync(
-    'pnpm',
-    ['exec', 'svgo', '--config', 'svgo.config.js', fromPath, '-o', '-'],
-    { cwd: ROOT, encoding: 'utf-8', stdio: ['ignore', 'pipe', 'inherit'] },
-  );
-  const root = parseSvg(optimized);
-  const keep: XmlAttr[] = root.attrs.filter(([k]) => ROOT_ATTRS.includes(k));
-  if (!keep.some(([k]) => k === 'xmlns')) {
-    keep.unshift(['xmlns', 'http://www.w3.org/2000/svg']);
+function ingest(
+  optimize: Optimizer,
+  fromPath: string,
+  file: string,
+  isMono: boolean,
+): { readonly variant: Variant; readonly svg: string } {
+  let root: ReturnType<typeof normalizeRoot>;
+  try {
+    const optimized = optimize(readFileSync(fromPath, 'utf-8'), fromPath);
+    root = normalizeRoot(parseSvg(optimized, fromPath), isMono);
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exit(1);
   }
-  if (!keep.some(([k]) => k === 'viewBox')) {
-    throw new Error(`${fromPath}: SVG needs a viewBox`);
-  }
-  if (isMono && !keep.some(([k]) => k === 'fill')) {
-    keep.push(['fill', 'currentColor']);
-  }
-  writeFileSync(join(dir, file), `${serializeSvg({ ...root, attrs: keep })}\n`);
-  const fill = keep.find(([k]) => k === 'fill')?.[1];
-  return fill ? { file, fill } : { file };
+  const fill = getAttr(root, 'fill');
+  return {
+    variant: fill ? { file, fill } : { file },
+    svg: `${serializeSvg(root)}\n`,
+  };
 }
 
 // Keyed by export-name suffix ('' → <Name>, 'Mono' → <Name>Mono).
-const variants = new Map<string, Variant>([
-  ['', ingest(resolve(svgPath), `${slug}.svg`, false)],
+const optimize = await createOptimizer(ROOT);
+const ingested = new Map([
+  ['', ingest(optimize, resolve(svgPath), `${slug}.svg`, false)],
 ]);
 if (monoPath) {
-  variants.set('Mono', ingest(resolve(monoPath), `${slug}.mono.svg`, true));
+  ingested.set(
+    'Mono',
+    ingest(optimize, resolve(monoPath), `${slug}.mono.svg`, true),
+  );
 }
 const meta: IconUnitMeta = {
+  $schema: SCHEMA_REF,
   name,
   kind: 'icon',
   ...(source ? { source: [source] } : {}),
-  variants: Object.fromEntries(variants),
+  variants: Object.fromEntries(
+    [...ingested].map(([suffix, { variant }]) => [suffix, variant]),
+  ),
 };
 
+// Every input was processed successfully; only now touch icons/.
+for (const { variant, svg } of ingested.values()) {
+  writeFileSync(join(dir, variant.file), svg);
+}
 writeFileSync(jsonPath, `${JSON.stringify(meta, null, 2)}\n`);
 execFileSync(process.execPath, ['scripts/build-icons/cli.ts'], {
   cwd: ROOT,
@@ -143,7 +156,7 @@ Next steps:
      then re-run: pnpm run generate-icons — mono coverage is enforced by tests.
   2.`
   } Register identifiers in src/meta/index.ts (slug/ticker/chain ID map for '${category}').
-  ${monoPath ? '2.' : '3.'} Regenerate the manifest: pnpm run build && pnpm run generate-manifest
+  ${monoPath ? '2.' : '3.'} Regenerate the manifest: pnpm run generate-manifest
   ${monoPath ? '3.' : '4.'} Verify: pnpm test && pnpm run check
   ${monoPath ? '4.' : '5.'} Add a changeset: pnpm changeset
 `);

@@ -36,6 +36,7 @@ own `engines`.
 | `pnpm run generate-icons` | Regenerate `src/` from `icons/` (`--check`: verify only) |
 | `pnpm run generate-manifest` | Regenerate `src/manifest` (`--check`: verify only) |
 | `pnpm run optimize:svg`| Optimize an SVG with SVGO       |
+| `pnpm run check:svgo`  | List icon SVGs SVGO would still change |
 
 ## Project Structure
 
@@ -84,8 +85,10 @@ pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.s
   [--mono path/to/icon.mono.svg] [--source <official URL>]
 ```
 
-This optimizes the SVG with SVGO, writes `icons/<category>/<slug>.svg` and
-`<slug>.json`, and regenerates `src/<category>/` (the input SVGs are only
+This optimizes the SVG with SVGO, normalizes the root element (sizing and
+metadata attributes are dropped; inherited presentation attributes such as a
+root `stroke` move onto a wrapping `<g>`), writes `icons/<category>/<slug>.svg`
+and `<slug>.json`, and regenerates `src/<category>/` (the input SVGs are only
 read, never modified). Follow the printed next steps (meta maps, manifest,
 changeset).
 
@@ -124,8 +127,8 @@ icons/chain/ethereum.json         # metadata:
 - Unit files are validated strictly (unknown keys are errors, names must be
   PascalCase identifiers, comments single-line). `icons/schema.json` is the
   matching JSON Schema, generated from `scripts/build-icons/unit.ts`; add
-  `"$schema": "../schema.json"` to a unit for editor completion and
-  validation.
+  `"$schema": "../schema.json"` to a unit (`new-icon` does) for editor
+  completion and validation.
 
 ### Aliases and re-exports
 
@@ -385,6 +388,11 @@ To optimize an SVG without scaffolding a unit:
 pnpm run optimize:svg path/to/icon.svg      # one file
 pnpm run optimize:svg -r path/to/svgs/      # a directory
 ```
+
+`pnpm run check:svgo [files…]` lists icon sources that SVGO would still change
+(ignoring attribute order and whitespace). Many older sources predate the
+current configuration and are not normalized; check the files you add or
+touch.
 
 ### 3. Add variants
 
