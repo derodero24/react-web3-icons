@@ -1,13 +1,19 @@
 {
   "name": "Oneinch",
   "source": [
-    "https://1inch.io"
+    "https://1inch.com/assets/images/landing/press-room/assets/1inch_block_black.svg (official press room, https://1inch.com/press-room)",
+    "https://1inch.com/favicon/favicon.svg"
+  ],
+  "notes": [
+    "Colored: the official 1inch_block_black.svg unchanged, the white 1\" sign on a black square (the same block the site uses as favicon.svg and logo_small.svg after the 2025 rebrand), placed full-bleed on the 64 grid; the former red #E82219 tile appears in no current official file",
+    "The press room also publishes the sign alone (1inch_sign_black.svg / 1inch_sign_white.svg); the default keeps the block, as before",
+    "Mono: the square in currentColor with the sign knocked out (evenodd), the layout of the official block"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "oneinch.svg",
-      "fill": "none"
+      "fill": "#000"
     },
     "Mono": {
       "file": "oneinch.mono.svg",

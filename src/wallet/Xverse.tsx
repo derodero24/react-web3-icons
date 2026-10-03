@@ -1,7 +1,9 @@
 import { createIcon } from '../utils';
 
-// Xverse "X" main body — white diagonal bar
-// Xverse "X" top-right orange accent
+// Source: https://xverseapp.notion.site/xverse-brand-public (official brand assets, Logo page: xverse_icon_whitecolor.svg)
+// Source: https://cdn.prod.website-files.com/624b08d53d7ac60ccfc11d8d/64637a0aafc684e4c2627b56_webclip.png (official app icon served by xverse.app)
+// White X body and #EE7A30 accent: the same two shapes as the official xverse_icon_whitecolor.svg symbol (checked 2026-10-03), on a #181818 disc
+// The official app icon (webclip.png) puts the symbol on a dark rounded square, not a disc; artwork unchanged here
 /** Xverse wallet icon (colored). */
 export const Xverse = /* @__PURE__ */ createIcon(
   'Xverse',

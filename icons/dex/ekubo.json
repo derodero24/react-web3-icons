@@ -1,13 +1,17 @@
 {
   "name": "Ekubo",
+  "source": [
+    "https://ekubo.org/logo.svg"
+  ],
   "notes": [
-    "Ekubo DEX icon — chain-link/infinity mark on circular background",
-    "From ekubo.org/logo.svg (official); gradient #661CC4 → #000"
+    "Colored: the official logo.svg symbol unchanged, a rounded rectangle with two circles knocked out, in its light-scheme colour #101010 (the file's stylesheet switches it to #fff for prefers-color-scheme: dark; the style became a fill attribute), placed on the 64 grid. The former purple-gradient disc is not part of any official file",
+    "Mono: the same path in currentColor; with a light color it is the official dark-scheme (white) symbol"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "ekubo.svg"
+      "file": "ekubo.svg",
+      "fill": "#101010"
     },
     "Mono": {
       "file": "ekubo.mono.svg",

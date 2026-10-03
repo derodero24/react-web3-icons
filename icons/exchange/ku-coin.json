@@ -1,13 +1,14 @@
 {
   "name": "KuCoin",
   "source": [
-    "https://kucoin.com (official brand)"
+    "https://assets.staticimg.com/kc-v2-config/site-config/693bcdd4680db10001fa9856_logo_general_green.svg",
+    "https://assets.staticimg.com/kc-v2-config/site-config/695545321abf9c0001915126_mini_logo.svg"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "ku-coin.svg",
-      "fill": "#23AF91"
+      "fill": "#00B47D"
     },
     "Mono": {
       "file": "ku-coin.mono.svg",
@@ -16,5 +17,10 @@
   },
   "slugs": [
     "kucoin"
+  ],
+  "notes": [
+    "Colored: the K symbol path copied unchanged out of the official logo_general_green.svg lockup served by kucoin.com (the KUCOIN lettering is left out), #00B47D, placed on the 64 grid",
+    "The official mini_logo.svg shows the same K in white on a #00B47D rounded tile, confirming the colour",
+    "Mono: the same K path in currentColor"
   ]
 }

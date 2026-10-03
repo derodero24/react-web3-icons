@@ -1,7 +1,11 @@
 {
   "name": "Camelot",
+  "source": [
+    "https://app.camelot.exchange/favicon.svg",
+    "https://camelot.exchange/img/logo.svg"
+  ],
   "notes": [
-    "Camelot DEX shield/crest emblem extracted from camelot.exchange/img/logo.svg (official)",
+    "Camelot shield/crest emblem extracted from the official camelot.exchange/img/logo.svg lockup; identical to the official app.camelot.exchange favicon.svg (checked 2026-10-03)",
     "Orange outer shield (#f58b00) with cream inner detail bands (#fff3d4)"
   ],
   "kind": "icon",

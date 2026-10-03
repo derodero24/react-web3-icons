@@ -1,14 +1,16 @@
 {
   "name": "SushiSwap",
+  "source": [
+    "https://github.com/sushi-labs/sushiswap/blob/master/apps/web/public/icon-512x512.svg (official Sushi Labs repository; the sushi.com app icon)"
+  ],
   "notes": [
-    "Outer fish body path (from official sushi.com website logo)",
-    "Inner detail/eye paths"
+    "Colored: the official icon-512x512.svg unchanged, the roll in the #27B0E6 to #FA52A0 linear gradient with the white rice ring on top, placed on the 64 grid; the previous artwork flattened the gradient to #FA52A0",
+    "Mono: the roll in currentColor with the white ring knocked out (evenodd), so the centre stays ink as the gradient shows through it in the colored mark"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "sushi-swap.svg",
-      "fill": "none"
+      "file": "sushi-swap.svg"
     },
     "Mono": {
       "file": "sushi-swap.mono.svg",

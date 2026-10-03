@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Paths sourced from @web3icons/react (MIT) — OSMO token SVG
+// Source: https://osmosis.zone/brand (official brand kit zip: Osmosis Brand Kit/Osmosis_IconBrandmark Combo.svg, Osmosis_Icon.png)
+// Flask artwork originally taken from @web3icons/react (MIT, OSMO token SVG); checked on 2026-10-03 against the official brand kit's icon (Osmosis_Icon.png and the flask in Osmosis_IconBrandmark Combo.svg), which it matches
 /** Osmosis DEX icon (colored). */
 export const Osmosis = /* @__PURE__ */ createIcon(
   'Osmosis',

@@ -204,6 +204,11 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     kind: 'false-positive',
     reason: 'Threshold-faithful (refMiss 2.0%); kept as-is.',
   },
+  'dex/Aerodrome': {
+    kind: 'false-positive',
+    reason:
+      'All five stripes are ink, kept apart by knockout seams; the pale #9CADFF and near-white #F5F3E6 stripes fall above the threshold cut of the reference.',
+  },
   'dex/Camelot': {
     kind: 'false-positive',
     reason:
@@ -253,11 +258,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'Like the colored variant, the fox is a featureless knockout; the antialiasing seams between the colored facets inflate the colour-boundary count.',
   },
-  'wallet/PhantomWalletSquare': {
-    kind: 'false-positive',
-    reason:
-      'The gradient tile inflates the colour-boundary count; the ghost knockout reads at every size.',
-  },
   'wallet/RainbowWallet': {
     kind: 'false-positive',
     reason:
@@ -277,6 +277,16 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     kind: 'false-positive',
     reason:
       'The band gradients inflate the colour-boundary count, and the seams between the bands open the footprint at their ends.',
+  },
+  'wallet/TrustWalletCircle': {
+    kind: 'false-positive',
+    reason:
+      'Container polarity: the white disc becomes ink with the shield knocked out, so the threshold reference is inverted.',
+  },
+  'wallet/TrustWalletSquare': {
+    kind: 'false-positive',
+    reason:
+      'Container polarity: the white tile becomes ink with the shield knocked out, so the threshold reference is inverted.',
   },
   'wallet/ZerionCircle': {
     kind: 'false-positive',
