@@ -11,3 +11,4 @@ Add the official token discs as `Circle` / `CircleMono` variants, built from eac
 - `TaikoCircle`, `TaikoCircleMono` (chain and coin): the `#FAFAFA` mark on a `#E81899` disc, from the TKO token icon in Taiko's brand kit.
 - `JupiterCircle`, `JupiterCircleMono`, re-exported as `JupCircle`, `JupCircleMono`: the six gradient arcs on a `#0F1524` disc, from `JupiterTokens/Token-512x512.svg` in Jupiter's brand kit.
 - `LdoCircle`, `LdoCircleMono`: the white Lido mark on the LDO token's own `#FFAA7D` peach disc, from `Lido/Tokens/LDO/LDO.svg` in Lido's press kit. They belong to the `Ldo` coin only; `Ldo` and `LdoMono` still re-export the blue `Lido` mark.
+- `BerachainCircle`, `BerachainCircleMono`, re-exported as `BeraCircle`, `BeraCircleMono`: the white outlined bear face on a `#78350F` disc, the BERA token as published in Berachain's own `berachain/guides` repository. On dark backgrounds, `BerachainCircle` is now the legible alternative to the dark `Berachain` mark.

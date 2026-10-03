@@ -36,6 +36,8 @@ export const coinImports: Record<
   Bch: () => import('../../coin/Bch'),
   BchMono: () => import('../../coin/Bch'),
   Bera: () => import('../../coin/Bera'),
+  BeraCircle: () => import('../../coin/Bera'),
+  BeraCircleMono: () => import('../../coin/Bera'),
   BeraMono: () => import('../../coin/Bera'),
   Bnb: () => import('../../coin/Bnb'),
   BnbCircle: () => import('../../coin/Bnb'),

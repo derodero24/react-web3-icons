@@ -232,9 +232,11 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     chainId: 80_094,
     slug: 'berachain',
-    variants: ['', 'Mono'],
+    variants: ['', 'Mono', 'Circle', 'CircleMono'],
     brandColor: '#2c1a16',
   },
+  { name: 'BerachainCircle', category: 'chain' },
+  { name: 'BerachainCircleMono', category: 'chain' },
   { name: 'BerachainMono', category: 'chain' },
   {
     name: 'BinanceSmartChain',
@@ -693,6 +695,8 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   },
   { name: 'BchMono', category: 'coin' },
   { name: 'Bera', category: 'coin', ticker: 'BERA' },
+  { name: 'BeraCircle', category: 'coin' },
+  { name: 'BeraCircleMono', category: 'coin' },
   { name: 'BeraMono', category: 'coin' },
   {
     name: 'Bnb',

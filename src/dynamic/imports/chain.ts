@@ -46,6 +46,8 @@ export const chainImports: Record<
   BaseSquare: () => import('../../chain/Base'),
   BaseSquareMono: () => import('../../chain/Base'),
   Berachain: () => import('../../chain/Berachain'),
+  BerachainCircle: () => import('../../chain/Berachain'),
+  BerachainCircleMono: () => import('../../chain/Berachain'),
   BerachainMono: () => import('../../chain/Berachain'),
   BinanceSmartChain: () => import('../../chain/BinanceSmartChain'),
   BinanceSmartChainCircle: () => import('../../chain/BinanceSmartChain'),
