@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const MakerDao = /* @__PURE__ */ createIcon(
   'MakerDao',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <linearGradient
@@ -26,7 +26,7 @@ export const MakerDao = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none', ids: true },
 );
 
 /** Maker Dao DeFi icon (monochrome). */
@@ -36,5 +36,5 @@ export const MakerDaoMono = /* @__PURE__ */ createIcon(
   () => (
     <path d="M3.224 6.66a.45.45 0 0 1 .448-.001l7.199 4.095a.45.45 0 0 1 .228.39v5.806a.45.45 0 1 1-.9 0v-5.544L3.9 7.824v9.126a.45.45 0 0 1-.9 0v-9.9a.45.45 0 0 1 .224-.39m17.552 0a.45.45 0 0 0-.449-.001l-7.198 4.095a.45.45 0 0 0-.228.39v5.806a.45.45 0 0 0 .9 0v-5.544L20.1 7.824v9.126a.45.45 0 0 0 .9 0v-9.9a.45.45 0 0 0-.224-.39" />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

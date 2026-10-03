@@ -114,9 +114,19 @@ icons/chain/ethereum.json         # metadata:
   suffix (`""` → `Ethereum`, `"Mono"` → `EthereumMono`, `"CircleMono"` → `EthereumCircleMono`).
 - Internal `id` attributes (masks, gradients, clip paths) can stay as plain
   static IDs in the SVG (`id="ethc-a"`). The generator rewrites them to
-  `${_id}-ethc-a` in the TSX, where `_id` is the deterministic per-component
-  prefix `w3i-<lowercased name>` that `createIcon` passes to the render
-  function — so the DOM ends up with `w3i-ethereumcirclemono-ethc-a`.
+  `${_id}-ethc-a` in the TSX, where `_id` is the per-instance prefix
+  `w3i-<lowercased name>-<instance>` that `createIcon` passes to the render
+  function (the instance part comes from `useId`) — so the DOM ends up with
+  e.g. `w3i-ethereumcirclemono-r1-ethc-a`, unique for every rendered icon.
+  Only artwork with internal ids makes the component call `useId`; the
+  generator emits `{ ids: true }` for it, and every other icon stays
+  hook-free.
+- Mask (and pattern) content inherits `fill` from the mask's ancestors,
+  which in React is the icon's `<svg>` and its `fill` prop. The generator
+  therefore gives every `<mask>` whose content would inherit `fill` the value
+  it inherits in the source file (`currentColor` and an unset fill become
+  `#000`, what the file renders with the default colour), so a `fill` or
+  `color` on the icon never changes its masks.
 - The root element may only carry `xmlns`, `viewBox`, and `fill`. No fixed
   `width`/`height`, no `<style>` tags, no text content.
 - Every `url(#…)` / `href="#…"` must point at an `id` defined in the same
@@ -503,7 +513,7 @@ Key points:
 After `pnpm run generate-icons`, open `src/<category>/<Name>.tsx` and check:
 
 - The `// Source:` comment and the `/* @__PURE__ */` annotation are present (both emitted by the generator; `test/pure-annotations.test.ts` enforces the latter)
-- Internal IDs were rewritten to `${_id}-…` references (rendered as `w3i-<name>-…`, see "Anatomy of an icon unit") and every `url(#…)` / `href="#…"` still resolves
+- Internal IDs were rewritten to `${_id}-…` references (rendered as `w3i-<name>-<instance>-…`, see "Anatomy of an icon unit"), the call passes `{ ids: true }`, and every `url(#…)` / `href="#…"` still resolves
 - Mono variants: stroke-only elements carry `fill="none"` and no hardcoded color remains where `currentColor` should be inherited
 
 Fix problems in the SVG source (or the JSON) and regenerate — never edit the
@@ -523,7 +533,7 @@ Run the example app and verify:
 
 - **Use `viewBox`** instead of fixed `width`/`height` in the SVG source. The component sets `width="1em"` and `height="1em"` as defaults.
 - **Avoid `<style>` tags** inside SVGs. Use inline `style` props or direct fill/stroke attributes instead.
-- **Static IDs are fine in the SVG source** (`id="mtc-a"`). The generator rewrites them to `${_id}-mtc-a` (`_id` = `w3i-<lowercased component name>`), so different icons on the same page never collide. Rendering the same component twice repeats its ids with identical definitions, which is a documented trade-off of the deterministic prefix (see `createIcon`) and does not affect rendering.
+- **Static IDs are fine in the SVG source** (`id="mtc-a"`). The generator rewrites them to `${_id}-mtc-a` (`_id` = `w3i-<lowercased component name>-<instance>`), so no two rendered icons on a page share an id, including two instances of the same component.
 - **Repeated geometry belongs in the SVG source**, not in the TSX. Variants that share a mark keep one copy per SVG file; document the shared transform in the unit's `notes` so the copies can be kept in sync. Do not hand-edit generated `.tsx` files to extract constants.
 
 ## Running the Example App

@@ -21,7 +21,7 @@ export const Arweave = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  '#222326',
+  { fill: '#222326' },
 );
 
 /** Arweave storage icon (monochrome). */
@@ -44,5 +44,5 @@ export const ArweaveMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

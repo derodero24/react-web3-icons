@@ -49,6 +49,7 @@ export const CoinGecko = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Coin Gecko tracker icon (monochrome). */
@@ -64,5 +65,5 @@ export const CoinGeckoMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

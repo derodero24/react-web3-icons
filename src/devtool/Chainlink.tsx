@@ -17,13 +17,14 @@ export const Chainlink = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Chainlink devtool icon (monochrome). */
 export const ChainlinkMono = /* @__PURE__ */ createIcon(
   'ChainlinkMono',
   '0 0 37.8 43.6',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <mask id={`${_id}-chl-a`}>
@@ -40,5 +41,5 @@ export const ChainlinkMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

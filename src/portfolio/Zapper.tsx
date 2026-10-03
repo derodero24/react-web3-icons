@@ -17,13 +17,14 @@ export const Zapper = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Zapper portfolio icon (monochrome). */
 export const ZapperMono = /* @__PURE__ */ createIcon(
   'ZapperMono',
   '0 0 500 500',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         d="M500 250C500 111.929 388.071 0 250 0S0 111.929 0 250s111.929 250 250 250 250-111.929 250-250z"
@@ -40,5 +41,5 @@ export const ZapperMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

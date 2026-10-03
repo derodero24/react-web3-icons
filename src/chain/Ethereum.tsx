@@ -23,6 +23,7 @@ export const Ethereum = /* @__PURE__ */ createIcon(
       <path fill="#393939" d="M0 650.54l392.07 231.75V472.33z" />
     </>
   ),
+  {},
 );
 
 /** Ethereum Circle chain icon (colored). */
@@ -52,13 +53,14 @@ export const EthereumCircle = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  {},
 );
 
 /** Ethereum Circle chain icon (monochrome). */
 export const EthereumCircleMono = /* @__PURE__ */ createIcon(
   'EthereumCircleMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="32" cy="32" r="32" mask={`url(#${_id}-ethc-a)`} />
       <defs>
@@ -76,7 +78,7 @@ export const EthereumCircleMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Ethereum Square chain icon (colored). */
@@ -106,13 +108,14 @@ export const EthereumSquare = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  {},
 );
 
 /** Ethereum Square chain icon (monochrome). */
 export const EthereumSquareMono = /* @__PURE__ */ createIcon(
   'EthereumSquareMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-eths-a)`} />
       <defs>
@@ -130,7 +133,7 @@ export const EthereumSquareMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Ethereum chain icon (monochrome). */
@@ -153,5 +156,5 @@ export const EthereumMono = /* @__PURE__ */ createIcon(
       <path opacity="0.96" d="M0 650.54l392.07 231.75V472.33z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

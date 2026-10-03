@@ -6,7 +6,7 @@ import { createIcon } from '../utils';
 export const Synapse = /* @__PURE__ */ createIcon(
   'Synapse',
   '-24 -24 48 48',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <linearGradient
@@ -35,7 +35,7 @@ export const Synapse = /* @__PURE__ */ createIcon(
       <circle cy="-18" r="6" fill={`url(#${_id}-syn-g)`} />
     </>
   ),
-  'none',
+  { fill: 'none', ids: true },
 );
 
 /** Synapse bridge icon (monochrome). */
@@ -58,5 +58,5 @@ export const SynapseMono = /* @__PURE__ */ createIcon(
       <circle cy="-18" r="6" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

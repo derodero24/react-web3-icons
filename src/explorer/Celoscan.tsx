@@ -9,7 +9,7 @@ export const Celoscan = /* @__PURE__ */ createIcon(
   () => (
     <path d="M250 70H70V250H249.995V187.169H220.125C209.828 210.09 186.649 226.055 160.125 226.055C123.557 226.055 93.9445 196.188 93.9445 159.873C93.9445 123.558 123.557 93.9499 160.125 93.9499C187.161 93.9499 210.34 110.432 220.641 133.865H250V70Z" />
   ),
-  '#35D07F',
+  { fill: '#35D07F' },
 );
 
 /** Celoscan Square explorer icon (colored). */
@@ -25,6 +25,7 @@ export const CeloscanSquare = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Celoscan explorer icon (monochrome). */
@@ -34,14 +35,14 @@ export const CeloscanMono = /* @__PURE__ */ createIcon(
   () => (
     <path d="M250 70H70V250H249.995V187.169H220.125C209.828 210.09 186.649 226.055 160.125 226.055C123.557 226.055 93.9445 196.188 93.9445 159.873C93.9445 123.558 123.557 93.9499 160.125 93.9499C187.161 93.9499 210.34 110.432 220.641 133.865H250V70Z" />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );
 
 /** Celoscan Square explorer icon (monochrome). */
 export const CeloscanSquareMono = /* @__PURE__ */ createIcon(
   'CeloscanSquareMono',
   '0 0 320 320',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="320" height="320" mask={`url(#${_id}-celo-a)`} />
       <defs>
@@ -55,5 +56,5 @@ export const CeloscanSquareMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

@@ -38,13 +38,14 @@ export const Arbiscan = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Arbiscan explorer icon (monochrome). */
 export const ArbiscanMono = /* @__PURE__ */ createIcon(
   'ArbiscanMono',
   '0 0 238 238',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         d="M25.668 74.3076V163.693C25.668 169.4 28.7167 174.676 33.6545 177.52L111.032 222.222C115.969 225.066 122.048 225.066 126.986 222.222L204.363 177.52C209.301 174.676 212.35 169.4 212.35 163.693V74.3076C212.35 68.6005 209.301 63.3239 204.363 60.4797L126.986 15.7779C122.048 12.9337 115.969 12.9337 111.032 15.7779L33.6357 60.4797C28.698 63.3239 25.668 68.6005 25.668 74.3076Z"
@@ -78,5 +79,5 @@ export const ArbiscanMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const Crv = /* @__PURE__ */ createIcon(
   'Crv',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         fill={`url(#${_id}-crv-a)`}
@@ -273,7 +273,7 @@ export const Crv = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'none',
+  { fill: 'none', ids: true },
 );
 
 /** Crv coin icon (monochrome). */
@@ -300,5 +300,5 @@ export const CrvMono = /* @__PURE__ */ createIcon(
       <path d="M6.916 12.907c-1.01.269-1.916-.028-2.243-.21a3.8 3.8 0 0 0-.41 1.3c1.403.421 3.946-.473 5.042-.972l-.255-.545c-.29.03-1.124.158-2.134.427" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

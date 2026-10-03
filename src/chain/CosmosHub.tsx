@@ -25,7 +25,7 @@ export const CosmosHub = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  '#BA3FD9',
+  { fill: '#BA3FD9' },
 );
 
 /** Cosmos Hub chain icon (monochrome). */
@@ -52,5 +52,5 @@ export const CosmosHubMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

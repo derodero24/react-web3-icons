@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const DefiLlama = /* @__PURE__ */ createIcon(
   'DefiLlama',
   '31.34 197.14 116.4 131.45',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <linearGradient
@@ -122,6 +122,7 @@ export const DefiLlama = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  { ids: true },
 );
 
 /** Defi Llama tracker icon (monochrome). */
@@ -183,5 +184,5 @@ export const DefiLlamaMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

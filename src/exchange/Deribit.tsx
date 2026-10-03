@@ -12,7 +12,7 @@ export const Deribit = /* @__PURE__ */ createIcon(
       clipRule="evenodd"
     />
   ),
-  '#2DAE9A',
+  { fill: '#2DAE9A' },
 );
 
 /** Deribit exchange icon (monochrome). */
@@ -26,5 +26,5 @@ export const DeribitMono = /* @__PURE__ */ createIcon(
       clipRule="evenodd"
     />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

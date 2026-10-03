@@ -9,6 +9,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { validateIds } from './ids.ts';
+import { isolateMaskContent } from './isolate.ts';
 import { emitRender, quote, ROOT_ATTRS } from './jsx.ts';
 import {
   type AliasUnitMeta,
@@ -95,7 +96,10 @@ export interface VariantSource {
   /** Source path relative to the repository root, for error messages. */
   readonly path: string;
   readonly svg: string;
-  /** The parsed and validated document. */
+  /**
+   * The parsed and validated document, with mask content isolated from the
+   * host document (see isolate.ts); every emitter renders this tree.
+   */
   readonly root: XmlNode;
 }
 
@@ -185,15 +189,15 @@ function loadVariant(
   const path = `icons/${category}/${variant.file}`;
   return withPath(path, () => {
     const svg = readFileSync(join(iconsDir, category, variant.file), 'utf-8');
-    const root = parseSvg(svg, path);
-    validateSvg(root, variant.fill);
+    const parsed = parseSvg(svg, path);
+    validateSvg(parsed, variant.fill);
     return {
       suffix,
       exportName: unitName + suffix,
       fill: variant.fill,
       path,
       svg,
-      root,
+      root: isolateMaskContent(parsed),
     };
   });
 }
@@ -318,11 +322,17 @@ function emitIconUnit(unit: SourceUnit, meta: IconUnitMeta): string {
       suffix.endsWith('Mono'),
       deprecatedMsg,
     );
-    const param = usesId ? '_id =>' : '() =>';
-    const args = [quote(name), quote(viewBox), `${param} ${wrapBody(body)}`];
-    if (fill) {
-      args.push(quote(fill));
-    }
+    const param = usesId ? '(_props, _id) =>' : '() =>';
+    const options = [
+      ...(fill ? [`fill: ${quote(fill)}`] : []),
+      ...(usesId ? ['ids: true'] : []),
+    ];
+    const args = [
+      quote(name),
+      quote(viewBox),
+      `${param} ${wrapBody(body)}`,
+      options.length > 0 ? `{ ${options.join(', ')} }` : '{}',
+    ];
     blocks.push(
       `${jsdoc}\nexport const ${name} = /* @__PURE__ */ createIcon(\n  ${args.join(',\n  ')},\n);`,
     );

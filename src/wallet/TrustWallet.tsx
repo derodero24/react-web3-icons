@@ -21,6 +21,7 @@ export const TrustWalletSquare = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Trust Wallet Circle wallet icon (colored). */
@@ -40,13 +41,14 @@ export const TrustWalletCircle = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Trust Wallet Square wallet icon (monochrome). */
 export const TrustWalletSquareMono = /* @__PURE__ */ createIcon(
   'TrustWalletSquareMono',
   '0 0 1024 1024',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <mask id={`${_id}-twm-a`}>
@@ -67,14 +69,14 @@ export const TrustWalletSquareMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Trust Wallet Circle wallet icon (monochrome). */
 export const TrustWalletCircleMono = /* @__PURE__ */ createIcon(
   'TrustWalletCircleMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <mask id={`${_id}-twm-circle-a`}>
@@ -92,7 +94,7 @@ export const TrustWalletCircleMono = /* @__PURE__ */ createIcon(
       <circle cx="32" cy="32" r="32" mask={`url(#${_id}-twm-circle-a)`} />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Trust Wallet wallet icon (colored). */

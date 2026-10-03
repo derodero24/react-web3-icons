@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const CollabLand = /* @__PURE__ */ createIcon(
   'CollabLand',
   '0 0 43.62 33.95',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <path
@@ -28,13 +28,14 @@ export const CollabLand = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  { ids: true },
 );
 
 /** Collab Land devtool icon (monochrome). */
 export const CollabLandMono = /* @__PURE__ */ createIcon(
   'CollabLandMono',
   '0 0 43.62 33.95',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <path
@@ -48,5 +49,5 @@ export const CollabLandMono = /* @__PURE__ */ createIcon(
       <path d="M21.789 29.306c-1.002 0-1.819-.727-1.819-1.617h.589c0 .57.552 1.033 1.23 1.033s1.233-.463 1.233-1.033h.588c0 .892-.817 1.617-1.821 1.617z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

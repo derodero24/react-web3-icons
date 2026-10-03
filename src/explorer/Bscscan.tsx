@@ -17,6 +17,7 @@ export const Bscscan = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Bscscan Inverted explorer icon (colored). */
@@ -35,6 +36,7 @@ export const BscscanInverted = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Bscscan explorer icon (monochrome). */
@@ -47,5 +49,5 @@ export const BscscanMono = /* @__PURE__ */ createIcon(
       <path d="M25.039 109.727a60.66 60.66 0 0 0 96.339-49.061l-.158-4.152c-22.163 33.055-63.085 48.508-96.181 53.213" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

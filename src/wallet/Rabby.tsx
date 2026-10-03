@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const Rabby = /* @__PURE__ */ createIcon(
   'Rabby',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <linearGradient
@@ -75,7 +75,7 @@ export const Rabby = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none', ids: true },
 );
 
 /** Rabby wallet icon (monochrome). */
@@ -88,5 +88,5 @@ export const RabbyMono = /* @__PURE__ */ createIcon(
       <path d="M4.539 14.24c.215 1.898 1.252 2.642 3.371 2.863 2.12.22 3.335.072 4.954.225 1.352.128 2.559.845 3.006.598.403-.223.178-1.029-.361-1.546-.7-.67-1.667-1.135-3.369-1.3.34-.967.244-2.322-.282-3.06-.762-1.065-2.168-1.547-3.948-1.337-1.859.22-3.64 1.173-3.371 3.556" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

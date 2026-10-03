@@ -8,7 +8,7 @@ export const Xrp = /* @__PURE__ */ createIcon(
   () => (
     <path d="M437 0h74L357 152.48c-55.77 55.19-146.19 55.19-202 0L.94 0H75l117 115.83a91.11 91.11 0 0 0 127.91 0zM74.05 424H0l155-153.42c55.77-55.19 146.19-55.19 202 0L512 424h-74L320 307.23a91.11 91.11 0 0 0-127.91 0z" />
   ),
-  '#23292f',
+  { fill: '#23292f' },
 );
 
 /** Xrp coin icon (monochrome). */
@@ -18,7 +18,7 @@ export const XrpMono = /* @__PURE__ */ createIcon(
   () => (
     <path d="M437 0h74L357 152.48c-55.77 55.19-146.19 55.19-202 0L.94 0H75l117 115.83a91.11 91.11 0 0 0 127.91 0zM74.05 424H0l155-153.42c55.77-55.19 146.19-55.19 202 0L512 424h-74L320 307.23a91.11 91.11 0 0 0-127.91 0z" />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );
 
 /** Xrp Circle coin icon (colored). */
@@ -37,13 +37,14 @@ export const XrpCircle = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Xrp Circle coin icon (monochrome). */
 export const XrpCircleMono = /* @__PURE__ */ createIcon(
   'XrpCircleMono',
   '0 0 704 704',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         d="M352 704c167.93.002 312.476-118.622 345.239-283.325S641.857 91.061 486.71 26.795 152.625 16.809 59.327 156.437-15.644 482.155 103.1 600.9A352 352 0 0 0 352 704z"
@@ -60,5 +61,5 @@ export const XrpCircleMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

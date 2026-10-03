@@ -23,6 +23,7 @@ export const CoinbaseWallet = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Coinbase Wallet Circle wallet icon (colored). */
@@ -44,13 +45,14 @@ export const CoinbaseWalletCircle = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Coinbase Wallet Circle wallet icon (monochrome). */
 export const CoinbaseWalletCircleMono = /* @__PURE__ */ createIcon(
   'CoinbaseWalletCircleMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="32" cy="32" r="32" mask={`url(#${_id}-cbcm-a)`} />
       <defs>
@@ -69,7 +71,7 @@ export const CoinbaseWalletCircleMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Coinbase Wallet Square wallet icon (colored). */
@@ -91,13 +93,14 @@ export const CoinbaseWalletSquare = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Coinbase Wallet Square wallet icon (monochrome). */
 export const CoinbaseWalletSquareMono = /* @__PURE__ */ createIcon(
   'CoinbaseWalletSquareMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-cbsqm-a)`} />
       <defs>
@@ -116,14 +119,14 @@ export const CoinbaseWalletSquareMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Coinbase Wallet wallet icon (monochrome). */
 export const CoinbaseWalletMono = /* @__PURE__ */ createIcon(
   'CoinbaseWalletMono',
   '0 0 2500 2500',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <mask id={`${_id}-cbwm-a`}>
@@ -141,5 +144,5 @@ export const CoinbaseWalletMono = /* @__PURE__ */ createIcon(
       <path d="M1031.3 966.2h437.3c36 0 65.1 31.4 65.1 70v427.5c0 38.7-29.2 70-65.1 70h-437.3c-36 0-65.1-31.4-65.1-70v-427.5c0-38.6 29.2-70 65.1-70z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

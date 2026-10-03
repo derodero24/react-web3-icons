@@ -17,14 +17,14 @@ export const Across = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none' },
 );
 
 /** Across bridge icon (monochrome). */
 export const AcrossMono = /* @__PURE__ */ createIcon(
   'AcrossMono',
   '0 0 32 32',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="32" height="32" rx="16" mask={`url(#${_id}-ac-m)`} />
       <defs>
@@ -40,5 +40,5 @@ export const AcrossMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

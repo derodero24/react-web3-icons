@@ -18,6 +18,7 @@ import {
 } from '../scripts/build-icons/emit-dist-svg.ts';
 import { buildIconifySets } from '../scripts/build-icons/emit-iconify.ts';
 import { namespaceIds, validateIds } from '../scripts/build-icons/ids.ts';
+import { isolateMaskContent } from '../scripts/build-icons/isolate.ts';
 import { emitRender } from '../scripts/build-icons/jsx.ts';
 import {
   CATEGORIES,
@@ -246,6 +247,64 @@ describe('JSX emitter', () => {
     ).toBe(
       `<g style={{ msTransform: 'rotate(1deg)', WebkitMask: 'none', maskType: 'alpha' }} />`,
     );
+  });
+
+  it('asks for per-instance ids only when the artwork has internal ids', () => {
+    const { files } = generateCategory(
+      loadChain({
+        'icons/chain/plain.svg': SQUARE,
+        'icons/chain/plain.json': iconUnit('Plain', ['', 'plain.svg']),
+        'icons/chain/masked.svg': `<svg ${XMLNS} viewBox="0 0 1 1"><mask id="m"><rect fill="#fff"/></mask><rect mask="url(#m)"/></svg>`,
+        'icons/chain/masked.json': iconUnit('Masked', ['', 'masked.svg']),
+        'icons/chain/filled.svg': `<svg ${XMLNS} viewBox="0 0 1 1" fill="none"><path/></svg>`,
+        'icons/chain/filled.json': iconUnit('Filled', [
+          '',
+          'filled.svg',
+        ]).replace('"filled.svg"', '"filled.svg", "fill": "none"'),
+      }),
+    );
+    expect(files.get('Plain.tsx')).toContain('() => (');
+    expect(files.get('Plain.tsx')).toContain('{},\n);');
+    expect(files.get('Masked.tsx')).toContain('(_props, _id) => (');
+    expect(files.get('Masked.tsx')).toContain('{ ids: true },\n);');
+    expect(files.get('Filled.tsx')).toContain(`{ fill: 'none' },\n);`);
+  });
+});
+
+describe('mask content isolation', () => {
+  const isolate = (svg: string): string =>
+    serializeSvg(isolateMaskContent(parseSvg(svg)));
+
+  it('gives masks the fill their content inherits in the source', () => {
+    expect(
+      isolate('<svg><mask id="m"><path/><path fill="#fff"/></mask></svg>'),
+    ).toContain('<mask id="m" fill="#000">');
+    expect(
+      isolate('<svg fill="none"><mask id="m"><path/></mask></svg>'),
+    ).toContain('<mask id="m" fill="none">');
+    expect(
+      isolate('<svg><g fill="#f00"><mask id="m"><path/></mask></g></svg>'),
+    ).toContain('<mask id="m" fill="#f00">');
+    expect(
+      isolate('<svg><pattern id="p"><g><use href="#x"/></g></pattern></svg>'),
+    ).toContain('<pattern id="p" fill="#000">');
+  });
+
+  it('resolves currentColor to what the source renders: black', () => {
+    expect(
+      isolate('<svg fill="currentColor"><mask id="m"><path/></mask></svg>'),
+    ).toContain('<mask id="m" fill="#000">');
+  });
+
+  it('leaves masks alone whose content has its own fill', () => {
+    for (const svg of [
+      '<svg><mask id="m"><path fill="#fff"/><g fill="#000"><path/></g></mask></svg>',
+      '<svg><mask id="m" fill="#fff"><path/></mask></svg>',
+      '<svg><mask id="m"><path style="fill: #fff"/></mask></svg>',
+      '<svg><clipPath id="c"><path/></clipPath></svg>',
+    ]) {
+      expect(isolate(svg)).toBe(serializeSvg(parseSvg(svg)));
+    }
   });
 });
 

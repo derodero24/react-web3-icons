@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const RocketPool = /* @__PURE__ */ createIcon(
   'RocketPool',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <linearGradient
@@ -46,7 +46,7 @@ export const RocketPool = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none', ids: true },
 );
 
 /** Rocket Pool DeFi icon (monochrome). */
@@ -59,5 +59,5 @@ export const RocketPoolMono = /* @__PURE__ */ createIcon(
       d="M3 12a9 9 0 1 0 18 0 9 9 0 1 0-18 0m6.658-.831-.864 1.034 1.214.455c.017.459.127.65.18.689l-.463.427.463.473.455-.473c.252.093.523.126.79.096l.427 1.241 1.07-.974.268-1.192c2.473-2.249 2.75-4.043 2.58-4.66-2.19-.156-4.15 1.646-4.855 2.567zm.052 3.512-3.669 3.385-.387-.42 3.669-3.385zm-1.176.079-3.01 2.752-.387-.422 3.011-2.753zm1.088 1.053-3.037 2.792-.386-.421 3.036-2.791zm3.277-4.075a.707.707 0 1 0 0-1.414.707.707 0 0 0 0 1.414"
     />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

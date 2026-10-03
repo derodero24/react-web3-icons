@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const QuickNode = /* @__PURE__ */ createIcon(
   'QuickNode',
   '0 0 40 40',
-  _id => (
+  (_props, _id) => (
     <>
       <g clipPath={`url(#${_id}-qn-a)`}>
         <path
@@ -20,14 +20,14 @@ export const QuickNode = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  '#00a4d6',
+  { fill: '#00a4d6', ids: true },
 );
 
 /** Quick Node node icon (monochrome). */
 export const QuickNodeMono = /* @__PURE__ */ createIcon(
   'QuickNodeMono',
   '0 0 40 40',
-  _id => (
+  (_props, _id) => (
     <>
       <g clipPath={`url(#${_id}-qn-a)`}>
         <path
@@ -42,5 +42,5 @@ export const QuickNodeMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

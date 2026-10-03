@@ -12,7 +12,7 @@ export const Blastscan = /* @__PURE__ */ createIcon(
       <path d="M60.4215 134.233L85.1593 57.1807L57.7179 36.6334L16.4883 166H170.052L180.325 134.233H60.4215Z" />
     </>
   ),
-  '#FCFC03',
+  { fill: '#FCFC03' },
 );
 
 /** Blastscan Light explorer icon (colored). */
@@ -25,7 +25,7 @@ export const BlastscanLight = /* @__PURE__ */ createIcon(
       <path d="M60.4215 134.233L85.1593 57.1807L57.7179 36.6334L16.4883 166H170.052L180.325 134.233H60.4215Z" />
     </>
   ),
-  '#000',
+  { fill: '#000' },
 );
 
 /** Blastscan explorer icon (monochrome). */
@@ -38,5 +38,5 @@ export const BlastscanMono = /* @__PURE__ */ createIcon(
       <path d="M60.4215 134.233L85.1593 57.1807L57.7179 36.6334L16.4883 166H170.052L180.325 134.233H60.4215Z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

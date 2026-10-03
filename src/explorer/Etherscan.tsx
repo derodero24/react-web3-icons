@@ -17,6 +17,7 @@ export const Etherscan = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Etherscan Inverted explorer icon (colored). */
@@ -35,6 +36,7 @@ export const EtherscanInverted = /* @__PURE__ */ createIcon(
       />
     </g>
   ),
+  {},
 );
 
 /** Etherscan explorer icon (monochrome). */
@@ -47,5 +49,5 @@ export const EtherscanMono = /* @__PURE__ */ createIcon(
       <path d="M25.602 110.51c9.072 6.6 19.794 10.562 30.978 11.447s22.396-1.342 32.393-6.434 18.391-12.85 24.253-22.416 8.962-20.568 8.959-31.787a61.66 61.66 0 0 0-.158-4.162c-22.219 33.138-63.244 48.63-96.423 53.347" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const Exodus = /* @__PURE__ */ createIcon(
   'Exodus',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <linearGradient
@@ -73,7 +73,7 @@ export const Exodus = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
-  'none',
+  { fill: 'none', ids: true },
 );
 
 /** Exodus wallet icon (monochrome). */
@@ -86,5 +86,5 @@ export const ExodusMono = /* @__PURE__ */ createIcon(
       <path d="M6.404 13.164h4.401v-2.328H6.387l-.572-1.83 4.99-3.196V3L3 8.026l1.276 3.982L3 15.99 10.822 21v-2.81l-5.007-3.195z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

@@ -26,14 +26,14 @@ export const PancakeSwap = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none' },
 );
 
 /** Pancake Swap DEX icon (monochrome). */
 export const PancakeSwapMono = /* @__PURE__ */ createIcon(
   'PancakeSwapMono',
   '3 0 191.25 198.61',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         fillRule="evenodd"
@@ -60,5 +60,5 @@ export const PancakeSwapMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'none',
+  { fill: 'none', ids: true },
 );

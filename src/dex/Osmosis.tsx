@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const Osmosis = /* @__PURE__ */ createIcon(
   'Osmosis',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <linearGradient
@@ -157,14 +157,14 @@ export const Osmosis = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none', ids: true },
 );
 
 /** Osmosis DEX icon (monochrome). */
 export const OsmosisMono = /* @__PURE__ */ createIcon(
   'OsmosisMono',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <mask id={`${_id}-a`}>
         <rect width="24" height="24" fill="#fff" />
@@ -195,5 +195,5 @@ export const OsmosisMono = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

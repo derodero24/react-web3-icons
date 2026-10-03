@@ -18,6 +18,7 @@ export const Liquity = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Liquity DeFi icon (monochrome). */
@@ -33,5 +34,5 @@ export const LiquityMono = /* @__PURE__ */ createIcon(
       <path d="M0 20c0 8.708 5.567 16.117 13.333 18.862V1.138C5.567 3.883 0 11.292 0 20m38.87-6.642a24 24 0 0 0-1.092-.025c-13.5 0-24.445 10.945-24.445 24.445q0 .55.025 1.092A19.9 19.9 0 0 0 20 40c11.045 0 20-8.953 20-20a20 20 0 0 0-1.13-6.642" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

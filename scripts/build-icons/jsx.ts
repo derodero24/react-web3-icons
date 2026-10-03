@@ -135,7 +135,7 @@ function emitNode(
 export interface RenderedIcon {
   /** JSX expression for the `createIcon` render callback. */
   readonly body: string;
-  /** Whether the body references the per-component `_id` prefix. */
+  /** Whether the body references the per-instance `_id` prefix. */
   readonly usesId: boolean;
   readonly viewBox: string;
   readonly fill: string | undefined;

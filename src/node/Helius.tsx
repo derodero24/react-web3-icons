@@ -23,7 +23,7 @@ export const Helius = /* @__PURE__ */ createIcon(
       <path d="m2.873 30.175 4.373 5.495a3.52 3.52 0 0 0 .554-4.94 3.502 3.502 0 0 0-4.927-.555Z" />
     </>
   ),
-  '#E84125',
+  { fill: '#E84125' },
 );
 
 /** Helius node icon (monochrome). */
@@ -48,5 +48,5 @@ export const HeliusMono = /* @__PURE__ */ createIcon(
       <path d="m2.873 30.175 4.373 5.495a3.52 3.52 0 0 0 .554-4.94 3.502 3.502 0 0 0-4.927-.555Z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

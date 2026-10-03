@@ -1,3 +1,23 @@
+# Migrating from v4 to v5
+
+See [CHANGELOG.md](./CHANGELOG.md) for full release notes.
+
+## 1. Per-instance internal SVG ids
+
+v4 gave every instance of an icon the same internal ids (`w3i-<name>-…`), and `url(#…)` always resolves to the first element with an id. A first instance inside a `display: none` subtree, or one with a different `fill` or `color`, therefore broke or restyled the masks and gradients of every later instance.
+
+Icons with internal ids (masks, gradients, clip paths) now call `useId` and render unique ids per instance, e.g. `w3i-ethereumcirclemono-r1-ethc-a`. `useId` works in React Server Components, so icons still need no `'use client'`; icons without internal ids still call no hooks. Mask content also no longer inherits `fill` from the icon's `<svg>`.
+
+- Default rendering is unchanged.
+- Markup snapshots that contain icon ids need to be regenerated.
+- If you mount several React roots on one page, give each its own `identifierPrefix` (`createRoot(el, { identifierPrefix: 'a-' })`), as for any `useId` consumer.
+
+## Checklist
+
+- [ ] Regenerate markup snapshots containing icon defs ids
+
+---
+
 # Migrating from v3 to v4
 
 v4 makes every static icon a pure, hook-free component so icons render in React Server Components without `'use client'`. See [CHANGELOG.md](./CHANGELOG.md) for full release notes.

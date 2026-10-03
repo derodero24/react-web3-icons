@@ -21,6 +21,7 @@ export const Tenderly = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Tenderly devtool icon (monochrome). */
@@ -40,5 +41,5 @@ export const TenderlyMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

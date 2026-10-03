@@ -28,6 +28,7 @@ export const Routescan = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Routescan explorer icon (monochrome). */
@@ -56,5 +57,5 @@ export const RoutescanMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

@@ -18,6 +18,7 @@ export const OpenZeppelin = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Open Zeppelin devtool icon (monochrome). */
@@ -31,5 +32,5 @@ export const OpenZeppelinMono = /* @__PURE__ */ createIcon(
       <path d="M11.82 13.679a7.9 7.9 0 0 1 6.806-3.918h5.545L10.06 33.624H.033L11.82 13.679z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

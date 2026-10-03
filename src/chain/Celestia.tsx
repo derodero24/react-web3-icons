@@ -12,7 +12,7 @@ export const Celestia = /* @__PURE__ */ createIcon(
       clipRule="evenodd"
     />
   ),
-  '#7A2BF9',
+  { fill: '#7A2BF9' },
 );
 
 /** Celestia chain icon (monochrome). */
@@ -26,5 +26,5 @@ export const CelestiaMono = /* @__PURE__ */ createIcon(
       clipRule="evenodd"
     />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

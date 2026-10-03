@@ -23,6 +23,7 @@ export const DeBank = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** De Bank portfolio icon (monochrome). */
@@ -38,5 +39,5 @@ export const DeBankMono = /* @__PURE__ */ createIcon(
       <path d="M51 39c56.436 0 102.187 45.075 102.187 100.677S107.436 240.354 51 240.354v-40.271c33.862 0 61.312-27.045 61.312-60.406S84.862 79.271 51 79.271V39z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

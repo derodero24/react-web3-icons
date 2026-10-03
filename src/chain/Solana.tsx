@@ -8,7 +8,7 @@ import { createIcon } from '../utils';
 export const Solana = /* @__PURE__ */ createIcon(
   'Solana',
   '-0.02 0 397.74 311.7',
-  _id => (
+  (_props, _id) => (
     <>
       <linearGradient
         id={`${_id}-sln-a`}
@@ -57,13 +57,14 @@ export const Solana = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  { ids: true },
 );
 
 /** Solana Circle chain icon (colored). */
 export const SolanaCircle = /* @__PURE__ */ createIcon(
   'SolanaCircle',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="32" cy="32" r="32" fill="#000" />
       <defs>
@@ -117,13 +118,14 @@ export const SolanaCircle = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  { ids: true },
 );
 
 /** Solana Square chain icon (colored). */
 export const SolanaSquare = /* @__PURE__ */ createIcon(
   'SolanaSquare',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" fill="#000" />
       <defs>
@@ -177,13 +179,14 @@ export const SolanaSquare = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  { ids: true },
 );
 
 /** Solana Square chain icon (monochrome). */
 export const SolanaSquareMono = /* @__PURE__ */ createIcon(
   'SolanaSquareMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-solsm-a)`} />
       <defs>
@@ -198,14 +201,14 @@ export const SolanaSquareMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Solana Circle chain icon (monochrome). */
 export const SolanaCircleMono = /* @__PURE__ */ createIcon(
   'SolanaCircleMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="32" cy="32" r="32" mask={`url(#${_id}-solcm-a)`} />
       <defs>
@@ -220,7 +223,7 @@ export const SolanaCircleMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Solana chain icon (monochrome). */
@@ -234,5 +237,5 @@ export const SolanaMono = /* @__PURE__ */ createIcon(
       <path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

@@ -26,14 +26,14 @@ export const Socket = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none' },
 );
 
 /** Socket bridge icon (monochrome). */
 export const SocketMono = /* @__PURE__ */ createIcon(
   'SocketMono',
   '402 163 755 755',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         d="M963.922 917.958c-184.477 0-368.455.006-552.433-.018-9.672-.002-8.548 1.122-8.549-8.505-.022-245.637-.022-491.274 0-736.911.001-9.673-1.129-8.549 8.498-8.55 245.971-.022 491.941-.022 737.912 0 9.673.001 8.54-1.123 8.54 8.504.03 245.637.03 491.274 0 736.911 0 9.673 1.13 8.543-8.497 8.549-61.659.037-123.319.019-185.471.02z"
@@ -54,5 +54,5 @@ export const SocketMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

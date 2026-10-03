@@ -11,7 +11,7 @@ export const BitgetWallet = /* @__PURE__ */ createIcon(
       <path d="M12.879 14.54H8.596L4.215 9.986a.785.785 0 0 1-.003-1.076L9.83 3h4.412l-1.334 1.357L8.01 9.449l4.836 5.092" />
     </>
   ),
-  '#00F0FF',
+  { fill: '#00F0FF' },
 );
 
 /** Bitget Wallet wallet icon (monochrome). */
@@ -24,5 +24,5 @@ export const BitgetWalletMono = /* @__PURE__ */ createIcon(
       <path d="M12.879 14.54H8.596L4.215 9.986a.785.785 0 0 1-.003-1.076L9.83 3h4.412l-1.334 1.357L8.01 9.449l4.836 5.092" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

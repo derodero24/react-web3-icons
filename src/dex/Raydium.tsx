@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const Raydium = /* @__PURE__ */ createIcon(
   'Raydium',
   '0 0 40 40',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <linearGradient
@@ -39,7 +39,7 @@ export const Raydium = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none', ids: true },
 );
 
 /** Raydium DEX icon (monochrome). */
@@ -54,5 +54,5 @@ export const RaydiumMono = /* @__PURE__ */ createIcon(
       <path d="M32.6593 13.1888L34.3137 14.1079L35.968 13.1888V11.2467L34.3137 10.2877L32.6593 11.2467V13.1888Z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

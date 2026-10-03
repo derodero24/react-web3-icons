@@ -26,7 +26,7 @@ export const Uniswap = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  '#FF007A',
+  { fill: '#FF007A' },
 );
 
 /** Uniswap DEX icon (monochrome). */
@@ -54,5 +54,5 @@ export const UniswapMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

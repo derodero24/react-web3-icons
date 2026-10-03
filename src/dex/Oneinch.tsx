@@ -22,14 +22,14 @@ export const Oneinch = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none' },
 );
 
 /** Oneinch DEX icon (monochrome). */
 export const OneinchMono = /* @__PURE__ */ createIcon(
   'OneinchMono',
   '0 0 40 40',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="40" height="40" rx="8" mask={`url(#${_id}-1i-m)`} />
       <defs>
@@ -51,5 +51,5 @@ export const OneinchMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

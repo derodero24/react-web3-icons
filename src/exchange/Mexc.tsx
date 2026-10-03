@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const Mexc = /* @__PURE__ */ createIcon(
   'Mexc',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <linearGradient
@@ -34,7 +34,7 @@ export const Mexc = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none', ids: true },
 );
 
 /** Mexc exchange icon (monochrome). */
@@ -48,5 +48,5 @@ export const MexcMono = /* @__PURE__ */ createIcon(
       <path d="M10.659 17.687h6.055L12 9.347l-3.028 5.355c-.748 1.326.19 2.985 1.687 2.985" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

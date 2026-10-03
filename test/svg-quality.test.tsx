@@ -90,11 +90,12 @@ describe('SVG quality checks', () => {
     });
 
     it('has only namespaced internal IDs', () => {
-      // Internal IDs are deterministic (RSC-compatible, no useId) but must be
-      // namespaced with a component prefix so different icons never collide:
-      // `w3i-<componentname>-<local>`. Alias exports render their canonical
-      // component, so the embedded name may differ from the export name.
-      const namespacedIdRe = /^w3i-[a-z0-9]+-/;
+      // Internal IDs are namespaced per component and per instance, so no
+      // two rendered icons share one: `w3i-<componentname>-<instance>-<local>`
+      // (the instance part comes from useId). Alias exports render their
+      // canonical component, so the embedded name may differ from the export
+      // name.
+      const namespacedIdRe = /^w3i-[a-z0-9]+-[A-Za-z0-9]+-./;
       const elementsWithId = svg?.querySelectorAll('[id]') ?? [];
       const badIds: string[] = [];
       for (const el of elementsWithId) {

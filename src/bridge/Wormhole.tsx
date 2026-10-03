@@ -37,7 +37,7 @@ export const Wormhole = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none' },
 );
 
 /** Wormhole bridge icon (monochrome). */
@@ -55,5 +55,5 @@ export const WormholeMono = /* @__PURE__ */ createIcon(
       <path d="M11.5042 3.17862C11.6937 3.17862 11.8473 3.02501 11.8473 2.83553C11.8473 2.64604 11.6937 2.49243 11.5042 2.49243C11.3147 2.49243 11.1611 2.64604 11.1611 2.83553C11.1611 3.02501 11.3147 3.17862 11.5042 3.17862Z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

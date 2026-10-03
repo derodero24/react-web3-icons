@@ -8,7 +8,7 @@ export const Kava = /* @__PURE__ */ createIcon(
   () => (
     <path d="M7.757 21V3H4.93v18zm7.78 0L9.17 11.998l6.367-8.994h3.535l-6.364 8.994L19.072 21z" />
   ),
-  '#FF564F',
+  { fill: '#FF564F' },
 );
 
 /** Kava chain icon (monochrome). */
@@ -18,5 +18,5 @@ export const KavaMono = /* @__PURE__ */ createIcon(
   () => (
     <path d="M7.757 21V3H4.93v18zm7.78 0L9.17 11.998l6.367-8.994h3.535l-6.364 8.994L19.072 21z" />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

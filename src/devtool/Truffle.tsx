@@ -18,13 +18,14 @@ export const Truffle = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** @deprecated ConsenSys sunset Truffle Suite in September 2023. */
 export const TruffleMono = /* @__PURE__ */ createIcon(
   'TruffleMono',
   '0 0 206.83 204.29',
-  _id => (
+  (_props, _id) => (
     <>
       <ellipse
         cx="103.17"
@@ -57,5 +58,5 @@ export const TruffleMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
