@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useCopyAction } from '../../hooks/useCopyAction';
+import CopyStatusMessage from '../elements/CopyStatusMessage';
 import CopyToggleIcon from '../elements/CopyToggleIcon';
 
 type PkgManager = 'npm' | 'yarn' | 'pnpm' | 'bun';
@@ -22,7 +23,7 @@ export default function Hero({
   iconCount: number;
 }) {
   const [pkg, setPkg] = useState<PkgManager>('npm');
-  const { copied, copy, reset } = useCopyAction();
+  const { status, copy, reset } = useCopyAction();
 
   const handlePkgChange = (m: PkgManager) => {
     setPkg(m);
@@ -59,15 +60,16 @@ export default function Hero({
           </div>
           <button
             type="button"
-            onClick={() => copy(INSTALL_CMDS[pkg])}
+            onClick={() => void copy(INSTALL_CMDS[pkg])}
             aria-label={`Copy ${INSTALL_CMDS[pkg]}`}
             className="flex items-center gap-3 rounded-lg border border-border bg-surface px-5 py-2.5 font-mono text-sm text-fg/80 transition-colors hover:bg-surface-hover"
           >
             <span className="select-all">{INSTALL_CMDS[pkg]}</span>
             <span className="text-fg-muted">
-              <CopyToggleIcon copied={copied} />
+              <CopyToggleIcon status={status} />
             </span>
           </button>
+          <CopyStatusMessage status={status} />
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCopyAction } from '../../hooks/useCopyAction';
+import CopyStatusMessage from './CopyStatusMessage';
 import CopyToggleIcon from './CopyToggleIcon';
 
 export default function CodeBlock({
@@ -10,7 +11,7 @@ export default function CodeBlock({
   children: string;
   label?: string;
 }) {
-  const { copied, copy } = useCopyAction();
+  const { status, copy } = useCopyAction();
 
   const Wrapper = label ? 'section' : 'div';
 
@@ -24,12 +25,13 @@ export default function CodeBlock({
       </pre>
       <button
         type="button"
-        onClick={() => copy(children)}
+        onClick={() => void copy(children)}
         aria-label="Copy code"
         className="absolute right-2 top-2 rounded p-1.5 text-fg/20 opacity-0 transition-all hover:bg-fg/10 hover:text-fg/80 focus-visible:opacity-100 group-hover:opacity-100"
       >
-        <CopyToggleIcon copied={copied} />
+        <CopyToggleIcon status={status} />
       </button>
+      <CopyStatusMessage status={status} />
     </Wrapper>
   );
 }

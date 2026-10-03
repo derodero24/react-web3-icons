@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useCopyAction } from '../../hooks/useCopyAction';
 import { bgStyle, type PreviewBg } from '../../utils/bgStyle';
 import type { IconGroup } from '../../utils/icons';
+import CopyStatusMessage from './CopyStatusMessage';
 import CopyToggleIcon from './CopyToggleIcon';
 
 interface Props {
@@ -20,6 +21,9 @@ const CODE_TABS: readonly { key: CodeTab; label: string }[] = [
   { key: 'svg', label: 'SVG' },
 ];
 
+/** Keep the blob URL alive long enough for the browser to start the download. */
+const REVOKE_DELAY_MS = 10_000;
+
 const SIZES = [16, 24, 32, 48, 64] as const;
 const PRESET_COLORS = [
   { value: '', label: 'Default' },
@@ -32,59 +36,74 @@ const PRESET_COLORS = [
 ] as const;
 
 function CopyButton({ text }: { text: string }) {
-  const { copied, copy } = useCopyAction();
+  const { status, copy } = useCopyAction();
 
   return (
-    <button
-      type="button"
-      onClick={() => copy(text)}
-      aria-label="Copy to clipboard"
-      className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg-muted transition-colors hover:bg-fg/10 hover:text-fg/80"
-    >
-      <CopyToggleIcon copied={copied} />
-    </button>
+    <>
+      <button
+        type="button"
+        onClick={() => void copy(text)}
+        aria-label="Copy to clipboard"
+        className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg-muted transition-colors hover:bg-fg/10 hover:text-fg/80"
+      >
+        <CopyToggleIcon status={status} />
+      </button>
+      <CopyStatusMessage status={status} />
+    </>
   );
 }
 
 function ShareButton() {
-  const { copied, copy } = useCopyAction();
+  const { status, copied, copy } = useCopyAction();
 
   return (
-    <button
-      type="button"
-      onClick={() => copy(window.location.href)}
-      aria-label={copied ? 'Link copied' : 'Copy link to this icon'}
-      title={copied ? 'Link copied!' : 'Copy link'}
-      className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg-muted transition-colors hover:bg-fg/10 hover:text-fg/80"
-    >
-      {copied ? (
-        <svg
-          viewBox="0 0 16 16"
-          className="h-4 w-4"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M2 8 6.5 13 14 4" />
-        </svg>
-      ) : (
-        <svg
-          viewBox="0 0 16 16"
-          className="h-4 w-4"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3M10 1h5v5M15 1 7 9" />
-        </svg>
-      )}
-    </button>
+    <>
+      <button
+        type="button"
+        onClick={() => void copy(window.location.href)}
+        aria-label="Copy link to this icon"
+        title={
+          status === 'copied'
+            ? 'Link copied!'
+            : status === 'failed'
+              ? 'Copy failed'
+              : 'Copy link'
+        }
+        className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg-muted transition-colors hover:bg-fg/10 hover:text-fg/80"
+      >
+        {copied ? (
+          <svg
+            viewBox="0 0 16 16"
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M2 8 6.5 13 14 4" />
+          </svg>
+        ) : (
+          <svg
+            viewBox="0 0 16 16"
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3M10 1h5v5M15 1 7 9" />
+          </svg>
+        )}
+      </button>
+      <CopyStatusMessage
+        status={status}
+        copiedMessage="Link copied to clipboard"
+      />
+    </>
   );
 }
 
@@ -101,7 +120,9 @@ function downloadSvg(name: string, container: HTMLElement | null) {
   a.href = url;
   a.download = `${name}.svg`;
   a.click();
-  URL.revokeObjectURL(url);
+  // Revoking synchronously can cancel the download in some browsers; wait
+  // until the download triggered by click() has picked up the blob.
+  setTimeout(() => URL.revokeObjectURL(url), REVOKE_DELAY_MS);
 }
 
 export default function IconDrawer({ group, onClose }: Props) {
