@@ -1447,7 +1447,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'sushiswap',
     variants: ['', 'Mono'],
     aliases: ['sushi'],
-    brandColor: '#fa52a0',
+    brandColor: '#27b0e6',
   },
   { name: 'SushiSwapMono', category: 'dex' },
   {
