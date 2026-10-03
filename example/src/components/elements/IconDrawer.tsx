@@ -102,6 +102,7 @@ function ShareButton() {
       <CopyStatusMessage
         status={status}
         copiedMessage="Link copied to clipboard"
+        failedMessage="Copy failed. Copy the link from the browser's address bar."
       />
     </>
   );

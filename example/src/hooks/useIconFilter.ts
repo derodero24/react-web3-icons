@@ -69,9 +69,17 @@ function pickActive(
 
 function groupMatchesSearch(group: IconGroup, keyword: string): boolean {
   if (!keyword) return true;
-  // Alias match: alias → base names; the group base must start with one
+  // Alias match: alias → export names. A target may name a variant rather
+  // than the group base (`arbitrum-nova` → `ArbitrumNova`, grouped under
+  // `Arbitrum`), so compare against every export in the group.
   const aliasTargets = SEARCH_ALIASES.get(keyword);
-  if (aliasTargets?.some(target => group.base.startsWith(target))) return true;
+  if (
+    aliasTargets?.some(target =>
+      group.variants.some(v => v.name.startsWith(target)),
+    )
+  ) {
+    return true;
+  }
   // Fallback: substring match on any export name in the group
   return group.variants.some(v => v.name.toLowerCase().includes(keyword));
 }

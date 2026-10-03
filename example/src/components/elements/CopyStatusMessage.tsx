@@ -13,13 +13,22 @@ const MESSAGES: Record<CopyStatus, string> = {
 export default function CopyStatusMessage({
   status,
   copiedMessage = MESSAGES.copied,
+  failedMessage = MESSAGES.failed,
 }: {
   status: CopyStatus;
   copiedMessage?: string;
+  /** Override when the copied text is not visible on the page. */
+  failedMessage?: string;
 }) {
+  const message =
+    status === 'copied'
+      ? copiedMessage
+      : status === 'failed'
+        ? failedMessage
+        : MESSAGES.idle;
   return (
     <span role="status" className="sr-only">
-      {status === 'copied' ? copiedMessage : MESSAGES[status]}
+      {message}
     </span>
   );
 }
