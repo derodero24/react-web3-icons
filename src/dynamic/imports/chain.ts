@@ -96,6 +96,8 @@ export const chainImports: Record<
   Kaia: () => import('../../chain/Kaia'),
   KaiaMono: () => import('../../chain/Kaia'),
   Kava: () => import('../../chain/Kava'),
+  KavaCircle: () => import('../../chain/Kava'),
+  KavaCircleMono: () => import('../../chain/Kava'),
   KavaMono: () => import('../../chain/Kava'),
   Linea: () => import('../../chain/Linea'),
   LineaMono: () => import('../../chain/Linea'),
