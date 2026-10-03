@@ -1,0 +1,206 @@
+name: Compatibility
+
+# Consumes the packed tarball the way users do (fixtures in test/consumer/)
+# and runs the unit tests against React 18. The library itself is always
+# built with the repo toolchain on Node 24; only the consumers vary.
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  types:
+    name: Types (TypeScript ${{ matrix.typescript }}, @types/react ${{ matrix.types-react }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        # The published .d.mts files are emitted by TypeScript 7; consumers
+        # still compile them with 5.x. Oldest and newest 5.x are checked.
+        typescript: ['5.0.4', '5.9.3']
+        types-react: ['18.3.31', '19.3.0']
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+
+      - name: Use Node 24.x
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24.x'
+          cache: pnpm
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build and pack
+        run: |
+          pnpm run build
+          pnpm pack --pack-destination "$RUNNER_TEMP/package"
+
+      - name: Install tarball into the fixture
+        working-directory: test/consumer/types
+        env:
+          TYPESCRIPT_VERSION: ${{ matrix.typescript }}
+          TYPES_REACT_VERSION: ${{ matrix.types-react }}
+        run: >-
+          npm install --no-save --no-package-lock --no-audit --no-fund
+          "typescript@$TYPESCRIPT_VERSION"
+          "@types/react@$TYPES_REACT_VERSION"
+          "$RUNNER_TEMP"/package/*.tgz
+
+      - name: tsc --noEmit (moduleResolution bundler)
+        working-directory: test/consumer/types
+        run: ./node_modules/.bin/tsc -p tsconfig.bundler.json
+
+      - name: tsc --noEmit (moduleResolution node16)
+        working-directory: test/consumer/types
+        run: ./node_modules/.bin/tsc -p tsconfig.node16.json
+
+  bundle:
+    name: Vite build tree-shakes unused icons
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+
+      - name: Use Node 24.x
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24.x'
+          cache: pnpm
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build and pack
+        run: |
+          pnpm run build
+          pnpm pack --pack-destination "$RUNNER_TEMP/package"
+
+      - name: Install tarball into the fixture
+        working-directory: test/consumer/vite
+        run: >-
+          npm install --no-save --no-package-lock --no-audit --no-fund
+          "$RUNNER_TEMP"/package/*.tgz
+
+      - name: Vite production build
+        working-directory: test/consumer/vite
+        run: ./node_modules/.bin/vite build
+
+      - name: Assert only the imported icon is bundled
+        working-directory: test/consumer/vite
+        run: node check-tree-shaking.mjs
+
+  node:
+    name: Node ${{ matrix.node }} import / require(esm)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['18.x', '20.x', '22.x', '24.x']
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+
+      - name: Use Node 24.x
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24.x'
+          cache: pnpm
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build and pack
+        run: |
+          pnpm run build
+          pnpm pack --pack-destination "$RUNNER_TEMP/package"
+
+      - name: Use Node ${{ matrix.node }} for the consumer
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: ${{ matrix.node }}
+
+      # --engine-strict fails the install if the package declares an
+      # `engines` range that excludes this Node version.
+      - name: Install tarball into the fixture
+        working-directory: test/consumer/node
+        run: >-
+          npm install --no-save --no-package-lock --no-audit --no-fund
+          --engine-strict
+          "$RUNNER_TEMP"/package/*.tgz
+
+      - name: Import (and require) every export
+        working-directory: test/consumer/node
+        run: node check.mjs
+
+  react-18:
+    name: Typecheck and unit tests on React 18
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+
+      - name: Use Node 24.x
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24.x'
+          cache: pnpm
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      # Edits package.json and pnpm-lock.yaml in this runner's checkout only.
+      # Starting from the frozen install keeps every other package at its
+      # locked version; only the exact React 18 versions below are resolved.
+      - name: Switch to React 18
+        run: >-
+          pnpm add --workspace-root --save-dev --save-exact
+          react@18.3.1 react-dom@18.3.1
+          @types/react@18.3.31 @types/react-dom@18.3.7
+
+      - name: Show React versions
+        run: pnpm ls --depth=0 react react-dom @types/react @types/react-dom
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Test
+        run: pnpm test

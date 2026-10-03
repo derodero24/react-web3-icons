@@ -1,0 +1,8 @@
+{
+  "name": "react-web3-icons-consumer-node",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "react": "19.3.0"
+  }
+}
