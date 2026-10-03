@@ -1,12 +1,18 @@
 {
   "name": "Babylon",
   "source": [
-    "https://github.com/babylonlabs-io/simple-staking/blob/main/src/ui/common/assets/icon-black.svg"
+    "https://cdn.prod.website-files.com/671f8903fede075d021ba774/6a69ce72a51fb5381f6a5039_Babylon%20Brand%20Kit-20260729T095640Z-1-001.zip"
+  ],
+  "notes": [
+    "Official 2026 brand kit linked from https://babylonlabs.io/media",
+    "Colored: \"Babylon Brand Kit/Symbol Babylon Orange.svg\" (the #CE6533 symbol)",
+    "Mono: the same two paths in currentColor (the kit also ships the symbol in one colour as Symbol Dark Blue.svg and Symbol White.svg)"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "babylon.svg"
+      "file": "babylon.svg",
+      "fill": "#CE6533"
     },
     "Mono": {
       "file": "babylon.mono.svg",

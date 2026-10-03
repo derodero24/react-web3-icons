@@ -1014,7 +1014,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'defi',
     slug: 'babylon',
     variants: ['', 'Mono'],
-    brandColor: '#ff7c2b',
+    brandColor: '#ce6533',
   },
   { name: 'BabylonMono', category: 'defi' },
   {
