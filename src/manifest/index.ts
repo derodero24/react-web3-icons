@@ -1338,7 +1338,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'dex',
     slug: 'aerodrome',
     variants: ['', 'Mono'],
-    brandColor: '#e84125',
+    brandColor: '#0433ff',
   },
   { name: 'AerodromeMono', category: 'dex' },
   {

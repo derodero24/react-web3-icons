@@ -1,14 +1,18 @@
 {
   "name": "Aerodrome",
+  "source": [
+    "https://aerodrome.finance/svg/AERO/favicon.svg",
+    "https://aerodrome.finance/brand-kit/AERO/symbol.svg (official brand kit, https://aerodrome.finance/brand)"
+  ],
   "notes": [
-    "Icon mark paths extracted from aerodrome.finance/logo.svg (official website)",
-    "All paths use the same orange-red palette (#E35930→#E84125); simplified to flat #E84125"
+    "Colored: the five stacked swooshes of the official favicon.svg unchanged (#0C0D1D, #0433FF, #9CADFF, #F5F3E6, #FF1100, each drawn over the previous one; the stylesheet classes became fill attributes), placed on the 64 grid",
+    "The brand kit's symbol.svg is the same mark but about 470 KB of path data (119 KB after SVGO), so the compact favicon.svg geometry is used",
+    "Mono: the same five paths in one colour; drawn over each other they would merge into a single blob, so the stripes alternate ink and hole in the painting order (1st, 3rd, 5th ink; 2nd and 4th knocked out by a mask) to keep the striped swoosh readable"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "aerodrome.svg",
-      "fill": "#E84125"
+      "file": "aerodrome.svg"
     },
     "Mono": {
       "file": "aerodrome.mono.svg",
