@@ -2077,7 +2077,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
       'SquareMono',
       'SymbolMono',
     ],
-    brandColor: '#534bb1',
+    brandColor: '#ab9ff2',
   },
   { name: 'PhantomWalletCircle', category: 'wallet' },
   { name: 'PhantomWalletCircleMono', category: 'wallet' },
