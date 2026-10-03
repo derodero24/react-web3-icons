@@ -7,6 +7,7 @@ import {
   type ReactNode,
 } from 'react';
 import ReactDOM from 'react-dom/client';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   createDynamicIcon,
@@ -308,17 +309,23 @@ describe('createDynamicIcon', () => {
       expect(warn).not.toHaveBeenCalled();
     });
 
-    it('are silent where no bundler defined process.env.NODE_ENV', async () => {
-      vi.stubGlobal('process', undefined);
+    it('are silent where no bundler defined process.env.NODE_ENV', () => {
       const warn = vi.spyOn(console, 'warn');
-      const { container } = await render(
-        createElement(dynamicIcon({}, null), {
-          name: 'no-process',
-          fallback,
-        }),
-      );
-      vi.unstubAllGlobals();
-      expect(container.textContent).toBe('fallback');
+      const element = createElement(dynamicIcon({}, null), {
+        name: 'no-process',
+        fallback,
+      });
+      // Render synchronously so `process` is missing only while this code
+      // runs: removing it across an await would also break Vitest's own
+      // process.nextTick-based RPC.
+      vi.stubGlobal('process', undefined);
+      let markup: string;
+      try {
+        markup = renderToStaticMarkup(element);
+      } finally {
+        vi.unstubAllGlobals();
+      }
+      expect(markup).toBe('<span>fallback</span>');
       expect(warn).not.toHaveBeenCalled();
     });
   });
