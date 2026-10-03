@@ -32,6 +32,8 @@
     }
   },
   "slugs": [
-    "coinbasewallet"
+    "coinbasewallet",
+    "coinbase",
+    "coinbase-wallet-sdk"
   ]
 }

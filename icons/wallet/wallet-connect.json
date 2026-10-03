@@ -35,6 +35,7 @@
     "wc"
   ],
   "slugs": [
-    "walletconnect"
+    "walletconnect",
+    "wc"
   ]
 }

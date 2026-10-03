@@ -36,6 +36,7 @@
     }
   },
   "slugs": [
-    "phantomwallet"
+    "phantomwallet",
+    "phantom"
   ]
 }

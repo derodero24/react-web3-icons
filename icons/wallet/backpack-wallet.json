@@ -15,6 +15,7 @@
     }
   },
   "slugs": [
-    "backpackwallet"
+    "backpackwallet",
+    "backpack"
   ]
 }
