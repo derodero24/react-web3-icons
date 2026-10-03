@@ -1600,7 +1600,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'kucoin',
     variants: ['', 'Mono'],
-    brandColor: '#23af91',
+    brandColor: '#00b47d',
   },
   { name: 'KuCoinMono', category: 'exchange' },
   {
