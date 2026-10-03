@@ -1,13 +1,17 @@
 {
   "name": "BitgetWallet",
   "source": [
-    "https://bitget.com"
+    "https://web3.bitget.com/bgwactivity-static/_next/static/media/Bitget-Wallet-Logomark.07wqb3-5_b2ml.svg",
+    "https://web3.bitget.com/bgwactivity-static/_next/static/media/logo-pack.0q3ryo-u8dlm0.zip (official brand kit https://web3.bitget.com/brand-kit, logo pack of 2026-07-20: Bitget-Wallet-Logomark.svg, Bitget-Wallet-Logomark-Black.svg)"
+  ],
+  "notes": [
+    "Colored: the official Bitget-Wallet-Logomark.svg, the #00F0FF chevron on its #001F29 rounded tile (rx 60 of 256). The brand kit publishes the logomark only with its tile, so the tile is part of the default icon",
+    "Mono: the tile in currentColor with the chevron knocked out (evenodd), the layout of the official single-colour Bitget-Wallet-Logomark-Black.svg"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "bitget-wallet.svg",
-      "fill": "#00F0FF"
+      "file": "bitget-wallet.svg"
     },
     "Mono": {
       "file": "bitget-wallet.mono.svg",
