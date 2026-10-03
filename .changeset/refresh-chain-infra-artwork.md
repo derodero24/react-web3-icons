@@ -2,7 +2,7 @@
 "react-web3-icons": minor
 ---
 
-Refresh outdated or wrong chain, bridge, oracle, domain and node artwork with the brands' current official files (#835). Export names are unchanged.
+Refresh outdated or wrong chain, bridge, oracle, domain and node artwork with the brands' current official files (#835). Existing export names are unchanged; one export is added, `OrbiterInverted` (Orbiter's official dark-theme symbol), so `BridgeVariant` gains `'Inverted'`. Optimism's colour refresh to the official `#FF0421` symbol is left for a follow-up.
 
 - **Visible rebrands:**
   - `Base` is now Base's current symbol, "The Square": a blue `#0000FF` rounded square. It replaces the circle-with-bar mark. `BaseCircle` and `BaseSquare` show the white Square on a `#0000FF` disc or tile.
