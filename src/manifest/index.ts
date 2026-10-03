@@ -2211,7 +2211,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'yoroiwallet',
     variants: ['', 'Mono'],
-    brandColor: '#1a44b7',
+    brandColor: '#4b63f6',
   },
   { name: 'YoroiWalletMono', category: 'wallet' },
   {
