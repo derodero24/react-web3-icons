@@ -1,7 +1,10 @@
 {
   "name": "Jupiter",
+  "source": [
+    "https://jup.ag/favicon.svg"
+  ],
   "notes": [
-    "Paths sourced from official jup.ag favicon (six layered arc segments)"
+    "Paths sourced from the official jup.ag favicon.svg (six arc segments, #00BEF0 to #C7F284); matches the current file (checked 2026-10-03)"
   ],
   "kind": "icon",
   "variants": {
