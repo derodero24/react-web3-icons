@@ -1,20 +1,17 @@
 {
   "name": "Celoscan",
   "source": [
-    "https://celoscan.io/assets/celo/images/svg/logos/chain-light.svg",
-    "https://celoscan.io/assets/celo/images/svg/logos/logo-light.svg"
+    "https://celoscan.io/assets/celo/images/svg/logos/chain-light.svg"
   ],
   "notes": [
     "Celoscan uses the Celo \"C\" mark, a square path forming an open C shape",
-    "Square / SquareMono: the official chain-light.svg (#FCFF52 square with the black C), without its no-op clip path",
-    "Default / Mono: the C path of chain-light.svg on its own, in the black that Celoscan's own logo-light.svg uses for the C (the old #35D07F was the pre-2023 Celo green); the mono is the same path in currentColor",
-    "brandColor: the C is black, so the manifest uses Celo's yellow #FCFF52 from the official Square artwork"
+    "Default and Square: the official chain-light.svg as is (#FCFF52 tile with the black C), without its no-op clip path; the old default was the C alone in the pre-2023 Celo green #35D07F",
+    "Mono and SquareMono: the tile in currentColor with the C knocked out"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "celoscan.svg",
-      "fill": "#000"
+      "file": "celoscan.svg"
     },
     "Square": {
       "file": "celoscan.square.svg"
@@ -27,6 +24,5 @@
       "file": "celoscan.square-mono.svg",
       "fill": "currentColor"
     }
-  },
-  "brandColor": "#fcff52"
+  }
 }
