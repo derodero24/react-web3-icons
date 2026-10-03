@@ -1,7 +1,11 @@
 {
   "name": "Yearn",
   "source": [
-    "https://yearn.fi (official brand)"
+    "https://brand.yearn.fi/downloads/YEARN_SYMBOL_BLUE_RGB.svg"
+  ],
+  "notes": [
+    "Colored: the official brand-kit symbol YEARN_SYMBOL_BLUE_RGB.svg (#0657F9), its CSS class inlined as the root fill",
+    "Mono: the same two shapes in currentColor"
   ],
   "kind": "icon",
   "variants": {

@@ -1,13 +1,18 @@
 {
   "name": "Morpho",
+  "source": [
+    "https://cdn.morpho.org/assets/brand-kit/morpho-logo.zip"
+  ],
   "notes": [
-    "Paths sourced from backend.morpho.org/uploads/2024/11/morpho.svg (official brand asset)"
+    "Official Morpho brand-kit archive",
+    "Colored: \"Morpho Logos/SVG/Morpho-logo-symbol-lightmode.svg\" (#2470FF upper wings, #004EC3 lower wings), without its no-op clip path",
+    "Mono: the same four paths in currentColor, as in the kit's one-colour Morpho-logo-symbol-darkmode.svg",
+    "brandColor: the two blues occur equally often, so the manifest names the primary Morpho blue #2470FF"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "morpho.svg",
-      "fill": "#2470FF"
+      "file": "morpho.svg"
     },
     "Mono": {
       "file": "morpho.mono.svg",
@@ -16,5 +21,6 @@
   },
   "slugs": [
     "morpho"
-  ]
+  ],
+  "brandColor": "#2470ff"
 }

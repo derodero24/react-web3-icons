@@ -1,7 +1,12 @@
 {
   "name": "CoinGecko",
   "source": [
-    "https://coingecko.com"
+    "https://brand.coingecko.com/resources/brand-kit"
+  ],
+  "notes": [
+    "Official brand kit \"CG-GT Logos.zip\", downloaded from the brand-kit page above",
+    "Colored: CG/CG-Symbol.svg (the rebrand symbol: #FFE866 coin, #4BCC00/#35AF00 gecko, #0D1217 eye), without its no-op clip path",
+    "Mono: CG/CG-Symbol-2.svg, the official one-colour symbol, in currentColor"
   ],
   "kind": "icon",
   "variants": {

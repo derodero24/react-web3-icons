@@ -1,7 +1,11 @@
 {
   "name": "Hardhat",
   "source": [
-    "https://hardhat.org"
+    "https://hardhat.org/images/hardhat-logo.svg"
+  ],
+  "notes": [
+    "Colored: the helmet cropped from the official hardhat-logo.svg (its eight helmet and diamond paths and their gradients, copied unchanged; the wordmark is dropped): yellow helmet, ETH diamond facets black and #6C6F74",
+    "Mono: the four helmet paths in currentColor with the diamond facets knocked out"
   ],
   "kind": "icon",
   "variants": {

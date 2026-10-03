@@ -1,13 +1,19 @@
 {
   "name": "TheGraph",
   "source": [
-    "https://thegraph.com"
+    "https://storage.thegraph.com/brand/The%20Graph%20-%20Logomark.zip"
+  ],
+  "notes": [
+    "Official brand kit linked from https://thegraph.com/brand/",
+    "Colored: \"The Graph - Logomark - Dark.svg\" (#0C0A1D); the kit ships the logomark only in #0C0A1D and white, never in purple",
+    "Mono: the same path in currentColor",
+    "brandColor: the logomark is near-black, so the manifest uses the brand purple #6F4CFF from the palette on https://thegraph.com/brand/"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "the-graph.svg",
-      "fill": "#6F4CFF"
+      "fill": "#0C0A1D"
     },
     "Mono": {
       "file": "the-graph.mono.svg",
@@ -16,5 +22,6 @@
   },
   "aliases": [
     "grt"
-  ]
+  ],
+  "brandColor": "#6f4cff"
 }
