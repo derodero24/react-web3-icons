@@ -531,6 +531,14 @@ describe('lookup keys', () => {
       }),
       /lookup keys in variantLookups\.Nova need an export AlphaNova/,
     ],
+    [
+      'keys of a deprecated export',
+      chainUnit('a', 'Alpha', {
+        slugs: ['alpha'],
+        deprecated: Object.fromEntries([['AlphaMono', 'Gone.']]),
+      }),
+      /lookup keys target the deprecated export AlphaMono; move them to its replacement/,
+    ],
   ])('rejects %s', (_, files, message) => {
     expect(() => collectLookups(loadChain(files))).toThrow(message);
   });

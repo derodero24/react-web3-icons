@@ -46,6 +46,12 @@ describe('CHAIN_ID_TO_NAME', () => {
     expect(CHAIN_ID_TO_NAME[7_777_777]).toBe('Zora');
   });
 
+  it('routes the Fantom Opera chain ID and legacy keys to Sonic (#787)', () => {
+    expect(CHAIN_ID_TO_NAME[250]).toBe('Sonic');
+    expect(CHAIN_SLUG_TO_NAME.fantom).toBe('Sonic');
+    expect(TICKER_TO_COIN.FTM).toBe('Sonic');
+  });
+
   it('every value references an exported chain icon', () => {
     const chainNames = new Set(Object.keys(chain));
     for (const [id, name] of Object.entries(CHAIN_ID_TO_NAME)) {
@@ -291,7 +297,9 @@ const NAME_LOOKUPS = [
 ])[];
 
 /** The generated maps, by name. */
-const GENERATED_MAPS = new Map<string, object>(Object.entries(meta));
+const GENERATED_MAPS = new Map<string, Readonly<Record<string, string>>>(
+  Object.entries(meta),
+);
 
 const units = CATEGORIES.flatMap(category => loadCategory(ICONS, category));
 
@@ -342,6 +350,19 @@ describe('lookup reachability', () => {
       expect(
         Object.keys(GENERATED_MAPS.get(spec.constName) ?? {}),
       ).toHaveLength(declared.length);
+    },
+  );
+
+  // Deprecated exports are removed in a future major; their keys live on
+  // the replacement (chain 250 / `fantom` / FTM → Sonic, see #787).
+  it.each(LOOKUP_MAPS)(
+    'no $constName key targets a deprecated export',
+    spec => {
+      const targets = Object.values(GENERATED_MAPS.get(spec.constName) ?? {});
+      expect(targets.length).toBeGreaterThan(0);
+      expect(targets.filter(name => DEPRECATED_ICON_NAMES.has(name))).toEqual(
+        [],
+      );
     },
   );
 });

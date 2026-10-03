@@ -332,8 +332,6 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Fantom',
     category: 'chain',
-    chainId: 250,
-    slug: 'fantom',
     deprecated: true,
     variants: ['', 'Mono'],
     aliases: ['ftm'],
@@ -804,7 +802,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'FlareMono', category: 'coin' },
   { name: 'Flr', category: 'coin', ticker: 'FLR' },
   { name: 'FlrMono', category: 'coin' },
-  { name: 'Ftm', category: 'coin', ticker: 'FTM', deprecated: true },
+  { name: 'Ftm', category: 'coin', deprecated: true },
   { name: 'FtmMono', category: 'coin', deprecated: true },
   {
     name: 'Hbar',

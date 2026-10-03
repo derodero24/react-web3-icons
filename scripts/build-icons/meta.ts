@@ -208,14 +208,24 @@ interface Claim {
   readonly path: string;
 }
 
-/** The dynamic components render `<Target>` and `<Target>Mono`. */
-function assertRenderable(unit: SourceUnit, lookup: UnitLookup): void {
+/**
+ * The dynamic components render `<Target>` and `<Target>Mono`, and keys of
+ * a deprecated export belong on its replacement (they would break when the
+ * export is removed).
+ */
+function assertTarget(unit: SourceUnit, lookup: UnitLookup): void {
   const exports = new Set(unitAllExportNames(unit));
+  const deprecated = new Set(deprecatedExports(unit));
   const where = lookup.field ? ` in ${lookup.field.slice(0, -1)}` : '';
   for (const name of [lookup.exportName, `${lookup.exportName}Mono`]) {
     if (!exports.has(name)) {
       throw new Error(
         `${unit.path}: lookup keys${where} need an export ${name} (the dynamic components render <Target> and <Target>Mono)`,
+      );
+    }
+    if (deprecated.has(name)) {
+      throw new Error(
+        `${unit.path}: lookup keys${where} target the deprecated export ${name}; move them to its replacement`,
       );
     }
   }
@@ -282,7 +292,7 @@ export function collectLookups(
         f => keysOf(lookup.keys, f).length > 0,
       );
       if (fields.length > 0 || lookup.field !== '') {
-        assertRenderable(unit, lookup);
+        assertTarget(unit, lookup);
       }
       for (const field of fields) {
         const spec = specFor(unit, lookup, field);
