@@ -80,6 +80,13 @@ luminance (best-threshold sweep) and reports the pixel disagreement with the
 mono (`refMiss`); a high value means the mono departs from a straight
 black-and-white reading of the original. When subject and background
 luminance are too close the reference is reported as `degenerate` — judge
-those icons visually instead. Intentional rendering changes to existing icons
+those icons visually instead. The visual test project runs the same audit
+(`test/visual/mono-audit.test.ts`) and fails on any flagged pair that is not
+in `MONO_AUDIT_ALLOWLIST` (`scripts/build-icons/mono-audit.ts`). Allowlist a
+pair only after checking the rendered components on light and dark: a
+`false-positive` entry says why the metric misjudges a mono that reads well,
+a `pending` entry names the issue that tracks a known problem. An entry that
+no longer trips the audit fails the test until it is removed. Intentional
+rendering changes to existing icons
 need the `visual-baseline-update` label on the PR so the visual-regression
 job regenerates baselines instead of comparing against develop.
