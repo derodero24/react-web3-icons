@@ -1,10 +1,13 @@
 {
   "name": "Base",
   "source": [
-    "https://base.org"
+    "https://raw.githubusercontent.com/base/brand-kit/main/logo/TheSquare/Digital/Base_square_blue.svg",
+    "https://www.base.org/brand (official brand kit, base-brand.zip)"
   ],
   "notes": [
-    "Circle variant: 28×28 content scaled to ~46px centered in 64×64"
+    "Default: the official Base symbol \"The Square\" (Base_square_blue.svg, Base Blue #0000FF) from base/brand-kit, a container drawn full-bleed on the 64 grid; it replaced the 2023 circle-with-bar mark (#0052FF)",
+    "Mono: The Square in currentColor (the kit also ships it in black and white)",
+    "Circle and Square: no official circle/tile version exists; plain repo-convention containers in #0000FF (circle r=32, square rx=12.8) with the official white Square (Base_square_white.svg) scaled by 0.025 (1280 -> 32 units) and centred at translate(16 16); the Mono variants knock the same square out with fill-rule=evenodd"
   ],
   "kind": "icon",
   "variants": {

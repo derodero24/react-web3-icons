@@ -220,7 +220,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 8453,
     slug: 'base',
     variants: ['', 'Mono', 'Circle', 'Square', 'SquareMono', 'CircleMono'],
-    brandColor: '#0052ff',
+    brandColor: '#0000ff',
   },
   { name: 'BaseCircle', category: 'chain' },
   { name: 'BaseCircleMono', category: 'chain' },
