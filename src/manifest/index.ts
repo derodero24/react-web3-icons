@@ -1039,7 +1039,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'defi',
     slug: 'convex',
     variants: ['', 'Mono'],
-    brandColor: '#ff5c29',
+    brandColor: '#1682fe',
   },
   { name: 'ConvexMono', category: 'defi' },
   {

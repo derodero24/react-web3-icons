@@ -196,6 +196,11 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'The white of the official symbol (the M and the band above the grey base) is open in the mono and reaches the disc edge, as in the transparent monero-symbol-1280.png, so the footprint flood fill enters it (refMiss 0.33%).',
   },
+  'defi/Convex': {
+    kind: 'false-positive',
+    reason:
+      'The mono is the C alone, as in the official one-colour lockup convex-white.svg; the colored accent pixels that fill the steps are left out, which lowers the footprint overlap.',
+  },
   'defi/Ethena': {
     kind: 'false-positive',
     reason:
