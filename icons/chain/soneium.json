@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Soneium",
+  "kind": "icon",
+  "source": [
+    "https://docs.soneium.org/img/favicon.svg (official docs site; the soneium.org brand kit is gated behind a request form)"
+  ],
+  "notes": [
+    "Symbol paths of the docs favicon without its white backing disc and its no-op clip paths (the paths lie inside the clip box). The brand is black and white: the soneium.org header and docs logos render the same symbol in black / currentColor."
+  ],
+  "variants": {
+    "": {
+      "file": "soneium.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "soneium.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "soneium"
+  ],
+  "chainIds": [
+    1868
+  ]
+}
