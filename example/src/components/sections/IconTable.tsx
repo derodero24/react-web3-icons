@@ -5,13 +5,13 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import * as iconModules from 'react-web3-icons';
 import { useIconFilter } from '../../hooks/useIconFilter';
-import { useTheme } from '../../hooks/useTheme';
 import type { IconComponent, Variant } from '../../types/icons';
 import { groupIcons } from '../../utils/groupIcons';
 import { REACT_WEB3_ICONS } from '../../utils/icons';
 import IconCard from '../elements/IconCard';
 import IconDrawer from '../elements/IconDrawer';
 import SearchForm from '../elements/SearchForm';
+import ThemeToggle from '../elements/ThemeToggle';
 
 const VARIANT_LABELS: Record<Variant, string> = {
   all: 'All',
@@ -38,7 +38,6 @@ export default function IconTable() {
   );
   const [variant, setVariant] = useState<Variant>('all');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  const { theme, toggleTheme } = useTheme();
 
   const validCategory = Object.hasOwn(REACT_WEB3_ICONS, rawCategory)
     ? (rawCategory as keyof typeof REACT_WEB3_ICONS)
@@ -177,7 +176,7 @@ export default function IconTable() {
                 className={`h-11 px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent ${
                   variant === v
                     ? 'bg-fg/10 text-fg'
-                    : 'text-fg/50 hover:bg-fg/5 hover:text-fg/60'
+                    : 'text-fg-muted hover:bg-fg/5 hover:text-fg/80'
                 }`}
               >
                 {VARIANT_LABELS[v]}
@@ -185,38 +184,7 @@ export default function IconTable() {
             ))}
           </fieldset>
 
-          <button
-            type="button"
-            onClick={toggleTheme}
-            aria-label={
-              theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
-            }
-            className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface text-fg/50 transition-colors hover:bg-surface-hover hover:text-fg/60"
-          >
-            {theme === 'dark' ? (
-              <svg
-                viewBox="0 0 16 16"
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={1.5}
-                strokeLinecap="round"
-                aria-hidden="true"
-              >
-                <circle cx={8} cy={8} r={3.5} />
-                <path d="M8 1.5v1M8 13.5v1M1.5 8h1M13.5 8h1M3.4 3.4l.7.7M11.9 11.9l.7.7M3.4 12.6l.7-.7M11.9 4.1l.7-.7" />
-              </svg>
-            ) : (
-              <svg
-                viewBox="0 0 16 16"
-                className="h-4 w-4"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5a5.5 5.5 0 0 1 0-11v11Z" />
-              </svg>
-            )}
-          </button>
+          <ThemeToggle />
         </div>
       </div>
 
@@ -225,7 +193,7 @@ export default function IconTable() {
       </p>
 
       {isCategoryEmpty ? (
-        <div className="mt-16 flex flex-col items-center gap-2 text-center text-fg/50">
+        <div className="mt-16 flex flex-col items-center gap-2 text-center text-fg-muted">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -239,13 +207,13 @@ export default function IconTable() {
             <circle cx={12} cy={12} r={10} />
             <path d="M8 12h8" />
           </svg>
-          <p className="text-base font-medium text-fg/50">No icons yet</p>
+          <p className="text-base font-medium text-fg-muted">No icons yet</p>
           <p className="text-sm">
             {`${validCategory.charAt(0).toUpperCase()}${validCategory.slice(1)} icons are coming soon`}
           </p>
         </div>
       ) : isSearchEmpty ? (
-        <div className="mt-16 flex flex-col items-center gap-2 text-center text-fg/50">
+        <div className="mt-16 flex flex-col items-center gap-2 text-center text-fg-muted">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -259,7 +227,7 @@ export default function IconTable() {
             <circle cx={11} cy={11} r={8} />
             <path d="m21 21-4.35-4.35" />
           </svg>
-          <p className="text-base font-medium text-fg/50">
+          <p className="text-base font-medium text-fg-muted">
             No results for &ldquo;{keyword}&rdquo;
           </p>
           <p className="text-sm">Try a different search term</p>

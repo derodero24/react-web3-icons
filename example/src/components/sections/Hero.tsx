@@ -35,7 +35,7 @@ export default function Hero() {
         <h2 className="text-2xl font-bold tracking-tight text-fg sm:text-3xl">
           {ICON_COUNT}+ Web3 icons for React
         </h2>
-        <p className="mt-3 text-sm text-fg/50 sm:text-base">
+        <p className="mt-3 text-sm text-fg-muted sm:text-base">
           Open-source SVG icons for chains, coins, wallets, DEXs, and more.
         </p>
 
@@ -48,7 +48,9 @@ export default function Hero() {
                 type="button"
                 onClick={() => handlePkgChange(m)}
                 className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
-                  pkg === m ? 'bg-fg/10 text-fg' : 'text-fg/50 hover:text-fg/60'
+                  pkg === m
+                    ? 'bg-fg/10 text-fg'
+                    : 'text-fg-muted hover:text-fg/80'
                 }`}
               >
                 {m}
@@ -62,7 +64,7 @@ export default function Hero() {
             className="flex items-center gap-3 rounded-lg border border-border bg-surface px-5 py-2.5 font-mono text-sm text-fg/80 transition-colors hover:bg-surface-hover"
           >
             <span className="select-all">{INSTALL_CMDS[pkg]}</span>
-            <span className="text-fg/50">
+            <span className="text-fg-muted">
               <CopyToggleIcon copied={copied} />
             </span>
           </button>

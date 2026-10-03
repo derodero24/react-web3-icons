@@ -41,7 +41,7 @@ export default function DocsPage() {
       <div className="lg:grid lg:grid-cols-[1fr_200px] lg:gap-8">
         <div>
           <h1 className="mb-2 text-3xl font-bold text-fg">API Reference</h1>
-          <p className="mb-10 text-fg/50">
+          <p className="mb-10 text-fg-muted">
             Usage guide and complete API reference for{' '}
             <code className="rounded bg-surface px-1 py-0.5 font-mono text-sm text-fg/60">
               react-web3-icons
@@ -87,29 +87,29 @@ export function MyComponent() {
                   <caption className="sr-only">Icon component props</caption>
                   <thead>
                     <tr className="border-b border-border bg-surface">
-                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-fg/50">
+                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-fg-muted">
                         Prop
                       </th>
-                      <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-fg/50">
+                      <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-fg-muted">
                         Type
                       </th>
-                      <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-fg/50">
+                      <th className="py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-fg-muted">
                         Default
                       </th>
-                      <th className="py-2 text-xs font-semibold uppercase tracking-wide text-fg/50">
+                      <th className="py-2 text-xs font-semibold uppercase tracking-wide text-fg-muted">
                         Description
                       </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border pl-3">
                     <tr>
-                      <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
+                      <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent-fg">
                         size
                       </td>
                       <td className="py-2 pr-4 align-top font-mono text-sm text-fg/60">
                         {'string | number'}
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/50">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg-muted">
                         {'"1em"'}
                       </td>
                       <td className="py-2 align-top text-sm text-fg/60">
@@ -122,13 +122,13 @@ export function MyComponent() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
+                      <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent-fg">
                         className
                       </td>
                       <td className="py-2 pr-4 align-top font-mono text-sm text-fg/60">
                         string
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/50">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg-muted">
                         —
                       </td>
                       <td className="py-2 align-top text-sm text-fg/60">
@@ -146,13 +146,13 @@ export function MyComponent() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
+                      <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent-fg">
                         title
                       </td>
                       <td className="py-2 pr-4 align-top font-mono text-sm text-fg/60">
                         string
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/50">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg-muted">
                         —
                       </td>
                       <td className="py-2 align-top text-sm text-fg/60">
@@ -168,13 +168,13 @@ export function MyComponent() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
+                      <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent-fg">
                         titleId
                       </td>
                       <td className="py-2 pr-4 align-top font-mono text-sm text-fg/60">
                         string
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/50">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg-muted">
                         —
                       </td>
                       <td className="py-2 align-top text-sm text-fg/60">
@@ -194,13 +194,13 @@ export function MyComponent() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
+                      <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent-fg">
                         aria-hidden
                       </td>
                       <td className="py-2 pr-4 align-top font-mono text-sm text-fg/60">
                         boolean
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/50">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg-muted">
                         true
                       </td>
                       <td className="py-2 align-top text-sm text-fg/60">
@@ -214,13 +214,13 @@ export function MyComponent() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
+                      <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent-fg">
                         style
                       </td>
                       <td className="py-2 pr-4 align-top font-mono text-sm text-fg/60">
                         CSSProperties
                       </td>
-                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg/50">
+                      <td className="py-2 pr-4 align-top font-mono text-sm text-fg-muted">
                         —
                       </td>
                       <td className="py-2 align-top text-sm text-fg/60">
@@ -288,10 +288,10 @@ react-web3-icons/wallet`}</CodeBlock>
                   </caption>
                   <thead>
                     <tr className="border-b border-border bg-surface">
-                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-fg/50">
+                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-fg-muted">
                         Suffix
                       </th>
-                      <th className="py-2 text-xs font-semibold uppercase tracking-wide text-fg/50">
+                      <th className="py-2 text-xs font-semibold uppercase tracking-wide text-fg-muted">
                         Description
                       </th>
                     </tr>
@@ -325,7 +325,7 @@ react-web3-icons/wallet`}</CodeBlock>
                         key={suffix}
                         className="border-b border-border last:border-0"
                       >
-                        <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent">
+                        <td className="py-2 pr-4 pl-3 align-top font-mono text-sm text-accent-fg">
                           {suffix}
                         </td>
                         <td className="py-2 align-top text-sm text-fg/60">
@@ -477,7 +477,7 @@ function DynamicIcon({ name, size }: { name: IconName; size?: number }) {
         {/* Sticky sidebar TOC (desktop only) */}
         <aside className="hidden lg:block">
           <nav aria-label="Table of contents" className="sticky top-8">
-            <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg/50">
+            <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg-muted">
               On this page
             </p>
             <ul className="flex flex-col gap-1.5 border-l border-border pl-3">
@@ -485,7 +485,7 @@ function DynamicIcon({ name, size }: { name: IconName; size?: number }) {
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
-                    className="text-sm text-fg/50 transition-colors hover:text-fg/80"
+                    className="text-sm text-fg-muted transition-colors hover:text-fg/80"
                   >
                     {item.label}
                   </a>

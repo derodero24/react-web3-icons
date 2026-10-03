@@ -31,7 +31,7 @@ function CheckIcon() {
     <svg
       viewBox="0 0 20 20"
       fill="currentColor"
-      className="mx-auto h-4 w-4 text-accent"
+      className="mx-auto h-4 w-4 text-accent-fg"
       aria-label="Yes"
     >
       <path
@@ -277,7 +277,7 @@ export default function ComparePage() {
           <h1 className="mb-2 text-3xl font-bold text-fg">
             Library Comparison
           </h1>
-          <p className="mb-10 text-fg/50">
+          <p className="mb-10 text-fg-muted">
             How{' '}
             <code className="rounded bg-surface px-1 py-0.5 font-mono text-sm text-fg/60">
               react-web3-icons
@@ -294,7 +294,7 @@ export default function ComparePage() {
               </p>
               <ul className="mb-4 flex flex-col gap-3 text-sm text-fg/60">
                 <li className="flex gap-2">
-                  <span className="mt-0.5 shrink-0 text-accent">→</span>
+                  <span className="mt-0.5 shrink-0 text-accent-fg">→</span>
                   <span>
                     <strong className="font-medium text-fg/80">
                       react-web3-icons
@@ -305,7 +305,7 @@ export default function ComparePage() {
                   </span>
                 </li>
                 <li className="flex gap-2">
-                  <span className="mt-0.5 shrink-0 text-accent">→</span>
+                  <span className="mt-0.5 shrink-0 text-accent-fg">→</span>
                   <span>
                     <strong className="font-medium text-fg/80">
                       @web3icons/react
@@ -315,7 +315,7 @@ export default function ComparePage() {
                   </span>
                 </li>
                 <li className="flex gap-2">
-                  <span className="mt-0.5 shrink-0 text-accent">→</span>
+                  <span className="mt-0.5 shrink-0 text-accent-fg">→</span>
                   <span>
                     <strong className="font-medium text-fg/80">
                       cryptocurrency-icons
@@ -326,7 +326,7 @@ export default function ComparePage() {
                   </span>
                 </li>
                 <li className="flex gap-2">
-                  <span className="mt-0.5 shrink-0 text-accent">→</span>
+                  <span className="mt-0.5 shrink-0 text-accent-fg">→</span>
                   <span>
                     <strong className="font-medium text-fg/80">
                       @ledgerhq/crypto-icons
@@ -355,13 +355,13 @@ export default function ComparePage() {
                   </caption>
                   <thead>
                     <tr className="border-b border-border bg-surface">
-                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-fg/50">
+                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-fg-muted">
                         Import
                       </th>
-                      <th className="py-2 pr-4 text-right text-xs font-semibold uppercase tracking-wide text-fg/50">
+                      <th className="py-2 pr-4 text-right text-xs font-semibold uppercase tracking-wide text-fg-muted">
                         Raw
                       </th>
-                      <th className="py-2 pr-4 text-right text-xs font-semibold uppercase tracking-wide text-fg/50">
+                      <th className="py-2 pr-4 text-right text-xs font-semibold uppercase tracking-wide text-fg-muted">
                         Gzip
                       </th>
                     </tr>
@@ -398,10 +398,10 @@ export default function ComparePage() {
                         <td className="py-2 pr-4 pl-3 font-mono text-sm text-fg/70">
                           {row.label}
                         </td>
-                        <td className="py-2 pr-4 text-right font-mono text-sm text-fg/50">
+                        <td className="py-2 pr-4 text-right font-mono text-sm text-fg-muted">
                           {row.raw}
                         </td>
-                        <td className="py-2 pr-4 text-right font-mono text-sm text-fg/50">
+                        <td className="py-2 pr-4 text-right font-mono text-sm text-fg-muted">
                           {row.gzip}
                         </td>
                       </tr>
@@ -410,7 +410,7 @@ export default function ComparePage() {
                 </table>
               </div>
 
-              <p className="text-sm text-fg/40">
+              <p className="text-sm text-fg-muted">
                 Measured with{' '}
                 <code className="rounded bg-surface px-1 font-mono text-xs">
                   size-limit
@@ -515,21 +515,21 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                   </caption>
                   <thead>
                     <tr className="border-b border-border bg-surface">
-                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-fg/50">
+                      <th className="py-2 pr-4 pl-3 text-xs font-semibold uppercase tracking-wide text-fg-muted">
                         Feature
                       </th>
-                      <th className="py-2 pr-4 text-center text-xs font-semibold uppercase tracking-wide text-fg/50">
+                      <th className="py-2 pr-4 text-center text-xs font-semibold uppercase tracking-wide text-fg-muted">
                         react-web3-icons
                       </th>
                       {COMPETITORS.map(c => (
                         <th
                           key={c.key}
-                          className="py-2 pr-4 text-center text-xs font-semibold uppercase tracking-wide text-fg/50"
+                          className="py-2 pr-4 text-center text-xs font-semibold uppercase tracking-wide text-fg-muted"
                         >
                           {c.label}
                         </th>
                       ))}
-                      <th className="hidden py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-fg/50 xl:table-cell">
+                      <th className="hidden py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-fg-muted xl:table-cell">
                         Note
                       </th>
                     </tr>
@@ -546,7 +546,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                             {row.competitors[c.key]}
                           </td>
                         ))}
-                        <td className="hidden py-2.5 pr-4 text-sm text-fg/40 xl:table-cell">
+                        <td className="hidden py-2.5 pr-4 text-sm text-fg-muted xl:table-cell">
                           {row.note ?? ''}
                         </td>
                       </tr>
@@ -555,13 +555,13 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                 </table>
               </div>
 
-              <p className="mt-4 text-sm text-fg/40">
+              <p className="mt-4 text-sm text-fg-muted">
                 Sources:{' '}
                 <a
                   href="https://github.com/0xa3k5/web3icons"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-fg/60"
+                  className="underline hover:text-fg/80"
                 >
                   @web3icons/react
                 </a>
@@ -570,7 +570,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                   href="https://github.com/spothq/cryptocurrency-icons"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-fg/60"
+                  className="underline hover:text-fg/80"
                 >
                   cryptocurrency-icons
                 </a>
@@ -579,7 +579,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                   href="https://github.com/LedgerHQ/crypto-icons"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-fg/60"
+                  className="underline hover:text-fg/80"
                 >
                   @ledgerhq/crypto-icons
                 </a>
@@ -588,7 +588,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                   href="https://npmtrends.com/react-web3-icons-vs-@web3icons/react-vs-cryptocurrency-icons-vs-@ledgerhq/crypto-icons"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-fg/60"
+                  className="underline hover:text-fg/80"
                 >
                   npm trends
                 </a>{' '}
@@ -601,7 +601,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
         {/* Sticky sidebar TOC (desktop only) */}
         <aside className="hidden lg:block">
           <nav aria-label="Table of contents" className="sticky top-8">
-            <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg/50">
+            <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg-muted">
               On this page
             </p>
             <ul className="flex flex-col gap-1.5 border-l border-border pl-3">
@@ -609,7 +609,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
-                    className="text-sm text-fg/50 transition-colors hover:text-fg/80"
+                    className="text-sm text-fg-muted transition-colors hover:text-fg/80"
                   >
                     {item.label}
                   </a>

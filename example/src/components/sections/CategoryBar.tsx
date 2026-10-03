@@ -84,12 +84,14 @@ export default function CategoryBar() {
               className={`shrink-0 rounded-md px-3 py-1.5 text-sm font-medium capitalize transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                 isActive
                   ? 'text-fg'
-                  : 'text-fg/50 hover:bg-fg/5 hover:text-fg/70'
+                  : 'text-fg-muted hover:bg-fg/5 hover:text-fg/70'
               }`}
               aria-current={isActive ? 'page' : undefined}
             >
               {item}
-              <span className="ml-1 font-mono text-xs opacity-60">{count}</span>
+              <span className="ml-1 font-mono text-xs text-fg-muted">
+                {count}
+              </span>
             </Link>
           );
         })}

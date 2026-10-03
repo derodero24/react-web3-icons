@@ -37,7 +37,7 @@ function CopyButton({ text }: { text: string }) {
       type="button"
       onClick={() => copy(text)}
       aria-label="Copy to clipboard"
-      className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg/50 transition-colors hover:bg-fg/10 hover:text-fg/60"
+      className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg-muted transition-colors hover:bg-fg/10 hover:text-fg/80"
     >
       <CopyToggleIcon copied={copied} />
     </button>
@@ -53,7 +53,7 @@ function ShareButton() {
       onClick={() => copy(window.location.href)}
       aria-label={copied ? 'Link copied' : 'Copy link to this icon'}
       title={copied ? 'Link copied!' : 'Copy link'}
-      className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg/50 transition-colors hover:bg-fg/10 hover:text-fg/60"
+      className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg-muted transition-colors hover:bg-fg/10 hover:text-fg/80"
     >
       {copied ? (
         <svg
@@ -249,7 +249,7 @@ export default function IconDrawer({
               type="button"
               onClick={onClose}
               aria-label="Close drawer"
-              className="rounded p-1 text-fg/50 transition-colors hover:bg-fg/10 hover:text-fg"
+              className="rounded p-1 text-fg-muted transition-colors hover:bg-fg/10 hover:text-fg"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -269,7 +269,7 @@ export default function IconDrawer({
 
         {/* Preview background selector */}
         <div className="flex items-center gap-2 border-b border-border px-5 py-2">
-          <span className="text-xs text-fg/50">BG</span>
+          <span className="text-xs text-fg-muted">BG</span>
           {(['dark', 'light', 'checker'] as const).map(bg => (
             <button
               key={bg}
@@ -291,8 +291,8 @@ export default function IconDrawer({
               aria-pressed={compareMode}
               className={`rounded px-2 py-0.5 text-xs font-medium transition-colors ${
                 compareMode
-                  ? 'bg-accent/20 text-accent'
-                  : 'bg-fg/5 text-fg/50 hover:text-fg/60'
+                  ? 'bg-accent/20 text-accent-fg'
+                  : 'bg-fg/5 text-fg-muted hover:text-fg/80'
               }`}
             >
               Compare
@@ -375,7 +375,7 @@ export default function IconDrawer({
 
             {/* Variant selector */}
             <div className="border-b border-border px-5 py-4">
-              <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg/50">
+              <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg-muted">
                 Variants
               </p>
               <div
@@ -415,10 +415,10 @@ export default function IconDrawer({
         {/* Size control */}
         <div className="border-b border-border px-5 py-4">
           <div className="mb-3 flex items-center justify-between">
-            <p className="text-xs font-medium uppercase tracking-wide text-fg/50">
+            <p className="text-xs font-medium uppercase tracking-wide text-fg-muted">
               Size
             </p>
-            <span className="font-mono text-xs text-fg/50">
+            <span className="font-mono text-xs text-fg-muted">
               {previewSize}px
             </span>
           </div>
@@ -441,8 +441,8 @@ export default function IconDrawer({
                 onClick={() => setPreviewSize(size)}
                 className={`flex min-h-11 min-w-11 items-center justify-center rounded font-mono text-[10px] transition-colors ${
                   previewSize === size
-                    ? 'bg-accent/20 text-accent'
-                    : 'bg-fg/5 text-fg/50 hover:text-fg/60'
+                    ? 'bg-accent/20 text-accent-fg'
+                    : 'bg-fg/5 text-fg-muted hover:text-fg/80'
                 }`}
               >
                 {size}
@@ -453,7 +453,7 @@ export default function IconDrawer({
 
         {/* Color control */}
         <div className="border-b border-border px-5 py-4">
-          <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg/50">
+          <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg-muted">
             Color
           </p>
           <div className="flex flex-wrap items-center gap-2">
@@ -487,7 +487,7 @@ export default function IconDrawer({
                 className="absolute inset-0 h-11 w-11 cursor-pointer opacity-0"
                 aria-label="Custom color"
               />
-              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-dashed border-fg/20 text-fg/50 transition-colors hover:border-fg/40 hover:text-fg/60">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-dashed border-fg/20 text-fg-muted transition-colors hover:border-fg/40 hover:text-fg/80">
                 <svg
                   viewBox="0 0 16 16"
                   className="h-3.5 w-3.5"
@@ -516,7 +516,7 @@ export default function IconDrawer({
                   className={`rounded-t-md px-3 py-1.5 text-xs font-medium transition-colors ${
                     effectiveTab === tab.key
                       ? 'bg-surface text-fg'
-                      : 'text-fg/50 hover:text-fg/60'
+                      : 'text-fg-muted hover:text-fg/80'
                   }`}
                 >
                   {tab.label}

@@ -16,6 +16,26 @@
   --color-accent: #6366f1;
   --color-accent-hover: #818cf8;
   --color-fg: #ffffff;
+  /* Text tokens sized for WCAG AA (>= 4.5:1) on every surface token */
+  --color-fg-muted: #8c8c8c;
+  --color-accent-fg: #818cf8;
+  --color-success: #4ade80;
+  --color-danger: #f87171;
+}
+
+/*
+ * Light theme: an explicit html[data-theme="light"] (set before first paint
+ * by THEME_INIT_SCRIPT), or the system preference when no script ran.
+ */
+@custom-variant light {
+  &:where([data-theme="light"], [data-theme="light"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: light) {
+    &:where(:root:not([data-theme]), :root:not([data-theme]) *) {
+      @slot;
+    }
+  }
 }
 
 @layer base {
@@ -29,13 +49,22 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  html[data-theme="light"] {
-    --color-bg: #ffffff;
-    --color-bg-nav: #f9f9f9;
-    --color-surface: #f3f3f5;
-    --color-surface-hover: #eaeaed;
-    --color-border: #e0e0e3;
-    --color-fg: #111111;
+  html {
+    color-scheme: dark;
+
+    @variant light {
+      color-scheme: light;
+      --color-bg: #ffffff;
+      --color-bg-nav: #f9f9f9;
+      --color-surface: #f3f3f5;
+      --color-surface-hover: #eaeaed;
+      --color-border: #e0e0e3;
+      --color-fg: #111111;
+      --color-fg-muted: #66666c;
+      --color-accent-fg: #4f46e5;
+      --color-success: #15803d;
+      --color-danger: #dc2626;
+    }
   }
 
   input {

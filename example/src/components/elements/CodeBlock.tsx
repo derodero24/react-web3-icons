@@ -26,7 +26,7 @@ export default function CodeBlock({
         type="button"
         onClick={() => copy(children)}
         aria-label="Copy code"
-        className="absolute right-2 top-2 rounded p-1.5 text-fg/20 opacity-0 transition-all hover:bg-fg/10 hover:text-fg/60 focus-visible:opacity-100 group-hover:opacity-100"
+        className="absolute right-2 top-2 rounded p-1.5 text-fg/20 opacity-0 transition-all hover:bg-fg/10 hover:text-fg/80 focus-visible:opacity-100 group-hover:opacity-100"
       >
         <CopyToggleIcon copied={copied} />
       </button>
