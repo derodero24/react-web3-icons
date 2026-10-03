@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Quick Node node icon (colored). */
 export const QuickNode = /* @__PURE__ */ createIcon(
   'QuickNode',
-  '0 0 40 40',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="matrix(1.4 0 0 1.4 4 4)">
       <g clipPath={`url(#${_id}-qn-a)`}>
         <path
           fillRule="evenodd"
@@ -18,7 +18,7 @@ export const QuickNode = /* @__PURE__ */ createIcon(
           <path d="M0 0h40v40H0z" />
         </clipPath>
       </defs>
-    </>
+    </g>
   ),
   { fill: '#00a4d6', ids: true },
 );
@@ -26,9 +26,9 @@ export const QuickNode = /* @__PURE__ */ createIcon(
 /** Quick Node node icon (monochrome). */
 export const QuickNodeMono = /* @__PURE__ */ createIcon(
   'QuickNodeMono',
-  '0 0 40 40',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="matrix(1.4 0 0 1.4 4 4)">
       <g clipPath={`url(#${_id}-qn-a)`}>
         <path
           fillRule="evenodd"
@@ -40,7 +40,7 @@ export const QuickNodeMono = /* @__PURE__ */ createIcon(
           <path d="M0 0h40v40H0z" />
         </clipPath>
       </defs>
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );

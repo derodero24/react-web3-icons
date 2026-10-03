@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Cake coin icon (colored). */
 export const Cake = /* @__PURE__ */ createIcon(
   'Cake',
-  '0 0 96 96',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(.66667)">
       <circle cx="48" cy="48" r="48" fill={`url(#${_id}-cake-a)`} />
       <path
         fill="#633001"
@@ -42,7 +42,7 @@ export const Cake = /* @__PURE__ */ createIcon(
           d="M40.592 54.047c0 3.11-1.455 4.729-3.249 4.729s-3.249-1.62-3.249-4.729 1.455-4.729 3.249-4.729 3.249 1.62 3.249 4.729"
         />
       </defs>
-    </>
+    </g>
   ),
   { ids: true },
 );
@@ -50,9 +50,9 @@ export const Cake = /* @__PURE__ */ createIcon(
 /** Cake coin icon (monochrome). */
 export const CakeMono = /* @__PURE__ */ createIcon(
   'CakeMono',
-  '0 0 96 96',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(.66667)">
       <mask id={`${_id}-a`}>
         <rect width="96" height="96" fill="#fff" />
         <path
@@ -82,7 +82,7 @@ export const CakeMono = /* @__PURE__ */ createIcon(
         <path d="M40.592 54.047c0 3.11-1.455 4.729-3.249 4.729s-3.249-1.62-3.249-4.729 1.455-4.729 3.249-4.729 3.249 1.62 3.249 4.729" />
         <path d="M55.408 54.047c0 3.11 1.455 4.729 3.249 4.729s3.249-1.62 3.249-4.729-1.455-4.729-3.249-4.729-3.249 1.62-3.249 4.729" />
       </g>
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );

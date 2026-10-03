@@ -4,20 +4,20 @@ import { createIcon } from '../utils';
 /** Trust Wallet Square wallet icon (colored). */
 export const TrustWalletSquare = /* @__PURE__ */ createIcon(
   'TrustWalletSquare',
-  '0 0 1024 1024',
+  '0 0 64 64',
   () => (
     <>
       <path
         fill="#fff"
-        d="M0 260C0 116.406 116.406 0 260 0h504c143.594 0 260 116.406 260 260v504c0 143.594-116.406 260-260 260H260C116.406 1024 0 907.594 0 764z"
+        d="M0 16.25C0 7.275 7.275 0 16.25 0h31.5C56.725 0 64 7.275 64 16.25v31.5C64 56.725 56.725 64 47.75 64h-31.5C7.275 64 0 56.725 0 47.75z"
       />
       <path
         fill="none"
         stroke="#0a64bc"
         strokeLinejoin="round"
         strokeMiterlimit="10"
-        strokeWidth="70"
-        d="M512.3 215c103.319 86.288 221.801 80.966 255.653 80.966C760.548 786.707 704.128 689.395 512.3 827 320.472 689.395 264.405 786.707 257 295.966c33.499 0 151.981 5.322 255.3-80.966z"
+        strokeWidth="4.38"
+        d="M32.019 13.438c6.457 5.392 13.862 5.06 15.978 5.06-.463 30.671-3.989 24.59-15.978 33.19-11.99-8.6-15.494-2.519-15.956-33.19 2.093 0 9.498.332 15.956-5.06z"
       />
     </>
   ),
@@ -47,12 +47,12 @@ export const TrustWalletCircle = /* @__PURE__ */ createIcon(
 /** Trust Wallet Square wallet icon (monochrome). */
 export const TrustWalletSquareMono = /* @__PURE__ */ createIcon(
   'TrustWalletSquareMono',
-  '0 0 1024 1024',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(.0625)">
       <defs>
         <mask id={`${_id}-twm-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
+          <rect width="1024" height="1024" fill="#fff" />
           <path
             fill="none"
             stroke="black"
@@ -67,7 +67,7 @@ export const TrustWalletSquareMono = /* @__PURE__ */ createIcon(
         d="M0 260C0 116.406 116.406 0 260 0h504c143.594 0 260 116.406 260 260v504c0 143.594-116.406 260-260 260H260C116.406 1024 0 907.594 0 764z"
         mask={`url(#${_id}-twm-a)`}
       />
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );

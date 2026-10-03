@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Binance exchange icon (colored). */
 export const Binance = /* @__PURE__ */ createIcon(
   'Binance',
-  '0 0 126.61 126.61',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="translate(4.267 4.021)scale(.44196)">
       <polygon points="38.171,53.203 62.759,28.616 87.36,53.216 101.667,38.909 62.759,0 23.864,38.896" />
       <rect
         width="20.23"
@@ -24,7 +24,7 @@ export const Binance = /* @__PURE__ */ createIcon(
         transform="rotate(135 111.756 63.308)"
       />
       <polygon points="77.271,63.298 77.277,63.298 62.759,48.78 52.03,59.509 52.029,59.509 50.797,60.742 48.254,63.285 48.254,63.285 48.234,63.305 48.254,63.326 62.759,77.831 77.277,63.313 77.284,63.305" />
-    </>
+    </g>
   ),
   { fill: '#F0B90B' },
 );
@@ -32,9 +32,9 @@ export const Binance = /* @__PURE__ */ createIcon(
 /** Binance exchange icon (monochrome). */
 export const BinanceMono = /* @__PURE__ */ createIcon(
   'BinanceMono',
-  '0 0 126.61 126.61',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="translate(4.267 4.021)scale(.44196)">
       <polygon points="38.171,53.203 62.759,28.616 87.36,53.216 101.667,38.909 62.759,0 23.864,38.896" />
       <rect
         width="20.23"
@@ -52,7 +52,7 @@ export const BinanceMono = /* @__PURE__ */ createIcon(
         transform="rotate(135 111.756 63.308)"
       />
       <polygon points="77.271,63.298 77.277,63.298 62.759,48.78 52.03,59.509 52.029,59.509 50.797,60.742 48.254,63.285 48.254,63.285 48.234,63.305 48.254,63.326 62.759,77.831 77.277,63.313 77.284,63.305" />
-    </>
+    </g>
   ),
   { fill: 'currentColor' },
 );

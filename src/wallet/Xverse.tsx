@@ -5,9 +5,9 @@ import { createIcon } from '../utils';
 /** Xverse wallet icon (colored). */
 export const Xverse = /* @__PURE__ */ createIcon(
   'Xverse',
-  '0 0 20 20',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="scale(3.2)">
       <rect width="20" height="20" fill="#181818" rx="10" />
       <path
         fill="#fff"
@@ -17,7 +17,7 @@ export const Xverse = /* @__PURE__ */ createIcon(
         fill="#EE7A30"
         d="M10.781 7.771h1.299a.14.14 0 0 1 .139.139v1.299a.139.139 0 0 0 .237.098l1.782-1.785a.14.14 0 0 0 .041-.097V5.862a.14.14 0 0 0-.139-.139l-1.586-.002a.14.14 0 0 0-.099.042L10.268 7.54a.139.139 0 0 0 .098.232h.415Z"
       />
-    </>
+    </g>
   ),
   {},
 );
@@ -25,9 +25,9 @@ export const Xverse = /* @__PURE__ */ createIcon(
 /** Xverse wallet icon (monochrome). */
 export const XverseMono = /* @__PURE__ */ createIcon(
   'XverseMono',
-  '0 0 20 20',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(3.2)">
       <defs>
         <mask id={`${_id}-xverse-a`}>
           <rect width="20" height="20" fill="#fff" rx="10" />
@@ -42,7 +42,7 @@ export const XverseMono = /* @__PURE__ */ createIcon(
         </mask>
       </defs>
       <rect width="20" height="20" mask={`url(#${_id}-xverse-a)`} rx="10" />
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );

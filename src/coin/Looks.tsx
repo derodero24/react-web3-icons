@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Looks coin icon (colored). */
 export const Looks = /* @__PURE__ */ createIcon(
   'Looks',
-  '0 0 96 96',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="scale(.66667)">
       <circle cx="48" cy="48" r="48" />
       <path d="M30.434 34.91c9.702-9.646 25.43-9.646 35.132 0l8.38 8.333-8.38 8.333c-9.702 9.646-25.43 9.646-35.132 0l-8.38-8.333z" />
       <path
@@ -19,7 +19,7 @@ export const Looks = /* @__PURE__ */ createIcon(
         fillRule="evenodd"
         d="M38.054 43.243c0 5.495 4.455 9.946 9.946 9.946s9.946-4.451 9.946-9.946S53.49 33.297 48 33.297s-9.946 4.45-9.946 9.946m5.622 0a4.324 4.324 0 1 0 8.648 0 4.324 4.324 0 0 0-8.648 0"
       />
-    </>
+    </g>
   ),
   {},
 );
@@ -27,13 +27,13 @@ export const Looks = /* @__PURE__ */ createIcon(
 /** Looks Alt coin icon (colored). */
 export const LooksAlt = /* @__PURE__ */ createIcon(
   'LooksAlt',
-  '0 0 96 96',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="scale(.66667)">
       <circle cx="48" cy="48" r="48" fill="#0CE466" />
       <path d="M48 53.189c-5.49 0-9.946-4.451-9.946-9.946s4.455-9.946 9.946-9.946 9.946 4.45 9.946 9.946S53.49 53.189 48 53.189m-4.324-9.946a4.324 4.324 0 1 0 8.648 0 4.324 4.324 0 0 0-8.648 0" />
       <path d="m16 43.256 19.027-19.04h25.946L80 43.256 48 75.243zm46.703-6.932c-8.085-8.12-21.321-8.12-29.406 0l-6.919 6.919 6.92 6.919c8.084 8.12 21.32 8.12 29.405 0l6.918-6.92z" />
-    </>
+    </g>
   ),
   {},
 );
@@ -41,13 +41,13 @@ export const LooksAlt = /* @__PURE__ */ createIcon(
 /** Looks coin icon (monochrome). */
 export const LooksMono = /* @__PURE__ */ createIcon(
   'LooksMono',
-  '0 0 96 96',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(.66667)">
       <circle cx="48" cy="48" r="48" mask={`url(#${_id}-lksm-a)`} />
       <defs>
         <mask id={`${_id}-lksm-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
+          <rect width="96" height="96" fill="#fff" />
           <path
             fill="#000"
             d="M48 53.189c-5.49 0-9.946-4.451-9.946-9.946s4.455-9.946 9.946-9.946 9.946 4.45 9.946 9.946S53.49 53.189 48 53.189m-4.324-9.946a4.324 4.324 0 1 0 8.648 0 4.324 4.324 0 0 0-8.648 0"
@@ -58,7 +58,7 @@ export const LooksMono = /* @__PURE__ */ createIcon(
           />
         </mask>
       </defs>
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );

@@ -1,9 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 40 40">
-  <rect width="40" height="40" mask="url(#a)"/>
-  <defs>
-    <mask id="a">
-      <rect width="40" height="40" fill="#fff"/>
-      <path fill="#000" fill-rule="evenodd" d="m32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7zm-24.5 0 6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7z" clip-rule="evenodd"/>
-    </mask>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 64 64">
+  <g transform="scale(1.6)">
+    <rect width="40" height="40" mask="url(#a)"/>
+    <defs>
+      <mask id="a">
+        <rect width="40" height="40" fill="#fff"/>
+        <path fill="#000" fill-rule="evenodd" d="m32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7zm-24.5 0 6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7z" clip-rule="evenodd"/>
+      </mask>
+    </defs>
+  </g>
 </svg>

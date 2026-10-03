@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Collab Land devtool icon (colored). */
 export const CollabLand = /* @__PURE__ */ createIcon(
   'CollabLand',
-  '0 0 43.62 33.95',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="translate(4 10.207)scale(1.28381)">
       <defs>
         <path
           id={`${_id}-clbl-a`}
@@ -26,7 +26,7 @@ export const CollabLand = /* @__PURE__ */ createIcon(
           paintOrder="fill"
         />
       </g>
-    </>
+    </g>
   ),
   { ids: true },
 );
@@ -34,9 +34,9 @@ export const CollabLand = /* @__PURE__ */ createIcon(
 /** Collab Land devtool icon (monochrome). */
 export const CollabLandMono = /* @__PURE__ */ createIcon(
   'CollabLandMono',
-  '0 0 43.62 33.95',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="translate(4 10.207)scale(1.28381)">
       <defs>
         <path
           id={`${_id}-clblm-a`}
@@ -47,7 +47,7 @@ export const CollabLandMono = /* @__PURE__ */ createIcon(
       <use href={`#${_id}-clblm-a`} />
       <use x="-9.67" href={`#${_id}-clblm-a`} />
       <path d="M21.789 29.306c-1.002 0-1.819-.727-1.819-1.617h.589c0 .57.552 1.033 1.23 1.033s1.233-.463 1.233-1.033h.588c0 .892-.817 1.617-1.821 1.617" />
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );

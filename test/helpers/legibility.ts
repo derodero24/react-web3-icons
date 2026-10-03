@@ -70,8 +70,12 @@ export const DARK_MAX = 60;
 export const LIGHT_MIN = 195;
 /** A tone with at least this share of the paint dominates it. */
 export const DOMINANT_SHARE = 0.5;
-/** Minimum share of the viewBox width and height a container spans. */
-export const CONTAINER_SPAN = 0.6;
+/**
+ * Minimum share of the viewBox width and height a container spans: 60% of
+ * the 56 units a mark's longer side fills on the 64×64 grid
+ * (CONTRIBUTING.md, "Optical size").
+ */
+export const CONTAINER_SPAN = 0.6 * (56 / 64);
 
 const NAMED_COLORS: Readonly<Record<string, Rgb>> = {
   black: [0, 0, 0],

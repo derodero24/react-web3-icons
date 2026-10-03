@@ -1,9 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 183 183">
-  <rect width="181" height="181" x="1" y="1" mask="url(#dydxm2-a)" rx="37"/>
-  <defs>
-    <mask id="dydxm2-a">
-      <rect width="100%" height="100%" fill="#fff"/>
-      <path fill="#000" d="M115.316 43 45 141.992h21.588L137.269 43zm-46.478 0 20.689 29.17-10.795 15.91L46.799 43zm48.573 99-22.937-32.263 10.794-15.469L139 142z"/>
-    </mask>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 64 64">
+  <g transform="scale(.34973)">
+    <rect width="181" height="181" x="1" y="1" mask="url(#dydxm2-a)" rx="37"/>
+    <defs>
+      <mask id="dydxm2-a">
+        <rect width="183" height="183" fill="#fff"/>
+        <path fill="#000" d="M115.316 43 45 141.992h21.588L137.269 43zm-46.478 0 20.689 29.17-10.795 15.91L46.799 43zm48.573 99-22.937-32.263 10.794-15.469L139 142z"/>
+      </mask>
+    </defs>
+  </g>
 </svg>

@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Dydx DEX icon (colored). */
 export const Dydx = /* @__PURE__ */ createIcon(
   'Dydx',
-  '41 38 100.77 108',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="translate(-15.385 -15.704)scale(.51852)">
       <path fill="#fff" d="M116.379 38 41 145.991h23.143L139.912 38z" />
       <path
         fill={`url(#${_id}-dydx-a)`}
@@ -40,7 +40,7 @@ export const Dydx = /* @__PURE__ */ createIcon(
           <stop offset="1" stopColor="#6966ff" stopOpacity=".36" />
         </linearGradient>
       </defs>
-    </>
+    </g>
   ),
   { fill: 'none', ids: true },
 );
@@ -48,9 +48,9 @@ export const Dydx = /* @__PURE__ */ createIcon(
 /** Dydx Square DEX icon (colored). */
 export const DydxSquare = /* @__PURE__ */ createIcon(
   'DydxSquare',
-  '0 0 183 183',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(.34973)">
       <rect
         width="181"
         height="181"
@@ -113,7 +113,7 @@ export const DydxSquare = /* @__PURE__ */ createIcon(
           <stop offset="1" stopColor="#6966ff" stopOpacity=".36" />
         </linearGradient>
       </defs>
-    </>
+    </g>
   ),
   { ids: true },
 );
@@ -121,9 +121,9 @@ export const DydxSquare = /* @__PURE__ */ createIcon(
 /** Dydx DEX icon (monochrome). */
 export const DydxMono = /* @__PURE__ */ createIcon(
   'DydxMono',
-  '41 38 100.77 108',
+  '0 0 64 64',
   () => (
-    <path d="M116.379 38 41 145.991h23.143L139.912 38zm-49.825 0 22.179 31.821-11.571 17.357L42.929 38zm52.071 108-24.589-35.196 11.571-16.875L141.768 146z" />
+    <path d="M44.96 4 5.874 59.995h12L57.162 4zM19.124 4l11.5 16.5-6 9L6.875 4zm27 56-12.75-18.25 6-8.75 18.75 27z" />
   ),
   { fill: 'currentColor' },
 );
@@ -131,9 +131,9 @@ export const DydxMono = /* @__PURE__ */ createIcon(
 /** Dydx Square DEX icon (monochrome). */
 export const DydxSquareMono = /* @__PURE__ */ createIcon(
   'DydxSquareMono',
-  '0 0 183 183',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(.34973)">
       <rect
         width="181"
         height="181"
@@ -144,14 +144,14 @@ export const DydxSquareMono = /* @__PURE__ */ createIcon(
       />
       <defs>
         <mask id={`${_id}-dydxm2-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
+          <rect width="183" height="183" fill="#fff" />
           <path
             fill="#000"
             d="M115.316 43 45 141.992h21.588L137.269 43zm-46.478 0 20.689 29.17-10.795 15.91L46.799 43zm48.573 99-22.937-32.263 10.794-15.469L139 142z"
           />
         </mask>
       </defs>
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );

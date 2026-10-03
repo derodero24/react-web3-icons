@@ -5,14 +5,14 @@ import { createIcon } from '../utils';
 /** Zk Sync chain icon (colored). */
 export const ZkSync = /* @__PURE__ */ createIcon(
   'ZkSync',
-  '0 0 40 40',
+  '0 0 64 64',
   () => (
     <>
-      <path d="M0 0h40v40H0z" />
+      <path d="M0 0h64v64H0z" />
       <path
         fill="#fff"
         fillRule="evenodd"
-        d="m32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7zm-24.5 0 6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7z"
+        d="M51.6 32.008 40.474 20.933v8.105l-11.042 8.125h11.042v5.92zm-39.2 0 11.126 11.077v-8.058l11.042-8.19H23.526v-5.92z"
         clipRule="evenodd"
       />
     </>
@@ -23,9 +23,9 @@ export const ZkSync = /* @__PURE__ */ createIcon(
 /** Zk Sync chain icon (monochrome). */
 export const ZkSyncMono = /* @__PURE__ */ createIcon(
   'ZkSyncMono',
-  '0 0 40 40',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(1.6)">
       <rect width="40" height="40" mask={`url(#${_id}-a)`} />
       <defs>
         <mask id={`${_id}-a`}>
@@ -38,7 +38,7 @@ export const ZkSyncMono = /* @__PURE__ */ createIcon(
           />
         </mask>
       </defs>
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );

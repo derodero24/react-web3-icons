@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Uniswap Wallet wallet icon (colored). */
 export const UniswapWallet = /* @__PURE__ */ createIcon(
   'UniswapWallet',
-  '0 0 28 28',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="scale(2.28571)">
       <rect width="28" height="28" fill="#FFD8EA" />
       <g fill="#FF007A">
         <path d="M9.635 6.068c-.255-.039-.266-.043-.145-.06.23-.035.773.012 1.148.099.874.202 1.67.722 2.519 1.646l.225.246.323-.051c1.36-.213 2.741-.044 3.899.477.319.144.821.43.882.503.022.024.058.173.082.335.086.557.044.982-.13 1.301-.096.173-.101.228-.037.377a.37.37 0 0 0 .334.206c.287 0 .597-.454.74-1.086l.056-.252.113.126c.62.685 1.106 1.618 1.189 2.282l.021.174-.103-.158a2 2 0 0 0-.59-.604c-.415-.268-.855-.36-2.017-.42-1.05-.053-1.645-.141-2.234-.329-1.003-.32-1.508-.744-2.699-2.27-.53-.678-.855-1.053-1.18-1.354-.74-.687-1.466-1.047-2.396-1.187z" />
@@ -18,7 +18,7 @@ export const UniswapWallet = /* @__PURE__ */ createIcon(
           clipRule="evenodd"
         />
       </g>
-    </>
+    </g>
   ),
   {},
 );
@@ -26,9 +26,9 @@ export const UniswapWallet = /* @__PURE__ */ createIcon(
 /** Uniswap Wallet wallet icon (monochrome). */
 export const UniswapWalletMono = /* @__PURE__ */ createIcon(
   'UniswapWalletMono',
-  '0 0 28 28',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(2.28571)">
       <defs>
         <mask id={`${_id}-unisw-a`}>
           <rect width="28" height="28" fill="#fff" />
@@ -45,7 +45,7 @@ export const UniswapWalletMono = /* @__PURE__ */ createIcon(
         </mask>
       </defs>
       <rect width="28" height="28" mask={`url(#${_id}-unisw-a)`} />
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );

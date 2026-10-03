@@ -1,15 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="41 38 100.77 108">
-  <path fill="#fff" d="M116.379 38 41 145.991h23.143L139.912 38z"/>
-  <path fill="url(#dydx-a)" d="m66.554 38 22.179 31.821-11.571 17.357L42.929 38z"/>
-  <path fill="url(#dydx-b)" d="m118.625 146-24.589-35.196 11.571-16.875L141.768 146z"/>
-  <defs>
-    <linearGradient id="dydx-a" x1="61.25" x2="93" y1="44.75" y2="83.08" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#fff"/>
-      <stop offset="1" stop-color="#fff" stop-opacity=".55"/>
-    </linearGradient>
-    <linearGradient id="dydx-b" x1="123.93" x2="84.92" y1="137.8" y2="85.22" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#6966ff"/>
-      <stop offset="1" stop-color="#6966ff" stop-opacity=".36"/>
-    </linearGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64">
+  <g transform="translate(-15.385 -15.704)scale(.51852)">
+    <path fill="#fff" d="M116.379 38 41 145.991h23.143L139.912 38z"/>
+    <path fill="url(#dydx-a)" d="m66.554 38 22.179 31.821-11.571 17.357L42.929 38z"/>
+    <path fill="url(#dydx-b)" d="m118.625 146-24.589-35.196 11.571-16.875L141.768 146z"/>
+    <defs>
+      <linearGradient id="dydx-a" x1="61.25" x2="93" y1="44.75" y2="83.08" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#fff"/>
+        <stop offset="1" stop-color="#fff" stop-opacity=".55"/>
+      </linearGradient>
+      <linearGradient id="dydx-b" x1="123.93" x2="84.92" y1="137.8" y2="85.22" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#6966ff"/>
+        <stop offset="1" stop-color="#6966ff" stop-opacity=".36"/>
+      </linearGradient>
+    </defs>
+  </g>
 </svg>

@@ -5,18 +5,18 @@ import { createIcon } from '../utils';
 /** Routescan explorer icon (colored). */
 export const Routescan = /* @__PURE__ */ createIcon(
   'Routescan',
-  '0 0 42 48',
+  '0 0 64 64',
   () => (
     <>
-      <path fill="#00FF7F" d="M20.946 0 .002 11.998 20.946 24z" />
-      <path fill="#FBEC0D" d="M41.888 11.998 20.946 0v24z" />
-      <path fill="#4A9DFF" d="M.003 11.998 0 12v24l.003.002L20.946 24z" />
+      <path fill="#00FF7F" d="M31.992 4 7.557 17.998 31.992 32z" />
+      <path fill="#FBEC0D" d="M56.424 17.998 31.992 4v28z" />
+      <path fill="#4A9DFF" d="M7.558 17.998 7.555 18v28l.003.002L31.992 32z" />
       <path
         fill="#FFB100"
-        d="m20.946 24 20.942 12.002.003-.002V12l-.003-.002z"
+        d="m31.992 32 24.432 14.002.004-.002V18l-.004-.002z"
       />
-      <path fill="#FF4500" d="m20.946 48 20.942-11.998L20.946 24z" />
-      <path fill="#A46BFF" d="M.003 36.002 20.946 48V24z" />
+      <path fill="#FF4500" d="m31.992 60 24.432-13.998L31.992 32z" />
+      <path fill="#A46BFF" d="M7.558 46.002 31.992 60V32z" />
     </>
   ),
   {},
@@ -25,18 +25,18 @@ export const Routescan = /* @__PURE__ */ createIcon(
 /** Routescan explorer icon (monochrome). */
 export const RoutescanMono = /* @__PURE__ */ createIcon(
   'RoutescanMono',
-  '0 0 42 48',
+  '0 0 64 64',
   () => (
     <>
-      <path d="M20.946 0 .002 11.998 20.946 24z" opacity=".9" />
-      <path d="M41.888 11.998 20.946 0v24z" />
-      <path d="M.003 11.998 0 12v24l.003.002L20.946 24z" opacity=".5" />
+      <path d="M31.992 4 7.557 17.998 31.992 32z" opacity=".9" />
+      <path d="M56.424 17.998 31.992 4v28z" />
+      <path d="M7.558 17.998 7.555 18v28l.003.002L31.992 32z" opacity=".5" />
       <path
-        d="m20.946 24 20.942 12.002.003-.002V12l-.003-.002z"
+        d="m31.992 32 24.432 14.002.004-.002V18l-.004-.002z"
         opacity=".75"
       />
-      <path d="m20.946 48 20.942-11.998L20.946 24z" opacity=".65" />
-      <path d="M.003 36.002 20.946 48V24z" opacity=".45" />
+      <path d="m31.992 60 24.432-13.998L31.992 32z" opacity=".65" />
+      <path d="M7.558 46.002 31.992 60V32z" opacity=".45" />
     </>
   ),
   { fill: 'currentColor' },

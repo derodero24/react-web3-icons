@@ -1,6 +1,10 @@
 // @vitest-environment node
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { CATEGORIES, loadCategory } from '../scripts/build-icons/lib.ts';
 import {
+  CANONICAL_VIEWBOX,
   checkUnitOnGrid,
   colouredSuffix,
   fillDeviation,
@@ -11,12 +15,13 @@ import {
   type MeasuredVariant,
   mapBox,
   measurableSvg,
+  OPTICAL_EXEMPTIONS,
   overflows,
   planUnit,
   toCanonicalGrid,
 } from '../scripts/build-icons/optical.ts';
 import type { Box, Measurement } from '../scripts/build-icons/raster.ts';
-import { parseSvg, serializeSvg } from '../scripts/build-icons/xml.ts';
+import { getAttr, parseSvg, serializeSvg } from '../scripts/build-icons/xml.ts';
 
 /**
  * Optical sizing (issue #704, "Optical size" in CONTRIBUTING.md): every icon
@@ -25,6 +30,8 @@ import { parseSvg, serializeSvg } from '../scripts/build-icons/xml.ts';
  * that; this file checks the viewBox and the pure geometry.
  */
 
+const ROOT = join(import.meta.dirname, '..');
+const ICONS = join(ROOT, 'icons');
 const XMLNS = 'xmlns="http://www.w3.org/2000/svg"';
 
 const box = (x: number, y: number, width: number, height: number): Box => ({
@@ -48,6 +55,26 @@ function measured(
   };
   return { suffix, file: `${suffix || 'base'}.svg`, measurement };
 }
+
+describe('icon sources', () => {
+  const variants = CATEGORIES.flatMap(category =>
+    loadCategory(ICONS, category).flatMap(unit => unit.variants),
+  );
+
+  it.each(variants.map(v => [v.path, v.root] as const))(
+    '%s uses the canonical viewBox',
+    (_path, root) => {
+      expect(getAttr(root, 'viewBox')).toBe(CANONICAL_VIEWBOX);
+    },
+  );
+
+  it('exemptions name existing sources and give a reason', () => {
+    for (const [path, reason] of Object.entries(OPTICAL_EXEMPTIONS)) {
+      expect(existsSync(join(ROOT, path)), path).toBe(true);
+      expect(reason.trim(), path).not.toBe('');
+    }
+  });
+});
 
 describe('fill rule', () => {
   it('fits a mark to 56 units and a container to 64, centred', () => {

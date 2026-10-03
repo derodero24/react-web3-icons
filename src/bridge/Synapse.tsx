@@ -5,9 +5,9 @@ import { createIcon } from '../utils';
 /** Synapse bridge icon (colored). */
 export const Synapse = /* @__PURE__ */ createIcon(
   'Synapse',
-  '-24 -24 48 48',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="translate(32 32)scale(1.16666)">
       <defs>
         <linearGradient
           id={`${_id}-syn-g`}
@@ -32,7 +32,7 @@ export const Synapse = /* @__PURE__ */ createIcon(
       <circle cx="18" r="6" fill={`url(#${_id}-syn-g)`} />
       <circle cx="-18" r="6" fill={`url(#${_id}-syn-g)`} />
       <circle cy="-18" r="6" fill={`url(#${_id}-syn-g)`} />
-    </>
+    </g>
   ),
   { fill: 'none', ids: true },
 );
@@ -40,9 +40,9 @@ export const Synapse = /* @__PURE__ */ createIcon(
 /** Synapse bridge icon (monochrome). */
 export const SynapseMono = /* @__PURE__ */ createIcon(
   'SynapseMono',
-  '-24 -24 48 48',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="translate(32 32)scale(1.16666)">
       <path
         fill="none"
         stroke="currentColor"
@@ -55,7 +55,7 @@ export const SynapseMono = /* @__PURE__ */ createIcon(
       <circle cx="18" r="6" />
       <circle cx="-18" r="6" />
       <circle cy="-18" r="6" />
-    </>
+    </g>
   ),
   { fill: 'currentColor' },
 );

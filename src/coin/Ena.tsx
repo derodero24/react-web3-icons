@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Ena coin icon (colored). */
 export const Ena = /* @__PURE__ */ createIcon(
   'Ena',
-  '0 0 392 392',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="scale(.16326)">
       <circle cx="196" cy="196" r="196" fill="#1C1C1C" />
       <path
         fill="#fff"
@@ -14,7 +14,7 @@ export const Ena = /* @__PURE__ */ createIcon(
         d="M153.405 104.362h-4.157l-2.696 3.165-69.584 81.732-4.967 5.835 4.967 5.834 69.584 81.732 2.696 3.166h138.433v-60.959h-18v42.959h-96.594l57.813-66.845 5.092-5.887-5.092-5.888-57.813-66.844h96.594v42.959h18v-60.959zm.053 22.821-57.817 67.911 57.817 67.911 58.735-67.911z"
         clipRule="evenodd"
       />
-    </>
+    </g>
   ),
   {},
 );
@@ -22,9 +22,9 @@ export const Ena = /* @__PURE__ */ createIcon(
 /** Ena coin icon (monochrome). */
 export const EnaMono = /* @__PURE__ */ createIcon(
   'EnaMono',
-  '0 0 392 392',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(.16326)">
       <defs>
         <mask
           id={`${_id}-mask`}
@@ -50,7 +50,7 @@ export const EnaMono = /* @__PURE__ */ createIcon(
         fill="currentColor"
         mask={`url(#${_id}-mask)`}
       />
-    </>
+    </g>
   ),
   { ids: true },
 );

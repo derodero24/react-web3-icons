@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Polkadot chain icon (colored). */
 export const Polkadot = /* @__PURE__ */ createIcon(
   'Polkadot',
-  '262.21 293.83 1475.59 1410.27',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="translate(-7.709 -7.668)scale(.0397)">
       <ellipse cx="1000" cy="441.78" rx="254.27" ry="147.95" />
       <ellipse cx="1000" cy="1556.15" rx="254.27" ry="147.95" />
       <ellipse
@@ -37,7 +37,7 @@ export const Polkadot = /* @__PURE__ */ createIcon(
         ry="254.27"
         transform="rotate(-30 1482.533 720.384)"
       />
-    </>
+    </g>
   ),
   { fill: '#e6007a' },
 );
@@ -45,9 +45,9 @@ export const Polkadot = /* @__PURE__ */ createIcon(
 /** Polkadot chain icon (monochrome). */
 export const PolkadotMono = /* @__PURE__ */ createIcon(
   'PolkadotMono',
-  '262.21 293.83 1475.59 1410.27',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="translate(-7.709 -7.668)scale(.0397)">
       <ellipse cx="1000" cy="441.78" rx="254.27" ry="147.95" />
       <ellipse cx="1000" cy="1556.15" rx="254.27" ry="147.95" />
       <ellipse
@@ -78,7 +78,7 @@ export const PolkadotMono = /* @__PURE__ */ createIcon(
         ry="254.27"
         transform="rotate(-30 1482.533 720.384)"
       />
-    </>
+    </g>
   ),
   { fill: 'currentColor' },
 );

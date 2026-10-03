@@ -1,12 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 3000 3000">
-  <defs>
-    <mask id="petra-a">
-      <rect width="3000" height="3000" fill="#fff" rx="580.27"/>
-      <g fill="#000">
-        <path d="M1432.64 2612.11c-406.84 0-736.66-329.81-736.66-736.66V655.77l736.66-267.89V2612.1Z"/>
-        <path d="M1567.36 1697.09c406.84 0 736.66-329.81 736.66-736.66V655.77l-736.66-267.89v1309.2Z"/>
-      </g>
-    </mask>
-  </defs>
-  <rect width="3000" height="3000" mask="url(#petra-a)" rx="580.27"/>
+<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 64 64">
+  <g transform="scale(.02133)">
+    <defs>
+      <mask id="petra-a">
+        <rect width="3000" height="3000" fill="#fff" rx="580.27"/>
+        <g fill="#000">
+          <path d="M1432.64 2612.11c-406.84 0-736.66-329.81-736.66-736.66V655.77l736.66-267.89V2612.1Z"/>
+          <path d="M1567.36 1697.09c406.84 0 736.66-329.81 736.66-736.66V655.77l-736.66-267.89v1309.2Z"/>
+        </g>
+      </mask>
+    </defs>
+    <rect width="3000" height="3000" mask="url(#petra-a)" rx="580.27"/>
+  </g>
 </svg>

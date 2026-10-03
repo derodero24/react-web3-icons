@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Oneinch DEX icon (colored). */
 export const Oneinch = /* @__PURE__ */ createIcon(
   'Oneinch',
-  '0 0 40 40',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="scale(1.6)">
       <rect width="40" height="40" fill="#E82219" rx="8" />
       <path
         fill="#FFFFFF"
@@ -14,7 +14,7 @@ export const Oneinch = /* @__PURE__ */ createIcon(
       />
       <path fill="#FFFFFF" d="M28.479 15.592V9.664h-2.95v5.928z" />
       <path fill="#FFFFFF" d="M33.665 15.592V9.664h-2.95v5.928z" />
-    </>
+    </g>
   ),
   { fill: 'none' },
 );
@@ -22,9 +22,9 @@ export const Oneinch = /* @__PURE__ */ createIcon(
 /** Oneinch DEX icon (monochrome). */
 export const OneinchMono = /* @__PURE__ */ createIcon(
   'OneinchMono',
-  '0 0 40 40',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(1.6)">
       <rect width="40" height="40" mask={`url(#${_id}-1i-m)`} rx="8" />
       <defs>
         <mask id={`${_id}-1i-m`}>
@@ -37,7 +37,7 @@ export const OneinchMono = /* @__PURE__ */ createIcon(
           <path fill="black" d="M33.665 15.592V9.664h-2.95v5.928z" />
         </mask>
       </defs>
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );

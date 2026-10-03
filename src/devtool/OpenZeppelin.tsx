@@ -4,17 +4,17 @@ import { createIcon } from '../utils';
 /** Open Zeppelin devtool icon (colored). */
 export const OpenZeppelin = /* @__PURE__ */ createIcon(
   'OpenZeppelin',
-  '0 0 29.86 33.62',
+  '0 0 64 64',
   () => (
     <>
       <path
         fill="#63d2f9"
-        d="M29.865 33.624H11.222l3.038-5.168a7.21 7.21 0 0 1 6.225-3.58h9.379v8.748z"
+        d="M56.877 60.006H25.824l5.06-8.608a12.01 12.01 0 0 1 10.37-5.963h15.622v14.571z"
       />
-      <path fill="#4e5ee4" d="M0 0h29.865l-5.146 8.748H0z" />
+      <path fill="#4e5ee4" d="M7.132 4h49.745l-8.571 14.571H7.132z" />
       <path
         fill="#63b0f9"
-        d="M11.82 13.679a7.9 7.9 0 0 1 6.806-3.918h5.545L10.06 33.624H.033z"
+        d="M26.82 26.785a13.16 13.16 0 0 1 11.337-6.526h9.236L23.889 60.006H7.187z"
       />
     </>
   ),
@@ -24,12 +24,12 @@ export const OpenZeppelin = /* @__PURE__ */ createIcon(
 /** Open Zeppelin devtool icon (monochrome). */
 export const OpenZeppelinMono = /* @__PURE__ */ createIcon(
   'OpenZeppelinMono',
-  '0 0 29.86 33.62',
+  '0 0 64 64',
   () => (
     <>
-      <path d="M29.865 33.624H11.222l3.038-5.168a7.21 7.21 0 0 1 6.225-3.58h9.379v8.748z" />
-      <path d="M0 0h29.865l-5.146 8.748H0z" />
-      <path d="M11.82 13.679a7.9 7.9 0 0 1 6.806-3.918h5.545L10.06 33.624H.033z" />
+      <path d="M56.877 60.006H25.824l5.06-8.608a12.01 12.01 0 0 1 10.37-5.963h15.622v14.571z" />
+      <path d="M7.132 4h49.745l-8.571 14.571H7.132z" />
+      <path d="M26.82 26.785a13.16 13.16 0 0 1 11.337-6.526h9.236L23.889 60.006H7.187z" />
     </>
   ),
   { fill: 'currentColor' },

@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Kava chain icon (colored). */
 export const Kava = /* @__PURE__ */ createIcon(
   'Kava',
-  '0 0 24 24',
+  '0 0 64 64',
   () => (
-    <path d="M7.757 21V3H4.93v18zm7.78 0L9.17 11.998l6.367-8.994h3.535l-6.364 8.994L19.072 21z" />
+    <path d="M18.804 59.992V4.009H10.01v55.983zm24.197 0L23.198 31.994 43.001 4.02h10.994L34.202 31.994l19.793 27.998z" />
   ),
   { fill: '#FF564F' },
 );
@@ -14,9 +14,9 @@ export const Kava = /* @__PURE__ */ createIcon(
 /** Kava chain icon (monochrome). */
 export const KavaMono = /* @__PURE__ */ createIcon(
   'KavaMono',
-  '0 0 24 24',
+  '0 0 64 64',
   () => (
-    <path d="M7.757 21V3H4.93v18zm7.78 0L9.17 11.998l6.367-8.994h3.535l-6.364 8.994L19.072 21z" />
+    <path d="M18.804 59.992V4.009H10.01v55.983zm24.197 0L23.198 31.994 43.001 4.02h10.994L34.202 31.994l19.793 27.998z" />
   ),
   { fill: 'currentColor' },
 );

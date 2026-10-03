@@ -11,7 +11,7 @@ export interface RainbowWalletProps {
 /** The artwork `withBackground` switches between. */
 const withBackgroundArtwork = (withBackground: boolean, _id: string) =>
   withBackground ? (
-    <>
+    <g transform="scale(.53333)">
       <path fill={`url(#${_id}-rbw-a)`} d="M0 0h120v120H0z" />
       <path
         fill={`url(#${_id}-rbw-b)`}
@@ -144,9 +144,9 @@ const withBackgroundArtwork = (withBackground: boolean, _id: string) =>
           <stop offset="1" stopColor="#01da40" />
         </radialGradient>
       </defs>
-    </>
+    </g>
   ) : (
-    <>
+    <g transform="matrix(.7 0 0 .7 -10 -10)">
       <path
         fill={`url(#${_id}-rbw-b)`}
         d="M20 38h6c30.928 0 56 25.072 56 56v6h12a6 6 0 0 0 6-6c0-40.869-33.131-74-74-74a6 6 0 0 0-6 6z"
@@ -267,14 +267,13 @@ const withBackgroundArtwork = (withBackground: boolean, _id: string) =>
         </linearGradient>
         <linearGradient id={`${_id}-rbw-k`} gradientUnits="userSpaceOnUse" />
       </defs>
-    </>
+    </g>
   );
 
 /** Rainbow Wallet wallet icon (colored). */
 export const RainbowWallet = /* @__PURE__ */ createIcon<RainbowWalletProps>(
   'RainbowWallet',
-  ({ withBackground = true }) =>
-    withBackground ? '0 0 120 120' : '20 20 80 80',
+  '0 0 64 64',
   ({ withBackground = true }, _id) =>
     withBackgroundArtwork(withBackground, _id),
   { ids: true, props: ['withBackground'] },
@@ -284,8 +283,7 @@ export const RainbowWallet = /* @__PURE__ */ createIcon<RainbowWalletProps>(
 export const RainbowWalletSymbol =
   /* @__PURE__ */ createIcon<RainbowWalletProps>(
     'RainbowWalletSymbol',
-    ({ withBackground = false }) =>
-      withBackground ? '0 0 120 120' : '20 20 80 80',
+    '0 0 64 64',
     ({ withBackground = false }, _id) =>
       withBackgroundArtwork(withBackground, _id),
     { ids: true, props: ['withBackground'] },
@@ -692,9 +690,9 @@ export const RainbowWalletSquareMono = /* @__PURE__ */ createIcon(
 /** Rainbow Wallet wallet icon (monochrome). */
 export const RainbowWalletMono = /* @__PURE__ */ createIcon(
   'RainbowWalletMono',
-  '0 0 120 120',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(.53333)">
       <rect width="120" height="120" mask={`url(#${_id}-rbwm-a)`} />
       <defs>
         <mask id={`${_id}-rbwm-a`}>
@@ -712,7 +710,7 @@ export const RainbowWalletMono = /* @__PURE__ */ createIcon(
           </g>
         </mask>
       </defs>
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );
@@ -720,18 +718,18 @@ export const RainbowWalletMono = /* @__PURE__ */ createIcon(
 /** Rainbow Wallet Symbol wallet icon (monochrome). */
 export const RainbowWalletSymbolMono = /* @__PURE__ */ createIcon(
   'RainbowWalletSymbolMono',
-  '20 20 80 80',
+  '0 0 64 64',
   () => (
     <>
-      <path d="M20 38h6c30.928 0 56 25.072 56 56v6h12a6 6 0 0 0 6-6c0-40.869-33.131-74-74-74a6 6 0 0 0-6 6z" />
-      <path d="M84 94h16a6 6 0 0 1-6 6H84z" />
-      <path d="M26 20v16h-6V26a6 6 0 0 1 6-6" />
-      <path d="M20 36h6c32.033 0 58 25.968 58 58v6H66v-6c0-22.091-17.909-40-40-40h-6z" />
-      <path d="M68 94h16v6H68z" />
-      <path d="M20 52V36h6v16z" />
-      <path d="M20 62a6 6 0 0 0 6 6c14.359 0 26 11.641 26 26a6 6 0 0 0 6 6h10v-6c0-23.196-18.804-42-42-42h-6z" />
-      <path d="M52 94h16v6H58a6 6 0 0 1-6-6" />
-      <path d="M26 68a6 6 0 0 1-6-6V52h6z" />
+      <path d="M4 16.6h4.2c21.65 0 39.2 17.55 39.2 39.2V60h8.4a4.2 4.2 0 0 0 4.2-4.2C60 27.192 36.808 4 8.2 4A4.2 4.2 0 0 0 4 8.2z" />
+      <path d="M48.8 55.8H60a4.2 4.2 0 0 1-4.2 4.2h-7z" />
+      <path d="M8.2 4v11.2H4v-7A4.2 4.2 0 0 1 8.2 4" />
+      <path d="M4 15.2h4.2c22.423 0 40.6 18.178 40.6 40.6V60H36.2v-4.2c0-15.464-12.536-28-28-28H4z" />
+      <path d="M37.6 55.8h11.2V60H37.6z" />
+      <path d="M4 26.4V15.2h4.2v11.2z" />
+      <path d="M4 33.4a4.2 4.2 0 0 0 4.2 4.2c10.051 0 18.2 8.149 18.2 18.2a4.2 4.2 0 0 0 4.2 4.2h7v-4.2c0-16.237-13.163-29.4-29.4-29.4H4z" />
+      <path d="M26.4 55.8h11.2V60h-7a4.2 4.2 0 0 1-4.2-4.2" />
+      <path d="M8.2 37.6A4.2 4.2 0 0 1 4 33.4v-7h4.2z" />
     </>
   ),
   { fill: 'currentColor' },

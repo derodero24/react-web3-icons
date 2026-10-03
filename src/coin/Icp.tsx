@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Icp coin icon (colored). */
 export const Icp = /* @__PURE__ */ createIcon(
   'Icp',
-  '0 0 24 24',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="translate(-5.301 -5.31)scale(3.1092)">
       <path
         fill={`url(#${_id}-a)`}
         fillRule="evenodd"
@@ -47,7 +47,7 @@ export const Icp = /* @__PURE__ */ createIcon(
           <stop offset="1" stopColor="#DA1980" />
         </linearGradient>
       </defs>
-    </>
+    </g>
   ),
   { ids: true },
 );
@@ -55,9 +55,9 @@ export const Icp = /* @__PURE__ */ createIcon(
 /** Icp coin icon (monochrome). */
 export const IcpMono = /* @__PURE__ */ createIcon(
   'IcpMono',
-  '0 0 24 24',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="translate(-5.301 -5.31)scale(3.1092)">
       <defs>
         <clipPath id={`${_id}-cl`}>
           <rect width="12" height="24" />
@@ -102,7 +102,7 @@ export const IcpMono = /* @__PURE__ */ createIcon(
         />
         <path d="m12 13.386.023-.027c1.313 1.277 3.208 2.763 4.85 2.763A4.09 4.09 0 0 0 21 12.072c0-2.237-1.845-4.05-4.126-4.05-1.746 0-3.465 1.295-4.874 2.736zm4.815 1.098c1.404 0 2.543-1.08 2.543-2.413S18.219 9.66 16.81 9.66s-2.781 1.305-3.744 2.412c.639.72 2.34 2.412 3.744 2.412z" />
       </g>
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );

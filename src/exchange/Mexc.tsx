@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Mexc exchange icon (colored). */
 export const Mexc = /* @__PURE__ */ createIcon(
   'Mexc',
-  '0 0 24 24',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="translate(-5.301 -5.31)scale(3.1092)">
       <defs>
         <linearGradient
           id={`${_id}-mx-a`}
@@ -32,7 +32,7 @@ export const Mexc = /* @__PURE__ */ createIcon(
         fill={`url(#${_id}-mx-a)`}
         d="M10.659 17.686h6.055L12 9.348 8.971 14.7c-.748 1.327.19 2.985 1.687 2.985"
       />
-    </>
+    </g>
   ),
   { fill: 'none', ids: true },
 );
@@ -40,12 +40,12 @@ export const Mexc = /* @__PURE__ */ createIcon(
 /** Mexc exchange icon (monochrome). */
 export const MexcMono = /* @__PURE__ */ createIcon(
   'MexcMono',
-  '0 0 24 24',
+  '0 0 64 64',
   () => (
     <>
-      <path d="M7.2 7.406a2.113 2.113 0 0 1 3.701 0l5.813 10.281H5.201c-1.691 0-2.748-1.871-1.905-3.369z" />
-      <path d="M16.8 7.406a2.113 2.113 0 0 0-3.701 0l-4.122 7.296c-.753 1.327.185 2.985 1.682 2.985h8.14c1.691 0 2.748-1.871 1.905-3.369z" />
-      <path d="M10.659 17.687h6.055L12 9.347l-3.028 5.355c-.748 1.326.19 2.985 1.687 2.985" />
+      <path d="M17.085 17.717a6.57 6.57 0 0 1 11.507 0l18.074 31.965H10.87c-5.258 0-8.544-5.817-5.923-10.474z" />
+      <path d="M46.934 17.717a6.57 6.57 0 0 0-11.508 0L22.61 40.4c-2.34 4.126.575 9.281 5.23 9.281h25.309c5.258 0 8.544-5.817 5.923-10.474z" />
+      <path d="M27.84 49.682h18.826L32.01 23.752l-9.414 16.65c-2.326 4.122.59 9.28 5.245 9.28" />
     </>
   ),
   { fill: 'currentColor' },

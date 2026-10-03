@@ -7,6 +7,7 @@ import {
   AvalancheSquare,
 } from '../src/chain/Avalanche';
 import { Bybit, BybitInverted, BybitMono } from '../src/exchange/Bybit';
+import { createIcon } from '../src/utils';
 import {
   RainbowWallet,
   RainbowWalletSymbol,
@@ -37,7 +38,8 @@ function pathFills(svg: SVGSVGElement): (string | null)[] {
 }
 
 describe('Avalanche withBackground', () => {
-  const background = 'M287 258h928v844H287z';
+  // The white fill behind the glyph, on the 64×64 grid.
+  const background = 'M12.208 10.95H51.75v35.963H12.208z';
   const hasBackground = (svg: SVGSVGElement) =>
     svg.querySelector(`path[d="${background}"]`) !== null;
 
@@ -103,26 +105,47 @@ describe('Bybit fill1 / fill2', () => {
 });
 
 describe('RainbowWallet withBackground', () => {
+  // The gradient tile, in the 120-unit artwork scaled onto the 64×64 grid.
   const tile = 'M0 0h120v120H0z';
+  // Both artworks share the grid; the toggle switches the artwork only.
 
   it('RainbowWallet includes the gradient tile by default', () => {
     const svg = renderSvg(<RainbowWallet />);
-    expect(svg.getAttribute('viewBox')).toBe('0 0 120 120');
+    expect(svg.getAttribute('viewBox')).toBe('0 0 64 64');
     expect(svg.querySelector(`path[d="${tile}"]`)).not.toBeNull();
   });
 
   it('RainbowWalletSymbol crops to the arcs by default', () => {
     const svg = renderSvg(<RainbowWalletSymbol />);
-    expect(svg.getAttribute('viewBox')).toBe('20 20 80 80');
+    expect(svg.getAttribute('viewBox')).toBe('0 0 64 64');
     expect(svg.querySelector(`path[d="${tile}"]`)).toBeNull();
   });
 
   it('withBackground overrides each default', () => {
     const symbol = renderSvg(<RainbowWallet withBackground={false} />);
-    expect(symbol.getAttribute('viewBox')).toBe('20 20 80 80');
+    expect(symbol.getAttribute('viewBox')).toBe('0 0 64 64');
     expect(symbol.querySelector(`path[d="${tile}"]`)).toBeNull();
     const tiled = renderSvg(<RainbowWalletSymbol withBackground />);
-    expect(tiled.getAttribute('viewBox')).toBe('0 0 120 120');
+    expect(tiled.getAttribute('viewBox')).toBe('0 0 64 64');
     expect(tiled.querySelector(`path[d="${tile}"]`)).not.toBeNull();
+  });
+});
+
+describe('a viewBox that depends on extra props', () => {
+  // Every generated icon shares the 64×64 grid today, so no toggle switches
+  // the viewBox any more; the generator still emits this form for toggles
+  // between artworks with different viewBoxes.
+  const Toggled = createIcon<{ readonly wide?: boolean }>(
+    'Toggled',
+    ({ wide }) => (wide ? '0 0 128 64' : '0 0 64 64'),
+    () => <path d="M0 0h64v64H0z" />,
+    { props: ['wide'] },
+  );
+
+  it('follows the prop', () => {
+    expect(renderSvg(<Toggled />).getAttribute('viewBox')).toBe('0 0 64 64');
+    const wide = renderSvg(<Toggled wide />);
+    expect(wide.getAttribute('viewBox')).toBe('0 0 128 64');
+    expect(wide.hasAttribute('wide')).toBe(false);
   });
 });
