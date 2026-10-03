@@ -302,7 +302,7 @@ const ARTWORK: Schema<ArtworkFields> = {
       file: text(/^[a-z0-9][a-z0-9.-]*\.svg$/, 'a sibling .svg file name'),
       fill: optional(
         text(
-          /^(?:none|currentColor|#[0-9A-Fa-f]{3,8})$/,
+          /^(?:none|currentColor|#(?:[0-9A-Fa-f]{3,4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8}))$/,
           'none, currentColor, or a hex color',
         ),
       ),

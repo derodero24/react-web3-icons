@@ -47,7 +47,7 @@
               },
               "fill": {
                 "type": "string",
-                "pattern": "^(?:none|currentColor|#[0-9A-Fa-f]{3,8})$",
+                "pattern": "^(?:none|currentColor|#(?:[0-9A-Fa-f]{3,4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8}))$",
                 "description": "none, currentColor, or a hex color"
               }
             },
@@ -199,7 +199,7 @@
               },
               "fill": {
                 "type": "string",
-                "pattern": "^(?:none|currentColor|#[0-9A-Fa-f]{3,8})$",
+                "pattern": "^(?:none|currentColor|#(?:[0-9A-Fa-f]{3,4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8}))$",
                 "description": "none, currentColor, or a hex color"
               }
             },

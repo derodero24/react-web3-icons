@@ -304,6 +304,11 @@ describe('unit definitions', () => {
         /deprecated\.Foo must be a non-empty single-line message/,
       ],
     ]),
+    ...['#12345', '#1234567', '#12'].map((fill): [string, object, RegExp] => [
+      `the hex fill ${fill}`,
+      { ...valid, variants: { '': { file: 'f.svg', fill } } },
+      /fill must be none, currentColor, or a hex color/,
+    ]),
     [
       'a path-traversing file',
       { ...valid, variants: { '': { file: '../x.svg' } } },
