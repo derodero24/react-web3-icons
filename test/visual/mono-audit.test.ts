@@ -88,6 +88,9 @@ describe('Mono audit', () => {
       if (result === undefined) {
         throw new Error(`${id}: no result`);
       }
+      // A render failure is never covered by the allowlist, which only
+      // excuses metric judgements.
+      expect(result.error, id).toBeUndefined();
       const allowance = MONO_AUDIT_ALLOWLIST[id as PairId];
       if (allowance === undefined) {
         expect(monoProblems(result), describeResult(result)).toEqual([]);

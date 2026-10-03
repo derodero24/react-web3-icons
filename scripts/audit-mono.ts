@@ -41,8 +41,9 @@ const page = await (await browser.newContext()).newPage();
 const results = await page.evaluate(measureMonoPairs, pairs);
 await browser.close();
 
+// The allowlist excuses metric judgements only, never a render failure.
 const allowed = (r: MonoResult): boolean =>
-  Object.hasOwn(MONO_AUDIT_ALLOWLIST, r.id);
+  r.error === undefined && Object.hasOwn(MONO_AUDIT_ALLOWLIST, r.id);
 const tripped = (r: MonoResult): boolean => monoProblems(r).length > 0;
 const iouOf = (r: MonoResult): number => (r.error === undefined ? r.iou : 0);
 const rows = results

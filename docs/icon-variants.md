@@ -85,8 +85,11 @@ those icons visually instead. The visual test project runs the same audit
 in `MONO_AUDIT_ALLOWLIST` (`scripts/build-icons/mono-audit.ts`). Allowlist a
 pair only after checking the rendered components on light and dark: a
 `false-positive` entry says why the metric misjudges a mono that reads well,
-a `pending` entry names the issue that tracks a known problem. An entry that
-no longer trips the audit fails the test until it is removed. Intentional
+a `pending` entry names the issue that tracks a known problem. Render
+failures are never excused by the allowlist. An entry goes stale, and fails
+the test until it is removed, once its pair passes even with every threshold
+tightened by 15% (so a pair hovering at a threshold does not flip between
+stale and flagged). Intentional
 rendering changes to existing icons
 need the `visual-baseline-update` label on the PR so the visual-regression
 job regenerates baselines instead of comparing against develop.
