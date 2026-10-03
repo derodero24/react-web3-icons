@@ -1,7 +1,12 @@
 {
   "name": "Aptos",
   "source": [
-    "https://aptoslabs.com"
+    "https://aptosnetwork.com/media-kit (official media kit, accessed 2026-10-03)",
+    "https://drive.google.com/drive/folders/16eFSRTkuPZckYNuu-lofz03IcLRW9_-1 (the media kit's logo download: Aptos Symbol/RGB [Digital]/SVG/Aptos-Network-Symbol-Black-RGB.svg)"
+  ],
+  "notes": [
+    "Default: the official Aptos Network symbol, Aptos-Network-Symbol-Black-RGB.svg from the media kit (five shapes in #0F0E0B with sharp diagonal cuts), paths unchanged. It replaces the earlier Aptos mark with rounded notches, which the current kit no longer ships",
+    "Mono: the same five paths in currentColor (the kit's white symbol is this geometry in #F9F9F0); the shapes do not touch, so no seams are needed"
   ],
   "kind": "icon",
   "variants": {

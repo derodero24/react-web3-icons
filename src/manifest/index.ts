@@ -149,7 +149,13 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'AlgorandCircle', category: 'chain' },
   { name: 'AlgorandCircleMono', category: 'chain' },
   { name: 'AlgorandMono', category: 'chain' },
-  { name: 'Aptos', category: 'chain', slug: 'aptos', variants: ['', 'Mono'] },
+  {
+    name: 'Aptos',
+    category: 'chain',
+    slug: 'aptos',
+    variants: ['', 'Mono'],
+    brandColor: '#0f0e0b',
+  },
   { name: 'AptosMono', category: 'chain' },
   {
     name: 'Arbitrum',
