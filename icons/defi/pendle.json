@@ -6,7 +6,7 @@
   ],
   "notes": [
     "Colored: the official blue-light.svg (circle #DEDEDE, ball #1E4480, stick #152E51)",
-    "Mono: follows the official single-colour no-glow.svg, where the circle is drawn at 50% opacity under the full-strength ball and stick; same geometry as the colored mark"
+    "Mono: a binary reading of the official single-colour no-glow.svg (which draws the circle at 50% opacity): the circle in ink with the stick knocked out of it, and the ball in ink, parted from the circle by a 1.2-unit gap so the overlap stays readable; same geometry as the colored mark"
   ],
   "kind": "icon",
   "variants": {
