@@ -1246,7 +1246,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Moralis',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#33ffcc',
+    brandColor: '#3a7aff',
   },
   { name: 'MoralisMono', category: 'devtool' },
   {
