@@ -72,7 +72,10 @@ documentation:
   - changed-files:
     - any-glob-to-any-file: 'README.md'
     - any-glob-to-any-file: 'CONTRIBUTING.md'
+    - any-glob-to-any-file: 'MIGRATION.md'
+    - any-glob-to-any-file: 'SECURITY.md'
     - any-glob-to-any-file: docs/**
+    - any-glob-to-any-file: examples/**
 
 test:
   - changed-files:
