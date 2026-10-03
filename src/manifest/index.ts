@@ -233,7 +233,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 80_094,
     slug: 'berachain',
     variants: ['', 'Mono'],
-    brandColor: '#814625',
+    brandColor: '#2c1a16',
   },
   { name: 'BerachainMono', category: 'chain' },
   {
