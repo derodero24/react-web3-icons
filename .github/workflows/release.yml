@@ -66,10 +66,10 @@ jobs:
       id-token: write # npm provenance attestation
 
     steps:
-      # changesets/action v1.9.0 does not use the checkout's credentials: on
-      # start it writes ~/.netrc (login github-actions[bot], password = its
-      # GITHUB_TOKEN) and pushes with plain `git push origin ...`, so nothing
-      # needs to be persisted in .git/config.
+      # Nothing reads credentials from the checkout: changesets/action v2
+      # takes the token only from its `github-token` input and, with
+      # push-with-git-cli off, pushes through the GitHub API; the
+      # fast-forward step below authenticates its own push.
       - name: Checkout repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -109,43 +109,70 @@ jobs:
             echo "changesets=false" >> "$GITHUB_OUTPUT"
           fi
 
+      # Both changesets/action steps share these choices:
+      # - github-token: v2 no longer reads GITHUB_TOKEN from the environment
+      #   (and fails if it is set to anything else), so the token is passed
+      #   here and these steps set no GITHUB_TOKEN env. The action itself
+      #   exports it as GITHUB_TOKEN to the version / publish script
+      #   (@changesets/changelog-github reads it to link PRs and authors).
+      # - push-with-git-cli: false (the v2 default, set explicitly). The
+      #   version commit and the release tags are created through the GitHub
+      #   API, so the action needs no git credentials at all, and the version
+      #   commit is signed by GitHub ("Verified"). That keeps a future
+      #   "require signed commits" ruleset (#718) satisfiable on develop and
+      #   on main, which only receives develop's commits by fast-forward.
+      # - Tags are lightweight refs created through the API on the commit
+      #   that triggered this run (the version PR merge), named
+      #   `react-web3-icons@<version>` as before.
+
       # Version path: opens or updates the version PR. No npm credentials.
-      # `publish` is only metadata here: with pending changesets the action
-      # runs `version` and uses the presence of a publish script to word the
-      # PR body ("will be published automatically"); it never executes it.
+      # `publish-script` is only metadata here: with pending changesets the
+      # action runs `version-script` and uses the presence of a publish
+      # script to word the PR body ("will be published automatically"); it
+      # never executes it.
       - name: Create or update the version PR
         if: steps.pending.outputs.changesets == 'true'
-        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+        uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
-          version: pnpm changeset version
-          publish: pnpm changeset publish
-          title: 'chore: version packages'
-          commit: 'chore: version packages'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version-script: pnpm changeset version
+          publish-script: pnpm changeset publish
+          pr-title: 'chore: version packages'
+          commit-message: 'chore: version packages'
+          push-with-git-cli: false
 
       # Publish path: only reached when no changeset is pending, i.e. after
       # the version PR was merged.
-      # `pnpm changeset publish` spawns `pnpm publish --access public --tag
-      # latest --no-git-checks --json` with the inherited environment, and
-      # pnpm (which hands the upload to `npm publish`) honours
-      # npm_config_ignore_scripts: no prepublishOnly / prepack / prepare /
-      # publish / postpublish script runs with the token.
-      # NPM_TOKEN is deliberately not set: the action would only copy it into
-      # ~/.npmrc, which outlives this step, while setup-node's .npmrc already
-      # authenticates through NODE_AUTH_TOKEN.
+      # `pnpm changeset publish` (Changesets v3) spawns `pnpm publish --json
+      # --access public --tag latest --no-git-checks` with the inherited
+      # environment, and pnpm (which hands the upload to `npm publish`)
+      # honours npm_config_ignore_scripts: no prepublishOnly / prepack /
+      # prepare / publish / postpublish script runs with the token.
+      # npm auth comes from setup-node's .npmrc via NODE_AUTH_TOKEN; v2 no
+      # longer reads NPM_TOKEN or writes an .npmrc of its own.
+      # The action detects what was published from the NDJSON file the CLI
+      # writes to $CHANGESETS_OUTPUT (inherited through pnpm), then creates
+      # the git tag and GitHub release for each published package.
+      # create-github-releases needs push-git-tags (v2 fails the step if
+      # releases are on and tags are off); both are the defaults, kept
+      # explicit because v2 changed what they mean.
       - name: Publish
         id: changesets
         if: steps.pending.outputs.changesets == 'false'
-        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+        uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
-          publish: pnpm changeset publish
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          publish-script: pnpm changeset publish
+          push-with-git-cli: false
+          push-git-tags: true
+          create-github-releases: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: 'true'
           npm_config_ignore_scripts: 'true'
 
+      # The action only writes the version branch, tags and releases; this
+      # push to main is ours, so it brings its own (step-scoped) credentials.
       - name: Fast-forward main to develop
         if: steps.changesets.outputs.published == 'true'
         env:
@@ -154,9 +181,9 @@ jobs:
           git fetch origin main:main
           git checkout main
           if git merge develop --ff-only; then
-            # Credentials for this push only, instead of relying on the
-            # ~/.netrc the changesets action leaves behind. GIT_CONFIG_* keeps
-            # the header out of argv and out of .git/config.
+            # Credentials for this push only: nothing is persisted by the
+            # checkout or the changesets action. GIT_CONFIG_* keeps the
+            # header out of argv and out of .git/config.
             auth="$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)"
             echo "::add-mask::${auth}"
             GIT_CONFIG_COUNT=1 \
