@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
-// Paths sourced from official raydium.io logo
+// Source: https://raydium.io/favicon.ico (official favicon)
+// Source: https://docs.raydium.io/resources/brand-kit (official brand kit)
+// Paths sourced from an earlier official raydium.io logo SVG; matches the current official favicon.ico and the brand kit's raydium-r.png (checked 2026-10-03)
+// No official symbol SVG is reachable today: the brand kit names mark-dark.svg / mark-light.svg, but its master folder (github.com/raydium-io/raydium-docs-v1, /logo/) holds only PNGs
 /** Raydium DEX icon (colored). */
 export const Raydium = /* @__PURE__ */ createIcon(
   'Raydium',

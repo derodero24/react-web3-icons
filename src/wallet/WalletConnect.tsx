@@ -1,7 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://walletconnect.com
+// Source: https://github.com/WalletConnect/walletconnect-assets/blob/master/Logo/Blue%20(Default)/Logo.svg (official WalletConnect assets repository)
+// Source: https://github.com/WalletConnect/walletconnect-assets/blob/master/Icon/Blue%20(Default)/Icon.svg
 // Original viewBox 45.52 99.74 387.64 237.59 → scale 0.119, translate(3.6, 6.1)
+// Checked 2026-10-03: the default and Circle match the official Logo.svg and Icon.svg (#3396FF); walletconnect.network's raster icon.png uses #0888F0, but no official vector in that blue was found, so the artwork is unchanged
 /** Wallet Connect Circle wallet icon (colored). */
 export const WalletConnectCircle = /* @__PURE__ */ createIcon(
   'WalletConnectCircle',

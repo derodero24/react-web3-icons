@@ -1,11 +1,15 @@
 {
   "name": "PhantomWallet",
   "source": [
-    "https://phantom.app"
+    "https://sanity-proxy-v2.phantom.app/files/3nm6d03a/production/5e73f0ad2d621b5ed6ca3c66aad2b70686f8a00e.zip (official Phantom press kit, Nov 2024: Phantom Logomark/Phantom-Icon-Purple.svg, Phantom-Icon-Black.svg, Phantom App Icon/phantom-app-icon-drkprpl.svg)",
+    "https://phantom.com/_web_platform_assets/favicon.svg"
   ],
   "notes": [
-    "Ghost silhouette path data (shared across Circle variants)",
-    "Original viewBox 0 0 128 128 → scale 0.36, translate(9, 9)"
+    "Default: the press kit's Phantom-Icon-Purple.svg ghost (#AB9FF2, the colour phantom.com's favicon.svg uses), placed on the 64 grid",
+    "Mono and SymbolMono: the press kit's single-colour Phantom-Icon-Black.svg ghost in currentColor (the eyes are holes); the default is now the standalone ghost, so SymbolMono has the same artwork as Mono and is kept for compatibility",
+    "Square: the press kit's phantom-app-icon-drkprpl.svg (rounded square #9886E5, rx 74.39 of 309, with the #FFFDF8 ghost), scaled 64/309",
+    "Circle: no official circular asset; plain container composition of the app icon: the same #9886E5 background as a circle r=32 with the app icon's #FFFDF8 ghost at the same scale and position",
+    "CircleMono / SquareMono: the container in currentColor with the app icon's ghost knocked out by a mask (the eyes stay ink, as in the app icon)"
   ],
   "kind": "icon",
   "variants": {

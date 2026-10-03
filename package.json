@@ -218,12 +218,12 @@
     {
       "name": "chain",
       "path": "dist/chain/index.mjs",
-      "limit": "37 KB"
+      "limit": "36 KB"
     },
     {
       "name": "coin",
       "path": "dist/coin/index.mjs",
-      "limit": "75 KB"
+      "limit": "70 KB"
     },
     {
       "name": "defi",
@@ -233,12 +233,12 @@
     {
       "name": "devtool",
       "path": "dist/devtool/index.mjs",
-      "limit": "14 KB"
+      "limit": "13 KB"
     },
     {
       "name": "dex",
       "path": "dist/dex/index.mjs",
-      "limit": "12 KB"
+      "limit": "14 KB"
     },
     {
       "name": "domain",
@@ -283,22 +283,22 @@
     {
       "name": "tracker",
       "path": "dist/tracker/index.mjs",
-      "limit": "7 KB"
+      "limit": "6 KB"
     },
     {
       "name": "wallet",
       "path": "dist/wallet/index.mjs",
-      "limit": "20 KB"
+      "limit": "21 KB"
     },
     {
       "name": "meta",
       "path": "dist/meta/index.mjs",
-      "limit": "4 KB"
+      "limit": "3 KB"
     },
     {
       "name": "dynamic (worst case: bundler without code splitting)",
       "path": "dist/dynamic/index.mjs",
-      "limit": "140 KB"
+      "limit": "145 KB"
     },
     {
       "name": "manifest",

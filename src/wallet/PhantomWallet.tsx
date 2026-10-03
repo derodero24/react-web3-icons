@@ -1,46 +1,23 @@
 import { createIcon } from '../utils';
 
-// Source: https://phantom.app
-// Ghost silhouette path data (shared across Circle variants)
-// Original viewBox 0 0 128 128 → scale 0.36, translate(9, 9)
+// Source: https://sanity-proxy-v2.phantom.app/files/3nm6d03a/production/5e73f0ad2d621b5ed6ca3c66aad2b70686f8a00e.zip (official Phantom press kit, Nov 2024: Phantom Logomark/Phantom-Icon-Purple.svg, Phantom-Icon-Black.svg, Phantom App Icon/phantom-app-icon-drkprpl.svg)
+// Source: https://phantom.com/_web_platform_assets/favicon.svg
+// Default: the press kit's Phantom-Icon-Purple.svg ghost (#AB9FF2, the colour phantom.com's favicon.svg uses), placed on the 64 grid
+// Mono and SymbolMono: the press kit's single-colour Phantom-Icon-Black.svg ghost in currentColor (the eyes are holes); the default is now the standalone ghost, so SymbolMono has the same artwork as Mono and is kept for compatibility
+// Square: the press kit's phantom-app-icon-drkprpl.svg (rounded square #9886E5, rx 74.39 of 309, with the #FFFDF8 ghost), scaled 64/309
+// Circle: no official circular asset; plain container composition of the app icon: the same #9886E5 background as a circle r=32 with the app icon's #FFFDF8 ghost at the same scale and position
+// CircleMono / SquareMono: the container in currentColor with the app icon's ghost knocked out by a mask (the eyes stay ink, as in the app icon)
 /** Phantom Wallet wallet icon (colored). */
 export const PhantomWallet = /* @__PURE__ */ createIcon(
   'PhantomWallet',
   '0 0 64 64',
-  (_props, _id) => (
-    <g transform="scale(.5)">
-      <circle cx="64" cy="64" r="64" fill={`url(#${_id}-phw-a)`} />
-      <path
-        fill={`url(#${_id}-phw-b)`}
-        d="M110.58 64.91H99.14C99.14 41.77 80.17 23 56.77 23c-23.1 0-41.9 18.3-42.36 41.06C13.94 87.58 36.24 108 60.01 108h3c20.96 0 49.06-16.23 53.45-36.01.81-3.65-2.1-7.08-5.87-7.08zm-70.81 1.04c0 3.1-2.56 5.62-5.69 5.62s-5.69-2.53-5.69-5.62v-9.1c0-3.1 2.56-5.64 5.69-5.64s5.69 2.54 5.69 5.63zm19.75 0c0 3.1-2.56 5.62-5.69 5.62s-5.69-2.53-5.69-5.62v-9.1c0-3.1 2.56-5.64 5.7-5.64s5.68 2.54 5.68 5.63z"
-      />
-      <defs>
-        <linearGradient
-          id={`${_id}-phw-a`}
-          x1="64"
-          x2="64"
-          y1="0"
-          y2="128"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#534bb1" />
-          <stop offset="1" stopColor="#551bf9" />
-        </linearGradient>
-        <linearGradient
-          id={`${_id}-phw-b`}
-          x1="65.5"
-          x2="65.5"
-          y1="23"
-          y2="108"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#fff" />
-          <stop offset="1" stopColor="#fff" stopOpacity=".82" />
-        </linearGradient>
-      </defs>
-    </g>
+  () => (
+    <path
+      fill="#AB9FF2"
+      d="M10.63 55.31c7.14 0 12.51-6.21 15.71-11.12q-.6 1.64-.6 3.21c0 2.87 1.64 4.91 4.9 4.91 4.45 0 9.21-3.9 11.68-8.12q-.26.9-.26 1.7c0 2 1.13 3.25 3.42 3.25C52.72 49.14 60 36.32 60 25.11c0-8.73-4.42-16.42-15.5-16.42C25 8.69 4 32.5 4 47.89c0 6.03 3.25 7.42 6.63 7.42m27.15-31.15c0-2.18 1.2-3.7 2.98-3.7 1.74 0 2.95 1.52 2.95 3.7 0 2.17-1.21 3.73-2.95 3.73-1.77 0-2.98-1.56-2.98-3.73m9.26 0c0-2.18 1.22-3.7 3-3.7 1.72 0 2.94 1.52 2.94 3.7 0 2.17-1.22 3.73-2.95 3.73-1.77 0-2.99-1.56-2.99-3.73"
+    />
   ),
-  { ids: true },
+  {},
 );
 
 /** Phantom Wallet wallet icon (monochrome). */
@@ -48,10 +25,7 @@ export const PhantomWalletMono = /* @__PURE__ */ createIcon(
   'PhantomWalletMono',
   '0 0 64 64',
   () => (
-    <path
-      fillRule="evenodd"
-      d="M0 32a32 32 0 1 0 64 0 32 32 0 1 0-64 0m55.3.46h-5.73c0-11.58-9.48-20.96-21.18-20.96-11.56 0-20.95 9.15-21.18 20.53C6.97 43.79 18.12 54 30 54h1.5c10.48 0 24.53-8.12 26.72-18 .4-1.83-1.05-3.54-2.94-3.54m-35.42.51c0 1.55-1.27 2.82-2.84 2.82s-2.84-1.27-2.84-2.82v-4.55c0-1.55 1.28-2.81 2.84-2.81s2.84 1.26 2.84 2.81zm9.88 0c0 1.55-1.28 2.82-2.84 2.82s-2.85-1.27-2.85-2.82v-4.55c0-1.55 1.28-2.81 2.85-2.81s2.84 1.26 2.84 2.81z"
-    />
+    <path d="M10.63 55.31c7.14 0 12.51-6.21 15.71-11.12q-.6 1.64-.6 3.21c0 2.87 1.64 4.91 4.9 4.91 4.45 0 9.21-3.9 11.68-8.12q-.26.9-.26 1.7c0 2 1.13 3.25 3.42 3.25C52.72 49.14 60 36.32 60 25.11c0-8.73-4.42-16.42-15.5-16.42C25 8.69 4 32.5 4 47.89c0 6.03 3.25 7.42 6.63 7.42m27.15-31.15c0-2.18 1.2-3.7 2.98-3.7 1.74 0 2.95 1.52 2.95 3.7 0 2.17-1.21 3.73-2.95 3.73-1.77 0-2.98-1.56-2.98-3.73m9.26 0c0-2.18 1.22-3.7 3-3.7 1.72 0 2.94 1.52 2.94 3.7 0 2.17-1.22 3.73-2.95 3.73-1.77 0-2.99-1.56-2.99-3.73" />
   ),
   { fill: 'currentColor' },
 );
@@ -60,29 +34,18 @@ export const PhantomWalletMono = /* @__PURE__ */ createIcon(
 export const PhantomWalletCircle = /* @__PURE__ */ createIcon(
   'PhantomWalletCircle',
   '0 0 64 64',
-  (_props, _id) => (
-    <>
-      <circle cx="32" cy="32" r="32" fill={`url(#${_id}-phc-a)`} />
+  () => (
+    <g transform="scale(.20712)">
+      <circle cx="154.5" cy="154.5" r="154.5" fill="#9886E5" />
       <path
-        fill="#fff"
-        d="M48.81 32.37h-4.12c0-8.33-6.83-15.09-15.25-15.09-8.32 0-15.09 6.59-15.25 14.78-.17 8.47 7.86 15.82 16.42 15.82h1.07c7.55 0 17.67-5.84 19.25-12.96.29-1.32-.76-2.55-2.12-2.55m-25.5.37c0 1.11-.91 2.03-2.04 2.03s-2.05-.92-2.05-2.03v-3.28c0-1.11.92-2.02 2.05-2.02s2.05.9 2.05 2.02zm7.12 0c0 1.11-.92 2.03-2.05 2.03s-2.05-.92-2.05-2.03v-3.28c0-1.11.92-2.02 2.05-2.02s2.05.9 2.05 2.02z"
+        fill="#FFFDF8"
+        fillRule="evenodd"
+        d="M133.12 200.08c-12.94 19.82-34.61 44.9-63.46 44.9-13.63 0-26.74-5.61-26.74-30 0-62.09 84.78-158.22 163.44-158.22 44.75 0 62.58 31.05 62.58 66.31 0 45.26-29.36 97-58.56 97-9.26 0-13.8-5.08-13.8-13.15q0-3.16 1.04-6.84c-9.96 17.01-29.2 32.8-47.2 32.8-13.1 0-19.75-8.25-19.75-19.82 0-4.21.87-8.6 2.45-12.98m67.76-78.24c0 10.28-6.06 15.42-12.85 15.42-6.88 0-12.84-5.14-12.84-15.41s5.96-15.42 12.84-15.42c6.78 0 12.85 5.14 12.85 15.41m38.52 0c0 10.28-6.06 15.42-12.84 15.42-6.88 0-12.84-5.14-12.84-15.41s5.96-15.42 12.84-15.42c6.78 0 12.84 5.14 12.84 15.41"
+        clipRule="evenodd"
       />
-      <defs>
-        <linearGradient
-          id={`${_id}-phc-a`}
-          x1="32"
-          x2="32"
-          y1="0"
-          y2="64"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#534bb1" />
-          <stop offset="1" stopColor="#551bf9" />
-        </linearGradient>
-      </defs>
-    </>
+    </g>
   ),
-  { ids: true },
+  {},
 );
 
 /** Phantom Wallet Circle wallet icon (monochrome). */
@@ -90,18 +53,19 @@ export const PhantomWalletCircleMono = /* @__PURE__ */ createIcon(
   'PhantomWalletCircleMono',
   '0 0 64 64',
   (_props, _id) => (
-    <>
-      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-phcm-a)`} />
+    <g transform="scale(.20712)">
+      <circle cx="154.5" cy="154.5" r="154.5" mask={`url(#${_id}-phcm-a)`} />
       <defs>
         <mask id={`${_id}-phcm-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
+          <rect width="309" height="309" fill="#fff" />
           <path
             fill="#000"
-            d="M48.81 32.37h-4.12c0-8.33-6.83-15.09-15.25-15.09-8.32 0-15.09 6.59-15.25 14.78-.17 8.47 7.86 15.82 16.42 15.82h1.07c7.55 0 17.67-5.84 19.25-12.96.29-1.32-.76-2.55-2.12-2.55m-25.5.37c0 1.11-.91 2.03-2.04 2.03s-2.05-.92-2.05-2.03v-3.28c0-1.11.92-2.02 2.05-2.02s2.05.9 2.05 2.02zm7.12 0c0 1.11-.92 2.03-2.05 2.03s-2.05-.92-2.05-2.03v-3.28c0-1.11.92-2.02 2.05-2.02s2.05.9 2.05 2.02z"
+            fillRule="evenodd"
+            d="M133.12 200.08c-12.94 19.82-34.61 44.9-63.46 44.9-13.63 0-26.74-5.61-26.74-30 0-62.09 84.78-158.22 163.44-158.22 44.75 0 62.58 31.05 62.58 66.31 0 45.26-29.36 97-58.56 97-9.26 0-13.8-5.08-13.8-13.15q0-3.16 1.04-6.84c-9.96 17.01-29.2 32.8-47.2 32.8-13.1 0-19.75-8.25-19.75-19.82 0-4.21.87-8.6 2.45-12.98m67.76-78.24c0 10.28-6.06 15.42-12.85 15.42-6.88 0-12.84-5.14-12.84-15.41s5.96-15.42 12.84-15.42c6.78 0 12.85 5.14 12.85 15.41m38.52 0c0 10.28-6.06 15.42-12.84 15.42-6.88 0-12.84-5.14-12.84-15.41s5.96-15.42 12.84-15.42c6.78 0 12.84 5.14 12.84 15.41"
           />
         </mask>
       </defs>
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );
@@ -110,29 +74,18 @@ export const PhantomWalletCircleMono = /* @__PURE__ */ createIcon(
 export const PhantomWalletSquare = /* @__PURE__ */ createIcon(
   'PhantomWalletSquare',
   '0 0 64 64',
-  (_props, _id) => (
-    <>
-      <rect width="64" height="64" fill={`url(#${_id}-phsq-a)`} rx="12.8" />
+  () => (
+    <g transform="scale(.20712)">
+      <rect width="309" height="309" fill="#9886E5" rx="74.39" />
       <path
-        fill="#fff"
-        d="M48.81 32.37h-4.12c0-8.33-6.83-15.09-15.25-15.09-8.32 0-15.09 6.59-15.25 14.78-.17 8.47 7.86 15.82 16.42 15.82h1.07c7.55 0 17.67-5.84 19.25-12.96.29-1.32-.76-2.55-2.12-2.55m-25.5.37c0 1.11-.91 2.03-2.04 2.03s-2.05-.92-2.05-2.03v-3.28c0-1.11.92-2.02 2.05-2.02s2.05.9 2.05 2.02zm7.12 0c0 1.11-.92 2.03-2.05 2.03s-2.05-.92-2.05-2.03v-3.28c0-1.11.92-2.02 2.05-2.02s2.05.9 2.05 2.02z"
+        fill="#FFFDF8"
+        fillRule="evenodd"
+        d="M133.12 200.08c-12.94 19.82-34.61 44.9-63.46 44.9-13.63 0-26.74-5.61-26.74-30 0-62.09 84.78-158.22 163.44-158.22 44.75 0 62.58 31.05 62.58 66.31 0 45.26-29.36 97-58.56 97-9.26 0-13.8-5.08-13.8-13.15q0-3.16 1.04-6.84c-9.96 17.01-29.2 32.8-47.2 32.8-13.1 0-19.75-8.25-19.75-19.82 0-4.21.87-8.6 2.45-12.98m67.76-78.24c0 10.28-6.06 15.42-12.85 15.42-6.88 0-12.84-5.14-12.84-15.41s5.96-15.42 12.84-15.42c6.78 0 12.85 5.14 12.85 15.41m38.52 0c0 10.28-6.06 15.42-12.84 15.42-6.88 0-12.84-5.14-12.84-15.41s5.96-15.42 12.84-15.42c6.78 0 12.84 5.14 12.84 15.41"
+        clipRule="evenodd"
       />
-      <defs>
-        <linearGradient
-          id={`${_id}-phsq-a`}
-          x1="32"
-          x2="32"
-          y1="0"
-          y2="64"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#534bb1" />
-          <stop offset="1" stopColor="#551bf9" />
-        </linearGradient>
-      </defs>
-    </>
+    </g>
   ),
-  { ids: true },
+  {},
 );
 
 /** Phantom Wallet Square wallet icon (monochrome). */
@@ -140,18 +93,19 @@ export const PhantomWalletSquareMono = /* @__PURE__ */ createIcon(
   'PhantomWalletSquareMono',
   '0 0 64 64',
   (_props, _id) => (
-    <>
-      <rect width="64" height="64" mask={`url(#${_id}-phsqm-a)`} rx="12.8" />
+    <g transform="scale(.20712)">
+      <rect width="309" height="309" mask={`url(#${_id}-phsqm-a)`} rx="74.39" />
       <defs>
         <mask id={`${_id}-phsqm-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
+          <rect width="309" height="309" fill="#fff" />
           <path
             fill="#000"
-            d="M48.81 32.37h-4.12c0-8.33-6.83-15.09-15.25-15.09-8.32 0-15.09 6.59-15.25 14.78-.17 8.47 7.86 15.82 16.42 15.82h1.07c7.55 0 17.67-5.84 19.25-12.96.29-1.32-.76-2.55-2.12-2.55m-25.5.37c0 1.11-.91 2.03-2.04 2.03s-2.05-.92-2.05-2.03v-3.28c0-1.11.92-2.02 2.05-2.02s2.05.9 2.05 2.02zm7.12 0c0 1.11-.92 2.03-2.05 2.03s-2.05-.92-2.05-2.03v-3.28c0-1.11.92-2.02 2.05-2.02s2.05.9 2.05 2.02z"
+            fillRule="evenodd"
+            d="M133.12 200.08c-12.94 19.82-34.61 44.9-63.46 44.9-13.63 0-26.74-5.61-26.74-30 0-62.09 84.78-158.22 163.44-158.22 44.75 0 62.58 31.05 62.58 66.31 0 45.26-29.36 97-58.56 97-9.26 0-13.8-5.08-13.8-13.15q0-3.16 1.04-6.84c-9.96 17.01-29.2 32.8-47.2 32.8-13.1 0-19.75-8.25-19.75-19.82 0-4.21.87-8.6 2.45-12.98m67.76-78.24c0 10.28-6.06 15.42-12.85 15.42-6.88 0-12.84-5.14-12.84-15.41s5.96-15.42 12.84-15.42c6.78 0 12.85 5.14 12.85 15.41m38.52 0c0 10.28-6.06 15.42-12.84 15.42-6.88 0-12.84-5.14-12.84-15.41s5.96-15.42 12.84-15.42c6.78 0 12.84 5.14 12.84 15.41"
           />
         </mask>
       </defs>
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );
@@ -161,7 +115,7 @@ export const PhantomWalletSymbolMono = /* @__PURE__ */ createIcon(
   'PhantomWalletSymbolMono',
   '0 0 64 64',
   () => (
-    <path d="M56.7 31.68h-6.26c0-12.57-10.4-22.76-23.22-22.76-12.67 0-22.96 9.94-23.22 22.3-.26 12.76 11.97 23.85 25 23.85h1.63c11.5 0 26.89-8.82 29.3-19.55.44-1.98-1.16-3.84-3.22-3.84m-38.8.56c0 1.68-1.4 3.05-3.12 3.05s-3.11-1.37-3.11-3.05v-4.95c0-1.68 1.4-3.05 3.11-3.05s3.12 1.37 3.12 3.05zm10.82 0c0 1.68-1.4 3.05-3.11 3.05s-3.12-1.37-3.12-3.05v-4.95c0-1.68 1.4-3.05 3.12-3.05s3.11 1.37 3.11 3.05z" />
+    <path d="M10.63 55.31c7.14 0 12.51-6.21 15.71-11.12q-.6 1.64-.6 3.21c0 2.87 1.64 4.91 4.9 4.91 4.45 0 9.21-3.9 11.68-8.12q-.26.9-.26 1.7c0 2 1.13 3.25 3.42 3.25C52.72 49.14 60 36.32 60 25.11c0-8.73-4.42-16.42-15.5-16.42C25 8.69 4 32.5 4 47.89c0 6.03 3.25 7.42 6.63 7.42m27.15-31.15c0-2.18 1.2-3.7 2.98-3.7 1.74 0 2.95 1.52 2.95 3.7 0 2.17-1.21 3.73-2.95 3.73-1.77 0-2.98-1.56-2.98-3.73m9.26 0c0-2.18 1.22-3.7 3-3.7 1.72 0 2.94 1.52 2.94 3.7 0 2.17-1.22 3.73-2.95 3.73-1.77 0-2.99-1.56-2.99-3.73" />
   ),
   { fill: 'currentColor' },
 );
