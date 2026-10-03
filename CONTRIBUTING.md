@@ -82,8 +82,9 @@ pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.s
 ```
 
 This optimizes the SVG with SVGO, writes `icons/<category>/<slug>.svg` and
-`<slug>.json`, and regenerates `src/<category>/`. Follow the printed next steps
-(meta maps, manifest, changeset).
+`<slug>.json`, and regenerates `src/<category>/` (the input SVGs are only
+read, never modified). Follow the printed next steps (meta maps, manifest,
+changeset).
 
 ### Anatomy of an icon unit
 

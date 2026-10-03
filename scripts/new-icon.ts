@@ -8,14 +8,16 @@
  *
  * What it does:
  *   1. Optimizes the SVG(s) with SVGO and normalizes the root element
+ *      (the input files are only read, never modified)
  *   2. Writes icons/<category>/<slug>.svg (+ .mono.svg) and <slug>.json
  *   3. Regenerates src/<category>/ via the icon pipeline
  *   4. Prints the remaining manual steps (meta maps, manifest, changeset)
  */
 
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { parseArgs } from 'node:util';
 import { ROOT_ATTRS } from './build-icons/jsx.ts';
 import { CATEGORIES, isCategory } from './build-icons/lib.ts';
 import type { IconUnitMeta, Variant } from './build-icons/unit.ts';
@@ -26,21 +28,38 @@ const ROOT = resolve(import.meta.dirname, '..');
 const USAGE =
   'Usage: pnpm run new-icon --category <category> --name <PascalName> --svg <file> [--mono <file>] [--source <url>]';
 
-const args = process.argv.slice(2);
-function opt(name: string): string | undefined {
-  const idx = args.indexOf(`--${name}`);
-  return idx === -1 ? undefined : args[idx + 1];
+function usageError(message: string): never {
+  console.error(`${message}\n${USAGE}`);
+  process.exit(2);
 }
 
-const category = opt('category');
-const name = opt('name');
-const svgPath = opt('svg');
-const monoPath = opt('mono');
-const source = opt('source');
+function parseCli() {
+  try {
+    // Strict parsing: unknown flags and flags missing their value (`--svg
+    // --mono x`) are errors instead of being taken as values.
+    return parseArgs({
+      options: {
+        category: { type: 'string' },
+        name: { type: 'string' },
+        svg: { type: 'string' },
+        mono: { type: 'string' },
+        source: { type: 'string' },
+        help: { type: 'boolean', short: 'h' },
+      },
+    }).values;
+  } catch (error) {
+    return usageError(error instanceof Error ? error.message : String(error));
+  }
+}
 
+const parsed = parseCli();
+if (parsed.help) {
+  console.log(USAGE);
+  process.exit(0);
+}
+const { category, name, svg: svgPath, mono: monoPath, source } = parsed;
 if (!(category && name && svgPath)) {
-  console.error(USAGE);
-  process.exit(2);
+  usageError('--category, --name and --svg are required.');
 }
 if (!isCategory(category)) {
   console.error(
@@ -65,18 +84,19 @@ if (existsSync(jsonPath)) {
 }
 
 /**
- * Optimizes `fromPath` with SVGO, normalizes the root element for the
- * pipeline, and writes the result to `icons/<category>/<file>`.
+ * Optimizes `fromPath` with SVGO (output captured from stdout, so the input
+ * file is left untouched), normalizes the root element for the pipeline, and
+ * writes the result to `icons/<category>/<file>`.
  *
  * @returns the variant metadata for the written file
  */
 function ingest(fromPath: string, file: string, isMono: boolean): Variant {
-  execFileSync(
+  const optimized = execFileSync(
     'pnpm',
-    ['exec', 'svgo', '--config', 'svgo.config.js', fromPath],
-    { cwd: ROOT, stdio: 'inherit' },
+    ['exec', 'svgo', '--config', 'svgo.config.js', fromPath, '-o', '-'],
+    { cwd: ROOT, encoding: 'utf-8', stdio: ['ignore', 'pipe', 'inherit'] },
   );
-  const root = parseSvg(readFileSync(fromPath, 'utf-8'));
+  const root = parseSvg(optimized);
   const keep: XmlAttr[] = root.attrs.filter(([k]) => ROOT_ATTRS.includes(k));
   if (!keep.some(([k]) => k === 'xmlns')) {
     keep.unshift(['xmlns', 'http://www.w3.org/2000/svg']);
