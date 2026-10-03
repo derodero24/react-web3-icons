@@ -1421,7 +1421,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'dex',
     slug: 'hyperliquid',
     variants: ['', 'Mono'],
-    brandColor: '#50d2c1',
+    brandColor: '#97fce4',
   },
   { name: 'HyperliquidMono', category: 'dex' },
   {
