@@ -817,7 +817,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'coin',
     ticker: 'INJ',
     variants: ['', 'Mono'],
-    brandColor: '#0082fa',
+    brandColor: '#4d3dff',
   },
   { name: 'InjMono', category: 'coin' },
   { name: 'Jup', category: 'coin', ticker: 'JUP' },
