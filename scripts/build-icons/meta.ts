@@ -288,9 +288,9 @@ export function collectLookups(
   const claims = new Map<LookupMapSpec, Map<number | string, Claim>>();
   for (const unit of units) {
     for (const lookup of unitLookups(unit)) {
-      const fields = LOOKUP_FIELDS.filter(
-        f => keysOf(lookup.keys, f).length > 0,
-      );
+      // Presence, not key count: an empty `tickers: []` on a chain is still a
+      // field the category has no map for.
+      const fields = LOOKUP_FIELDS.filter(f => lookup.keys[f] !== undefined);
       if (fields.length > 0 || lookup.field !== '') {
         assertTarget(unit, lookup);
       }

@@ -521,6 +521,11 @@ describe('lookup keys', () => {
       /icons\/chain\/a\.json: tickers is not a lookup key of the chain category \(allowed: chainIds, slugs\)/,
     ],
     [
+      'an empty lookup field of another category',
+      chainUnit('a', 'Alpha', { tickers: [] }),
+      /icons\/chain\/a\.json: tickers is not a lookup key of the chain category/,
+    ],
+    [
       'a target without a Mono export',
       chainUnit('a', 'Alpha', {
         variants: variantsOf('a', ['']),
