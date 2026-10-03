@@ -486,7 +486,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'polkadot',
     variants: ['', 'Mono'],
     aliases: ['dot'],
-    brandColor: '#e6007a',
+    brandColor: '#171717',
   },
   { name: 'PolkadotMono', category: 'chain' },
   {
