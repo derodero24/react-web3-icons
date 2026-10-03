@@ -1,7 +1,10 @@
 {
   "name": "Atom",
+  "source": [
+    "https://raw.githubusercontent.com/cosmos/chain-registry/master/cosmoshub/images/atom.svg"
+  ],
   "notes": [
-    "Paths sourced from @web3icons/react (MIT)"
+    "Colored: the official Cosmos chain-registry atom.svg (cosmoshub/images), paths unchanged: disc #2E3148 with inner disc #1B1E36, orbits #6F7390, electrons and nucleus #B7B9C8"
   ],
   "kind": "icon",
   "variants": {

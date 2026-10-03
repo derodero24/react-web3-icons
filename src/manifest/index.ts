@@ -665,7 +665,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     ticker: 'ATOM',
     variants: ['', 'Mono'],
     aliases: ['atom'],
-    brandColor: '#2c3154',
+    brandColor: '#6f7390',
   },
   { name: 'AtomMono', category: 'coin' },
   { name: 'Avax', category: 'coin', ticker: 'AVAX' },
