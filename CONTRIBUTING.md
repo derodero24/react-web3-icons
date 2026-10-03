@@ -480,6 +480,18 @@ Common types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `ci`, `perf`, 
 
 The `commit-msg` hook validates this automatically via [commitlint](https://commitlint.js.org/).
 
+## Bundle Size Limits
+
+The `size-limit` entries in `package.json` are checked by `pnpm run size` and
+the Size workflow on every PR. Every limit follows one headroom policy:
+
+> limit = current size + max(10%, 1 kB), rounded up to the next whole kB
+> (next 5 kB above 50 kB)
+
+When an entry fails, re-measure with `pnpm run build && pnpm run size` and
+recompute **all** entries with the formula in a single `chore` change rather
+than nudging one limit inside an icon PR.
+
 ## Submitting a Pull Request
 
 1. Fork the repository and create a feature branch from `develop`
