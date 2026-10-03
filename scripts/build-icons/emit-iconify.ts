@@ -15,9 +15,16 @@ import { writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { namespaceIds } from './ids.ts';
-import { CATEGORIES, loadCategory, unitLinks } from './lib.ts';
+import {
+  CATEGORIES,
+  kebab,
+  loadCategory,
+  parseViewBox,
+  unitLinks,
+  type VariantSource,
+} from './lib.ts';
 import { isArtwork } from './unit.ts';
-import { encodeAttr, getAttr, parseSvg, serializeSvg } from './xml.ts';
+import { encodeAttr, getAttr, serializeSvg } from './xml.ts';
 
 const ROOT = resolve(import.meta.dirname, '../..');
 const ICONS = join(ROOT, 'icons');
@@ -48,7 +55,8 @@ export interface IconifySet {
       readonly url: string;
     };
     readonly samples: readonly string[];
-    readonly height: number;
+    /** Height shared by every icon; omitted when heights differ. */
+    readonly height?: number;
     readonly palette: boolean;
   };
   readonly icons: Readonly<Record<string, IconifyIcon>>;
@@ -60,50 +68,19 @@ export interface IconifySets {
   readonly mono: IconifySet;
 }
 
-/** Iconify icon-name segment for a PascalCase export name. */
-export const kebab = (name: string): string =>
-  name
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
-    .toLowerCase();
-
-/** "minX minY width height" → its four numbers. */
-function parseViewBox(
-  viewBox: string,
-  iconName: string,
-): readonly [number, number, number, number] {
-  const [left, top, width, height, ...rest] = viewBox
-    .trim()
-    .split(/\s+/)
-    .map(Number);
-  if (
-    left === undefined ||
-    top === undefined ||
-    width === undefined ||
-    height === undefined ||
-    rest.length > 0 ||
-    ![left, top, width, height].every(Number.isFinite) ||
-    width <= 0 ||
-    height <= 0
-  ) {
-    throw new Error(`${iconName}: malformed viewBox "${viewBox}"`);
-  }
-  return [left, top, width, height];
-}
-
-/** Converts one SVG source file into an Iconify icon record. */
+/** Converts one SVG source into an Iconify icon record. */
 function toIconifyIcon(
-  svgText: string,
+  variant: VariantSource,
   iconName: string,
   mono: boolean,
   hidden: boolean,
 ): IconifyIcon {
-  const root = namespaceIds(parseSvg(svgText), iconName);
-  const viewBox = getAttr(root, 'viewBox');
+  const root = namespaceIds(variant.root, iconName);
+  const viewBox = parseViewBox(getAttr(root, 'viewBox') ?? '');
   if (viewBox === undefined) {
-    throw new Error(`${iconName}: icon SVG is missing a viewBox`);
+    throw new Error(`${variant.path}: malformed or missing viewBox`);
   }
-  const [left, top, width, height] = parseViewBox(viewBox, iconName);
+  const [left, top, width, height] = viewBox;
   let body = root.children.map(child => serializeSvg(child)).join('');
   // Iconify keeps only the body, but many sources declare their fill on the
   // root <svg> (brand colour, currentColor, or none for stroke-only art) and
@@ -128,6 +105,18 @@ interface Collection {
   readonly aliases: Record<string, IconifyAlias>;
 }
 
+/**
+ * IconifyJSON `info.height`: the icons' common height, or omitted when they
+ * differ (the sources keep their native viewBoxes, e.g. 24, 64 or 2500).
+ */
+function commonHeight(icons: Readonly<Record<string, IconifyIcon>>): {
+  readonly height?: number;
+} {
+  const heights = new Set(Object.values(icons).map(icon => icon.height));
+  const [height] = heights;
+  return heights.size === 1 && height !== undefined ? { height } : {};
+}
+
 function iconifySet(
   { icons, aliases }: Collection,
   prefix: string,
@@ -150,7 +139,7 @@ function iconifySet(
         url: 'https://github.com/derodero24/react-web3-icons/blob/main/LICENSE',
       },
       samples,
-      height: 24,
+      ...commonHeight(icons),
       palette,
     },
     icons,
@@ -158,7 +147,13 @@ function iconifySet(
   };
 }
 
-export function buildIconifySets(): IconifySets {
+/**
+ * Icon names cannot collide: they derive from export names, which
+ * loadCategory() already requires to be unique per category.
+ *
+ * @param iconsDir the `icons/` source tree
+ */
+export function buildIconifySets(iconsDir: string = ICONS): IconifySets {
   const colored: Collection = { icons: {}, aliases: {} };
   const mono: Collection = { icons: {}, aliases: {} };
   const collectionFor = (isMono: boolean): Collection =>
@@ -166,14 +161,17 @@ export function buildIconifySets(): IconifySets {
 
   // First pass: artwork units → icons, keyed for alias resolution.
   const iconNameByExport = new Map<string, string>(); // `${category}/${ExportName}` → iconify name
-  const units = CATEGORIES.flatMap(category => loadCategory(ICONS, category));
+  const units = CATEGORIES.flatMap(category =>
+    loadCategory(iconsDir, category),
+  );
   for (const { category, meta, variants } of units) {
-    for (const { suffix, exportName, svg } of variants) {
+    for (const variant of variants) {
+      const { suffix, exportName } = variant;
       const isMono = suffix.endsWith('Mono');
       const iconName = `${category}-${kebab(exportName)}`;
       const hidden = isArtwork(meta) && Boolean(meta.deprecated?.[exportName]);
       collectionFor(isMono).icons[iconName] = toIconifyIcon(
-        svg,
+        variant,
         iconName,
         isMono,
         hidden,

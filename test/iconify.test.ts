@@ -1,11 +1,8 @@
 import { join } from 'node:path';
 import { quicklyValidateIconSet } from '@iconify/utils';
 import { describe, expect, it } from 'vitest';
-import {
-  buildIconifySets,
-  kebab,
-} from '../scripts/build-icons/emit-iconify.ts';
-import { CATEGORIES, loadCategory } from '../scripts/build-icons/lib.ts';
+import { buildIconifySets } from '../scripts/build-icons/emit-iconify.ts';
+import { CATEGORIES, kebab, loadCategory } from '../scripts/build-icons/lib.ts';
 import { ICON_MANIFEST } from '../src/manifest';
 
 const ICONS = join(import.meta.dirname, '../icons');

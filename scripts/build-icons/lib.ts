@@ -77,6 +77,13 @@ export function compareStrings(a: string, b: string): number {
   return a < b ? -1 : 1;
 }
 
+/** Kebab-case of a PascalCase export name (`EthereumCircle` → `ethereum-circle`). */
+export const kebab = (name: string): string =>
+  name
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
+    .toLowerCase();
+
 /** One artwork variant of a unit, with its SVG source loaded. */
 export interface VariantSource {
   /** Export-name suffix (`''`, `'Mono'`, `'CircleMono'`, …). */

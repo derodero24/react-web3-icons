@@ -12,6 +12,11 @@ import {
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
+import {
+  buildDistSvgs,
+  distSvgIdPrefix,
+} from '../scripts/build-icons/emit-dist-svg.ts';
+import { buildIconifySets } from '../scripts/build-icons/emit-iconify.ts';
 import { namespaceIds, validateIds } from '../scripts/build-icons/ids.ts';
 import { emitRender } from '../scripts/build-icons/jsx.ts';
 import {
@@ -405,5 +410,53 @@ describe('output sync', () => {
     });
     expect(bogus.status).toBe(2);
     expect(bogus.stderr).toContain("Unknown option '--bogus'");
+  });
+});
+
+describe('published artifacts', () => {
+  it('dist/svg files never share an id, and their references resolve', () => {
+    const owner = new Map<string, string>();
+    for (const [path, svg] of buildDistSvgs(join(ROOT, 'icons'))) {
+      const root = parseSvg(svg, path);
+      validateIds(root);
+      for (const [, id] of svg.matchAll(/\sid="([^"]*)"/g)) {
+        expect(owner.get(id ?? ''), `${path}: id ${id}`).toBeUndefined();
+        owner.set(id ?? '', path);
+      }
+    }
+    expect(owner.size).toBeGreaterThan(0);
+  });
+
+  it('dist/svg ids carry a per-file prefix', () => {
+    const svg = buildDistSvgs(join(ROOT, 'icons')).get(
+      'chain/EthereumCircleMono.svg',
+    );
+    const prefix = distSvgIdPrefix('chain', 'EthereumCircleMono');
+    expect(prefix).toBe('w3i-chain-ethereum-circle-mono');
+    expect(svg).toContain(`id="${prefix}-ethc-a"`);
+    expect(svg).toContain(`url(#${prefix}-ethc-a)`);
+  });
+
+  it('Iconify info.height is the common height, or omitted', () => {
+    const tall = `<svg ${XMLNS} viewBox="0,0,24,48"/>`;
+    const sets = buildIconifySets(
+      join(
+        fixture({
+          'icons/chain/a.json': iconUnit('Alpha', ['', 'a.svg']),
+          'icons/chain/b.json': iconUnit('Beta', ['', 'b.svg']),
+          'icons/chain/a.svg': SQUARE,
+          'icons/chain/b.svg': SQUARE,
+          'icons/coin/c.json': iconUnit('Gamma', ['Mono', 'c.svg']),
+          'icons/coin/c.svg': tall,
+        }),
+        'icons',
+      ),
+    );
+    expect(sets.colored.info.height).toBe(24);
+    expect(sets.mono.icons['coin-gamma-mono']).toMatchObject({
+      width: 24,
+      height: 48,
+    });
+    expect(buildIconifySets().colored.info).not.toHaveProperty('height');
   });
 });
