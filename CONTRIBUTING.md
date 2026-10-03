@@ -102,14 +102,15 @@ pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.s
 
 This optimizes the SVG with SVGO, normalizes the root element (sizing and
 metadata attributes are dropped; inherited presentation attributes such as a
-root `stroke` move onto a wrapping `<g>`), writes `icons/<category>/<slug>.svg`
+root `stroke` move onto a wrapping `<g>`), puts the artwork on the 64×64 grid
+(see [Optical size](#optical-size)), writes `icons/<category>/<slug>.svg`
 and `<slug>.json`, and regenerates `src/` (the input SVGs are only read,
 never modified). Follow the printed next steps (lookup keys, changeset).
 
 ### Anatomy of an icon unit
 
 ```
-icons/chain/ethereum.svg          # colored artwork (root: xmlns + viewBox [+ fill])
+icons/chain/ethereum.svg          # colored artwork (root: xmlns + viewBox="0 0 64 64" [+ fill])
 icons/chain/ethereum.mono.svg     # monochrome artwork (fill="currentColor")
 icons/chain/ethereum.json         # metadata:
 ```
@@ -291,6 +292,51 @@ the silhouette and identifying detail of its colored counterpart in a single
 design rules (with the `node scripts/audit-mono.ts` audit) are in
 [docs/icon-variants.md](docs/icon-variants.md).
 
+## Optical Size
+
+Every icon renders into a square box (`width = height = size`, `1em` by
+default), so every source uses the same square grid and fills it by the same
+rule. Icons of the same size then look the same size, whatever the aspect
+ratio or padding of the brand's own file.
+
+- **Grid**: the root of every source in `icons/` is
+  `viewBox="0 0 64 64"`. `test/optical-size.test.ts` enforces it.
+- **Marks** (the default variant, `Mono`, `Inverted`, `Symbol`, `Wordmark`,
+  `Alt`, …): the tight box of the painted pixels is scaled uniformly so its
+  longer side is **56** units (87.5%), and centred, which leaves 4 units of
+  padding on the longer axis. A wide wordmark gets 56 units of width and is
+  centred vertically.
+- **Containers**: `Circle*` and `Square*` variants, and any artwork that is
+  itself a solid disc or (rounded) square (a coin, an app-icon tile, a base
+  icon whose official mark includes its background), fill the grid: the
+  longer side of the painted box is **64** units, full-bleed. Artwork counts
+  as a container when its painted box is square within 4% and its footprint
+  (holes filled) covers at least 97% of the inscribed disc.
+- **Mono pairs**: `Foo` / `FooMono` (and `FooCircle` / `FooCircleMono`, …)
+  take the kind of the colored variant. When both files use the same viewBox
+  they get one transform, fitted to the union of their painted boxes (the
+  colored box whenever the mono lies inside it), so the pair stays aligned.
+- **Exemptions** are listed in `OPTICAL_EXEMPTIONS`
+  (`scripts/build-icons/optical.ts`) with a reason, and still use the
+  64×64 grid. There are none today; keep it that way unless the fill rule
+  would misrepresent a mark.
+
+`pnpm run new-icon` applies all of this: it measures the artwork in Chromium,
+wraps it in `<g transform="translate(…) scale(…)">` (which SVGO then usually
+bakes into the path data), and checks that the result renders exactly like
+the input, only scaled and centred. Artwork that overflowed its own viewBox
+(and was clipped by it) is fitted as a whole. To re-check or re-apply the
+rule to existing sources:
+
+```sh
+node scripts/normalize-viewbox.ts --check   # report only; exit 1 on drift
+node scripts/normalize-viewbox.ts [icons/<category>/<unit>.json …]  # rewrite
+pnpm run test:visual                         # includes the painted-box guard
+```
+
+Both need Chromium (`pnpm exec playwright install chromium`). The painted-box
+guard is `test/visual/optical-size.test.ts` (tolerance 0.5 units).
+
 ## Icon Lifecycle Policy
 
 Renamed or retired brands keep their old exports, as deprecated aliases or
@@ -334,7 +380,9 @@ regenerating.
 
 This runs SVGO with the bundled configuration (removes metadata, strips fixed
 dimensions, keeps brand colors, ids, and multi-colored paths), normalizes the
-root element, writes `icons/<category>/<slug>.svg` (+ `.mono.svg`) and
+root element, puts the artwork on the 64×64 grid following the
+[optical-size rule](#optical-size) (this step launches Chromium through
+Playwright), writes `icons/<category>/<slug>.svg` (+ `.mono.svg`) and
 `<slug>.json`, and regenerates `src/`. Follow the printed next steps
 (lookup keys, changeset).
 
@@ -350,7 +398,12 @@ pnpm run optimize:svg -r path/to/svgs/      # a directory
 SVGO-normalized, and `pnpm run check` (run by CI and the pre-push hook) fails
 when one is not; run `pnpm run optimize:svg <file>` on a source you edit by
 hand. The configuration keeps a root `fill="#000"`, which SVGO would drop as
-the initial value: a root `fill` is the component's default `fill`.
+the initial value: a root `fill` is the component's default `fill`. Path
+data is rounded to 2 decimals (0.04 px at 256 px on the 64×64 grid), arcs
+fitted to curves keep a 0.0025-unit tolerance, and half-circle arcs whose
+rounded radius ends up a hair over half their chord get the radius rounded
+down instead (`scripts/build-icons/arcs.ts`), so circles drawn as two arcs
+stay round.
 
 ### 3. Add variants
 
@@ -360,8 +413,9 @@ artwork) and that value becomes the default `fill` on the rendered `<svg>`.
 
 #### Circle / Square Variants
 
-To add a Circle (or Square) variant, create 64×64 SVG files with a branded
-background and the mark scaled to ~72% fill, then register them:
+To add a Circle (or Square) variant, create 64×64 SVG files whose branded
+background fills the whole grid (a circle of radius 32, or a 64×64 square)
+with the mark scaled to ~72% fill, then register them:
 
 `icons/chain/my-token.circle.svg` (no XML comments — the pipeline's SVG parser
 rejects them):
@@ -398,7 +452,8 @@ rejects them):
 
 Key points:
 
-- Use `viewBox="0 0 64 64"` for all Circle/Square variants
+- Use `viewBox="0 0 64 64"`, with the background filling it edge to edge (the
+  [optical-size](#optical-size) container rule; the guard test checks it)
 - Colored variant: brand color background + white icon mark
 - Mono variant: `currentColor` circle + mask that punches out the icon mark
 - For icons with gradients, **pre-compute** gradient coordinates in the 64×64 space — do **not** use `gradientTransform`
@@ -457,7 +512,7 @@ develop.
 
 ## SVG Guidelines
 
-- **Use `viewBox`** instead of fixed `width`/`height` in the SVG source. The component sets `width="1em"` and `height="1em"` as defaults.
+- **Use `viewBox="0 0 64 64"`** instead of fixed `width`/`height` in the SVG source, filled by the [optical-size](#optical-size) rule. The component sets `width="1em"` and `height="1em"` as defaults.
 - **Avoid `<style>` tags** inside SVGs. Use inline `style` props or direct fill/stroke attributes instead.
 - **Static IDs are fine in the SVG source** (`id="mtc-a"`). The generator rewrites them to `${_id}-mtc-a` (`_id` = `w3i-<lowercased component name>-<instance>`), so no two rendered icons on a page share an id, including two instances of the same component.
 - **Repeated geometry belongs in the SVG source**, not in the TSX. Variants that share a mark keep one copy per SVG file; document the shared transform in the unit's `notes` so the copies can be kept in sync. Do not hand-edit generated `.tsx` files to extract constants.

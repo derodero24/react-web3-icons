@@ -49,6 +49,7 @@ Allowed transformations:
 
 - SVGO optimization using this repository's `svgo.config.js` (done by `pnpm run new-icon`, or manually with `pnpm run optimize:svg`)
 - Root-element normalization to `xmlns`, `viewBox`, and an optional `fill` (done by `pnpm run new-icon`)
+- A uniform scale and translation onto the 64×64 grid (the [optical-size rule](../CONTRIBUTING.md#optical-size), done by `pnpm run new-icon`)
 - Internal id namespacing and JSX conversion, both performed by the generator
 - Optional mono variants using `currentColor`
 
