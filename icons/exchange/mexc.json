@@ -13,5 +13,8 @@
       "file": "mexc.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "mexc"
+  ]
 }

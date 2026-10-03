@@ -16,5 +16,8 @@
         "as": "TonMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "TON"
+  ]
 }

@@ -12,5 +12,11 @@
       "file": "mantle.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "mantle"
+  ],
+  "chainIds": [
+    5000
+  ]
 }

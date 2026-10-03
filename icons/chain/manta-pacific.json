@@ -15,5 +15,11 @@
   },
   "aliases": [
     "manta"
+  ],
+  "slugs": [
+    "manta"
+  ],
+  "chainIds": [
+    169
   ]
 }

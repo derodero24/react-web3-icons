@@ -13,5 +13,8 @@
       "file": "hop-protocol.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "hopprotocol"
+  ]
 }

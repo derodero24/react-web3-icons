@@ -34,5 +34,8 @@
       "file": "phantom-wallet.symbol-mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "phantomwallet"
+  ]
 }

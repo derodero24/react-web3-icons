@@ -12,5 +12,11 @@
       "file": "zora.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "zora"
+  ],
+  "chainIds": [
+    7777777
+  ]
 }

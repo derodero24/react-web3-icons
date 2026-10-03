@@ -13,5 +13,8 @@
       "file": "hbar.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "HBAR"
+  ]
 }

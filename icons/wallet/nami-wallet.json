@@ -13,5 +13,8 @@
       "file": "nami-wallet.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "namiwallet"
+  ]
 }

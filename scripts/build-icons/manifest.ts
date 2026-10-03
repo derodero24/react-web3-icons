@@ -1,15 +1,9 @@
 /**
  * The icon manifest (`src/manifest/index.ts`, `dist/manifest.json`), derived
- * from the sources alone — the `icons/` units plus the hand-maintained
- * identifier maps (`src/meta`) and deprecation list (`src/deprecated.ts`) —
- * so it never depends on a previous build.
- *
- * `buildManifest()` takes those inputs as plain data, so they can move to
- * `icons/` without touching the derivation.
+ * from the `icons/` units alone — artwork, lookup keys and deprecations — so
+ * it never depends on a previous build.
  */
 
-import { DEPRECATED_ICON_NAMES } from '../../src/deprecated.ts';
-import * as meta from '../../src/meta/index.ts';
 import { quote } from './jsx.ts';
 import {
   CATEGORIES,
@@ -18,12 +12,8 @@ import {
   type SourceUnit,
   unitAllExportNames,
 } from './lib.ts';
+import { deprecatedExports, type PrimaryIds, primaryIds } from './meta.ts';
 import { type ArtworkUnitMeta, isArtwork } from './unit.ts';
-
-/** Runtime identifier fields, keyed by export name via the meta maps. */
-const ID_FIELDS = ['chainId', 'slug', 'ticker'] as const;
-type IdField = (typeof ID_FIELDS)[number];
-type IdLookups = Partial<Record<IdField, ReadonlyMap<string, number | string>>>;
 
 /** Per-unit data from icons/ that only base entries carry. */
 interface Enrichment {
@@ -37,78 +27,53 @@ export type ManifestEntry = {
   readonly category: Category;
   readonly deprecated?: true;
 } & Enrichment &
-  Partial<Record<IdField, number | string>>;
+  Readonly<PrimaryIds>;
 
-export interface ManifestSources {
-  /** Units of every category. */
-  readonly units: readonly SourceUnit[];
-  /** Per category: identifier field → (export name → identifier). */
-  readonly idLookups: Partial<Record<Category, IdLookups>>;
-  readonly deprecated: ReadonlySet<string>;
-}
-
-/** Builds `name → identifier` reverse lookups from a meta map. */
-function invert(
-  map: Readonly<Record<string, string>>,
-): Map<string, number | string> {
-  const out = new Map<string, number | string>();
-  for (const [key, name] of Object.entries(map)) {
-    if (!out.has(name)) {
-      out.set(name, /^\d+$/.test(key) ? Number(key) : key);
-    }
+/** `#rgb`, `#rrggbb` or `#rrggbbaa` → lowercase `#rrggbb`. */
+function normalizeHex(color: string): string {
+  const hex = color.toLowerCase();
+  if (hex.length === 4 || hex.length === 5) {
+    const [, r, g, b] = hex;
+    return `#${r}${r}${g}${g}${b}${b}`;
   }
-  return out;
-}
-
-/** The manifest inputs that live outside `icons/` (src/meta, src/deprecated). */
-export function sourceLookups(): Omit<ManifestSources, 'units'> {
-  return {
-    idLookups: {
-      chain: {
-        chainId: invert(meta.CHAIN_ID_TO_NAME),
-        slug: invert(meta.CHAIN_SLUG_TO_NAME),
-      },
-      coin: { ticker: invert(meta.TICKER_TO_COIN) },
-      wallet: { slug: invert(meta.WALLET_SLUG_TO_NAME) },
-      exchange: { slug: invert(meta.EXCHANGE_SLUG_TO_NAME) },
-      defi: { slug: invert(meta.DEFI_SLUG_TO_NAME) },
-      dex: { slug: invert(meta.DEX_SLUG_TO_NAME) },
-      bridge: { slug: invert(meta.BRIDGE_SLUG_TO_NAME) },
-      oracle: { slug: invert(meta.ORACLE_SLUG_TO_NAME) },
-    },
-    deprecated: DEPRECATED_ICON_NAMES,
-  };
+  return hex.slice(0, 7);
 }
 
 /**
- * Dominant brand color of a colored SVG: the most frequent fill/stroke/
- * stop-color hex value, ignoring white and non-color values.
+ * Whether a colour carries no hue a consumer could theme with: greys and
+ * tinted greys (channel spread below 32/255), near-black (no channel above
+ * 48/255) and near-white (no channel below 224/255).
  */
-function extractBrandColor(svgText: string): string | undefined {
+export function isNeutralColor(hex: string): boolean {
+  const channels = [1, 3, 5].map(i => Number.parseInt(hex.slice(i, i + 2), 16));
+  const max = Math.max(...channels);
+  const min = Math.min(...channels);
+  return max - min < 32 || max < 48 || min > 224;
+}
+
+/**
+ * Brand color of a colored SVG, by frequency of the fill/stroke/stop-color
+ * hex values: the most frequent non-neutral color (see
+ * {@link isNeutralColor}), or — for artwork with nothing but neutrals — the
+ * most frequent neutral other than pure white. A heuristic: badge-style
+ * marks whose container dominates still pick their accent, and a unit's
+ * `brandColor` overrides it where it still misses the brand.
+ */
+export function extractBrandColor(svgText: string): string | undefined {
   const counts = new Map<string, number>();
   for (const [, color = ''] of svgText.matchAll(
     /(?:fill|stroke|stop-color)="(#[0-9a-fA-F]{3,8})"/g,
   )) {
-    let hex = color.toLowerCase();
-    if (hex.length === 4) {
-      const [, r, g, b] = hex;
-      hex = `#${r}${r}${g}${g}${b}${b}`;
-    }
-    hex = hex.slice(0, 7);
-    if (hex === '#ffffff') {
-      continue;
-    }
-    counts.set(hex, (counts.get(hex) ?? 0) + 1);
-  }
-  let best: string | undefined;
-  let bestCount = 0;
-  for (const [hex, count] of counts) {
-    if (count > bestCount) {
-      best = hex;
-      bestCount = count;
+    const hex = normalizeHex(color);
+    if (hex !== '#ffffff') {
+      counts.set(hex, (counts.get(hex) ?? 0) + 1);
     }
   }
-  return best;
+  // Stable sort: ties keep the order of first appearance.
+  const byFrequency = [...counts].sort(([, a], [, b]) => b - a);
+  const [first] = byFrequency.find(([hex]) => !isNeutralColor(hex)) ??
+    byFrequency[0] ?? [undefined];
+  return first;
 }
 
 /**
@@ -150,7 +115,8 @@ function enrichmentOf({ meta: unitMeta, variants }: SourceUnit): Enrichment {
   const defaultSvg =
     defaultSuffix === undefined ? undefined : svgBySuffix.get(defaultSuffix);
   const brandColor =
-    defaultSvg === undefined ? undefined : extractBrandColor(defaultSvg);
+    unitMeta.brandColor ??
+    (defaultSvg === undefined ? undefined : extractBrandColor(defaultSvg));
   return {
     variants: [
       ...aliasVariants.map(v => v.suffix),
@@ -161,41 +127,22 @@ function enrichmentOf({ meta: unitMeta, variants }: SourceUnit): Enrichment {
   };
 }
 
-/** The identifier fields registered for `name` in its category's maps. */
-function idsOf(
-  lookups: IdLookups | undefined,
-  name: string,
-): Partial<Record<IdField, number | string>> {
-  const ids: { [F in IdField]?: number | string } = {};
-  for (const idField of ID_FIELDS) {
-    const id = lookups?.[idField]?.get(name);
-    if (id !== undefined) {
-      ids[idField] = id;
-    }
-  }
-  return ids;
-}
-
 /** One entry per exported icon component, sorted by category and name. */
-export function buildManifest(sources: ManifestSources): ManifestEntry[] {
-  // `${category}/${unit name}` → enrichment of that unit's base entry
-  const enrichment = new Map(
-    sources.units.map(unit => [
-      `${unit.category}/${unit.meta.name}`,
-      enrichmentOf(unit),
-    ]),
-  );
-  const entries = sources.units.flatMap(unit =>
-    unitAllExportNames(unit).map(
+export function buildManifest(units: readonly SourceUnit[]): ManifestEntry[] {
+  const entries = units.flatMap(unit => {
+    const ids = primaryIds(unit);
+    const deprecated = new Set(deprecatedExports(unit));
+    const enrichment = enrichmentOf(unit);
+    return unitAllExportNames(unit).map(
       (name): ManifestEntry => ({
         name,
         category: unit.category,
-        ...idsOf(sources.idLookups[unit.category], name),
-        ...(sources.deprecated.has(name) ? { deprecated: true } : {}),
-        ...enrichment.get(`${unit.category}/${name}`),
+        ...ids.get(name),
+        ...(deprecated.has(name) ? { deprecated: true } : {}),
+        ...(name === unit.meta.name ? enrichment : {}),
       }),
-    ),
-  );
+    );
+  });
   return entries.sort(
     (a, b) =>
       compareStrings(a.category, b.category) || compareStrings(a.name, b.name),
@@ -232,9 +179,8 @@ function renderEntry(e: ManifestEntry): string {
 export function renderManifestModule(
   entries: readonly ManifestEntry[],
 ): string {
-  return `// Auto-generated by scripts/generate-manifest.ts — do not edit manually.
-// Regenerate after adding or renaming icons:
-//   pnpm run generate-manifest
+  return `// Auto-generated by scripts/build-icons/cli.ts from icons/<category>/<slug>.json
+// — do not edit manually. Regenerate: pnpm run generate-icons
 
 /** Icon category, mirroring the package subpaths. */
 export type IconCategory =
@@ -246,11 +192,11 @@ export interface IconManifestEntry {
   readonly name: string;
   /** Category subpath the component is exported from. */
   readonly category: IconCategory;
-  /** EVM chain ID, present on chain icons registered in \`CHAIN_ID_TO_NAME\`. */
+  /** EVM chain ID, present on chain icons registered in \`CHAIN_ID_TO_NAME\` (the primary one when it has several). */
   readonly chainId?: number;
-  /** Lowercased slug, present when the icon is registered in a slug map. */
+  /** Lowercased slug, present when the icon is registered in a slug map (the primary one when it has several). */
   readonly slug?: string;
-  /** Uppercase ticker symbol, present on coins registered in \`TICKER_TO_COIN\`. */
+  /** Uppercase ticker symbol, present on coins registered in \`TICKER_TO_COIN\` (the primary one when it has several). */
   readonly ticker?: string;
   /** Set when the export is a deprecated alias kept for backward compatibility. */
   readonly deprecated?: true;
@@ -261,7 +207,12 @@ export interface IconManifestEntry {
   readonly variants?: readonly string[];
   /** Extra lowercase search terms (e.g. \`'btc'\` on \`Bitcoin\`). Base entries only. */
   readonly aliases?: readonly string[];
-  /** Dominant brand color of the colored artwork, as a \`#rrggbb\` hex. Base entries only. */
+  /**
+   * Brand color as a \`#rrggbb\` hex: the most frequent non-neutral color of
+   * the colored artwork (a heuristic; greys, near-black and near-white count
+   * only when the artwork has nothing else), or a curated override. Base
+   * entries only.
+   */
   readonly brandColor?: string;
 }
 

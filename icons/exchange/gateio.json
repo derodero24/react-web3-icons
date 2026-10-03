@@ -12,5 +12,8 @@
       "file": "gateio.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "gateio"
+  ]
 }

@@ -24,5 +24,8 @@
         "as": "EthMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "ETH"
+  ]
 }

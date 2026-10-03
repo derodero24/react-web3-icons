@@ -13,5 +13,8 @@
       "file": "api3.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "api3"
+  ]
 }

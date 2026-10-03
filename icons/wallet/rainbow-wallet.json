@@ -36,5 +36,8 @@
       "file": "rainbow-wallet.symbol-mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "rainbowwallet"
+  ]
 }

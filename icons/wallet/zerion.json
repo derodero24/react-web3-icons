@@ -29,5 +29,8 @@
       "name": "ZerionMono",
       "target": "ZerionCircleMono"
     }
+  ],
+  "slugs": [
+    "zerion"
   ]
 }

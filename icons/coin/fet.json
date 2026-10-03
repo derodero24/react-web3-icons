@@ -13,5 +13,8 @@
       "file": "fet.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "FET"
+  ]
 }

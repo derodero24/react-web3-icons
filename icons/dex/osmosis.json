@@ -13,5 +13,8 @@
       "file": "osmosis.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "osmosis"
+  ]
 }

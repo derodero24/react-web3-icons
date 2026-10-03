@@ -16,5 +16,8 @@
         "as": "TaikoMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "TAIKO"
+  ]
 }

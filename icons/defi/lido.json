@@ -16,5 +16,8 @@
   },
   "aliases": [
     "steth"
+  ],
+  "slugs": [
+    "lido"
   ]
 }

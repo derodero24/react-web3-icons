@@ -13,5 +13,8 @@
       "file": "cow-protocol.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "cowprotocol"
+  ]
 }

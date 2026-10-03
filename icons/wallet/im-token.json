@@ -12,5 +12,8 @@
       "file": "im-token.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "imtoken"
+  ]
 }

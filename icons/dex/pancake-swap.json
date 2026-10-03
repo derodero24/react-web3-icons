@@ -16,5 +16,8 @@
   },
   "aliases": [
     "cake"
+  ],
+  "slugs": [
+    "pancakeswap"
   ]
 }

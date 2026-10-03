@@ -16,5 +16,11 @@
   },
   "aliases": [
     "mon"
+  ],
+  "slugs": [
+    "monad"
+  ],
+  "chainIds": [
+    143
   ]
 }

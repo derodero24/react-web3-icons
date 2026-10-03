@@ -13,5 +13,8 @@
       "file": "gmx.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "gmx"
+  ]
 }

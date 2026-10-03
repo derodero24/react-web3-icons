@@ -12,5 +12,8 @@
       "file": "stellar.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "stellar"
+  ]
 }

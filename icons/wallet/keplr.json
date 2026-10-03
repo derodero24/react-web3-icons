@@ -12,5 +12,8 @@
       "file": "keplr.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "keplr"
+  ]
 }

@@ -12,5 +12,8 @@
       "file": "bithumb.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "bithumb"
+  ]
 }

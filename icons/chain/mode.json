@@ -13,5 +13,11 @@
       "file": "mode.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "mode"
+  ],
+  "chainIds": [
+    34443
+  ]
 }

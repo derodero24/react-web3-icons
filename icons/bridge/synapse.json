@@ -14,5 +14,8 @@
       "file": "synapse.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "synapse"
+  ]
 }

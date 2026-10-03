@@ -16,5 +16,8 @@
   },
   "aliases": [
     "dot"
+  ],
+  "slugs": [
+    "polkadot"
   ]
 }

@@ -24,5 +24,8 @@
         "as": "SolMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "SOL"
+  ]
 }

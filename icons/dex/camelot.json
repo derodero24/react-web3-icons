@@ -13,5 +13,8 @@
       "file": "camelot.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "camelot"
+  ]
 }

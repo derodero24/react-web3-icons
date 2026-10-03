@@ -13,5 +13,8 @@
       "file": "okx-wallet.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "okxwallet"
+  ]
 }

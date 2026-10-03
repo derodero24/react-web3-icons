@@ -13,5 +13,11 @@
       "file": "world-chain.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "worldchain"
+  ],
+  "chainIds": [
+    480
+  ]
 }

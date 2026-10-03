@@ -18,5 +18,8 @@
       "file": "socket.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "socket"
+  ]
 }

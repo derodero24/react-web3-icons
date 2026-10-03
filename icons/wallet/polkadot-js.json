@@ -12,5 +12,8 @@
       "file": "polkadot-js.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "polkadotjs"
+  ]
 }

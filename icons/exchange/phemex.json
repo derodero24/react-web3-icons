@@ -12,5 +12,8 @@
       "file": "phemex.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "phemex"
+  ]
 }

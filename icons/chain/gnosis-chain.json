@@ -17,5 +17,11 @@
   "aliases": [
     "gno",
     "gnosis"
+  ],
+  "slugs": [
+    "gnosis"
+  ],
+  "chainIds": [
+    100
   ]
 }

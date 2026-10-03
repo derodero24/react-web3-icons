@@ -15,5 +15,8 @@
       "file": "ethena.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "ethena"
+  ]
 }

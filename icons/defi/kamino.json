@@ -13,5 +13,8 @@
       "file": "kamino.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "kamino"
+  ]
 }

@@ -30,5 +30,11 @@
       "file": "ethereum.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "ethereum"
+  ],
+  "chainIds": [
+    1
+  ]
 }

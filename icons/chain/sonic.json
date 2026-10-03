@@ -4,6 +4,9 @@
   "source": [
     "https://repository.sonic.soniclabs.com/validator/sonic.svg (official asset host, referenced from docs.soniclabs.com validator-node docs)"
   ],
+  "notes": [
+    "Lookup keys: chain ID 250 and slug fantom resolve to Sonic, not to the deprecated Fantom export, because Fantom Opera was succeeded by Sonic (FTM upgraded 1:1 to S; issue #787)."
+  ],
   "variants": {
     "": {
       "file": "sonic.svg"
@@ -16,5 +19,13 @@
   "aliases": [
     "s",
     "fantom"
+  ],
+  "slugs": [
+    "sonic",
+    "fantom"
+  ],
+  "chainIds": [
+    146,
+    250
   ]
 }

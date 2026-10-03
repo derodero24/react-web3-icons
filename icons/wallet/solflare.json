@@ -12,5 +12,8 @@
       "file": "solflare.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "solflare"
+  ]
 }

@@ -31,5 +31,8 @@
       "file": "solana.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "solana"
+  ]
 }

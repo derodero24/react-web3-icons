@@ -20,5 +20,8 @@
       "file": "xrp.circle-mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "XRP"
+  ]
 }

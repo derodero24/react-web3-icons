@@ -27,7 +27,7 @@ type AllIconModules = typeof bridge &
   typeof explorer &
   typeof marketplace &
   typeof node &
-  Omit<typeof oracle, 'Pyth' | 'PythMono'> &
+  typeof oracle &
   typeof portfolio &
   typeof storage &
   typeof tracker &

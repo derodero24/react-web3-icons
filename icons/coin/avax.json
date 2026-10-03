@@ -24,5 +24,8 @@
         "as": "AvaxMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "AVAX"
+  ]
 }

@@ -15,5 +15,8 @@
       "file": "liquity.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "liquity"
+  ]
 }

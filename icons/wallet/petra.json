@@ -12,5 +12,8 @@
       "file": "petra.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "petra"
+  ]
 }

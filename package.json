@@ -149,7 +149,6 @@
     "test:visual": "vitest run --config vitest.config.visual.ts",
     "test:visual:update": "vitest run --config vitest.config.visual.ts --update",
     "typecheck": "tsc --noEmit && tsc --noEmit -p test && tsc --noEmit -p scripts",
-    "generate-manifest": "node scripts/generate-manifest.ts",
     "generate-icons": "node scripts/build-icons/cli.ts"
   },
   "devDependencies": {

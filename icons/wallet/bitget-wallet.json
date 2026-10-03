@@ -13,5 +13,8 @@
       "file": "bitget-wallet.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "bitgetwallet"
+  ]
 }

@@ -16,5 +16,8 @@
         "as": "KavaMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "KAVA"
+  ]
 }

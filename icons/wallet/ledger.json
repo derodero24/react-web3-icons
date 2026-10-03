@@ -13,5 +13,8 @@
       "file": "ledger.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "ledger"
+  ]
 }

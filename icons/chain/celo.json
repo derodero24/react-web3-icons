@@ -13,5 +13,11 @@
       "file": "celo.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "celo"
+  ],
+  "chainIds": [
+    42220
+  ]
 }

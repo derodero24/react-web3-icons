@@ -13,5 +13,8 @@
       "file": "wld.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "WLD"
+  ]
 }

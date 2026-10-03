@@ -12,5 +12,8 @@
       "file": "vet.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "VET"
+  ]
 }

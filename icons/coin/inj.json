@@ -12,5 +12,8 @@
       "file": "inj.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "INJ"
+  ]
 }

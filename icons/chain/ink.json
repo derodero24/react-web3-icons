@@ -12,5 +12,11 @@
       "file": "ink.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "ink"
+  ],
+  "chainIds": [
+    57073
+  ]
 }

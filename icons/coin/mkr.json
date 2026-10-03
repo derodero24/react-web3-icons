@@ -16,5 +16,8 @@
         "as": "MkrMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "MKR"
+  ]
 }

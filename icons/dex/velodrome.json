@@ -14,5 +14,8 @@
       "file": "velodrome.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "velodrome"
+  ]
 }

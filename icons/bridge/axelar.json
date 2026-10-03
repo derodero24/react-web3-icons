@@ -13,5 +13,8 @@
       "file": "axelar.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "axelar"
+  ]
 }

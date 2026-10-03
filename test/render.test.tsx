@@ -19,9 +19,8 @@ import * as tracker from '../src/tracker';
 import * as wallet from '../src/wallet';
 import { isIconComponent } from './helpers/units';
 
-// Iterates the category entry points rather than the root barrel: the root
-// omits exports whose names collide across categories (oracle `Pyth` vs
-// coin `Pyth`), and those must render too.
+// Iterates the category entry points rather than the root barrel, so every
+// category's exports are rendered under their own subpath.
 const CATEGORIES = {
   bridge,
   chain,

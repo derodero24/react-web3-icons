@@ -13,5 +13,8 @@
       "file": "htx.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "htx"
+  ]
 }

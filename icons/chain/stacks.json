@@ -13,5 +13,8 @@
       "file": "stacks.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "stacks"
+  ]
 }

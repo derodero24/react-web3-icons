@@ -24,5 +24,8 @@
         "as": "PolMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "POL"
+  ]
 }

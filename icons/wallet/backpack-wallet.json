@@ -13,5 +13,8 @@
       "file": "backpack-wallet.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "backpackwallet"
+  ]
 }

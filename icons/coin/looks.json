@@ -15,5 +15,8 @@
       "file": "looks.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "LOOKS"
+  ]
 }

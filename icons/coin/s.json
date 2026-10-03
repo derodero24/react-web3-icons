@@ -3,6 +3,9 @@
   "source": [
     "re-export of Sonic \u2014 see src/chain/Sonic.tsx"
   ],
+  "notes": [
+    "Lookup keys: ticker FTM resolves to Sonic, not to the deprecated Ftm export, because FTM was upgraded 1:1 to S (issue #787)."
+  ],
   "kind": "reexport",
   "reexport": {
     "from": "../chain/Sonic",
@@ -16,5 +19,9 @@
         "as": "SonicMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "S",
+    "FTM"
+  ]
 }

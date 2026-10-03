@@ -12,5 +12,8 @@
       "file": "cro.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "CRO"
+  ]
 }

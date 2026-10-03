@@ -13,5 +13,11 @@
       "file": "blast.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "blast"
+  ],
+  "chainIds": [
+    81457
+  ]
 }

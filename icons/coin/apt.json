@@ -16,5 +16,8 @@
         "as": "AptMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "APT"
+  ]
 }

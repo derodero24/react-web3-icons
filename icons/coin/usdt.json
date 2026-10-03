@@ -24,5 +24,8 @@
       "file": "usdt.circle-mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "USDT"
+  ]
 }

@@ -13,5 +13,8 @@
       "file": "ku-coin.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "kucoin"
+  ]
 }

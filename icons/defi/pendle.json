@@ -13,5 +13,8 @@
       "file": "pendle.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "pendle"
+  ]
 }

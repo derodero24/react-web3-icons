@@ -13,5 +13,8 @@
       "file": "yearn.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "yearn"
+  ]
 }

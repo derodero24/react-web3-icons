@@ -14,5 +14,8 @@
       "file": "orbiter.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "orbiter"
+  ]
 }

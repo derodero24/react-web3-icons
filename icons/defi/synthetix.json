@@ -16,5 +16,8 @@
   },
   "aliases": [
     "snx"
+  ],
+  "slugs": [
+    "synthetix"
   ]
 }

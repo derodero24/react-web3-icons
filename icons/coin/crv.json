@@ -13,5 +13,8 @@
       "file": "crv.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "CRV"
+  ]
 }

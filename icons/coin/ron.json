@@ -16,5 +16,8 @@
         "as": "RoninMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "RON"
+  ]
 }

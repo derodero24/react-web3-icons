@@ -13,5 +13,8 @@
       "file": "rabby.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "rabby"
+  ]
 }

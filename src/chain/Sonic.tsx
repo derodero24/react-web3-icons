@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://repository.sonic.soniclabs.com/validator/sonic.svg (official asset host, referenced from docs.soniclabs.com validator-node docs)
+// Lookup keys: chain ID 250 and slug fantom resolve to Sonic, not to the deprecated Fantom export, because Fantom Opera was succeeded by Sonic (FTM upgraded 1:1 to S; issue #787).
 /** Sonic chain icon (colored). */
 export const Sonic = /* @__PURE__ */ createIcon('Sonic', '0 0 180 180', _id => (
   <>

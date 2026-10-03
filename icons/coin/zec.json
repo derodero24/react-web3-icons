@@ -12,5 +12,8 @@
       "file": "zec.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "ZEC"
+  ]
 }

@@ -12,5 +12,11 @@
       "file": "berachain.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "berachain"
+  ],
+  "chainIds": [
+    80094
+  ]
 }

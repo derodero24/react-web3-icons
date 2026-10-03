@@ -12,5 +12,11 @@
       "file": "immutable-x.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "immutablex"
+  ],
+  "chainIds": [
+    13371
+  ]
 }

@@ -13,5 +13,8 @@
       "file": "argent.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "argent"
+  ]
 }

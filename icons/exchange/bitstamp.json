@@ -19,5 +19,8 @@
       "file": "bitstamp.circle-mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "bitstamp"
+  ]
 }

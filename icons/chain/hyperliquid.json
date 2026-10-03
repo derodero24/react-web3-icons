@@ -16,5 +16,11 @@
         "as": "HyperliquidMono"
       }
     ]
-  }
+  },
+  "slugs": [
+    "hyperliquid"
+  ],
+  "chainIds": [
+    999
+  ]
 }

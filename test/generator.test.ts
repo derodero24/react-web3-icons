@@ -27,6 +27,15 @@ import {
   parseViewBox,
 } from '../scripts/build-icons/lib.ts';
 import {
+  extractBrandColor,
+  isNeutralColor,
+} from '../scripts/build-icons/manifest.ts';
+import {
+  collectLookups,
+  deprecatedExports,
+  LOOKUP_MAPS,
+} from '../scripts/build-icons/meta.ts';
+import {
   createOptimizer,
   isSvgoNormalized,
   normalizeRoot,
@@ -436,6 +445,177 @@ describe('loading icons/', () => {
     '',
   ])('rejects the viewBox %j', viewBox => {
     expect(parseViewBox(viewBox)).toBeUndefined();
+  });
+});
+
+describe('lookup keys', () => {
+  const MonoSvg = `<svg ${XMLNS} viewBox="0 0 24 24" fill="currentColor"/>`;
+  /** `variants` of a unit `slug` with the given suffixes. */
+  const variantsOf = (slug: string, suffixes: readonly string[]) =>
+    Object.fromEntries(
+      suffixes.map(suffix => [
+        suffix,
+        suffix.endsWith('Mono')
+          ? { file: `${slug}.mono.svg`, fill: 'currentColor' }
+          : { file: `${slug}.svg` },
+      ]),
+    );
+  /** A chain unit with `''` and `Mono` variants plus `extra` fields. */
+  const chainUnit = (
+    slug: string,
+    name: string,
+    extra: Readonly<Record<string, unknown>> = {},
+  ): Record<string, string> => ({
+    [`icons/chain/${slug}.json`]: JSON.stringify({
+      name,
+      kind: 'icon',
+      variants: variantsOf(slug, ['', 'Mono']),
+      ...extra,
+    }),
+    [`icons/chain/${slug}.svg`]: SQUARE,
+    [`icons/chain/${slug}.mono.svg`]: MonoSvg,
+  });
+  const tableOf = (
+    constName: string,
+    units: Parameters<typeof collectLookups>[0],
+  ) => {
+    const spec = LOOKUP_MAPS.find(s => s.constName === constName);
+    return [...((spec && collectLookups(units).get(spec)) ?? [])];
+  };
+
+  it('collects sorted maps, including variant lookups', () => {
+    const units = loadChain({
+      ...chainUnit('b', 'Beta', {
+        slugs: ['beta', 'b-legacy'],
+        chainIds: [10],
+      }),
+      ...chainUnit('a', 'Alpha', {
+        chainIds: [2],
+        variants: variantsOf('a', ['', 'Mono', 'Two', 'TwoMono']),
+        variantLookups: Object.fromEntries([['Two', { chainIds: [1] }]]),
+      }),
+    });
+    expect(tableOf('CHAIN_ID_TO_NAME', units)).toEqual([
+      [1, 'AlphaTwo'],
+      [2, 'Alpha'],
+      [10, 'Beta'],
+    ]);
+    expect(tableOf('CHAIN_SLUG_TO_NAME', units)).toEqual([
+      ['b-legacy', 'Beta'],
+      ['beta', 'Beta'],
+    ]);
+  });
+
+  it.each([
+    [
+      'a key used twice in one map',
+      {
+        ...chainUnit('a', 'Alpha', { slugs: ['x'] }),
+        ...chainUnit('b', 'Beta', { slugs: ['x'] }),
+      },
+      /icons\/chain\/b\.json: slugs "x" is already used by icons\/chain\/a\.json/,
+    ],
+    [
+      'a lookup field of another category',
+      chainUnit('a', 'Alpha', { tickers: ['ALP'] }),
+      /icons\/chain\/a\.json: tickers is not a lookup key of the chain category \(allowed: chainIds, slugs\)/,
+    ],
+    [
+      'an empty lookup field of another category',
+      chainUnit('a', 'Alpha', { tickers: [] }),
+      /icons\/chain\/a\.json: tickers is not a lookup key of the chain category/,
+    ],
+    [
+      'a target without a Mono export',
+      chainUnit('a', 'Alpha', {
+        variants: variantsOf('a', ['']),
+        slugs: ['alpha'],
+      }),
+      /icons\/chain\/a\.json: lookup keys need an export AlphaMono/,
+    ],
+    [
+      'a variant lookup of a missing variant',
+      chainUnit('a', 'Alpha', {
+        variantLookups: Object.fromEntries([['Nova', { slugs: ['nova'] }]]),
+      }),
+      /lookup keys in variantLookups\.Nova need an export AlphaNova/,
+    ],
+    [
+      'keys of a deprecated export',
+      chainUnit('a', 'Alpha', {
+        slugs: ['alpha'],
+        deprecated: Object.fromEntries([['AlphaMono', 'Gone.']]),
+      }),
+      /lookup keys target the deprecated export AlphaMono; move them to its replacement/,
+    ],
+  ])('rejects %s', (_, files, message) => {
+    expect(() => collectLookups(loadChain(files))).toThrow(message);
+  });
+
+  it('rejects malformed keys in the unit schema', () => {
+    const valid = {
+      name: 'Foo',
+      kind: 'icon',
+      variants: { '': { file: 'f.svg' } },
+    };
+    expect(() =>
+      assertUnitMeta({ ...valid, slugs: ['Foo'] }, 'u.json'),
+    ).toThrow(/slugs\[0\] must be a lowercase kebab-case slug/);
+    expect(() =>
+      assertUnitMeta({ ...valid, tickers: ['eth'] }, 'u.json'),
+    ).toThrow(/tickers\[0\] must be an uppercase alphanumeric ticker/);
+    expect(() =>
+      assertUnitMeta({ ...valid, chainIds: [1.5] }, 'u.json'),
+    ).toThrow(/chainIds\[0\] must be a positive integer chain ID/);
+  });
+
+  it('rejects a deprecation of an export the unit does not have', () => {
+    const [unit] = loadChain(
+      chainUnit('a', 'Alpha', {
+        deprecated: Object.fromEntries([['Beta', 'Gone.']]),
+      }),
+    );
+    expect(() => unit && deprecatedExports(unit)).toThrow(
+      /deprecated\.Beta is not a variant export of Alpha/,
+    );
+  });
+});
+
+describe('manifest brandColor', () => {
+  const svg = (...fills: readonly string[]): string =>
+    `<svg ${XMLNS} viewBox="0 0 24 24">${fills.map(f => `<path fill="${f}"/>`).join('')}</svg>`;
+
+  it.each([
+    [
+      'the most frequent colour',
+      svg('#E57310', '#e57310', '#1B4ADD'),
+      '#e57310',
+    ],
+    [
+      'an accent over a dominant black container',
+      svg('#040404', '#040404', '#BFF009'),
+      '#bff009',
+    ],
+    [
+      'an accent over greys and near-white',
+      svg('#181818', '#888', '#fafafa', '#EE7A30'),
+      '#ee7a30',
+    ],
+    [
+      'a neutral when there is nothing else',
+      svg('#fff', '#000', '#000'),
+      '#000000',
+    ],
+    ['nothing for white-only artwork', svg('#FFF', '#ffffffcc'), undefined],
+  ])('picks %s', (_, artwork, expected) => {
+    expect(extractBrandColor(artwork)).toBe(expected);
+  });
+
+  it('classifies neutrals by channel spread and lightness', () => {
+    expect(
+      ['#110f23', '#1b1230', '#8c8c8c', '#f1eaea'].filter(isNeutralColor),
+    ).toEqual(['#110f23', '#1b1230', '#8c8c8c', '#f1eaea']);
+    expect(['#7142cf', '#ffeeda', '#0052ff'].some(isNeutralColor)).toBe(false);
   });
 });
 
