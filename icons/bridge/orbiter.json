@@ -1,14 +1,21 @@
 {
   "name": "Orbiter",
+  "source": [
+    "https://github.com/Orbiter-Finance/OrbiterFE-V2/blob/main/src/icons/v2/light-logo-mobile.svg",
+    "https://github.com/Orbiter-Finance/OrbiterFE-V2/blob/main/src/icons/v2/dark-logo-mobile.svg"
+  ],
   "notes": [
-    "Paths sourced from Orbiter-Finance/OrbiterFE-V2 (src/icons/v2/light-orbiter.svg)",
-    "Brand color (#EF2F2D) sourced from Orbiter-Finance/OrbiterFE-V2 (src/icons/v2/dark-logo.svg)"
+    "Default: the official Orbiter symbol for light backgrounds (light-logo-mobile.svg in Orbiter-Finance/OrbiterFE-V2: the alien in its UFO, red #EF2F2D -> #89272D alien, #434344 -> #000 UFO, #2D2F31 details), paths and gradients unchanged. It replaces a grey UI icon recoloured red that dropped the UFO",
+    "Inverted: the official dark-theme symbol (dark-logo-mobile.svg, same geometry with a white UFO and details), for dark backgrounds where the default's near-black UFO vanishes",
+    "Mono: the same paths in currentColor; the alien's eye stays a hole with the pupil as ink, as in the colored symbol"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "orbiter.svg",
-      "fill": "none"
+      "file": "orbiter.svg"
+    },
+    "Inverted": {
+      "file": "orbiter.inverted.svg"
     },
     "Mono": {
       "file": "orbiter.mono.svg",

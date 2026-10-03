@@ -101,9 +101,10 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Orbiter',
     category: 'bridge',
     slug: 'orbiter',
-    variants: ['', 'Mono'],
+    variants: ['', 'Inverted', 'Mono'],
     brandColor: '#ef2f2d',
   },
+  { name: 'OrbiterInverted', category: 'bridge' },
   { name: 'OrbiterMono', category: 'bridge' },
   {
     name: 'Socket',
