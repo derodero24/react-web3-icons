@@ -1,5 +1,206 @@
 # Changelog
 
+## 5.0.0
+
+### Major Changes
+
+- [#828](https://github.com/derodero24/react-web3-icons/pull/828) [`f5a429d`](https://github.com/derodero24/react-web3-icons/commit/f5a429d83f5947f97f325d26fed6d4b559f1302e) Thanks [@derodero24](https://github.com/derodero24)! - Make the `react-web3-icons/dynamic` components (`ChainIcon`, `CoinIcon`, …) robust:
+  
+  - **Breaking:** a failed icon chunk load (network error, deploy skew) renders `fallback` instead of throwing to the nearest error boundary, and is retried on a later render instead of failing until a full reload.
+  - `ref` reaches the underlying `<svg>` on React 18 and 19.
+  - Each component has its own `displayName` (`ChainIcon`, `CoinIcon`, …) instead of `DynamicIconInner`.
+  - `undefined`, `null` or non-string identifiers from untyped data render `fallback` instead of throwing.
+  - Development builds warn once per unknown identifier and per failed load, also in browser bundlers such as Vite (the old check never ran there); production builds strip the warnings.
+
+- [#832](https://github.com/derodero24/react-web3-icons/pull/832) [`6fd4185`](https://github.com/derodero24/react-web3-icons/commit/6fd4185b5821c9b6c60b7a277d38d16640875757) Thanks [@derodero24](https://github.com/derodero24)! - Make every icon of the dynamic categories reachable through `react-web3-icons/dynamic`, with one shared identifier normalization ([#813](https://github.com/derodero24/react-web3-icons/issues/813)).
+  
+  - **Every variant.** `variant` accepts `'colored'`, `'mono'` and every variant suffix the category ships, typed per category: `ChainVariant` (`'Circle'`, `'CircleMono'`, `'Flat'`, `'FlatMono'`, `'Square'`, `'SquareMono'`), `CoinVariant`, `WalletVariant`, `ExchangeVariant`, `DexVariant`, `BridgeVariant` (`'Inverted'`), and `DefiVariant` / `OracleVariant` (`'colored' | 'mono'`), all exported from `react-web3-icons/dynamic`. `<ChainIcon name="ethereum" variant="Circle" />` renders `EthereumCircle`; 127 exports such as `BtcCircleMono`, `MetaMaskSquare` or `BybitInverted` were in the lazy import maps but could not be loaded before; now all 565 entries can.
+  - **Breaking:** a `variant` the category does not ship (possible from untyped data or a cast), or one the resolved icon lacks (`<ChainIcon name="aptos" variant="Circle" />`), renders `fallback` and warns once in development. Before, any value other than `'mono'` silently rendered the colored icon. `variant="mono"` always renders the `Mono` export; every icon of these categories has one.
+  - **One normalization.** Every dynamic component matches identifiers case-insensitively, ignoring whitespace, `.`, `-` and `_`, against equally normalized keys, so `'layer-zero'`, `'hop-protocol'`, `'Arbitrum Nova'`, `'Crypto.com'` or `'cow_protocol'` now resolve (only `DefiIcon` stripped `.` and `-` before). The generator fails when two keys of a map would normalize alike.
+  - **Breaking:** an unknown `chainId` falls back to `name` instead of rendering `fallback`: `<ChainIcon chainId={999999} name="base" />` renders Base.
+  - **Aliases and connector ids resolve.** Every manifest alias of these categories is now also a lookup key of its icon (`btc`, `bnb`, `matic`, `atom`, `zk`, `lz`, `stg`, `1inch`, `cake`, `sushi`, `steth`, `wc`, `okb`, …), and the generator enforces this for new aliases. Common wallet connector ids resolve too: `phantom`, `rainbow`, `okx`, `backpack`, `coinbase`, `coinbase-wallet-sdk` (wagmi `coinbaseWalletSDK`), `metamask-sdk` (wagmi `metaMaskSDK`), `trust`, `bitget`, `bitkeep`, `uniswap`, `argent-x`, `nami`, `yoroi`, `daedalus`. The chain slug `arbitrum-one` resolves to `ArbitrumOne` (its own variants `Flat`, `Mono`, `FlatMono`), and chain `ftm` to `Sonic`. These keys are added to the `react-web3-icons/meta` maps, whose names, key types and existing entries are unchanged; the `ChainSlug`, `WalletSlug`, … types widen accordingly.
+  - Identifier props stay typed as the known keys plus any string (`name?: ChainSlug | (string & {})`), so editors suggest keys and API strings still type-check.
+  - The lazy import maps list only exports the components can render: deprecated exports (`Fantom`, `Ftm`, `Matic*`, `BybitLight`, `GnosisSafe*`) and the duplicate coin `Flare` (rendered as `Flr`) are gone from them, which no key could reach. The dynamic entry shrinks slightly (worst case 129.32 kB → 128.89 kB brotlied); `react-web3-icons/meta` grows from 1.83 kB to 2.03 kB for the new keys.
+
+- [#828](https://github.com/derodero24/react-web3-icons/pull/828) [`f5a429d`](https://github.com/derodero24/react-web3-icons/commit/f5a429d83f5947f97f325d26fed6d4b559f1302e) Thanks [@derodero24](https://github.com/derodero24)! - Generate the icons with extra props (`AvalancheCircle`/`AvalancheCircleMono` `withBackground`, `Bybit*` `fill1`/`fill2`, `RainbowWallet`/`RainbowWalletSymbol` `withBackground`) like every other icon instead of hand-writing them.
+  
+  - They now set `aria-labelledby` from `title` + `titleId`, like every other icon.
+  - Their `createIcon` calls are `/* @__PURE__ */`-annotated, so importing e.g. `AvalancheMono` no longer bundles `AvalancheCircle`.
+  - Rendering is unchanged for every combination of `withBackground`, `fill1`, `fill2` and `fill`.
+  - **Breaking (types):** `BybitProps` now declares only `fill1` and `fill2` and no longer extends `IconProps`; use `IconProps & BybitProps` or `ComponentProps<typeof Bybit>`. `AvalancheProps` and `RainbowWalletProps` are exported the same way.
+  - `BybitMono` (and `react-web3-icons/svg/exchange/BybitMono.svg`) declares `fill="currentColor"` on the `<svg>` instead of on each path, like every mono icon. It renders the same, and a CSS `fill` on the icon now reaches the paths.
+
+- [#839](https://github.com/derodero24/react-web3-icons/pull/839) [`c3bd437`](https://github.com/derodero24/react-web3-icons/commit/c3bd437573d137b3f9abbbdae6e3770951ad9a55) Thanks [@derodero24](https://github.com/derodero24)! - Draw every icon on a uniform 64×64 grid so icons of the same size look the same size ([#704](https://github.com/derodero24/react-web3-icons/issues/704)).
+  
+  - **Breaking (visual):** every icon's `viewBox` is now `0 0 64 64`. Bare marks are scaled so their painted box's longer side is 56 units, centred; containers (`Circle*` / `Square*` variants, and marks that are themselves a solid disc or square) fill all 64 units. Icons whose artwork was letterboxed in the square `size` box (`Ethereum`, `Aave`, `Avascan`, `LayerZero`, …) or carried uneven padding now render larger (up to ×1.75, e.g. `Tangem`, `BackpackWallet`); marks that already filled a square viewBox edge to edge now render about 12.5% smaller (×0.875), because they gain the 4-unit padding. Brand shapes and colours are unchanged. Regenerate markup snapshots, and re-check custom CSS that compensated for the old per-icon viewBoxes. See MIGRATION.md.
+  - Marks that overflowed their old viewBox and were clipped at its edge are now shown whole: `Eclipse`, `Frax`, `Lido`, `SushiSwap`, `Binance`, `Helius`, `RedStone` (and their `Mono` variants).
+  - `react-web3-icons/svg/*` and the Iconify sets follow: every Iconify icon is 64×64, so `info.height` is 64.
+
+- [#828](https://github.com/derodero24/react-web3-icons/pull/828) [`f5a429d`](https://github.com/derodero24/react-web3-icons/commit/f5a429d83f5947f97f325d26fed6d4b559f1302e) Thanks [@derodero24](https://github.com/derodero24)! - Give every rendered icon its own internal SVG ids, so masked and gradient icons render independently of other instances on the page.
+  
+  - **Breaking:** icons with internal ids (masks, gradients, clip paths) now render per-instance ids (`w3i-<name>-<instance>-…`, e.g. `w3i-ethereumcirclemono-r1-ethc-a`) instead of one shared id per component. Previously `url(#…)` resolved to the first instance on the page, so a first instance inside a `display: none` subtree, or with a different `fill` or `color`, broke or restyled every later one. Regenerate markup snapshots that contain these ids. See MIGRATION.md.
+  - These icons call `useId`, which React supports in Server Components: icons still render without `'use client'`, and icons without internal ids still call no hooks. A new test renders every icon under React's `react-server` build.
+  - Mask content no longer inherits `fill` from the icon's `<svg>`: `<HardhatMono fill="#fff" />` keeps its cut-outs. Default rendering is unchanged; `react-web3-icons/svg/*` and the Iconify sets carry the same explicit mask fills.
+
+### Minor Changes
+
+- [#827](https://github.com/derodero24/react-web3-icons/pull/827) [`ac8411c`](https://github.com/derodero24/react-web3-icons/commit/ac8411c6535514542897aa5ec54873fd05bcf67e) Thanks [@derodero24](https://github.com/derodero24)! - Every icon of a dynamic category is now reachable through `react-web3-icons/meta` and the dynamic components.
+  
+  - **New lookup keys.** `TICKER_TO_COIN` (and `<CoinIcon symbol>`) gains `DOT`, `FET`, `HBAR`, `ICP`, `INJ`, `NEAR`, `PEPE`, `STX`, `TIA` and `TON`, which used to render the fallback although the coins were exported; `CHAIN_SLUG_TO_NAME` (and `<ChainIcon name>`) gains `cronos`. The `ChainSlug` and `Ticker` types widen accordingly.
+  - **Fantom / FTM now resolve to Sonic.** `Fantom`, `FantomMono`, `Ftm` and `FtmMono` were deprecated in 4.0.0 because Fantom Opera was succeeded by Sonic (FTM upgraded 1:1 to S), yet the meta maps still pointed at them. `CHAIN_ID_TO_NAME[250]` and `CHAIN_SLUG_TO_NAME.fantom` are now `'Sonic'` and `TICKER_TO_COIN.FTM` is the coin `'Sonic'`, so `<ChainIcon chainId={250} />`, `<ChainIcon name="fantom" />` and `<CoinIcon symbol="FTM" />` render the Sonic mark, and removing the deprecated exports in a future major will not change these lookups. The deprecated exports themselves are unchanged; in the manifest they no longer carry `chainId` / `slug` / `ticker`. Lookup keys can no longer point at deprecated exports.
+  - **One Pyth icon.** `react-web3-icons/coin` and `react-web3-icons/oracle` used to export two different components named `Pyth` / `PythMono` (same paths, different colours). The coin subpath now re-exports the oracle artwork, coloured `#110F23` like the official Pyth Network dark logomark ([brand assets](https://legacy.pyth.network/brand)). **Visible change:** oracle `Pyth` was purple (`#9945FF`) and is now dark purple `#110F23` (coin `Pyth` moves from `#110F24` to `#110F23`); `PythMono` is unchanged. `import { Pyth } from 'react-web3-icons'`, both subpaths and `<CoinIcon symbol="PYTH" />` / `<OracleIcon name="pyth" />` now render the same component, and manifest entries that share a `name` always refer to the same component.
+  - **Better manifest `brandColor`.** It used to be the most frequent colour of the artwork, which for badge-style marks was the dark container. Greys, near-black and near-white now count only when an artwork has no other colour, and icons can carry a curated value. Changed: chain `Kaia` `#040404` → `#bff009`, `Astar` `#231f20` → `#e6007a`, `Scroll` `[#101010](https://github.com/derodero24/react-web3-icons/issues/101010)` → `#ffeeda`, `StarkNet` `#fafafa` → `#ec796b`; coin `Looks` `#000000` → `#0ce466`, `Pepe` `#000000` → `#4f9843`; defi `Babylon` `#0a1418` → `#ff7c2b`; devtool `Drizzle` `#5e464d` → `#e911bd`, `Truffle` `#5e464d` → `#3fe0c5`; exchange `Bitstamp` `[#282828](https://github.com/derodero24/react-web3-icons/issues/282828)` → `#149f49`, `Htx` `#e6eefa` → `#2ea7df`; explorer `Basescan` `#12161c` → `#0052ff`, `Bscscan` `#12161c` → `#f0b90b`; storage `NftStorage` `#000000` → `#f5c32c`; wallet `Xverse` `[#181818](https://github.com/derodero24/react-web3-icons/issues/181818)` → `#ee7a30`; oracle `Pyth` `#9945ff` → `#7142cf` (Pyth's brand purple). Monochrome marks such as Aptos, Axelar and Hedera keep `#000000`.
+  - **One source for icon data.** The meta maps, `DEPRECATED_ICON_NAMES`, the manifest and the dynamic import maps are now generated together from the icon definitions, so they can no longer drift apart. Map names, key types and existing entries are unchanged. `DEPRECATED_ICON_NAMES` is now typed `ReadonlySet<IconName>` (iterating it yields icon names); `has()` still accepts any string.
+
+- [#843](https://github.com/derodero24/react-web3-icons/pull/843) [`a5e1464`](https://github.com/derodero24/react-web3-icons/commit/a5e146401b71b4dd917e230adfb62d5c2863308e) Thanks [@derodero24](https://github.com/derodero24)! - Refresh outdated or wrong chain, bridge, oracle, domain and node artwork with the brands' current official files ([#835](https://github.com/derodero24/react-web3-icons/issues/835)). Existing export names are unchanged; one export is added, `OrbiterInverted` (Orbiter's official dark-theme symbol), so `BridgeVariant` gains `'Inverted'`. Optimism's colour refresh to the official `#FF0421` symbol is left for a follow-up.
+  
+  - **Visible rebrands:**
+    - `Base` is now Base's current symbol, "The Square": a blue `#0000FF` rounded square. It replaces the circle-with-bar mark. `BaseCircle` and `BaseSquare` show the white Square on a `#0000FF` disc or tile.
+    - `Polkadot` is the current symbol: six ellipses in near-black `[#171717](https://github.com/derodero24/react-web3-icons/issues/171717)`. The pink `#E6007A` symbol is gone.
+    - `Avalanche` uses the current two-part mark in `#E6212F`. It no longer sits in a disc. `AvalancheSquare` is the official icon: the red mark on a `#1D1D1D` square.
+    - `ZkSync` is the official logomark (`#11141A` arrows) without the black tile. `ZkSyncCircle` and `ZkSyncSquare` keep the black container.
+  - **Wrong artwork replaced by the real logo:**
+    - `Wormhole` is the black W logomark. It was a moon illustration.
+    - `Socket` is the green-to-blue SOCKET symbol. It was an "OC" wordmark crop.
+    - `WorldChain` is the World logomark. The old glyph was mangled.
+    - `Orbiter` is the alien in its UFO. It was a recoloured UI icon.
+    - `RedStone` is the official symbol in `#AE0822`.
+  - **Updated to the current official mark or colour:**
+    - `Polygon` and its Circle and Square variants: solid `#670DE5`, with square-cut corners. The Square variant is now the official rounded square.
+    - `Solana` (and its Circle and Square variants), `Sui`, `Sei`, `Celestia`, `Tron`, `Hedera`, `Band`, `Api3`, `QuickNode`, `Ton` and `GnosisChain` have each brand's current mark and colours.
+    - `Ens` is the solid `#0080BC` mark, and `EnsCircle` is the official token icon.
+    - `StarkNet` uses the kit's `#EC796B` → `#E175B1` gradients, and the mark fills its Circle and Square variants.
+    - `Berachain` is the bear-and-chains symbol without the brown tile.
+    - `Eclipse` is the official `#A1FEA0` app icon.
+    - `Synapse` has the official gradient stops.
+    - `Stargate` is the light-theme symbol, whose dark star shows on white.
+    - `Pyth` paths now come from the official logomark (no visible change).
+  - **New:** `OrbiterInverted`, Orbiter's official dark-theme symbol, for dark backgrounds. `BridgeVariant` gains `'Inverted'`.
+  - Every refreshed unit records its official source.
+
+### Patch Changes
+
+- [#845](https://github.com/derodero24/react-web3-icons/pull/845) [`a8b1133`](https://github.com/derodero24/react-web3-icons/commit/a8b113371fe97b4511a78c8c8d725e96c6d1a1af) Thanks [@derodero24](https://github.com/derodero24)! - Replace outdated or off-brand coin artwork with the brands' current official files ([#836](https://github.com/derodero24/react-web3-icons/issues/836)). Each mono variant is rebuilt from the new artwork:
+  
+  - `Usdc`: Circle's current `#0B53BF` USDC token.
+  - `Usdt`: the Tether mark in `#009393`, from tether.to.
+  - `Inj`: the flat `#4D3DFF` Injective token.
+  - `Tia`: the current, heavier Celestia symbol in near-black `#0E1014`. Use `TiaMono` with a light `color` on dark backgrounds.
+  - `Fet`: the ASI Alliance symbol, since FET is now the ASI Alliance token. The export name is unchanged.
+  - `Stx`: the Stacks symbol (`[#141414](https://github.com/derodero24/react-web3-icons/issues/141414)`), which replaces a glyph that was not the Stacks mark.
+  - `Vet`: the flat `#7266FF` V from VeChain's brand kit.
+  - `Hbar`: the Hedera logomark (an H in a black disc), which Hedera uses for HBAR.
+  - `Bch`: the official `#0AC18E` Bitcoin Cash circle.
+  - `Fil`: the white ƒ on a `#0090FF` disc.
+  - `Shib`: the current SHIB token from shibatoken.com.
+  - `Xmr`: the Monero symbol from the press kit, now with its grey band.
+  - `Flare` / `Flr`: the paths of the official Flare.svg.
+  - Official colours for `Icp` (infinity mark from internetcomputer.org), `Ena` (gradient disc with a rim), `Kas` (`#6FC7BA`, white K) and `Xrp` (`[#141414](https://github.com/derodero24/react-web3-icons/issues/141414)`).
+  - `Bnb`: now the bare yellow BNB Chain symbol, which the brand guidelines specify for the BNB token. The coin on a yellow disc is still available as `BnbCircle`.
+
+- [#841](https://github.com/derodero24/react-web3-icons/pull/841) [`a52fa89`](https://github.com/derodero24/react-web3-icons/commit/a52fa898c5e537680baf3fac986369989505979d) Thanks [@derodero24](https://github.com/derodero24)! - Fix four colored icons that rendered wrong, using the brands' official artwork:
+  
+  - `Lido` / `LidoMono`: the drop was clipped into a mangled shape. It now uses the paths of Lido's official favicon (flat `#00A3FF` facets), and the mono is the drop's silhouette.
+  - `Pendle` / `PendleMono`: the white circle disappeared on light backgrounds. `Pendle` is now the official light-background mark (circle `#DEDEDE`, ball `#1E4480`). `PendleMono` follows Pendle's official one-colour logo: the circle at half opacity behind the ball and stick.
+  - `OptimismCircle`, `OptimismSquare` and their `Mono` variants: the centre sparkle is cut out, as in the official OP Mainnet symbol. The first two filled it white, and the masks of the Mono variants knocked it out instead of keeping it as ink.
+  - `Dydx` / `DydxMono`: `Dydx` was white on transparent and invisible on light backgrounds. It is now dYdX's official light-theme logomark (dark strokes with the `#6966FF` accent). Use `DydxSquare` on dark backgrounds.
+
+- [#833](https://github.com/derodero24/react-web3-icons/pull/833) [`4229cc2`](https://github.com/derodero24/react-web3-icons/commit/4229cc236d7f54436aee1660c5309f0d4aa7fd4c) Thanks [@derodero24](https://github.com/derodero24)! - Complete the Iconify collection metadata and pass Iconify's own validators (`react-web3-icons/iconify.json`, `iconify-mono.json`):
+  
+  - `info.samples` named `coin-bitcoin`, which is not an icon (`coin-btc` is an alias of `chain-bitcoin`). The samples are now six visible icons: `chain-ethereum`, `chain-bitcoin`, `chain-solana`, `wallet-meta-mask`, `dex-uniswap`, `exchange-binance` (`-mono` in the mono set).
+  - `info.total` counted hidden (deprecated) icons; it now counts visible icons, as Iconify does.
+  - New `info.version` (the package version) and `info.category` (`Logos`, where Iconify lists brand sets).
+  - Colored icons with shapes that set no fill (e.g. `web3:chain-algorand`, `web3:chain-stellar`) now state the black they render with, wrapped in `<g fill="#000">`. Iconify's tooling reported these as unset colours and could not detect the set's palette. Rendering is unchanged.
+
+- [#822](https://github.com/derodero24/react-web3-icons/pull/822) [`87de827`](https://github.com/derodero24/react-web3-icons/commit/87de827245ba41d8f41626edfede7a2d4824a63e) Thanks [@derodero24](https://github.com/derodero24)! - Packaging fixes:
+  
+  - The package no longer declares `engines`, so installing it under Node 18 or 20 no longer warns, or fails with Yarn 1 or `engine-strict`. Nothing in the published files depends on the Node version. What consumers need is an ES2022 baseline: the JavaScript is compiled to ES2022 (now set explicitly instead of being inferred from `engines`) and runs in any browser, bundler, or runtime that supports ES2022. The Node requirement (`^22.18.0 || >=24.11.0`, matching the build toolchain) only applies to building the library from source.
+  - `react-web3-icons/package.json` is now exported, so `require.resolve('react-web3-icons/package.json')` and `import.meta.resolve` work instead of throwing `ERR_PACKAGE_PATH_NOT_EXPORTED`.
+  - JavaScript and declaration sourcemaps are no longer published. The declaration maps pointed at `src/`, which is not in the package. The tarball is about 30% smaller (unpacked 4.98 MB → 3.49 MB, 1,863 → 1,337 files). The published JavaScript and type declarations are otherwise unchanged.
+
+- [#852](https://github.com/derodero24/react-web3-icons/pull/852) [`208cf9a`](https://github.com/derodero24/react-web3-icons/commit/208cf9ac2d5f21c9404af1df2e85cd94536a9602) Thanks [@derodero24](https://github.com/derodero24)! - Redraw every MetaMask icon from MetaMask's official 2024 flat fox (logo pack at https://metamask.io/assets), replacing the pre-2024 faceted fox:
+  
+  - `MetaMask`, `MetaMaskAlt`: the kit's 2024 fox. The kit has a single fox design, so `MetaMaskAlt` now renders like `MetaMask`.
+  - `MetaMaskCircle`, `MetaMaskSquare`: a white fox on the new `#FF5C16` orange.
+  - `MetaMaskMono`, `MetaMaskCircleMono`, `MetaMaskSquareMono`: one colour with knock-out seams between the facets, open eyes and a solid mouth, so the fox stays recognisable at small sizes.
+  - The manifest brand colour for `MetaMask` changes from `#f6851b` to `#ff5c16`.
+
+- [#842](https://github.com/derodero24/react-web3-icons/pull/842) [`226a230`](https://github.com/derodero24/react-web3-icons/commit/226a230647146c81519ae054806e6618d18bf875) Thanks [@derodero24](https://github.com/derodero24)! - Make illegible `*Mono` variants read as their coloured marks again ([#746](https://github.com/derodero24/react-web3-icons/issues/746)). Every redraw is derived from the coloured artwork, in one ink colour with holes:
+  
+  - `AvalancheSquareMono` keeps the rounded square: the disc is knocked out of it and the A drawn back in ink.
+  - `AtomMono` shows its orbits, electrons and nucleus instead of a plain disc.
+  - `RainbowWalletMono`, `RainbowWalletSymbolMono`, `RainbowWalletCircleMono` and `RainbowWalletSquareMono` keep the three bands apart with thin seams.
+  - `ArbiscanMono` has its ring and notch back around the inked hexagon.
+  - `MetaMaskMono` gets eyes, a mouth and ear seams; `MetaMaskCircleMono` and `MetaMaskSquareMono` lose the hairlines between the facets.
+  - `RoutescanMono` and `DefiLlamaMono` drop their opacity tiers: a seamed hexagon, and the D with the llama knocked out.
+  - `DogeMono` is the full coin with the coloured D knocked out, `ShibMono` regains the disc behind the head, and `CrvMono` shows the tube and its bands instead of a blob.
+
+- [#846](https://github.com/derodero24/react-web3-icons/pull/846) [`48f50af`](https://github.com/derodero24/react-web3-icons/commit/48f50afbc755e2bba8de5f6139e663a58812e893) Thanks [@derodero24](https://github.com/derodero24)! - Redraw seven `*Mono` variants so they keep more of the coloured design, and use the official Cosmos artwork for `Atom`:
+  
+  - `Atom` now uses the Cosmos chain-registry artwork, with its dark disc ([#836](https://github.com/derodero24/react-web3-icons/issues/836)). It fills the icon box like other coin discs, so it renders larger than before. `AtomMono` is that disc in ink, with the orbits, electrons and nucleus knocked out.
+  - `PendleMono`, `TenderlyMono` and `DeBankMono` drop their grey opacity tiers. They are in one ink, with thin gaps that keep the circle and pendulum, the three wings, and the arc in front of the B apart.
+  - `LidoMono` is Lido's own one-colour mark: the kite is an outline around a hole above the solid bowl.
+  - `IpfsMono` is a solid cube with seams on its faces, instead of a wireframe.
+  - `NftStorageMono` draws the stack of cards behind the front card in solid ink, with thin gaps between the cards, as the coloured art shows it in yellow.
+
+- [#848](https://github.com/derodero24/react-web3-icons/pull/848) [`b3274bf`](https://github.com/derodero24/react-web3-icons/commit/b3274bf4c7c17f0d7780b1d68f5a0acfaf9a653e) Thanks [@derodero24](https://github.com/derodero24)! - Keep the internal structure of the coloured marks in more `*Mono` variants. Every change is derived from the coloured artwork, in one ink colour with 1.2-unit knockout seams:
+  
+  - `EthereumCircleMono` and `EthereumSquareMono` show the facet edges of the diamond instead of a flat knockout.
+  - `StarkNetMono`, `StarkNetCircleMono` and `StarkNetSquareMono` keep the pink underside of the wave apart from the white crest.
+  - `CakeMono` knocks the whole bunny out of the disc and keeps the pancake crescent, without the hairline around the outline.
+  - `GanacheMono` is a solid cube with the caramel drip edge as a seam, instead of an outlined lower half.
+  - `Web3JsMono` replaces the hairlines between the letter groups with real seams.
+  - `UnstoppableDomainsMono` keeps the stripe behind the U.
+  - `BithumbMono` keeps the flag behind the stem of the b.
+  - `MexcMono` shows the two overlapping peaks.
+  - `DrpcMono` drops its opacity tiers: every prism face in ink, kept apart by seams.
+  - `RabbyMono` keeps the haunch and the back ear apart from the body.
+
+- [#849](https://github.com/derodero24/react-web3-icons/pull/849) [`30604f3`](https://github.com/derodero24/react-web3-icons/commit/30604f3c2f3cfa660916d58057ff60a90aa88475) Thanks [@derodero24](https://github.com/derodero24)! - Bring six icons in line with the brands' official kits. Export names are unchanged.
+  
+  - `Lido` is Lido's 2026 logomark: a `#0085FF` outlined kite over a solid bowl, from the official press kit. It replaces the faceted `#00A3FF` drop. `LidoMono` is the kit's one-colour logomark.
+  - `UsdtCircle` is Tether's official token icon, the white mark on a `#009393` disc, and `UsdtCircleMono` follows it. They replace a `#26A17B` composite.
+  - `Raydium`'s gradient now runs from teal at the bottom-left to purple at the top-right, as in the official symbol. The colours are unchanged.
+  - `Eclipse` is the brand kit's standalone black symbol, without the green tile, and `EclipseMono` is the same symbol.
+  - `Xverse` is the kit's standalone symbol (`#0F0F0F` X with the `#EE7A30` accent), without the dark disc. `XverseMono` follows it.
+  - `Wld` is the official World logomark, the same artwork as `WorldChain`. Its ring and strokes are thicker than before.
+  - Sources and notes for Vet, Cro, LayerZero, Tron, Pyth, Camelot, Jupiter, Icp and UniswapWallet now cite the official kits.
+
+- [#851](https://github.com/derodero24/react-web3-icons/pull/851) [`ac116fa`](https://github.com/derodero24/react-web3-icons/commit/ac116fa40cc2e429223496b58f043d9f6f83f663) Thanks [@derodero24](https://github.com/derodero24)! - **Visual change: `Optimism` is now a square, not a circle.** It is the official OP Mainnet symbol from Optimism's brand kit (optimism.io/brand), the glyph in `#FAFAF9` on a full-bleed `#FF0421` (Optimism Red) square. It was a `#FF0420` disc with a white glyph. `OptimismMono` follows the new square shape. No export names change.
+  
+  - `OptimismSquare` is the symbol as the brand page shows it, on a `#FF0421` square with slightly rounded corners (6.27 of 64 units, down from 12.8). The glyph is drawn at the symbol's own size, larger than before.
+  - `OptimismCircle` uses the official colours and draws the glyph at the symbol's own size on the `#FF0421` disc. Optimism publishes no circular OP Mainnet symbol, so the disc is still a repo convention.
+  - `OptimismMono`, `OptimismCircleMono` and `OptimismSquareMono` are their variant's container in `currentColor` with the glyph knocked out.
+  - **`Op` is now the official OP token mark**, the letters OP in `#FAFAF9` on a `#FF0421` disc (`Token.svg` from the brand kit). Optimism's brand page reserves this mark for the token, so `Op` no longer re-exports the `Optimism` chain symbol. `OpMono` is the disc in `currentColor` with the letters knocked out. `OpCircle` and `OpCircleMono` are now the same components as `Op` and `OpMono`. The `OP` ticker lookup is unchanged.
+
+- [#840](https://github.com/derodero24/react-web3-icons/pull/840) [`c07f1a4`](https://github.com/derodero24/react-web3-icons/commit/c07f1a47c0ab2e97262299edc619aac8c504ac6e) Thanks [@derodero24](https://github.com/derodero24)! - Redraw `PepeMono` so it reads as Pepe again ([#746](https://github.com/derodero24/react-web3-icons/issues/746)). Its knockout path was a corrupted copy of the coloured line art that filled the forehead and lips as blobs and dropped the eyes and hand. The mono is now derived mechanically from the coloured artwork: the tile in ink, Pepe's silhouette knocked out, and the line art, lips and pupils drawn back in ink.
+
+- [#826](https://github.com/derodero24/react-web3-icons/pull/826) [`d66b881`](https://github.com/derodero24/react-web3-icons/commit/d66b881f301132f8749a9e6615f3ad578cf79c5d) Thanks [@derodero24](https://github.com/derodero24)! - Make the static SVG files safe to inline together and fix the Iconify metadata.
+  
+  - `react-web3-icons/svg/*`: internal ids (gradients, masks, clip paths) are now prefixed per file as `w3i-<category>-<kebab-name>_<id>` (e.g. `w3i-chain-ethereum-circle-mono_ethc-a`), with every `url(#…)` reference (including `URL(#…)`) updated, so two inlined SVGs no longer collide on ids like `id="a"`. Iconify bodies use the same `<icon-name>_<id>` form, which keeps ids of different icons distinct even when one icon name is a prefix of another. Files are also serialized uniformly (one element per line). Rendering is unchanged.
+  - `react-web3-icons/iconify.json` and `iconify-mono.json`: `info.height` was hard-coded to 24 although most icons keep their native viewBox (64, 40, 2500, …). It is now omitted, as the IconifyJSON spec prescribes when icon heights differ; each icon's own `width`/`height` is unchanged.
+  - Attribute values keep their meaning through the build: literal line breaks inside an attribute are normalized to spaces as XML requires, and line breaks written as character references (`&[#10](https://github.com/derodero24/react-web3-icons/issues/10);`) are kept instead of being collapsed.
+
+- [#844](https://github.com/derodero24/react-web3-icons/pull/844) [`f9be5ae`](https://github.com/derodero24/react-web3-icons/commit/f9be5ae01a79abd1117938757b10f1e3ff8d01d5) Thanks [@derodero24](https://github.com/derodero24)! - Refresh outdated wallet, exchange and DEX artwork from the brands' current official files ([#834](https://github.com/derodero24/react-web3-icons/issues/834)). Export names are unchanged.
+  
+  - `PhantomWallet` (+ `Mono`, `SymbolMono`, `Circle`, `Square` and their `Mono` variants): the flat `#AB9FF2` ghost from Phantom's press kit replaces the old gradient app icon. The default is now the standalone ghost, so `SymbolMono` matches `Mono`. `Square` is the press kit's app icon, and `Circle` puts the same artwork on a circle.
+  - `TrustWalletCircle`, `TrustWalletSquare` (and `Mono`): the current two-part gradient shield on a white container replaces the old `#0A64BC` outline shield.
+  - `BitgetWallet`: the 2025 Bitget Wallet logomark (cyan chevron on `#001F29`) replaces a copy of the Bitget exchange mark.
+  - `CoinbaseWallet` (+ `Circle`, `Square`): the current gradient "C" ring replaces the old blue square mark.
+  - `Brave`: the official gradient lion with its white face replaces a flat `#FF2000` silhouette.
+  - `YoroiWallet`: the flat `#4B63F6` symbol replaces an unofficial gradient.
+  - `UniswapWallet`: the official Uniswap app logo (`#F50DB4` on a pale pink rounded tile) replaces `#FF007A` on a square tile.
+  - `Enkrypt`: the official purple radial gradient on the E replaces flat `#C54AFF`.
+  - `KuCoin`: `#00B47D` replaces `#23AF91`.
+  - `Phemex`: the current slanted-bar mark (green to cyan gradient).
+  - `Aerodrome`: the current striped swoosh replaces the old sun.
+  - `Velodrome`: the official interlocking rings replace third-party artwork.
+  - `Ekubo`: the official `[#101010](https://github.com/derodero24/react-web3-icons/issues/101010)` symbol, without the unofficial purple disc. Use `EkuboMono` with a light `color` on dark backgrounds.
+  - `Oneinch`: the post-2025 black block with the white 1" sign replaces the red tile.
+  - `SushiSwap`: the official blue-to-pink gradient roll replaces flat `#FA52A0`.
+  
+  Every changed `Mono` variant was rebuilt from the new artwork.
+
 ## 4.0.0
 
 ### Major Changes
