@@ -3,6 +3,9 @@
   "source": [
     "https://web3js.org"
   ],
+  "notes": [
+    "Mono: the three colour groups (grey W, orange 3, light-grey JS) are kept apart by 1.2-unit knockout seams."
+  ],
   "kind": "icon",
   "variants": {
     "": {
