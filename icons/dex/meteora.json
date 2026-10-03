@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Meteora",
+  "source": [
+    "https://github.com/MeteoraAg/brand-kit/blob/main/meteora-v2/symbol/symbol.svg",
+    "https://github.com/MeteoraAg/brand-kit/blob/main/meteora-v2/symbol/symbol-negative.svg",
+    "https://docs.meteora.ag/resources/miscellaneous/brand-kit"
+  ],
+  "notes": [
+    "Default: meteora-v2/symbol/symbol.svg of the official brand kit linked from docs.meteora.ag (gradient #F5BD00 / #F54B00 / #6E45FF)",
+    "Mono: meteora-v2/symbol/symbol-negative.svg of the same kit (the one-colour #12121C symbol), with its fill set to currentColor"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "meteora.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "meteora.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "meteora"
+  ]
+}

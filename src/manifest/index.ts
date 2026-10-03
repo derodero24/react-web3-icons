@@ -1384,6 +1384,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   },
   { name: 'EkuboMono', category: 'dex' },
   {
+    name: 'Fluid',
+    category: 'dex',
+    slug: 'fluid',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
+  { name: 'FluidMono', category: 'dex' },
+  {
     name: 'Hyperliquid',
     category: 'dex',
     slug: 'hyperliquid',
@@ -1399,6 +1407,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#c7f284',
   },
   { name: 'JupiterMono', category: 'dex' },
+  {
+    name: 'Meteora',
+    category: 'dex',
+    slug: 'meteora',
+    variants: ['', 'Mono'],
+    brandColor: '#f5bd00',
+  },
+  { name: 'MeteoraMono', category: 'dex' },
   {
     name: 'Odos',
     category: 'dex',
@@ -1416,6 +1432,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#000000',
   },
   { name: 'OneinchMono', category: 'dex' },
+  {
+    name: 'Orca',
+    category: 'dex',
+    slug: 'orca',
+    variants: ['', 'Mono'],
+    brandColor: '#ffd15c',
+  },
+  { name: 'OrcaMono', category: 'dex' },
   {
     name: 'Osmosis',
     category: 'dex',
