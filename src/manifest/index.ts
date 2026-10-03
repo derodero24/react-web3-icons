@@ -1675,7 +1675,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Blockscout',
     category: 'explorer',
     variants: ['', 'Mono'],
-    brandColor: '#1258f6',
+    brandColor: '#5353d3',
   },
   { name: 'BlockscoutMono', category: 'explorer' },
   {
