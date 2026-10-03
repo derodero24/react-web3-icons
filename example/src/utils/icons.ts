@@ -30,9 +30,10 @@ export type CategoryFilter = 'all' | IconCategory;
 /**
  * Category subpath modules, keyed by manifest category. `satisfies` makes a
  * category added to the manifest a type error here until it is wired up.
- * Components are looked up per category (not from the root entry) because
- * the same export name can be different artwork in different categories
- * (e.g. `Pyth` in `coin` and `oracle`).
+ * Components are looked up per category (not from the root entry), so the
+ * drawer shows the artwork of the category the manifest lists, even if a
+ * name were ever reused across categories (test/manifest-sync.test.ts
+ * currently requires same-name entries to be one component).
  */
 const CATEGORY_MODULES = {
   bridge,
@@ -87,7 +88,7 @@ export interface IconGroup {
   /**
    * Whether `import { <base> } from 'react-web3-icons'` resolves to this
    * artwork. False when the root entry exports a different component under
-   * the same name (e.g. oracle `Pyth`; the root re-exports coin `Pyth`).
+   * the same name (none today; kept as a guard for future collisions).
    */
   readonly inRootEntry: boolean;
   /** True when the manifest declares this group's artwork (not a re-export). */

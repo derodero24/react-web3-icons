@@ -219,7 +219,7 @@ export default function IconDrawer({ group, onClose }: Props) {
   );
 
   // Code content. The root entry is offered only when it resolves to this
-  // artwork (e.g. oracle `Pyth` is importable from its subpath only).
+  // artwork (a guard for names reused across categories).
   const importCode = `import { ${selected} } from 'react-web3-icons';`;
   const subpathCode = `import { ${selected} } from 'react-web3-icons/${category}';`;
 
