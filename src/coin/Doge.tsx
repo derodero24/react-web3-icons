@@ -2,7 +2,7 @@ import { createIcon } from '../utils';
 
 // Source: https://dogecoin.com
 // Simplified Doge "D" mark scaled to fit in a 64x64 circle (~72% fill).
-// DogeMono viewBox 0 0 24 24 -> scale 1.917, translate(9, 9)
+// DogeMono: ink coin with a rim seam and the coloured D (doge.svg) knocked out; the illustrated face does not survive one ink colour.
 /** Doge coin icon (colored). */
 export const Doge = /* @__PURE__ */ createIcon(
   'Doge',
@@ -599,21 +599,13 @@ export const Doge = /* @__PURE__ */ createIcon(
 export const DogeMono = /* @__PURE__ */ createIcon(
   'DogeMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <g transform="translate(-10.65 -10.64)scale(3.55337)">
-      <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18" mask={`url(#${_id}-a)`} />
-      <defs>
-        <mask id={`${_id}-a`}>
-          <rect width="24" height="24" fill="#fff" />
-          <path
-            fill="#000"
-            d="M6.3 5.2v3.62h1.72v6.8H6.29v3.62h6.95l.27-.01a6 6 0 0 0 2.6-.86c1.56-.94 2.91-2.79 2.91-5.92 0-3.3-1.29-5.26-2.85-6.3a6 6 0 0 0-2.92-.95zm6.89 10.42H11.9v-6.8h1.32l.26.04q.38.08.84.36c.48.32 1.25 1.08 1.25 3.23 0 1.84-.7 2.5-1.2 2.79a3 3 0 0 1-1.2.38"
-          />
-        </mask>
-      </defs>
-    </g>
+  () => (
+    <path
+      fillRule="evenodd"
+      d="M0 32C0 14.33 14.33 0 32 0s32 14.33 32 32-14.33 32-32 32S0 49.67 0 32m32 30.9c17.07 0 30.9-13.83 30.9-30.9S49.07 1.1 32 1.1 1.1 14.93 1.1 32 14.93 62.9 32 62.9M2 32C2 15.43 15.43 2 32 2s30 13.43 30 30-13.43 30-30 30S2 48.57 2 32m47.6-7.87c-3.24-8.36-11.24-9.9-11.24-9.9H15.54l.09 8.5h4.54v19.01h-4.63v8.5h22.19c5.35 0 9.63-5.38 9.63-5.38 6.87-9.74 2.23-20.73 2.23-20.73m-11.75 15s-1.74 2.52-3.64 2.52h-3.79l-.09-18.9h4.87s2.25.48 3.82 4.93c0 0 2.09 6.39-1.17 11.46"
+    />
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );
 
 /** Doge Circle coin icon (colored). */
