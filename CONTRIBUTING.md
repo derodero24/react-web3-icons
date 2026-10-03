@@ -74,7 +74,8 @@ examples/
 docs/             # Icon variant, source, and lifecycle policies
 ```
 
-Only `dist/` is published (`files` in package.json). `example/` is part of the
+`dist/` is the only project directory published (`files` in package.json); npm
+also always includes `package.json`, `README.md` and `LICENSE`. `example/` is part of the
 pnpm workspace; `examples/stackblitz/` is not: it installs `react-web3-icons`
 from npm, so changes to `src/` show up there only after a release.
 
