@@ -1,8 +1,9 @@
 import { createIcon } from '../utils';
 
 // Source: https://raw.githubusercontent.com/lidofinance/ethereum-staking-widget/main/public/favicon-1080x1080.svg
+// Source: https://lido.fi (one-colour header mark)
 // Drop paths from the official favicon-1080x1080.svg (lidofinance/ethereum-staking-widget), without its white background circle; flat #00A3FF at the official 1 / 0.6 / 0.2 facet opacities, as in the lido.fi header mark
-// Mono: the drop's silhouette (kite and bowl) in currentColor, built from the same paths
+// Mono: the official one-colour mark from the lido.fi header (the bowl, and the kite drawn as an outline around a kite-shaped hole), paths copied and uniformly scaled onto the coloured drop
 /** Lido DeFi icon (colored). */
 export const Lido = /* @__PURE__ */ createIcon(
   'Lido',
@@ -30,10 +31,10 @@ export const LidoMono = /* @__PURE__ */ createIcon(
   'LidoMono',
   '0 0 64 64',
   () => (
-    <>
-      <path d="M32 4.02 46.16 25.7l-14.14 8.07-14.14-8.07Z" />
-      <path d="m15.59 29.17-.45.69c-5.05 7.75-3.92 17.9 2.71 24.4C21.75 58.08 26.87 60 32 60c5.12 0 10.24-1.92 14.14-5.74 6.64-6.5 7.77-16.65 2.72-24.4l-.45-.69L32 38.54Z" />
-    </>
+    <path
+      fillRule="evenodd"
+      d="M48.92 29.86c5.08 7.75 3.95 17.9-2.72 24.4-7.85 7.65-20.57 7.65-28.4 0-6.67-6.5-7.8-16.65-2.73-24.4l.45-.69 16.47 9.37 16.48-9.37zm-2.7-4.16L32 33.77 17.8 25.7 32 4zm-24.07-1.03 9.86 5.6 9.86-5.6L32 9.62z"
+    />
   ),
   { fill: 'currentColor' },
 );

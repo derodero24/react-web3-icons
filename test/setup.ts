@@ -1,5 +1,5 @@
 import { format } from 'node:util';
-import { afterEach, beforeEach, type MockInstance, vi } from 'vitest';
+import { afterAll, afterEach, beforeEach, type MockInstance, vi } from 'vitest';
 
 /**
  * Global test setup (vitest `setupFiles`).
@@ -41,5 +41,22 @@ afterEach(() => {
     throw new Error(
       `Unexpected console output (spy on it explicitly if intended):\n${unexpected.join('\n')}`,
     );
+  }
+});
+
+/**
+ * Development builds of React schedule a passive-effect flush after every
+ * commit, unmounts included, and that callback reads `window.event`. React's
+ * Scheduler runs it from a `setImmediate` macrotask, so under load it can
+ * fire after vitest has torn the jsdom environment down, which surfaces as an
+ * unhandled "window is not defined". Hooks from setup files run after the
+ * test file's own `afterAll` (the default `stack` order), so drain the
+ * Scheduler here, while `window` still exists.
+ */
+afterAll(async () => {
+  for (let i = 0; i < 3; i++) {
+    await new Promise<void>(resolve => {
+      setImmediate(resolve);
+    });
   }
 });

@@ -176,8 +176,8 @@ describe('IconifyJSON collections', () => {
     expect(sets.colored.icons['oracle-pyth']?.body).toMatch(
       /^<g fill="#110F23"><path /,
     );
-    // storage/nft-storage.mono.svg: stroke-only art under <svg fill="none">.
-    expect(sets.mono.icons['storage-nft-storage-mono']?.body).toMatch(
+    // dex/pancake-swap.mono.svg: <svg fill="none"> with the ink on its paths.
+    expect(sets.mono.icons['dex-pancake-swap-mono']?.body).toMatch(
       /^<g fill="none">/,
     );
   });
