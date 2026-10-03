@@ -1472,7 +1472,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Ens',
     category: 'domain',
     variants: ['', 'Mono', 'Circle', 'CircleMono'],
-    brandColor: '#a0a8d4',
+    brandColor: '#0080bc',
   },
   { name: 'EnsCircle', category: 'domain' },
   { name: 'EnsCircleMono', category: 'domain' },
