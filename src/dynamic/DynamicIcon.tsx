@@ -9,6 +9,14 @@ import {
 } from 'react';
 import type { IconProps } from '../utils';
 
+// `src` is type-checked without Node's global types, so declare only what the
+// dev-mode guard in warnMissing reads. Bundlers replace `process.env.NODE_ENV`
+// statically; otherwise `process` exists only in Node-like runtimes, hence the
+// `typeof` check and `| undefined`.
+declare const process:
+  | { readonly env: { readonly [name: string]: string | undefined } }
+  | undefined;
+
 type LazyComponent = ComponentType<IconProps>;
 type LazyCache = Map<string, LazyComponent>;
 
