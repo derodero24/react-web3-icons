@@ -354,7 +354,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'gnosis',
     variants: ['', 'Mono'],
     aliases: ['gno', 'gnosis'],
-    brandColor: '#3e6957',
+    brandColor: '#0d0d0d',
   },
   { name: 'GnosisChainMono', category: 'chain' },
   { name: 'Hedera', category: 'chain', slug: 'hedera', variants: ['', 'Mono'] },
