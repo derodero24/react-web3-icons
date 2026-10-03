@@ -1,7 +1,8 @@
 {
   "name": "Crv",
   "notes": [
-    "Paths sourced from @web3icons/react (MIT) — CRV (Curve Finance) token SVG"
+    "Legacy artwork: paths sourced from @web3icons/react (MIT) — CRV (Curve Finance) token SVG, a simplified 16-gradient redraw",
+    "The official mark is https://raw.githubusercontent.com/curvefi/curve-assets/main/branding/logo.svg, a matplotlib mesh of 1,521 paths (about 244 KB, 45 KB gzipped, after SVGO); not adopted because one icon would add about a quarter of the full bundle (#836)"
   ],
   "kind": "icon",
   "variants": {

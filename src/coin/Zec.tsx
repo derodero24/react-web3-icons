@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://z.cash
+// Source: spothq/cryptocurrency-icons (CC0) — zec SVG (legacy third-party artwork)
+// Legacy artwork: the paths come from spothq/cryptocurrency-icons (zec), not from an official Zcash file, in #ECB244
+// The Zcash brandmark is #F4B728 in the ZecHub mirror of the brand kit (https://zechub.wiki/downloads/brand/Zcash.zip, Primary Brandmark/Brandmark Yellow.svg); not replaced because the official https://z.cash/brand-guidelines/ could not be reached to confirm it (#836)
 /** Zec coin icon (colored). */
 export const Zec = /* @__PURE__ */ createIcon(
   'Zec',

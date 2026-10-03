@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://makerdao.com
+// Source: https://app.sky.money/tokens/dai.svg (official Sky app token icon, for DaiCircle)
+// DaiCircle matches the official dai.svg of app.sky.money (#F5AC37 disc, #FEFEFD mark) within rendering noise (audited in #836)
+// Dai / DaiMono (the bare symbol): legacy artwork of unidentified origin; Sky publishes DAI only as the disc, and no official stand-alone symbol was found
 /** Dai Circle coin icon (colored). */
 export const DaiCircle = /* @__PURE__ */ createIcon(
   'DaiCircle',

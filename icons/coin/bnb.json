@@ -1,12 +1,18 @@
 {
   "name": "Bnb",
   "source": [
-    "https://bnbchain.org"
+    "https://static.bnbchain.org/home-ui/static/images/brand-guidelines/BNBChain-Logo.zip (official BNB Chain brand kit at https://www.bnbchain.org/en/brand-guidelines, file BNB Chain - Logo/SVG/BNB Chain_Symbol_Yellow.svg)"
+  ],
+  "notes": [
+    "Colored: the official BNB Chain_Symbol_Yellow.svg unchanged (one #F0B90B path), placed on the 64 grid; the brand guidelines name the logomark as 'an expression for the BNB Token' and ask for the yellow logo wherever possible",
+    "Mono: the same path in currentColor",
+    "BnbCircle / BnbCircleMono re-export the BinanceSmartChain circle variants (artwork owned by icons/chain/binance-smart-chain.json)"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "bnb.svg"
+      "file": "bnb.svg",
+      "fill": "#F0B90B"
     },
     "Mono": {
       "file": "bnb.mono.svg",

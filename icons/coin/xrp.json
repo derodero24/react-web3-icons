@@ -1,13 +1,18 @@
 {
   "name": "Xrp",
   "source": [
-    "https://xrpl.org"
+    "https://xrpl.org/assets/xrp-symbol-black.8ecaf7670b5ebd82b8283c9eae4388cff60ec37c3a57351436b36eeeee131dd8.c92cfbea.svg (official XRP Ledger site, xrpl.org)"
+  ],
+  "notes": [
+    "Colored: the official xrp-symbol-black.svg unchanged (one evenodd path in #141414), placed on the 64 grid",
+    "Mono: the same path in currentColor",
+    "Circle / CircleMono: legacy artwork of unidentified origin (the mark in a disc), not an official XRP asset; kept until #815 decides its fate"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "xrp.svg",
-      "fill": "#23292f"
+      "fill": "#141414"
     },
     "Mono": {
       "file": "xrp.mono.svg",

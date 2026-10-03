@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Source: https://litecoin.org
+// Source: cryptologos.cc — LTC logo SVG (legacy third-party artwork)
+// Legacy artwork: the paths come from cryptologos.cc, not from an official Litecoin file; the geometry matches the symbol litecoin.org serves (https://litecoin.org/assets/ltc-DIEMRQHk.svg, drawn there in black), but the #345D9D colour is not confirmed by an official source (litecoin.com/en/brand was not reachable)
 /** Ltc coin icon (colored). */
 export const Ltc = /* @__PURE__ */ createIcon(
   'Ltc',
