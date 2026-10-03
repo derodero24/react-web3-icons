@@ -2,6 +2,7 @@ import { createIcon } from '../utils';
 
 // Source: https://legacy.pyth.network/brand (official brand assets: Pyth Logomark_Dark.svg is #110F23, Dark Purple)
 // Paths sourced from @web3icons/react (MIT); colour matches the official dark logomark. The coin subpath re-exports this artwork.
+// brandColor: the logomark is near-black Dark Purple, so the manifest uses the palette's accent PURPLE #7142CF (legacy.pyth.network/brand).
 /** Pyth oracle icon (colored). */
 export const Pyth = /* @__PURE__ */ createIcon(
   'Pyth',

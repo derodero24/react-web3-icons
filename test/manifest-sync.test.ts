@@ -227,6 +227,11 @@ describe('Icon manifest sync', () => {
         );
       }
       expect(brandColorProblem(entry, unit), entry.name).toBeUndefined();
+      if (artwork?.brandColor) {
+        expect(entry.brandColor, `${entry.name} override`).toBe(
+          artwork.brandColor,
+        );
+      }
     }
   });
 

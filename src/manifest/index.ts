@@ -41,7 +41,12 @@ export interface IconManifestEntry {
   readonly variants?: readonly string[];
   /** Extra lowercase search terms (e.g. `'btc'` on `Bitcoin`). Base entries only. */
   readonly aliases?: readonly string[];
-  /** Dominant brand color of the colored artwork, as a `#rrggbb` hex. Base entries only. */
+  /**
+   * Brand color as a `#rrggbb` hex: the most frequent non-neutral color of
+   * the colored artwork (a heuristic; greys, near-black and near-white count
+   * only when the artwork has nothing else), or a curated override. Base
+   * entries only.
+   */
   readonly brandColor?: string;
 }
 
@@ -198,7 +203,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 592,
     slug: 'astar',
     variants: ['', 'Mono'],
-    brandColor: '#231f20',
+    brandColor: '#e6007a',
   },
   { name: 'AstarMono', category: 'chain' },
   {
@@ -399,7 +404,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'kaia',
     variants: ['', 'Mono'],
     aliases: ['klaytn'],
-    brandColor: '#040404',
+    brandColor: '#bff009',
   },
   { name: 'KaiaMono', category: 'chain' },
   {
@@ -527,7 +532,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 534_352,
     slug: 'scroll',
     variants: ['', 'Mono'],
-    brandColor: '#101010',
+    brandColor: '#ffeeda',
   },
   { name: 'ScrollMono', category: 'chain' },
   {
@@ -574,7 +579,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     slug: 'starknet',
     variants: ['', 'Mono', 'Circle', 'Square', 'SquareMono', 'CircleMono'],
-    brandColor: '#fafafa',
+    brandColor: '#ec796b',
   },
   { name: 'StarkNetCircle', category: 'chain' },
   { name: 'StarkNetCircleMono', category: 'chain' },
@@ -853,7 +858,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'coin',
     ticker: 'LOOKS',
     variants: ['', 'Alt', 'Mono'],
-    brandColor: '#000000',
+    brandColor: '#0ce466',
   },
   { name: 'LooksAlt', category: 'coin' },
   { name: 'LooksMono', category: 'coin' },
@@ -886,7 +891,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'coin',
     ticker: 'PEPE',
     variants: ['', 'Mono'],
-    brandColor: '#000000',
+    brandColor: '#4f9843',
   },
   { name: 'PepeMono', category: 'coin' },
   { name: 'Pol', category: 'coin', ticker: 'POL' },
@@ -1022,7 +1027,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'defi',
     slug: 'babylon',
     variants: ['', 'Mono'],
-    brandColor: '#0a1418',
+    brandColor: '#ff7c2b',
   },
   { name: 'BabylonMono', category: 'defi' },
   {
@@ -1225,7 +1230,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'devtool',
     deprecated: true,
     variants: ['', 'Mono'],
-    brandColor: '#5e464d',
+    brandColor: '#e911bd',
   },
   { name: 'DrizzleMono', category: 'devtool', deprecated: true },
   {
@@ -1319,7 +1324,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'devtool',
     deprecated: true,
     variants: ['', 'Mono'],
-    brandColor: '#5e464d',
+    brandColor: '#3fe0c5',
   },
   { name: 'TruffleMono', category: 'devtool', deprecated: true },
   {
@@ -1531,7 +1536,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'bitstamp',
     variants: ['', 'Circle', 'Mono', 'CircleMono'],
-    brandColor: '#282828',
+    brandColor: '#149f49',
   },
   { name: 'BitstampCircle', category: 'exchange' },
   { name: 'BitstampCircleMono', category: 'exchange' },
@@ -1594,7 +1599,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'htx',
     variants: ['', 'Mono'],
-    brandColor: '#e6eefa',
+    brandColor: '#2ea7df',
   },
   { name: 'HtxMono', category: 'exchange' },
   {
@@ -1666,7 +1671,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Basescan',
     category: 'explorer',
     variants: ['', 'Inverted', 'Mono'],
-    brandColor: '#12161c',
+    brandColor: '#0052ff',
   },
   { name: 'BasescanInverted', category: 'explorer' },
   { name: 'BasescanLight', category: 'explorer', deprecated: true },
@@ -1690,7 +1695,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Bscscan',
     category: 'explorer',
     variants: ['', 'Inverted', 'Mono'],
-    brandColor: '#12161c',
+    brandColor: '#f0b90b',
   },
   { name: 'BscscanInverted', category: 'explorer' },
   { name: 'BscscanLight', category: 'explorer', deprecated: true },
@@ -1841,7 +1846,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'oracle',
     slug: 'pyth',
     variants: ['', 'Mono'],
-    brandColor: '#110f23',
+    brandColor: '#7142cf',
   },
   { name: 'PythMono', category: 'oracle' },
   {
@@ -1903,7 +1908,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'NftStorage',
     category: 'storage',
     variants: ['', 'Mono'],
-    brandColor: '#000000',
+    brandColor: '#f5c32c',
   },
   { name: 'NftStorageMono', category: 'storage' },
   {
@@ -2213,7 +2218,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'xverse',
     variants: ['', 'Mono'],
-    brandColor: '#181818',
+    brandColor: '#ee7a30',
   },
   { name: 'XverseMono', category: 'wallet' },
   {

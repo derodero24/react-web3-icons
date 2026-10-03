@@ -103,6 +103,11 @@
             "description": "a lowercase search term"
           }
         },
+        "brandColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$",
+          "description": "a lowercase #rrggbb color"
+        },
         "variantLookups": {
           "type": "object",
           "propertyNames": {
@@ -319,6 +324,11 @@
             "pattern": "^[a-z0-9][a-z0-9 .-]*$",
             "description": "a lowercase search term"
           }
+        },
+        "brandColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$",
+          "description": "a lowercase #rrggbb color"
         },
         "variantLookups": {
           "type": "object",

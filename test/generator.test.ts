@@ -27,6 +27,10 @@ import {
   parseViewBox,
 } from '../scripts/build-icons/lib.ts';
 import {
+  extractBrandColor,
+  isNeutralColor,
+} from '../scripts/build-icons/manifest.ts';
+import {
   collectLookups,
   deprecatedExports,
   LOOKUP_MAPS,
@@ -569,6 +573,44 @@ describe('lookup keys', () => {
     expect(() => unit && deprecatedExports(unit)).toThrow(
       /deprecated\.Beta is not a variant export of Alpha/,
     );
+  });
+});
+
+describe('manifest brandColor', () => {
+  const svg = (...fills: readonly string[]): string =>
+    `<svg ${XMLNS} viewBox="0 0 24 24">${fills.map(f => `<path fill="${f}"/>`).join('')}</svg>`;
+
+  it.each([
+    [
+      'the most frequent colour',
+      svg('#E57310', '#e57310', '#1B4ADD'),
+      '#e57310',
+    ],
+    [
+      'an accent over a dominant black container',
+      svg('#040404', '#040404', '#BFF009'),
+      '#bff009',
+    ],
+    [
+      'an accent over greys and near-white',
+      svg('#181818', '#888', '#fafafa', '#EE7A30'),
+      '#ee7a30',
+    ],
+    [
+      'a neutral when there is nothing else',
+      svg('#fff', '#000', '#000'),
+      '#000000',
+    ],
+    ['nothing for white-only artwork', svg('#FFF', '#ffffffcc'), undefined],
+  ])('picks %s', (_, artwork, expected) => {
+    expect(extractBrandColor(artwork)).toBe(expected);
+  });
+
+  it('classifies neutrals by channel spread and lightness', () => {
+    expect(
+      ['#110f23', '#1b1230', '#8c8c8c', '#f1eaea'].filter(isNeutralColor),
+    ).toEqual(['#110f23', '#1b1230', '#8c8c8c', '#f1eaea']);
+    expect(['#7142cf', '#ffeeda', '#0052ff'].some(isNeutralColor)).toBe(false);
   });
 });
 

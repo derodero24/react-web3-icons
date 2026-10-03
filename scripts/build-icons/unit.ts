@@ -89,6 +89,11 @@ interface ArtworkFields extends UnitBase {
    * (`{ "Nova": { "chainIds": [42170] } }` → `ArbitrumNova`).
    */
   readonly variantLookups?: Readonly<Record<string, LookupKeys>>;
+  /**
+   * Manifest `brandColor` (`#rrggbb`), overriding the color derived from the
+   * artwork, e.g. for a black-and-white mark or a container-dominated badge.
+   */
+  readonly brandColor?: string;
   readonly reexport?: ReexportSpec;
   /** Extra exports of the unit's own module that name one of its variants. */
   readonly localAliases?: readonly ConstAlias[];
@@ -364,6 +369,7 @@ const ARTWORK: Schema<ArtworkFields> = {
   aliases: optional(
     arrayOf(text(/^[a-z0-9][a-z0-9 .-]*$/, 'a lowercase search term')),
   ),
+  brandColor: optional(text(/^#[0-9a-f]{6}$/, 'a lowercase #rrggbb color')),
   variantLookups: optional(
     recordOf(identifier, object<LookupKeys>(LOOKUP_KEYS)),
   ),

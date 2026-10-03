@@ -29,35 +29,51 @@ export type ManifestEntry = {
 } & Enrichment &
   Readonly<PrimaryIds>;
 
+/** `#rgb`, `#rrggbb` or `#rrggbbaa` → lowercase `#rrggbb`. */
+function normalizeHex(color: string): string {
+  const hex = color.toLowerCase();
+  if (hex.length === 4 || hex.length === 5) {
+    const [, r, g, b] = hex;
+    return `#${r}${r}${g}${g}${b}${b}`;
+  }
+  return hex.slice(0, 7);
+}
+
 /**
- * Dominant brand color of a colored SVG: the most frequent fill/stroke/
- * stop-color hex value, ignoring white and non-color values.
+ * Whether a colour carries no hue a consumer could theme with: greys and
+ * tinted greys (channel spread below 32/255), near-black (no channel above
+ * 48/255) and near-white (no channel below 224/255).
  */
-function extractBrandColor(svgText: string): string | undefined {
+export function isNeutralColor(hex: string): boolean {
+  const channels = [1, 3, 5].map(i => Number.parseInt(hex.slice(i, i + 2), 16));
+  const max = Math.max(...channels);
+  const min = Math.min(...channels);
+  return max - min < 32 || max < 48 || min > 224;
+}
+
+/**
+ * Brand color of a colored SVG, by frequency of the fill/stroke/stop-color
+ * hex values: the most frequent non-neutral color (see
+ * {@link isNeutralColor}), or — for artwork with nothing but neutrals — the
+ * most frequent neutral other than pure white. A heuristic: badge-style
+ * marks whose container dominates still pick their accent, and a unit's
+ * `brandColor` overrides it where it still misses the brand.
+ */
+export function extractBrandColor(svgText: string): string | undefined {
   const counts = new Map<string, number>();
   for (const [, color = ''] of svgText.matchAll(
     /(?:fill|stroke|stop-color)="(#[0-9a-fA-F]{3,8})"/g,
   )) {
-    let hex = color.toLowerCase();
-    if (hex.length === 4) {
-      const [, r, g, b] = hex;
-      hex = `#${r}${r}${g}${g}${b}${b}`;
-    }
-    hex = hex.slice(0, 7);
-    if (hex === '#ffffff') {
-      continue;
-    }
-    counts.set(hex, (counts.get(hex) ?? 0) + 1);
-  }
-  let best: string | undefined;
-  let bestCount = 0;
-  for (const [hex, count] of counts) {
-    if (count > bestCount) {
-      best = hex;
-      bestCount = count;
+    const hex = normalizeHex(color);
+    if (hex !== '#ffffff') {
+      counts.set(hex, (counts.get(hex) ?? 0) + 1);
     }
   }
-  return best;
+  // Stable sort: ties keep the order of first appearance.
+  const byFrequency = [...counts].sort(([, a], [, b]) => b - a);
+  const [first] = byFrequency.find(([hex]) => !isNeutralColor(hex)) ??
+    byFrequency[0] ?? [undefined];
+  return first;
 }
 
 /**
@@ -99,7 +115,8 @@ function enrichmentOf({ meta: unitMeta, variants }: SourceUnit): Enrichment {
   const defaultSvg =
     defaultSuffix === undefined ? undefined : svgBySuffix.get(defaultSuffix);
   const brandColor =
-    defaultSvg === undefined ? undefined : extractBrandColor(defaultSvg);
+    unitMeta.brandColor ??
+    (defaultSvg === undefined ? undefined : extractBrandColor(defaultSvg));
   return {
     variants: [
       ...aliasVariants.map(v => v.suffix),
@@ -190,7 +207,12 @@ export interface IconManifestEntry {
   readonly variants?: readonly string[];
   /** Extra lowercase search terms (e.g. \`'btc'\` on \`Bitcoin\`). Base entries only. */
   readonly aliases?: readonly string[];
-  /** Dominant brand color of the colored artwork, as a \`#rrggbb\` hex. Base entries only. */
+  /**
+   * Brand color as a \`#rrggbb\` hex: the most frequent non-neutral color of
+   * the colored artwork (a heuristic; greys, near-black and near-white count
+   * only when the artwork has nothing else), or a curated override. Base
+   * entries only.
+   */
   readonly brandColor?: string;
 }
 
