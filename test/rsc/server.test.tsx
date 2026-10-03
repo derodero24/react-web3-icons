@@ -12,11 +12,9 @@ import { isIconComponent } from '../helpers/units';
  * that used a client-only hook, or anything else the server build lacks,
  * fails here.
  *
- * Server Components ship with React 19; under React 18 (the compat job) the
- * suite is skipped.
+ * Server Components ship with React 19; vitest.config.ts leaves this project
+ * out under React 18 (the compat job), whose `react-server` entry throws.
  */
-
-const REACT_MAJOR = Number(React.version.split('.')[0]);
 
 /** A host element in the Flight payload: `["$", type, key, props]`. */
 interface FlightElement {
@@ -139,9 +137,8 @@ const components = Object.entries(icons).flatMap(([name, value]) =>
   isIconComponent(value) ? [[name, value] as const] : [],
 );
 
-describe.skipIf(REACT_MAJOR < 19)('React Server Components', () => {
+describe('React Server Components', () => {
   it('runs under the react-server build of React', () => {
-    expect(REACT_MAJOR).toBeGreaterThanOrEqual(19);
     // The server build leaves out client-only hooks; useId stays.
     expect('useState' in React).toBe(false);
     expect('useEffect' in React).toBe(false);
