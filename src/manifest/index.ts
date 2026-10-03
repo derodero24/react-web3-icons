@@ -1372,7 +1372,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'dex',
     slug: 'ekubo',
     variants: ['', 'Mono'],
-    brandColor: '#661cc4',
+    brandColor: '#101010',
   },
   { name: 'EkuboMono', category: 'dex' },
   {
