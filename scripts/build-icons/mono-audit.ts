@@ -242,7 +242,7 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
   'node/Drpc': {
     kind: 'false-positive',
     reason:
-      'Translucent currentColor shading distinguishes the faces of the 3D prism (allowed by mono rule 2), which the binary reference cannot express.',
+      'Knockout seams keep the prism faces apart and open the enclosed play triangle to the background, so the footprint flood fill enters it.',
   },
   'storage/Ipfs': {
     kind: 'false-positive',
