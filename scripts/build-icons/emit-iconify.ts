@@ -68,6 +68,11 @@ export interface IconifySet {
     readonly samples: readonly string[];
     /** Height shared by every icon; omitted when heights differ. */
     readonly height?: number;
+    /**
+     * `height` scaled by powers of two into 16–24 (Iconify's preview size),
+     * when it differs from `height`: what Iconify derives from it.
+     */
+    readonly displayHeight?: number;
     /** Section of Iconify's collection list; brand sets are under "Logos". */
     readonly category: string;
     readonly palette: boolean;
@@ -128,15 +133,31 @@ interface Collection {
 }
 
 /**
- * IconifyJSON `info.height`: the icons' common height, or omitted when they
- * differ (the sources keep their native viewBoxes, e.g. 24, 64 or 2500).
+ * IconifyJSON `info.height`: the icons' common height (64: every source is on
+ * the 64×64 grid, see "Optical size" in CONTRIBUTING.md), or omitted when
+ * they differ; plus the `displayHeight` Iconify derives from it.
  */
 function commonHeight(icons: Readonly<Record<string, IconifyIcon>>): {
   readonly height?: number;
+  readonly displayHeight?: number;
 } {
   const heights = new Set(Object.values(icons).map(icon => icon.height));
   const [height] = heights;
-  return heights.size === 1 && height !== undefined ? { height } : {};
+  if (heights.size !== 1 || height === undefined) {
+    return {};
+  }
+  // The order and checks of @iconify/utils' validateDisplayHeight.
+  let display = height;
+  while (display < 16) {
+    display *= 2;
+  }
+  while (display > 24) {
+    display /= 2;
+  }
+  const valid = Number.isInteger(display) && display >= 16 && display <= 24;
+  return valid && display !== height
+    ? { height, displayHeight: display }
+    : { height };
 }
 
 /** Version of the package the collections are published in. */

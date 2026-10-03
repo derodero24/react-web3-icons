@@ -9,15 +9,19 @@
  * What it does:
  *   1. Optimizes the SVG(s) with SVGO and normalizes the root element
  *      (the input files are only read, never modified)
- *   2. Writes icons/<category>/<slug>.svg (+ .mono.svg) and <slug>.json
- *   3. Regenerates src/<category>/ via the icon pipeline
- *   4. Prints the remaining manual steps (meta maps, manifest, changeset)
+ *   2. Puts the artwork on the canonical 64×64 grid following the fill rule
+ *      ("Optical size" in CONTRIBUTING.md), measured in Chromium, and checks
+ *      that the result renders like the input
+ *   3. Writes icons/<category>/<slug>.svg (+ .mono.svg) and <slug>.json
+ *   4. Regenerates src/<category>/ via the icon pipeline
+ *   5. Prints the remaining manual steps (meta maps, manifest, changeset)
  */
 
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
+import { withChromium } from './build-icons/chromium.ts';
 import {
   CATEGORIES,
   isCategory,
@@ -29,6 +33,10 @@ import {
   normalizeRoot,
   type Optimizer,
 } from './build-icons/normalize.ts';
+import {
+  normalizeChecked,
+  verifyOnGrid,
+} from './build-icons/optical-normalize.ts';
 import {
   assertUnitMeta,
   type IconUnitMeta,
@@ -137,6 +145,64 @@ if (monoPath) {
     ingest(optimize, resolve(monoPath), `${slug}.mono.svg`, true),
   );
 }
+
+/**
+ * Optical-size normalization (scripts/build-icons/optical.ts): the colored
+ * artwork and its mono share one transform when their viewBoxes match.
+ */
+async function toGrid(): Promise<void> {
+  const sources = [...ingested].map(([suffix, { variant, svg }]) => ({
+    suffix,
+    file: variant.file,
+    path: `icons/${category}/${variant.file}`,
+    svg,
+  }));
+  const { files, checks, problems } = await withChromium(async run => {
+    const result = await normalizeChecked([sources], optimize, run);
+    const afterOf = new Map(result.files.map(f => [f.file, f.after]));
+    return {
+      ...result,
+      problems: await verifyOnGrid(
+        [sources.map(v => ({ ...v, svg: afterOf.get(v.file) ?? v.svg }))],
+        run,
+      ),
+    };
+  });
+  const failures = [
+    ...checks
+      .filter(c => !c.ok)
+      .map(
+        c =>
+          `${c.path}: the artwork renders differently on the 64×64 grid (bounds shift ${c.boundsShift.toFixed(1)}px, ${(c.comparison.mismatch * 100).toFixed(2)}% of cells differ); check its masks and clip paths`,
+      ),
+    ...problems.map(p => `${p.path}: ${p.message}`),
+  ];
+  if (failures.length > 0) {
+    fail(new Error(failures.join('\n')));
+  }
+  for (const file of files) {
+    const [suffix, entry] =
+      [...ingested].find(([, e]) => e.variant.file === file.file) ?? [];
+    if (suffix === undefined || entry === undefined) {
+      continue;
+    }
+    try {
+      validateSvg(
+        parseSvg(file.after, file.path),
+        getAttr(parseSvg(entry.svg), 'fill'),
+      );
+    } catch (error) {
+      fail(error);
+    }
+    ingested.set(suffix, { variant: entry.variant, svg: file.after });
+  }
+}
+try {
+  await toGrid();
+} catch (error) {
+  fail(error);
+}
+
 const meta: IconUnitMeta = {
   $schema: SCHEMA_REF,
   name,

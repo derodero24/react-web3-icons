@@ -31,13 +31,15 @@ root `<svg>` are kept on a wrapping `<g>`. See the
 | `author` | `derodero24`, linking to this repository |
 | `license` | `MIT` (SPDX `MIT`), linking to `LICENSE` |
 | `samples` | `chain-ethereum`, `chain-bitcoin`, `chain-solana`, `wallet-meta-mask`, `dex-uniswap`, `exchange-binance` (`-mono` in the mono set) |
-| `height` | The height every icon shares; omitted while the sources keep different viewBox heights |
+| `height` | `64`: every icon is drawn on the same 64×64 grid (see [Optical Size](../CONTRIBUTING.md#optical-size)) |
+| `displayHeight` | `16`: `height` scaled by powers of two into Iconify's 16–24 preview range, as Iconify derives it |
 | `category` | `Logos`, the section Iconify lists brand sets under (Simple Icons, SVG Logos, Web3 Icons, Cryptocurrency Icons) |
 | `palette` | `true` for `web3`, `false` for `web3-mono` |
 
-`tags` is not set: Iconify uses it for a fixed set of grid traits ("Has
-Padding", "Precise Shapes", "Uses Stroke", …) that brand artwork in its
-native viewBox does not have. `displayHeight` is not set either.
+`tags` is not set: Iconify uses it for a fixed set of drawing traits
+("Has Padding", "Precise Shapes", "Uses Stroke", …) that do not hold across
+brand artwork: containers fill the whole grid while bare marks are padded,
+and shapes follow each brand's own geometry rather than a pixel grid.
 
 ## Validation
 

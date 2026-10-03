@@ -5,15 +5,15 @@ import { createIcon } from '../utils';
 /** Synapse bridge icon (colored). */
 export const Synapse = /* @__PURE__ */ createIcon(
   'Synapse',
-  '-24 -24 48 48',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="translate(32 32)scale(1.16666)">
       <defs>
         <linearGradient
           id={`${_id}-syn-g`}
           x1="-24"
-          y1="0"
           x2="24"
+          y1="0"
           y2="0"
           gradientUnits="userSpaceOnUse"
         >
@@ -22,18 +22,17 @@ export const Synapse = /* @__PURE__ */ createIcon(
         </linearGradient>
       </defs>
       <path
-        d="M0 18 18 0 H-18 L0 -18"
         stroke={`url(#${_id}-syn-g)`}
-        strokeWidth="5.5"
         strokeLinejoin="bevel"
-        opacity="0.5"
-        fill="none"
+        strokeWidth="5.5"
+        d="M0 18 18 0h-36L0-18"
+        opacity=".5"
       />
       <circle cy="18" r="6" fill={`url(#${_id}-syn-g)`} />
       <circle cx="18" r="6" fill={`url(#${_id}-syn-g)`} />
       <circle cx="-18" r="6" fill={`url(#${_id}-syn-g)`} />
       <circle cy="-18" r="6" fill={`url(#${_id}-syn-g)`} />
-    </>
+    </g>
   ),
   { fill: 'none', ids: true },
 );
@@ -41,22 +40,22 @@ export const Synapse = /* @__PURE__ */ createIcon(
 /** Synapse bridge icon (monochrome). */
 export const SynapseMono = /* @__PURE__ */ createIcon(
   'SynapseMono',
-  '-24 -24 48 48',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="translate(32 32)scale(1.16666)">
       <path
-        d="M0 18 18 0 H-18 L0 -18"
-        strokeWidth="5.5"
-        strokeLinejoin="bevel"
-        opacity="0.5"
         fill="none"
         stroke="currentColor"
+        strokeLinejoin="bevel"
+        strokeWidth="5.5"
+        d="M0 18 18 0h-36L0-18"
+        opacity=".5"
       />
       <circle cy="18" r="6" />
       <circle cx="18" r="6" />
       <circle cx="-18" r="6" />
       <circle cy="-18" r="6" />
-    </>
+    </g>
   ),
   { fill: 'currentColor' },
 );

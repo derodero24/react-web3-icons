@@ -79,6 +79,12 @@ const EXEMPTIONS: Readonly<Record<UnitKey, Exemption>> = {
     searched: ['https://www.htx.com'],
     note: 'The light/blue flame comes from @web3icons/react (HT token); no official HTX brand kit or dark-on-light flame was found. Use HtxMono with a dark color.',
   },
+  'storage/NftStorage': {
+    tone: 'dark',
+    kind: 'no-official-alternative',
+    searched: ['https://nft.storage'],
+    note: 'On the 64×64 grid (#704) this tall mark no longer spans enough width for its white capsule to count as a container, so its black outline and face dominate; nft.storage shows only the yellow stacked logomark. Use NftStorageMono with a light color.',
+  },
 };
 
 const LEGIBLE_SUFFIX = /^(?:Circle|Square|Inverted)/;

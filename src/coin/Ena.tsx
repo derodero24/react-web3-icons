@@ -4,17 +4,17 @@ import { createIcon } from '../utils';
 /** Ena coin icon (colored). */
 export const Ena = /* @__PURE__ */ createIcon(
   'Ena',
-  '0 0 392 392',
+  '0 0 64 64',
   () => (
-    <>
+    <g transform="scale(.16326)">
       <circle cx="196" cy="196" r="196" fill="#1C1C1C" />
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
         fill="#fff"
-        d="M153.405 104.362h-4.157l-2.696 3.165L76.968 189.259l-4.967 5.835 4.967 5.834 69.584 81.732 2.696 3.166h4.157H278.681h9V276.826v-51.959h-18v42.959H173.087l57.813-66.845 5.092-5.887-5.092-5.888-57.813-66.844h96.594v42.959h18v-51.959v-9H278.681H153.405zM153.458 127.183l-57.817 67.911 57.817 67.911 58.735-67.911-58.735-67.911z"
+        fillRule="evenodd"
+        d="M153.4 104.36h-4.15l-2.7 3.17-69.58 81.73-4.97 5.83 4.97 5.84 69.58 81.73 2.7 3.17h138.43v-60.96h-18v42.96h-96.6l57.82-66.85 5.1-5.89-5.1-5.88-57.81-66.85h96.6v42.96h18v-60.96zm.06 22.82L95.64 195.1l57.82 67.9 58.73-67.9z"
+        clipRule="evenodd"
       />
-    </>
+    </g>
   ),
   {},
 );
@@ -22,24 +22,24 @@ export const Ena = /* @__PURE__ */ createIcon(
 /** Ena coin icon (monochrome). */
 export const EnaMono = /* @__PURE__ */ createIcon(
   'EnaMono',
-  '0 0 392 392',
+  '0 0 64 64',
   (_props, _id) => (
-    <>
+    <g transform="scale(.16326)">
       <defs>
         <mask
           id={`${_id}-mask`}
-          x="0"
-          y="0"
           width="392"
           height="392"
+          x="0"
+          y="0"
           maskUnits="userSpaceOnUse"
         >
           <rect width="392" height="392" fill="white" />
           <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M153.405 104.362h-4.157l-2.696 3.165L76.968 189.259l-4.967 5.835 4.967 5.834 69.584 81.732 2.696 3.166h4.157H278.681h9V276.826v-51.959h-18v42.959H173.087l57.813-66.845 5.092-5.887-5.092-5.888-57.813-66.844h96.594v42.959h18v-51.959v-9H278.681H153.405zM153.458 127.183l-57.817 67.911 57.817 67.911 58.735-67.911-58.735-67.911z"
             fill="black"
+            fillRule="evenodd"
+            d="M153.4 104.36h-4.15l-2.7 3.17-69.58 81.73-4.97 5.83 4.97 5.84 69.58 81.73 2.7 3.17h138.43v-60.96h-18v42.96h-96.6l57.82-66.85 5.1-5.89-5.1-5.88-57.81-66.85h96.6v42.96h18v-60.96zm.06 22.82L95.64 195.1l57.82 67.9 58.73-67.9z"
+            clipRule="evenodd"
           />
         </mask>
       </defs>
@@ -50,7 +50,7 @@ export const EnaMono = /* @__PURE__ */ createIcon(
         fill="currentColor"
         mask={`url(#${_id}-mask)`}
       />
-    </>
+    </g>
   ),
   { ids: true },
 );

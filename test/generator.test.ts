@@ -54,7 +54,7 @@ import {
   assertUnitMeta,
   UNIT_JSON_SCHEMA,
 } from '../scripts/build-icons/unit.ts';
-import { parseSvg, serializeSvg } from '../scripts/build-icons/xml.ts';
+import { getAttr, parseSvg, serializeSvg } from '../scripts/build-icons/xml.ts';
 
 /**
  * Failure modes of the icon generator. Malformed inputs are written to
@@ -1310,6 +1310,18 @@ describe('new-icon normalization', () => {
     expect(() => normalizeRoot(parseSvg('<svg/>'), false)).toThrow(
       /needs a viewBox/,
     );
+  });
+
+  it('SVGO keeps a root fill, which is the default fill of the component', async () => {
+    const optimize = await createOptimizer(ROOT);
+    for (const fill of ['#000', 'black', '#e84142', 'currentColor']) {
+      const optimized = optimize(
+        `<svg ${XMLNS} viewBox="0 0 24 24" fill="${fill}"><path fill="#000" d="M0 0h24v24z"/></svg>`,
+        'in.svg',
+      );
+      expect(getAttr(parseSvg(optimized), 'fill')).toBe(fill);
+      expect(isSvgoNormalized(optimize, optimized, 'in.svg')).toBe(true);
+    }
   });
 
   it('SVGO strips <title> and <desc>, which the parser would reject', async () => {

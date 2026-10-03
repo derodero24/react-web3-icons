@@ -50,11 +50,31 @@ Icons with internal ids (masks, gradients, clip paths) now call `useId` and rend
 - **Identifiers are normalized in every component**: case-insensitive, ignoring whitespace, `.`, `-` and `_` (`'layer-zero'`, `'Arbitrum Nova'`, `'Crypto.com'`), and manifest aliases and common wallet connector ids (`'phantom'`, `'metaMaskSDK'`, `'okx'`, …) resolve. Inputs that used to render `fallback` may now render an icon.
 - **Types:** the `variant` prop of `ChainIconProps`, `CoinIconProps`, … is the category's variant union instead of `'colored' | 'mono'`. Code that copies it into a `'colored' | 'mono'` variable needs the wider type.
 
+## 5. Every icon is drawn on a uniform 64×64 grid
+
+Icons used to keep the viewBox of their source artwork (`0 0 784.37 1277.39` for `Ethereum`, `0 0 266 139` for `Aave`, `152.19 197.21 139.67 48.01` for `Avascan`, …) while rendering into a square `size`×`size` box, so a tall or wide mark was letterboxed and looked smaller than its neighbours. Every icon now has `viewBox="0 0 64 64"` and fills it by one rule:
+
+- a bare mark's longer side spans 56 of the 64 units (87.5%), centred;
+- a container (`Circle*` / `Square*` variants, and marks that are themselves a solid disc or square, such as coins and app-icon tiles) fills all 64 units.
+
+Shapes and colours are unchanged; only the scale and position inside the box change, and the props, `width`/`height` defaults and the `1em` sizing are the same. At the same `size`, icons change size in both directions:
+
+- **Letterboxed, tall, wide or heavily padded marks render larger**, up to about 1.75× (`Tangem` ×1.75, `BackpackWallet` ×1.54, `OKXWallet` and `Api3` ×1.45).
+- **Marks that already filled their square viewBox edge to edge render about 12.5% smaller** (×0.875), because bare marks now keep 4 units of padding on each side.
+- Containers that already filled their box (most `Circle*` / `Square*` variants) are unchanged.
+
+Seven marks overflowed their old viewBox and were cut off at its edge; they are now shown whole, which makes them render somewhat smaller: `Eclipse`, `Frax`, `Lido`, `SushiSwap`, `Binance`, `Helius` and `RedStone` (and their `Mono` variants, which share their geometry). `WorldChain` keeps its old crop.
+
+- **Regenerate snapshots** that contain icon markup: every `viewBox` and most path data changed.
+- **Re-check custom sizing that relied on the old viewBox**, e.g. CSS that set only `width` or `height` and let the other follow the aspect ratio, `preserveAspectRatio` overrides, padding added to even out letterboxed icons, or code reading the `viewBox` attribute. The square viewBox makes such tweaks unnecessary.
+- `react-web3-icons/svg/*` files and the Iconify sets (`width`/`height` now 64 for every icon) changed the same way.
+
 ## Checklist
 
-- [ ] Regenerate markup snapshots containing icon defs ids
+- [ ] Regenerate markup snapshots containing icon defs ids or icon markup (viewBox, path data)
 - [ ] Type full `Bybit` props as `IconProps & BybitProps` (or `ComponentProps<typeof Bybit>`)
 - [ ] Pass dynamic components only `variant` values of their category (`ChainVariant`, …); others render `fallback`
+- [ ] Re-check custom CSS or layout that compensated for the old per-icon viewBoxes
 
 ---
 

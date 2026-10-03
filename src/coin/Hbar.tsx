@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 /** Hbar coin icon (colored). */
 export const Hbar = /* @__PURE__ */ createIcon(
   'Hbar',
-  '0 0 24 24',
+  '0 0 64 64',
   () => (
-    <path d="M19.875 21h-2.813v-5.063H6.937V21H4.125V3h2.812v5.062h10.125V3h2.813zM6.937 13.125h10.125v-2.25H6.937z" />
+    <path d="M56.5 60h-8.76V44.23H16.25V60H7.51V4.01h8.74v15.74h31.5V4.01h8.74zM16.24 35.5h31.5v-7h-31.5z" />
   ),
   { fill: '#000' },
 );
@@ -14,9 +14,9 @@ export const Hbar = /* @__PURE__ */ createIcon(
 /** Hbar coin icon (monochrome). */
 export const HbarMono = /* @__PURE__ */ createIcon(
   'HbarMono',
-  '0 0 24 24',
+  '0 0 64 64',
   () => (
-    <path d="M19.875 21h-2.813v-5.063H6.937V21H4.125V3h2.812v5.062h10.125V3h2.813zM6.937 13.125h10.125v-2.25H6.937z" />
+    <path d="M56.5 60h-8.76V44.23H16.25V60H7.51V4.01h8.74v15.74h31.5V4.01h8.74zM16.24 35.5h31.5v-7h-31.5z" />
   ),
   { fill: 'currentColor' },
 );

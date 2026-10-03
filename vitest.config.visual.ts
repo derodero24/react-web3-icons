@@ -4,7 +4,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    include: ['test/visual/**/*.test.tsx'],
+    include: ['test/visual/**/*.test.{ts,tsx}'],
     browser: {
       enabled: true,
       provider: playwright(),

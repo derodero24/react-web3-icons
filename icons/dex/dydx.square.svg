@@ -1,21 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183 183">
-  <rect x="1" y="1" width="181" height="181" rx="37" fill="url(#dydx-2a)"/>
-  <path d="M115.316 43L45 141.992h21.588L137.269 43h-21.953z" fill="#fff"/>
-  <path d="M68.838 43l20.689 29.17L78.732 88.08 46.799 43h22.038z" fill="url(#dydx-2b)"/>
-  <path d="M117.411 142l-22.937-32.263 10.794-15.469L139 142h-21.589z" fill="url(#dydx-2c)"/>
-  <rect x="1" y="1" width="181" height="181" rx="37" stroke="#2d2d3d" stroke-width="2" fill="none"/>
-  <defs>
-    <linearGradient id="dydx-2a" x1="147.5" y1="-24.5" x2="103" y2="160.5" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#2c2c3d"/>
-      <stop offset="1" stop-color="#1a1a27"/>
-    </linearGradient>
-    <linearGradient id="dydx-2b" x1="63.89" y1="49.188" x2="92.895" y2="84.821" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#fff"/>
-      <stop offset="1" stop-color="#fff" stop-opacity=".55"/>
-    </linearGradient>
-    <linearGradient id="dydx-2c" x1="122.359" y1="134.487" x2="86.787" y2="85.686" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#6966ff"/>
-      <stop offset="1" stop-color="#6966ff" stop-opacity=".36"/>
-    </linearGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="scale(.34973)">
+    <rect width="181" height="181" x="1" y="1" fill="url(#dydx-2a)" rx="37"/>
+    <path fill="#fff" d="M115.32 43 45 142h21.59l70.68-99z"/>
+    <path fill="url(#dydx-2b)" d="m68.84 43 20.69 29.17-10.8 15.91L46.8 43z"/>
+    <path fill="url(#dydx-2c)" d="m117.41 142-22.94-32.26 10.8-15.47L139 142z"/>
+    <rect width="181" height="181" x="1" y="1" fill="none" stroke="#2d2d3d" stroke-width="2" rx="37"/>
+    <defs>
+      <linearGradient id="dydx-2a" x1="147.5" x2="103" y1="-24.5" y2="160.5" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#2c2c3d"/>
+        <stop offset="1" stop-color="#1a1a27"/>
+      </linearGradient>
+      <linearGradient id="dydx-2b" x1="63.89" x2="92.89" y1="49.19" y2="84.82" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#fff"/>
+        <stop offset="1" stop-color="#fff" stop-opacity=".55"/>
+      </linearGradient>
+      <linearGradient id="dydx-2c" x1="122.36" x2="86.79" y1="134.49" y2="85.69" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#6966ff"/>
+        <stop offset="1" stop-color="#6966ff" stop-opacity=".36"/>
+      </linearGradient>
+    </defs>
+  </g>
 </svg>
