@@ -1170,7 +1170,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'synthetix',
     variants: ['', 'Mono'],
     aliases: ['snx'],
-    brandColor: '#1b1230',
+    brandColor: '#00d1ff',
   },
   { name: 'SynthetixMono', category: 'defi' },
   {
