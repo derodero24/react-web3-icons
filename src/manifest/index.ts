@@ -1902,7 +1902,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Pinata',
     category: 'storage',
     variants: ['', 'Mono'],
-    brandColor: '#8000db',
+    brandColor: '#ce3f8f',
   },
   { name: 'PinataMono', category: 'storage' },
   {
