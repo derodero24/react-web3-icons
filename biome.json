@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["src/**", "test/**", "example/src/**"]
+    "includes": ["src/**", "test/**", "scripts/**", "example/src/**"]
   },
   "formatter": {
     "enabled": true,
@@ -296,6 +296,16 @@
         "rules": {
           "style": {
             "useNamingConvention": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["scripts/**"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off"
           }
         }
       }

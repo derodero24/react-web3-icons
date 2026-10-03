@@ -28,6 +28,7 @@ Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/ac
 | ---------------------- | ------------------------------- |
 | `pnpm run lint`        | Run Biome linter                |
 | `pnpm run lint:fix`    | Auto-fix lint and format issues |
+| `pnpm run typecheck`   | Type-check all TS projects      |
 | `pnpm test`            | Run tests                       |
 | `pnpm run build`       | Build the package               |
 | `pnpm run new-icon`    | Scaffold a new icon component   |
@@ -62,7 +63,8 @@ test/           # Vitest test suite
 The scripts under `scripts/` are plain TypeScript executed by Node's built-in
 type stripping (`node scripts/<name>.ts`, no build step), so they may only use
 erasable syntax (no `enum`, `namespace`, or parameter properties) and import
-relative modules with an explicit `.ts` extension.
+relative modules with an explicit `.ts` extension. `scripts/tsconfig.json`
+type-checks them with the same `strictest` settings as `src`.
 
 ## Adding a New Icon
 
