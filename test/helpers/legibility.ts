@@ -1,0 +1,671 @@
+import { parseViewBox } from '../../scripts/build-icons/lib.ts';
+import {
+  getAttr,
+  serializeSvg,
+  type XmlNode,
+} from '../../scripts/build-icons/xml.ts';
+
+/**
+ * Static tone analysis behind `test/legibility.test.ts`: does an icon's
+ * colored artwork vanish on a dark (or light) background?
+ *
+ * The unit tests run in jsdom, which cannot rasterize, so the analysis
+ * works on the SVG tree:
+ *
+ *  - **Paints.** Every fill and stroke a rendered shape actually paints
+ *    counts once: inherited fills, the initial black fill of shapes that set
+ *    none, `<use>` references, and gradient stops reached through `url(#…)`
+ *    (following `href` templates). The weight is the paint's effective
+ *    opacity, and a gradient splits it evenly across its stops. Mask, clip
+ *    path and gradient definitions are skipped: their black and white is
+ *    coverage, not ink. Unsupported colour syntax throws, so new artwork
+ *    cannot slip past the audit.
+ *  - **Container.** The first fill whose bounding box spans at least
+ *    {@link CONTAINER_SPAN} of the viewBox in both directions (a disc,
+ *    square, badge or the mark's main body), when there is other artwork,
+ *    decides first: it shows on any background it contrasts with, and only
+ *    when it blends in does the remaining "ink" have to carry the mark.
+ *    Without this a blue disc behind six white facets would count as
+ *    "mostly white", although the disc is what a light page shows.
+ *  - **Dominance.** A tone dominates when it is at least half of the paint
+ *    weight measured: the threshold of the original issue #712 audit.
+ *
+ * Counting paints instead of pixels misjudges artwork whose tones differ
+ * mostly in area (a large black shape under a small coloured accent), and a
+ * bounding box overstates diagonal shapes; such cases are rare in this set,
+ * and the audit only decides which icons need a human look.
+ */
+
+/** A paint that resolved to a fixed sRGB colour. */
+export type Rgb = readonly [red: number, green: number, blue: number];
+
+/** A background tone a mark can vanish into. */
+export type Tone = 'dark' | 'light';
+
+/** Weighted paint shares; `dark + light ≤ 1`. */
+export interface ToneShares {
+  /** Share of paint weight with every channel below {@link DARK_MAX}. */
+  readonly dark: number;
+  /** Share of paint weight with every channel above {@link LIGHT_MIN}. */
+  readonly light: number;
+  /** Total paint weight measured (0 when nothing paints). */
+  readonly weight: number;
+}
+
+export interface ToneAnalysis {
+  /** Shares of the container's own fill, when the artwork has a container. */
+  readonly container: ToneShares | undefined;
+  /** Shares of every other paint (all paints when there is no container). */
+  readonly ink: ToneShares;
+  /** Shares of all paints, container included. */
+  readonly overall: ToneShares;
+}
+
+/** Channels strictly below this are near-black (the issue #712 audit). */
+export const DARK_MAX = 60;
+/** Channels strictly above this are near-white (the mirror of DARK_MAX). */
+export const LIGHT_MIN = 195;
+/** A tone with at least this share of the paint dominates it. */
+export const DOMINANT_SHARE = 0.5;
+/** Minimum share of the viewBox width and height a container spans. */
+export const CONTAINER_SPAN = 0.6;
+
+const NAMED_COLORS: Readonly<Record<string, Rgb>> = {
+  black: [0, 0, 0],
+  white: [255, 255, 255],
+};
+
+/** Elements whose subtree is never painted where it stands. */
+const NON_RENDERED = new Set([
+  'clipPath',
+  'defs',
+  'linearGradient',
+  'mask',
+  'pattern',
+  'radialGradient',
+  'symbol',
+]);
+
+const GROUPS = new Set(['g', 'svg']);
+
+/**
+ * `#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`, `black` or `white` → RGB. Throws
+ * on anything else so that new artwork using another colour syntax fails
+ * loudly instead of being skipped.
+ */
+export function parseColor(value: string): Rgb {
+  const named = NAMED_COLORS[value.toLowerCase()];
+  if (named) {
+    return named;
+  }
+  const hex = /^#([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.exec(value)?.[1];
+  if (hex === undefined) {
+    throw new Error(`unsupported colour ${JSON.stringify(value)}`);
+  }
+  const pairs =
+    hex.length <= 4
+      ? [...hex.slice(0, 3)].map(digit => digit + digit)
+      : [hex.slice(0, 2), hex.slice(2, 4), hex.slice(4, 6)];
+  const [red = 0, green = 0, blue = 0] = pairs.map(pair =>
+    Number.parseInt(pair, 16),
+  );
+  return [red, green, blue];
+}
+
+export const isNearBlack = (rgb: Rgb): boolean =>
+  rgb.every(channel => channel < DARK_MAX);
+
+export const isNearWhite = (rgb: Rgb): boolean =>
+  rgb.every(channel => channel > LIGHT_MIN);
+
+// --- Geometry: just enough to find a container's extent ---------------------
+
+/** Affine matrix `[a, b, c, d, e, f]`, as in SVG's `matrix()`. */
+type Matrix = readonly [number, number, number, number, number, number];
+type Point = readonly [x: number, y: number];
+
+const IDENTITY: Matrix = [1, 0, 0, 1, 0, 0];
+
+function multiply(m: Matrix, n: Matrix): Matrix {
+  return [
+    m[0] * n[0] + m[2] * n[1],
+    m[1] * n[0] + m[3] * n[1],
+    m[0] * n[2] + m[2] * n[3],
+    m[1] * n[2] + m[3] * n[3],
+    m[0] * n[4] + m[2] * n[5] + m[4],
+    m[1] * n[4] + m[3] * n[5] + m[5],
+  ];
+}
+
+const apply = (m: Matrix, [x, y]: Point): Point => [
+  m[0] * x + m[2] * y + m[4],
+  m[1] * x + m[3] * y + m[5],
+];
+
+const NUMBER = /[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?/g;
+
+const numbersIn = (text: string): number[] =>
+  [...text.matchAll(NUMBER)].map(([n]) => Number(n));
+
+function transformMatrix(node: XmlNode): Matrix {
+  const value = getAttr(node, 'transform');
+  if (value === undefined) {
+    return IDENTITY;
+  }
+  const steps = [...value.matchAll(/([a-zA-Z]+)\s*\(([^)]*)\)/g)];
+  if (steps.length === 0) {
+    throw new Error(`malformed transform ${JSON.stringify(value)}`);
+  }
+  return steps.reduce<Matrix>(
+    (matrix, [, name = '', args = '']) =>
+      multiply(matrix, transformStep(name, numbersIn(args))),
+    IDENTITY,
+  );
+}
+
+/** One transform function (`translate(…)`, `matrix(…)`, …) as a matrix. */
+function transformStep(name: string, args: readonly number[]): Matrix {
+  const [p = 0, q, r = 0, s = 0, t = 0, u = 0] = args;
+  const rad = (p * Math.PI) / 180;
+  switch (name) {
+    case 'matrix':
+      return [p, q ?? 0, r, s, t, u];
+    case 'translate':
+      return [1, 0, 0, 1, p, q ?? 0];
+    case 'scale':
+      return [p, 0, 0, q ?? p, 0, 0];
+    case 'rotate': {
+      const cx = q ?? 0;
+      const turn: Matrix = [
+        Math.cos(rad),
+        Math.sin(rad),
+        -Math.sin(rad),
+        Math.cos(rad),
+        0,
+        0,
+      ];
+      const there: Matrix = [1, 0, 0, 1, cx, r];
+      const back: Matrix = [1, 0, 0, 1, -cx, -r];
+      return multiply(multiply(there, turn), back);
+    }
+    case 'skewX':
+      return [1, 0, Math.tan(rad), 1, 0, 0];
+    case 'skewY':
+      return [1, Math.tan(rad), 0, 1, 0, 0];
+    default:
+      throw new Error(`unsupported transform ${name}()`);
+  }
+}
+
+const PATH_ARITY: Readonly<Record<string, number>> = {
+  m: 2,
+  l: 2,
+  h: 1,
+  v: 1,
+  c: 6,
+  s: 4,
+  q: 4,
+  t: 2,
+  a: 7,
+  z: 0,
+};
+
+const COMMAND = /\s*,?\s*([MmLlHhVvCcSsQqTtAaZz])/y;
+const COORDINATE = /\s*,?\s*([+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?)/y;
+/** Arc flags are a single character, so `a1 1 0 0110 10` is valid. */
+const FLAG = /\s*,?\s*([01])/y;
+
+/** Matches a sticky `pattern` at `pos`: the captured text and the end. */
+function readAt(
+  d: string,
+  pos: number,
+  pattern: RegExp,
+): [string, number] | undefined {
+  pattern.lastIndex = pos;
+  const match = pattern.exec(d)?.[1];
+  return match === undefined ? undefined : [match, pattern.lastIndex];
+}
+
+function malformed(d: string, pos: number): Error {
+  return new Error(`malformed path data at ${pos}: ${d.slice(pos, pos + 20)}`);
+}
+
+/** Reads the `arity` numbers of one segment starting at `pos`. */
+function readArgs(d: string, pos: number, command: string): [number[], number] {
+  const isArc = command.toLowerCase() === 'a';
+  const args: number[] = [];
+  let at = pos;
+  for (let i = 0; i < (PATH_ARITY[command.toLowerCase()] ?? 0); i++) {
+    const read = readAt(
+      d,
+      at,
+      isArc && (i === 3 || i === 4) ? FLAG : COORDINATE,
+    );
+    if (read === undefined) {
+      throw malformed(d, at);
+    }
+    args.push(Number(read[0]));
+    at = read[1];
+  }
+  return [args, at];
+}
+
+/** Splits path data into segments: command letter and its numbers. */
+function* pathCommands(d: string): Generator<[string, number[]]> {
+  let pos = 0;
+  let command = '';
+  while (!/^\s*$/.test(d.slice(pos))) {
+    const head = readAt(d, pos, COMMAND);
+    if (head !== undefined) {
+      [command, pos] = head;
+    } else if (command === '' || command.toLowerCase() === 'z') {
+      throw malformed(d, pos);
+    }
+    const [args, end] = readArgs(d, pos, command);
+    pos = end;
+    yield [command, args];
+    // Extra coordinate pairs after a moveto are implicit linetos.
+    command = command === 'M' ? 'L' : command === 'm' ? 'l' : command;
+  }
+}
+
+/** Points on an elliptical arc (SVG 1.1 F.6.5 endpoint → centre form). */
+function arcPoints(
+  [x1, y1]: Point,
+  [rxIn, ryIn, rotation, large, sweep, x2, y2]: readonly number[],
+): Point[] {
+  const end: Point = [x2 ?? 0, y2 ?? 0];
+  let rx = Math.abs(rxIn ?? 0);
+  let ry = Math.abs(ryIn ?? 0);
+  if (rx === 0 || ry === 0) {
+    return [end];
+  }
+  const phi = ((rotation ?? 0) * Math.PI) / 180;
+  const cos = Math.cos(phi);
+  const sin = Math.sin(phi);
+  const dx = (x1 - end[0]) / 2;
+  const dy = (y1 - end[1]) / 2;
+  const x1p = cos * dx + sin * dy;
+  const y1p = -sin * dx + cos * dy;
+  const lambda = (x1p * x1p) / (rx * rx) + (y1p * y1p) / (ry * ry);
+  if (lambda > 1) {
+    rx *= Math.sqrt(lambda);
+    ry *= Math.sqrt(lambda);
+  }
+  const num = rx * rx * ry * ry - rx * rx * y1p * y1p - ry * ry * x1p * x1p;
+  const den = rx * rx * y1p * y1p + ry * ry * x1p * x1p;
+  const coef = (large === sweep ? -1 : 1) * Math.sqrt(Math.max(0, num / den));
+  const cxp = (coef * rx * y1p) / ry;
+  const cyp = (-coef * ry * x1p) / rx;
+  const cx = cos * cxp - sin * cyp + (x1 + end[0]) / 2;
+  const cy = sin * cxp + cos * cyp + (y1 + end[1]) / 2;
+  const angle = (ux: number, uy: number, vx: number, vy: number): number =>
+    Math.atan2(ux * vy - uy * vx, ux * vx + uy * vy);
+  const ux = (x1p - cxp) / rx;
+  const uy = (y1p - cyp) / ry;
+  const theta = angle(1, 0, ux, uy);
+  let delta = angle(ux, uy, (-x1p - cxp) / rx, (-y1p - cyp) / ry);
+  if (!sweep && delta > 0) {
+    delta -= 2 * Math.PI;
+  } else if (sweep && delta < 0) {
+    delta += 2 * Math.PI;
+  }
+  const points: Point[] = [];
+  const steps = 16;
+  for (let i = 1; i <= steps; i++) {
+    const t = theta + (delta * i) / steps;
+    points.push([
+      cx + rx * Math.cos(t) * cos - ry * Math.sin(t) * sin,
+      cy + rx * Math.cos(t) * sin + ry * Math.sin(t) * cos,
+    ]);
+  }
+  return points;
+}
+
+/** Points one path segment visits, starting from `current`. */
+function segmentPoints(
+  command: string,
+  args: readonly number[],
+  current: Point,
+  start: Point,
+): Point[] {
+  const lower = command.toLowerCase();
+  const [dx, dy] = command === lower ? current : [0, 0];
+  const [first = 0] = args;
+  switch (lower) {
+    case 'z':
+      return [start];
+    case 'h':
+      return [[dx + first, current[1]]];
+    case 'v':
+      return [[current[0], dy + first]];
+    case 'a': {
+      const [rx = 0, ry = 0, rotation = 0, large = 0, sweep = 0] = args;
+      const end = [dx + (args[5] ?? 0), dy + (args[6] ?? 0)];
+      return arcPoints(current, [rx, ry, rotation, large, sweep, ...end]);
+    }
+    default: {
+      const points: Point[] = [];
+      for (let i = 0; i < args.length; i += 2) {
+        points.push([dx + (args[i] ?? 0), dy + (args[i + 1] ?? 0)]);
+      }
+      return points;
+    }
+  }
+}
+
+/** End and control points of path data, a superset of its extent. */
+function pathPoints(d: string): Point[] {
+  const points: Point[] = [];
+  let current: Point = [0, 0];
+  let start: Point = [0, 0];
+  for (const [command, args] of pathCommands(d)) {
+    const visited = segmentPoints(command, args, current, start);
+    points.push(...visited);
+    current = visited.at(-1) ?? current;
+    if (command === 'M' || command === 'm') {
+      start = current;
+    }
+  }
+  return points;
+}
+
+/** The four corners of a box, which stay its hull under any transform. */
+const corners = (x: number, y: number, w: number, h: number): Point[] => [
+  [x, y],
+  [x + w, y],
+  [x, y + h],
+  [x + w, y + h],
+];
+
+/** Untransformed outline points of a shape element. */
+function shapePoints(node: XmlNode): Point[] {
+  const n = (name: string): number => Number(getAttr(node, name) ?? 0);
+  switch (node.tag) {
+    case 'rect':
+      return corners(n('x'), n('y'), n('width'), n('height'));
+    case 'circle':
+    case 'ellipse': {
+      const rx = node.tag === 'circle' ? n('r') : n('rx');
+      const ry = node.tag === 'circle' ? n('r') : n('ry');
+      return corners(n('cx') - rx, n('cy') - ry, 2 * rx, 2 * ry);
+    }
+    case 'line':
+      return [
+        [n('x1'), n('y1')],
+        [n('x2'), n('y2')],
+      ];
+    case 'polygon':
+    case 'polyline': {
+      const values = numbersIn(getAttr(node, 'points') ?? '');
+      const points: Point[] = [];
+      for (let i = 0; i + 1 < values.length; i += 2) {
+        points.push([values[i] ?? 0, values[i + 1] ?? 0]);
+      }
+      return points;
+    }
+    case 'path':
+      return pathPoints(getAttr(node, 'd') ?? '');
+    default:
+      throw new Error(`unsupported element <${node.tag}>`);
+  }
+}
+
+// --- Paints -----------------------------------------------------------------
+
+interface WeightedColor {
+  /** `undefined` for `currentColor`: themed by the consumer, never fixed. */
+  readonly rgb: Rgb | undefined;
+  readonly weight: number;
+}
+
+/** One painted fill or stroke, in paint order. */
+interface Layer {
+  readonly colors: readonly WeightedColor[];
+  /** Fraction of the viewBox width and height the shape spans (fills only). */
+  readonly span: number;
+}
+
+/** Inherited paint state while walking the tree. */
+interface Context {
+  readonly fill: string;
+  readonly stroke: string;
+  readonly fillOpacity: number;
+  readonly strokeOpacity: number;
+  /** Product of the ancestors' (non-inherited) `opacity`. */
+  readonly opacity: number;
+  readonly matrix: Matrix;
+}
+
+/** `opacity`-style attribute (number or percentage), clamped to 0…1. */
+function opacityOf(node: XmlNode, name: string, fallback = 1): number {
+  const value = getAttr(node, name);
+  if (value === undefined) {
+    return fallback;
+  }
+  const number = Number.parseFloat(value) / (value.endsWith('%') ? 100 : 1);
+  if (!Number.isFinite(number)) {
+    throw new Error(`malformed ${name} ${JSON.stringify(value)}`);
+  }
+  return Math.min(1, Math.max(0, number));
+}
+
+class Painter {
+  readonly ids = new Map<string, XmlNode>();
+  readonly layers: Layer[] = [];
+  readonly viewBox: readonly [number, number, number, number];
+
+  constructor(root: XmlNode) {
+    const viewBox = parseViewBox(getAttr(root, 'viewBox') ?? '');
+    if (viewBox === undefined) {
+      throw new Error('missing or malformed viewBox');
+    }
+    this.viewBox = viewBox;
+    this.collectIds(root);
+  }
+
+  collectIds(node: XmlNode): void {
+    const id = getAttr(node, 'id');
+    if (id !== undefined) {
+      this.ids.set(id, node);
+    }
+    for (const child of node.children) {
+      this.collectIds(child);
+    }
+  }
+
+  /** `#id` or `url(#id)` → the referenced element. */
+  resolve(ref: string): XmlNode {
+    const match = /^(?:url\(\s*#([^)\s]+)\s*\)|#(.+))$/.exec(ref.trim());
+    const target = this.ids.get(match?.[1] ?? match?.[2] ?? '');
+    if (target === undefined) {
+      throw new Error(`unresolved reference ${JSON.stringify(ref)}`);
+    }
+    return target;
+  }
+
+  /** The `<stop>`s of a gradient, following `href` templates. */
+  stops(gradient: XmlNode, depth = 0): readonly XmlNode[] {
+    const stops = gradient.children.filter(child => child.tag === 'stop');
+    const href = getAttr(gradient, 'href') ?? getAttr(gradient, 'xlink:href');
+    if (stops.length > 0 || href === undefined) {
+      return stops;
+    }
+    if (depth > 8) {
+      throw new Error('gradient href chain too deep (cycle?)');
+    }
+    return this.stops(this.resolve(href), depth + 1);
+  }
+
+  /** Colours one fill or stroke value paints, with their weights. */
+  colors(paint: string, weight: number): WeightedColor[] {
+    if (paint === 'none' || paint === 'transparent' || weight === 0) {
+      return [];
+    }
+    if (paint === 'currentColor') {
+      return [{ rgb: undefined, weight }];
+    }
+    if (!paint.startsWith('url(')) {
+      return [{ rgb: parseColor(paint), weight }];
+    }
+    const server = this.resolve(paint);
+    if (server.tag !== 'linearGradient' && server.tag !== 'radialGradient') {
+      throw new Error(`unsupported paint server <${server.tag}>`);
+    }
+    const stops = this.stops(server);
+    return stops.map(stop => ({
+      rgb: parseColor(getAttr(stop, 'stop-color') ?? 'black'),
+      weight: (weight * opacityOf(stop, 'stop-opacity')) / stops.length,
+    }));
+  }
+
+  /** Fraction of the viewBox the transformed points span (min of x and y). */
+  span(points: readonly Point[], matrix: Matrix): number {
+    const [left, top, width, height] = this.viewBox;
+    const mapped = points.map(point => apply(matrix, point));
+    const extent = (axis: 0 | 1, from: number, size: number): number => {
+      const values = mapped.map(point => point[axis]);
+      const low = Math.max(from, Math.min(...values));
+      const high = Math.min(from + size, Math.max(...values));
+      return Math.max(0, high - low) / size;
+    };
+    return Math.min(extent(0, left, width), extent(1, top, height));
+  }
+
+  walk(node: XmlNode, parent: Context, using: readonly XmlNode[] = []): void {
+    if (NON_RENDERED.has(node.tag) || node.tag === 'stop') {
+      return;
+    }
+    const context = inherit(node, parent);
+    if (node.tag === 'use') {
+      const target = this.resolve(
+        getAttr(node, 'href') ?? getAttr(node, 'xlink:href') ?? '',
+      );
+      if (using.includes(target)) {
+        throw new Error('circular <use> reference');
+      }
+      // A referenced <symbol> renders its children; anything else, itself.
+      const rendered = target.tag === 'symbol' ? target.children : [target];
+      for (const child of rendered) {
+        this.walk(child, context, [...using, target]);
+      }
+    } else if (GROUPS.has(node.tag)) {
+      for (const child of node.children) {
+        this.walk(child, context, using);
+      }
+    } else {
+      this.paint(node, context);
+    }
+  }
+
+  /** Records the fill and stroke layers of a shape element. */
+  paint(node: XmlNode, context: Context): void {
+    const points = shapePoints(node);
+    const { opacity } = context;
+    const fill = this.colors(context.fill, opacity * context.fillOpacity);
+    if (fill.length > 0) {
+      const span = this.span(points, context.matrix);
+      this.layers.push({ colors: fill, span });
+    }
+    const stroke = this.colors(context.stroke, opacity * context.strokeOpacity);
+    if (stroke.length > 0) {
+      this.layers.push({ colors: stroke, span: 0 });
+    }
+  }
+}
+
+/** The paint state of `node`, inheriting from its parent's. */
+function inherit(node: XmlNode, parent: Context): Context {
+  let matrix = multiply(parent.matrix, transformMatrix(node));
+  if (node.tag === 'use') {
+    const x = Number(getAttr(node, 'x') ?? 0);
+    const y = Number(getAttr(node, 'y') ?? 0);
+    matrix = multiply(matrix, [1, 0, 0, 1, x, y]);
+  }
+  return {
+    fill: getAttr(node, 'fill') ?? parent.fill,
+    stroke: getAttr(node, 'stroke') ?? parent.stroke,
+    fillOpacity: opacityOf(node, 'fill-opacity', parent.fillOpacity),
+    strokeOpacity: opacityOf(node, 'stroke-opacity', parent.strokeOpacity),
+    opacity: parent.opacity * opacityOf(node, 'opacity'),
+    matrix,
+  };
+}
+
+function shares(layers: readonly Layer[]): ToneShares {
+  let weight = 0;
+  let dark = 0;
+  let light = 0;
+  for (const { rgb, weight: w } of layers.flatMap(layer => layer.colors)) {
+    weight += w;
+    if (rgb !== undefined && isNearBlack(rgb)) {
+      dark += w;
+    } else if (rgb !== undefined && isNearWhite(rgb)) {
+      light += w;
+    }
+  }
+  return weight === 0
+    ? { dark: 0, light: 0, weight: 0 }
+    : { dark: dark / weight, light: light / weight, weight };
+}
+
+/** Measures a parsed SVG (`VariantSource.root` from the icon loader). */
+export function analyzeTone(root: XmlNode): ToneAnalysis {
+  const painter = new Painter(root);
+  painter.walk(root, {
+    fill: 'black',
+    stroke: 'none',
+    fillOpacity: 1,
+    strokeOpacity: 1,
+    opacity: 1,
+    matrix: IDENTITY,
+  });
+  const { layers } = painter;
+  const container = layers.find(layer => layer.span >= CONTAINER_SPAN);
+  const overall = shares(layers);
+  if (container === undefined || layers.length < 2) {
+    return { container: undefined, ink: overall, overall };
+  }
+  return {
+    container: shares([container]),
+    ink: shares(layers.filter(layer => layer !== container)),
+    overall,
+  };
+}
+
+/**
+ * Whether the artwork is dominated by `tone`, i.e. mostly vanishes on a
+ * background of that tone: its container (if any) blends into the
+ * background and so does most of the remaining ink.
+ */
+export function isDominatedBy(analysis: ToneAnalysis, tone: Tone): boolean {
+  const { container, ink } = analysis;
+  return (
+    (container === undefined || container[tone] >= DOMINANT_SHARE) &&
+    ink[tone] >= DOMINANT_SHARE
+  );
+}
+
+/**
+ * Whether every fixed paint of the artwork is of one `tone`: a black-only
+ * (or white-only) mark with no brand colour to lose, whose Mono variant in a
+ * contrasting `color` is the brand's reversed mark.
+ */
+export function isMonochrome(analysis: ToneAnalysis, tone: Tone): boolean {
+  return analysis.overall.weight > 0 && analysis.overall[tone] > 1 - 1e-9;
+}
+
+const PAINT_ATTRS = new Set(['fill', 'stroke', 'stop-color']);
+
+function stripPaint(node: XmlNode): XmlNode {
+  return {
+    tag: node.tag,
+    attrs: node.attrs.filter(([name]) => !PAINT_ATTRS.has(name)),
+    children: node.children.map(stripPaint),
+  };
+}
+
+/** The SVG without its paint colours, to compare shapes across variants. */
+export function geometryOf(root: XmlNode): string {
+  return serializeSvg(stripPaint(root));
+}
