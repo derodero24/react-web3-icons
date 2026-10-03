@@ -71,8 +71,11 @@ jobs:
               return JSON.stringify(pkg);
             };
 
+            // A rename reports its destination in `filename` and its source in
+            // `previous_filename`; check both so moving a published input out
+            // of a tracked path still counts as a change.
             const changed = files
-              .map(f => f.filename)
+              .flatMap(f => (f.previous_filename ? [f.filename, f.previous_filename] : [f.filename]))
               .filter(f => PACKAGE_INPUTS.some(match => match(f)));
             if (files.some(f => f.filename === 'package.json')) {
               const { base, head } = context.payload.pull_request;
