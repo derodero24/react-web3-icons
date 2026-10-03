@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Path sourced from @web3icons/react (MIT) — world network SVG
+// Source: @web3icons/react (MIT) — world network SVG
+// Legacy artwork: path sourced from @web3icons/react (MIT) — world network SVG
+// The current World favicon (https://world.org/favicon/safari-pinned-tab.svg) has a thicker ring and strokes; no mark-only official SVG was found (#836)
 /** Wld coin icon (colored). */
 export const Wld = /* @__PURE__ */ createIcon(
   'Wld',

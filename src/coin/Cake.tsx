@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Source: https://pancakeswap.finance
+// Source: https://docs.pancakeswap.finance/welcome-to-pancakeswap/about-us/brand (official brand page; PancakeSwap Logos.zip, file CAKE Token/cake-token.svg)
+// Colored: renders identically to the official cake-token.svg of the PancakeSwap brand kit (audited in #836)
 /** Cake coin icon (colored). */
 export const Cake = /* @__PURE__ */ createIcon(
   'Cake',

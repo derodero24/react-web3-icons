@@ -1,7 +1,11 @@
 {
   "name": "Busd",
   "source": [
-    "https://binance.com"
+    "legacy artwork of unidentified origin (not an official Paxos or Binance file)"
+  ],
+  "notes": [
+    "Legacy artwork: no matching official or third-party source was identified",
+    "BUSD is discontinued: Paxos no longer mints it (https://paxos.com/busd/) and Binance ended support in December 2023; deprecation is tracked in #815"
   ],
   "kind": "icon",
   "variants": {
