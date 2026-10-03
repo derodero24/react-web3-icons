@@ -16,5 +16,8 @@
         "as": "CronosMono"
       }
     ]
-  }
+  },
+  "chainIds": [
+    25
+  ]
 }

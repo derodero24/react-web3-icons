@@ -197,8 +197,8 @@ Next steps:
       : ` Add a Mono variant (icons/${category}/${slug}.mono.svg + "Mono" entry in the JSON),
      then re-run: pnpm run generate-icons — mono coverage is enforced by tests.
   2.`
-  } Register identifiers in src/meta/index.ts (slug/ticker/chain ID map for '${category}').
-  ${monoPath ? '2.' : '3.'} Regenerate the manifest: pnpm run generate-manifest
-  ${monoPath ? '3.' : '4.'} Verify: pnpm test && pnpm run check
-  ${monoPath ? '4.' : '5.'} Add a changeset: pnpm changeset
+  } For a dynamic category, add lookup keys ("slugs" / "chainIds" / "tickers") to
+     icons/${category}/${slug}.json and re-run: pnpm run generate-icons
+  ${monoPath ? '2.' : '3.'} Verify: pnpm test && pnpm run check
+  ${monoPath ? '3.' : '4.'} Add a changeset: pnpm changeset
 `);

@@ -72,8 +72,14 @@ const iconName: IconName = 'Ethereum';
 const chainId: ChainId = 1;
 const firstEntry: IconManifestEntry | undefined = ICON_MANIFEST[0];
 
+// The set holds icon names but still accepts any string (backward compatible).
+const deprecatedNames: readonly IconName[] = [...DEPRECATED_ICON_NAMES];
+const anyName: string = firstEntry?.name ?? '';
+
 export const values: readonly unknown[] = [
   DEPRECATED_ICON_NAMES.has(iconName),
+  DEPRECATED_ICON_NAMES.has(anyName),
+  deprecatedNames,
   DEPRECATED_FROM_SUBPATH.size,
   CHAIN_ID_TO_NAME[chainId],
   firstEntry?.category,

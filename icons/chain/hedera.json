@@ -12,5 +12,8 @@
       "file": "hedera.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "hedera"
+  ]
 }

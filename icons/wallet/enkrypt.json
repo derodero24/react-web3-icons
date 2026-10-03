@@ -13,5 +13,8 @@
       "file": "enkrypt.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "enkrypt"
+  ]
 }

@@ -16,5 +16,8 @@
   },
   "aliases": [
     "gnosis"
+  ],
+  "slugs": [
+    "safe"
   ]
 }

@@ -13,5 +13,8 @@
       "file": "red-stone.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "redstone"
+  ]
 }

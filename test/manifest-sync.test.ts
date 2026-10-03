@@ -51,66 +51,34 @@ const CATEGORY_MODULES = {
 
 const FORWARD_REF = Symbol.for('react.forward_ref');
 
-function invert(map: Record<string, string>): Map<string, number | string> {
-  const out = new Map<string, number | string>();
-  for (const [key, name] of Object.entries(map)) {
-    if (!out.has(name)) {
-      out.set(name, /^\d+$/.test(key) ? Number(key) : key);
-    }
-  }
-  return out;
-}
+type IdField = 'chainId' | 'slug' | 'ticker';
 
-const ID_LOOKUPS: Partial<
+/** The meta maps behind each manifest identifier field. */
+const ID_MAPS: Partial<
   Record<
     keyof typeof CATEGORY_MODULES,
-    Partial<Record<'chainId' | 'slug' | 'ticker', Map<string, number | string>>>
+    Partial<Record<IdField, Readonly<Record<string, string>>>>
   >
 > = {
-  chain: {
-    chainId: invert(meta.CHAIN_ID_TO_NAME),
-    slug: invert(meta.CHAIN_SLUG_TO_NAME),
-  },
-  coin: { ticker: invert(meta.TICKER_TO_COIN) },
-  wallet: { slug: invert(meta.WALLET_SLUG_TO_NAME) },
-  exchange: { slug: invert(meta.EXCHANGE_SLUG_TO_NAME) },
-  defi: { slug: invert(meta.DEFI_SLUG_TO_NAME) },
-  dex: { slug: invert(meta.DEX_SLUG_TO_NAME) },
-  bridge: { slug: invert(meta.BRIDGE_SLUG_TO_NAME) },
-  oracle: { slug: invert(meta.ORACLE_SLUG_TO_NAME) },
+  chain: { chainId: meta.CHAIN_ID_TO_NAME, slug: meta.CHAIN_SLUG_TO_NAME },
+  coin: { ticker: meta.TICKER_TO_COIN },
+  wallet: { slug: meta.WALLET_SLUG_TO_NAME },
+  exchange: { slug: meta.EXCHANGE_SLUG_TO_NAME },
+  defi: { slug: meta.DEFI_SLUG_TO_NAME },
+  dex: { slug: meta.DEX_SLUG_TO_NAME },
+  bridge: { slug: meta.BRIDGE_SLUG_TO_NAME },
+  oracle: { slug: meta.ORACLE_SLUG_TO_NAME },
 };
-
-interface MutableEntry {
-  name: string;
-  category: IconManifestEntry['category'];
-  chainId?: number;
-  slug?: string;
-  ticker?: string;
-  deprecated?: true;
-}
 
 function deriveEntry(
   name: string,
   category: keyof typeof CATEGORY_MODULES,
 ): IconManifestEntry {
-  const entry: MutableEntry = { name, category };
-  const lookups = ID_LOOKUPS[category];
-  for (const [field, byName] of Object.entries(lookups ?? {})) {
-    const id = byName.get(name);
-    if (id !== undefined) {
-      if (field === 'chainId') {
-        entry.chainId = id as number;
-      } else if (field === 'slug') {
-        entry.slug = id as string;
-      } else {
-        entry.ticker = id as string;
-      }
-    }
-  }
-  if (DEPRECATED_ICON_NAMES.has(name)) {
-    entry.deprecated = true;
-  }
-  return entry;
+  return {
+    name,
+    category,
+    ...(DEPRECATED_ICON_NAMES.has(name) ? { deprecated: true } : {}),
+  };
 }
 
 /** Same derivation as scripts/build-icons/manifest.ts, but from src modules. */
@@ -132,14 +100,13 @@ function deriveExpected(): IconManifestEntry[] {
   return entries;
 }
 
-function baseProjection(entry: IconManifestEntry): IconManifestEntry {
-  const { variants, aliases, brandColor, ...base } =
-    entry as IconManifestEntry & {
-      variants?: readonly string[];
-      aliases?: readonly string[];
-      brandColor?: string;
-    };
-  return base;
+/** The entry without the fields derived from lookup keys and artwork. */
+function baseProjection({
+  name,
+  category,
+  deprecated,
+}: IconManifestEntry): IconManifestEntry {
+  return { name, category, ...(deprecated ? { deprecated } : {}) };
 }
 
 /**
@@ -260,6 +227,24 @@ describe('Icon manifest sync', () => {
         );
       }
       expect(brandColorProblem(entry, unit), entry.name).toBeUndefined();
+    }
+  });
+
+  it('identifier fields are lookup keys of their entry, and every target has one', () => {
+    for (const entry of ICON_MANIFEST) {
+      for (const field of ['chainId', 'slug', 'ticker'] as const) {
+        const map = ID_MAPS[entry.category]?.[field];
+        if (map === undefined) {
+          continue;
+        }
+        const id = entry[field];
+        const label = `${entry.category}/${entry.name} ${field}`;
+        if (id === undefined) {
+          expect(Object.values(map), label).not.toContain(entry.name);
+        } else {
+          expect(map[String(id)], label).toBe(entry.name);
+        }
+      }
     }
   });
 

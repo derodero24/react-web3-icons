@@ -13,5 +13,8 @@
       "file": "safe-protocol.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "safeprotocol"
+  ]
 }

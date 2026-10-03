@@ -66,5 +66,21 @@
   },
   "aliases": [
     "arb1"
-  ]
+  ],
+  "slugs": [
+    "arbitrum"
+  ],
+  "chainIds": [
+    42161
+  ],
+  "variantLookups": {
+    "Nova": {
+      "slugs": [
+        "arbitrum-nova"
+      ],
+      "chainIds": [
+        42170
+      ]
+    }
+  }
 }

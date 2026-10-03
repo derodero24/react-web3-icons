@@ -13,5 +13,8 @@
       "file": "para-swap.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "paraswap"
+  ]
 }

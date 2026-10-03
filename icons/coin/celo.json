@@ -16,5 +16,8 @@
         "as": "CeloMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "CELO"
+  ]
 }

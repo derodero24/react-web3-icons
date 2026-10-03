@@ -13,5 +13,11 @@
       "file": "fraxtal.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "fraxtal"
+  ],
+  "chainIds": [
+    252
+  ]
 }

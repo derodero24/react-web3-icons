@@ -33,8 +33,7 @@ own `engines`.
 | `pnpm test`            | Run tests                       |
 | `pnpm run build`       | Build the package               |
 | `pnpm run new-icon`    | Scaffold a new icon component   |
-| `pnpm run generate-icons` | Regenerate `src/` from `icons/` (`--check`: verify only) |
-| `pnpm run generate-manifest` | Regenerate `src/manifest` (`--check`: verify only) |
+| `pnpm run generate-icons` | Regenerate `src/` (icons, meta, deprecated set, manifest) from `icons/` (`--check`: verify only) |
 | `pnpm run optimize:svg`| Optimize an SVG with SVGO       |
 | `pnpm run check:svgo`  | List icon SVGs SVGO would still change |
 
@@ -88,9 +87,8 @@ pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.s
 This optimizes the SVG with SVGO, normalizes the root element (sizing and
 metadata attributes are dropped; inherited presentation attributes such as a
 root `stroke` move onto a wrapping `<g>`), writes `icons/<category>/<slug>.svg`
-and `<slug>.json`, and regenerates `src/<category>/` (the input SVGs are only
-read, never modified). Follow the printed next steps (meta maps, manifest,
-changeset).
+and `<slug>.json`, and regenerates `src/` (the input SVGs are only read,
+never modified). Follow the printed next steps (lookup keys, changeset).
 
 ### Anatomy of an icon unit
 
@@ -124,11 +122,53 @@ icons/chain/ethereum.json         # metadata:
 - Every `url(#…)` / `href="#…"` must point at an `id` defined in the same
   file, and ids must be unique within it; the generator fails otherwise.
 - `deprecated` (map of export name → message) marks deprecated artwork exports.
+  Together with the deprecated `aliasConst` / `localAliases` entries it is the
+  source of `DEPRECATED_ICON_NAMES` (`src/deprecated.ts`, generated).
 - Unit files are validated strictly (unknown keys are errors, names must be
   PascalCase identifiers, comments single-line). `icons/schema.json` is the
   matching JSON Schema, generated from `scripts/build-icons/unit.ts`; add
   `"$schema": "../schema.json"` to a unit (`new-icon` does) for editor
   completion and validation.
+
+### Lookup keys vs. search aliases
+
+`icons/` is the only source of the identifier data in `src/meta`,
+`src/manifest` and the dynamic components; never edit those generated files.
+A unit declares two different kinds of names:
+
+- **Lookup keys** are exact identifiers that `react-web3-icons/meta` and the
+  dynamic components (`<ChainIcon name>`, `<CoinIcon symbol>`, …) resolve to
+  the unit's export. Which ones a unit may declare depends on its category:
+
+  | Category | Field | Map |
+  | --- | --- | --- |
+  | `chain` | `chainIds` (EVM chain IDs), `slugs` | `CHAIN_ID_TO_NAME`, `CHAIN_SLUG_TO_NAME` |
+  | `coin` | `tickers` (uppercase) | `TICKER_TO_COIN` |
+  | `wallet`, `exchange`, `defi`, `dex`, `bridge`, `oracle` | `slugs` (lowercase kebab-case) | `<CATEGORY>_SLUG_TO_NAME` |
+
+  Keys are never inferred from the file name or `name` (`coin/mon.json` is
+  `Monad` with ticker `MON`; `coin/btc.json` is `Btc`), so every unit of
+  these categories lists its keys explicitly — a test fails for any
+  non-deprecated icon no key resolves to. A key must be unique within its
+  map (the generator fails otherwise), may not point at a deprecated export,
+  and the unit must also export `<Name>Mono`. Legacy names of a rebrand stay
+  as extra keys on the new unit (`"slugs": ["kaia", "klaytn"]`); the first key
+  of each field is the primary one the manifest lists. Keys of a non-default
+  variant go in `variantLookups` (`"Nova": { "chainIds": [42170] }` →
+  `ArbitrumNova`).
+- **`aliases`** are extra lowercase search terms for the manifest (icon
+  pickers, fuzzy search). They are never resolved by the dynamic components
+  and need not be unique.
+
+```json
+{
+  "name": "Kaia",
+  "kind": "icon",
+  "variants": { "": { "file": "kaia.svg" }, "Mono": { "file": "kaia.mono.svg", "fill": "currentColor" } },
+  "slugs": ["kaia", "klaytn"],
+  "chainIds": [8217]
+}
+```
 
 ### Aliases and re-exports
 
@@ -155,19 +195,20 @@ generator emits `/** @deprecated … */ export const Old = New;` (see
 ### Regenerating
 
 ```sh
-pnpm run generate-icons     # icons/ → src/<category>/, src/dynamic/imports/, icons/schema.json
-pnpm run generate-manifest  # icons/ + src/meta + src/deprecated.ts → src/manifest/
-pnpm run build              # dist + static SVGs + Iconify JSON + manifest.json
+pnpm run generate-icons  # icons/ → src/<category>/, src/dynamic/imports/, src/meta/,
+                         #          src/deprecated.ts, src/manifest/, icons/schema.json
+pnpm run build           # dist + static SVGs + Iconify JSON + manifest.json
 ```
 
-Both generators work from the sources alone (no build needed), compute every
-file in memory before writing, rewrite only files whose content changed, and
-delete generated modules whose unit is gone. With `--check` they write
-nothing and exit 1 if anything would change; CI runs that, so a PR fails when
-`icons/` *or* the generator changed without regenerating.
+The generator works from `icons/` alone (no build needed), computes every
+file in memory before writing, rewrites only files whose content changed,
+and deletes generated modules whose unit is gone. With `--check` it writes
+nothing and exits 1 if anything would change; CI runs that, so a PR fails
+when `icons/` *or* the generator changed without regenerating.
 `test/icons-sync.test.ts` runs the same comparison locally,
 `test/manifest-sync.test.ts` checks the manifest against the actual exports,
-and the snapshot/visual suites verify rendered output.
+`test/meta.test.ts` checks that every icon is reachable through its lookup
+keys, and the snapshot/visual suites verify rendered output.
 
 ## Icon Variant Naming Convention
 
@@ -260,7 +301,8 @@ Use this policy when an icon project rebrands or an export name must change.
 - The previous public name remains as a re-export alias in the same category (for example, `GnosisSafe`).
 - Alias exports must include ``/** @deprecated Use `NewName` instead. */`` JSDoc comments.
 - Keep behavior identical by re-exporting the canonical component instead of duplicating SVG markup.
-- Add the deprecated alias names to `src/deprecated.ts` (`DEPRECATED_ICON_NAMES`) so consuming apps can filter them automatically.
+- Mark the alias exports `deprecated` in the unit JSON; the generator adds them to `DEPRECATED_ICON_NAMES` (`src/deprecated.ts`) so consuming apps can filter them automatically.
+- Move the old lookup keys (slugs, tickers, chain IDs) to the canonical unit as extra keys; lookup keys may not point at deprecated exports.
 
 ### Deprecation and removal timing
 
@@ -379,8 +421,8 @@ regenerating.
 This runs SVGO with the bundled configuration (removes metadata, strips fixed
 dimensions, keeps brand colors, ids, and multi-colored paths), normalizes the
 root element, writes `icons/<category>/<slug>.svg` (+ `.mono.svg`) and
-`<slug>.json`, and regenerates `src/<category>/`. Follow the printed next steps
-(meta maps, manifest, changeset).
+`<slug>.json`, and regenerates `src/`. Follow the printed next steps
+(lookup keys, changeset).
 
 To optimize an SVG without scaffolding a unit:
 

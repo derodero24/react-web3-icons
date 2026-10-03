@@ -13,5 +13,8 @@
       "file": "wormhole.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "wormhole"
+  ]
 }

@@ -13,5 +13,8 @@
       "file": "rocket-pool.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "rocketpool"
+  ]
 }

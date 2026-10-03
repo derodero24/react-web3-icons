@@ -32,5 +32,11 @@
   },
   "aliases": [
     "matic"
+  ],
+  "slugs": [
+    "polygon"
+  ],
+  "chainIds": [
+    137
   ]
 }

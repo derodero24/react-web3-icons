@@ -13,5 +13,8 @@
       "file": "ton.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "ton"
+  ]
 }

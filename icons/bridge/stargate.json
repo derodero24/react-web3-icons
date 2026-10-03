@@ -18,5 +18,8 @@
   },
   "aliases": [
     "stg"
+  ],
+  "slugs": [
+    "stargate"
   ]
 }

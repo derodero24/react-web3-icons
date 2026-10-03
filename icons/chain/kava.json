@@ -13,5 +13,11 @@
       "file": "kava.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "kava"
+  ],
+  "chainIds": [
+    2222
+  ]
 }

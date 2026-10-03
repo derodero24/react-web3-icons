@@ -12,5 +12,8 @@
       "file": "babylon.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "babylon"
+  ]
 }

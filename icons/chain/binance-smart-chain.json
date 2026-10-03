@@ -35,5 +35,11 @@
   "aliases": [
     "bnb",
     "bsc"
+  ],
+  "slugs": [
+    "bsc"
+  ],
+  "chainIds": [
+    56
   ]
 }

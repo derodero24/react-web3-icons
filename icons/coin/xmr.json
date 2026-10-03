@@ -12,5 +12,8 @@
       "file": "xmr.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "XMR"
+  ]
 }

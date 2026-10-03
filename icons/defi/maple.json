@@ -14,5 +14,8 @@
       "file": "maple.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "maple"
+  ]
 }

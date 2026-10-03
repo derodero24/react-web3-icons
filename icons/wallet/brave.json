@@ -10,5 +10,8 @@
       "file": "brave.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "brave"
+  ]
 }

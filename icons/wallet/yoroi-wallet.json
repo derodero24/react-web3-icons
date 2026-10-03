@@ -12,5 +12,8 @@
       "file": "yoroi-wallet.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "yoroiwallet"
+  ]
 }

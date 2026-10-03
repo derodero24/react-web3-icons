@@ -32,5 +32,11 @@
       "file": "avalanche.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "avalanche"
+  ],
+  "chainIds": [
+    43114
+  ]
 }

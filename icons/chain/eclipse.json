@@ -10,5 +10,8 @@
       "file": "eclipse.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "eclipse"
+  ]
 }

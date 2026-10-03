@@ -23,5 +23,8 @@
       "file": "coinbase.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "coinbase"
+  ]
 }

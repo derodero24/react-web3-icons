@@ -12,5 +12,8 @@
       "file": "kas.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "KAS"
+  ]
 }

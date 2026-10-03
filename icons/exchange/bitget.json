@@ -13,5 +13,8 @@
       "file": "bitget.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "bitget"
+  ]
 }

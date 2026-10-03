@@ -12,5 +12,8 @@
       "file": "ltc.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "LTC"
+  ]
 }

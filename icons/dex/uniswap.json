@@ -13,5 +13,8 @@
       "file": "uniswap.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "uniswap"
+  ]
 }

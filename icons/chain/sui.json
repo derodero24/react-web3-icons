@@ -12,5 +12,8 @@
       "file": "sui.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "sui"
+  ]
 }

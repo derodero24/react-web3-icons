@@ -16,5 +16,11 @@
   "aliases": [
     "ron",
     "axie"
+  ],
+  "slugs": [
+    "ronin"
+  ],
+  "chainIds": [
+    2020
   ]
 }

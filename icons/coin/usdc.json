@@ -23,5 +23,8 @@
       "file": "usdc.circle-mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "USDC"
+  ]
 }

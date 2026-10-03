@@ -13,5 +13,8 @@
       "file": "bitfinex.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "bitfinex"
+  ]
 }

@@ -32,5 +32,8 @@
         "as": "StrkSquareMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "STRK"
+  ]
 }

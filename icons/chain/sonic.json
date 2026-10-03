@@ -16,5 +16,11 @@
   "aliases": [
     "s",
     "fantom"
+  ],
+  "slugs": [
+    "sonic"
+  ],
+  "chainIds": [
+    146
   ]
 }

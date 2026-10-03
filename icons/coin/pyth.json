@@ -13,5 +13,8 @@
       "file": "pyth.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "PYTH"
+  ]
 }

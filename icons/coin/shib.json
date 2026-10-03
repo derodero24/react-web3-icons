@@ -12,5 +12,8 @@
       "file": "shib.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "SHIB"
+  ]
 }

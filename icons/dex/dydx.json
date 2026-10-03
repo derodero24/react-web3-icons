@@ -20,5 +20,8 @@
       "file": "dydx.square-mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "dydx"
+  ]
 }

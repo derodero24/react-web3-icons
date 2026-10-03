@@ -16,5 +16,8 @@
   },
   "aliases": [
     "okb"
+  ],
+  "slugs": [
+    "okx"
   ]
 }

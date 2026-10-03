@@ -12,5 +12,8 @@
       "file": "uniswap-wallet.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "uniswapwallet"
+  ]
 }

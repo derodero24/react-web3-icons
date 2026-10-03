@@ -13,5 +13,8 @@
       "file": "fil.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "FIL"
+  ]
 }

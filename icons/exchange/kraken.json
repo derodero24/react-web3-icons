@@ -13,5 +13,8 @@
       "file": "kraken.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "kraken"
+  ]
 }

@@ -12,5 +12,8 @@
       "file": "bch.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "BCH"
+  ]
 }

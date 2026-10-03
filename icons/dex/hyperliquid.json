@@ -13,5 +13,8 @@
       "file": "hyperliquid.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "hyperliquid"
+  ]
 }

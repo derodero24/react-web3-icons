@@ -24,5 +24,8 @@
         "as": "BtcMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "BTC"
+  ]
 }

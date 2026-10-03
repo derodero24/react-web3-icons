@@ -24,5 +24,8 @@
         "as": "AdaMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "ADA"
+  ]
 }

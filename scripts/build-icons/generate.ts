@@ -4,6 +4,9 @@
  *   src/<category>/<Name>.tsx       one module per unit (custom units excepted)
  *   src/<category>/index.ts         the category barrel
  *   src/dynamic/imports/<cat>.ts    per-icon lazy import maps
+ *   src/meta/index.ts               lookup maps (slugs, chain IDs, tickers)
+ *   src/deprecated.ts               DEPRECATED_ICON_NAMES
+ *   src/manifest/index.ts           ICON_MANIFEST
  *   icons/schema.json               JSON Schema of the unit definitions
  */
 
@@ -15,7 +18,10 @@ import {
   emitDynamicImports,
   generateCategory,
   loadCategory,
+  type SourceUnit,
 } from './lib.ts';
+import { buildManifest, renderManifestModule } from './manifest.ts';
+import { collectLookups, emitDeprecated, emitMeta } from './meta.ts';
 import type { Outputs } from './outputs.ts';
 import { UNIT_JSON_SCHEMA } from './unit.ts';
 
@@ -31,8 +37,10 @@ export function generateIconSources(root: string, format: Formatter): Outputs {
     files.set(path, format(path, content));
   };
 
+  const allUnits: SourceUnit[] = [];
   for (const category of CATEGORIES) {
     const units = loadCategory(iconsDir, category);
+    allUnits.push(...units);
     const generated = generateCategory(units);
     for (const unit of units) {
       const path = `src/${category}/${unit.meta.name}.tsx`;
@@ -51,6 +59,9 @@ export function generateIconSources(root: string, format: Formatter): Outputs {
       );
     }
   }
+  add('src/meta/index.ts', emitMeta(collectLookups(allUnits)));
+  add('src/deprecated.ts', emitDeprecated(allUnits));
+  add('src/manifest/index.ts', renderManifestModule(buildManifest(allUnits)));
   files.set(
     'icons/schema.json',
     `${JSON.stringify(UNIT_JSON_SCHEMA, null, 2)}\n`,
@@ -61,6 +72,8 @@ export function generateIconSources(root: string, format: Formatter): Outputs {
     ownedDirs: [
       ...CATEGORIES.map(category => `src/${category}`),
       'src/dynamic/imports',
+      'src/meta',
+      'src/manifest',
     ],
     keep,
   };

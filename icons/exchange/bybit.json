@@ -14,5 +14,8 @@
     "Mono": {
       "file": "bybit.mono.svg"
     }
-  }
+  },
+  "slugs": [
+    "bybit"
+  ]
 }

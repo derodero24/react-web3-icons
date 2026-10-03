@@ -16,5 +16,8 @@
   },
   "aliases": [
     "1inch"
+  ],
+  "slugs": [
+    "oneinch"
   ]
 }

@@ -13,5 +13,11 @@
       "file": "metis.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "metis"
+  ],
+  "chainIds": [
+    1088
+  ]
 }

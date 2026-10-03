@@ -16,5 +16,8 @@
         "as": "HypeMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "HYPE"
+  ]
 }

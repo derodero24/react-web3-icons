@@ -12,5 +12,11 @@
       "file": "sei.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "sei"
+  ],
+  "chainIds": [
+    1329
+  ]
 }

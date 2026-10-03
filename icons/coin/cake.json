@@ -12,5 +12,8 @@
       "file": "cake.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "CAKE"
+  ]
 }

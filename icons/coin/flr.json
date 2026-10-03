@@ -17,5 +17,8 @@
         "target": "FlareMono"
       }
     ]
-  }
+  },
+  "tickers": [
+    "FLR"
+  ]
 }

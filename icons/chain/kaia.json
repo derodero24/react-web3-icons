@@ -15,5 +15,12 @@
   },
   "aliases": [
     "klaytn"
+  ],
+  "slugs": [
+    "kaia",
+    "klaytn"
+  ],
+  "chainIds": [
+    8217
   ]
 }

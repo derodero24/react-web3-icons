@@ -16,5 +16,8 @@
   },
   "aliases": [
     "lz"
+  ],
+  "slugs": [
+    "layerzero"
   ]
 }

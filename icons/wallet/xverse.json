@@ -13,5 +13,8 @@
       "file": "xverse.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "xverse"
+  ]
 }

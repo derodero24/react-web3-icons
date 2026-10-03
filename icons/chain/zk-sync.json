@@ -32,5 +32,11 @@
   },
   "aliases": [
     "zk"
+  ],
+  "slugs": [
+    "zksync"
+  ],
+  "chainIds": [
+    324
   ]
 }

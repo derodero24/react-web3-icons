@@ -13,5 +13,8 @@
       "file": "tangem.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "tangem"
+  ]
 }

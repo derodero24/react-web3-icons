@@ -16,5 +16,8 @@
   },
   "aliases": [
     "atom"
+  ],
+  "slugs": [
+    "cosmos-hub"
   ]
 }

@@ -13,5 +13,8 @@
       "file": "aave.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "aave"
+  ]
 }

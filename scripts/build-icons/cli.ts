@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Regenerates `src/<category>/`, the dynamic import maps and
+ * Regenerates `src/<category>/`, the dynamic import maps, the lookup maps
+ * (`src/meta`), `src/deprecated.ts`, the manifest (`src/manifest`) and
  * `icons/schema.json` from the `icons/` source tree.
  *
  *   pnpm run generate-icons            # write
@@ -22,7 +23,7 @@ const ROOT = resolve(import.meta.dirname, '../..');
 
 runGenerator({
   usage:
-    'Usage: pnpm run generate-icons [--check]\n\nRegenerates src/<category>/, src/dynamic/imports/ and icons/schema.json from icons/.',
+    'Usage: pnpm run generate-icons [--check]\n\nRegenerates src/<category>/, src/dynamic/imports/, src/meta/, src/deprecated.ts,\nsrc/manifest/ and icons/schema.json from icons/.',
   regenerate: 'pnpm run generate-icons',
   root: ROOT,
   build: () => generateIconSources(ROOT, createFormatter(ROOT)),

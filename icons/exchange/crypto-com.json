@@ -13,5 +13,8 @@
       "file": "crypto-com.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "cryptocom"
+  ]
 }

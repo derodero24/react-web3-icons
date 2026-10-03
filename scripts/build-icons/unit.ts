@@ -54,7 +54,22 @@ export interface AliasConstSpec {
 /** Path of the JSON Schema, relative to a unit file. */
 export const SCHEMA_REF = '../schema.json';
 
-interface UnitBase {
+/**
+ * Exact keys under which the dynamic components and `react-web3-icons/meta`
+ * resolve an icon (as opposed to `aliases`, which are fuzzy search terms).
+ * Each key is unique within its category's map; the first one of each kind
+ * is the icon's primary `slug` / `ticker` / `chainId` in the manifest.
+ */
+export interface LookupKeys {
+  /** Lowercase slugs, including legacy names (`klaytn` → `Kaia`). */
+  readonly slugs?: readonly string[];
+  /** EVM chain IDs (chain category). */
+  readonly chainIds?: readonly number[];
+  /** Uppercase ticker symbols (coin category). */
+  readonly tickers?: readonly string[];
+}
+
+interface UnitBase extends LookupKeys {
   /** Optional editor hint; always {@link SCHEMA_REF}. */
   readonly $schema?: typeof SCHEMA_REF;
   /** Canonical PascalCase export name, also the module file name. */
@@ -67,8 +82,13 @@ interface ArtworkFields extends UnitBase {
   readonly variants: Readonly<Record<string, Variant>>;
   /** Export name → deprecation message. */
   readonly deprecated?: Readonly<Record<string, string>>;
-  /** Extra lowercase search terms for the manifest. */
+  /** Extra lowercase search terms for the manifest (not lookup keys). */
   readonly aliases?: readonly string[];
+  /**
+   * Lookup keys of a non-default variant, keyed by its suffix
+   * (`{ "Nova": { "chainIds": [42170] } }` → `ArbitrumNova`).
+   */
+  readonly variantLookups?: Readonly<Record<string, LookupKeys>>;
   readonly reexport?: ReexportSpec;
   /** Extra exports of the unit's own module that name one of its variants. */
   readonly localAliases?: readonly ConstAlias[];
@@ -148,6 +168,27 @@ function field(path: string, key: string): string {
     return `${path}[${JSON.stringify(key)}]`;
   }
   return path.endsWith(':') ? `${path} ${key}` : `${path}.${key}`;
+}
+
+/** An integer between `minimum` and `Number.MAX_SAFE_INTEGER`. */
+function integer(minimum: number, description: string): Rule {
+  return {
+    check: (value, path) => {
+      if (
+        typeof value !== 'number' ||
+        !Number.isSafeInteger(value) ||
+        value < minimum
+      ) {
+        fail(path, `${description}, got ${JSON.stringify(value)}`);
+      }
+    },
+    schema: {
+      type: 'integer',
+      minimum,
+      maximum: Number.MAX_SAFE_INTEGER,
+      description,
+    },
+  };
 }
 
 /** A string matching `pattern`, which must be anchored (`^…$`). */
@@ -287,11 +328,22 @@ const constAliases = arrayOf(
   }),
 );
 
+const LOOKUP_KEYS: Schema<LookupKeys> = {
+  slugs: optional(
+    arrayOf(text(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'a lowercase kebab-case slug')),
+  ),
+  chainIds: optional(arrayOf(integer(1, 'a positive integer chain ID'))),
+  tickers: optional(
+    arrayOf(text(/^[A-Z0-9]+$/, 'an uppercase alphanumeric ticker')),
+  ),
+};
+
 const BASE: Schema<UnitBase> = {
   $schema: optional(literal(SCHEMA_REF)),
   name: identifier,
   source: optional(lines),
   notes: optional(lines),
+  ...LOOKUP_KEYS,
 };
 
 const ARTWORK: Schema<ArtworkFields> = {
@@ -311,6 +363,9 @@ const ARTWORK: Schema<ArtworkFields> = {
   deprecated: optional(recordOf(identifier, message)),
   aliases: optional(
     arrayOf(text(/^[a-z0-9][a-z0-9 .-]*$/, 'a lowercase search term')),
+  ),
+  variantLookups: optional(
+    recordOf(identifier, object<LookupKeys>(LOOKUP_KEYS)),
   ),
   reexport: optional(reexportSpec),
   localAliases: optional(constAliases),

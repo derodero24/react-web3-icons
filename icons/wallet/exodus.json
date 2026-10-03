@@ -13,5 +13,8 @@
       "file": "exodus.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "exodus"
+  ]
 }

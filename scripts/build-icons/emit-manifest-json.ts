@@ -8,14 +8,14 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { CATEGORIES, loadCategory } from './lib.ts';
-import { buildManifest, sourceLookups } from './manifest.ts';
+import { buildManifest } from './manifest.ts';
 
 const ROOT = resolve(import.meta.dirname, '../..');
 
 const units = CATEGORIES.flatMap(category =>
   loadCategory(join(ROOT, 'icons'), category),
 );
-const entries = buildManifest({ units, ...sourceLookups() });
+const entries = buildManifest(units);
 mkdirSync(join(ROOT, 'dist'), { recursive: true });
 writeFileSync(
   join(ROOT, 'dist/manifest.json'),

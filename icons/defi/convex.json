@@ -13,5 +13,8 @@
       "file": "convex.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "convex"
+  ]
 }

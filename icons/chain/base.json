@@ -29,5 +29,11 @@
       "file": "base.circle-mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "base"
+  ],
+  "chainIds": [
+    8453
+  ]
 }

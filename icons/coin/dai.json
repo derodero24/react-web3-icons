@@ -20,5 +20,8 @@
       "file": "dai.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "DAI"
+  ]
 }

@@ -16,5 +16,8 @@
       "file": "frax.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "slugs": [
+    "frax"
+  ]
 }
