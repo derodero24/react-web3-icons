@@ -19,8 +19,9 @@ pnpm install
 - **pnpm** 10.x
 
 Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/activates the required Node version if missing).
-`pnpm install` fails fast on unsupported Node versions: `engine-strict=true` enforces the package's `engines`, and the
-`prepare` script stops on a Node without built-in TypeScript type stripping, which the build scripts need.
+`pnpm install` fails fast on unsupported Node versions: the `prepare` script checks the range above (the build scripts
+run through Node's built-in TypeScript type stripping), and `engine-strict=true` enforces the toolchain dependencies'
+own `engines`.
 
 ### Useful Commands
 

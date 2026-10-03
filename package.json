@@ -139,7 +139,7 @@
     "format": "biome format --write",
     "lint": "biome check",
     "lint:fix": "biome check --write",
-    "prepare": "node -e \"if (!process.features.typescript) { console.error('Node.js 22.18+ is required: scripts/**/*.ts run through its built-in type stripping. Run nvm install.'); process.exit(1); }\" && lefthook install",
+    "prepare": "node -e \"const [major, minor] = process.versions.node.split('.').map(Number); if (!((major === 22 && minor >= 18) || (major === 24 && minor >= 11) || major > 24)) { console.error('Node.js ^22.18.0 || >=24.11.0 is required (found ' + process.version + '); scripts/**/*.ts run through its built-in type stripping. Run nvm install.'); process.exit(1); }\" && lefthook install",
     "prepublishOnly": "pnpm run build",
     "optimize:svg": "svgo --config svgo.config.js",
     "size": "size-limit",

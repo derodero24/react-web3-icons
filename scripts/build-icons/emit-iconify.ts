@@ -72,13 +72,19 @@ function parseViewBox(
   viewBox: string,
   iconName: string,
 ): readonly [number, number, number, number] {
-  const [left, top, width, height, ...rest] = viewBox.split(/\s+/).map(Number);
+  const [left, top, width, height, ...rest] = viewBox
+    .trim()
+    .split(/\s+/)
+    .map(Number);
   if (
     left === undefined ||
     top === undefined ||
     width === undefined ||
     height === undefined ||
-    rest.length > 0
+    rest.length > 0 ||
+    ![left, top, width, height].every(Number.isFinite) ||
+    width <= 0 ||
+    height <= 0
   ) {
     throw new Error(`${iconName}: malformed viewBox "${viewBox}"`);
   }
