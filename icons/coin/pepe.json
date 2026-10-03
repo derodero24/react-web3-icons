@@ -12,5 +12,8 @@
       "file": "pepe.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "PEPE"
+  ]
 }

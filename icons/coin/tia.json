@@ -13,5 +13,8 @@
       "file": "tia.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "tickers": [
+    "TIA"
+  ]
 }

@@ -1,10 +1,19 @@
 import { describe, expect, it } from 'vitest';
+import {
+  CATEGORIES,
+  type Category,
+  DYNAMIC_CATEGORIES,
+  loadCategory,
+} from '../scripts/build-icons/lib.ts';
+import { LOOKUP_MAPS, unitLookups } from '../scripts/build-icons/meta.ts';
 import * as bridge from '../src/bridge';
 import * as chain from '../src/chain';
 import * as coin from '../src/coin';
 import * as defi from '../src/defi';
+import { DEPRECATED_ICON_NAMES } from '../src/deprecated';
 import * as dex from '../src/dex';
 import * as exchange from '../src/exchange';
+import * as meta from '../src/meta';
 import {
   BRIDGE_SLUG_TO_NAME,
   CHAIN_ID_TO_NAME,
@@ -18,6 +27,7 @@ import {
 } from '../src/meta';
 import * as oracle from '../src/oracle';
 import * as wallet from '../src/wallet';
+import { ICONS, isIconComponent } from './helpers/units';
 
 describe('CHAIN_ID_TO_NAME', () => {
   it('maps known EVM chain IDs', () => {
@@ -67,6 +77,8 @@ describe('CHAIN_SLUG_TO_NAME', () => {
     expect(CHAIN_SLUG_TO_NAME.solana).toBe('Solana');
     expect(CHAIN_SLUG_TO_NAME.stacks).toBe('Stacks');
     expect(CHAIN_SLUG_TO_NAME.zora).toBe('Zora');
+    expect(CHAIN_SLUG_TO_NAME.cronos).toBe('Cronos');
+    expect(CHAIN_SLUG_TO_NAME.klaytn).toBe('Kaia');
   });
 
   it('all keys are lowercase', () => {
@@ -91,6 +103,10 @@ describe('TICKER_TO_COIN', () => {
     expect(TICKER_TO_COIN.ETH).toBe('Eth');
     expect(TICKER_TO_COIN.BTC).toBe('Btc');
     expect(TICKER_TO_COIN.SOL).toBe('Sol');
+    expect(TICKER_TO_COIN.DOT).toBe('Dot');
+    expect(TICKER_TO_COIN.HBAR).toBe('Hbar');
+    expect(TICKER_TO_COIN.NEAR).toBe('Near');
+    expect(TICKER_TO_COIN.TON).toBe('Ton');
   });
 
   it('all keys are uppercase', () => {
@@ -253,4 +269,79 @@ describe('ORACLE_SLUG_TO_NAME', () => {
       ).toBe(true);
     }
   });
+});
+
+/**
+ * The `name` / `symbol` lookup of each dynamic category, with the module its
+ * values are exports of. Chain IDs are extra keys of EVM chains only.
+ */
+const NAME_LOOKUPS = [
+  ['chain', chain, CHAIN_SLUG_TO_NAME],
+  ['coin', coin, TICKER_TO_COIN],
+  ['wallet', wallet, WALLET_SLUG_TO_NAME],
+  ['exchange', exchange, EXCHANGE_SLUG_TO_NAME],
+  ['defi', defi, DEFI_SLUG_TO_NAME],
+  ['dex', dex, DEX_SLUG_TO_NAME],
+  ['bridge', bridge, BRIDGE_SLUG_TO_NAME],
+  ['oracle', oracle, ORACLE_SLUG_TO_NAME],
+] as const satisfies readonly (readonly [
+  Category,
+  object,
+  Readonly<Record<string, string>>,
+])[];
+
+/** The generated maps, by name. */
+const GENERATED_MAPS = new Map<string, object>(Object.entries(meta));
+
+const units = CATEGORIES.flatMap(category => loadCategory(ICONS, category));
+
+describe('lookup reachability', () => {
+  it('covers every dynamic category', () => {
+    expect(NAME_LOOKUPS.map(([category]) => category).sort()).toEqual(
+      [...DYNAMIC_CATEGORIES].sort(),
+    );
+  });
+
+  // Every icon a category exports must be reachable from its dynamic
+  // component (`<CoinIcon symbol>`, `<ChainIcon name>`, …): some key has to
+  // resolve to the same component (an alias such as coin `Flr` → `Flare`
+  // counts). Add `slugs` / `tickers` to the unit JSON when this fails.
+  it.each(NAME_LOOKUPS)(
+    'every non-deprecated %s icon resolves through a lookup key',
+    (category, mod, map) => {
+      const exported = new Map<string, unknown>(Object.entries(mod));
+      const reachable = new Set(
+        Object.values(map).map(name => exported.get(name)),
+      );
+      const names = units
+        .filter(unit => unit.category === category)
+        .map(unit => unit.meta.name)
+        .filter(name => !DEPRECATED_ICON_NAMES.has(name));
+      for (const name of names) {
+        expect(isIconComponent(exported.get(name)), name).toBe(true);
+      }
+      expect(names.filter(name => !reachable.has(exported.get(name)))).toEqual(
+        [],
+      );
+    },
+  );
+
+  // The maps are object literals, so a key declared twice would silently
+  // keep one target; the generator rejects that, and the counts prove it.
+  it.each(LOOKUP_MAPS)(
+    'every key declared in icons/ is a distinct $constName key',
+    spec => {
+      const declared = units
+        .filter(unit => unit.category === spec.category)
+        .flatMap(unitLookups)
+        .flatMap(
+          (lookup): readonly (number | string)[] =>
+            lookup.keys[spec.field] ?? [],
+        );
+      expect(declared.length).toBeGreaterThan(0);
+      expect(
+        Object.keys(GENERATED_MAPS.get(spec.constName) ?? {}),
+      ).toHaveLength(declared.length);
+    },
+  );
 });

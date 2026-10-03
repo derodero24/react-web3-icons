@@ -19,5 +19,8 @@
   },
   "chainIds": [
     25
+  ],
+  "slugs": [
+    "cronos"
   ]
 }

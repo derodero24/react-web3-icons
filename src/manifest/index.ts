@@ -306,7 +306,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#ba3fd9',
   },
   { name: 'CosmosHubMono', category: 'chain' },
-  { name: 'Cronos', category: 'chain', chainId: 25 },
+  { name: 'Cronos', category: 'chain', chainId: 25, slug: 'cronos' },
   { name: 'CronosMono', category: 'chain' },
   {
     name: 'Eclipse',
@@ -763,7 +763,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'DogeCircle', category: 'coin' },
   { name: 'DogeCircleMono', category: 'coin' },
   { name: 'DogeMono', category: 'coin' },
-  { name: 'Dot', category: 'coin' },
+  { name: 'Dot', category: 'coin', ticker: 'DOT' },
   { name: 'DotMono', category: 'coin' },
   { name: 'Eigen', category: 'coin', ticker: 'EIGEN' },
   { name: 'EigenMono', category: 'coin' },
@@ -782,6 +782,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Fet',
     category: 'coin',
+    ticker: 'FET',
     variants: ['', 'Mono'],
     brandColor: '#1a1e21',
   },
@@ -808,6 +809,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Hbar',
     category: 'coin',
+    ticker: 'HBAR',
     variants: ['', 'Mono'],
     brandColor: '#000000',
   },
@@ -817,6 +819,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Icp',
     category: 'coin',
+    ticker: 'ICP',
     variants: ['', 'Mono'],
     brandColor: '#46abe3',
   },
@@ -824,6 +827,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Inj',
     category: 'coin',
+    ticker: 'INJ',
     variants: ['', 'Mono'],
     brandColor: '#0082fa',
   },
@@ -873,7 +877,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'MntMono', category: 'coin' },
   { name: 'Monad', category: 'coin', ticker: 'MON' },
   { name: 'MonadMono', category: 'coin' },
-  { name: 'Near', category: 'coin' },
+  { name: 'Near', category: 'coin', ticker: 'NEAR' },
   { name: 'NearMono', category: 'coin' },
   { name: 'Op', category: 'coin', ticker: 'OP' },
   { name: 'OpCircle', category: 'coin' },
@@ -882,6 +886,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Pepe',
     category: 'coin',
+    ticker: 'PEPE',
     variants: ['', 'Mono'],
     brandColor: '#000000',
   },
@@ -925,6 +930,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Stx',
     category: 'coin',
+    ticker: 'STX',
     variants: ['', 'Mono'],
     brandColor: '#7023eb',
   },
@@ -936,11 +942,12 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Tia',
     category: 'coin',
+    ticker: 'TIA',
     variants: ['', 'Mono'],
     brandColor: '#7a2bf9',
   },
   { name: 'TiaMono', category: 'coin' },
-  { name: 'Ton', category: 'coin' },
+  { name: 'Ton', category: 'coin', ticker: 'TON' },
   { name: 'TonMono', category: 'coin' },
   { name: 'Trx', category: 'coin', ticker: 'TRX' },
   { name: 'TrxMono', category: 'coin' },
