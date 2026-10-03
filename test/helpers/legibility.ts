@@ -14,12 +14,15 @@ import {
  *
  *  - **Paints.** Every fill and stroke a rendered shape actually paints
  *    counts once: inherited fills, the initial black fill of shapes that set
- *    none, `<use>` references, and gradient stops reached through `url(#…)`
- *    (following `href` templates). The weight is the paint's effective
- *    opacity, and a gradient splits it evenly across its stops. Mask, clip
- *    path and gradient definitions are skipped: their black and white is
- *    coverage, not ink. Unsupported colour syntax throws, so new artwork
- *    cannot slip past the audit.
+ *    none, `<use>` references (a `<symbol>` in its own paint context), and
+ *    gradient stops reached through `url(#…)` (following `href` templates).
+ *    The weight is the paint's effective opacity times its colour's alpha,
+ *    and a gradient splits it evenly across its stops; paints that end up
+ *    fully transparent are dropped. Lines and outlines without area are
+ *    never filled (their strokes count). Mask, clip path and gradient
+ *    definitions are skipped: their black and white is coverage, not ink.
+ *    Unsupported colour syntax throws, so new artwork cannot slip past the
+ *    audit.
  *  - **Container.** The first fill whose bounding box spans at least
  *    {@link CONTAINER_SPAN} of the viewBox in both directions (a disc,
  *    square, badge or the mark's main body), when there is other artwork,
@@ -88,15 +91,26 @@ const NON_RENDERED = new Set([
 
 const GROUPS = new Set(['g', 'svg']);
 
+/** A parsed colour: sRGB channels plus its alpha (0…1). */
+export interface Color {
+  readonly rgb: Rgb;
+  readonly alpha: number;
+}
+
 /**
- * `#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`, `black` or `white` → RGB. Throws
- * on anything else so that new artwork using another colour syntax fails
- * loudly instead of being skipped.
+ * `#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`, `black`, `white` or
+ * `transparent` → channels and alpha. Throws on anything else (`rgba()`,
+ * `hsla()`, other keywords) so that new artwork using another colour syntax
+ * fails loudly instead of being mismeasured.
  */
-export function parseColor(value: string): Rgb {
-  const named = NAMED_COLORS[value.toLowerCase()];
+export function parseColor(value: string): Color {
+  const keyword = value.toLowerCase();
+  if (keyword === 'transparent') {
+    return { rgb: [0, 0, 0], alpha: 0 };
+  }
+  const named = NAMED_COLORS[keyword];
   if (named) {
-    return named;
+    return { rgb: named, alpha: 1 };
   }
   const hex = /^#([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.exec(value)?.[1];
   if (hex === undefined) {
@@ -104,12 +118,12 @@ export function parseColor(value: string): Rgb {
   }
   const pairs =
     hex.length <= 4
-      ? [...hex.slice(0, 3)].map(digit => digit + digit)
-      : [hex.slice(0, 2), hex.slice(2, 4), hex.slice(4, 6)];
-  const [red = 0, green = 0, blue = 0] = pairs.map(pair =>
+      ? [...hex].map(digit => digit + digit)
+      : (hex.match(/../g) ?? []);
+  const [red = 0, green = 0, blue = 0, alpha = 255] = pairs.map(pair =>
     Number.parseInt(pair, 16),
   );
-  return [red, green, blue];
+  return { rgb: [red, green, blue], alpha: alpha / 255 };
 }
 
 export const isNearBlack = (rgb: Rgb): boolean =>
@@ -378,6 +392,23 @@ const corners = (x: number, y: number, w: number, h: number): Point[] => [
   [x + w, y + h],
 ];
 
+/** Whether the points are not all on one line, i.e. can bound an area. */
+function enclosesArea(points: readonly Point[]): boolean {
+  const [origin] = points;
+  const other = points.find(
+    ([x, y]) => origin !== undefined && (x !== origin[0] || y !== origin[1]),
+  );
+  if (origin === undefined || other === undefined) {
+    return false;
+  }
+  const [ox, oy] = origin;
+  const [ax, ay] = other;
+  return points.some(
+    ([bx, by]) =>
+      Math.abs((ax - ox) * (by - oy) - (ay - oy) * (bx - ox)) > 1e-9,
+  );
+}
+
 /** Untransformed outline points of a shape element. */
 function shapePoints(node: XmlNode): Point[] {
   const n = (name: string): number => Number(getAttr(node, name) ?? 0);
@@ -497,26 +528,36 @@ class Painter {
     return this.stops(this.resolve(href), depth + 1);
   }
 
-  /** Colours one fill or stroke value paints, with their weights. */
+  /**
+   * Colours one fill or stroke value paints, with their weights (opacity ×
+   * colour alpha). Fully transparent colours are dropped, so a paint that
+   * shows nothing yields no colours and records no layer.
+   */
   colors(paint: string, weight: number): WeightedColor[] {
-    if (paint === 'none' || paint === 'transparent' || weight === 0) {
+    return this.weighted(paint, weight).filter(color => color.weight > 0);
+  }
+
+  weighted(paint: string, weight: number): WeightedColor[] {
+    if (paint === 'none') {
       return [];
     }
     if (paint === 'currentColor') {
       return [{ rgb: undefined, weight }];
     }
     if (!paint.startsWith('url(')) {
-      return [{ rgb: parseColor(paint), weight }];
+      const { rgb, alpha } = parseColor(paint);
+      return [{ rgb, weight: weight * alpha }];
     }
     const server = this.resolve(paint);
     if (server.tag !== 'linearGradient' && server.tag !== 'radialGradient') {
       throw new Error(`unsupported paint server <${server.tag}>`);
     }
     const stops = this.stops(server);
-    return stops.map(stop => ({
-      rgb: parseColor(getAttr(stop, 'stop-color') ?? 'black'),
-      weight: (weight * opacityOf(stop, 'stop-opacity')) / stops.length,
-    }));
+    return stops.map(stop => {
+      const { rgb, alpha } = parseColor(getAttr(stop, 'stop-color') ?? 'black');
+      const opacity = opacityOf(stop, 'stop-opacity') * alpha;
+      return { rgb, weight: (weight * opacity) / stops.length };
+    });
   }
 
   /** Fraction of the viewBox the transformed points span (min of x and y). */
@@ -538,17 +579,7 @@ class Painter {
     }
     const context = inherit(node, parent);
     if (node.tag === 'use') {
-      const target = this.resolve(
-        getAttr(node, 'href') ?? getAttr(node, 'xlink:href') ?? '',
-      );
-      if (using.includes(target)) {
-        throw new Error('circular <use> reference');
-      }
-      // A referenced <symbol> renders its children; anything else, itself.
-      const rendered = target.tag === 'symbol' ? target.children : [target];
-      for (const child of rendered) {
-        this.walk(child, context, [...using, target]);
-      }
+      this.use(node, context, using);
     } else if (GROUPS.has(node.tag)) {
       for (const child of node.children) {
         this.walk(child, context, using);
@@ -558,11 +589,39 @@ class Painter {
     }
   }
 
-  /** Records the fill and stroke layers of a shape element. */
+  /** Renders the element a `<use>` (whose paint is `context`) references. */
+  use(node: XmlNode, context: Context, using: readonly XmlNode[]): void {
+    const target = this.resolve(
+      getAttr(node, 'href') ?? getAttr(node, 'xlink:href') ?? '',
+    );
+    if (using.includes(target)) {
+      throw new Error('circular <use> reference');
+    }
+    const inner = [...using, target];
+    if (target.tag !== 'symbol') {
+      this.walk(target, context, inner);
+      return;
+    }
+    // A referenced <symbol> renders its children in its own paint context,
+    // inheriting from the <use>; where it is defined it renders nothing.
+    const symbol = inherit(target, context);
+    for (const child of target.children) {
+      this.walk(child, symbol, inner);
+    }
+  }
+
+  /**
+   * Records the fill and stroke layers of a shape element. `<line>` is never
+   * filled, and an outline without area (a two-point polyline, a straight
+   * path) fills nothing either; their strokes still count.
+   */
   paint(node: XmlNode, context: Context): void {
     const points = shapePoints(node);
     const { opacity } = context;
-    const fill = this.colors(context.fill, opacity * context.fillOpacity);
+    const fill =
+      node.tag === 'line' || !enclosesArea(points)
+        ? []
+        : this.colors(context.fill, opacity * context.fillOpacity);
     if (fill.length > 0) {
       const span = this.span(points, context.matrix);
       this.layers.push({ colors: fill, span });
@@ -656,16 +715,66 @@ export function isMonochrome(analysis: ToneAnalysis, tone: Tone): boolean {
 }
 
 const PAINT_ATTRS = new Set(['fill', 'stroke', 'stop-color']);
+/** Elements whose effective fill/stroke decides what they cover. */
+const PAINTED = new Set([
+  'circle',
+  'ellipse',
+  'line',
+  'path',
+  'polygon',
+  'polyline',
+  'rect',
+  'use',
+]);
 
-function stripPaint(node: XmlNode): XmlNode {
+/** `'none'` when a paint value paints nothing, else `'paint'`. */
+const enablement = (paint: string): string =>
+  paint === 'none' || paint === 'transparent' ? 'none' : 'paint';
+
+interface Inherited {
+  readonly fill: string;
+  readonly stroke: string;
+}
+
+/**
+ * Replaces paint colours with whether each shape's (inherited) fill and
+ * stroke paint at all, so a ring and a disc stay different. Inside a
+ * `<mask>` colours are coverage, so they are kept verbatim.
+ */
+function stripPaint(
+  node: XmlNode,
+  parent: Inherited,
+  inMask: boolean,
+): XmlNode {
+  const masked = inMask || node.tag === 'mask';
+  const inherited: Inherited = {
+    fill: getAttr(node, 'fill') ?? parent.fill,
+    stroke: getAttr(node, 'stroke') ?? parent.stroke,
+  };
+  const attrs = masked
+    ? node.attrs
+    : node.attrs.filter(([name]) => !PAINT_ATTRS.has(name));
+  const effective: XmlNode['attrs'] =
+    !masked && PAINTED.has(node.tag)
+      ? [
+          ['fill', enablement(inherited.fill)],
+          ['stroke', enablement(inherited.stroke)],
+        ]
+      : [];
   return {
     tag: node.tag,
-    attrs: node.attrs.filter(([name]) => !PAINT_ATTRS.has(name)),
-    children: node.children.map(stripPaint),
+    attrs: [...attrs, ...effective],
+    children: node.children.map(child => stripPaint(child, inherited, masked)),
   };
 }
 
-/** The SVG without its paint colours, to compare shapes across variants. */
+/**
+ * The SVG's shapes without their paint colours, to compare geometry across
+ * variants: whether each shape fills and/or strokes is kept (resolved
+ * through inheritance), the colours themselves are not.
+ */
 export function geometryOf(root: XmlNode): string {
-  return serializeSvg(stripPaint(root));
+  return serializeSvg(
+    stripPaint(root, { fill: 'black', stroke: 'none' }, false),
+  );
 }

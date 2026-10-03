@@ -273,13 +273,50 @@ describe('tone analysis', () => {
   const dot = (fill: string): string =>
     `<circle cx="5" cy="5" r="1" fill="${fill}"/>`;
 
-  it('parses hex and keyword colours and rejects others', () => {
-    expect(parseColor('#fff')).toEqual([255, 255, 255]);
-    expect(parseColor('#0008')).toEqual([0, 0, 0]);
-    expect(parseColor('#12345678')).toEqual([0x12, 0x34, 0x56]);
-    expect(parseColor('Black')).toEqual([0, 0, 0]);
-    expect(() => parseColor('rgb(0,0,0)')).toThrow(/unsupported colour/);
-    expect(() => parseColor('red')).toThrow(/unsupported colour/);
+  it('parses hex and keyword colours with alpha and rejects others', () => {
+    expect(parseColor('#fff')).toEqual({ rgb: [255, 255, 255], alpha: 1 });
+    expect(parseColor('#0008')).toEqual({ rgb: [0, 0, 0], alpha: 0x88 / 255 });
+    expect(parseColor('#fff0')).toEqual({ rgb: [255, 255, 255], alpha: 0 });
+    expect(parseColor('#12345678')).toEqual({
+      rgb: [0x12, 0x34, 0x56],
+      alpha: 0x78 / 255,
+    });
+    expect(parseColor('#ffffff00').alpha).toBe(0);
+    expect(parseColor('Black')).toEqual({ rgb: [0, 0, 0], alpha: 1 });
+    expect(parseColor('transparent').alpha).toBe(0);
+    for (const unsupported of [
+      'rgb(0,0,0)',
+      'rgba(0,0,0,0)',
+      'hsla(0,0%,0%,0)',
+      'red',
+    ]) {
+      expect(() => parseColor(unsupported)).toThrow(/unsupported colour/);
+    }
+  });
+
+  it('drops transparent colours, solid or in gradients (regression)', () => {
+    // Fully transparent paints must not dilute the black mark's share.
+    const solid = svg(
+      `${dot('#000')}${dot('#fff0')}${dot('#ffffff00')}${dot('transparent')}`,
+    );
+    expect(solid.overall).toEqual({ dark: 1, light: 0, weight: 1 });
+    expect(isDominatedBy(solid, 'dark')).toBe(true);
+    // Half-transparent white counts half.
+    expect(svg(`${dot('#000')}${dot('#ffffff80')}`).overall.light).toBeCloseTo(
+      0x80 / 255 / (1 + 0x80 / 255),
+    );
+    // A gradient whose stops are all invisible paints no container.
+    const invisible = svg(
+      `<defs><linearGradient id="g"><stop stop-color="#f00" stop-opacity="0"/><stop stop-color="#00f0"/></linearGradient></defs><rect width="10" height="10" fill="url(#g)"/>${dot('#000')}`,
+    );
+    expect(invisible.container).toBeUndefined();
+    expect(invisible.overall).toEqual({ dark: 1, light: 0, weight: 1 });
+    expect(isDominatedBy(invisible, 'dark')).toBe(true);
+    // Stop alpha multiplies stop-opacity.
+    const faded = svg(
+      `<defs><linearGradient id="g"><stop stop-color="#0008" stop-opacity=".5"/></linearGradient></defs><path d="M0 0h1v1z" fill="url(#g)"/>`,
+    );
+    expect(faded.overall.weight).toBeCloseTo((0x88 / 255) * 0.5);
   });
 
   it('counts the initial black fill, inherited fills and strokes', () => {
@@ -337,6 +374,48 @@ describe('tone analysis', () => {
     );
   });
 
+  it('paints a symbol in its own and the <use> paint context (regression)', () => {
+    const own = svg(
+      '<defs><symbol id="s" fill="#fff"><path d="M0 0h1v1z"/></symbol></defs><use href="#s"/>',
+    );
+    expect(own.overall).toEqual({ dark: 0, light: 1, weight: 1 });
+    const fromUse = svg(
+      '<defs><symbol id="s"><path d="M0 0h1v1z"/></symbol></defs><use href="#s" fill="#fff" opacity=".5"/>',
+    );
+    expect(fromUse.overall).toEqual({ dark: 0, light: 1, weight: 0.5 });
+    // The symbol's own paint wins over the <use>'s.
+    const both = svg(
+      '<defs><symbol id="s" fill="#000"><path d="M0 0h1v1z"/></symbol></defs><use href="#s" fill="#fff"/>',
+    );
+    expect(both.overall.dark).toBe(1);
+  });
+
+  it('never fills lines or outlines without area (regression)', () => {
+    const diagonal = '<line x1="0" y1="0" x2="10" y2="10" fill="#f00"/>';
+    // An unstroked line paints nothing, so it cannot be a container.
+    const unstroked = svg(`${diagonal}${dot('#000')}`);
+    expect(unstroked.container).toBeUndefined();
+    expect(unstroked.overall).toEqual({ dark: 1, light: 0, weight: 1 });
+    expect(isDominatedBy(unstroked, 'dark')).toBe(true);
+    // A stroked line paints only its stroke: no default black fill.
+    const stroked = svg('<line x1="0" y1="0" x2="10" y2="10" stroke="#f00"/>');
+    expect(stroked.overall).toEqual({ dark: 0, light: 0, weight: 1 });
+    for (const flat of [
+      '<polyline points="0 0 10 10" fill="#f00"/>',
+      '<path d="M0 0L10 10" fill="#f00"/>',
+      '<path d="M0 0l5 5 5 5z" fill="#f00"/>',
+      '<rect width="10" height="0" fill="#f00"/>',
+    ]) {
+      const measured = svg(`${flat}${dot('#000')}`);
+      expect(measured.container, flat).toBeUndefined();
+      expect(measured.overall.weight, flat).toBe(1);
+    }
+    const polylineStroke = svg(
+      '<polyline points="0 0 10 10" fill="#f00" stroke="#fff"/>',
+    );
+    expect(polylineStroke.overall).toEqual({ dark: 0, light: 1, weight: 1 });
+  });
+
   it('treats a large bottom fill as the container', () => {
     const disc = svg(
       `<circle cx="5" cy="5" r="5" fill="#00f"/>${dot('#fff')}${dot('#fff')}`,
@@ -370,16 +449,20 @@ describe('tone analysis', () => {
     expect(contained('<path d="M0 5a5 5 0 1110 0 5 5 0 01-10 0z"/>')).toBe(
       true,
     );
-    expect(contained('<path d="M0 0a0 0 0 0 0 10 10"/>')).toBe(true);
+    // A zero-radius arc is a straight line: a triangle once closed.
+    expect(contained('<path d="M0 0a0 0 0 0 0 10 10H0z"/>')).toBe(true);
+    expect(contained('<path d="M0 0a0 0 0 0 0 10 10"/>')).toBe(false);
     expect(contained('<path d="M0 5A1 1 0 0 1 10 5L10 10Z"/>')).toBe(true);
     expect(
       contained('<path d="M0 0C10 0 10 10 0 10S0 0 0 0Q5 5 5 5T6 6"/>'),
     ).toBe(true);
     expect(contained('<path d="m0 0 6 0V6h-6v-6M1 1l1 1"/>')).toBe(true);
     expect(contained('<ellipse cx="5" cy="5" rx="5" ry="4"/>')).toBe(true);
-    expect(contained('<line x1="0" y1="0" x2="10" y2="10"/>')).toBe(true);
+    // Lines and two-point polylines have no fill area (see above).
+    expect(contained('<line x1="0" y1="0" x2="10" y2="10"/>')).toBe(false);
     expect(contained('<polygon points="0,0 10,0 10,10"/>')).toBe(true);
-    expect(contained('<polyline points="0 0 10 10"/>')).toBe(true);
+    expect(contained('<polyline points="0 0 10 10"/>')).toBe(false);
+    expect(contained('<polyline points="0 0 10 0 10 10"/>')).toBe(true);
     expect(contained('<rect width="2" height="2" transform="scale(5)"/>')).toBe(
       true,
     );
@@ -427,6 +510,34 @@ describe('tone analysis', () => {
     const c = parseSvg('<svg viewBox="0 0 1 1"><path d="M0 0h1v2z"/></svg>');
     expect(geometryOf(a)).toBe(geometryOf(b));
     expect(geometryOf(a)).not.toBe(geometryOf(c));
+  });
+
+  it('keeps whether shapes fill or stroke in geometry (regression)', () => {
+    const geometry = (root: string, shape: string): string =>
+      geometryOf(parseSvg(`<svg viewBox="0 0 10 10"${root}>${shape}</svg>`));
+    const circle = '<circle cx="5" cy="5" r="4"';
+    const disc = geometry('', `${circle} fill="#000"/>`);
+    const ring = geometry('', `${circle} fill="none" stroke="#000"/>`);
+    expect(ring).not.toBe(disc);
+    // Enablement is resolved through inheritance, colours are ignored.
+    expect(geometry(' fill="currentColor"', `${circle}/>`)).toBe(disc);
+    expect(geometry('', `${circle}/>`)).toBe(disc);
+    expect(geometry(' fill="none" stroke="currentColor"', `${circle}/>`)).toBe(
+      ring,
+    );
+    expect(
+      geometry('', `<g fill="none" stroke="#123">${circle}/></g>`),
+    ).not.toBe(geometry('', `<g fill="#123">${circle}/></g>`));
+    expect(geometry('', `${circle} fill="transparent"/>`)).toBe(
+      geometry('', `${circle} fill="none"/>`),
+    );
+    // Inside a mask, black and white are coverage and stay significant.
+    const mask = (inner: string): string =>
+      geometry(
+        '',
+        `<mask id="m"><rect width="10" height="10" fill="${inner}"/></mask>${circle} mask="url(#m)"/>`,
+      );
+    expect(mask('#fff')).not.toBe(mask('#000'));
   });
 
   it('measures artwork that paints nothing as weightless', () => {
