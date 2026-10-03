@@ -4,7 +4,7 @@ import { createIcon } from '../utils';
 // Source: https://aerodrome.finance/brand-kit/AERO/symbol.svg (official brand kit, https://aerodrome.finance/brand)
 // Colored: the five stacked swooshes of the official favicon.svg unchanged (#0C0D1D, #0433FF, #9CADFF, #F5F3E6, #FF1100, each drawn over the previous one; the stylesheet classes became fill attributes), placed on the 64 grid
 // The brand kit's symbol.svg is the same mark but about 470 KB of path data (119 KB after SVGO), so the compact favicon.svg geometry is used
-// Mono: the same five paths in one colour; drawn over each other they would merge into a single blob, so the stripes alternate ink and hole in the painting order (1st, 3rd, 5th ink; 2nd and 4th knocked out by a mask) to keep the striped swoosh readable
+// Mono: the same five paths in the same painting order inside a mask, so each stripe hides the ones it overlaps as in the colored mark; drawn in one solid colour they would merge into a single blob, so the 1st, 3rd and 5th stripes are full ink and the 2nd and 4th 40% ink (mask fill #666), keeping the striped swoosh and its full silhouette
 /** Aerodrome DEX icon (colored). */
 export const Aerodrome = /* @__PURE__ */ createIcon(
   'Aerodrome',
@@ -50,7 +50,7 @@ export const AerodromeMono = /* @__PURE__ */ createIcon(
             d="M29.5 54.6v-.1c1.4-5.5 11.8-11.2 16.7-13.8 14.7-7 30.5-11.3 46.3-14.7 3.6-.8 7.3-1.5 11-2.1 6.7-1.5 3.2-9.7-2.9-7.6-6.5 1.1-12.9 2.5-19.3 4-14.8 3.7-29.6 8.1-43.1 15.4-6.9 3.9-15.6 9.2-17.5 17.4 0 .4-.2.9-.1 1.4v1c0 .3 0 .7.1 1 3.6 15.9 45.5 20.9 59.6 22.3 6.6.8 13.3 1.1 19.9 1.5 2 .6 3.1-2 .8-2.3-1 0-2-.2-3.1-.3h-.7c-17-1.6-34.2-4-50.4-9.8-3.8-1.3-7.5-2.9-10.9-5.1-2.2-1.4-4.4-2.9-5.9-5.1-.2-.3-.3-.6-.5-.9 0-.1 0-.3-.1-.4v-1.6Z"
           />
           <path
-            fill="#000"
+            fill="#666"
             d="M29.5 62.6v-.1c1.4-5.5 11.8-11.2 16.7-13.8 14.7-7 30.5-11.3 46.3-14.7 3.6-.8 7.3-1.5 11-2.1 6.7-1.5 3.2-9.7-2.9-7.6-6.5 1.1-12.9 2.5-19.3 4-14.8 3.7-29.6 8.1-43.1 15.4-6.9 3.9-15.6 9.2-17.5 17.4 0 .4-.2.9-.1 1.4v1c0 .3 0 .7.1 1 3.6 15.9 45.5 20.9 59.6 22.3 6.6.8 13.3 1.1 19.9 1.5 2 .6 3.1-2 .8-2.3-1 0-2-.2-3.1-.3h-.7c-17-1.6-34.2-4-50.4-9.8-3.8-1.3-7.5-2.9-10.9-5.1-2.2-1.4-4.4-2.9-5.9-5.1-.2-.3-.3-.6-.5-.9 0-.1 0-.3-.1-.4v-1.6Z"
           />
           <path
@@ -58,7 +58,7 @@ export const AerodromeMono = /* @__PURE__ */ createIcon(
             d="M29.5 70.5v-.1c1.4-5.5 11.8-11.2 16.7-13.8 14.7-7 30.5-11.3 46.3-14.7 3.6-.8 7.3-1.5 11-2.1 6.7-1.5 3.2-9.7-2.9-7.6-6.5 1.1-12.9 2.5-19.3 4-14.8 3.7-29.6 8.1-43.1 15.4-6.9 3.9-15.6 9.2-17.5 17.4 0 .4-.2.9-.1 1.4v1c0 .3 0 .7.1 1 3.6 15.9 45.5 20.9 59.6 22.3 6.6.8 13.3 1.1 19.9 1.5 2 .6 3.1-2 .8-2.3-1 0-2-.2-3.1-.3h-.7c-17-1.6-34.2-4-50.4-9.8-3.8-1.3-7.5-2.9-10.9-5.1-2.2-1.4-4.4-2.9-5.9-5.1-.2-.3-.3-.6-.5-.9 0-.1 0-.3-.1-.4v-1.6Z"
           />
           <path
-            fill="#000"
+            fill="#666"
             d="M29.5 78.4v-.1c1.4-5.5 11.8-11.2 16.7-13.8 14.7-7 30.5-11.3 46.3-14.7 3.6-.8 7.3-1.5 11-2.1 6.7-1.5 3.2-9.7-2.9-7.6-6.5 1.1-12.9 2.5-19.3 4-14.8 3.7-29.6 8.1-43.1 15.4-6.9 3.9-15.6 9.2-17.5 17.4 0 .4-.2.9-.1 1.4v1c0 .3 0 .7.1 1 3.6 15.9 45.5 20.9 59.6 22.3 6.6.7 13.2 1.1 19.7 1.5h.9c1.7 0 1.7-2.4 0-2.4-1 0-2-.2-3.1-.3h-.7c-17-1.6-34.2-4-50.4-9.8-3.8-1.3-7.5-2.9-10.9-5.1-2.2-1.4-4.4-2.9-5.9-5.1-.2-.3-.3-.6-.5-.9 0-.1 0-.3-.1-.4v-1.6Z"
           />
           <path

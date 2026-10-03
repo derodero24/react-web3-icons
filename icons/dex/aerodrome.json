@@ -7,7 +7,7 @@
   "notes": [
     "Colored: the five stacked swooshes of the official favicon.svg unchanged (#0C0D1D, #0433FF, #9CADFF, #F5F3E6, #FF1100, each drawn over the previous one; the stylesheet classes became fill attributes), placed on the 64 grid",
     "The brand kit's symbol.svg is the same mark but about 470 KB of path data (119 KB after SVGO), so the compact favicon.svg geometry is used",
-    "Mono: the same five paths in one colour; drawn over each other they would merge into a single blob, so the stripes alternate ink and hole in the painting order (1st, 3rd, 5th ink; 2nd and 4th knocked out by a mask) to keep the striped swoosh readable"
+    "Mono: the same five paths in the same painting order inside a mask, so each stripe hides the ones it overlaps as in the colored mark; drawn in one solid colour they would merge into a single blob, so the 1st, 3rd and 5th stripes are full ink and the 2nd and 4th 40% ink (mask fill #666), keeping the striped swoosh and its full silhouette"
   ],
   "kind": "icon",
   "variants": {
