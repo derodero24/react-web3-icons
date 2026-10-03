@@ -186,6 +186,11 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'A gradient sphere: the mono is the solid disc, and the gradient inflates the colour-boundary count.',
   },
+  'coin/Icp': {
+    kind: 'false-positive',
+    reason:
+      'Knockout seams keep the blue strand over the orange and purple loops and open the loop counters to the background, so the footprint flood fill enters them.',
+  },
   'coin/Shib': {
     kind: 'false-positive',
     reason:
