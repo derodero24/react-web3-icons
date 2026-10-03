@@ -101,7 +101,7 @@ const lock = {
   dynamicImports: Object.fromEntries(
     CATEGORIES.filter(category => DYNAMIC_CATEGORIES.includes(category)).map(
       category => [
-      category,
+        category,
         hashFile(join(SRC, 'dynamic/imports', `${category}.ts`)),
       ],
     ),
