@@ -65,6 +65,7 @@ export const MetaMask = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Meta Mask wallet icon (monochrome). */
@@ -87,7 +88,7 @@ export const MetaMaskMono = /* @__PURE__ */ createIcon(
       <path d="m267.2 153.5-52.3-15.3 15.9 23.9-23.7 46 31.2-.4h46.5zm-163.6-15.3-52.3 15.3-17.4 54.2h46.4l31.1.4-23.6-46zm71 26.4 3.3-57.7 15.2-41.1h-67.5l15 41.1 3.5 57.7 1.2 18.2.1 44.8h27.7l.2-44.8z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );
 
 /** Meta Mask Circle wallet icon (colored). */
@@ -113,13 +114,14 @@ export const MetaMaskCircle = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  {},
 );
 
 /** Meta Mask Circle wallet icon (monochrome). */
 export const MetaMaskCircleMono = /* @__PURE__ */ createIcon(
   'MetaMaskCircleMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="32" cy="32" r="32" mask={`url(#${_id}-mmc-a)`} />
       <defs>
@@ -143,7 +145,7 @@ export const MetaMaskCircleMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Meta Mask Square wallet icon (colored). */
@@ -169,13 +171,14 @@ export const MetaMaskSquare = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  {},
 );
 
 /** Meta Mask Square wallet icon (monochrome). */
 export const MetaMaskSquareMono = /* @__PURE__ */ createIcon(
   'MetaMaskSquareMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-mmsq-a)`} />
       <defs>
@@ -199,7 +202,7 @@ export const MetaMaskSquareMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Meta Mask Alt wallet icon (colored). */
@@ -527,4 +530,5 @@ export const MetaMaskAlt = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );

@@ -14,6 +14,7 @@ export const Gateio = /* @__PURE__ */ createIcon(
       <path d="M299.992 299.997h165.003V134.995H299.992z" fill="#17e6a1" />
     </>
   ),
+  {},
 );
 
 /** Gateio exchange icon (monochrome). */
@@ -26,5 +27,5 @@ export const GateioMono = /* @__PURE__ */ createIcon(
       <path d="M299.992 299.997h165.003V134.995H299.992z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

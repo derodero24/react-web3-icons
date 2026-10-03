@@ -23,7 +23,7 @@ export const Atom = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none' },
 );
 
 /** Atom coin icon (monochrome). */
@@ -40,5 +40,5 @@ export const AtomMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

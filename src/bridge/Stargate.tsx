@@ -31,7 +31,7 @@ export const Stargate = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none' },
 );
 
 /** Stargate bridge icon (monochrome). */
@@ -47,5 +47,5 @@ export const StargateMono = /* @__PURE__ */ createIcon(
       <path d="m8.48 14.48.95-.41c1.87-.8 3.36-2.28 4.16-4.16l.41-.95c.57-1.33 2.46-1.33 3.03 0l.41.95c.8 1.87 2.28 3.36 4.16 4.16l.95.41c1.33.57 1.33 2.46 0 3.03l-.95.41c-1.87.8-3.36 2.28-4.16 4.16l-.41.95c-.57 1.33-2.46 1.33-3.03 0l-.41-.95a7.87 7.87 0 0 0-4.16-4.16l-.95-.41c-1.33-.57-1.33-2.46 0-3.03" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

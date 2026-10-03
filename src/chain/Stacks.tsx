@@ -12,7 +12,7 @@ export const Stacks = /* @__PURE__ */ createIcon(
       clipRule="evenodd"
     />
   ),
-  '#141414',
+  { fill: '#141414' },
 );
 
 /** Stacks chain icon (monochrome). */
@@ -26,5 +26,5 @@ export const StacksMono = /* @__PURE__ */ createIcon(
       clipRule="evenodd"
     />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

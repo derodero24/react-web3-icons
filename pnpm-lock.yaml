@@ -71,6 +71,9 @@ importers:
       react-dom:
         specifier: ^19.2.4
         version: 19.3.0(react@19.3.0)
+      react-server-dom-parcel:
+        specifier: 19.3.0
+        version: 19.3.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       size-limit:
         specifier: ^12.0.0
         version: 12.1.0(jiti@2.7.0)
@@ -2422,6 +2425,13 @@ packages:
     peerDependencies:
       react: ^19.3.0
 
+  react-server-dom-parcel@19.3.0:
+    resolution: {integrity: sha512-tjMNdOO5/O1zCSb9QGfkECjVw+CPTuMbOhXrCjsnW88064V7T+cnINSnl65T2IC/zWtBRVYJvco1SwaDNilRgg==}
+    engines: {node: '>=0.10.0'}
+    peerDependencies:
+      react: ^19.3.0
+      react-dom: ^19.3.0
+
   react@19.3.0:
     resolution: {integrity: sha512-E8LUcbtBWt20bbl2YoHfx4ZDBdxVTfOKtCZn9cDSJ4l6/nuoApcpIBcj47t2wZoVX8g2ZHuMHbiShgCR1T5Sog==}
     engines: {node: '>=0.10.0'}
@@ -4660,6 +4670,11 @@ snapshots:
     dependencies:
       react: 19.3.0
       scheduler: 0.28.0
+
+  react-server-dom-parcel@19.3.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+    dependencies:
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
 
   react@19.3.0: {}
 

@@ -1,10 +1,8 @@
 // @vitest-environment node
-import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { createFormatter } from '../scripts/build-icons/format.ts';
 import { generateIconSources } from '../scripts/build-icons/generate.ts';
-import { CATEGORIES, loadCategory } from '../scripts/build-icons/lib.ts';
 import { diffOutputs } from '../scripts/build-icons/outputs.ts';
 
 /**
@@ -17,9 +15,7 @@ import { diffOutputs } from '../scripts/build-icons/outputs.ts';
  */
 
 const ROOT = join(import.meta.dirname, '..');
-const ICONS = join(ROOT, 'icons');
 const format = createFormatter(ROOT);
-const units = CATEGORIES.flatMap(category => loadCategory(ICONS, category));
 /** Generating and formatting ~300 modules takes a few seconds under load. */
 const TIMEOUT = 60_000;
 
@@ -34,18 +30,4 @@ describe('icons/ ↔ src/ pipeline sync', () => {
     },
     TIMEOUT,
   );
-
-  it('custom units keep hand-written modules with matching exports', () => {
-    for (const unit of units.filter(u => u.meta.kind === 'custom')) {
-      const source = readFileSync(
-        join(ROOT, 'src', unit.category, `${unit.meta.name}.tsx`),
-        'utf-8',
-      );
-      for (const { exportName } of unit.variants) {
-        expect(source, `${unit.path}: expected export ${exportName}`).toContain(
-          `export const ${exportName}`,
-        );
-      }
-    }
-  });
 });

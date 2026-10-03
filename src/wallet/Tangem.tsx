@@ -12,7 +12,7 @@ export const Tangem = /* @__PURE__ */ createIcon(
       <path d="M29.444 47.93h13.035v25.423h-3.764c-3.246 0-4.867 0-6.108-.632a5.8 5.8 0 0 1-2.531-2.531c-.632-1.241-.632-2.862-.632-6.108z" />
     </>
   ),
-  '#1E1E1E',
+  { fill: '#1E1E1E' },
 );
 
 /** Tangem wallet icon (monochrome). */
@@ -26,5 +26,5 @@ export const TangemMono = /* @__PURE__ */ createIcon(
       <path d="M29.444 47.93h13.035v25.423h-3.764c-3.246 0-4.867 0-6.108-.632a5.8 5.8 0 0 1-2.531-2.531c-.632-1.241-.632-2.862-.632-6.108z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

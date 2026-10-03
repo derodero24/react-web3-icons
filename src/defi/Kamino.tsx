@@ -16,13 +16,14 @@ export const Kamino = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Kamino DeFi icon (monochrome). */
 export const KaminoMono = /* @__PURE__ */ createIcon(
   'KaminoMono',
   '0 0 540 540',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="540" height="540" mask={`url(#${_id}-kamino-a)`} />
       <defs>
@@ -37,5 +38,5 @@ export const KaminoMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

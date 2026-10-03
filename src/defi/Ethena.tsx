@@ -20,13 +20,14 @@ export const Ethena = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Ethena DeFi icon (monochrome). */
 export const EthenaMono = /* @__PURE__ */ createIcon(
   'EthenaMono',
   '0 0 392 391',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         d="M196.092 3.52853H196.099C301.898 3.52853 387.665 89.2955 387.665 195.095V195.102C387.665 300.901 301.898 386.668 196.099 386.668H196.092C90.2926 386.668 4.5256 300.901 4.5256 195.102V195.095C4.5256 89.2955 90.2926 3.52853 196.092 3.52853Z"
@@ -45,5 +46,5 @@ export const EthenaMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

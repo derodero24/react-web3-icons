@@ -12,7 +12,7 @@ export const Enkrypt = /* @__PURE__ */ createIcon(
       clipRule="evenodd"
     />
   ),
-  '#C54AFF',
+  { fill: '#C54AFF' },
 );
 
 /** Enkrypt wallet icon (monochrome). */
@@ -26,5 +26,5 @@ export const EnkryptMono = /* @__PURE__ */ createIcon(
       clipRule="evenodd"
     />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

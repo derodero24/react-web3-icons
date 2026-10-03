@@ -11,7 +11,7 @@ import {
   type IconProps,
 } from 'react-web3-icons';
 import { Across } from 'react-web3-icons/bridge';
-import { Bitcoin } from 'react-web3-icons/chain';
+import { AvalancheCircle, Bitcoin } from 'react-web3-icons/chain';
 import { Ada } from 'react-web3-icons/coin';
 import { Aave } from 'react-web3-icons/defi';
 import { DEPRECATED_ICON_NAMES as DEPRECATED_FROM_SUBPATH } from 'react-web3-icons/deprecated';
@@ -24,7 +24,7 @@ import {
   CoinIcon,
   WalletIcon,
 } from 'react-web3-icons/dynamic';
-import { Binance } from 'react-web3-icons/exchange';
+import { Binance, Bybit, type BybitProps } from 'react-web3-icons/exchange';
 import { Arbiscan } from 'react-web3-icons/explorer';
 import {
   ICON_MANIFEST,
@@ -42,6 +42,7 @@ import { Argent } from 'react-web3-icons/wallet';
 const ref = createRef<SVGSVGElement>();
 const props: IconProps = { size: 24, title: 'Ethereum', titleId: 'eth-title' };
 const chainProps: ChainIconProps = { chainId: 1, variant: 'mono' };
+const bybitProps: IconProps & BybitProps = { fill1: '#000', size: 24 };
 
 export const elements: ReactElement[] = [
   <Ethereum key="root" ref={ref} {...props} />,
@@ -63,7 +64,11 @@ export const elements: ReactElement[] = [
   <Argent key="wallet" onClick={event => event.currentTarget.getBBox()} />,
   <ChainIcon key="dynamic-chain" {...chainProps} fallback={null} />,
   <CoinIcon key="dynamic-coin" symbol="ETH" size={20} />,
-  <WalletIcon key="dynamic-wallet" name="metamask" />,
+  <WalletIcon key="dynamic-wallet" name="metamask" ref={ref} />,
+  <AvalancheCircle key="extra-toggle" withBackground={false} ref={ref} />,
+  <Bybit key="extra-fill" {...bybitProps} />,
+  // @ts-expect-error extra props are typed per component
+  <Binance key="no-extra" withBackground />,
   // @ts-expect-error unknown props must be rejected (types are not `any`)
   <Ethereum key="invalid" notAnSvgProp />,
 ];

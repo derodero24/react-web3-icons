@@ -3,8 +3,8 @@
  * `icons/<category>/<slug>.json`.
  *
  * Unit kinds:
- *  - "icon"     — artwork unit: sibling `.svg` files per variant → createIcon TSX
- *  - "custom"   — artwork whose TSX is hand-written (only the SVGs are consumed)
+ *  - "icon"     — artwork unit: sibling `.svg` files per variant → createIcon TSX,
+ *                 optionally with extra props (see {@link PropSpec})
  *  - "reexport" — renames exports of another module (`export { A as B } from …`)
  *  - "alias"    — deprecated `export const A = B;` aliases with JSDoc
  *
@@ -50,6 +50,33 @@ export interface AliasConstSpec {
   readonly imports: readonly string[];
   readonly exports: readonly ConstAlias[];
 }
+
+/**
+ * A boolean prop that switches between the artwork of two variants. Both
+ * variants accept it and default to their own artwork; each keeps its own
+ * root `fill`, and the `viewBox` switches with the artwork.
+ */
+export interface TogglePropSpec {
+  readonly type: 'toggle';
+  readonly description: string;
+  /** Variant suffix whose artwork renders when the prop is `true`. */
+  readonly on: string;
+  /** Variant suffix whose artwork renders when the prop is `false`. */
+  readonly off: string;
+}
+
+/**
+ * A string prop that sets the `fill` of the elements marked
+ * `data-fill-prop="<name>"` in a variant's SVG. When the prop is not given,
+ * the element's own `fill` from the SVG (if any) applies.
+ */
+export interface FillPropSpec {
+  readonly type: 'fill';
+  readonly description: string;
+}
+
+/** An extra prop of the unit's components, keyed by its (camelCase) name. */
+export type PropSpec = TogglePropSpec | FillPropSpec;
 
 /** Path of the JSON Schema, relative to a unit file. */
 export const SCHEMA_REF = '../schema.json';
@@ -97,14 +124,12 @@ interface ArtworkFields extends UnitBase {
   readonly reexport?: ReexportSpec;
   /** Extra exports of the unit's own module that name one of its variants. */
   readonly localAliases?: readonly ConstAlias[];
+  /** Extra props of the unit's components. */
+  readonly props?: Readonly<Record<string, PropSpec>>;
 }
 
 export interface IconUnitMeta extends ArtworkFields {
   readonly kind: 'icon';
-}
-
-export interface CustomUnitMeta extends ArtworkFields {
-  readonly kind: 'custom';
 }
 
 export interface ReexportUnitMeta extends UnitBase {
@@ -117,16 +142,12 @@ export interface AliasUnitMeta extends UnitBase {
   readonly aliasConst: AliasConstSpec;
 }
 
-export type UnitMeta =
-  | IconUnitMeta
-  | CustomUnitMeta
-  | ReexportUnitMeta
-  | AliasUnitMeta;
+export type UnitMeta = IconUnitMeta | ReexportUnitMeta | AliasUnitMeta;
 
-export type ArtworkUnitMeta = IconUnitMeta | CustomUnitMeta;
+export type ArtworkUnitMeta = IconUnitMeta;
 
 export function isArtwork(meta: UnitMeta): meta is ArtworkUnitMeta {
-  return meta.kind === 'icon' || meta.kind === 'custom';
+  return meta.kind === 'icon';
 }
 
 /** A JSON value, as written to the schema file. */
@@ -300,6 +321,28 @@ function object<T>(schema: Schema<T>): Rule {
 
 const optional = (rule: Rule): Optional => ({ optional: rule });
 
+/** One of several object rules, chosen by the string `key` field. */
+function discriminated(
+  key: string,
+  rules: Readonly<Record<string, Rule>>,
+): Rule {
+  return {
+    check: (value, path) => {
+      const tag = isRecord(value) ? value[key] : undefined;
+      if (typeof tag !== 'string' || !Object.hasOwn(rules, tag)) {
+        fail(
+          field(path, key),
+          `one of ${Object.keys(rules)
+            .map(name => JSON.stringify(name))
+            .join(', ')}`,
+        );
+      }
+      rules[tag]?.check(value, path);
+    },
+    schema: { oneOf: Object.values(rules).map(rule => rule.schema) },
+  };
+}
+
 const identifier = text(/^[A-Z][A-Za-z0-9]*$/, 'a PascalCase identifier');
 const moduleSpecifier = text(
   /^(?:\.\/|\.\.\/[a-z]+\/)[A-Z][A-Za-z0-9]*$/,
@@ -351,10 +394,29 @@ const BASE: Schema<UnitBase> = {
   ...LOOKUP_KEYS,
 };
 
+const variantSuffix = text(
+  /^(?:[A-Z][A-Za-z0-9]*)?$/,
+  'an empty or PascalCase variant suffix',
+);
+const description = text(
+  /^(?!.*\*\/)[^\r\n\u2028\u2029]+$/,
+  'a non-empty single-line description without "*/"',
+);
+
+const propSpec = discriminated('type', {
+  toggle: object<TogglePropSpec>({
+    type: literal('toggle'),
+    description,
+    on: variantSuffix,
+    off: variantSuffix,
+  }),
+  fill: object<FillPropSpec>({ type: literal('fill'), description }),
+});
+
 const ARTWORK: Schema<ArtworkFields> = {
   ...BASE,
   variants: recordOf(
-    text(/^(?:[A-Z][A-Za-z0-9]*)?$/, 'an empty or PascalCase variant suffix'),
+    variantSuffix,
     object<Variant>({
       file: text(/^[a-z0-9][a-z0-9.-]*\.svg$/, 'a sibling .svg file name'),
       fill: optional(
@@ -375,11 +437,13 @@ const ARTWORK: Schema<ArtworkFields> = {
   ),
   reexport: optional(reexportSpec),
   localAliases: optional(constAliases),
+  props: optional(
+    recordOf(text(/^[a-z][A-Za-z0-9]*$/, 'a camelCase prop name'), propSpec),
+  ),
 };
 
 const RULES: Readonly<Record<UnitMeta['kind'], Rule>> = {
   icon: object<IconUnitMeta>({ ...ARTWORK, kind: literal('icon') }),
-  custom: object<CustomUnitMeta>({ ...ARTWORK, kind: literal('custom') }),
   reexport: object<ReexportUnitMeta>({
     ...BASE,
     kind: literal('reexport'),
@@ -397,12 +461,7 @@ const RULES: Readonly<Record<UnitMeta['kind'], Rule>> = {
 };
 
 function isKind(kind: unknown): kind is UnitMeta['kind'] {
-  return (
-    kind === 'icon' ||
-    kind === 'custom' ||
-    kind === 'reexport' ||
-    kind === 'alias'
-  );
+  return kind === 'icon' || kind === 'reexport' || kind === 'alias';
 }
 
 /**

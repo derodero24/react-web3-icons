@@ -14,13 +14,14 @@ export const WalletConnectCircle = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  {},
 );
 
 /** Wallet Connect Circle wallet icon (monochrome). */
 export const WalletConnectCircleMono = /* @__PURE__ */ createIcon(
   'WalletConnectCircleMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="32" cy="32" r="32" mask={`url(#${_id}-wccm-a)`} />
       <defs>
@@ -33,7 +34,7 @@ export const WalletConnectCircleMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Wallet Connect Square wallet icon (colored). */
@@ -48,13 +49,14 @@ export const WalletConnectSquare = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  {},
 );
 
 /** Wallet Connect Square wallet icon (monochrome). */
 export const WalletConnectSquareMono = /* @__PURE__ */ createIcon(
   'WalletConnectSquareMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-wcsqm-a)`} />
       <defs>
@@ -67,7 +69,7 @@ export const WalletConnectSquareMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Wallet Connect wallet icon (colored). */
@@ -77,7 +79,7 @@ export const WalletConnect = /* @__PURE__ */ createIcon(
   () => (
     <path d="M124.874 146.163c63.216-61.894 165.709-61.894 228.926 0l7.608 7.449c3.161 3.094 3.161 8.112 0 11.207L335.382 190.3a4.11 4.11 0 0 1-5.723 0l-10.47-10.251c-44.101-43.178-115.604-43.178-159.705 0l-11.212 10.978a4.11 4.11 0 0 1-5.723 0l-26.026-25.482c-3.161-3.094-3.161-8.112 0-11.206l8.351-8.176zm282.75 52.698l23.163 22.679c3.161 3.094 3.161 8.112 0 11.207L326.343 335.008a8.22 8.22 0 0 1-11.447 0l-74.128-72.578c-.79-.773-2.072-.773-2.862 0l-74.127 72.578a8.22 8.22 0 0 1-11.446 0L47.886 232.745c-3.161-3.094-3.161-8.112 0-11.207l23.163-22.678a8.22 8.22 0 0 1 11.446 0l74.129 72.579c.791.773 2.072.773 2.862 0l74.126-72.579a8.22 8.22 0 0 1 11.446 0l74.13 72.579c.79.773 2.071.773 2.861 0l74.129-72.578a8.22 8.22 0 0 1 11.446 0z" />
   ),
-  '#3396FF',
+  { fill: '#3396FF' },
 );
 
 /** Wallet Connect wallet icon (monochrome). */
@@ -87,5 +89,5 @@ export const WalletConnectMono = /* @__PURE__ */ createIcon(
   () => (
     <path d="M124.874 146.163c63.216-61.894 165.709-61.894 228.926 0l7.608 7.449c3.161 3.094 3.161 8.112 0 11.207L335.382 190.3a4.11 4.11 0 0 1-5.723 0l-10.47-10.251c-44.101-43.178-115.604-43.178-159.705 0l-11.212 10.978a4.11 4.11 0 0 1-5.723 0l-26.026-25.482c-3.161-3.094-3.161-8.112 0-11.206l8.351-8.176zm282.75 52.698l23.163 22.679c3.161 3.094 3.161 8.112 0 11.207L326.343 335.008a8.22 8.22 0 0 1-11.447 0l-74.128-72.578c-.79-.773-2.072-.773-2.862 0l-74.127 72.578a8.22 8.22 0 0 1-11.446 0L47.886 232.745c-3.161-3.094-3.161-8.112 0-11.207l23.163-22.678a8.22 8.22 0 0 1 11.446 0l74.129 72.579c.791.773 2.072.773 2.862 0l74.126-72.579a8.22 8.22 0 0 1 11.446 0l74.13 72.579c.79.773 2.071.773 2.861 0l74.129-72.578a8.22 8.22 0 0 1 11.446 0z" />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

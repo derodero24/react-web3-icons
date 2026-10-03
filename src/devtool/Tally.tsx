@@ -21,13 +21,14 @@ export const Tally = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Tally devtool icon (monochrome). */
 export const TallyMono = /* @__PURE__ */ createIcon(
   'TallyMono',
   '308.07 194 25 34.28',
-  _id => (
+  (_props, _id) => (
     <>
       <g mask={`url(#${_id}-tlym-a)`}>
         <path d="M333.069 204.706v7.681l-6.064-3.43v15.828l-6.81-3.854v-15.825l-6.064-3.43v-7.681l18.938 10.711z" />
@@ -46,5 +47,5 @@ export const TallyMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

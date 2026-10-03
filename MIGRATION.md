@@ -1,3 +1,47 @@
+# Migrating from v4 to v5
+
+See [CHANGELOG.md](./CHANGELOG.md) for full release notes.
+
+## 1. Per-instance internal SVG ids
+
+v4 gave every instance of an icon the same internal ids (`w3i-<name>-…`), and `url(#…)` always resolves to the first element with an id. A first instance inside a `display: none` subtree, or one with a different `fill` or `color`, therefore broke or restyled the masks and gradients of every later instance.
+
+Icons with internal ids (masks, gradients, clip paths) now call `useId` and render unique ids per instance, e.g. `w3i-ethereumcirclemono-r1-ethc-a`. `useId` works in React Server Components, so icons still need no `'use client'`; icons without internal ids still call no hooks. Mask content also no longer inherits `fill` from the icon's `<svg>`.
+
+- Default rendering is unchanged.
+- Markup snapshots that contain icon ids need to be regenerated.
+- If you mount several React roots on one page, give each its own `identifierPrefix` (`createRoot(el, { identifierPrefix: 'a-' })`), as for any `useId` consumer.
+
+## 2. Icons with extra props are generated like every other icon
+
+`AvalancheCircle(Mono)`, `Bybit*` and `RainbowWallet(Symbol)` were hand-written and are now generated from `icons/` like the rest, which fixes their drift from the other icons:
+
+- With `title` and `titleId`, they now set `aria-labelledby` like every other icon.
+- They are annotated `/* @__PURE__ */`, so importing one export of `Avalanche`, `Bybit` or `RainbowWallet` no longer bundles its siblings.
+- `withBackground`, `fill1` and `fill2` render exactly as before for every combination of values.
+- **`BybitProps` now holds only the extra props** (`fill1`, `fill2`); it no longer extends `IconProps`. `AvalancheProps` and `RainbowWalletProps` are now exported the same way.
+
+```diff
+- const props: BybitProps = { fill1: '#000', size: 24 };
++ const props: IconProps & BybitProps = { fill1: '#000', size: 24 };
++ // or: ComponentProps<typeof Bybit>
+```
+
+- `BybitMono` declares `fill="currentColor"` on its `<svg>` (like every mono icon) instead of on each path. It renders the same, and a CSS `fill` on the icon now reaches the paths.
+
+## 3. Dynamic components render `fallback` when a chunk fails to load
+
+`react-web3-icons/dynamic` components (`ChainIcon`, `CoinIcon`, …) no longer throw to the nearest error boundary when an icon chunk fails to load (network error, deploy skew). They render `fallback` and import the chunk again on a later render. They also forward `ref` to the `<svg>`, show their own names in React DevTools, and render `fallback` instead of throwing for `undefined`/`null` identifiers.
+
+- If you relied on an error boundary to catch failed icon chunks, handle it with `fallback` instead.
+
+## Checklist
+
+- [ ] Regenerate markup snapshots containing icon defs ids
+- [ ] Type full `Bybit` props as `IconProps & BybitProps` (or `ComponentProps<typeof Bybit>`)
+
+---
+
 # Migrating from v3 to v4
 
 v4 makes every static icon a pure, hook-free component so icons render in React Server Components without `'use client'`. See [CHANGELOG.md](./CHANGELOG.md) for full release notes.

@@ -14,13 +14,14 @@ export const Solflare = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Solflare wallet icon (monochrome). */
 export const SolflareMono = /* @__PURE__ */ createIcon(
   'SolflareMono',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <mask id={`${_id}-sfm-a`}>
@@ -34,5 +35,5 @@ export const SolflareMono = /* @__PURE__ */ createIcon(
       <rect width="24" height="24" mask={`url(#${_id}-sfm-a)`} />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

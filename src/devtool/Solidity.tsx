@@ -33,7 +33,7 @@ export const Solidity = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  '#2B247C',
+  { fill: '#2B247C' },
 );
 
 /** Solidity devtool icon (monochrome). */
@@ -68,5 +68,5 @@ export const SolidityMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

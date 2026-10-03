@@ -6,7 +6,7 @@
   "notes": [
     "Arc paths from viewBox 20 20 80 80 → scale 0.575, translate(-2.5, -2.5)"
   ],
-  "kind": "custom",
+  "kind": "icon",
   "variants": {
     "": {
       "file": "rainbow-wallet.svg"
@@ -39,5 +39,13 @@
   },
   "slugs": [
     "rainbowwallet"
-  ]
+  ],
+  "props": {
+    "withBackground": {
+      "type": "toggle",
+      "description": "Render the gradient tile behind the arcs.",
+      "on": "",
+      "off": "Symbol"
+    }
+  }
 }

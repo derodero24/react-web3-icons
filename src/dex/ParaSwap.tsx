@@ -12,7 +12,7 @@ export const ParaSwap = /* @__PURE__ */ createIcon(
       <path d="M17.6 17.294H7.75l4.925-8.52z" />
     </>
   ),
-  '#2669F5',
+  { fill: '#2669F5' },
 );
 
 /** Para Swap DEX icon (monochrome). */
@@ -26,5 +26,5 @@ export const ParaSwapMono = /* @__PURE__ */ createIcon(
       <path d="M17.6 17.294H7.75l4.925-8.52z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

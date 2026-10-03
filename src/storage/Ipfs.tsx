@@ -22,13 +22,14 @@ export const Ipfs = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  {},
 );
 
 /** Ipfs storage icon (monochrome). */
 export const IpfsMono = /* @__PURE__ */ createIcon(
   'IpfsMono',
   '0.3 0.5 168.1 194.7',
-  _id => (
+  (_props, _id) => (
     <>
       <g mask={`url(#${_id}-ipfs-a)`}>
         <path d="M.3 146l84 48.5 84-48.5V49L84.3.5.3 49z" />
@@ -46,5 +47,5 @@ export const IpfsMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

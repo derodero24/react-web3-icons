@@ -12,7 +12,7 @@ export const TheGraph = /* @__PURE__ */ createIcon(
       <path d="M292.1 590.9a25.06 25.06 0 0 1-17.8-7.4 25.17 25.17 0 0 1 0-35.7l105-105a25.17 25.17 0 1 1 35.7 35.7l-105 105c-5 5-11.5 7.4-17.9 7.4z" />
     </g>
   ),
-  '#6F4CFF',
+  { fill: '#6F4CFF' },
 );
 
 /** The Graph devtool icon (monochrome). */
@@ -26,5 +26,5 @@ export const TheGraphMono = /* @__PURE__ */ createIcon(
       <path d="M181.9 467.6a25.06 25.06 0 0 1-17.8-7.4 25.17 25.17 0 0 1 0-35.7l105-105c9.858-9.858 25.842-9.858 35.7 0s9.858 25.842 0 35.7l-105 105c-5 5-11.5 7.4-17.9 7.4z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

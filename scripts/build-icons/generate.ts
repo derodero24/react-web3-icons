@@ -1,7 +1,7 @@
 /**
  * Computes every source file generated from the `icons/` tree, in memory:
  *
- *   src/<category>/<Name>.tsx       one module per unit (custom units excepted)
+ *   src/<category>/<Name>.tsx       one module per unit
  *   src/<category>/index.ts         the category barrel
  *   src/dynamic/imports/<cat>.ts    per-icon lazy import maps
  *   src/meta/index.ts               lookup maps (slugs, chain IDs, tickers)
@@ -32,7 +32,6 @@ import { UNIT_JSON_SCHEMA } from './unit.ts';
 export function generateIconSources(root: string, format: Formatter): Outputs {
   const iconsDir = join(root, 'icons');
   const files = new Map<string, string>();
-  const keep = new Set<string>();
   const add = (path: string, content: string): void => {
     files.set(path, format(path, content));
   };
@@ -42,14 +41,8 @@ export function generateIconSources(root: string, format: Formatter): Outputs {
     const units = loadCategory(iconsDir, category);
     allUnits.push(...units);
     const generated = generateCategory(units);
-    for (const unit of units) {
-      const path = `src/${category}/${unit.meta.name}.tsx`;
-      const content = generated.files.get(`${unit.meta.name}.tsx`);
-      if (content === undefined) {
-        keep.add(path);
-      } else {
-        add(path, content);
-      }
+    for (const [file, content] of generated.files) {
+      add(`src/${category}/${file}`, content);
     }
     add(`src/${category}/index.ts`, generated.indexTs);
     if (DYNAMIC_CATEGORIES.includes(category)) {
@@ -75,6 +68,6 @@ export function generateIconSources(root: string, format: Formatter): Outputs {
       'src/meta',
       'src/manifest',
     ],
-    keep,
+    keep: new Set(),
   };
 }

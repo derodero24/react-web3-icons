@@ -20,13 +20,14 @@ export const UniswapWallet = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  {},
 );
 
 /** Uniswap Wallet wallet icon (monochrome). */
 export const UniswapWalletMono = /* @__PURE__ */ createIcon(
   'UniswapWalletMono',
   '0 0 28 28',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <mask id={`${_id}-unisw-a`}>
@@ -46,5 +47,5 @@ export const UniswapWalletMono = /* @__PURE__ */ createIcon(
       <rect width="28" height="28" mask={`url(#${_id}-unisw-a)`} />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

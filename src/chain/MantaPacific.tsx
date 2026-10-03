@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const MantaPacific = /* @__PURE__ */ createIcon(
   'MantaPacific',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         fill={`url(#${_id}-a)`}
@@ -29,6 +29,7 @@ export const MantaPacific = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
+  { ids: true },
 );
 
 /** Manta Pacific chain icon (monochrome). */
@@ -42,5 +43,5 @@ export const MantaPacificMono = /* @__PURE__ */ createIcon(
       clipRule="evenodd"
     />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

@@ -10,8 +10,6 @@
  * Everything is generated and Biome-formatted in memory first, so a
  * malformed input fails before any file is touched. `--check` exits 1 when
  * a generated file is stale (inputs *or* generator changed) or orphaned.
- *
- * Units marked `"kind": "custom"` keep their hand-written TSX untouched.
  */
 
 import { resolve } from 'node:path';

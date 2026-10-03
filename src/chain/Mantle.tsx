@@ -16,13 +16,14 @@ export const Mantle = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Mantle chain icon (monochrome). */
 export const MantleMono = /* @__PURE__ */ createIcon(
   'MantleMono',
   '0 0 512 512',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="256" cy="256" r="256" mask={`url(#${_id}-a)`} />
       <defs>
@@ -38,5 +39,5 @@ export const MantleMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

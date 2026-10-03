@@ -39,7 +39,7 @@ export const Polkadot = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  '#e6007a',
+  { fill: '#e6007a' },
 );
 
 /** Polkadot chain icon (monochrome). */
@@ -80,5 +80,5 @@ export const PolkadotMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

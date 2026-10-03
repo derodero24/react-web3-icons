@@ -14,13 +14,14 @@ export const Petra = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  {},
 );
 
 /** Petra wallet icon (monochrome). */
 export const PetraMono = /* @__PURE__ */ createIcon(
   'PetraMono',
   '0 0 3000 3000',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <mask id={`${_id}-petra-a`}>
@@ -39,5 +40,5 @@ export const PetraMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

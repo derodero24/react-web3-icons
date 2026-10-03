@@ -14,13 +14,14 @@ export const Berachain = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Berachain chain icon (monochrome). */
 export const BerachainMono = /* @__PURE__ */ createIcon(
   'BerachainMono',
   '0 0 40 40',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="40" height="40" mask={`url(#${_id}-a)`} />
       <defs>
@@ -34,5 +35,5 @@ export const BerachainMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

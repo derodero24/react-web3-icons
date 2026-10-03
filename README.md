@@ -26,7 +26,7 @@ A comprehensive React SVG icon library for Web3 — blockchains, wallets, DEXs, 
 
 - 230+ icons (700+ component exports including mono and container variants) across 16 categories
 - Colored and monochrome variants for every icon
-- Server Components ready — no hooks, renders without `'use client'`
+- Server Components ready — renders without `'use client'`
 - Tree-shakeable — only import what you use (`sideEffects: false`)
 - Scales with font size (`1em` default)
 - Full TypeScript support
@@ -170,7 +170,7 @@ Icon names are `<category>-<kebab-name>` (e.g. `chain-ethereum`, `coin-bitcoin`,
 
 ### React Server Components (RSC)
 
-Static icons are pure, hook-free components. They render in React Server Components with no `'use client'` directive:
+Static icons are pure components that call no hooks other than `useId`, which React supports in Server Components. They render in React Server Components with no `'use client'` directive:
 
 ```tsx
 // app/page.tsx — Server Component
@@ -183,7 +183,7 @@ export default function Page() {
 
 Server-rendered icons ship zero client JavaScript. Only the [dynamic components](#dynamic-icon-components) (`react-web3-icons/dynamic`) are client-only, since they lazy-load icon chunks at runtime.
 
-Internal SVG ids (masks, gradients) are deterministic per component. Rendering the same icon multiple times on one page duplicates those ids; the duplicated definitions are identical, so the icons still render correctly.
+Internal SVG ids (masks, gradients, clip paths) are unique per rendered icon (`w3i-<name>-<instance>-…`, the instance part from `useId`), so every icon resolves its references inside its own `<svg>`: an instance inside a `display: none` subtree, or one with a different `fill` or `color`, never affects another. Icons without internal ids call no hooks at all. If you mount several React roots on one page, give each its own [`identifierPrefix`](https://react.dev/reference/react-dom/client/createRoot#parameters) so their ids cannot collide.
 
 ### Type-Safe Dynamic Icon Lookup
 
@@ -229,7 +229,7 @@ Use the `variant` prop to switch between colored and monochrome:
 
 #### Fallback
 
-Use the `fallback` prop to render alternative content while the icon chunk is loading or when the identifier is not recognized:
+Use the `fallback` prop to render alternative content while the icon chunk is loading, when the identifier is not recognized (including `undefined`/`null` from untyped data), or when the chunk fails to load (a later render retries the import):
 
 ```tsx
 <CoinIcon symbol={token.symbol} fallback={<GenericTokenIcon />} />
@@ -238,7 +238,7 @@ Use the `fallback` prop to render alternative content while the icon chunk is lo
 
 When omitted, nothing is rendered for unknown identifiers and during loading.
 
-All standard icon props (`size`, `className`, `fill`, etc.) are forwarded to the underlying SVG icon.
+All standard icon props (`size`, `className`, `fill`, etc.) and `ref` are forwarded to the underlying SVG icon. In development builds, unknown identifiers and failed loads log a `console.warn` once; production builds strip these warnings.
 
 ### Metadata Lookups
 

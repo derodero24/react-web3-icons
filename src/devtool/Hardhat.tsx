@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const Hardhat = /* @__PURE__ */ createIcon(
   'Hardhat',
   '154.25 169.12 49.88 34.57',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <linearGradient
@@ -79,16 +79,17 @@ export const Hardhat = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  { ids: true },
 );
 
 /** Hardhat devtool icon (monochrome). */
 export const HardhatMono = /* @__PURE__ */ createIcon(
   'HardhatMono',
   '154.25 169.12 49.88 34.57',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
-        <mask id={`${_id}-hhlm-a`}>
+        <mask id={`${_id}-hhlm-a`} fill="#000">
           <path fill="#fff" d="M154.25 169.12h49.88v34.57h-49.88z" />
           <path d="M179.191 176.223l-5.346 9.022 5.346 3.29v-12.313z" />
           <path d="M179.193 176.226v12.306l5.345-3.284-5.345-9.022zm0 14.093v4.291l5.345-7.583-5.345 3.293z" />
@@ -101,4 +102,5 @@ export const HardhatMono = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  { ids: true },
 );

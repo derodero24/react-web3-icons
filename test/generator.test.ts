@@ -18,6 +18,7 @@ import {
 } from '../scripts/build-icons/emit-dist-svg.ts';
 import { buildIconifySets } from '../scripts/build-icons/emit-iconify.ts';
 import { namespaceIds, validateIds } from '../scripts/build-icons/ids.ts';
+import { isolateMaskContent } from '../scripts/build-icons/isolate.ts';
 import { emitRender } from '../scripts/build-icons/jsx.ts';
 import {
   CATEGORIES,
@@ -247,6 +248,240 @@ describe('JSX emitter', () => {
       `<g style={{ msTransform: 'rotate(1deg)', WebkitMask: 'none', maskType: 'alpha' }} />`,
     );
   });
+
+  it('asks for per-instance ids only when the artwork has internal ids', () => {
+    const { files } = generateCategory(
+      loadChain({
+        'icons/chain/plain.svg': SQUARE,
+        'icons/chain/plain.json': iconUnit('Plain', ['', 'plain.svg']),
+        'icons/chain/masked.svg': `<svg ${XMLNS} viewBox="0 0 1 1"><mask id="m"><rect fill="#fff"/></mask><rect mask="url(#m)"/></svg>`,
+        'icons/chain/masked.json': iconUnit('Masked', ['', 'masked.svg']),
+        'icons/chain/filled.svg': `<svg ${XMLNS} viewBox="0 0 1 1" fill="none"><path/></svg>`,
+        'icons/chain/filled.json': iconUnit('Filled', [
+          '',
+          'filled.svg',
+        ]).replace('"filled.svg"', '"filled.svg", "fill": "none"'),
+      }),
+    );
+    expect(files.get('Plain.tsx')).toContain('() => (');
+    expect(files.get('Plain.tsx')).toContain('{},\n);');
+    expect(files.get('Masked.tsx')).toContain('(_props, _id) => (');
+    expect(files.get('Masked.tsx')).toContain('{ ids: true },\n);');
+    expect(files.get('Filled.tsx')).toContain(`{ fill: 'none' },\n);`);
+  });
+});
+
+describe('extra props', () => {
+  const unit = (
+    variants: readonly (readonly [suffix: string, file: string])[],
+    props: Readonly<Record<string, unknown>>,
+    svgs: Readonly<Record<string, string>>,
+  ): Readonly<Record<string, string>> => ({
+    'icons/chain/x.json': JSON.stringify({
+      name: 'X',
+      kind: 'icon',
+      variants: Object.fromEntries(
+        variants.map(([suffix, file]) => [suffix, { file }]),
+      ),
+      props,
+    }),
+    ...Object.fromEntries(
+      Object.entries(svgs).map(([file, svg]) => [`icons/chain/${file}`, svg]),
+    ),
+  });
+  const svg = (viewBox: string, body: string): string =>
+    `<svg ${XMLNS} viewBox="${viewBox}">${body}</svg>`;
+  const toggle = {
+    big: { type: 'toggle', description: 'Big.', on: '', off: 'Small' },
+  };
+  const fill = { tint: { type: 'fill', description: 'Tint.' } };
+  const emit = (files: Readonly<Record<string, string>>): string =>
+    generateCategory(loadChain(files)).files.get('X.tsx') ?? '';
+
+  it('switches artwork and viewBox with a toggle prop', () => {
+    const tsx = emit(
+      unit(
+        [
+          ['', 'a.svg'],
+          ['Small', 'b.svg'],
+        ],
+        toggle,
+        {
+          'a.svg': svg('0 0 2 2', '<rect id="r"/><use href="#r"/>'),
+          'b.svg': svg('0 0 1 1', '<path/>'),
+        },
+      ),
+    );
+    expect(tsx).toContain('export interface XProps {');
+    expect(tsx).toContain(
+      'Defaults to `true` for `X` and `false` for `XSmall`.',
+    );
+    expect(tsx).toContain('const bigArtwork = (big: boolean, _id: string) =>');
+    expect(tsx).toContain(
+      `({ big = true }) =>\n    big ? '0 0 2 2' : '0 0 1 1'`,
+    );
+    expect(tsx).toContain('({ big = false }, _id) => bigArtwork(big, _id)');
+    expect(tsx).toContain(`{ ids: true, props: ['big'] }`);
+  });
+
+  it('binds marked fills to a fill prop, defaulting to the source fill', () => {
+    const tsx = emit(
+      unit(
+        [
+          ['', 'a.svg'],
+          ['Bare', 'b.svg'],
+        ],
+        fill,
+        {
+          'a.svg': svg(
+            '0 0 1 1',
+            '<path fill="#f00" data-fill-prop="tint"/><path data-fill-prop="tint" fill="#f00"/>',
+          ),
+          'b.svg': svg('0 0 1 1', '<path data-fill-prop="tint"/>'),
+        },
+      ),
+    );
+    expect(tsx).toContain(`({ tint = '#f00' }) => (`);
+    expect(tsx).toContain('<path fill={tint} />');
+    expect(tsx).toContain('({ tint }) => (\n  <path fill={tint} />');
+    expect(tsx).not.toContain('data-fill-prop');
+  });
+
+  it('types variants that accept only some props with Pick', () => {
+    const tsx = emit(
+      unit(
+        [
+          ['', 'a.svg'],
+          ['Small', 'b.svg'],
+          ['Tinted', 'c.svg'],
+        ],
+        { ...toggle, ...fill },
+        {
+          'a.svg': svg('0 0 1 1', '<path/>'),
+          'b.svg': svg('0 0 1 1', '<rect/>'),
+          'c.svg': svg('0 0 1 1', '<path data-fill-prop="tint"/>'),
+        },
+      ),
+    );
+    expect(tsx).toContain(`createIcon<Pick<XProps, 'big'>>(`);
+    expect(tsx).toContain(`createIcon<Pick<XProps, 'tint'>>(`);
+    expect(tsx).toContain(`'0 0 1 1',\n  ({ big = true }) => bigArtwork(big),`);
+  });
+
+  it('keeps the marks out of the non-React outputs', () => {
+    const [x] = loadChain(
+      unit([['', 'a.svg']], fill, {
+        'a.svg': svg('0 0 1 1', '<path data-fill-prop="tint"/>'),
+      }),
+    );
+    expect(
+      serializeSvg(x?.variants[0]?.root ?? parseSvg('<svg/>')),
+    ).not.toContain('data-fill-prop');
+  });
+
+  it.each([
+    [
+      'a toggle naming a missing variant',
+      unit([['', 'a.svg']], toggle, { 'a.svg': svg('0 0 1 1', '<path/>') }),
+      /props\.big: no variant "Small"/,
+    ],
+    [
+      'a variant switched twice',
+      unit(
+        [
+          ['', 'a.svg'],
+          ['Small', 'b.svg'],
+        ],
+        { ...toggle, wide: { ...toggle.big, off: '' } },
+        {
+          'a.svg': svg('0 0 1 1', '<path/>'),
+          'b.svg': svg('0 0 1 1', '<path/>'),
+        },
+      ),
+      /props\.wide: variant "" is already switched by big/,
+    ],
+    [
+      'a mark naming no fill prop',
+      unit([['', 'a.svg']], fill, {
+        'a.svg': svg('0 0 1 1', '<path data-fill-prop="other"/>'),
+      }),
+      /data-fill-prop="other" names no "fill" prop/,
+    ],
+    [
+      'a fill prop nothing marks',
+      unit([['', 'a.svg']], fill, { 'a.svg': svg('0 0 1 1', '<path/>') }),
+      /props\.tint: no variant marks an element/,
+    ],
+    [
+      'a fill mark in a toggled variant',
+      unit(
+        [
+          ['', 'a.svg'],
+          ['Small', 'b.svg'],
+        ],
+        { ...toggle, ...fill },
+        {
+          'a.svg': svg('0 0 1 1', '<path data-fill-prop="tint"/>'),
+          'b.svg': svg('0 0 1 1', '<path/>'),
+        },
+      ),
+      /a variant switched by a toggle prop cannot bind fill props/,
+    ],
+  ])('rejects %s', (_, files, message) => {
+    expect(() => loadChain(files)).toThrow(message);
+  });
+
+  it.each([
+    [
+      'conflicting defaults',
+      '<path fill="#f00" data-fill-prop="tint"/><path fill="#0f0" data-fill-prop="tint"/>',
+      /marks elements with different fills \(#f00, #0f0\)/,
+    ],
+    [
+      'a mark that is no prop name',
+      '<path data-fill-prop="no-name"/>',
+      /is not a camelCase prop name/,
+    ],
+  ])('the emitter rejects %s', (_, body, message) => {
+    expect(() => emitRender(parseSvg(svg('0 0 1 1', body)))).toThrow(message);
+  });
+});
+
+describe('mask content isolation', () => {
+  const isolate = (svg: string): string =>
+    serializeSvg(isolateMaskContent(parseSvg(svg)));
+
+  it('gives masks the fill their content inherits in the source', () => {
+    expect(
+      isolate('<svg><mask id="m"><path/><path fill="#fff"/></mask></svg>'),
+    ).toContain('<mask id="m" fill="#000">');
+    expect(
+      isolate('<svg fill="none"><mask id="m"><path/></mask></svg>'),
+    ).toContain('<mask id="m" fill="none">');
+    expect(
+      isolate('<svg><g fill="#f00"><mask id="m"><path/></mask></g></svg>'),
+    ).toContain('<mask id="m" fill="#f00">');
+    expect(
+      isolate('<svg><pattern id="p"><g><use href="#x"/></g></pattern></svg>'),
+    ).toContain('<pattern id="p" fill="#000">');
+  });
+
+  it('resolves currentColor to what the source renders: black', () => {
+    expect(
+      isolate('<svg fill="currentColor"><mask id="m"><path/></mask></svg>'),
+    ).toContain('<mask id="m" fill="#000">');
+  });
+
+  it('leaves masks alone whose content has its own fill', () => {
+    for (const svg of [
+      '<svg><mask id="m"><path fill="#fff"/><g fill="#000"><path/></g></mask></svg>',
+      '<svg><mask id="m" fill="#fff"><path/></mask></svg>',
+      '<svg><mask id="m"><path style="fill: #fff"/></mask></svg>',
+      '<svg><clipPath id="c"><path/></clipPath></svg>',
+    ]) {
+      expect(isolate(svg)).toBe(serializeSvg(parseSvg(svg)));
+    }
+  });
 });
 
 describe('unit definitions', () => {
@@ -331,6 +566,31 @@ describe('unit definitions', () => {
         reexport: { from: "./A';", exports: [] },
       },
       /reexport\.from must be a module specifier/,
+    ],
+    [
+      'the removed "custom" kind',
+      { ...valid, kind: 'custom' },
+      /kind must be one of icon, reexport, alias/,
+    ],
+    [
+      'a prop of an unknown type',
+      { ...valid, props: { big: { type: 'size', description: 'x' } } },
+      /props\.big\.type must be one of "toggle", "fill"/,
+    ],
+    [
+      'a non-camelCase prop name',
+      {
+        ...valid,
+        props: Object.fromEntries([
+          ['Big', { type: 'fill', description: 'x' }],
+        ]),
+      },
+      /props key "Big" must be a camelCase prop name/,
+    ],
+    [
+      'a toggle without its variants',
+      { ...valid, props: { big: { type: 'toggle', description: 'x' } } },
+      /props\.big\.on must be a string/,
     ],
   ])('rejects %s', (_, value, message) => {
     expect(() => check(value)).toThrow(message);

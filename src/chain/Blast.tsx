@@ -11,7 +11,7 @@ export const Blast = /* @__PURE__ */ createIcon(
       <path d="m7.33 15.67 1.774-5.521-1.967-1.473-2.955 9.271h11.005l.737-2.276z" />
     </>
   ),
-  '#FCFC03',
+  { fill: '#FCFC03' },
 );
 
 /** Blast chain icon (monochrome). */
@@ -24,5 +24,5 @@ export const BlastMono = /* @__PURE__ */ createIcon(
       <path d="m7.33 15.67 1.774-5.521-1.967-1.473-2.955 9.271h11.005l.737-2.276z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

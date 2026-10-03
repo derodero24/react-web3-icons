@@ -16,6 +16,7 @@ export const Optimism = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Optimism chain icon (monochrome). */
@@ -28,7 +29,7 @@ export const OptimismMono = /* @__PURE__ */ createIcon(
       d="M0 14a14 14 0 1 0 28 0 14 14 0 1 0-28 0m14 12.25v-5.185c5.333 0 9.658-4.324 9.658-9.657S19.333 1.75 14 1.75v5.185c-5.333 0-9.658 4.324-9.658 9.657S8.667 26.25 14 26.25m4.778-12.205v-.09q-3.16-1.574-4.733-4.733h-.09q-1.574 3.16-4.733 4.733v.09q3.16 1.574 4.733 4.733h.09q1.574-3.16 4.733-4.733"
     />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );
 
 /** Optimism Circle chain icon (colored). */
@@ -46,6 +47,7 @@ export const OptimismCircle = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  {},
 );
 
 /** Optimism Square chain icon (colored). */
@@ -63,13 +65,14 @@ export const OptimismSquare = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  {},
 );
 
 /** Optimism Square chain icon (monochrome). */
 export const OptimismSquareMono = /* @__PURE__ */ createIcon(
   'OptimismSquareMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-opts-a)`} />
       <defs>
@@ -82,14 +85,14 @@ export const OptimismSquareMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Optimism Circle chain icon (monochrome). */
 export const OptimismCircleMono = /* @__PURE__ */ createIcon(
   'OptimismCircleMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="32" cy="32" r="32" mask={`url(#${_id}-optc-a)`} />
       <defs>
@@ -102,5 +105,5 @@ export const OptimismCircleMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

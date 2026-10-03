@@ -14,13 +14,14 @@ export const PolkadotJs = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Polkadot Js wallet icon (monochrome). */
 export const PolkadotJsMono = /* @__PURE__ */ createIcon(
   'PolkadotJsMono',
   '15 15 140 140',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <mask id={`${_id}-pdjm-a`}>
@@ -34,5 +35,5 @@ export const PolkadotJsMono = /* @__PURE__ */ createIcon(
       <circle cx="85" cy="85" r="70" mask={`url(#${_id}-pdjm-a)`} />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

@@ -12,7 +12,7 @@ export const Tia = /* @__PURE__ */ createIcon(
       clipRule="evenodd"
     />
   ),
-  '#7A2BF9',
+  { fill: '#7A2BF9' },
 );
 
 /** Tia coin icon (monochrome). */
@@ -26,5 +26,5 @@ export const TiaMono = /* @__PURE__ */ createIcon(
       clipRule="evenodd"
     />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

@@ -19,14 +19,14 @@ export const Maple = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  '#FC784A',
+  { fill: '#FC784A' },
 );
 
 /** Maple DeFi icon (monochrome). */
 export const MapleMono = /* @__PURE__ */ createIcon(
   'MapleMono',
   '0 0 20 20',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         d="M10 20c5.523 0 10-4.477 10-10S15.523 0 10 0 0 4.477 0 10s4.477 10 10 10"
@@ -47,5 +47,5 @@ export const MapleMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

@@ -34,7 +34,7 @@ export const Orbiter = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none' },
 );
 
 /** Orbiter bridge icon (monochrome). */
@@ -51,5 +51,5 @@ export const OrbiterMono = /* @__PURE__ */ createIcon(
       <path d="M1.68604 2.32041C2.06494 2.32041 2.37209 2.02483 2.37209 1.66021C2.37209 1.29558 2.06494 1 1.68604 1C1.30715 1 1 1.29558 1 1.66021C1 2.02483 1.30715 2.32041 1.68604 2.32041Z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

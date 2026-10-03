@@ -22,14 +22,14 @@ export const SushiSwap = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none' },
 );
 
 /** Sushi Swap DEX icon (monochrome). */
 export const SushiSwapMono = /* @__PURE__ */ createIcon(
   'SushiSwapMono',
   '0 0 30 28',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         fillRule="evenodd"
@@ -50,5 +50,5 @@ export const SushiSwapMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

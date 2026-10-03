@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const ZerionCircle = /* @__PURE__ */ createIcon(
   'ZerionCircle',
   '0 0 1024 1024',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="1024" height="1024" rx="512" fill={`url(#${_id}-zr-a)`} />
       <path
@@ -27,6 +27,7 @@ export const ZerionCircle = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
+  { ids: true },
 );
 
 /** Zerion Square wallet icon (colored). */
@@ -45,13 +46,14 @@ export const ZerionSquare = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Zerion Circle wallet icon (monochrome). */
 export const ZerionCircleMono = /* @__PURE__ */ createIcon(
   'ZerionCircleMono',
   '0 0 1024 1024',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <mask id={`${_id}-zr-circle-a`}>
@@ -70,14 +72,14 @@ export const ZerionCircleMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Zerion Square wallet icon (monochrome). */
 export const ZerionSquareMono = /* @__PURE__ */ createIcon(
   'ZerionSquareMono',
   '98.874 163.084 40.147 40',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <mask id={`${_id}-zr-square-a`}>
@@ -94,7 +96,7 @@ export const ZerionSquareMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Zerion wallet icon (colored). */

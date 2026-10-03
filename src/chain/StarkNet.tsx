@@ -7,7 +7,7 @@ import { createIcon } from '../utils';
 export const StarkNet = /* @__PURE__ */ createIcon(
   'StarkNet',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0"
@@ -54,13 +54,14 @@ export const StarkNet = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
+  { ids: true },
 );
 
 /** Stark Net chain icon (monochrome). */
 export const StarkNetMono = /* @__PURE__ */ createIcon(
   'StarkNetMono',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0"
@@ -81,14 +82,14 @@ export const StarkNetMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Stark Net Circle chain icon (colored). */
 export const StarkNetCircle = /* @__PURE__ */ createIcon(
   'StarkNetCircle',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="32" cy="32" r="32" fill="#0C0C4F" />
       <g
@@ -128,13 +129,14 @@ export const StarkNetCircle = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
+  { ids: true },
 );
 
 /** Stark Net Square chain icon (colored). */
 export const StarkNetSquare = /* @__PURE__ */ createIcon(
   'StarkNetSquare',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" fill="#0C0C4F" />
       <g
@@ -174,13 +176,14 @@ export const StarkNetSquare = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
+  { ids: true },
 );
 
 /** Stark Net Square chain icon (monochrome). */
 export const StarkNetSquareMono = /* @__PURE__ */ createIcon(
   'StarkNetSquareMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-snksm-a)`} />
       <defs>
@@ -201,14 +204,14 @@ export const StarkNetSquareMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Stark Net Circle chain icon (monochrome). */
 export const StarkNetCircleMono = /* @__PURE__ */ createIcon(
   'StarkNetCircleMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="32" cy="32" r="32" mask={`url(#${_id}-snkcm-a)`} />
       <defs>
@@ -229,5 +232,5 @@ export const StarkNetCircleMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

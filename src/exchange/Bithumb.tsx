@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 export const Bithumb = /* @__PURE__ */ createIcon(
   'Bithumb',
   '0 0 24 24',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         fill="#D53127"
@@ -37,6 +37,7 @@ export const Bithumb = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
+  { ids: true },
 );
 
 /** Bithumb exchange icon (monochrome). */
@@ -50,5 +51,5 @@ export const BithumbMono = /* @__PURE__ */ createIcon(
       <path d="M18.83 11.117c-.312-3.584-2.886-3.726-2.886-3.726l-3.258-.057-1.4 4.854h1.71c.313.017.885.535.7 1.452" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

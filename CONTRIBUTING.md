@@ -73,9 +73,9 @@ type-checks them with the same `strictest` settings as `src`.
 
 Icons are **SVG-first**: the source of truth is the `icons/` tree, and the React
 components under `src/<category>/` are generated from it. Never edit generated
-`.tsx` files by hand — a sync test will fail. The three hand-written exceptions
-(`Avalanche`, `Bybit`, `RainbowWallet`, marked `"kind": "custom"`) are the only
-icon modules maintained as TSX.
+`.tsx` files by hand — a sync test will fail. There are no hand-written icon
+modules; icons with extra props (`withBackground`, `fill1`) declare them in
+their unit JSON too (see [Extra props](#extra-props)).
 
 ### Quick Start (Scaffolding)
 
@@ -114,9 +114,19 @@ icons/chain/ethereum.json         # metadata:
   suffix (`""` → `Ethereum`, `"Mono"` → `EthereumMono`, `"CircleMono"` → `EthereumCircleMono`).
 - Internal `id` attributes (masks, gradients, clip paths) can stay as plain
   static IDs in the SVG (`id="ethc-a"`). The generator rewrites them to
-  `${_id}-ethc-a` in the TSX, where `_id` is the deterministic per-component
-  prefix `w3i-<lowercased name>` that `createIcon` passes to the render
-  function — so the DOM ends up with `w3i-ethereumcirclemono-ethc-a`.
+  `${_id}-ethc-a` in the TSX, where `_id` is the per-instance prefix
+  `w3i-<lowercased name>-<instance>` that `createIcon` passes to the render
+  function (the instance part comes from `useId`) — so the DOM ends up with
+  e.g. `w3i-ethereumcirclemono-r1-ethc-a`, unique for every rendered icon.
+  Only artwork with internal ids makes the component call `useId`; the
+  generator emits `{ ids: true }` for it, and every other icon stays
+  hook-free.
+- Mask (and pattern) content inherits `fill` from the mask's ancestors,
+  which in React is the icon's `<svg>` and its `fill` prop. The generator
+  therefore gives every `<mask>` whose content would inherit `fill` the value
+  it inherits in the source file (`currentColor` and an unset fill become
+  `#000`, what the file renders with the default colour), so a `fill` or
+  `color` on the icon never changes its masks.
 - The root element may only carry `xmlns`, `viewBox`, and `fill`. No fixed
   `width`/`height`, no `<style>` tags, no text content.
 - Every `url(#…)` / `href="#…"` must point at an `id` defined in the same
@@ -176,6 +186,25 @@ A unit declares two different kinds of names:
   "chainIds": [8217]
 }
 ```
+### Extra props
+
+A unit can give its components extra props in a `props` map (prop name →
+spec). The generator declares them in an exported `<Name>Props` interface
+and passes them to `createIcon`, which keeps them off the `<svg>`. Two kinds
+exist:
+
+- `"type": "toggle"` — a boolean that switches between the artwork of two
+  variants, e.g. `withBackground` in `icons/chain/avalanche.json`:
+  `{ "type": "toggle", "description": "…", "on": "Circle", "off": "CircleMono" }`.
+  Both variants accept the prop and default to their own artwork (`true` for
+  `on`); each keeps its own root `fill`, and the `viewBox` switches with the
+  artwork. A variant can be switched by one toggle only.
+- `"type": "fill"` — a string that sets the `fill` of every element marked
+  `data-fill-prop="<name>"` in a variant's SVG, e.g. `fill1` in
+  `icons/exchange/bybit.svg`. The element's own `fill` (if any) is the
+  default. The marks are removed from `dist/svg` and the Iconify sets.
+
+`dist/svg` and Iconify render each variant with its default props.
 
 ### Aliases and re-exports
 
@@ -349,13 +378,7 @@ When adding a new icon, follow this workflow:
 ```
 
 Everything under `src/<category>/` is generated from `icons/`; the only manual
-artifacts are the SVG files and the unit JSON. The exception is the handful of
-`"kind": "custom"` units (`Avalanche`, `Bybit`, `RainbowWallet`): their TSX is
-hand-maintained and skipped by the TSX generator, but their SVGs in `icons/`
-are still real inputs — the build copies them into `dist/svg` and the Iconify
-collections. `test/icons-sync.test.ts` only checks that every declared variant
-is exported from the TSX, not that the geometry matches, so when you touch a
-custom unit update the SVG and the TSX together and verify them visually.
+artifacts are the SVG files and the unit JSON.
 
 ### 1. Source the SVG
 
@@ -368,9 +391,8 @@ Every new unit records where its artwork came from in the `source` array of
 the JSON). For generated units the generator emits it as a `// Source:` comment
 right after the imports in the `.tsx`, so `grep -r "// Source:" src/` still
 works for audits — never edit that comment by hand; change the JSON and
-regenerate. For `"kind": "custom"` units, keep the `// Source:` comment in the
-hand-written TSX yourself. A few older units predate the `source` field; add it
-when you touch them.
+regenerate. A few older units predate the `source` field; add it when you
+touch them.
 
 ```json
 {
@@ -446,10 +468,8 @@ touch.
 ### 3. Add variants
 
 Each key in the unit's `variants` map is an export suffix backed by one SVG
-file. For generated (`"kind": "icon"`) units, mono variants set
-`"fill": "currentColor"` (or `"none"` for stroke-only artwork) and that value
-becomes the default `fill` on the rendered `<svg>`; custom units handle it in
-their hand-written TSX.
+file. Mono variants set `"fill": "currentColor"` (or `"none"` for stroke-only
+artwork) and that value becomes the default `fill` on the rendered `<svg>`.
 
 #### Circle / Square Variants
 
@@ -503,7 +523,7 @@ Key points:
 After `pnpm run generate-icons`, open `src/<category>/<Name>.tsx` and check:
 
 - The `// Source:` comment and the `/* @__PURE__ */` annotation are present (both emitted by the generator; `test/pure-annotations.test.ts` enforces the latter)
-- Internal IDs were rewritten to `${_id}-…` references (rendered as `w3i-<name>-…`, see "Anatomy of an icon unit") and every `url(#…)` / `href="#…"` still resolves
+- Internal IDs were rewritten to `${_id}-…` references (rendered as `w3i-<name>-<instance>-…`, see "Anatomy of an icon unit"), the call passes `{ ids: true }`, and every `url(#…)` / `href="#…"` still resolves
 - Mono variants: stroke-only elements carry `fill="none"` and no hardcoded color remains where `currentColor` should be inherited
 
 Fix problems in the SVG source (or the JSON) and regenerate — never edit the
@@ -523,7 +543,7 @@ Run the example app and verify:
 
 - **Use `viewBox`** instead of fixed `width`/`height` in the SVG source. The component sets `width="1em"` and `height="1em"` as defaults.
 - **Avoid `<style>` tags** inside SVGs. Use inline `style` props or direct fill/stroke attributes instead.
-- **Static IDs are fine in the SVG source** (`id="mtc-a"`). The generator rewrites them to `${_id}-mtc-a` (`_id` = `w3i-<lowercased component name>`), so different icons on the same page never collide. Rendering the same component twice repeats its ids with identical definitions, which is a documented trade-off of the deterministic prefix (see `createIcon`) and does not affect rendering.
+- **Static IDs are fine in the SVG source** (`id="mtc-a"`). The generator rewrites them to `${_id}-mtc-a` (`_id` = `w3i-<lowercased component name>-<instance>`), so no two rendered icons on a page share an id, including two instances of the same component.
 - **Repeated geometry belongs in the SVG source**, not in the TSX. Variants that share a mark keep one copy per SVG file; document the shared transform in the unit's `notes` so the copies can be kept in sync. Do not hand-edit generated `.tsx` files to extract constants.
 
 ## Running the Example App

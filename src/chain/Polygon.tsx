@@ -6,7 +6,7 @@ import { createIcon } from '../utils';
 export const Polygon = /* @__PURE__ */ createIcon(
   'Polygon',
   '14.85 41.75 470.3 416.51',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <linearGradient
@@ -28,6 +28,7 @@ export const Polygon = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  { ids: true },
 );
 
 /** Polygon chain icon (monochrome). */
@@ -37,7 +38,7 @@ export const PolygonMono = /* @__PURE__ */ createIcon(
   () => (
     <path d="M364.03 335.08l111.55-64.4c5.9-3.41 9.57-9.76 9.57-16.58V125.28a19.22 19.22 0 0 0-9.57-16.58L364.03 44.3a19.21 19.21 0 0 0-19.14 0l-111.55 64.4c-5.9 3.41-9.57 9.76-9.57 16.58v230.19l-78.22 45.15-78.22-45.15v-90.33l78.22-45.15 51.6 29.78v-60.59l-42.03-24.26a19.2 19.2 0 0 0-19.14 0L24.42 229.33c-5.9 3.41-9.57 9.76-9.57 16.58v128.81a19.22 19.22 0 0 0 9.57 16.58l111.55 64.41c5.9 3.4 13.23 3.4 19.14 0l111.55-64.4a19.22 19.22 0 0 0 9.57-16.58V144.54l1.41-.81 76.81-44.34 78.22 45.16v90.32l-78.22 45.16-51.52-29.74v60.59l41.95 24.23c5.9 3.4 13.24 3.4 19.14 0z" />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );
 
 /** Polygon Square chain icon (colored). */
@@ -55,13 +56,14 @@ export const PolygonSquare = /* @__PURE__ */ createIcon(
       </g>
     </>
   ),
+  {},
 );
 
 /** Polygon Square chain icon (monochrome). */
 export const PolygonSquareMono = /* @__PURE__ */ createIcon(
   'PolygonSquareMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-plgns-a)`} />
       <defs>
@@ -74,14 +76,14 @@ export const PolygonSquareMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Polygon Circle chain icon (colored). */
 export const PolygonCircle = /* @__PURE__ */ createIcon(
   'PolygonCircle',
   '4.5 5.5 491 489',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <clipPath id={`${_id}-plgn2-a`}>
@@ -110,13 +112,14 @@ export const PolygonCircle = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  { ids: true },
 );
 
 /** Polygon Circle chain icon (monochrome). */
 export const PolygonCircleMono = /* @__PURE__ */ createIcon(
   'PolygonCircleMono',
   '4.5 5.5 491 489',
-  _id => (
+  (_props, _id) => (
     <>
       <path
         d="M-18.1-18.1h536.2v536.2H-18.1z"
@@ -137,5 +140,5 @@ export const PolygonCircleMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );

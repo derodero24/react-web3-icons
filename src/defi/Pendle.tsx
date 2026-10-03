@@ -21,7 +21,7 @@ export const Pendle = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'none',
+  { fill: 'none' },
 );
 
 /** Pendle DeFi icon (monochrome). */
@@ -34,5 +34,5 @@ export const PendleMono = /* @__PURE__ */ createIcon(
       <path d="M8.326 4.007v10.017h.883V3.56q-.459.194-.883.446" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

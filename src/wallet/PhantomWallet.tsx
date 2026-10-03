@@ -7,7 +7,7 @@ import { createIcon } from '../utils';
 export const PhantomWallet = /* @__PURE__ */ createIcon(
   'PhantomWallet',
   '0 0 128 128',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="64" cy="64" r="64" fill={`url(#${_id}-phw-a)`} />
       <path
@@ -40,6 +40,7 @@ export const PhantomWallet = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
+  { ids: true },
 );
 
 /** Phantom Wallet wallet icon (monochrome). */
@@ -52,14 +53,14 @@ export const PhantomWalletMono = /* @__PURE__ */ createIcon(
       d="M0 64a64 64 0 1 0 128 0A64 64 0 1 0 0 64m110.584.914H99.142C99.142 41.765 80.173 23 56.772 23c-23.111 0-41.901 18.306-42.361 41.058C13.936 87.577 36.241 108 60.019 108h2.991c20.963 0 49.06-16.233 53.45-36.013.811-3.646-2.101-7.073-5.875-7.073zm-70.815 1.031c0 3.096-2.559 5.627-5.689 5.627s-5.689-2.533-5.689-5.627v-9.104c0-3.096 2.559-5.627 5.689-5.627s5.689 2.532 5.689 5.627zm19.753 0c0 3.096-2.559 5.627-5.689 5.627s-5.689-2.533-5.689-5.627v-9.104c0-3.096 2.56-5.627 5.689-5.627s5.689 2.532 5.689 5.627z"
     />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );
 
 /** Phantom Wallet Circle wallet icon (colored). */
 export const PhantomWalletCircle = /* @__PURE__ */ createIcon(
   'PhantomWalletCircle',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="32" cy="32" r="32" fill={`url(#${_id}-phc-a)`} />
       <path
@@ -82,13 +83,14 @@ export const PhantomWalletCircle = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
+  { ids: true },
 );
 
 /** Phantom Wallet Circle wallet icon (monochrome). */
 export const PhantomWalletCircleMono = /* @__PURE__ */ createIcon(
   'PhantomWalletCircleMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <circle cx="32" cy="32" r="32" mask={`url(#${_id}-phcm-a)`} />
       <defs>
@@ -103,14 +105,14 @@ export const PhantomWalletCircleMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Phantom Wallet Square wallet icon (colored). */
 export const PhantomWalletSquare = /* @__PURE__ */ createIcon(
   'PhantomWalletSquare',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" fill={`url(#${_id}-phsq-a)`} />
       <path
@@ -133,13 +135,14 @@ export const PhantomWalletSquare = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
+  { ids: true },
 );
 
 /** Phantom Wallet Square wallet icon (monochrome). */
 export const PhantomWalletSquareMono = /* @__PURE__ */ createIcon(
   'PhantomWalletSquareMono',
   '0 0 64 64',
-  _id => (
+  (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-phsqm-a)`} />
       <defs>
@@ -154,7 +157,7 @@ export const PhantomWalletSquareMono = /* @__PURE__ */ createIcon(
       </defs>
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Phantom Wallet Symbol wallet icon (monochrome). */
@@ -164,5 +167,5 @@ export const PhantomWalletSymbolMono = /* @__PURE__ */ createIcon(
   () => (
     <path d="M120.471 52.009h-14.332C106.139 23.285 82.379 0 53.068 0 24.12 0 .585 22.715.009 50.947c-.596 29.183 27.342 54.525 57.125 54.525h3.746c26.257 0 61.45-20.143 66.948-44.686 1.016-4.524-2.631-8.777-7.358-8.777zm-88.7 1.28c0 3.841-3.206 6.983-7.125 6.983s-7.125-3.143-7.125-6.983V41.992c0-3.841 3.206-6.983 7.125-6.983s7.125 3.142 7.125 6.983v11.297zm24.743 0c0 3.841-3.206 6.983-7.125 6.983s-7.125-3.143-7.125-6.983V41.992c0-3.841 3.207-6.983 7.125-6.983s7.125 3.142 7.125 6.983v11.297z" />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

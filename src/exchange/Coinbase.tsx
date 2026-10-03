@@ -17,6 +17,7 @@ export const CoinbaseCircle = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Coinbase Circle Alt exchange icon (colored). */
@@ -35,6 +36,7 @@ export const CoinbaseCircleAlt = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Coinbase exchange icon (colored). */
@@ -44,14 +46,14 @@ export const Coinbase = /* @__PURE__ */ createIcon(
   () => (
     <path d="M1250.4 1689.5c-242.8 0-439.4-196.7-439.4-439.5s196.7-439.4 439.4-439.4c217.5 0 398.1 158.6 432.9 366.2H2126c-37.4-451.2-414.9-805.7-875.6-805.7-485.2 0-878.9 393.7-878.9 878.9s393.7 878.9 878.9 878.9c460.7 0 838.3-354.5 875.6-805.7h-443.1c-34.8 207.7-215 366.3-432.5 366.3h0z" />
   ),
-  '#0052ff',
+  { fill: '#0052ff' },
 );
 
 /** Coinbase Circle exchange icon (monochrome). */
 export const CoinbaseCircleMono = /* @__PURE__ */ createIcon(
   'CoinbaseCircleMono',
   '0 0 2500 2500',
-  _id => (
+  (_props, _id) => (
     <>
       <defs>
         <mask id={`${_id}-cbem-a`}>
@@ -68,7 +70,7 @@ export const CoinbaseCircleMono = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor', ids: true },
 );
 
 /** Coinbase exchange icon (monochrome). */
@@ -78,5 +80,5 @@ export const CoinbaseMono = /* @__PURE__ */ createIcon(
   () => (
     <path d="M1250.4 1689.5c-242.8 0-439.4-196.7-439.4-439.5s196.7-439.4 439.4-439.4c217.5 0 398.1 158.6 432.9 366.2H2126c-37.4-451.2-414.9-805.7-875.6-805.7-485.2 0-878.9 393.7-878.9 878.9s393.7 878.9 878.9 878.9c460.7 0 838.3-354.5 875.6-805.7h-443.1c-34.8 207.7-215 366.3-432.5 366.3h0z" />
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );

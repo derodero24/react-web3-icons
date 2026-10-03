@@ -17,6 +17,7 @@ export const Basescan = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Basescan Inverted explorer icon (colored). */
@@ -35,6 +36,7 @@ export const BasescanInverted = /* @__PURE__ */ createIcon(
       />
     </>
   ),
+  {},
 );
 
 /** Basescan explorer icon (monochrome). */
@@ -47,5 +49,5 @@ export const BasescanMono = /* @__PURE__ */ createIcon(
       <path d="M25.04 109.544C34.0892 116.127 44.7832 120.079 55.9388 120.961C67.0944 121.844 78.2767 119.623 88.2486 114.545C98.2205 109.467 106.593 101.729 112.44 92.1878C118.287 82.6465 121.381 71.6735 121.379 60.4831C121.379 59.0831 121.314 57.7051 121.221 56.3311C99.058 89.3861 58.136 104.839 25.04 109.544Z" />
     </>
   ),
-  'currentColor',
+  { fill: 'currentColor' },
 );
