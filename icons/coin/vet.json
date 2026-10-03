@@ -4,7 +4,7 @@
     "https://files.vechain.org/branding/Logos/VeChain.zip (official VeChain brand kit, files VeChain/VeChain_Dark.svg and VeChain_Light.svg; guidelines: https://files.vechain.org/branding/Guidelines/VeChain%20Brand%20Guidelines.pdf)"
   ],
   "notes": [
-    "Colored: the V of the official VeChain lockup, its own #7266FF path (identical in VeChain_Dark.svg and VeChain_Light.svg) copied unchanged without the wordmark paths, placed on the 64 grid; the kit has no mark-only file, so this crop awaits maintainer sign-off (#836)",
+    "Colored: the V of the official VeChain lockup, its own #7266FF path (identical in VeChain_Dark.svg and VeChain_Light.svg) copied unchanged without the wordmark paths, placed on the 64 grid. The kit's mark-only files, VeChain_Logomark_Light.png and VeChain_Logomark_Dark.png, are PNG only and put a white V on a rounded tile (#7266FF / #0C0A1F), so the bare V is taken from the vector lockup instead",
     "Mono: the same path in currentColor"
   ],
   "kind": "icon",

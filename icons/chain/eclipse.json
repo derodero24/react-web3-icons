@@ -1,16 +1,18 @@
 {
   "name": "Eclipse",
   "source": [
-    "https://cdn.prod.website-files.com/667150f66409572775122b43/667bc178f7d7c5e9849c975b_webclip.svg (official app icon of https://www.eclipse.xyz)"
+    "https://drive.google.com/drive/folders/1fp98NVnYkGQSD0FNXPOMK7TABdFtsdbm (official brand kit linked from the eclipse.xyz footer: Eclipse_logo_logo_black.svg, Eclipse Brand Guidelines.pdf)"
   ],
   "notes": [
-    "Default: Eclipse's official app icon (the eclipse.xyz webclip.svg: #A1FEA0 tile with the black E, clipped to its 200/256 safe area as in the file); the site's favicon.svg shows the same tile, so the background is integral and the icon is a container drawn full-bleed. It replaces an unsourced black E without the tile",
-    "Mono: the tile in currentColor with the E knocked out through a mask"
+    "Default: the kit's standalone symbol for light backgrounds, Eclipse_logo_logo_black.svg (#000), paths unchanged and placed on the 64 grid. The Brand Guidelines' logo suite (2.3) shows the symbol in black on white and in Eclipse Aurora green or white on black, always without a tile, and list 'put shapes around the wordmark' among the misuses; the kit ships the symbol in black, green (#A1FEA0) and white only. It replaces the eclipse.xyz webclip.svg (the black E on a #A1FEA0 tile), which is a site app icon, not the brand's symbol",
+    "brandColor: the symbol is black, so the manifest uses Eclipse Aurora #A1FEA0, which the Brand Guidelines (5.2) name the primary brand colour",
+    "Mono: the same symbol paths in currentColor (the kit also ships them in white)"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "eclipse.svg"
+      "file": "eclipse.svg",
+      "fill": "#000"
     },
     "Mono": {
       "file": "eclipse.mono.svg",
@@ -19,5 +21,6 @@
   },
   "slugs": [
     "eclipse"
-  ]
+  ],
+  "brandColor": "#a1fea0"
 }

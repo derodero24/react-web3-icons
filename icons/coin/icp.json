@@ -1,7 +1,8 @@
 {
   "name": "Icp",
   "source": [
-    "https://internetcomputer.org/favicon.svg (official site)"
+    "https://internetcomputer.org/favicon.svg (official site)",
+    "https://dfinity.frontify.com/d/XzkdhhDptijE (official DFINITY brand guide on Frontify)"
   ],
   "notes": [
     "Colored: the three paths of the official favicon.svg unchanged (orange #F15A24 to #FBB03B loop, pink #ED1E79 to #522785 loop, #29ABE2 strand) at their source coordinates (viewBox 0 0 358.8 179.8, without the favicon's own placement transform); the gradients' gradientTransform matrix(1 0 0 -1 0 272) is applied to their end points; placed on the 64 grid",

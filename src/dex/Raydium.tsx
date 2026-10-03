@@ -2,7 +2,9 @@ import { createIcon } from '../utils';
 
 // Source: https://raydium.io/favicon.ico (official favicon)
 // Source: https://docs.raydium.io/resources/brand-kit (official brand kit)
-// Paths sourced from an earlier official raydium.io logo SVG; matches the current official favicon.ico and the brand kit's raydium-r.png (checked 2026-10-03)
+// Source: https://github.com/raydium-io/raydium-docs-v1/blob/master/logo/raydium-r.png (official symbol raster, the brand kit's master folder)
+// Paths sourced from an earlier official raydium.io logo SVG, with its #C200FB / #3772FF / #5AC4BE stops
+// Gradient vector: the old file ran the gradient horizontally (purple left, teal right), which matches neither official raster. The official raydium-r.png and favicon.ico run teal at bottom-left through blue to purple at top-right, with the corner dot purple; the axis (x1/y1/x2/y2) was fitted to raydium-r.png's pixels with the same three stops (mean colour error 4/255 against the PNG; checked 2026-10-03)
 // No official symbol SVG is reachable today: the brand kit names mark-dark.svg / mark-light.svg, but its master folder (github.com/raydium-io/raydium-docs-v1, /logo/) holds only PNGs
 /** Raydium DEX icon (colored). */
 export const Raydium = /* @__PURE__ */ createIcon(
@@ -13,10 +15,10 @@ export const Raydium = /* @__PURE__ */ createIcon(
       <defs>
         <linearGradient
           id={`${_id}-ray-g`}
-          x1="4"
-          x2="36"
-          y1="20.47"
-          y2="20.47"
+          x1="35.73"
+          x2="4.07"
+          y1="11.29"
+          y2="29.77"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#C200FB" />
