@@ -88,6 +88,8 @@ export const coinImports: Record<
   Inj: () => import('../../coin/Inj'),
   InjMono: () => import('../../coin/Inj'),
   Jup: () => import('../../coin/Jup'),
+  JupCircle: () => import('../../coin/Jup'),
+  JupCircleMono: () => import('../../coin/Jup'),
   JupMono: () => import('../../coin/Jup'),
   Kaia: () => import('../../coin/Kaia'),
   KaiaMono: () => import('../../coin/Kaia'),
