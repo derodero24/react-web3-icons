@@ -16,8 +16,8 @@
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { CATEGORIES } from './build-icons/lib.mjs';
-import { parseSvg, serializeSvg } from './build-icons/xml.mjs';
+import { CATEGORIES } from './build-icons/lib.ts';
+import { parseSvg, serializeSvg } from './build-icons/xml.ts';
 
 const ROOT = resolve(import.meta.dirname, '..');
 
@@ -99,7 +99,7 @@ if (monoPath) {
 }
 
 writeFileSync(jsonPath, `${JSON.stringify(meta, null, 2)}\n`);
-execFileSync('node', ['scripts/build-icons/cli.mjs'], { cwd: ROOT, stdio: 'inherit' });
+execFileSync('node', ['scripts/build-icons/cli.ts'], { cwd: ROOT, stdio: 'inherit' });
 
 console.log(`
 Created icons/${category}/${slug}.{svg,json} and generated src/${category}/${name}.tsx.

@@ -133,7 +133,7 @@
   ],
   "scripts": {
     "analyze": "size-limit --why",
-    "build": "tsdown && node scripts/build-icons/emit-dist-svg.mjs && node scripts/build-icons/emit-iconify.mjs && node scripts/generate-manifest.mjs --json",
+    "build": "tsdown && node scripts/build-icons/emit-dist-svg.ts && node scripts/build-icons/emit-iconify.ts && node scripts/generate-manifest.mjs --json",
     "new-icon": "node scripts/new-icon.mjs",
     "check": "biome ci --error-on-warnings",
     "format": "biome format --write",
@@ -149,7 +149,7 @@
     "test:visual:update": "vitest run --config vitest.config.visual.ts --update",
     "typecheck": "tsc --noEmit && tsc --noEmit -p test",
     "generate-manifest": "node scripts/generate-manifest.mjs",
-    "generate-icons": "node scripts/build-icons/cli.mjs"
+    "generate-icons": "node scripts/build-icons/cli.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.14",
