@@ -1808,7 +1808,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'QuickNode',
     category: 'node',
     variants: ['', 'Mono'],
-    brandColor: '#00a4d6',
+    brandColor: '#6cff75',
   },
   { name: 'QuickNodeMono', category: 'node' },
   {

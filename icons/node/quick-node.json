@@ -1,13 +1,16 @@
 {
   "name": "QuickNode",
   "source": [
-    "https://quicknode.com (official brand)"
+    "https://www.quicknode.com/brand-kit/quicknode-brand-kit.zip (official brand kit: mark/svg/quicknode-mark-green.svg, quicknode-mark-black.svg)"
+  ],
+  "notes": [
+    "Default: the official QuickNode mark in green #6CFF75 (quicknode-mark-green.svg), replacing the older cyan #00A4D6 Q",
+    "Mono: the kit's one-colour mark (quicknode-mark-black.svg, same geometry) in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "quick-node.svg",
-      "fill": "#00a4d6"
+      "file": "quick-node.svg"
     },
     "Mono": {
       "file": "quick-node.mono.svg",
