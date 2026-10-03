@@ -1,14 +1,20 @@
 import { createIcon } from '../utils';
 
-// Source: https://xrpl.org
+// Source: https://xrpl.org/assets/xrp-symbol-black.8ecaf7670b5ebd82b8283c9eae4388cff60ec37c3a57351436b36eeeee131dd8.c92cfbea.svg (official XRP Ledger site, xrpl.org)
+// Colored: the official xrp-symbol-black.svg unchanged (one evenodd path in #141414), placed on the 64 grid
+// Mono: the same path in currentColor
+// Circle / CircleMono: legacy artwork of unidentified origin (the mark in a disc), not an official XRP asset; kept until #815 decides its fate
 /** Xrp coin icon (colored). */
 export const Xrp = /* @__PURE__ */ createIcon(
   'Xrp',
   '0 0 64 64',
   () => (
-    <path d="M51.8 8.81h8.1L43.04 25.5c-6.1 6.04-16 6.04-22.1 0L4.1 8.81h8.1L25 21.48a9.97 9.97 0 0 0 13.99 0zM12.1 55.2H4l16.95-16.8c6.1-6.04 16-6.04 22.1 0L60 55.19h-8.1L39 42.42a9.97 9.97 0 0 0-13.99 0z" />
+    <path
+      fillRule="evenodd"
+      d="M59.89 8.02h-8.1L39 20.67c-3.86 3.83-10.12 3.83-13.98 0L12.2 8.02H4.1l16.84 16.65c6.1 6.04 16 6.04 22.1 0zM4 55.97h8.1L25 43.17c3.86-3.83 10.12-3.83 13.99 0l12.9 12.8H60l-16.95-16.8c-6.1-6.05-16-6.05-22.1 0z"
+    />
   ),
-  { fill: '#23292f' },
+  { fill: '#141414' },
 );
 
 /** Xrp coin icon (monochrome). */
@@ -16,7 +22,10 @@ export const XrpMono = /* @__PURE__ */ createIcon(
   'XrpMono',
   '0 0 64 64',
   () => (
-    <path d="M51.8 8.81h8.1L43.04 25.5c-6.1 6.04-16 6.04-22.1 0L4.1 8.81h8.1L25 21.48a9.97 9.97 0 0 0 13.99 0zM12.1 55.2H4l16.95-16.8c6.1-6.04 16-6.04 22.1 0L60 55.19h-8.1L39 42.42a9.97 9.97 0 0 0-13.99 0z" />
+    <path
+      fillRule="evenodd"
+      d="M59.89 8.02h-8.1L39 20.67c-3.86 3.83-10.12 3.83-13.98 0L12.2 8.02H4.1l16.84 16.65c6.1 6.04 16 6.04 22.1 0zM4 55.97h8.1L25 43.17c3.86-3.83 10.12-3.83 13.99 0l12.9 12.8H60l-16.95-16.8c-6.1-6.05-16-6.05-22.1 0z"
+    />
   ),
   { fill: 'currentColor' },
 );

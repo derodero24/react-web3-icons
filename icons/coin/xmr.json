@@ -1,7 +1,13 @@
 {
   "name": "Xmr",
   "source": [
-    "https://getmonero.org"
+    "https://www.getmonero.org/press-kit/symbols/monero-symbol.ai (official press kit https://www.getmonero.org/press-kit/)",
+    "https://www.getmonero.org/press-kit/symbols/monero-symbol-1280.png (the press kit's RGB export of the same symbol, for the colours)"
+  ],
+  "notes": [
+    "Colored: the three paths of the official monero-symbol.ai (PDF-compatible) converted 1:1 with pdftocairo -svg (white disc, orange ring with the M, grey band), placed on the 64 grid as a container",
+    "Colours: the .ai stores CMYK swatches, so the RGB values are the press kit's own RGB exports of the symbol, #FF6600 and #4C4C4C (#4C4C4C is also getmonero.org's grey); the white disc is CMYK 0/0/0/0",
+    "Mono: the orange and grey paths in currentColor; the white disc (the M and the gaps) stays transparent"
   ],
   "kind": "icon",
   "variants": {

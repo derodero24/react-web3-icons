@@ -1,7 +1,11 @@
 {
   "name": "Hbar",
   "source": [
-    "https://hedera.com"
+    "https://brand.hedera.com/_assets/v11/aeb715f7e0214e08250dd88ec3a32db004821b84.svg (the primary black logomark on the official brand portal https://brand.hedera.com/)"
+  ],
+  "notes": [
+    "Colored: the official Hedera logomark unchanged (black disc with the H knocked out and its centre bar, two black paths), placed on the 64 grid as a container; brand.hedera.com: the logomark (the stand-alone H in a circle) is also used to represent HBAR on third-party exchanges",
+    "Mono: the same two paths in currentColor"
   ],
   "kind": "icon",
   "variants": {

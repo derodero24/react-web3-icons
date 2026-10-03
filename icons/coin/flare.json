@@ -3,10 +3,15 @@
   "source": [
     "https://flare.network/api/media/file/Flare.svg"
   ],
+  "notes": [
+    "Colored: the official Flare.svg unchanged (three #E62058 paths: two bars and the dot), placed on the 64 grid; replaces a 24-unit redraw from @web3icons/react that only approximated the bars, curves and dot",
+    "Mono: the same three paths in currentColor"
+  ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "flare.svg"
+      "file": "flare.svg",
+      "fill": "#E62058"
     },
     "Mono": {
       "file": "flare.mono.svg",

@@ -1,13 +1,16 @@
 {
   "name": "Fil",
+  "source": [
+    "https://filecoin.io/ (official site: the inline filecoin-logo-icon SVG of its header)"
+  ],
   "notes": [
-    "Paths sourced from @web3icons/react (MIT)"
+    "Colored: the official filecoin-logo-icon from the filecoin.io header unchanged (#0090FF disc, white evenodd f); its mask is an identity mask (a white 40x40 rect) and is dropped; placed on the 64 grid as a container. The Filecoin Foundation hub's lockup (https://hub.fil.org/design, Logo.svg) draws the same disc and f",
+    "Mono: the disc in currentColor with the f knocked out (evenodd)"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "fil.svg",
-      "fill": "#0090FF"
+      "file": "fil.svg"
     },
     "Mono": {
       "file": "fil.mono.svg",

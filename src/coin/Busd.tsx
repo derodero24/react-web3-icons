@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://binance.com
+// Source: legacy artwork of unidentified origin (not an official Paxos or Binance file)
+// Legacy artwork: no matching official or third-party source was identified
+// BUSD is discontinued: Paxos no longer mints it (https://paxos.com/busd/) and Binance ended support in December 2023; deprecation is tracked in #815
 /** Busd coin icon (colored). */
 export const Busd = /* @__PURE__ */ createIcon(
   'Busd',
