@@ -59,6 +59,26 @@ for (const subpath of Object.keys(pkg.exports)) {
   process.stdout.write(`ok ${specifier}\n`);
 }
 
+// Every manifest entry ships as `svg/<category>/<name>.svg`; check them all,
+// not just the wildcard sample above, so a file missing from the tarball fails.
+const { default: manifest } = await import(`${pkg.name}/manifest.json`, {
+  with: { type: 'json' },
+});
+expect(
+  Array.isArray(manifest) && manifest.length > 0,
+  'manifest.json is empty',
+);
+const missingSvgs = manifest
+  .map(({ category, name }) => `${pkg.name}/svg/${category}/${name}.svg`)
+  .filter(
+    specifier => !existsSync(fileURLToPath(import.meta.resolve(specifier))),
+  );
+expect(
+  missingSvgs.length === 0,
+  `missing SVG files: ${missingSvgs.join(', ')}`,
+);
+process.stdout.write(`ok ${manifest.length} SVG subpaths\n`);
+
 const { Ethereum } = await import(pkg.name);
 expect(
   Ethereum.$$typeof === Symbol.for('react.forward_ref') &&

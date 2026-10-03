@@ -15,7 +15,7 @@ pnpm install
 
 ### Prerequisites
 
-- **Node.js** >=22.12.0 (the build toolchain requires 22.18+; use the latest Node 22 or 24)
+- **Node.js** `^22.18.0 || >=24.11.0` (the range the build toolchain supports; `devEngines` in package.json enforces it for npm, the toolchain's own `engines` for pnpm)
 - **pnpm** 10.x
 
 Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/activates the required Node version if missing).

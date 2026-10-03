@@ -45,7 +45,7 @@ yarn add react-web3-icons
 pnpm add react-web3-icons
 ```
 
-Requires React 18+ (Node.js 22.12+ when rendering on the server). Upgrading from v3? See the [migration guide](./MIGRATION.md).
+Requires React 18+. The published files are plain ES2022 modules with no Node.js version requirement; any runtime or bundler that supports ESM works. Upgrading from v3? See the [migration guide](./MIGRATION.md).
 
 ## Quick Start
 
