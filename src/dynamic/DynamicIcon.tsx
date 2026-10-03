@@ -17,7 +17,11 @@ declare const process:
   | { readonly env: { readonly [name: string]: string | undefined } }
   | undefined;
 
-type LazyComponent = ComponentType<IconProps>;
+// Dynamic icons never forward a ref (their props omit `ref`), so the lazily
+// loaded icon is typed without one. With @types/react 18, `IconProps['ref']`
+// also admits legacy string refs, which forwardRef components reject.
+type LazyProps = Omit<IconProps, 'ref'>;
+type LazyComponent = ComponentType<LazyProps>;
 type LazyCache = Map<string, LazyComponent>;
 
 const warnedNames: Set<string> = /* @__PURE__ */ new Set<string>();
@@ -98,7 +102,7 @@ export function createDynamicIcon<P>(
 
     return (
       <Suspense fallback={fallback}>
-        <LazyIcon {...(iconProps as IconProps)} />
+        <LazyIcon {...(iconProps as LazyProps)} />
       </Suspense>
     );
   }
