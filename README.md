@@ -12,7 +12,7 @@
 [size-image]: https://img.shields.io/bundlephobia/minzip/react-web3-icons
 [size-url]: https://bundlephobia.com/package/react-web3-icons
 [stackblitz-image]: https://developer.stackblitz.com/img/open_in_stackblitz_small.svg
-[stackblitz-url]: https://stackblitz.com/github/derodero24/react-web3-icons/tree/main/example
+[stackblitz-url]: https://stackblitz.com/github/derodero24/react-web3-icons/tree/main/examples/stackblitz
 
 # React Web3 Icons
 
@@ -27,7 +27,7 @@ A comprehensive React SVG icon library for Web3 — blockchains, wallets, DEXs, 
 - 230+ icons (700+ component exports including mono and container variants) across 16 categories
 - Colored and monochrome variants for every icon
 - Server Components ready — renders without `'use client'`
-- Tree-shakeable — only import what you use (`sideEffects: false`)
+- Tree-shakeable — named imports bundle only the icons you use ([details](#bundle-size))
 - Scales with font size (`1em` default)
 - Full TypeScript support
 - Works with React 18+
@@ -45,11 +45,13 @@ yarn add react-web3-icons
 pnpm add react-web3-icons
 ```
 
-Requires React 18+. The published files are plain ES2022 modules with no Node.js version requirement; any runtime or bundler that supports ESM works. Upgrading from v3? See the [migration guide](./MIGRATION.md).
+Requires React 18+. Upgrading from v3? See the [migration guide](./MIGRATION.md).
+
+The published files are ES modules compiled to **ES2022**, with no Node.js version requirement. They run as-is in any browser, bundler, or runtime that supports ES modules and ES2022 syntax and built-ins (for example `Object.hasOwn`, used by the dynamic components). To support older browsers, let your bundler transpile `react-web3-icons` and polyfill the missing built-ins.
 
 ## Quick Start
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)][stackblitz-url]
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)][stackblitz-url] — a small Vite app ([`examples/stackblitz`](./examples/stackblitz)) that installs the published package.
 
 ```tsx
 import { Ethereum, EthereumMono } from 'react-web3-icons';
@@ -135,7 +137,12 @@ Add a `title` prop for screen reader support:
 <Ethereum title="Ethereum" />
 ```
 
-When no `title` is provided, the icon is treated as decorative.
+An icon without an accessible name is treated as decorative and rendered with `aria-hidden="true"`. Giving it a name — `title`, `aria-label`, or `aria-labelledby` — removes `aria-hidden` and adds `role="img"`:
+
+```tsx
+<Ethereum />                                {/* decorative: aria-hidden="true" */}
+<Ethereum aria-label="Ethereum" />          {/* role="img" aria-label="Ethereum" */}
+```
 
 For maximum screen reader compatibility, pair `title` with `titleId` — the SVG will automatically get `aria-labelledby` pointing to the title:
 
@@ -146,7 +153,7 @@ For maximum screen reader compatibility, pair `title` with `titleId` — the SVG
 
 ### All Standard SVG Props
 
-Icons accept all standard SVG attributes:
+Icons accept all standard SVG attributes, and a `ref` to the `<svg>` element:
 
 ```tsx
 <Ethereum className="my-icon" style={{ opacity: 0.8 }} onClick={handleClick} />
@@ -154,18 +161,14 @@ Icons accept all standard SVG attributes:
 
 ### Per-Category Imports
 
-Import from a specific category to reduce your bundle size:
+Every category is also available as a subpath:
 
 ```tsx
 import { Ethereum } from 'react-web3-icons/chain';
 import { Uniswap } from 'react-web3-icons/dex';
 ```
 
-The root import still works and includes all icons:
-
-```tsx
-import { Ethereum } from 'react-web3-icons';
-```
+This is for organization only: a named import from the root (`import { Ethereum } from 'react-web3-icons'`) tree-shakes to exactly the same code. See [Bundle Size](#bundle-size).
 
 ### Raw SVG Files
 
@@ -182,11 +185,26 @@ import ethereumSvgUrl from 'react-web3-icons/svg/chain/Ethereum.svg';
 
 The files have no fixed `width`/`height`, so they scale to their container. Mono variants use `currentColor` and inherit CSS `color`. Internal ids (gradients, masks, clip paths) are prefixed per file (`w3i-<category>-<name>_…`), so any number of these files can be inlined into one page.
 
-You can also hotlink them from a CDN without installing the package:
+You can also hotlink them from a CDN without installing the package. Pin an exact version:
 
 ```
-https://cdn.jsdelivr.net/npm/react-web3-icons@latest/dist/svg/chain/Ethereum.svg
-https://unpkg.com/react-web3-icons@latest/dist/svg/chain/Ethereum.svg
+https://cdn.jsdelivr.net/npm/react-web3-icons@4.0.0/dist/svg/chain/Ethereum.svg
+https://unpkg.com/react-web3-icons@4.0.0/dist/svg/chain/Ethereum.svg
+```
+
+Pick the version from the [npm page](https://www.npmjs.com/package/react-web3-icons?activeTab=versions) or the [changelog](./CHANGELOG.md). An unpinned URL (`@latest`, `@4`) can start serving different files whenever a new version is published, without any change on your side.
+
+Browsers don't check [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) for images, so for an `<img>` the exact version is the only pin; self-host the files from `node_modules/react-web3-icons/dist/svg/` if you need more. When you load a file with `fetch()` instead (e.g. `dist/manifest.json` or an SVG you inline), you can pass `integrity`. Compute the hash from the exact URL you load:
+
+```sh
+curl -sL https://cdn.jsdelivr.net/npm/react-web3-icons@4.0.0/dist/manifest.json \
+  | openssl dgst -sha384 -binary | openssl base64 -A
+```
+
+```ts
+const res = await fetch('https://cdn.jsdelivr.net/npm/react-web3-icons@4.0.0/dist/manifest.json', {
+  integrity: 'sha384-<hash printed by the command above>',
+});
 ```
 
 ### Iconify (Vue, Svelte, Tailwind, and more)
@@ -209,7 +227,7 @@ Static icons are pure components that call no hooks other than `useId`, which Re
 
 ```tsx
 // app/page.tsx — Server Component
-import { Ethereum, Bitcoin } from 'react-web3-icons';
+import { Ethereum } from 'react-web3-icons';
 
 export default function Page() {
   return <Ethereum size={24} />;
@@ -220,27 +238,41 @@ Server-rendered icons ship zero client JavaScript. Only the [dynamic components]
 
 Internal SVG ids (masks, gradients, clip paths) are unique per rendered icon (`w3i-<name>-<instance>-…`, the instance part from `useId`), so every icon resolves its references inside its own `<svg>`: an instance inside a `display: none` subtree, or one with a different `fill` or `color`, never affects another. Icons without internal ids call no hooks at all. If you mount several React roots on one page, give each its own [`identifierPrefix`](https://react.dev/reference/react-dom/client/createRoot#parameters) so their ids cannot collide.
 
-### Type-Safe Dynamic Icon Lookup
+### Type-Safe Icon Lookup by Name
 
-Use the `IconName` type to reference icon names safely:
+`IconName` is the union of every icon export name. When you know which icons you need, collect them in a map: only the listed icons are bundled, and `satisfies` rejects names that don't exist:
 
 ```tsx
-import type { IconName } from 'react-web3-icons';
-import * as allIcons from 'react-web3-icons';
+import { Arbitrum, Base, Ethereum, type IconName } from 'react-web3-icons';
 
-function DynamicIcon({ name }: { name: IconName }) {
-  const Icon = allIcons[name];
+const ICONS = { Arbitrum, Base, Ethereum } satisfies Partial<Record<IconName, unknown>>;
+
+function NamedIcon({ name }: { name: keyof typeof ICONS }) {
+  const Icon = ICONS[name];
   return <Icon />;
 }
 
-// TypeScript errors on unknown names:
-<DynamicIcon name="Ethereum" />   // ✅
-<DynamicIcon name="Unknown" />    // ❌ TypeScript error
+<NamedIcon name="Ethereum" />   // ✅
+<NamedIcon name="Bitcoin" />    // ❌ TypeScript error: not in ICONS
 ```
+
+Accepting *any* `IconName` at runtime means shipping every icon, because the bundler cannot know which names will be used:
+
+```tsx
+import * as allIcons from 'react-web3-icons'; // bundles the whole library
+import type { IconName } from 'react-web3-icons';
+
+function AnyIcon({ name }: { name: IconName }) {
+  const Icon = allIcons[name];
+  return <Icon />;
+}
+```
+
+That is fine for an icon browser, but it costs the full library size (see [Bundle Size](#bundle-size)). To resolve chains, coins, wallets, exchanges, DeFi protocols, DEXs, bridges, or oracles from runtime data, use the [dynamic components](#dynamic-icon-components) instead: they load one icon at a time.
 
 ### Dynamic Icon Components
 
-The `react-web3-icons/dynamic` entry point provides components that lazily load icons at runtime by identifier (ticker, slug, or chain ID). Each resolved icon is fetched as its own small chunk — rendering one icon does not download the whole category. The following categories have dedicated dynamic components:
+The `react-web3-icons/dynamic` entry point provides components that lazily load icons at runtime by identifier (ticker, slug, or chain ID). Each icon is a separate dynamic `import()`, so with a bundler that splits dynamic imports into chunks (Vite, webpack, Rollup, and Next.js do by default) rendering one icon downloads one small chunk, not the whole category. The components are Client Components (`'use client'`) built on `React.lazy` and `Suspense`. The following categories have dedicated dynamic components:
 
 ```tsx
 import { ChainIcon, CoinIcon, WalletIcon, ExchangeIcon, DefiIcon, DexIcon, BridgeIcon, OracleIcon } from 'react-web3-icons/dynamic';
@@ -273,7 +305,7 @@ Use the `fallback` prop to render alternative content while the icon chunk is lo
 
 When omitted, nothing is rendered for unknown identifiers and during loading.
 
-All standard icon props (`size`, `className`, `fill`, etc.) and `ref` are forwarded to the underlying SVG icon. In development builds, unknown identifiers and failed loads log a `console.warn` once; production builds strip these warnings.
+Other icon props (`size`, `title`, `className`, `fill`, etc.) and `ref` are forwarded to the loaded icon's `<svg>`. In development builds, unknown identifiers and failed loads log a `console.warn` once; production builds strip these warnings.
 
 ### Metadata Lookups
 
@@ -293,29 +325,34 @@ The `react-web3-icons/meta` subpath exports lookup maps for resolving icons by c
 
 Each map exports a corresponding type (`ChainId`, `ChainSlug`, `Ticker`, `WalletSlug`, `ExchangeSlug`, `DefiSlug`, `DexSlug`, `BridgeSlug`, `OracleSlug`) for type-safe key access.
 
+The [dynamic components](#dynamic-icon-components) use these maps internally, so `<ChainIcon chainId={chain.id} />` or `<CoinIcon symbol={token.symbol} />` is usually all you need. Use the maps directly when you need to render synchronously, without `Suspense`. In a Server Component the namespace imports below cost nothing on the client, because the icons render to HTML on the server.
+
 #### Example: Resolve a chain icon from wagmi/viem
 
+In client code, looking up an arbitrary name needs the whole category module, so this pattern bundles every chain icon (about 31 KB, see [Bundle Size](#bundle-size)):
+
 ```tsx
+import * as chains from 'react-web3-icons/chain'; // bundles every chain icon
 import { CHAIN_ID_TO_NAME, type ChainId } from 'react-web3-icons/meta';
-import * as chains from 'react-web3-icons/chain';
 
 function ResolvedChainIcon({ chainId }: { chainId: number }) {
-  if (!(chainId in CHAIN_ID_TO_NAME)) return null;
-  const name = CHAIN_ID_TO_NAME[chainId as ChainId];
-  const Icon = chains[name];
+  if (!Object.hasOwn(CHAIN_ID_TO_NAME, chainId)) return null;
+  const Icon = chains[CHAIN_ID_TO_NAME[chainId as ChainId]];
   return <Icon />;
 }
 ```
 
 #### Example: Resolve a coin icon from a ticker
 
+The same trade-off applies: in client code this bundles every coin icon (about 64 KB). If your app only shows a known set of tokens, import those icons by name and map tickers to them yourself.
+
 ```tsx
+import * as coins from 'react-web3-icons/coin'; // bundles every coin icon
 import { TICKER_TO_COIN, type Ticker } from 'react-web3-icons/meta';
-import * as coins from 'react-web3-icons/coin';
 
 function TokenIcon({ symbol }: { symbol: string }) {
-  const key = symbol.toUpperCase().trim();
-  if (!(key in TICKER_TO_COIN)) return null;
+  const key = symbol.trim().toUpperCase();
+  if (!Object.hasOwn(TICKER_TO_COIN, key)) return null;
   const Icon = coins[TICKER_TO_COIN[key as Ticker]];
   return <Icon />;
 }
@@ -326,14 +363,34 @@ function TokenIcon({ symbol }: { symbol: string }) {
 The `react-web3-icons/manifest` subpath exports a flat, machine-readable catalog of every icon export — ideal for building icon pickers, search indexes, or docs without importing the component bundles:
 
 ```ts
-import { ICON_MANIFEST, type IconManifestEntry } from 'react-web3-icons/manifest';
+import { ICON_MANIFEST } from 'react-web3-icons/manifest';
 
 // [{ name: 'Ethereum', category: 'chain', chainId: 1, slug: 'ethereum' },
 //  { name: 'EthereumMono', category: 'chain' }, ...]
 const chains = ICON_MANIFEST.filter(e => e.category === 'chain' && !e.deprecated);
 ```
 
-Each entry carries `name`, `category`, and — where registered in the [metadata maps](#metadata-lookups) — `chainId`, `slug`, or `ticker`, plus a `deprecated` flag for aliases. Base entries additionally list their `variants` (e.g. `['', 'Mono', 'Circle']`), extra lowercase search `aliases` (e.g. `'btc'` on `Bitcoin`), and a `brandColor` (the most frequent non-neutral colour of the colored artwork, or a curated override). The same data ships as plain JSON for non-JavaScript consumers at `react-web3-icons/manifest.json` (also available on the CDN under `dist/manifest.json`).
+Each entry (type `IconManifestEntry`) carries `name`, `category`, and — where registered in the [metadata maps](#metadata-lookups) — `chainId`, `slug`, or `ticker`, plus a `deprecated` flag for aliases. Base entries additionally list their `variants` (e.g. `['', 'Mono', 'Circle']`), extra lowercase search `aliases` (e.g. `'btc'` on `Bitcoin`), and a `brandColor` (the most frequent non-neutral colour of the colored artwork, or a curated override). The same data ships as plain JSON for non-JavaScript consumers at `react-web3-icons/manifest.json` (also available on the CDN under `dist/manifest.json`).
+
+## Bundle Size
+
+The package ships one ES module per icon, marks every icon `/* @__PURE__ */`, and declares `"sideEffects": false`, so a bundler that tree-shakes ES modules (Vite, Rollup, webpack, esbuild) keeps only the icons your code imports by name. The import style decides the size, not the import path:
+
+| Import | Bundled | Size |
+| --- | --- | --- |
+| `import { Ethereum } from 'react-web3-icons'` | `Ethereum` only | ~0.5 KB |
+| `import { Ethereum } from 'react-web3-icons/chain'` | `Ethereum` only (same as the root import) | ~0.5 KB |
+| `import * as chains from 'react-web3-icons/chain'` + `chains[name]` | every chain icon | ~31 KB |
+| `import * as coins from 'react-web3-icons/coin'` + `coins[name]` | every coin icon | ~64 KB |
+| `import * as icons from 'react-web3-icons'` + `icons[name]` | the whole library | ~155 KB |
+| `<CoinIcon symbol={symbol} />` from `react-web3-icons/dynamic` | a small loader, then one chunk per icon rendered | — |
+
+Sizes are minified and brotli-compressed with React excluded, as reported by `pnpm run size`. The budgets live in the `size-limit` field of [package.json](./package.json) and are checked on every pull request.
+
+- Import icons by name, from the root or from a category subpath. Both tree-shake equally.
+- In client code, avoid `import * as …` combined with a runtime lookup such as `icons[name]` or `Object.keys(icons)`. The bundler can't tell which icons you use, so it keeps all of them.
+- To pick icons from runtime data (a token list, the connected chain), use the [dynamic components](#dynamic-icon-components). They need a bundler that splits dynamic `import()` into chunks; without code splitting, the dynamic entry inlines every icon it can load (~129 KB).
+- To list or search icons, use the [manifest](#icon-manifest) (~5 KB) instead of a namespace import.
 
 ## Icon Categories
 
@@ -388,25 +445,25 @@ When icon brands are renamed (for example, `GnosisSafe` -> `Safe`, `Matic` -> `P
 
 ### Filtering Deprecated Icons
 
-Use the exported `DEPRECATED_ICON_NAMES` set to filter deprecated aliases from icon lists:
-
-```ts
-import * as icons from 'react-web3-icons';
-import { DEPRECATED_ICON_NAMES } from 'react-web3-icons';
-
-// Get current (non-deprecated) icon names, excluding non-icon exports
-const activeIconNames = Object.keys(icons).filter(
-  name => !DEPRECATED_ICON_NAMES.has(name) && name !== 'DEPRECATED_ICON_NAMES',
-);
-```
-
-Or import from the dedicated subpath to avoid loading the full bundle:
+The `DEPRECATED_ICON_NAMES` set lists every deprecated export. Import it from the `react-web3-icons/deprecated` subpath (it is also exported from the root) to filter a list of names:
 
 ```ts
 import { DEPRECATED_ICON_NAMES } from 'react-web3-icons/deprecated';
+
+const iconNames = ['Ethereum', 'Matic', 'Pol'];
+const current = iconNames.filter(name => !DEPRECATED_ICON_NAMES.has(name)); // ['Ethereum', 'Pol']
 ```
 
-Full process and test requirements: [CONTRIBUTING.md#icon-lifecycle-policy](CONTRIBUTING.md#icon-lifecycle-policy).
+To enumerate the current icons, use the [manifest](#icon-manifest), which flags deprecated entries itself. `Object.keys()` on `import * as icons from 'react-web3-icons'` also works, but it bundles the whole library.
+
+```ts
+import { ICON_MANIFEST } from 'react-web3-icons/manifest';
+
+// A Set, because an icon exported from two categories (e.g. Sonic) has two entries
+const activeIconNames = new Set(ICON_MANIFEST.filter(e => !e.deprecated).map(e => e.name));
+```
+
+Full process and test requirements: [docs/icon-lifecycle.md](docs/icon-lifecycle.md).
 
 ## Trademarks
 
