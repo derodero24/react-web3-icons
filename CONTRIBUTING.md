@@ -44,6 +44,7 @@ toolchain dependencies' own `engines`.
 | `pnpm run analyze` | Show what makes up each size-limit entry |
 | `pnpm run new-icon` | Scaffold a new icon unit from an SVG |
 | `pnpm run generate-icons` | Regenerate `src/` (icons, dynamic import maps, meta, deprecated set, manifest) and `icons/schema.json` from `icons/` (`--check`: verify only) |
+| `pnpm run showcase` | Re-render `image/icons.png`, the README's icon overview, from `icons/` |
 | `pnpm run optimize:svg` | Optimize an SVG with SVGO |
 | `pnpm run check:svgo` | List icon SVGs SVGO would still change (fails if any) |
 | `pnpm changeset` | Add a changeset for a change to the published package |
@@ -66,6 +67,7 @@ scripts/
   new-icon.ts     # Scaffolds a unit (pnpm run new-icon)
   audit-mono.ts   # Mono-vs-colored quality audit
   check-svgo.ts   # Lists SVGs SVGO would still change
+  render-showcase.ts  # Renders image/icons.png (pnpm run showcase)
   size-report.ts  # Renders the size-limit PR comment
 test/             # Vitest suites; visual/ (Playwright screenshots), consumer/ (packed-tarball fixtures for CI)
 example/          # Next.js demo site (react-web3-icons.vercel.app), builds from src/
@@ -574,6 +576,7 @@ than nudging one limit inside an icon PR.
    pnpm run build && pnpm run size
    ```
    If you changed icon artwork or rendering, also run `pnpm run test:visual` (see [Visual QA](#5-visual-qa)).
+   If you added, replaced or retired an icon, run `pnpm run showcase` and commit the re-rendered `image/icons.png`.
 3. If your change affects the published library (new icons, bug fixes, API changes), add a changeset:
 
    ```sh
