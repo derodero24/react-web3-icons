@@ -1210,12 +1210,12 @@ describe('published artifacts', () => {
 
   it('dist/svg ids carry a per-file prefix', () => {
     const svg = buildDistSvgs(join(ROOT, 'icons')).get(
-      'chain/BaseCircleMono.svg',
+      'chain/AlgorandCircleMono.svg',
     );
-    const prefix = distSvgIdPrefix('chain', 'BaseCircleMono');
-    expect(prefix).toBe('w3i-chain-base-circle-mono');
-    expect(svg).toContain(`id="${prefix}_basc-a"`);
-    expect(svg).toContain(`url(#${prefix}_basc-a)`);
+    const prefix = distSvgIdPrefix('chain', 'AlgorandCircleMono');
+    expect(prefix).toBe('w3i-chain-algorand-circle-mono');
+    expect(svg).toContain(`id="${prefix}_algo-cm-a"`);
+    expect(svg).toContain(`url(#${prefix}_algo-cm-a)`);
   });
 
   it('dist/svg and Iconify ids cannot collide across icons', () => {

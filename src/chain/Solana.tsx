@@ -1,60 +1,37 @@
 import { createIcon } from '../utils';
 
-// Source: https://solana.com
-// Shared Solana bar path data
-// Circle variant: scale 0.1, translate(12.1, 16.4)
-// Gradient coordinates pre-computed for 64×64 viewBox
+// Source: https://solana.com/src/img/branding/solanaLogoMark.svg
+// Source: https://solana.com/branding (official brand assets)
+// Default: the official logomark solanaLogoMark.svg from solana.com/branding (six-stop gradient #9945FF -> #19FB9B), replacing the older #00FFA3 -> #DC1FFF mark
+// Mono: the logomark's three bars in currentColor
+// Circle and Square: no official container version exists; the repo's black disc / rx=12.8 tile is kept, with the official logomark (101x88) at translate(12.1 14.664) scale(0.394), the width of the previous mark; CircleMono and SquareMono knock the same bars out of the container (fill-rule=evenodd)
 /** Solana chain icon (colored). */
 export const Solana = /* @__PURE__ */ createIcon(
   'Solana',
   '0 0 64 64',
   (_props, _id) => (
-    <g transform="translate(4 10.06)scale(.1408)">
-      <linearGradient
-        id={`${_id}-sln-a`}
-        x1="360.88"
-        x2="141.21"
-        y1="-37.45"
-        y2="383.29"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop offset="0" stopColor="#00ffa3" />
-        <stop offset="1" stopColor="#dc1fff" />
-      </linearGradient>
+    <g transform="translate(4 7.6)scale(.55446)">
       <path
-        fill={`url(#${_id}-sln-a)`}
-        d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1z"
+        fill={`url(#${_id}-sol-a)`}
+        d="M100.48 69.38 83.81 86.8q-.55.57-1.3.89-.73.3-1.54.31H1.94q-.58 0-1.07-.3a2 2 0 0 1-.71-.83 1.8 1.8 0 0 1 .36-2.04L17.21 67.4q.55-.57 1.28-.89.74-.3 1.54-.31h79.03q.58 0 1.07.3.47.32.71.83.23.52.13 1.08t-.49.96M83.81 34.3q-.55-.57-1.3-.88a4 4 0 0 0-1.54-.32H1.94q-.58 0-1.07.31-.48.32-.71.83a1.8 1.8 0 0 0 .36 2.04L17.21 53.7q.55.57 1.28.88.74.3 1.54.32h79.03q.58 0 1.07-.31.47-.32.71-.83a1.8 1.8 0 0 0-.36-2.04zM1.94 21.8h79.03q.81-.01 1.55-.32.73-.31 1.29-.89l16.67-17.42q.4-.41.5-.96.09-.56-.14-1.08a2 2 0 0 0-.71-.82Q99.64 0 99.06 0H20.03q-.8 0-1.54.31-.74.32-1.28.89L.52 18.62q-.38.41-.49.96-.1.56.13 1.07.23.52.72.83.48.3 1.06.31"
       />
-      <linearGradient
-        id={`${_id}-sln-b`}
-        x1="264.83"
-        x2="45.16"
-        y1="-87.6"
-        y2="333.15"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop offset="0" stopColor="#00ffa3" />
-        <stop offset="1" stopColor="#dc1fff" />
-      </linearGradient>
-      <path
-        fill={`url(#${_id}-sln-b)`}
-        d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1z"
-      />
-      <linearGradient
-        id={`${_id}-sln-c`}
-        x1="312.55"
-        x2="92.88"
-        y1="-62.69"
-        y2="358.06"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop offset="0" stopColor="#00ffa3" />
-        <stop offset="1" stopColor="#dc1fff" />
-      </linearGradient>
-      <path
-        fill={`url(#${_id}-sln-c)`}
-        d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1z"
-      />
+      <defs>
+        <linearGradient
+          id={`${_id}-sol-a`}
+          x1="8.53"
+          x2="88.99"
+          y1="90.1"
+          y2="-3.02"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset=".08" stopColor="#9945FF" />
+          <stop offset=".3" stopColor="#8752F3" />
+          <stop offset=".5" stopColor="#5497D5" />
+          <stop offset=".6" stopColor="#43B4CA" />
+          <stop offset=".72" stopColor="#28E0B9" />
+          <stop offset=".97" stopColor="#19FB9B" />
+        </linearGradient>
+      </defs>
     </g>
   ),
   { ids: true },
@@ -67,57 +44,28 @@ export const SolanaCircle = /* @__PURE__ */ createIcon(
   (_props, _id) => (
     <>
       <circle cx="32" cy="32" r="32" />
-      <defs>
-        <linearGradient
-          id={`${_id}-slnc-a`}
-          x1="48.19"
-          x2="26.22"
-          y1="12.65"
-          y2="54.73"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0" stopColor="#00ffa3" />
-          <stop offset="1" stopColor="#dc1fff" />
-        </linearGradient>
-        <linearGradient
-          id={`${_id}-slnc-b`}
-          x1="38.58"
-          x2="16.62"
-          y1="7.64"
-          y2="49.71"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0" stopColor="#00ffa3" />
-          <stop offset="1" stopColor="#dc1fff" />
-        </linearGradient>
-        <linearGradient
-          id={`${_id}-slnc-c`}
-          x1="43.35"
-          x2="21.39"
-          y1="10.13"
-          y2="52.21"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0" stopColor="#00ffa3" />
-          <stop offset="1" stopColor="#dc1fff" />
-        </linearGradient>
-      </defs>
-      <g>
+      <g transform="translate(12.1 14.66)scale(.394)">
         <path
-          fill={`url(#${_id}-slnc-a)`}
-          d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1z"
-          transform="matrix(.1 0 0 .1 12.1 16.4)"
+          fill={`url(#${_id}-solc-a)`}
+          d="M100.48 69.38 83.81 86.8q-.55.57-1.3.89-.73.3-1.54.31H1.94q-.58 0-1.07-.3a2 2 0 0 1-.71-.83 1.8 1.8 0 0 1 .36-2.04L17.21 67.4q.55-.57 1.28-.89.74-.3 1.54-.31h79.03q.58 0 1.07.3.47.32.71.83.23.52.13 1.08t-.49.96M83.81 34.3q-.55-.57-1.3-.88a4 4 0 0 0-1.54-.32H1.94q-.58 0-1.07.31-.48.32-.71.83a1.8 1.8 0 0 0 .36 2.04L17.21 53.7q.55.57 1.28.88.74.3 1.54.32h79.03q.58 0 1.07-.31.47-.32.71-.83a1.8 1.8 0 0 0-.36-2.04zM1.94 21.8h79.03q.81-.01 1.55-.32.73-.31 1.29-.89l16.67-17.42q.4-.41.5-.96.09-.56-.14-1.08a2 2 0 0 0-.71-.82Q99.64 0 99.06 0H20.03q-.8 0-1.54.31-.74.32-1.28.89L.52 18.62q-.38.41-.49.96-.1.56.13 1.07.23.52.72.83.48.3 1.06.31"
         />
-        <path
-          fill={`url(#${_id}-slnc-b)`}
-          d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1z"
-          transform="matrix(.1 0 0 .1 12.1 16.4)"
-        />
-        <path
-          fill={`url(#${_id}-slnc-c)`}
-          d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1z"
-          transform="matrix(.1 0 0 .1 12.1 16.4)"
-        />
+        <defs>
+          <linearGradient
+            id={`${_id}-solc-a`}
+            x1="8.53"
+            x2="88.99"
+            y1="90.1"
+            y2="-3.02"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".08" stopColor="#9945FF" />
+            <stop offset=".3" stopColor="#8752F3" />
+            <stop offset=".5" stopColor="#5497D5" />
+            <stop offset=".6" stopColor="#43B4CA" />
+            <stop offset=".72" stopColor="#28E0B9" />
+            <stop offset=".97" stopColor="#19FB9B" />
+          </linearGradient>
+        </defs>
       </g>
     </>
   ),
@@ -131,57 +79,28 @@ export const SolanaSquare = /* @__PURE__ */ createIcon(
   (_props, _id) => (
     <>
       <rect width="64" height="64" rx="12.8" />
-      <defs>
-        <linearGradient
-          id={`${_id}-slns-a`}
-          x1="48.19"
-          x2="26.22"
-          y1="12.65"
-          y2="54.73"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0" stopColor="#00ffa3" />
-          <stop offset="1" stopColor="#dc1fff" />
-        </linearGradient>
-        <linearGradient
-          id={`${_id}-slns-b`}
-          x1="38.58"
-          x2="16.62"
-          y1="7.64"
-          y2="49.71"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0" stopColor="#00ffa3" />
-          <stop offset="1" stopColor="#dc1fff" />
-        </linearGradient>
-        <linearGradient
-          id={`${_id}-slns-c`}
-          x1="43.35"
-          x2="21.39"
-          y1="10.13"
-          y2="52.21"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0" stopColor="#00ffa3" />
-          <stop offset="1" stopColor="#dc1fff" />
-        </linearGradient>
-      </defs>
-      <g>
+      <g transform="translate(12.1 14.66)scale(.394)">
         <path
-          fill={`url(#${_id}-slns-a)`}
-          d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1z"
-          transform="matrix(.1 0 0 .1 12.1 16.4)"
+          fill={`url(#${_id}-sols-a)`}
+          d="M100.48 69.38 83.81 86.8q-.55.57-1.3.89-.73.3-1.54.31H1.94q-.58 0-1.07-.3a2 2 0 0 1-.71-.83 1.8 1.8 0 0 1 .36-2.04L17.21 67.4q.55-.57 1.28-.89.74-.3 1.54-.31h79.03q.58 0 1.07.3.47.32.71.83.23.52.13 1.08t-.49.96M83.81 34.3q-.55-.57-1.3-.88a4 4 0 0 0-1.54-.32H1.94q-.58 0-1.07.31-.48.32-.71.83a1.8 1.8 0 0 0 .36 2.04L17.21 53.7q.55.57 1.28.88.74.3 1.54.32h79.03q.58 0 1.07-.31.47-.32.71-.83a1.8 1.8 0 0 0-.36-2.04zM1.94 21.8h79.03q.81-.01 1.55-.32.73-.31 1.29-.89l16.67-17.42q.4-.41.5-.96.09-.56-.14-1.08a2 2 0 0 0-.71-.82Q99.64 0 99.06 0H20.03q-.8 0-1.54.31-.74.32-1.28.89L.52 18.62q-.38.41-.49.96-.1.56.13 1.07.23.52.72.83.48.3 1.06.31"
         />
-        <path
-          fill={`url(#${_id}-slns-b)`}
-          d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1z"
-          transform="matrix(.1 0 0 .1 12.1 16.4)"
-        />
-        <path
-          fill={`url(#${_id}-slns-c)`}
-          d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1z"
-          transform="matrix(.1 0 0 .1 12.1 16.4)"
-        />
+        <defs>
+          <linearGradient
+            id={`${_id}-sols-a`}
+            x1="8.53"
+            x2="88.99"
+            y1="90.1"
+            y2="-3.02"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".08" stopColor="#9945FF" />
+            <stop offset=".3" stopColor="#8752F3" />
+            <stop offset=".5" stopColor="#5497D5" />
+            <stop offset=".6" stopColor="#43B4CA" />
+            <stop offset=".72" stopColor="#28E0B9" />
+            <stop offset=".97" stopColor="#19FB9B" />
+          </linearGradient>
+        </defs>
       </g>
     </>
   ),
@@ -192,44 +111,26 @@ export const SolanaSquare = /* @__PURE__ */ createIcon(
 export const SolanaSquareMono = /* @__PURE__ */ createIcon(
   'SolanaSquareMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <>
-      <rect width="64" height="64" mask={`url(#${_id}-solsm-a)`} rx="12.8" />
-      <defs>
-        <mask id={`${_id}-solsm-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
-          <g fill="#000">
-            <path d="M18.56 40.19q.38-.37.92-.38h31.74c.58 0 .87.7.46 1.11l-6.27 6.27a1.3 1.3 0 0 1-.92.38H12.75a.65.65 0 0 1-.46-1.11z" />
-            <path d="M18.56 16.78q.4-.37.92-.38h31.74c.58 0 .87.7.46 1.11l-6.27 6.27a1.3 1.3 0 0 1-.92.38H12.75a.65.65 0 0 1-.46-1.11z" />
-            <path d="M45.41 28.41a1.3 1.3 0 0 0-.92-.38H12.75c-.58 0-.87.7-.46 1.11l6.27 6.27q.38.37.92.38h31.74c.58 0 .87-.7.46-1.11z" />
-          </g>
-        </mask>
-      </defs>
-    </>
+  () => (
+    <path
+      fillRule="evenodd"
+      d="M12.8 0h38.4A12.8 12.8 0 0 1 64 12.8v38.4A12.8 12.8 0 0 1 51.2 64H12.8A12.8 12.8 0 0 1 0 51.2V12.8A12.8 12.8 0 0 1 12.8 0m38.89 42-6.57 6.86q-.22.23-.5.35-.3.12-.62.13H12.86a1 1 0 0 1-.42-.13 1 1 0 0 1-.28-.32.7.7 0 0 1 .14-.8l6.58-6.87q.21-.22.5-.35t.61-.12h31.14q.23 0 .42.12.18.13.28.33a.7.7 0 0 1-.14.8m-6.57-13.82a2 2 0 0 0-.5-.35q-.3-.12-.62-.12H12.86q-.23 0-.42.12a1 1 0 0 0-.28.32.7.7 0 0 0 .14.8l6.58 6.87q.21.23.5.35t.61.12h31.14q.23 0 .42-.12.18-.13.28-.32a.7.7 0 0 0-.14-.8zm-32.26-4.93H44q.32 0 .61-.12.3-.12.51-.35l6.57-6.87a.7.7 0 0 0 .14-.8 1 1 0 0 0-.28-.32 1 1 0 0 0-.42-.13H20q-.3 0-.6.13-.3.12-.51.35L12.3 22q-.15.16-.2.38-.03.22.05.42.1.2.29.33.18.12.41.12"
+    />
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );
 
 /** Solana Circle chain icon (monochrome). */
 export const SolanaCircleMono = /* @__PURE__ */ createIcon(
   'SolanaCircleMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <>
-      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-solcm-a)`} />
-      <defs>
-        <mask id={`${_id}-solcm-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
-          <g fill="#000">
-            <path d="M18.56 40.19q.38-.37.92-.38h31.74c.58 0 .87.7.46 1.11l-6.27 6.27a1.3 1.3 0 0 1-.92.38H12.75a.65.65 0 0 1-.46-1.11z" />
-            <path d="M18.56 16.78q.4-.37.92-.38h31.74c.58 0 .87.7.46 1.11l-6.27 6.27a1.3 1.3 0 0 1-.92.38H12.75a.65.65 0 0 1-.46-1.11z" />
-            <path d="M45.41 28.41a1.3 1.3 0 0 0-.92-.38H12.75c-.58 0-.87.7-.46 1.11l6.27 6.27q.38.37.92.38h31.74c.58 0 .87-.7.46-1.11z" />
-          </g>
-        </mask>
-      </defs>
-    </>
+  () => (
+    <path
+      fillRule="evenodd"
+      d="M32 0a32 32 0 1 1 0 64 32 32 0 0 1 0-64m19.69 42-6.57 6.86q-.22.23-.5.35-.3.12-.62.13H12.86a1 1 0 0 1-.42-.13 1 1 0 0 1-.28-.32.7.7 0 0 1 .14-.8l6.58-6.87q.21-.22.5-.35t.61-.12h31.14q.23 0 .42.12.18.13.28.33a.7.7 0 0 1-.14.8m-6.57-13.82a2 2 0 0 0-.5-.35q-.3-.12-.62-.12H12.86q-.23 0-.42.12a1 1 0 0 0-.28.32.7.7 0 0 0 .14.8l6.58 6.87q.21.23.5.35t.61.12h31.14q.23 0 .42-.12.18-.13.28-.32a.7.7 0 0 0-.14-.8zm-32.26-4.93H44q.32 0 .61-.12.3-.12.51-.35l6.57-6.87a.7.7 0 0 0 .14-.8 1 1 0 0 0-.28-.32 1 1 0 0 0-.42-.13H20q-.3 0-.6.13-.3.12-.51.35L12.3 22q-.15.16-.2.38-.03.22.05.42.1.2.29.33.18.12.41.12"
+    />
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );
 
 /** Solana chain icon (monochrome). */
@@ -237,11 +138,7 @@ export const SolanaMono = /* @__PURE__ */ createIcon(
   'SolanaMono',
   '0 0 64 64',
   () => (
-    <>
-      <path d="M13.1 43.55q.53-.52 1.3-.53h44.68c.82 0 1.23.98.65 1.56l-8.83 8.83q-.53.52-1.3.53H4.93c-.82 0-1.23-.98-.65-1.56z" />
-      <path d="M13.1 10.6c.35-.35.81-.54 1.3-.54h44.68c.82 0 1.23.98.65 1.56l-8.83 8.83q-.53.52-1.3.53H4.93c-.82 0-1.23-.98-.65-1.56z" />
-      <path d="M50.9 26.97q-.53-.52-1.3-.54H4.93c-.82 0-1.23.99-.65 1.56l8.83 8.83c.34.34.8.54 1.3.54h44.68c.82 0 1.23-.99.65-1.57z" />
-    </>
+    <path d="m59.71 46.07-9.24 9.66q-.3.32-.72.5a2 2 0 0 1-.85.17H5.07q-.31 0-.59-.18a1 1 0 0 1-.4-.45 1 1 0 0 1 .2-1.13l9.26-9.66q.3-.32.71-.5.4-.16.86-.17h43.82q.31 0 .59.18.25.17.4.45a1 1 0 0 1-.2 1.13m-9.24-19.45q-.3-.3-.72-.49a2 2 0 0 0-.85-.17H5.07q-.31 0-.59.17-.25.17-.4.46a1 1 0 0 0 .2 1.13l9.26 9.66q.3.3.71.49.4.17.86.17h43.82q.31 0 .59-.17.25-.17.4-.46a1 1 0 0 0-.2-1.13zM5.07 19.7H48.9q.45 0 .85-.18.41-.17.72-.49l9.24-9.66q.22-.23.27-.53t-.07-.6a1 1 0 0 0-.4-.45 1 1 0 0 0-.58-.18H15.1q-.45 0-.86.18t-.71.49l-9.25 9.66q-.22.23-.27.53t.07.6.4.45q.26.18.58.18" />
   ),
   { fill: 'currentColor' },
 );

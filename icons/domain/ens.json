@@ -1,7 +1,14 @@
 {
   "name": "Ens",
   "source": [
-    "https://ens.domains"
+    "https://ens.domains/assets/brand/mark/ens-mark-Blue.svg",
+    "https://ens.domains/assets/brand/token-icon.svg",
+    "https://ens.domains/brand (official brand assets)"
+  ],
+  "notes": [
+    "Default: the official ENS mark in ENS Blue #0080BC (ens-mark-Blue.svg from ens.domains/brand), replacing the older multi-gradient mark",
+    "Circle: the official token icon (token-icon.svg: #0080BC disc with the mark in #F6F6F6)",
+    "Mono: the mark's four paths in currentColor; CircleMono: the token icon's disc in currentColor with the same four paths knocked out (fill-rule=evenodd)"
   ],
   "kind": "icon",
   "variants": {

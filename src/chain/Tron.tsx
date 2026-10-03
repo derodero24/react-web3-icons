@@ -1,16 +1,17 @@
 import { createIcon } from '../utils';
 
-// Source: https://tron.network
+// Source: https://tron.network/favicon.svg
+// Source: https://tron.network/static/doc/Brand-guidelines.pdf (official brand guidelines, Aug 2025)
+// Default: the official site's favicon.svg (#EA0029), which carries the redrawn, heavier icon of the Aug 2025 brand guidelines ("Before / After"); it replaces the older thin icon in #C4342B. The guidelines list the primary red as #DC062B (RGB) while their own artwork and the site use #EA0029, so the official file is kept unchanged
+// Mono: the same icon path in currentColor (the triangles stay holes)
 /** Tron chain icon (colored). */
 export const Tron = /* @__PURE__ */ createIcon(
   'Tron',
   '0 0 64 64',
   () => (
     <path
-      fill="#C4342B"
-      fillRule="evenodd"
-      d="M8.42 4.59a1.8 1.8 0 0 1 1.72-.53l37.03 9.06a2 2 0 0 1 .6.29l7.54 5.5a1.76 1.76 0 0 1 .41 2.4L29.81 59.22a1.75 1.75 0 0 1-3.1-.4L8.07 6.35a1.8 1.8 0 0 1 .35-1.76m6.11 9.46 12.94 36.43 2.13-18.87zm18.53 18.16-2.16 19.2 18.3-26.77zM50.86 20l-11.8 5.53 7.9-8.36zm-7.46-4.2L14.6 8.77l16.9 19.65z"
-      clipRule="evenodd"
+      fill="#EA0029"
+      d="M45.6 9.7 5.1 4l22.62 56L58.9 20.09zm5.76 9.66L38.2 22.17l6.84-7.75zm-10.6-6.24-8.45 9.57L15.53 9.58zM27.33 48.17l-14.3-35.39 17.36 13.57zm4.02.57 3.04-21.6L51 23.6z"
     />
   ),
   {},
@@ -21,11 +22,7 @@ export const TronMono = /* @__PURE__ */ createIcon(
   'TronMono',
   '0 0 64 64',
   () => (
-    <path
-      fillRule="evenodd"
-      d="M8.42 4.59a1.8 1.8 0 0 1 1.72-.53l37.03 9.06a2 2 0 0 1 .6.29l7.54 5.5a1.76 1.76 0 0 1 .41 2.4L29.81 59.22a1.75 1.75 0 0 1-3.1-.4L8.07 6.35a1.8 1.8 0 0 1 .35-1.76m6.11 9.46 12.94 36.43 2.13-18.87zm18.53 18.16-2.16 19.2 18.3-26.77zM50.86 20l-11.8 5.53 7.9-8.36zm-7.46-4.2L14.6 8.77l16.9 19.65z"
-      clipRule="evenodd"
-    />
+    <path d="M45.6 9.7 5.1 4l22.62 56L58.9 20.09zm5.76 9.66L38.2 22.17l6.84-7.75zm-10.6-6.24-8.45 9.57L15.53 9.58zM27.33 48.17l-14.3-35.39 17.36 13.57zm4.02.57 3.04-21.6L51 23.6z" />
   ),
   { fill: 'currentColor' },
 );

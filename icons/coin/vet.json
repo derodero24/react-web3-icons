@@ -1,12 +1,17 @@
 {
   "name": "Vet",
   "source": [
-    "https://vechain.org"
+    "https://files.vechain.org/branding/Logos/VeChain.zip (official VeChain brand kit, files VeChain/VeChain_Dark.svg and VeChain_Light.svg; guidelines: https://files.vechain.org/branding/Guidelines/VeChain%20Brand%20Guidelines.pdf)"
+  ],
+  "notes": [
+    "Colored: the V of the official VeChain lockup, its own #7266FF path (identical in VeChain_Dark.svg and VeChain_Light.svg) copied unchanged without the wordmark paths, placed on the 64 grid; the kit has no mark-only file, so this crop awaits maintainer sign-off (#836)",
+    "Mono: the same path in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "vet.svg"
+      "file": "vet.svg",
+      "fill": "#7266FF"
     },
     "Mono": {
       "file": "vet.mono.svg",

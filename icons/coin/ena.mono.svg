@@ -1,11 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="scale(.16326)">
-    <defs>
-      <mask id="mask" width="392" height="392" x="0" y="0" maskUnits="userSpaceOnUse">
-        <rect width="392" height="392" fill="white"/>
-        <path fill="black" fill-rule="evenodd" d="M153.4 104.36h-4.15l-2.7 3.17-69.58 81.73-4.97 5.83 4.97 5.84 69.58 81.73 2.7 3.17h138.43v-60.96h-18v42.96h-96.6l57.82-66.85 5.1-5.89-5.1-5.88-57.81-66.85h96.6v42.96h18v-60.96zm.06 22.82L95.64 195.1l57.82 67.9 58.73-67.9z" clip-rule="evenodd"/>
-      </mask>
-    </defs>
-    <circle cx="196" cy="196" r="196" fill="currentColor" mask="url(#mask)"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 64 64">
+  <path fill-rule="evenodd" d="M32 0a32 32 0 1 0 0 64 32 32 0 1 0 0-64m14.12 18.04v9.64h-3.14v-6.5H29.05l9.33 10.8-9.33 10.79h13.93v-6.5h3.14v9.64H24.9L13.04 31.98l11.85-13.94zM17.16 31.98l8.47 9.95 8.6-9.95-8.6-9.96z"/>
 </svg>

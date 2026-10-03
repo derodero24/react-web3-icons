@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://bnbchain.org
+// Source: https://static.bnbchain.org/home-ui/static/images/brand-guidelines/BNBChain-Logo.zip (official BNB Chain brand kit at https://www.bnbchain.org/en/brand-guidelines, file BNB Chain - Logo/SVG/BNB Chain_Symbol_Yellow.svg)
+// Colored: the official BNB Chain_Symbol_Yellow.svg unchanged (one #F0B90B path), placed on the 64 grid; the brand guidelines name the logomark as 'an expression for the BNB Token' and ask for the yellow logo wherever possible
+// Mono: the same path in currentColor
+// BnbCircle / BnbCircleMono re-export the BinanceSmartChain circle variants (artwork owned by icons/chain/binance-smart-chain.json)
 export {
   BinanceSmartChainCircle as BnbCircle,
   BinanceSmartChainCircleMono as BnbCircleMono,
@@ -11,42 +14,17 @@ export const Bnb = /* @__PURE__ */ createIcon(
   'Bnb',
   '0 0 64 64',
   () => (
-    <>
-      <path
-        fill="#f0b90b"
-        fillRule="evenodd"
-        d="M32 0c17.67 0 32 14.33 32 32S49.67 64 32 64 0 49.67 0 32 14.33 0 32 0"
-      />
-      <path
-        fill="#fff"
-        d="m17.59 32 .02 8.46 7.19 4.23v4.96l-11.4-6.69V29.53zm0-8.46v4.93l-4.19-2.48v-4.93l4.19-2.48 4.2 2.48zm10.21-2.48 4.2-2.48 4.2 2.48-4.2 2.48zm-7.19 17.65v-4.96l4.19 2.48v4.93zm7.2 7.76 4.18 2.47 4.2-2.47v4.93L32 53.87l-4.2-2.47zm14.4-25.4 4.18-2.49 4.2 2.48V26l-4.2 2.48v-4.93zm4.18 19.4.02-8.47 4.19-2.48v13.44l-11.4 6.68V44.7zm-3-1.76-4.19 2.45v-4.93l4.19-2.48zm0-13.42.02 4.96-7.21 4.23v8.48l-4.19 2.45-4.18-2.45v-8.48l-7.21-4.23v-4.96l4.2-2.47 7.17 4.25 7.2-4.25 4.22 2.47zM20.6 16.83l11.4-6.7 11.4 6.7-4.19 2.48L32 15.06l-7.19 4.25z"
-      />
-    </>
+    <path d="M17.27 12.58 32 4l14.74 8.58-5.42 3.17L32 10.34l-9.32 5.4zM46.74 23.4l-5.42-3.17-9.32 5.4-9.32-5.4-5.41 3.17v6.33l9.31 5.41v10.82L32 49.13l5.42-3.17V35.14l9.32-5.4zm0 17.15v-6.34l-5.42 3.17v6.34zm3.84 2.24-9.31 5.4v6.35L56 45.96V28.8l-5.42 3.17zm-5.41-24.8 5.41 3.17v6.33L56 24.32V18l-5.42-3.17zm-18.59 32.5v6.34L32 60l5.42-3.17V50.5L32 53.66zm-9.31-9.94 5.41 3.17v-6.34l-5.41-3.17zm9.31-22.56L32 21.16l5.42-3.17L32 14.82zm-13.16 3.17 5.42-3.17-5.42-3.17L8 17.99v6.33l5.42 3.17zm0 10.81L8 28.8v17.16l14.74 8.58V48.2l-9.32-5.41z" />
   ),
-  {},
+  { fill: '#F0B90B' },
 );
 
 /** Bnb coin icon (monochrome). */
 export const BnbMono = /* @__PURE__ */ createIcon(
   'BnbMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <g transform="scale(.02564)">
-      <path
-        fillRule="evenodd"
-        d="M1248 0c689.3 0 1248 558.7 1248 1248s-558.7 1248-1248 1248S0 1937.3 0 1248 558.7 0 1248 0"
-        mask={`url(#${_id}-bnbm-a)`}
-      />
-      <defs>
-        <mask id={`${_id}-bnbm-a`}>
-          <rect width="2496" height="2496" fill="#fff" />
-          <path
-            fill="#000"
-            d="m685.9 1248 .9 330 280.4 165v193.2l-444.5-260.7v-524zm0-330v192.3l-163.3-96.6V821.4l163.3-96.6L850 821.4zm398.4-96.6 163.3-96.6 164.1 96.6-164.1 96.6zm-280.4 688.2v-193.2l163.3 96.6v192.3zm280.4 302.6 163.3 96.6 164.1-96.6v192.3l-164.1 96.6-163.3-96.6zm561.6-990.8 163.3-96.6 164.1 96.6v192.3l-164.1 96.6V918zm163.3 756.6.9-330 163.3-96.6v524l-444.5 260.7v-193.2zm-117.1-68.4-163.3 95.7V1413l163.3-96.6zm0-523.2.9 193.2-281.2 165v330.8l-163.3 95.7-163.3-95.7v-330.8l-281.2-165V986.4l164-96.6 279.5 165.8 281.2-165.8 164.1 96.6zM803.9 656.5l443.7-261.6 444.5 261.6-163.3 96.6-281.2-165.8-280.4 165.8z"
-          />
-        </mask>
-      </defs>
-    </g>
+  () => (
+    <path d="M17.27 12.58 32 4l14.74 8.58-5.42 3.17L32 10.34l-9.32 5.4zM46.74 23.4l-5.42-3.17-9.32 5.4-9.32-5.4-5.41 3.17v6.33l9.31 5.41v10.82L32 49.13l5.42-3.17V35.14l9.32-5.4zm0 17.15v-6.34l-5.42 3.17v6.34zm3.84 2.24-9.31 5.4v6.35L56 45.96V28.8l-5.42 3.17zm-5.41-24.8 5.41 3.17v6.33L56 24.32V18l-5.42-3.17zm-18.59 32.5v6.34L32 60l5.42-3.17V50.5L32 53.66zm-9.31-9.94 5.41 3.17v-6.34l-5.41-3.17zm9.31-22.56L32 21.16l5.42-3.17L32 14.82zm-13.16 3.17 5.42-3.17-5.42-3.17L8 17.99v6.33l5.42 3.17zm0 10.81L8 28.8v17.16l14.74 8.58V48.2l-9.32-5.41z" />
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );

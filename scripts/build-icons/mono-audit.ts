@@ -166,11 +166,6 @@ export type MonoAllowance =
  * margin.
  */
 export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
-  'bridge/Stargate': {
-    kind: 'false-positive',
-    reason:
-      'Open petal ring: the flood fill enters the gaps (refMiss is 0.07%).',
-  },
   'chain/Astar': {
     kind: 'false-positive',
     reason:
@@ -186,15 +181,20 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'A gradient sphere: the mono is the solid disc, and the gradient inflates the colour-boundary count.',
   },
-  'coin/Icp': {
+  'coin/Ena': {
     kind: 'false-positive',
     reason:
-      'Knockout seams keep the blue strand over the orange and purple loops and open the loop counters to the background, so the footprint flood fill enters them.',
+      'The gradient disc and the radial highlight on the rim inflate the colour-boundary count; the mark knockout reads at every size.',
   },
   'coin/Shib': {
     kind: 'false-positive',
     reason:
-      'The gap that keeps the head apart from the disc opens between the ears and joins the muzzle knockout, so the footprint flood fill enters it.',
+      'The gap that keeps the head apart from the disc joins the muzzle knockout along the jaw, so the footprint flood fill enters it.',
+  },
+  'coin/Xmr': {
+    kind: 'false-positive',
+    reason:
+      'The white of the official symbol (the M and the band above the grey base) is open in the mono and reaches the disc edge, as in the transparent monero-symbol-1280.png, so the footprint flood fill enters it (refMiss 0.33%).',
   },
   'defi/RocketPool': {
     kind: 'false-positive',
@@ -243,11 +243,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     kind: 'false-positive',
     reason:
       'Knockout seams keep the prism faces apart and open the enclosed play triangle to the background, so the footprint flood fill enters it.',
-  },
-  'storage/Ipfs': {
-    kind: 'false-positive',
-    reason:
-      'Translucent currentColor fill distinguishes the cube faces (allowed by mono rule 2); the gradient faces inflate the colour-boundary count.',
   },
   'tracker/DefiLlama': {
     kind: 'false-positive',

@@ -1,13 +1,17 @@
 {
   "name": "Fet",
   "source": [
-    "https://fetch.ai"
+    "https://superintelligence.io/wp-content/uploads/2025/01/mobile-logo.svg (official ASI Alliance site; FET is the ASI Alliance token, https://superintelligence.io/asi-token-fet/)"
+  ],
+  "notes": [
+    "Colored: the ASI Alliance symbol, the official mobile-logo.svg of superintelligence.io unchanged (three #151A1A paths), placed on the 64 grid; it replaces the retired Fetch.ai dot grid since FET became the ASI Alliance token (the ticker is still FET)",
+    "Mono: the same three paths in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "fet.svg",
-      "fill": "#1A1E21"
+      "fill": "#151A1A"
     },
     "Mono": {
       "file": "fet.mono.svg",

@@ -1,10 +1,16 @@
 {
   "name": "Eclipse",
+  "source": [
+    "https://cdn.prod.website-files.com/667150f66409572775122b43/667bc178f7d7c5e9849c975b_webclip.svg (official app icon of https://www.eclipse.xyz)"
+  ],
+  "notes": [
+    "Default: Eclipse's official app icon (the eclipse.xyz webclip.svg: #A1FEA0 tile with the black E, clipped to its 200/256 safe area as in the file); the site's favicon.svg shows the same tile, so the background is integral and the icon is a container drawn full-bleed. It replaces an unsourced black E without the tile",
+    "Mono: the tile in currentColor with the E knocked out through a mask"
+  ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "eclipse.svg",
-      "fill": "#000"
+      "file": "eclipse.svg"
     },
     "Mono": {
       "file": "eclipse.mono.svg",

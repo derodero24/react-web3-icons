@@ -1,7 +1,11 @@
 {
   "name": "Bch",
   "source": [
-    "https://bitcoincash.org"
+    "https://bitcoincash.org/img/green/bitcoin-cash-circle.svg (official graphics page https://bitcoincash.org/graphics/)"
+  ],
+  "notes": [
+    "Colored: the official bitcoin-cash-circle.svg (#0AC18E disc, white symbol) with its CSS classes inlined as fills and the circle written as the equivalent path, symbol path unchanged, placed on the 64 grid as a container; the graphics page publishes the symbol only in this circle",
+    "Mono: the disc in currentColor with the symbol knocked out (evenodd)"
   ],
   "kind": "icon",
   "variants": {

@@ -172,19 +172,19 @@ describe('IconifyJSON collections', () => {
   });
 
   it('keeps brand colours that live on the root element', () => {
-    // chain/ton.svg: <svg fill="#0098EA"> with fill-less paths.
-    expect(sets.colored.icons['chain-ton']?.body).toMatch(
-      /^<g fill="#0098EA"><path /,
+    // oracle/pyth.svg: <svg fill="#110F23"> with fill-less paths.
+    expect(sets.colored.icons['oracle-pyth']?.body).toMatch(
+      /^<g fill="#110F23"><path /,
     );
-    // storage/nft-storage.mono.svg: stroke-only art under <svg fill="none">.
-    expect(sets.mono.icons['storage-nft-storage-mono']?.body).toMatch(
+    // dex/pancake-swap.mono.svg: <svg fill="none"> with the ink on its paths.
+    expect(sets.mono.icons['dex-pancake-swap-mono']?.body).toMatch(
       /^<g fill="none">/,
     );
   });
 
   it('internal ids are namespaced per icon', () => {
-    const icon = sets.mono.icons['chain-base-circle-mono'];
-    expect(icon?.body).toContain('id="chain-base-circle-mono_basc-a"');
-    expect(icon?.body).toContain('url(#chain-base-circle-mono_basc-a)');
+    const icon = sets.mono.icons['chain-algorand-circle-mono'];
+    expect(icon?.body).toContain('id="chain-algorand-circle-mono_algo-cm-a"');
+    expect(icon?.body).toContain('url(#chain-algorand-circle-mono_algo-cm-a)');
   });
 });

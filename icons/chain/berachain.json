@@ -1,7 +1,11 @@
 {
   "name": "Berachain",
   "source": [
-    "https://berachain.com"
+    "https://mintcdn.com/berachain-422fce37/sVHHuWrozTnTMuyP/logo/light.svg (official logo served by docs.berachain.com)"
+  ],
+  "notes": [
+    "Default: the Berachain symbol (bear head and two chain links, #2C1A16) cropped from the official logo light.svg with its three symbol paths unchanged and the wordmark left out; it replaces a white symbol on a #814625 tile, a colour no official asset uses. berachain.com/brand was rate-limited (HTTP 429) when checked",
+    "Mono: the same three paths in currentColor"
   ],
   "kind": "icon",
   "variants": {

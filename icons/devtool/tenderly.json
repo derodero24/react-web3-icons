@@ -1,7 +1,11 @@
 {
   "name": "Tenderly",
   "source": [
-    "https://tenderly.co"
+    "https://tenderly.co",
+    "https://tenderly.co/brand-assets"
+  ],
+  "notes": [
+    "Mono: the three wings of the coloured mark in one ink, parted by 1.2-unit knock-out seams so the faceted structure reads; Tenderly's own black symbol (symbol-black.svg on the brand-assets page) is the same silhouette in solid ink, without opacity"
   ],
   "kind": "icon",
   "variants": {

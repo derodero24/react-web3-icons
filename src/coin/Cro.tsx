@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://crypto.com
+// Source: @web3icons/react (MIT) — CRO token SVG (legacy third-party artwork)
+// Legacy artwork: paths sourced from @web3icons/react (MIT), the old Crypto.com lion shield in #2E4B9F
+// Outdated: the CRO token is now the Cronos hexagon-C in #002D74 (https://crypto.com/us/price/cronos), published only as a PNG; replace once an official vector exists (#836)
 /** Cro coin icon (colored). */
 export const Cro = /* @__PURE__ */ createIcon(
   'Cro',

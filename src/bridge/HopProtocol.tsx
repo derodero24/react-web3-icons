@@ -1,6 +1,6 @@
 import { createIcon } from '../utils';
 
-// Source: https://hop.exchange
+// The former source https://hop.exchange lapsed and now serves an unrelated gambling site, so it is no longer cited; the artwork is unchanged while the unit's deprecation is pending
 /** Hop Protocol bridge icon (colored). */
 export const HopProtocol = /* @__PURE__ */ createIcon(
   'HopProtocol',

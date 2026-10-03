@@ -38,10 +38,10 @@ function pathFills(svg: SVGSVGElement): (string | null)[] {
 }
 
 describe('Avalanche withBackground', () => {
-  // The white fill behind the glyph, on the 64×64 grid.
-  const background = 'M12.2 10.95h39.55v35.96H12.21z';
+  // AvalancheCircle paints the mark white on the disc; AvalancheCircleMono
+  // cuts it out of the disc.
   const hasBackground = (svg: SVGSVGElement) =>
-    svg.querySelector(`path[d="${background}"]`) !== null;
+    svg.querySelector('path[fill="#fff"]') !== null;
 
   it('AvalancheCircle fills the glyph cut-out by default', () => {
     expect(hasBackground(renderSvg(<AvalancheCircle />))).toBe(true);
@@ -58,7 +58,7 @@ describe('Avalanche withBackground', () => {
   });
 
   it('each variant keeps its own fill', () => {
-    expect(renderSvg(<AvalancheCircle />).getAttribute('fill')).toBe('#e84142');
+    expect(renderSvg(<AvalancheCircle />).getAttribute('fill')).toBe('#E6212F');
     expect(
       renderSvg(<AvalancheCircleMono withBackground />).getAttribute('fill'),
     ).toBe('currentColor');

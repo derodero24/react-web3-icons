@@ -1,7 +1,11 @@
 {
   "name": "Sui",
   "source": [
-    "https://sui.io"
+    "https://sui.io/media-kit (official media kit, 01_Sui_Logo.zip: Sui_Droplet/SVG/Logo_Sui_Droplet_Sui Blue.svg)"
+  ],
+  "notes": [
+    "Default: the official Sui droplet in Sui Blue #298DFF (Logo_Sui_Droplet_Sui Blue.svg from the sui.io media kit), replacing the older thinner #4BA2FF droplet",
+    "Mono: the same droplet path in currentColor (the kit also ships it in black and white)"
   ],
   "kind": "icon",
   "variants": {

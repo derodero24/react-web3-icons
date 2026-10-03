@@ -1,12 +1,12 @@
 {
   "name": "StarkNet",
   "source": [
-    "https://starknet.io"
+    "https://www.starknet.io/assets/starknet-logos-svg.zip (official logo kit: Symbol/SN-Symbol-Gradient.svg)"
   ],
   "notes": [
-    "Circle variant: 24×24 content scaled to ~46px centered in 64×64",
-    "Gradient coordinates pre-computed: new = 9 + original * 1.917",
-    "Mono variants: the white wave and the pink underside are knocked out separately, kept apart by a 1.2-unit ink seam (the pink shape minus the wave offset by 1.2)."
+    "Default and Circle: the official Starknet symbol SN-Symbol-Gradient.svg (#0C0C4F disc, #FAFAFA mark, #EC796B -> #E175B1 gradients), drawn full-bleed; it replaces artwork whose gradient ended in #D672EF (not in the kit) and whose Circle/Square marks were undersized",
+    "Square: no official tile exists; a repo-convention #0C0C4F rounded square (rx 31.6/158 = 12.8/64) holding the official mark paths at the symbol's own scale",
+    "Mono, CircleMono and SquareMono: the disc / tile in currentColor with the star, the dot, the white crest and the pink underside knocked out as one evenodd path; the underside is cut back from the crest by a 1.2-unit ink seam (the pink shape minus the crest offset by 1.2), so the wave keeps its two layers"
   ],
   "kind": "icon",
   "variants": {

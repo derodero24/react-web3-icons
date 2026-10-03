@@ -1,7 +1,12 @@
 {
   "name": "Tron",
   "source": [
-    "https://tron.network"
+    "https://tron.network/favicon.svg",
+    "https://tron.network/static/doc/Brand-guidelines.pdf (official brand guidelines, Aug 2025)"
+  ],
+  "notes": [
+    "Default: the official site's favicon.svg (#EA0029), which carries the redrawn, heavier icon of the Aug 2025 brand guidelines (\"Before / After\"); it replaces the older thin icon in #C4342B. The guidelines list the primary red as #DC062B (RGB) while their own artwork and the site use #EA0029, so the official file is kept unchanged",
+    "Mono: the same icon path in currentColor (the triangles stay holes)"
   ],
   "kind": "icon",
   "variants": {

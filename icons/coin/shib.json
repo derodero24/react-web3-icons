@@ -1,7 +1,11 @@
 {
   "name": "Shib",
   "source": [
-    "https://shibatoken.com"
+    "https://shib.mypinata.cloud/ipfs/bafybeidvkdvjgb7efb2b4n5pthoyw4cwmc3h2wanbcm7zoyu4ksjbtwwu4/images/redesign/shib_token.svg (the SHIB token in shibatoken.com's asset directory)"
+  ],
+  "notes": [
+    "Colored: the official shib_token.svg with its twelve paths and fills unchanged (#D3202F disc, #F2903C head with #E85F24 ears, white muzzle and brows, #22263F eyes, nose and mouth); its twelve masks, identical 54.7-unit squares that only trim 0.08 units off the disc's right and bottom edges, are dropped; placed on the 64 grid as a container",
+    "Mono: built from the same paths (paper.js): the disc in ink, kept apart from the head (ears, head and muzzle) by a 1.1-unit gap (about 1.3 on the 64 grid); the head and ears in ink with the white muzzle, the brows and the eyes knocked out, and a 0.6-unit seam around the #E85F24 inner ears; the nose and mouth drawn back in ink"
   ],
   "kind": "icon",
   "variants": {

@@ -1,7 +1,12 @@
 {
   "name": "WorldChain",
   "source": [
-    "https://worldcoin.org"
+    "https://world.org/brand (official brand assets, Logomark.zip: [World] Logomark-Black-RGB.svg)",
+    "https://world.org/world-chain"
+  ],
+  "notes": [
+    "Default: the official World logomark ([World] Logomark-Black-RGB.svg from the Logomark.zip on world.org/brand), which world.org/world-chain uses for World Chain; it replaces a glyph whose subpaths were displaced and clipped and which matched no official asset",
+    "Mono: the same logomark path in currentColor (the kit also ships it in white)"
   ],
   "kind": "icon",
   "variants": {
