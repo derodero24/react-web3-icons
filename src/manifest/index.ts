@@ -2034,7 +2034,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
       'Alt',
     ],
     aliases: ['metamask'],
-    brandColor: '#f6851b',
+    brandColor: '#ff5c16',
   },
   { name: 'MetaMaskAlt', category: 'wallet' },
   { name: 'MetaMaskCircle', category: 'wallet' },
