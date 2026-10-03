@@ -3,6 +3,7 @@ import { configDefaults, defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     environment: 'jsdom',
+    setupFiles: ['test/setup.ts'],
     exclude: [...configDefaults.exclude, '**/.claude/**', 'test/visual/**'],
     coverage: {
       provider: 'v8',

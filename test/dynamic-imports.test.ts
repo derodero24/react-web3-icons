@@ -47,13 +47,19 @@ describe('Per-icon dynamic import maps', () => {
       expect(mapped).toEqual(componentNames);
     },
   );
+});
 
-  it('map entries load the module that exports the icon', async () => {
-    // biome-ignore lint/complexity/useLiteralKeys: map has an index signature, TS requires bracket access
-    const mod = await chainImports['EthereumCircleMono']?.();
-    expect(Object.keys(mod ?? {})).toContain('EthereumCircleMono');
-    // biome-ignore lint/complexity/useLiteralKeys: map has an index signature, TS requires bracket access
-    const alias = await coinImports['BtcMono']?.();
-    expect(Object.keys(alias ?? {})).toContain('BtcMono');
-  });
+describe.each(CASES)('%s import map loaders', (_name, mod, imports) => {
+  const exported = new Map<string, unknown>(Object.entries(mod));
+
+  // Invokes every loader, so a stale import path (or a module that no
+  // longer exports the key) fails here instead of rendering the fallback.
+  it.each(Object.entries(imports))(
+    '%s loads the module that exports it',
+    async (exportName, load) => {
+      const loaded = await load();
+      expect(Object.keys(loaded)).toContain(exportName);
+      expect(loaded[exportName]).toBe(exported.get(exportName));
+    },
+  );
 });
