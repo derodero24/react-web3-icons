@@ -416,6 +416,33 @@ describe('tone analysis', () => {
     expect(polylineStroke.overall).toEqual({ dark: 0, light: 1, weight: 1 });
   });
 
+  it('checks fill area per subpath (regression)', () => {
+    // Two disconnected flat lines: together their points span the viewBox,
+    // but neither subpath bounds an area, so the red fill paints nothing.
+    for (const lines of [
+      '<path d="M0 0L10 0M0 10L10 10" fill="#f00"/>',
+      '<path d="M0 0h10m-10 10h10" fill="#f00"/>',
+      '<path d="M0 0h10zl0 10 0 0z" fill="#f00"/>',
+    ]) {
+      const measured = svg(`${lines}${dot('#000')}`);
+      expect(measured.container, lines).toBeUndefined();
+      expect(measured.overall, lines).toEqual({ dark: 1, light: 0, weight: 1 });
+      expect(isDominatedBy(measured, 'dark'), lines).toBe(true);
+    }
+    // One subpath with area is enough to fill, and only it sizes the fill:
+    // a small triangle plus a viewBox-wide flat line is no container.
+    const small = svg(
+      `<path d="M0 0h2v2zM0 10h10" fill="#f00"/>${dot('#000')}`,
+    );
+    expect(small.container).toBeUndefined();
+    expect(small.overall).toEqual({ dark: 0.5, light: 0, weight: 2 });
+    // A second subpath after a closepath (no moveto) still counts.
+    const reopened = svg(
+      `<path d="M0 0h10zv10h10z" fill="#f00"/>${dot('#000')}`,
+    );
+    expect(reopened.container).toMatchObject({ dark: 0, light: 0 });
+  });
+
   it('treats a large bottom fill as the container', () => {
     const disc = svg(
       `<circle cx="5" cy="5" r="5" fill="#00f"/>${dot('#fff')}${dot('#fff')}`,
@@ -528,6 +555,31 @@ describe('tone analysis', () => {
     expect(
       geometry('', `<g fill="none" stroke="#123">${circle}/></g>`),
     ).not.toBe(geometry('', `<g fill="#123">${circle}/></g>`));
+    // Zero-alpha colours paint nothing, as in the tone measure.
+    for (const invisible of ['#fff0', '#ffffff00', '#00000000']) {
+      expect(geometry('', `${circle} fill="${invisible}"/>`), invisible).toBe(
+        geometry('', `${circle} fill="none"/>`),
+      );
+      // A black mark with an invisible rect is not a Mono painting that rect.
+      const rect = '<rect width="10" height="10"';
+      expect(
+        geometry('', `${rect} fill="${invisible}"/>${circle} fill="#000"/>`),
+        invisible,
+      ).not.toBe(geometry(' fill="currentColor"', `${rect}/>${circle}/>`));
+    }
+    expect(geometry('', `${circle} fill="#fff8"/>`)).toBe(disc);
+    // So do gradients whose stops are all invisible.
+    expect(
+      geometry(
+        '',
+        `<defs><linearGradient id="g"><stop stop-color="#000" stop-opacity="0"/></linearGradient></defs>${circle} fill="url(#g)"/>`,
+      ),
+    ).not.toBe(
+      geometry(
+        '',
+        `<defs><linearGradient id="g"><stop stop-color="#000" stop-opacity="0"/></linearGradient></defs>${circle} fill="#000"/>`,
+      ),
+    );
     expect(geometry('', `${circle} fill="transparent"/>`)).toBe(
       geometry('', `${circle} fill="none"/>`),
     );
