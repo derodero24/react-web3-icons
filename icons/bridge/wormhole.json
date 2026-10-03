@@ -1,13 +1,18 @@
 {
   "name": "Wormhole",
+  "source": [
+    "https://static.wormhole.com/logomark-black.svg",
+    "https://wormhole.com/brand-and-press (official brand assets)"
+  ],
   "notes": [
-    "Paths sourced from wormhole.com/assets/dark.svg"
+    "Default: the official Wormhole logomark (logomark-black.svg from wormhole.com/brand-and-press); the brand publishes the logomark in black and white only. It replaces a moon-and-stars illustration from the website that was not the logo",
+    "Mono: the same logomark path in currentColor; use it with a light color on dark backgrounds (the brand's logomark-white.svg)"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "wormhole.svg",
-      "fill": "none"
+      "fill": "#000"
     },
     "Mono": {
       "file": "wormhole.mono.svg",

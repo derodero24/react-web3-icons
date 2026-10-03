@@ -135,7 +135,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'bridge',
     slug: 'wormhole',
     variants: ['', 'Mono'],
-    brandColor: '#c1bbf6',
+    brandColor: '#000000',
   },
   { name: 'WormholeMono', category: 'bridge' },
   {
