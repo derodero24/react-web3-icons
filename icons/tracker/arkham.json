@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Arkham",
+  "kind": "icon",
+  "source": [
+    "https://info.arkm.com (official Arkham site, header logo inline SVG)",
+    "https://info.arkm.com (favicon-light-512.png linked from the page head: the symbol in black)"
+  ],
+  "notes": [
+    "Default: the symbol path (the ten-piece pentagon) of the ARKHAM header logo served inline on info.arkm.com (viewBox 0 0 546 153), without the wordmark paths. The site draws it in white on dark; the page's official light favicon (favicon-light-512.png) shows the same symbol in pure black, which is the colour used here. No Arkham brand kit was found (arkm.com is behind a bot challenge).",
+    "Mono: the same path in currentColor."
+  ],
+  "variants": {
+    "": {
+      "file": "arkham.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "arkham.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "aliases": [
+    "arkham-intelligence",
+    "arkm"
+  ]
+}

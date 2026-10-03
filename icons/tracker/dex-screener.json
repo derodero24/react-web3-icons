@@ -1,0 +1,24 @@
+{
+  "$schema": "../schema.json",
+  "name": "DexScreener",
+  "kind": "icon",
+  "source": [
+    "https://marketplace.dexscreener.com (official DEX Screener Marketplace site, header logo inline SVG)",
+    "https://dexscreener.com/icon-512x512.png (official app icon, same falcon mark, white on black)"
+  ],
+  "notes": [
+    "Default: the single evenodd path of the white (#fff) falcon logo served inline in the header of marketplace.dexscreener.com (viewBox 0 0 210 240). No DEX Screener brand kit was found; dexscreener.com is behind a bot challenge, its app icons are raster only.",
+    "The official mark is white and only shown on black; use DexScreenerMono with a dark color on light backgrounds.",
+    "Mono: the same path in currentColor."
+  ],
+  "variants": {
+    "": {
+      "file": "dex-screener.svg",
+      "fill": "#fff"
+    },
+    "Mono": {
+      "file": "dex-screener.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}
