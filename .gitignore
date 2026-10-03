@@ -6,7 +6,9 @@ node_modules
 dist
 coverage
 
-# Visual regression screenshots (generated in CI)
+# Visual regression screenshots: never commit them. CI renders the baseline
+# from the PR's base commit (cached per develop commit), see
+# .github/workflows/visual-regression.yml.
 test/visual/__screenshots__/
 
 # Local development files

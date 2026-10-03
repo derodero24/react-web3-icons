@@ -1143,5 +1143,15 @@
     "storage": "78476b436623cada",
     "tracker": "2d331667ae829661",
     "wallet": "6f895c4e4b628278"
+  },
+  "dynamicImports": {
+    "bridge": "1441cadd7d1cad90",
+    "chain": "23bcc38bcdcdf77d",
+    "coin": "f9112fd1ba53ea27",
+    "defi": "9fbb91957938df00",
+    "dex": "900812f6edc3fcd6",
+    "exchange": "0463850928c15eac",
+    "oracle": "70104b799de216c5",
+    "wallet": "c201b87c09a7df6c"
   }
 }

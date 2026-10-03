@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createDynamicIcon } from '../src/dynamic/DynamicIcon';
 
+// This file drives React through act(); opt the environment in so act() does
+// not warn that it is "not configured to support act(...)".
+Reflect.set(globalThis, 'IS_REACT_ACT_ENVIRONMENT', true);
+
 // biome-ignore lint/suspicious/noEmptyBlockStatements: intentional noop for mock
 function noop() {}
 
@@ -26,6 +30,7 @@ function StubIcon() {
 
 afterEach(() => {
   vi.restoreAllMocks();
+  vi.unstubAllEnvs();
 });
 
 describe('createDynamicIcon fallback rendering', () => {
@@ -77,7 +82,7 @@ describe('createDynamicIcon fallback rendering', () => {
 
     expect(container.querySelector('svg')).not.toBeNull();
     expect(container.innerHTML).not.toContain('loading');
-    root.unmount();
+    act(() => root.unmount());
   });
 
   it('renders fallback then resolves to empty when export is missing from module', async () => {
@@ -104,7 +109,7 @@ describe('createDynamicIcon fallback rendering', () => {
 
     // After resolution, the lazy component renders null (icon not found)
     expect(container.querySelector('svg')).toBeNull();
-    root.unmount();
+    act(() => root.unmount());
   });
 
   it('emits a dev-mode console.warn when export is missing from module', async () => {
@@ -127,7 +132,7 @@ describe('createDynamicIcon fallback rendering', () => {
     expect(warnSpy).toHaveBeenCalledWith(
       '[react-web3-icons] Icon "nonExistent" not found.',
     );
-    root.unmount();
+    act(() => root.unmount());
   });
 
   it('warns only once per export name (deduplication)', async () => {
@@ -156,7 +161,7 @@ describe('createDynamicIcon fallback rendering', () => {
         typeof args[0] === 'string' && args[0].includes('duplicateWarnTest'),
     );
     expect(relevant).toHaveLength(1);
-    root.unmount();
+    act(() => root.unmount());
   });
 
   it('renders fallback and warns when the name is missing from the import map', () => {
@@ -176,6 +181,26 @@ describe('createDynamicIcon fallback rendering', () => {
     expect(warnSpy).toHaveBeenCalledWith(
       '[react-web3-icons] Icon "unmapped" not found.',
     );
+  });
+
+  it('does not warn about a missing icon in production', () => {
+    vi.stubEnv('NODE_ENV', 'production');
+    const warnSpy = vi.spyOn(console, 'warn');
+    const DynIcon = createDynamicIcon<{ name: string }>(
+      () => 'unmappedInProduction',
+      {},
+      ['name'],
+    );
+
+    const container = renderSync(
+      createElement(DynIcon, {
+        name: 'anything',
+        fallback: createElement('span', null, 'fallback-text'),
+      }),
+    );
+
+    expect(container.innerHTML).toContain('fallback-text');
+    expect(warnSpy).not.toHaveBeenCalled();
   });
 
   it('strips category-specific props before forwarding to the icon', async () => {
@@ -210,6 +235,6 @@ describe('createDynamicIcon fallback rendering', () => {
     expect(receivedProps).not.toHaveProperty('name');
     expect(receivedProps).toHaveProperty('width', 32);
     expect(receivedProps).toHaveProperty('height', 32);
-    root.unmount();
+    act(() => root.unmount());
   });
 });

@@ -7,12 +7,16 @@ on:
       - 'src/**'
       - 'test/visual/**'
       - 'vitest.config.visual.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
   pull_request:
     branches: [develop]
     paths:
       - 'src/**'
       - 'test/visual/**'
       - 'vitest.config.visual.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
 
 permissions:
   contents: read
@@ -26,11 +30,19 @@ jobs:
     name: Visual regression test
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    env:
+      # PRs labeled 'visual-baseline-update' intentionally change icon
+      # rendering: they skip the comparison and only verify that every icon
+      # still renders (the post-merge develop run rebuilds the cache).
+      BASELINE_UPDATE: ${{ github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'visual-baseline-update') }}
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          # Full history so a missing baseline can be rendered from the PR's
+          # base commit (git worktree below).
+          fetch-depth: 0
 
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
 
@@ -60,63 +72,66 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: pnpm exec playwright install-deps chromium
 
-      # On develop: generate and cache reference screenshots
+      # Reference screenshots live only in the Actions cache, keyed by the
+      # develop commit that rendered them and the Playwright (Chromium)
+      # version that rendered them. Lookups are exact: a prefix fallback
+      # would silently compare against some other commit's rendering.
+
+      # On develop: render and cache the reference screenshots for this commit
       - name: Restore reference screenshots (develop)
         if: github.event_name == 'push'
         id: screenshots-cache-develop
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: test/visual/__screenshots__
-          key: visual-screenshots-develop-${{ github.sha }}
-          restore-keys: |
-            visual-screenshots-develop-
+          key: visual-screenshots-develop-pw${{ steps.playwright-version.outputs.version }}-${{ github.sha }}
 
       - name: Generate reference screenshots (develop)
         if: github.event_name == 'push' && steps.screenshots-cache-develop.outputs.cache-hit != 'true'
         run: pnpm test:visual:update
 
-      # PRs labeled 'visual-baseline-update' intentionally change icon
-      # rendering: skip the develop-baseline comparison and only verify that
-      # every icon still renders (fresh baselines are generated from this
-      # branch; the post-merge develop run rebuilds the cache).
       - name: Regenerate baselines (intentional visual change)
-        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'visual-baseline-update')
+        if: env.BASELINE_UPDATE == 'true'
         run: pnpm test:visual:update
 
-      # On PRs: restore develop baseline and compare
-      - name: Restore reference screenshots from develop (PR)
-        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'visual-baseline-update')
+      # On PRs: the baseline must come from the base commit, never from this
+      # PR's own rendering.
+      - name: Restore reference screenshots for the base commit (PR)
+        if: github.event_name == 'pull_request' && env.BASELINE_UPDATE != 'true'
         id: screenshots-cache-pr
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: test/visual/__screenshots__
-          key: visual-screenshots-develop-${{ github.event.pull_request.base.sha }}
-          restore-keys: |
-            visual-screenshots-develop-
+          key: visual-screenshots-develop-pw${{ steps.playwright-version.outputs.version }}-${{ github.event.pull_request.base.sha }}
 
-      - name: Check for existing screenshots (PR)
-        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'visual-baseline-update')
-        id: check-screenshots
+      - name: Render baseline from the base commit (PR, cache miss)
+        if: github.event_name == 'pull_request' && env.BASELINE_UPDATE != 'true' && steps.screenshots-cache-pr.outputs.cache-hit != 'true'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_DIR: ${{ runner.temp }}/visual-base
         run: |
-          if [ -d "test/visual/__screenshots__" ] && [ -n "$(ls -A test/visual/__screenshots__ 2>/dev/null)" ]; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Generate baseline if none cached (PR)
-        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'visual-baseline-update') && steps.check-screenshots.outputs.exists != 'true'
-        run: |
-          echo "::warning::No reference screenshots from develop found. Generating baseline for this run."
-          pnpm test:visual:update
+          echo "::notice::No cached baseline for base commit $BASE_SHA; rendering it from that commit."
+          git worktree add --detach "$BASE_DIR" "$BASE_SHA"
+          (
+            cd "$BASE_DIR"
+            pnpm install --frozen-lockfile
+            # The base may pin a different Playwright; install its Chromium.
+            pnpm exec playwright install chromium
+            pnpm test:visual:update
+          )
+          rm -rf test/visual/__screenshots__
+          cp -R "$BASE_DIR/test/visual/__screenshots__" test/visual/__screenshots__
+          git worktree remove --force "$BASE_DIR"
 
       - name: Generate screenshots for new icons (PR)
-        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'visual-baseline-update') && steps.check-screenshots.outputs.exists == 'true'
+        if: github.event_name == 'pull_request' && env.BASELINE_UPDATE != 'true'
         run: |
           # Build to make the dist available for the node script
           pnpm build --silent
-          # Find icons that don't have a reference screenshot yet (newly added in this PR)
-          NEW_ICONS=$(node --input-type=module <<'EOF'
+          # Icons without a base-commit screenshot are new in this PR. The
+          # pattern is anchored to the full test name ("<describe> <icon>")
+          # so a new `Base` does not re-baseline `Basescan*`.
+          NEW_ICONS_PATTERN=$(node --input-type=module <<'EOF'
           import { existsSync } from 'node:fs';
           import * as icons from './dist/index.mjs';
           const fwdRef = Symbol.for('react.forward_ref');
@@ -126,17 +141,18 @@ jobs:
             .map(([name]) => name)
             .filter(name => !existsSync(`${dir}/${name}.png`));
           if (newIcons.length > 0) {
-            process.stdout.write(newIcons.join('|'));
+            const escaped = newIcons.map(n => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+            process.stdout.write(`^Icon visual regression (${escaped.join('|')})$`);
           }
           EOF
           )
-          if [ -n "$NEW_ICONS" ]; then
-            echo "::notice::Generating reference screenshots for new icons: $NEW_ICONS"
-            pnpm test:visual:update -t "$NEW_ICONS"
+          if [ -n "$NEW_ICONS_PATTERN" ]; then
+            echo "::notice::Generating reference screenshots for new icons: $NEW_ICONS_PATTERN"
+            pnpm test:visual:update -t "$NEW_ICONS_PATTERN"
           fi
 
       - name: Run visual regression tests
-        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'visual-baseline-update')
+        if: github.event_name == 'pull_request' && env.BASELINE_UPDATE != 'true'
         run: pnpm test:visual
 
       - name: Upload screenshot diffs on failure
