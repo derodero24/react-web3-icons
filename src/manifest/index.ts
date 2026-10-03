@@ -285,7 +285,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     slug: 'celestia',
     variants: ['', 'Mono'],
-    brandColor: '#7a2bf9',
+    brandColor: '#0e1014',
   },
   { name: 'CelestiaMono', category: 'chain' },
   {
