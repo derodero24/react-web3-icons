@@ -1,15 +1,19 @@
 import { createIcon } from '../utils';
 
-// Celoscan uses the Celo "C" mark — a square path forming an open C shape.
-// viewBox is trimmed to the 180×180 mark area (offset 70,70 in the source 320×320 SVG).
+// Source: https://celoscan.io/assets/celo/images/svg/logos/chain-light.svg
+// Source: https://celoscan.io/assets/celo/images/svg/logos/logo-light.svg
+// Celoscan uses the Celo "C" mark, a square path forming an open C shape
+// Square / SquareMono: the official chain-light.svg (#FCFF52 square with the black C), without its no-op clip path
+// Default / Mono: the C path of chain-light.svg on its own, in the black that Celoscan's own logo-light.svg uses for the C (the old #35D07F was the pre-2023 Celo green); the mono is the same path in currentColor
+// brandColor: the C is black, so the manifest uses Celo's yellow #FCFF52 from the official Square artwork
 /** Celoscan explorer icon (colored). */
 export const Celoscan = /* @__PURE__ */ createIcon(
   'Celoscan',
   '0 0 64 64',
   () => (
-    <path d="M60 4H4v56h56V40.45h-9.3c-3.2 7.13-10.4 12.1-18.66 12.1-11.38 0-20.6-9.3-20.6-20.59 0-11.3 9.22-20.5 20.6-20.5 8.41 0 15.62 5.12 18.83 12.4H60z" />
+    <path d="M60 4H4v56h56V40.45h-9.3c-3.2 7.13-10.41 12.1-18.66 12.1-11.38 0-20.59-9.3-20.59-20.59 0-11.3 9.21-20.5 20.59-20.5 8.4 0 15.62 5.12 18.82 12.4H60z" />
   ),
-  { fill: '#35D07F' },
+  { fill: '#000' },
 );
 
 /** Celoscan Square explorer icon (colored). */
@@ -30,7 +34,7 @@ export const CeloscanMono = /* @__PURE__ */ createIcon(
   'CeloscanMono',
   '0 0 64 64',
   () => (
-    <path d="M60 4H4v56h56V40.45h-9.3c-3.2 7.13-10.4 12.1-18.66 12.1-11.38 0-20.6-9.3-20.6-20.59 0-11.3 9.22-20.5 20.6-20.5 8.41 0 15.62 5.12 18.83 12.4H60z" />
+    <path d="M60 4H4v56h56V40.45h-9.3c-3.2 7.13-10.41 12.1-18.66 12.1-11.38 0-20.59-9.3-20.59-20.59 0-11.3 9.21-20.5 20.59-20.5 8.4 0 15.62 5.12 18.82 12.4H60z" />
   ),
   { fill: 'currentColor' },
 );

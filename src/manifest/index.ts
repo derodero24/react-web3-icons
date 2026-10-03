@@ -1691,7 +1691,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Celoscan',
     category: 'explorer',
     variants: ['', 'Square', 'Mono', 'SquareMono'],
-    brandColor: '#35d07f',
+    brandColor: '#fcff52',
   },
   { name: 'CeloscanMono', category: 'explorer' },
   { name: 'CeloscanSquare', category: 'explorer' },
