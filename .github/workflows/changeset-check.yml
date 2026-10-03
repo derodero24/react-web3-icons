@@ -43,11 +43,13 @@ jobs:
             ];
             const DEV_ONLY_FIELDS = [
               'devDependencies',
-              'scripts',
               'packageManager',
               'size-limit',
               'version', // bumped by `changeset version` itself
             ];
+            // Scripts that decide what ends up in dist / the tarball; every
+            // other script is contributor tooling and is ignored.
+            const SHIPPING_SCRIPTS = ['build', 'prepack', 'prepublishOnly', 'postpack'];
 
             const files = await github.paginate(github.rest.pulls.listFiles, {
               owner: context.repo.owner,
@@ -68,6 +70,9 @@ jobs:
               for (const field of DEV_ONLY_FIELDS) {
                 delete pkg[field];
               }
+              pkg.scripts = Object.fromEntries(
+                SHIPPING_SCRIPTS.map(name => [name, pkg.scripts?.[name] ?? null]),
+              );
               return JSON.stringify(pkg);
             };
 
