@@ -207,19 +207,23 @@ const res = await fetch('https://cdn.jsdelivr.net/npm/react-web3-icons@4.0.0/dis
 });
 ```
 
-### Iconify (Vue, Svelte, Tailwind, and more)
+### Other frameworks (Iconify)
 
-The full set also ships as IconifyJSON collections — `react-web3-icons/iconify.json` (colored, prefix `web3`) and `react-web3-icons/iconify-mono.json` (`currentColor`, prefix `web3-mono`) — so the icons work outside React through the Iconify ecosystem:
+The full set also ships as IconifyJSON collections — `react-web3-icons/iconify.json` (colored, prefix `web3`) and `react-web3-icons/iconify-mono.json` (`currentColor`, prefix `web3-mono`) — so the icons work outside React through the Iconify ecosystem. Register the collection from the npm package, then use icons by name; nothing is fetched at runtime:
 
-```tsx
-import { addCollection, Icon } from '@iconify/react';
-import web3Icons from 'react-web3-icons/iconify.json';
+```ts
+import { addCollection, Icon } from '@iconify/vue'; // or '@iconify/react', 'iconify-icon', …
+import web3 from 'react-web3-icons/iconify.json';
+import web3Mono from 'react-web3-icons/iconify-mono.json';
 
-addCollection(web3Icons);
-<Icon icon="web3:chain-ethereum" />;
+addCollection(web3);
+addCollection(web3Mono);
+// <Icon icon="web3:chain-ethereum" />, <Icon icon="web3-mono:chain-ethereum-mono" />
 ```
 
-Icon names are `<category>-<kebab-name>` (e.g. `chain-ethereum`, `coin-bitcoin`, `wallet-meta-mask`); ticker shorthands are registered as Iconify aliases (e.g. `coin-btc`). The same JSON works with Iconify's Vue/Svelte/Web Component packages and `unplugin-icons`.
+Icon names are `<category>-<kebab-name>` (e.g. `chain-ethereum`, `chain-bitcoin`, `wallet-meta-mask`); ticker shorthands are registered as Iconify aliases (e.g. `coin-btc`). For build-time tools such as `unplugin-icons`, load the same JSON as a custom collection ([recipe](docs/iconify.md#unplugin-icons)).
+
+The collections are not yet listed on [Iconify](https://icon-sets.iconify.design/) ([#702](https://github.com/derodero24/react-web3-icons/issues/702)). Once they are, `web3:` and `web3-mono:` icons will also load on demand from the Iconify API without `addCollection`, and `unplugin-icons` / Tailwind plugins will find them in `@iconify/json`. See [docs/iconify.md](docs/iconify.md) for details.
 
 ### React Server Components (RSC)
 

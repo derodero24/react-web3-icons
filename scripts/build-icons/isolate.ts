@@ -30,7 +30,7 @@ const SHAPES: ReadonlySet<string> = new Set([
 ]);
 
 /** SVG's initial `fill`; also what `currentColor` is with the initial `color`. */
-const INITIAL_FILL = '#000';
+export const INITIAL_FILL = '#000';
 
 /** The node's own `fill`, from the attribute or a `fill:` style declaration. */
 function ownFill(node: XmlNode): string | undefined {
@@ -41,7 +41,7 @@ function ownFill(node: XmlNode): string | undefined {
 }
 
 /** Whether a shape in the subtree takes its `fill` from above `node`. */
-function inheritsFill(node: XmlNode): boolean {
+export function inheritsFill(node: XmlNode): boolean {
   return (
     ownFill(node) === undefined &&
     (SHAPES.has(node.tag) || node.children.some(inheritsFill))
