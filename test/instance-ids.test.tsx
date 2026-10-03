@@ -3,7 +3,7 @@ import { flushSync } from 'react-dom';
 import ReactDOM from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it } from 'vitest';
-import { Alchemy, Ethereum, HardhatMono, NftStorageMono } from '../src';
+import { Alchemy, Ethereum, HardhatMono, NftStorage } from '../src';
 import { createIcon } from '../src/utils';
 import { toSvgId } from '../src/utils/createIcon';
 import { isIconComponent } from './helpers/units';
@@ -72,7 +72,7 @@ function maskShapesInheritingFill(svg: SVGSVGElement): Element[] {
 describe.each([
   ['masked', HardhatMono],
   ['gradient', Alchemy],
-  ['masked with <use>', NftStorageMono],
+  ['masked with <use>', NftStorage],
 ])('two instances of a %s icon', (_kind, Icon) => {
   it('get distinct ids that resolve inside their own <svg>', () => {
     const svgs = render(
@@ -106,7 +106,7 @@ describe('mask content', () => {
       <>
         <HardhatMono fill="#fff" />
         <HardhatMono />
-        <NftStorageMono fill="currentColor" />
+        <NftStorage fill="currentColor" />
       </>,
     );
     for (const svg of svgs) {
@@ -119,14 +119,15 @@ describe('mask content', () => {
     const [hardhat, nftStorage] = render(
       <>
         <HardhatMono fill="#fff" />
-        <NftStorageMono fill="currentColor" />
+        <NftStorage fill="currentColor" />
       </>,
     );
     // No root fill in the source: mask content painted SVG's initial black.
     expect(hardhat?.querySelector('mask')?.getAttribute('fill')).toBe('#000');
-    // Root fill="none" in the source: the unfilled content painted nothing.
+    // The source declares the mask's fill itself: it is kept as written.
+    // (Root fill="none" is covered by the isolateMaskContent unit test.)
     expect(nftStorage?.querySelector('mask')?.getAttribute('fill')).toBe(
-      'none',
+      '#000',
     );
   });
 });

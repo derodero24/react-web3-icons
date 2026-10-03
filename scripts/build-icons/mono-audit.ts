@@ -248,11 +248,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'Translucent currentColor shading distinguishes the faces of the 3D prism (allowed by mono rule 2), which the binary reference cannot express.',
   },
-  'storage/Ipfs': {
-    kind: 'false-positive',
-    reason:
-      'Translucent currentColor fill distinguishes the cube faces (allowed by mono rule 2); the gradient faces inflate the colour-boundary count.',
-  },
   'tracker/DefiLlama': {
     kind: 'false-positive',
     reason:
