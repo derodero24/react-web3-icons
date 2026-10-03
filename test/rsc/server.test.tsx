@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { describe, expect, it } from 'vitest';
 import * as icons from '../../src';
-import { EthereumCircleMono } from '../../src/chain/Ethereum';
+import { BaseCircleMono } from '../../src/chain/Base';
 import { HardhatMono } from '../../src/devtool/Hardhat';
 import { isIconComponent } from '../helpers/units';
 
@@ -168,8 +168,8 @@ describe('React Server Components', () => {
   it('gives each instance its own internal ids', async () => {
     const payload = await renderFlight(
       <>
-        <EthereumCircleMono />
-        <EthereumCircleMono />
+        <BaseCircleMono />
+        <BaseCircleMono />
         <HardhatMono fill="#fff" />
         <HardhatMono />
       </>,
