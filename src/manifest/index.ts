@@ -1202,7 +1202,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Chainlink',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#2a5ada',
+    brandColor: '#0847f7',
   },
   { name: 'ChainlinkMono', category: 'devtool' },
   {
