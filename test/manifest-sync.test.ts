@@ -252,4 +252,29 @@ describe('Icon manifest sync', () => {
     const keys = ICON_MANIFEST.map(e => `${e.category}/${e.name}`);
     expect(new Set(keys).size).toBe(keys.length);
   });
+
+  // A name may appear in several categories only as a re-export of one
+  // artwork (coin `Kaia` → chain `Kaia`), never as different artwork under
+  // one name (the former coin/oracle `Pyth` pair, #810), so `name` is a
+  // unique key for a component — and for `import { name }` from the root.
+  it('each name identifies exactly one component', () => {
+    const byName = new Map<string, IconManifestEntry[]>();
+    for (const entry of ICON_MANIFEST) {
+      byName.set(entry.name, [...(byName.get(entry.name) ?? []), entry]);
+    }
+    for (const [name, entries] of byName) {
+      const components = new Set(
+        entries.map(entry =>
+          new Map<string, unknown>(
+            Object.entries(CATEGORY_MODULES[entry.category]),
+          ).get(name),
+        ),
+      );
+      expect(components.size, name).toBe(1);
+      expect(
+        entries.filter(entry => entry.variants).length,
+        `${name} artwork entries`,
+      ).toBeLessThanOrEqual(1);
+    }
+  });
 });

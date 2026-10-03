@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Paths sourced from @web3icons/react (MIT) and coin/Pyth.tsx
+// Source: https://legacy.pyth.network/brand (official brand assets: Pyth Logomark_Dark.svg is #110F23, Dark Purple)
+// Paths sourced from @web3icons/react (MIT); colour matches the official dark logomark. The coin subpath re-exports this artwork.
 /** Pyth oracle icon (colored). */
 export const Pyth = /* @__PURE__ */ createIcon(
   'Pyth',
@@ -11,7 +12,7 @@ export const Pyth = /* @__PURE__ */ createIcon(
       <path d="M12 3a7.16 7.16 0 0 0-5.4 2.438A7.17 7.17 0 0 0 4.8 10.2v5.4l2.057 1.98V10.2c0-2.685 2.16-5.143 5.143-5.143s5.143 2.484 5.143 5.143c0 2.983-2.458 5.143-5.143 5.143V17.4A7.2 7.2 0 1 0 12 3" />
     </>
   ),
-  '#9945FF',
+  '#110F23',
 );
 
 /** Pyth oracle icon (monochrome). */

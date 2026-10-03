@@ -1,18 +1,21 @@
 {
   "name": "Pyth",
-  "notes": [
-    "Paths sourced from @web3icons/react (MIT)"
+  "source": [
+    "re-export of Pyth — see src/oracle/Pyth.tsx"
   ],
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "pyth.svg",
-      "fill": "#110F24"
-    },
-    "Mono": {
-      "file": "pyth.mono.svg",
-      "fill": "currentColor"
-    }
+  "kind": "reexport",
+  "reexport": {
+    "from": "../oracle/Pyth",
+    "exports": [
+      {
+        "of": "Pyth",
+        "as": "Pyth"
+      },
+      {
+        "of": "PythMono",
+        "as": "PythMono"
+      }
+    ]
   },
   "tickers": [
     "PYTH"

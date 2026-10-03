@@ -1,13 +1,16 @@
 {
   "name": "Pyth",
+  "source": [
+    "https://legacy.pyth.network/brand (official brand assets: Pyth Logomark_Dark.svg is #110F23, Dark Purple)"
+  ],
   "notes": [
-    "Paths sourced from @web3icons/react (MIT) and coin/Pyth.tsx"
+    "Paths sourced from @web3icons/react (MIT); colour matches the official dark logomark. The coin subpath re-exports this artwork."
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "pyth.svg",
-      "fill": "#9945FF"
+      "fill": "#110F23"
     },
     "Mono": {
       "file": "pyth.mono.svg",

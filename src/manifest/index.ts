@@ -893,13 +893,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'PolCircle', category: 'coin' },
   { name: 'PolCircleMono', category: 'coin' },
   { name: 'PolMono', category: 'coin' },
-  {
-    name: 'Pyth',
-    category: 'coin',
-    ticker: 'PYTH',
-    variants: ['', 'Mono'],
-    brandColor: '#110f24',
-  },
+  { name: 'Pyth', category: 'coin', ticker: 'PYTH' },
   { name: 'PythMono', category: 'coin' },
   { name: 'Ronin', category: 'coin', ticker: 'RON' },
   { name: 'RoninMono', category: 'coin' },
@@ -1847,7 +1841,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'oracle',
     slug: 'pyth',
     variants: ['', 'Mono'],
-    brandColor: '#9945ff',
+    brandColor: '#110f23',
   },
   { name: 'PythMono', category: 'oracle' },
   {
