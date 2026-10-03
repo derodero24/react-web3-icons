@@ -1209,7 +1209,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'CollabLand',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#1f0061',
+    brandColor: '#1a1a40',
   },
   { name: 'CollabLandMono', category: 'devtool' },
   {
