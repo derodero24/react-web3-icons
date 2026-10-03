@@ -110,6 +110,8 @@ export const chainImports: Record<
   Mode: () => import('../../chain/Mode'),
   ModeMono: () => import('../../chain/Mode'),
   Monad: () => import('../../chain/Monad'),
+  MonadCircle: () => import('../../chain/Monad'),
+  MonadCircleMono: () => import('../../chain/Monad'),
   MonadMono: () => import('../../chain/Monad'),
   Near: () => import('../../chain/Near'),
   NearMono: () => import('../../chain/Near'),
