@@ -166,11 +166,6 @@ export type MonoAllowance =
  * margin.
  */
 export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
-  'bridge/Stargate': {
-    kind: 'false-positive',
-    reason:
-      'Open petal ring: the flood fill enters the gaps (refMiss is 0.07%).',
-  },
   'chain/Astar': {
     kind: 'false-positive',
     reason:
