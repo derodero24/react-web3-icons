@@ -375,20 +375,33 @@ function segmentPoints(
   }
 }
 
-/** End and control points of path data, a superset of its extent. */
-function pathPoints(d: string): Point[] {
-  const points: Point[] = [];
+/**
+ * End and control points of path data, one list per subpath (a superset of
+ * each subpath's extent). A subpath starts at every moveto, and after a
+ * closepath at the point it closed to.
+ */
+function pathSubpaths(d: string): Point[][] {
+  const subpaths: Point[][] = [];
+  let points: Point[] = [];
   let current: Point = [0, 0];
   let start: Point = [0, 0];
   for (const [command, args] of pathCommands(d)) {
     const visited = segmentPoints(command, args, current, start);
+    const moveto = command === 'M' || command === 'm';
+    if (moveto || points.length === 0) {
+      points = moveto ? [] : [current];
+      subpaths.push(points);
+    }
     points.push(...visited);
     current = visited.at(-1) ?? current;
-    if (command === 'M' || command === 'm') {
+    if (moveto) {
       start = current;
+    } else if (command === 'Z' || command === 'z') {
+      // The next drawing command starts a new subpath at `start`.
+      points = [];
     }
   }
-  return points;
+  return subpaths;
 }
 
 /** The four corners of a box, which stay its hull under any transform. */
@@ -416,7 +429,17 @@ function enclosesArea(points: readonly Point[]): boolean {
   );
 }
 
-/** Untransformed outline points of a shape element. */
+/**
+ * Untransformed outline points of a shape element, one list per subpath
+ * (only paths have more than one).
+ */
+function shapeOutlines(node: XmlNode): Point[][] {
+  return node.tag === 'path'
+    ? pathSubpaths(getAttr(node, 'd') ?? '')
+    : [shapePoints(node)];
+}
+
+/** Untransformed outline points of a basic (non-path) shape element. */
 function shapePoints(node: XmlNode): Point[] {
   const n = (name: string): number => Number(getAttr(node, name) ?? 0);
   switch (node.tag) {
@@ -442,8 +465,6 @@ function shapePoints(node: XmlNode): Point[] {
       }
       return points;
     }
-    case 'path':
-      return pathPoints(getAttr(node, 'd') ?? '');
     default:
       throw new Error(`unsupported element <${node.tag}>`);
   }
@@ -549,6 +570,15 @@ class Painter {
     return this.weighted(paint, weight).filter(color => color.weight > 0);
   }
 
+  /**
+   * Whether a fill or stroke value shows anything at full opacity: not
+   * `none`, `transparent`, a zero-alpha colour or a gradient whose stops are
+   * all invisible. Shared by the tone and geometry measures.
+   */
+  paints(paint: string): boolean {
+    return this.colors(paint, 1).length > 0;
+  }
+
   /** `colors` before zero-weight colours are dropped. */
   weighted(paint: string, weight: number): WeightedColor[] {
     if (paint === 'none') {
@@ -630,17 +660,20 @@ class Painter {
   /**
    * Records the fill and stroke layers of a shape element. `<line>` is never
    * filled, and an outline without area (a two-point polyline, a straight
-   * path) fills nothing either; their strokes still count.
+   * path, a path made only of such subpaths) fills nothing either; their
+   * strokes still count.
    */
   paint(node: XmlNode, context: Context): void {
-    const points = shapePoints(node);
+    // Only subpaths that bound an area are filled, so only they size it.
+    const filled =
+      node.tag === 'line' ? [] : shapeOutlines(node).filter(enclosesArea);
     const { opacity } = context;
     const fill =
-      node.tag === 'line' || !enclosesArea(points)
+      filled.length === 0
         ? []
         : this.colors(context.fill, opacity * context.fillOpacity);
     if (fill.length > 0) {
-      const span = this.span(points, context.matrix);
+      const span = this.span(filled.flat(), context.matrix);
       this.layers.push({ colors: fill, span });
     }
     const stroke = this.colors(context.stroke, opacity * context.strokeOpacity);
@@ -745,10 +778,6 @@ const PAINTED = new Set([
   'use',
 ]);
 
-/** `'none'` when a paint value paints nothing, else `'paint'`. */
-const enablement = (paint: string): string =>
-  paint === 'none' || paint === 'transparent' ? 'none' : 'paint';
-
 interface Inherited {
   readonly fill: string;
   readonly stroke: string;
@@ -760,6 +789,7 @@ interface Inherited {
  * `<mask>` colours are coverage, so they are kept verbatim.
  */
 function stripPaint(
+  painter: Painter,
   node: XmlNode,
   parent: Inherited,
   inMask: boolean,
@@ -772,6 +802,8 @@ function stripPaint(
   const attrs = masked
     ? node.attrs
     : node.attrs.filter(([name]) => !PAINT_ATTRS.has(name));
+  const enablement = (paint: string): string =>
+    painter.paints(paint) ? 'paint' : 'none';
   const effective: XmlNode['attrs'] =
     !masked && PAINTED.has(node.tag)
       ? [
@@ -782,17 +814,21 @@ function stripPaint(
   return {
     tag: node.tag,
     attrs: [...attrs, ...effective],
-    children: node.children.map(child => stripPaint(child, inherited, masked)),
+    children: node.children.map(child =>
+      stripPaint(painter, child, inherited, masked),
+    ),
   };
 }
 
 /**
  * The SVG's shapes without their paint colours, to compare geometry across
  * variants: whether each shape fills and/or strokes is kept (resolved
- * through inheritance), the colours themselves are not.
+ * through inheritance, and off for paints that show nothing, exactly as
+ * {@link analyzeTone} drops them), the colours themselves are not.
  */
 export function geometryOf(root: XmlNode): string {
+  const painter = new Painter(root);
   return serializeSvg(
-    stripPaint(root, { fill: 'black', stroke: 'none' }, false),
+    stripPaint(painter, root, { fill: 'black', stroke: 'none' }, false),
   );
 }
