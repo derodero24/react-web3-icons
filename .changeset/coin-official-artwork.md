@@ -14,6 +14,7 @@ Replace outdated or off-brand coin artwork with the brands' current official fil
 - `Hbar`: the Hedera logomark (an H in a black disc), which Hedera uses for HBAR.
 - `Bch`: the official `#0AC18E` Bitcoin Cash circle.
 - `Fil`: the white ƒ on a `#0090FF` disc.
+- `Shib`: the current SHIB token from shibatoken.com.
 - `Xmr`: the Monero symbol from the press kit, now with its grey band.
 - `Flare` / `Flr`: the paths of the official Flare.svg.
 - Official colours for `Icp` (infinity mark from internetcomputer.org), `Ena` (gradient disc with a rim), `Kas` (`#6FC7BA`, white K) and `Xrp` (`#141414`).
