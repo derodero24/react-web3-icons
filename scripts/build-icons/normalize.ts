@@ -98,3 +98,23 @@ export function isSvgoNormalized(
     canonical(parseSvg(text, path))
   );
 }
+
+/**
+ * Runs SVGO until its output is normalized (see isSvgoNormalized); SVGO's
+ * own multipass stops at the first pass that saves no bytes, which is not
+ * always a fixed point.
+ */
+export function optimizeToFixedPoint(
+  optimize: Optimizer,
+  text: string,
+  path: string,
+): string {
+  let current = optimize(text, path);
+  for (let pass = 0; pass < 8; pass++) {
+    if (isSvgoNormalized(optimize, current, path)) {
+      return current;
+    }
+    current = optimize(current, path);
+  }
+  throw new Error(`${path}: SVGO does not reach a fixed point`);
+}
