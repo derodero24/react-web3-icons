@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import { useCopyAction } from '../../hooks/useCopyAction';
-import { groupIcons } from '../../utils/groupIcons';
-import { REACT_WEB3_ICONS } from '../../utils/icons';
 import CopyToggleIcon from '../elements/CopyToggleIcon';
 
 type PkgManager = 'npm' | 'yarn' | 'pnpm' | 'bun';
@@ -17,10 +15,12 @@ const INSTALL_CMDS: Record<PkgManager, string> = {
 
 const PKG_MANAGERS: PkgManager[] = ['npm', 'yarn', 'pnpm', 'bun'];
 
-// Unique base icon count (not variant count)
-const ICON_COUNT = groupIcons(REACT_WEB3_ICONS.all).length;
-
-export default function Hero() {
+export default function Hero({
+  iconCount,
+}: {
+  /** Number of icon groups (base icons, not variants) */
+  iconCount: number;
+}) {
   const [pkg, setPkg] = useState<PkgManager>('npm');
   const { copied, copy, reset } = useCopyAction();
 
@@ -33,7 +33,7 @@ export default function Hero() {
     <section className="border-b border-border px-4 py-10 sm:px-6 sm:py-14">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-2xl font-bold tracking-tight text-fg sm:text-3xl">
-          {ICON_COUNT}+ Web3 icons for React
+          {iconCount}+ Web3 icons for React
         </h2>
         <p className="mt-3 text-sm text-fg-muted sm:text-base">
           Open-source SVG icons for chains, coins, wallets, DEXs, and more.

@@ -1,91 +1,255 @@
-import * as bridge from '../../../src/bridge';
-import * as chain from '../../../src/chain';
-import * as coin from '../../../src/coin';
-import * as defi from '../../../src/defi';
-import { DEPRECATED_ICON_NAMES } from '../../../src/deprecated';
-import * as devtool from '../../../src/devtool';
-import * as dex from '../../../src/dex';
-import * as domain from '../../../src/domain';
-import * as exchange from '../../../src/exchange';
-import * as explorer from '../../../src/explorer';
-import * as marketplace from '../../../src/marketplace';
-import * as node from '../../../src/node';
-import * as portfolio from '../../../src/portfolio';
-import * as storage from '../../../src/storage';
-import * as tracker from '../../../src/tracker';
-import * as wallet from '../../../src/wallet';
+import * as rootExports from 'react-web3-icons';
+import * as bridge from 'react-web3-icons/bridge';
+import * as chain from 'react-web3-icons/chain';
+import * as coin from 'react-web3-icons/coin';
+import * as defi from 'react-web3-icons/defi';
+import * as devtool from 'react-web3-icons/devtool';
+import * as dex from 'react-web3-icons/dex';
+import * as domain from 'react-web3-icons/domain';
+import * as exchange from 'react-web3-icons/exchange';
+import * as explorer from 'react-web3-icons/explorer';
+import {
+  ICON_MANIFEST,
+  type IconCategory,
+  type IconManifestEntry,
+} from 'react-web3-icons/manifest';
+import * as marketplace from 'react-web3-icons/marketplace';
+import * as node from 'react-web3-icons/node';
+import * as oracle from 'react-web3-icons/oracle';
+import * as portfolio from 'react-web3-icons/portfolio';
+import * as storage from 'react-web3-icons/storage';
+import * as tracker from 'react-web3-icons/tracker';
+import * as wallet from 'react-web3-icons/wallet';
+import type { IconComponent } from '../types/icons';
 
-export const ICON_CATEGORIES = [
+export type { IconCategory };
+
+/** Category filter shown in the UI: every manifest category plus "all". */
+export type CategoryFilter = 'all' | IconCategory;
+
+/**
+ * Category subpath modules, keyed by manifest category. `satisfies` makes a
+ * category added to the manifest a type error here until it is wired up.
+ * Components are looked up per category (not from the root entry) because
+ * the same export name can be different artwork in different categories
+ * (e.g. `Pyth` in `coin` and `oracle`).
+ */
+const CATEGORY_MODULES = {
+  bridge,
+  chain,
+  coin,
+  defi,
+  devtool,
+  dex,
+  domain,
+  exchange,
+  explorer,
+  marketplace,
+  node,
+  oracle,
+  portfolio,
+  storage,
+  tracker,
+  wallet,
+} satisfies Record<IconCategory, object>;
+
+function isIconComponent(value: unknown): value is IconComponent {
+  return (
+    typeof value === 'function' ||
+    (typeof value === 'object' && value !== null && '$$typeof' in value)
+  );
+}
+
+function getComponent(source: object, name: string): IconComponent | undefined {
+  const value: unknown = Object.hasOwn(source, name)
+    ? Reflect.get(source, name)
+    : undefined;
+  return isIconComponent(value) ? value : undefined;
+}
+
+export interface IconVariant {
+  /** Export name (e.g. `EthereumCircleMono`). */
+  readonly name: string;
+  /** Variant suffix relative to the group base (`''` for the primary). */
+  readonly suffix: string;
+  /** Whether this is a monochrome (`currentColor`) variant. */
+  readonly mono: boolean;
+  readonly Component: IconComponent;
+}
+
+export interface IconGroup {
+  /** Base export name (e.g. `Ethereum`); unique within a category. */
+  readonly base: string;
+  /** Category subpath this group is exported from. */
+  readonly category: IconCategory;
+  /** Variants in manifest order, primary (`''` suffix) first. */
+  readonly variants: readonly IconVariant[];
+  /**
+   * Whether `import { <base> } from 'react-web3-icons'` resolves to this
+   * artwork. False when the root entry exports a different component under
+   * the same name (e.g. oracle `Pyth`; the root re-exports coin `Pyth`).
+   */
+  readonly inRootEntry: boolean;
+  /** True when the manifest declares this group's artwork (not a re-export). */
+  readonly isArtworkUnit: boolean;
+}
+
+/** Categories in manifest order (alphabetical). */
+export const ICON_CATEGORIES: readonly IconCategory[] = [
+  ...new Set(ICON_MANIFEST.map(entry => entry.category)),
+];
+
+export const CATEGORY_FILTERS: readonly CategoryFilter[] = [
   'all',
-  'bridge',
-  'chain',
-  'coin',
-  'defi',
-  'devtool',
-  'dex',
-  'domain',
-  'exchange',
-  'explorer',
-  'marketplace',
-  'node',
-  'portfolio',
-  'storage',
-  'tracker',
-  'wallet',
-] as const;
+  ...ICON_CATEGORIES,
+];
 
-export type IconCategory = (typeof ICON_CATEGORIES)[number];
+/**
+ * Every variant suffix the manifest declares (`Mono`, `CircleMono`, …),
+ * longest first. Used only to attach re-exported variants (e.g. `BtcMono`,
+ * which has no manifest `variants` of its own) to a sibling export that
+ * exists in the same category.
+ */
+const KNOWN_SUFFIXES: readonly string[] = [
+  ...new Set(
+    ICON_MANIFEST.flatMap(entry => entry.variants ?? []).filter(Boolean),
+  ),
+].sort((a, b) => b.length - a.length);
 
-const filter = (keys: string[]) =>
-  keys.filter(k => !DEPRECATED_ICON_NAMES.has(k));
+/**
+ * Code-unit order: deterministic across runtimes and locales, so the
+ * prerendered grid and the client render always agree.
+ */
+function byBase(a: IconGroup, b: IconGroup): number {
+  return a.base < b.base ? -1 : a.base > b.base ? 1 : 0;
+}
 
-const bridgeIcons = filter(Object.keys(bridge)).sort();
-const chainIcons = filter(Object.keys(chain)).sort();
-const coinIcons = filter(Object.keys(coin)).sort();
-const defiIcons = filter(Object.keys(defi)).sort();
-const devtoolIcons = filter(Object.keys(devtool)).sort();
-const dexIcons = filter(Object.keys(dex)).sort();
-const domainIcons = filter(Object.keys(domain)).sort();
-const exchangeIcons = filter(Object.keys(exchange)).sort();
-const explorerIcons = filter(Object.keys(explorer)).sort();
-const marketplaceIcons = filter(Object.keys(marketplace)).sort();
-const nodeIcons = filter(Object.keys(node)).sort();
-const portfolioIcons = filter(Object.keys(portfolio)).sort();
-const storageIcons = filter(Object.keys(storage)).sort();
-const trackerIcons = filter(Object.keys(tracker)).sort();
-const walletIcons = filter(Object.keys(wallet)).sort();
+function buildCategoryGroups(
+  category: IconCategory,
+  entries: readonly IconManifestEntry[],
+): IconGroup[] {
+  const categoryModule = CATEGORY_MODULES[category];
+  // Deprecated exports are hidden from the demo (same set as DEPRECATED_ICON_NAMES).
+  const names = new Set(
+    entries.filter(entry => !entry.deprecated).map(entry => entry.name),
+  );
+  const suffixesByBase = new Map<string, string[]>();
+  const artworkBases = new Set<string>();
+  const claimed = new Set<string>();
 
-export const REACT_WEB3_ICONS: Record<IconCategory, string[]> = {
-  all: [
-    ...bridgeIcons,
-    ...chainIcons,
-    ...coinIcons,
-    ...defiIcons,
-    ...devtoolIcons,
-    ...dexIcons,
-    ...domainIcons,
-    ...exchangeIcons,
-    ...explorerIcons,
-    ...marketplaceIcons,
-    ...nodeIcons,
-    ...portfolioIcons,
-    ...storageIcons,
-    ...trackerIcons,
-    ...walletIcons,
-  ].sort(),
-  bridge: bridgeIcons,
-  chain: chainIcons,
-  coin: coinIcons,
-  defi: defiIcons,
-  devtool: devtoolIcons,
-  dex: dexIcons,
-  domain: domainIcons,
-  exchange: exchangeIcons,
-  explorer: explorerIcons,
-  marketplace: marketplaceIcons,
-  node: nodeIcons,
-  portfolio: portfolioIcons,
-  storage: storageIcons,
-  tracker: trackerIcons,
-  wallet: walletIcons,
-};
+  // 1. Artwork units: base entries list their variants explicitly.
+  for (const entry of entries) {
+    if (!entry.variants || !names.has(entry.name)) continue;
+    const suffixes = entry.variants.filter(suffix =>
+      names.has(`${entry.name}${suffix}`),
+    );
+    for (const suffix of suffixes) claimed.add(`${entry.name}${suffix}`);
+    suffixesByBase.set(entry.name, suffixes);
+    artworkBases.add(entry.name);
+  }
+
+  // 2. Re-exports (ticker aliases, cross-category re-exports, extra variants
+  //    such as `BnbCircle`): attach to an existing sibling base when one of
+  //    the manifest's suffixes leads to it, otherwise start a new group.
+  for (const name of names) {
+    if (claimed.has(name)) continue;
+    const suffix =
+      KNOWN_SUFFIXES.find(
+        s =>
+          name.length > s.length &&
+          name.endsWith(s) &&
+          names.has(name.slice(0, -s.length)),
+      ) ?? '';
+    const base = name.slice(0, name.length - suffix.length);
+    const suffixes = suffixesByBase.get(base);
+    if (suffixes) {
+      suffixes.push(suffix);
+    } else {
+      suffixesByBase.set(base, [suffix]);
+    }
+  }
+
+  const groups: IconGroup[] = [];
+  for (const [base, suffixes] of suffixesByBase) {
+    // Primary first, then manifest order (artwork) / alphabetical (re-exports).
+    const ordered = suffixes.includes('')
+      ? ['', ...suffixes.filter(suffix => suffix !== '')]
+      : suffixes;
+    const variants: IconVariant[] = [];
+    for (const suffix of ordered) {
+      const name = `${base}${suffix}`;
+      const Component = getComponent(categoryModule, name);
+      if (Component) {
+        variants.push({
+          name,
+          suffix,
+          mono: suffix.endsWith('Mono'),
+          Component,
+        });
+      }
+    }
+    const primary = variants[0];
+    if (!primary) continue;
+    groups.push({
+      base,
+      category,
+      variants,
+      inRootEntry:
+        getComponent(rootExports, primary.name) === primary.Component,
+      isArtworkUnit: artworkBases.has(base),
+    });
+  }
+  return groups.sort(byBase);
+}
+
+/**
+ * Pick the group shown in the "all" view when several categories export the
+ * same base name: the one the root entry resolves to, then the artwork unit
+ * (the category that owns the SVG rather than re-exporting it).
+ */
+function preferForAll(current: IconGroup, candidate: IconGroup): IconGroup {
+  if (current.inRootEntry !== candidate.inRootEntry) {
+    return current.inRootEntry ? current : candidate;
+  }
+  if (current.isArtworkUnit !== candidate.isArtworkUnit) {
+    return current.isArtworkUnit ? current : candidate;
+  }
+  return current;
+}
+
+function buildIconGroups(): ReadonlyMap<CategoryFilter, readonly IconGroup[]> {
+  const entriesByCategory = new Map<IconCategory, IconManifestEntry[]>();
+  for (const entry of ICON_MANIFEST) {
+    const list = entriesByCategory.get(entry.category);
+    if (list) {
+      list.push(entry);
+    } else {
+      entriesByCategory.set(entry.category, [entry]);
+    }
+  }
+
+  const groups = new Map<CategoryFilter, readonly IconGroup[]>();
+  // Cross-category icons (e.g. `Celo` in chain + coin) appear in every
+  // category that exports them, but only once in "all".
+  const all = new Map<string, IconGroup>();
+  for (const category of ICON_CATEGORIES) {
+    const categoryGroups = buildCategoryGroups(
+      category,
+      entriesByCategory.get(category) ?? [],
+    );
+    groups.set(category, categoryGroups);
+    for (const group of categoryGroups) {
+      const existing = all.get(group.base);
+      all.set(group.base, existing ? preferForAll(existing, group) : group);
+    }
+  }
+  groups.set('all', [...all.values()].sort(byBase));
+  return groups;
+}
+
+const ICON_GROUPS = buildIconGroups();
+
+/** Icon groups for a category filter, sorted by base name. */
+export function getIconGroups(filter: CategoryFilter): readonly IconGroup[] {
+  return ICON_GROUPS.get(filter) ?? [];
+}

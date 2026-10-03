@@ -1,35 +1,22 @@
 'use client';
 
 import Link from 'next/link';
-import { parseAsString, useQueryState } from 'nuqs';
 import { useLayoutEffect, useRef, useState } from 'react';
 
-import { groupIcons } from '../../utils/groupIcons';
+import { useCategoryParam } from '../../hooks/useIconParams';
 import {
-  ICON_CATEGORIES,
-  type IconCategory,
-  REACT_WEB3_ICONS,
+  CATEGORY_FILTERS,
+  type CategoryFilter,
+  getIconGroups,
 } from '../../utils/icons';
 
-type Category = IconCategory;
-
-const CATEGORY_SET: ReadonlySet<string> = new Set<string>(ICON_CATEGORIES);
-
-/** Pre-computed base icon counts per category (static data, computed once) */
-const CATEGORY_COUNTS: Record<string, number> = Object.fromEntries(
-  ICON_CATEGORIES.map(cat => [cat, groupIcons(REACT_WEB3_ICONS[cat]).length]),
+/** Icon group counts per category (static data, computed once) */
+const CATEGORY_COUNTS = new Map(
+  CATEGORY_FILTERS.map(category => [category, getIconGroups(category).length]),
 );
 
-export default function CategoryBar() {
-  const [rawCategory] = useQueryState(
-    'category',
-    parseAsString.withDefault('all'),
-  );
-  const current: Category =
-    typeof rawCategory === 'string' && CATEGORY_SET.has(rawCategory)
-      ? (rawCategory as Category)
-      : 'all';
-
+/** Category tabs for an explicit selection (used as the prerendered fallback). */
+export function CategoryBarView({ current }: { current: CategoryFilter }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
 
@@ -74,9 +61,8 @@ export default function CategoryBar() {
           className="pointer-events-none absolute bottom-0 h-0.5 rounded-full bg-accent transition-all duration-200 ease-out"
           style={{ left: indicator.left, width: indicator.width }}
         />
-        {ICON_CATEGORIES.map(item => {
+        {CATEGORY_FILTERS.map(item => {
           const isActive = item === current;
-          const count = CATEGORY_COUNTS[item];
           return (
             <Link
               key={item}
@@ -90,7 +76,7 @@ export default function CategoryBar() {
             >
               {item}
               <span className="ml-1 font-mono text-xs text-fg-muted">
-                {count}
+                {CATEGORY_COUNTS.get(item)}
               </span>
             </Link>
           );
@@ -98,4 +84,10 @@ export default function CategoryBar() {
       </div>
     </nav>
   );
+}
+
+/** Category tabs bound to the `?category=` query parameter. */
+export default function CategoryBar() {
+  const [category] = useCategoryParam();
+  return <CategoryBarView current={category} />;
 }

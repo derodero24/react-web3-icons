@@ -3,20 +3,22 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useCopyAction } from '../../hooks/useCopyAction';
-import type { IconComponent } from '../../types/icons';
 import { bgStyle, type PreviewBg } from '../../utils/bgStyle';
+import type { IconGroup } from '../../utils/icons';
 import CopyToggleIcon from './CopyToggleIcon';
 
 interface Props {
-  base: string;
-  variants: string[];
-  components: Record<string, IconComponent>;
-  /** Current category key, or 'all' when browsing all categories */
-  category: string;
+  group: IconGroup;
   onClose: () => void;
 }
 
 type CodeTab = 'import' | 'subpath' | 'svg';
+
+const CODE_TABS: readonly { key: CodeTab; label: string }[] = [
+  { key: 'import', label: 'Import' },
+  { key: 'subpath', label: 'Subpath' },
+  { key: 'svg', label: 'SVG' },
+];
 
 const SIZES = [16, 24, 32, 48, 64] as const;
 const PRESET_COLORS = [
@@ -102,17 +104,16 @@ function downloadSvg(name: string, container: HTMLElement | null) {
   URL.revokeObjectURL(url);
 }
 
-export default function IconDrawer({
-  base,
-  variants,
-  components,
-  category,
-  onClose,
-}: Props) {
-  const [selected, setSelected] = useState(
-    variants.find(v => v === base) ?? variants[0] ?? '',
+export default function IconDrawer({ group, onClose }: Props) {
+  const { base, variants, category, inRootEntry } = group;
+  // variants[0] is the primary variant; groups always have at least one.
+  const [selectedName, setSelectedName] = useState(variants[0]?.name ?? '');
+  const selectedVariant =
+    variants.find(v => v.name === selectedName) ?? variants[0];
+  const selected = selectedVariant?.name ?? '';
+  const [codeTab, setCodeTab] = useState<CodeTab>(
+    inRootEntry ? 'import' : 'subpath',
   );
-  const [codeTab, setCodeTab] = useState<CodeTab>('import');
   const [previewSize, setPreviewSize] = useState(64);
   const [previewColor, setPreviewColor] = useState('');
   const [compareMode, setCompareMode] = useState(false);
@@ -127,7 +128,7 @@ export default function IconDrawer({
     requestAnimationFrame(() => setOpen(true));
   }, []);
 
-  const Icon = components[selected] as IconComponent | undefined;
+  const Icon = selectedVariant?.Component;
 
   // Serialize SVG after render so the code tab shows the current DOM.
   // Deps trigger re-serialization when the icon or its styling changes.
@@ -195,22 +196,15 @@ export default function IconDrawer({
     [onClose],
   );
 
-  // Code content
+  // Code content. The root entry is offered only when it resolves to this
+  // artwork (e.g. oracle `Pyth` is importable from its subpath only).
   const importCode = `import { ${selected} } from 'react-web3-icons';`;
-  const hasSubpath = category !== 'all';
-  const subpathCode = hasSubpath
-    ? `import { ${selected} } from 'react-web3-icons/${category}';`
-    : '';
+  const subpathCode = `import { ${selected} } from 'react-web3-icons/${category}';`;
 
-  const codeTabs: { key: CodeTab; label: string }[] = [
-    { key: 'import', label: 'Import' },
-    ...(hasSubpath ? [{ key: 'subpath' as CodeTab, label: 'Subpath' }] : []),
-    { key: 'svg', label: 'SVG' },
-  ];
+  const codeTabs = CODE_TABS.filter(tab => tab.key !== 'import' || inRootEntry);
 
-  // Reset to 'import' if subpath tab disappears
   const effectiveTab =
-    codeTab === 'subpath' && !hasSubpath ? 'import' : codeTab;
+    codeTab === 'import' && !inRootEntry ? 'subpath' : codeTab;
 
   const codeContent =
     effectiveTab === 'import'
@@ -309,14 +303,13 @@ export default function IconDrawer({
                 gridTemplateColumns: `repeat(${Math.min(variants.length, 3)}, 1fr)`,
               }}
             >
-              {variants.map(v => {
-                const VIcon = components[v] as IconComponent | undefined;
+              {variants.map(({ name, Component: VIcon }) => {
                 return (
                   <button
-                    key={v}
+                    key={name}
                     type="button"
                     onClick={() => {
-                      setSelected(v);
+                      setSelectedName(name);
                       setCompareMode(false);
                     }}
                     className="flex flex-col items-center gap-2 rounded-lg p-3 transition-colors hover:bg-fg/5"
@@ -325,21 +318,19 @@ export default function IconDrawer({
                       className="flex items-center justify-center rounded-lg p-3"
                       style={bgStyle(previewBg)}
                     >
-                      {VIcon && (
-                        <span style={{ fontSize: previewSize }}>
-                          <VIcon
-                            {...(effectiveColor
-                              ? { style: { color: effectiveColor } }
-                              : {})}
-                          />
-                        </span>
-                      )}
+                      <span style={{ fontSize: previewSize }}>
+                        <VIcon
+                          {...(effectiveColor
+                            ? { style: { color: effectiveColor } }
+                            : {})}
+                        />
+                      </span>
                     </div>
                     <span
                       className="max-w-full truncate font-mono text-[10px]"
                       style={{ color: textColor }}
                     >
-                      {v}
+                      {name}
                     </span>
                   </button>
                 );
@@ -383,27 +374,24 @@ export default function IconDrawer({
                 role="radiogroup"
                 aria-label="Icon variant"
               >
-                {variants.map(v => {
-                  const VariantIcon = components[v] as
-                    | IconComponent
-                    | undefined;
-                  const isSelected = selected === v;
+                {variants.map(({ name, Component: VariantIcon }) => {
+                  const isSelected = selected === name;
                   return (
                     // biome-ignore lint/a11y/useSemanticElements: button with role="radio" is intentional for custom radio group styling
                     <button
-                      key={v}
+                      key={name}
                       type="button"
                       role="radio"
                       aria-checked={isSelected}
-                      aria-label={v}
-                      onClick={() => setSelected(v)}
+                      aria-label={name}
+                      onClick={() => setSelectedName(name)}
                       className={`flex h-12 w-12 items-center justify-center rounded-lg border transition-colors ${
                         isSelected
                           ? 'border-accent bg-accent/10'
                           : 'border-border bg-surface hover:border-fg/20'
                       }`}
                     >
-                      {VariantIcon && <VariantIcon className="text-2xl" />}
+                      <VariantIcon className="text-2xl" />
                     </button>
                   );
                 })}
