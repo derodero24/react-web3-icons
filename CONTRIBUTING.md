@@ -498,6 +498,25 @@ Key points:
 - Short static IDs (`mtc-a`) are fine; the generator namespaces them per icon
 - Record the scale/translate math in the unit's `notes` array (see `icons/chain/ethereum.json`) so the next person can reproduce it
 
+#### Dark / light background legibility
+
+`test/legibility.test.ts` flags colored default artwork that mostly vanishes
+on a dark background (near-black paint, every channel below 60) or a light
+one (near-white, every channel above 195). A flagged icon needs one of:
+
+- an official colored `Circle*` / `Square*` / `Inverted*` variant that is
+  not itself flagged;
+- nothing more when the mark has no colour besides black (or white) and its
+  `Mono` variant has the same geometry, since `Mono` in a contrasting `color`
+  is then the brand's reversed mark;
+- otherwise an entry in that test's `EXEMPTIONS`, with the reason checked by
+  the test (another legible colored variant, or the official sources that
+  were searched without finding an alternative).
+
+Never recolour a brand mark to pass the audit unless the brand's guidelines
+show that version; cite them in `source`. The audit's measure (per-paint
+counts, container detection) is documented in `test/helpers/legibility.ts`.
+
 ### 4. Review the generated output
 
 After `pnpm run generate-icons`, open `src/<category>/<Name>.tsx` and check:
