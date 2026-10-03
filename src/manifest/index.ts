@@ -1824,7 +1824,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'oracle',
     slug: 'band',
     variants: ['', 'Mono'],
-    brandColor: '#516bf0',
+    brandColor: '#8f8fff',
   },
   { name: 'BandMono', category: 'oracle' },
   {

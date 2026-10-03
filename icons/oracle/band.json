@@ -1,13 +1,17 @@
 {
   "name": "Band",
+  "source": [
+    "https://www.bandprotocol.com/static/brand-asset/band-logomark.svg",
+    "https://www.bandprotocol.com/brand-assets (official brand assets)"
+  ],
   "notes": [
-    "Paths sourced from bandprotocol/governance-portal (Apache-2.0)"
+    "Default: the official Band logomark (band-logomark.svg, #8F8FFF loop) from bandprotocol.com/brand-assets, replacing the older hexagonal B in #516BF0",
+    "Mono: the same logomark path in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "band.svg",
-      "fill": "#516BF0"
+      "file": "band.svg"
     },
     "Mono": {
       "file": "band.mono.svg",
