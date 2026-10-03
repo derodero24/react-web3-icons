@@ -1840,7 +1840,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'oracle',
     slug: 'redstone',
     variants: ['', 'Mono'],
-    brandColor: '#ff0000',
+    brandColor: '#ae0822',
   },
   { name: 'RedStoneMono', category: 'oracle' },
   {

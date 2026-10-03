@@ -1,13 +1,17 @@
 {
   "name": "RedStone",
+  "source": [
+    "https://www.redstone.finance/images/RedStoneLogoSymbolRed.svg",
+    "https://www.redstone.finance/brand-kit/ (official brand kit)"
+  ],
   "notes": [
-    "Paths sourced from redstone-finance/redstone-fuel-dex (MIT)"
+    "Default: the official RedStone symbol in red #AE0822 (RedStoneLogoSymbolRed.svg from redstone.finance/brand-kit), path unchanged; it replaces a #FF0000 variant with an extra sparkle taken from a dex repository",
+    "Mono: the same symbol path in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "red-stone.svg",
-      "fill": "#FF0000"
+      "file": "red-stone.svg"
     },
     "Mono": {
       "file": "red-stone.mono.svg",
