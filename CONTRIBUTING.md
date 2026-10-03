@@ -293,9 +293,9 @@ design rules (with the `node scripts/audit-mono.ts` audit) are in
 
 ## Icon Lifecycle Policy
 
-Renamed or retired brands keep their old exports as deprecated aliases for at
-least one minor release and 90 days, and aliases are removed only in a major
-release. How to declare an alias, which release notes and tests a
+Renamed or retired brands keep their old exports, as deprecated aliases or
+deprecated artwork, for at least one minor release and 90 days, and deprecated
+exports are removed only in a major release. How to declare an alias, which release notes and tests a
 rename/deprecation PR needs, and examples from this repository are in
 [docs/icon-lifecycle.md](docs/icon-lifecycle.md).
 

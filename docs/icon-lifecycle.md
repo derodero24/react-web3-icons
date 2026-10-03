@@ -14,9 +14,11 @@ must change. It is part of the [contributing guide](../CONTRIBUTING.md).
 
 ## Deprecation and removal timing
 
-- Keep deprecated aliases for at least one minor release and at least 90 days after deprecation starts.
-- Remove deprecated aliases only in a major release.
-- When removing aliases, include a clear breaking-change entry in the changeset and changelog.
+These rules apply to every deprecated export: aliases of a renamed unit and artwork deprecated through a unit's `deprecated` map (such as `Fantom`) alike.
+
+- Keep a deprecated export for at least one minor release and at least 90 days after deprecation starts.
+- Remove deprecated exports only in a major release.
+- When removing deprecated exports, include a clear breaking-change entry in the changeset and changelog.
 
 ## Release note requirements
 

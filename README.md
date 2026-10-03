@@ -212,13 +212,23 @@ const res = await fetch('https://cdn.jsdelivr.net/npm/react-web3-icons@4.0.0/dis
 The full set also ships as IconifyJSON collections — `react-web3-icons/iconify.json` (colored, prefix `web3`) and `react-web3-icons/iconify-mono.json` (`currentColor`, prefix `web3-mono`) — so the icons work outside React through the Iconify ecosystem. Register the collection from the npm package, then use icons by name; nothing is fetched at runtime:
 
 ```ts
-import { addCollection, Icon } from '@iconify/vue'; // or '@iconify/react', 'iconify-icon', …
+import { addCollection, Icon } from '@iconify/vue'; // or '@iconify/react'
 import web3 from 'react-web3-icons/iconify.json';
 import web3Mono from 'react-web3-icons/iconify-mono.json';
 
 addCollection(web3);
 addCollection(web3Mono);
 // <Icon icon="web3:chain-ethereum" />, <Icon icon="web3-mono:chain-ethereum-mono" />
+```
+
+With the framework-agnostic [`iconify-icon`](https://iconify.design/docs/iconify-icon/) web component, register the collections the same way and render the `<iconify-icon>` custom element (the package exports `addCollection`, not an `Icon` component):
+
+```ts
+import { addCollection } from 'iconify-icon'; // also defines <iconify-icon>
+import web3 from 'react-web3-icons/iconify.json';
+
+addCollection(web3);
+// <iconify-icon icon="web3:chain-ethereum"></iconify-icon>
 ```
 
 Icon names are `<category>-<kebab-name>` (e.g. `chain-ethereum`, `chain-bitcoin`, `wallet-meta-mask`); ticker shorthands are registered as Iconify aliases (e.g. `coin-btc`). For build-time tools such as `unplugin-icons`, load the same JSON as a custom collection ([recipe](docs/iconify.md#unplugin-icons)).
@@ -469,8 +479,8 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 When icon brands are renamed (for example, `GnosisSafe` -> `Safe`, `Matic` -> `Pol`), this project keeps backward compatibility by shipping deprecated aliases.
 
 - Canonical exports follow the current official brand name.
-- Deprecated aliases stay available for at least one minor release and at least 90 days.
-- Alias removals happen only in major releases and are documented in changelog/release notes.
+- Deprecated exports (aliases of renamed icons, and artwork of retired brands) stay available for at least one minor release and at least 90 days.
+- Deprecated exports are removed only in major releases, and removals are documented in changelog/release notes.
 
 ### Filtering Deprecated Icons
 
