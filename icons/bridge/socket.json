@@ -1,18 +1,16 @@
 {
   "name": "Socket",
+  "source": [
+    "https://sockettech.notion.site/SOCKET-Brand-Kit-184818fd285880b3b974e2e957cd70bd (official SOCKET brand kit, \"SOCKET Visual Identity assets hub\": SOCKET_pfSymbol_FC_round.svg)"
+  ],
   "notes": [
-    "Paths sourced from SocketDotTech/socket-landing-page (public/assets/socket-black.svg)",
-    "The \"S\" icon mark is cropped from the full wordmark SVG (viewBox 402 163 755 755).",
-    "Brand color: #7F1FFF (electric violet), sourced from public/assets/socket-electric-violet.svg",
-    "Outer square boundary of the icon mark",
-    "White region forming the S-curve (outer ring of both C-shapes)",
-    "Inner filled region (center of the S-curve) re-fills the hole"
+    "Default: the official SOCKET symbol in full colour (gradient #00FF79 -> #0043FF) from SOCKET_pfSymbol_FC_round.svg in the SOCKET brand kit, without the file's white 1000x1000 background rect; path and gradient unchanged. It replaces an \"OC\" crop of the retired violet wordmark",
+    "Mono: the same symbol path in currentColor (the kit's black and white symbol files use this geometry)"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "socket.svg",
-      "fill": "none"
+      "file": "socket.svg"
     },
     "Mono": {
       "file": "socket.mono.svg",

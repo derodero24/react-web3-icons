@@ -110,7 +110,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'bridge',
     slug: 'socket',
     variants: ['', 'Mono'],
-    brandColor: '#7f1fff',
+    brandColor: '#00ff79',
   },
   { name: 'SocketMono', category: 'bridge' },
   {
