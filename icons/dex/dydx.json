@@ -1,7 +1,14 @@
 {
   "name": "Dydx",
   "source": [
+    "https://dydx.trade/logos/logo-mark-dark.svg",
+    "https://github.com/dydxprotocol/v4-web/blob/main/public/logos/logo-mark-dark.svg",
     "https://dydx.exchange"
+  ],
+  "notes": [
+    "Default: the official light-theme logomark logo-mark-dark.svg (#181818 strokes, #6966FF accent), which dydx.trade shows on light backgrounds",
+    "Square and SquareMono: unchanged dark app-icon tile (https://dydx.exchange)",
+    "Mono: the logomark's three strokes in currentColor"
   ],
   "kind": "icon",
   "variants": {

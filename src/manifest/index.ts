@@ -1135,7 +1135,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'defi',
     slug: 'pendle',
     variants: ['', 'Mono'],
-    brandColor: '#152e51',
+    brandColor: '#1e4480',
   },
   { name: 'PendleMono', category: 'defi' },
   {

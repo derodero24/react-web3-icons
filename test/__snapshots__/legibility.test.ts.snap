@@ -24,7 +24,7 @@ exports[`dark/light background legibility (issue #712) > documents how each affe
   "dark: devtool/Remix → monochrome RemixMono",
   "dark: devtool/Viem → monochrome ViemMono",
   "dark: devtool/Wagmi → monochrome WagmiMono",
-  "light: dex/Dydx → variant DydxSquare",
+  "dark: dex/Dydx → variant DydxSquare",
   "dark: exchange/Bybit → variant BybitInverted",
   "light: exchange/Htx → exempt (no-official-alternative)",
   "dark: exchange/Okx → monochrome OkxMono",

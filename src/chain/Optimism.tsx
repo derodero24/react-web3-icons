@@ -1,7 +1,8 @@
 import { createIcon } from '../utils';
 
 // Source: https://optimism.io
-// Circle variant: 28×28 content scaled to ~46px centered in 64×64
+// Source: https://cdn.sanity.io/images/y6ka751a/production/0619395edc911805bcea3268156418134c1c5b32-2500x1875.svg
+// Circle/Square: the OP Mainnet glyph (same geometry as the official symbol linked from https://optimism.io/brand) at about 63% of the container height, filled with fill-rule="evenodd" so the centre sparkle is cut out, as in the official symbol
 /** Optimism chain icon (colored). */
 export const Optimism = /* @__PURE__ */ createIcon(
   'Optimism',
@@ -42,6 +43,7 @@ export const OptimismCircle = /* @__PURE__ */ createIcon(
       <g>
         <path
           fill="#fff"
+          fillRule="evenodd"
           d="M32 52.13V43.6c8.76 0 15.87-7.1 15.87-15.87S40.77 11.88 32 11.88v8.51c-8.76 0-15.87 7.1-15.87 15.87S23.24 52.13 32 52.13m7.85-20.05v-.15q-5.19-2.6-7.77-7.78h-.15q-2.6 5.19-7.78 7.78v.15q5.19 2.58 7.78 7.77h.15q2.58-5.19 7.77-7.77"
         />
       </g>
@@ -60,6 +62,7 @@ export const OptimismSquare = /* @__PURE__ */ createIcon(
       <g>
         <path
           fill="#fff"
+          fillRule="evenodd"
           d="M32 52.13V43.6c8.76 0 15.87-7.1 15.87-15.87S40.77 11.88 32 11.88v8.51c-8.76 0-15.87 7.1-15.87 15.87S23.24 52.13 32 52.13m7.85-20.05v-.15q-5.19-2.6-7.77-7.78h-.15q-2.6 5.19-7.78 7.78v.15q5.19 2.58 7.78 7.77h.15q2.58-5.19 7.77-7.77"
         />
       </g>
@@ -79,7 +82,10 @@ export const OptimismSquareMono = /* @__PURE__ */ createIcon(
         <mask id={`${_id}-opts-a`}>
           <rect width="100%" height="100%" fill="#fff" />
           <g fill="#000">
-            <path d="M32 52.13V43.6c8.76 0 15.87-7.1 15.87-15.87S40.77 11.88 32 11.88v8.51c-8.76 0-15.87 7.1-15.87 15.87S23.24 52.13 32 52.13m7.85-20.05v-.15q-5.19-2.6-7.77-7.78h-.15q-2.6 5.19-7.78 7.78v.15q5.19 2.58 7.78 7.77h.15q2.58-5.19 7.77-7.77" />
+            <path
+              fillRule="evenodd"
+              d="M32 52.13V43.6c8.76 0 15.87-7.1 15.87-15.87S40.77 11.88 32 11.88v8.51c-8.76 0-15.87 7.1-15.87 15.87S23.24 52.13 32 52.13m7.85-20.05v-.15q-5.19-2.6-7.77-7.78h-.15q-2.6 5.19-7.78 7.78v.15q5.19 2.58 7.78 7.77h.15q2.58-5.19 7.77-7.77"
+            />
           </g>
         </mask>
       </defs>
@@ -99,7 +105,10 @@ export const OptimismCircleMono = /* @__PURE__ */ createIcon(
         <mask id={`${_id}-optc-a`}>
           <rect width="100%" height="100%" fill="#fff" />
           <g fill="#000">
-            <path d="M32 52.13V43.6c8.76 0 15.87-7.1 15.87-15.87S40.77 11.88 32 11.88v8.51c-8.76 0-15.87 7.1-15.87 15.87S23.24 52.13 32 52.13m7.85-20.05v-.15q-5.19-2.6-7.77-7.78h-.15q-2.6 5.19-7.78 7.78v.15q5.19 2.58 7.78 7.77h.15q2.58-5.19 7.77-7.77" />
+            <path
+              fillRule="evenodd"
+              d="M32 52.13V43.6c8.76 0 15.87-7.1 15.87-15.87S40.77 11.88 32 11.88v8.51c-8.76 0-15.87 7.1-15.87 15.87S23.24 52.13 32 52.13m7.85-20.05v-.15q-5.19-2.6-7.77-7.78h-.15q-2.6 5.19-7.78 7.78v.15q5.19 2.58 7.78 7.77h.15q2.58-5.19 7.77-7.77"
+            />
           </g>
         </mask>
       </defs>

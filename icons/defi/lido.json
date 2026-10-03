@@ -1,7 +1,11 @@
 {
   "name": "Lido",
   "source": [
-    "https://lido.fi (official brand)"
+    "https://raw.githubusercontent.com/lidofinance/ethereum-staking-widget/main/public/favicon-1080x1080.svg"
+  ],
+  "notes": [
+    "Drop paths from the official favicon-1080x1080.svg (lidofinance/ethereum-staking-widget), without its white background circle; flat #00A3FF at the official 1 / 0.6 / 0.2 facet opacities, as in the lido.fi header mark",
+    "Mono: the drop's silhouette (kite and bowl) in currentColor, built from the same paths"
   ],
   "kind": "icon",
   "variants": {

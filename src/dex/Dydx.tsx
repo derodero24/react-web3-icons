@@ -1,43 +1,49 @@
 import { createIcon } from '../utils';
 
+// Source: https://dydx.trade/logos/logo-mark-dark.svg
+// Source: https://github.com/dydxprotocol/v4-web/blob/main/public/logos/logo-mark-dark.svg
 // Source: https://dydx.exchange
+// Default: the official light-theme logomark logo-mark-dark.svg (#181818 strokes, #6966FF accent), which dydx.trade shows on light backgrounds
+// Square and SquareMono: unchanged dark app-icon tile (https://dydx.exchange)
+// Mono: the logomark's three strokes in currentColor
 /** Dydx DEX icon (colored). */
 export const Dydx = /* @__PURE__ */ createIcon(
   'Dydx',
   '0 0 64 64',
   (_props, _id) => (
-    <g transform="translate(-15.38 -15.7)scale(.51852)">
-      <path fill="#fff" d="M116.38 38 41 146h23.14l75.77-108z" />
+    <g transform="translate(5.98 4)scale(1.37794)">
+      <path fill="#181818" d="M28.25 0 0 40.63h8.67L37.07 0z" />
       <path
         fill={`url(#${_id}-dydx-a)`}
-        d="m66.55 38 22.18 31.82-11.57 17.36L42.93 38z"
+        d="m9.58 0 8.3 11.97-4.33 6.53L.72 0z"
       />
       <path
         fill={`url(#${_id}-dydx-b)`}
-        d="m118.63 146-24.6-35.2 11.58-16.87L141.77 146z"
+        d="m29.1 40.64-9.22-13.25 4.33-6.35 13.55 19.6z"
       />
       <defs>
         <linearGradient
           id={`${_id}-dydx-a`}
-          x1="61.25"
-          x2="93"
-          y1="44.75"
-          y2="83.08"
+          x1="1"
+          x2="19.73"
+          y1="0"
+          y2="16.22"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#fff" />
-          <stop offset="1" stopColor="#fff" stopOpacity=".55" />
+          <stop offset="0" stopColor="#181818" />
+          <stop offset=".08" />
+          <stop offset="1" stopOpacity=".55" />
         </linearGradient>
         <linearGradient
           id={`${_id}-dydx-b`}
-          x1="123.93"
-          x2="84.92"
-          y1="137.8"
-          y2="85.22"
+          x1="31.08"
+          x2="16.38"
+          y1="37.55"
+          y2="17.82"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#6966ff" />
-          <stop offset="1" stopColor="#6966ff" stopOpacity=".36" />
+          <stop stopColor="#6966FF" />
+          <stop offset="1" stopColor="#6966FF" stopOpacity=".36" />
         </linearGradient>
       </defs>
     </g>
@@ -123,7 +129,11 @@ export const DydxMono = /* @__PURE__ */ createIcon(
   'DydxMono',
   '0 0 64 64',
   () => (
-    <path d="M44.96 4 5.87 60h12l39.3-56zM19.12 4l11.5 16.5-6 9L6.87 4zm27 56L33.37 41.75l6-8.75 18.75 27z" />
+    <>
+      <path d="M44.91 4 5.98 60h11.96L57.06 4z" />
+      <path d="m19.18 4 11.45 16.5-5.97 9L6.98 4z" />
+      <path d="m46.07 60-12.7-18.25L39.35 33l18.67 27z" />
+    </>
   ),
   { fill: 'currentColor' },
 );

@@ -1,7 +1,12 @@
 {
   "name": "Pendle",
+  "source": [
+    "https://www.pendle.finance/images/logos/blue-light.svg",
+    "https://www.pendle.finance/images/logos/no-glow.svg"
+  ],
   "notes": [
-    "Paths sourced from @web3icons/react (MIT)"
+    "Colored: the official blue-light.svg (circle #DEDEDE, ball #1E4480, stick #152E51)",
+    "Mono: follows the official single-colour no-glow.svg, where the circle is drawn at 50% opacity under the full-strength ball and stick; same geometry as the colored mark"
   ],
   "kind": "icon",
   "variants": {
