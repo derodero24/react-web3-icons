@@ -950,7 +950,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'coin',
     ticker: 'USDT',
     variants: ['', 'Mono', 'Circle', 'CircleMono'],
-    brandColor: '#26a17b',
+    brandColor: '#009393',
   },
   { name: 'UsdtCircle', category: 'coin' },
   { name: 'UsdtCircleMono', category: 'coin' },
