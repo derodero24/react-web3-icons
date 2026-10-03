@@ -1,0 +1,57 @@
+# Icon Sources and Attribution
+
+Where icon artwork may come from and how its origin is recorded. Every icon
+addition or update must follow these rules; see the
+[contributing guide](../CONTRIBUTING.md#adding-a-new-icon) for the workflow.
+
+## Source Attribution (Required)
+
+Every new unit records where its artwork came from in the `source` array of
+`icons/<category>/<slug>.json` (pass `--source` to `pnpm run new-icon`, or edit
+the JSON). For generated units the generator emits it as a `// Source:` comment
+right after the imports in the `.tsx`, so `grep -r "// Source:" src/` still
+works for audits — never edit that comment by hand; change the JSON and
+regenerate. For `"kind": "custom"` units, keep the `// Source:` comment in the
+hand-written TSX yourself. A few older units predate the `source` field; add it
+when you touch them.
+
+```json
+{
+  "name": "MyToken",
+  "source": ["https://github.com/org/repo/blob/main/logo.svg"],
+  "kind": "icon",
+  "variants": { "": { "file": "my-token.svg" } }
+}
+```
+
+| Case | Example `source` entry |
+| --- | --- |
+| Official SVG URL | `https://github.com/org/repo/blob/main/logo.svg` |
+| Brand asset page (no direct URL) | `https://brand.uniswap.org (official brand kit)` |
+| Third-party package (with license) | `@web3icons/react (MIT) — OSMO token SVG` |
+| App/favicon asset | `https://app.eigenlayer.xyz/logo/markLightA.svg` |
+| Hand-crafted / no public source | `hand-crafted — no public SVG; traced from https://...` |
+| Re-export / alias unit (no own artwork) | `re-export of Bitcoin — see src/chain/Bitcoin.tsx` |
+
+## Icon Authenticity Policy (Required)
+
+To protect icon quality and brand fidelity, all icon additions/updates must follow these rules:
+
+- **Use official sources only**: Brand kit, official website press page, or official organization repository.
+- **No unofficial/community redraws**: If no official SVG exists, do not add the icon yet; open an issue and track it.
+- **Document source of truth in PR**: Include official source URL(s), access date, and any usage/license notes.
+- **Keep brand geometry and color identity**: Converted icon must visually match the official source.
+
+Allowed transformations:
+
+- SVGO optimization using this repository's `svgo.config.js` (done by `pnpm run new-icon`, or manually with `pnpm run optimize:svg`)
+- Root-element normalization to `xmlns`, `viewBox`, and an optional `fill` (done by `pnpm run new-icon`)
+- Internal id namespacing and JSX conversion, both performed by the generator
+- Optional mono variants using `currentColor`
+
+Prohibited transformations:
+
+- Redrawing, tracing, or manually reshaping brand geometry
+- Altering brand colors/gradients/strokes in the default icon variant
+- Mixing logo elements from different logo versions/brands
+- "Stylizing" official marks to make them look different from the source

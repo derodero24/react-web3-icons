@@ -15,53 +15,68 @@ pnpm install
 
 ### Prerequisites
 
-- **Node.js** `^22.18.0 || >=24.11.0` (the range the build toolchain supports; `devEngines` in package.json enforces it for npm, the toolchain's own `engines` for pnpm)
-- **pnpm** 10.x
+- **Node.js** `^22.18.0 || >=24.11.0`, as declared in `devEngines.runtime` in package.json. `.nvmrc` selects Node 24.
+- **pnpm** 10.x (`packageManager` in package.json pins the exact version)
+
+This is a contributor requirement only: the published package has no Node.js
+requirement (see the README's install section).
 
 Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/activates the required Node version if missing).
-`pnpm install` fails fast on unsupported Node versions: the `prepare` script checks the range above (the build scripts
-run through Node's built-in TypeScript type stripping), and `engine-strict=true` enforces the toolchain dependencies'
-own `engines`.
+`pnpm install` fails fast on unsupported Node versions: the `prepare` script checks the range above (the scripts under
+`scripts/` run through Node's built-in TypeScript type stripping), and `engine-strict=true` in `.npmrc` enforces the
+toolchain dependencies' own `engines`.
 
 ### Useful Commands
 
-| Command                | Description                     |
-| ---------------------- | ------------------------------- |
-| `pnpm run lint`        | Run Biome linter                |
-| `pnpm run lint:fix`    | Auto-fix lint and format issues |
-| `pnpm run typecheck`   | Type-check all TS projects      |
-| `pnpm test`            | Run tests                       |
-| `pnpm run build`       | Build the package               |
-| `pnpm run new-icon`    | Scaffold a new icon component   |
-| `pnpm run generate-icons` | Regenerate `src/` (icons, meta, deprecated set, manifest) from `icons/` (`--check`: verify only) |
-| `pnpm run optimize:svg`| Optimize an SVG with SVGO       |
-| `pnpm run check:svgo`  | List icon SVGs SVGO would still change |
+| Command | Description |
+| --- | --- |
+| `pnpm run check` | Lint and format check exactly as CI runs it (`biome ci --error-on-warnings`) |
+| `pnpm run lint` | Run Biome (lint, format, import order) and report problems |
+| `pnpm run lint:fix` | Apply Biome's safe fixes and formatting |
+| `pnpm run format` | Format only |
+| `pnpm run typecheck` | Type-check `src/`, `test/`, and `scripts/` (three tsconfig projects) |
+| `pnpm test` | Run the unit tests (`pnpm test --coverage` enforces 100% coverage of `src/`, as CI does) |
+| `pnpm run test:visual` | Visual-regression tests in headless Chromium (see [Visual QA](#5-visual-qa)) |
+| `pnpm run test:visual:update` | Re-render the local visual baselines |
+| `pnpm run build` | Build `dist/` (JS, types, static SVGs, Iconify JSON, `manifest.json`) |
+| `pnpm run start` | Rebuild the library on change (`tsdown --watch`) |
+| `pnpm run size` | Check the bundle-size budgets (needs a fresh `pnpm run build`) |
+| `pnpm run analyze` | Show what makes up each size-limit entry |
+| `pnpm run new-icon` | Scaffold a new icon unit from an SVG |
+| `pnpm run generate-icons` | Regenerate `src/` (icons, dynamic import maps, meta, deprecated set, manifest) and `icons/schema.json` from `icons/` (`--check`: verify only) |
+| `pnpm run optimize:svg` | Optimize an SVG with SVGO |
+| `pnpm run check:svgo` | List icon SVGs SVGO would still change |
+| `pnpm changeset` | Add a changeset for a change to the published package |
 
 ## Project Structure
 
 ```text
+icons/            # Source of truth: SVG artwork + unit JSON per icon, by category
+  schema.json     # JSON Schema for unit files (generated)
 src/
-  bridge/       # Cross-chain bridge icons (Across, LayerZero, etc.)
-  chain/        # L1/L2 blockchain icons (Ethereum, Arbitrum, etc.)
-  coin/         # Cryptocurrency icons (Bitcoin, Doge, etc.)
-  defi/         # DeFi protocol icons (Aave, EigenLayer, Lido)
-  devtool/      # Developer tool icons
-  dex/          # DEX icons (Uniswap, SushiSwap, etc.)
-  domain/       # Domain service icons
-  exchange/     # Exchange icons
-  explorer/     # Block explorer icons
-  marketplace/  # NFT marketplace icons
-  node/         # Node provider icons
-  portfolio/    # Portfolio tracker icons
-  storage/      # Decentralized storage icons
-  tracker/      # Analytics/tracker icons
-  wallet/       # Wallet icons (MetaMask, Phantom, etc.)
-  utils/        # Shared types (IconProps)
-  index.ts      # Public exports (re-exports all categories)
-scripts/        # Icon pipeline and tooling (TypeScript, run directly by Node)
-example/        # Next.js demo app
-test/           # Vitest test suite
+  bridge/ … wallet/  # One directory per category (16): components generated from icons/
+  dynamic/        # Lazy <ChainIcon>, <CoinIcon>, …; imports/ is generated
+  meta/           # Lookup maps (CHAIN_ID_TO_NAME, TICKER_TO_COIN, …), generated
+  manifest/       # ICON_MANIFEST catalog, generated
+  utils/          # createIcon factory and the IconProps / IconName types
+  deprecated.ts   # DEPRECATED_ICON_NAMES, generated
+  index.ts        # Root entry: re-exports every category
+scripts/
+  build-icons/    # Generator (cli.ts) and the dist emitters (SVG, Iconify, manifest.json)
+  new-icon.ts     # Scaffolds a unit (pnpm run new-icon)
+  audit-mono.ts   # Mono-vs-colored quality audit
+  check-svgo.ts   # Lists SVGs SVGO would still change
+  size-report.ts  # Renders the size-limit PR comment
+test/             # Vitest suites; visual/ (Playwright screenshots), consumer/ (packed-tarball fixtures for CI)
+example/          # Next.js demo site (react-web3-icons.vercel.app), builds from src/
+examples/
+  stackblitz/     # Minimal Vite app behind the README's StackBlitz link; installs the published package
+docs/             # Icon variant, source, and lifecycle policies
 ```
+
+Only `dist/` is published (`files` in package.json). `example/` is part of the
+pnpm workspace; `examples/stackblitz/` is not: it installs `react-web3-icons`
+from npm, so changes to `src/` show up there only after a release.
 
 The scripts under `scripts/` are plain TypeScript executed by Node's built-in
 type stripping (`node scripts/<name>.ts`, no build step), so they may only use
@@ -246,128 +261,22 @@ when `icons/` *or* the generator changed without regenerating.
 `test/meta.test.ts` checks that every icon is reachable through its lookup
 keys, and the snapshot/visual suites verify rendered output.
 
-## Icon Variant Naming Convention
+## Icon Variants and Mono Design
 
-Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The base name (no suffix) typically represents the **standalone branded symbol** without a background container — unless the brand's official assets always include a specific background, in which case the base includes it (see [Base icon background rule](#base-icon-background-rule) below). When no standalone variant exists in the official brand assets, the base name represents the primary brand mark.
-
-### Variant Suffixes
-
-| Suffix | Meaning | Example |
-| --- | --- | --- |
-| _(none)_ | Primary brand mark — standalone symbol without background in most cases; includes background when integral to the official brand mark (see [Base icon background rule](#base-icon-background-rule)) | `Bitcoin`, `ZkSync` |
-| `Mono` | Monochrome (`currentColor`) matching the base shape | `BitcoinMono` |
-| `Circle` | Symbol on a circular background | `BitcoinCircle` |
-| `CircleMono` | Monochrome circular | `BitcoinCircleMono` |
-| `Square` | Symbol on a square / rounded-rectangle background | `TrustWalletSquare` |
-| `SquareMono` | Monochrome square | `TrustWalletSquareMono` |
-| `Wordmark` | Symbol with text (logotype) | `MagicEdenWordmark` |
-| `WordmarkMono` | Monochrome wordmark | `MagicEdenWordmarkMono` |
-| `Alt` | Alternative color scheme or design | `MetaMaskAlt` |
-| `Inverted` | Inverted color scheme for contrast on dark backgrounds | `EtherscanInverted` |
-| `Light` | _(deprecated)_ Legacy lighter variant; only `BlastscanLight` remains active. Prefer `Inverted` for new icons. | `BlastscanLight` |
-| `Flat` | Single brand color, no internal color variation | `ArbitrumOneFlat` |
-| `Symbol` | Standalone symbol without container (when base has one) | `RainbowWalletSymbol` |
-| `SymbolMono` | Monochrome standalone symbol without container | `OpenSeaSymbolMono` |
-
-### Mono design rules
-
-Every `*Mono` variant is judged against its colored counterpart. The goal is
-that swapping colored → mono changes only the coloring, never the impression:
-
-1. **Same silhouette**: the mono covers the same footprint as the colored
-   variant at the same scale in the same viewBox. If the colored artwork has a
-   container (circle / rounded square / shield), the mono keeps it: render the
-   container filled in `currentColor` and knock the glyph out (a single
-   `fill-rule="evenodd"` path is the preferred form). Never reduce a filled
-   container to an outline ring, and never drop the container entirely — that
-   is what the `Symbol` / `SymbolMono` variants are for.
-2. **One color only**: monos use `currentColor` exclusively — no fixed fills,
-   no grays. Prefer binary ink (fill or hole); translucent `currentColor`
-   shading is acceptable only where the mark's structure genuinely needs it
-   (e.g. distinguishing cube faces), never to imitate decorative gradients.
-3. **Keep identifying detail**: facial features, letterforms, and other
-   details that make the mark recognizable must survive; decorative gradients
-   and shading may be dropped. If a detail can't be expressed in one color,
-   simplify it rather than delete it.
-4. **Verify both polarities**: check the mono on white *and* on a dark
-   background (`color` set to a light value) before submitting.
-
-`node scripts/audit-mono.ts` rasterizes every colored/mono pair and reports
-outliers — run it after adding or reworking mono artwork. Besides silhouette
-IoU / ink ratio / edge-detail ratio, it binarizes the colored artwork by
-luminance (best-threshold sweep) and reports the pixel disagreement with the
-mono (`refMiss`); a high value means the mono departs from a straight
-black-and-white reading of the original. When subject and background
-luminance are too close the reference is reported as `degenerate` — judge
-those icons visually instead. Intentional rendering changes to existing icons
-need the `visual-baseline-update` label on the PR so the visual-regression
-job regenerates baselines instead of comparing against develop.
-
-### Rules
-
-1. **Base = standalone**: The unsuffixed name is always the standalone symbol. If the brand's primary mark is a circle (e.g., OpenSea ship on blue circle), the base name keeps the circle shape and `SymbolMono` provides the symbol-only mono variant.
-2. **Mono mirrors its base**: `FooMono` matches `Foo`'s shape; `FooCircleMono` matches `FooCircle`'s shape.
-3. **No numeric suffixes**: Never use `Foo2`, `Foo3`, etc. Use descriptive suffixes that convey the visual difference.
-4. **Flat vs Alt**: Use `Flat` when the difference is strictly single-color simplification. Use `Alt` for a meaningfully different design or color scheme.
-5. **Inverted**: Reserved for variants where the artwork colors are inverted for contrast on dark backgrounds. The shape and layout are identical to the base.
-
-### Base icon background rule
-
-Whether the base icon (`Foo`) includes a background container depends on the official brand assets:
-
-- **Include the background in the base variant** when the brand's official icon is always presented with a specific background (colored square, circle, or rounded rectangle) in all official assets — the background is integral to the brand mark.
-
-  _Examples_: `ZkSync` (black square), `Scroll` (beige rectangle), `Mantle` (black circle), `Linea` (black rectangle)
-
-  In these cases, do **not** add a separate `FooCircle`/`FooSquare` variant unless the mark also officially exists without a background.
-
-- **Omit the background from the base variant** when the brand provides a standalone icon mark (no background). The base icon (`Foo`) contains only the mark. Add `FooCircle` and/or `FooSquare` variants when a background container is needed.
-
-  _Examples_: `Coinbase` (C mark only) + `CoinbaseCircle`; `Avalanche` (A mark) + `AvalancheCircle`
-
-When in doubt, consult the brand's official press kit or design guidelines. If the official assets show the mark both with and without a background, use the standalone mark as the base and add Circle/Square variants for the backgrounded versions.
+Every export follows a `{Brand}{Variant}` pattern (`Bitcoin`, `BitcoinMono`,
+`BitcoinCircle`, `MagicEdenWordmark`, …), and every `*Mono` variant must keep
+the silhouette and identifying detail of its colored counterpart in a single
+`currentColor`. The suffix table, the base-icon background rule, and the mono
+design rules (with the `node scripts/audit-mono.ts` audit) are in
+[docs/icon-variants.md](docs/icon-variants.md).
 
 ## Icon Lifecycle Policy
 
-Use this policy when an icon project rebrands or an export name must change.
-
-### Rename strategy
-
-- The current official name becomes the canonical export (for example, `Safe`).
-- The previous public name remains as a re-export alias in the same category (for example, `GnosisSafe`).
-- Alias exports must include ``/** @deprecated Use `NewName` instead. */`` JSDoc comments.
-- Keep behavior identical by re-exporting the canonical component instead of duplicating SVG markup.
-- Mark the alias exports `deprecated` in the unit JSON; the generator adds them to `DEPRECATED_ICON_NAMES` (`src/deprecated.ts`) so consuming apps can filter them automatically.
-- Move the old lookup keys (slugs, tickers, chain IDs) to the canonical unit as extra keys; lookup keys may not point at deprecated exports.
-
-### Deprecation and removal timing
-
-- Keep deprecated aliases for at least one minor release and at least 90 days after deprecation starts.
-- Remove deprecated aliases only in a major release.
-- When removing aliases, include a clear breaking-change entry in the changeset and changelog.
-
-### Release note requirements
-
-For each rename/deprecation PR, include:
-
-- Rename mapping (`OldName` -> `NewName`)
-- The version/date when deprecation starts
-- The earliest planned major version for alias removal
-- Any category path changes (if applicable)
-
-### Test requirements
-
-Rename/deprecation PRs should prove backward compatibility before merge.
-For intentional breaking renames in a major release, document the exception in the changeset/changelog:
-
-- Export presence tests for both old and new names (`test/exports.test.ts`)
-- Alias equality tests showing identical rendered SVG (`test/aliases.test.tsx`)
-- Existing category snapshot/render tests still passing
-
-### Existing examples in this repository
-
-- `src/wallet/Safe.tsx` is canonical, and `src/wallet/GnosisSafe.tsx` provides deprecated aliases.
-- `src/coin/Pol.tsx` is canonical, and `src/coin/Matic.tsx` provides deprecated aliases.
+Renamed or retired brands keep their old exports as deprecated aliases for at
+least one minor release and 90 days, and aliases are removed only in a major
+release. How to declare an alias, which release notes and tests a
+rename/deprecation PR needs, and examples from this repository are in
+[docs/icon-lifecycle.md](docs/icon-lifecycle.md).
 
 ## SVG Optimization Pipeline
 
@@ -384,56 +293,11 @@ artifacts are the SVG files and the unit JSON.
 
 Download from the project's official brand kit, GitHub repository, or press page. Always use the original vector file — never trace a raster image.
 
-### Source Attribution (Required)
-
-Every new unit records where its artwork came from in the `source` array of
-`icons/<category>/<slug>.json` (pass `--source` to `pnpm run new-icon`, or edit
-the JSON). For generated units the generator emits it as a `// Source:` comment
-right after the imports in the `.tsx`, so `grep -r "// Source:" src/` still
-works for audits — never edit that comment by hand; change the JSON and
-regenerate. A few older units predate the `source` field; add it when you
-touch them.
-
-```json
-{
-  "name": "MyToken",
-  "source": ["https://github.com/org/repo/blob/main/logo.svg"],
-  "kind": "icon",
-  "variants": { "": { "file": "my-token.svg" } }
-}
-```
-
-| Case | Example `source` entry |
-| --- | --- |
-| Official SVG URL | `https://github.com/org/repo/blob/main/logo.svg` |
-| Brand asset page (no direct URL) | `https://brand.uniswap.org (official brand kit)` |
-| Third-party package (with license) | `@web3icons/react (MIT) — OSMO token SVG` |
-| App/favicon asset | `https://app.eigenlayer.xyz/logo/markLightA.svg` |
-| Hand-crafted / no public source | `hand-crafted — no public SVG; traced from https://...` |
-| Re-export / alias unit (no own artwork) | `re-export of Bitcoin — see src/chain/Bitcoin.tsx` |
-
-### Icon Authenticity Policy (Required)
-
-To protect icon quality and brand fidelity, all icon additions/updates must follow these rules:
-
-- **Use official sources only**: Brand kit, official website press page, or official organization repository.
-- **No unofficial/community redraws**: If no official SVG exists, do not add the icon yet; open an issue and track it.
-- **Document source of truth in PR**: Include official source URL(s), access date, and any usage/license notes.
-- **Keep brand geometry and color identity**: Converted icon must visually match the official source.
-
-Allowed transformations:
-
-- SVGO optimization using this repository's `svgo.config.js` (done by `pnpm run new-icon`, or manually with `pnpm run optimize:svg`)
-- Root-element normalization to `xmlns`, `viewBox`, and an optional `fill` (done by `pnpm run new-icon`)
-- Internal id namespacing and JSX conversion, both performed by the generator
-- Optional mono variants using `currentColor`
-
-Prohibited transformations:
-
-- Redrawing, tracing, or manually reshaping brand geometry
-- Altering brand colors/gradients/strokes in the default icon variant
-- Mixing logo elements from different logo versions/brands
-- "Stylizing" official marks to make them look different from the source
+Every unit records where its artwork came from in the `source` array of its
+JSON, and only official artwork is accepted: no community redraws, no
+reshaped geometry, no altered brand colors in the default variant. The full
+[attribution and authenticity rules](docs/icon-sources.md) list the accepted
+`source` formats and the allowed transformations.
 
 ### 2. Scaffold the unit
 
@@ -558,6 +422,16 @@ Run the example app and verify:
 - Mono variant works with different CSS `color` values
 - No visual artifacts in dark mode / light mode
 
+Then run the visual-regression suite, which screenshots every icon in
+headless Chromium. Screenshots are not committed: CI renders the baseline
+from the PR's base commit and compares your branch against it. To compare
+locally, install the browser once with `pnpm exec playwright install chromium`,
+record a baseline with `pnpm run test:visual:update` on `develop`, then run
+`pnpm run test:visual` on your branch. Intentional rendering changes to
+existing icons need the `visual-baseline-update` label on the PR so the
+visual-regression job regenerates baselines instead of comparing against
+develop.
+
 ## SVG Guidelines
 
 - **Use `viewBox`** instead of fixed `width`/`height` in the SVG source. The component sets `width="1em"` and `height="1em"` as defaults.
@@ -567,15 +441,20 @@ Run the example app and verify:
 
 ## Running the Example App
 
-The `example/` directory contains a Next.js app for browsing icons. To run it locally:
+The `example/` directory contains the Next.js demo site. It resolves
+`react-web3-icons` to `../src`, so it needs no library build. From the
+repository root:
 
 ```sh
-cd example
-pnpm install
-pnpm dev
+pnpm --filter react-web3-icons-example run dev
 ```
 
 This is useful for visually verifying new icons after adding them.
+
+`examples/stackblitz/` is the playground behind the README's StackBlitz link.
+It is a standalone npm project outside the workspace that installs the
+published package (`cd examples/stackblitz && npm install && npm run dev`).
+Keep it working with the latest release; it does not see unreleased changes.
 
 ## Code Style
 
@@ -608,12 +487,15 @@ than nudging one limit inside an icon PR.
 ## Submitting a Pull Request
 
 1. Fork the repository and create a feature branch from `develop`
-2. Make your changes and ensure all checks pass:
+2. Make your changes and ensure all checks pass (the `pre-push` hook runs most of them):
    ```sh
-   pnpm run lint
-   pnpm test
-   pnpm run build
+   pnpm run generate-icons --check
+   pnpm run check
+   pnpm run typecheck
+   pnpm test --coverage
+   pnpm run build && pnpm run size
    ```
+   If you changed icon artwork or rendering, also run `pnpm run test:visual` (see [Visual QA](#5-visual-qa)).
 3. If your change affects the published library (new icons, bug fixes, API changes), add a changeset:
 
    ```sh
