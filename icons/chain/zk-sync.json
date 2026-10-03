@@ -34,7 +34,8 @@
     "zk"
   ],
   "slugs": [
-    "zksync"
+    "zksync",
+    "zk"
   ],
   "chainIds": [
     324

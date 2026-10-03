@@ -2,7 +2,11 @@
 // Regenerate: pnpm run generate-icons
 // biome-ignore-all lint/style/useNamingConvention: keys are icon export names (PascalCase)
 
-/** Per-icon lazy import map for the bridge category. */
+/**
+ * Per-icon lazy import map for the bridge category: every export
+ * `<BridgeIcon>` can render (a lookup target plus a variant suffix),
+ * and nothing else.
+ */
 export const bridgeImports: Record<
   string,
   () => Promise<Record<string, unknown>>
@@ -28,3 +32,16 @@ export const bridgeImports: Record<
   Wormhole: () => import('../../bridge/Wormhole'),
   WormholeMono: () => import('../../bridge/Wormhole'),
 };
+
+/**
+ * Variant suffixes `<BridgeIcon variant>` accepts besides `'colored'`
+ * and `'mono'`: every one that some bridge icon ships.
+ */
+export const bridgeVariants: readonly string[] = [];
+
+/**
+ * `variant` of `<BridgeIcon>`: `'colored'` (the default) and `'mono'`,
+ * plus every variant suffix some bridge icon ships. An icon without
+ * the requested variant renders `fallback`.
+ */
+export type BridgeVariant = 'colored' | 'mono';

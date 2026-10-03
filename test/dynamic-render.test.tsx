@@ -7,11 +7,13 @@ import {
   type ReactNode,
 } from 'react';
 import ReactDOM from 'react-dom/client';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   createDynamicIcon,
   type DynamicIconProps,
   type IconImports,
+  variantSuffix,
 } from '../src/dynamic/DynamicIcon';
 
 // This file drives React through act(); opt the environment in so act() does
@@ -21,7 +23,8 @@ Reflect.set(globalThis, 'IS_REACT_ACT_ENVIRONMENT', true);
 // biome-ignore lint/suspicious/noEmptyBlockStatements: intentional noop for mock
 function noop() {}
 
-interface TestProps extends DynamicIconProps {
+interface TestProps
+  extends DynamicIconProps<'colored' | 'mono' | 'Circle' | 'Square'> {
   name?: string | undefined;
 }
 
@@ -63,12 +66,20 @@ const StubIcon = forwardRef<SVGSVGElement, Record<string, unknown>>(
   (props, ref) => createElement('svg', { ...props, ref, 'data-stub': '' }),
 );
 
-/** A dynamic icon resolving `name` to the export name `exportName`. */
-function dynamicIcon(imports: IconImports, exportName: string | null = 'Stub') {
+/**
+ * A dynamic icon resolving any `name` to the target `target` (`null`: no
+ * icon), with the extra variant suffixes `variants`.
+ */
+function dynamicIcon(
+  imports: IconImports,
+  target: string | null = 'Stub',
+  variants: readonly string[] = [],
+) {
   return createDynamicIcon<TestProps>({
     displayName: 'TestIcon',
-    resolve: () => exportName,
+    resolve: () => target ?? undefined,
     imports,
+    variants,
     identifiers: ['name'],
   });
 }
@@ -89,7 +100,7 @@ describe('createDynamicIcon', () => {
 
   it('forwards icon props but not its own props', async () => {
     const Icon = dynamicIcon({
-      Stub: () => Promise.resolve({ Stub: StubIcon }),
+      StubMono: () => Promise.resolve({ StubMono: StubIcon }),
     });
     const { container } = await render(
       createElement(Icon, {
@@ -134,6 +145,33 @@ describe('createDynamicIcon', () => {
       vi.spyOn(console, 'warn').mockImplementation(noop);
       const Icon = dynamicIcon({}, 'Unmapped');
       const { container } = await render(createElement(Icon, { fallback }));
+      expect(container.textContent).toBe('fallback');
+    });
+
+    it('renders for an unknown variant', async () => {
+      vi.spyOn(console, 'warn').mockImplementation(noop);
+      const Icon = dynamicIcon(
+        { StubCircle: () => Promise.resolve({ StubCircle: StubIcon }) },
+        'Stub',
+        ['Circle'],
+      );
+      const { container } = await render(
+        // @ts-expect-error a variant the category does not ship
+        createElement(Icon, { variant: 'circle', fallback }),
+      );
+      expect(container.textContent).toBe('fallback');
+    });
+
+    it('renders when the icon lacks the variant', async () => {
+      vi.spyOn(console, 'warn').mockImplementation(noop);
+      const Icon = dynamicIcon(
+        { Stub: () => Promise.resolve({ Stub: StubIcon }) },
+        'Stub',
+        ['Circle'],
+      );
+      const { container } = await render(
+        createElement(Icon, { variant: 'Circle', fallback }),
+      );
       expect(container.textContent).toBe('fallback');
     });
 
@@ -205,16 +243,41 @@ describe('createDynamicIcon', () => {
       ]);
     });
 
-    it('warn once per missing export', async () => {
+    it('warn once per chunk without its export', async () => {
       const warn = vi.spyOn(console, 'warn').mockImplementation(noop);
       const Icon = dynamicIcon(
         { Missing: () => Promise.resolve({}) },
         'Missing',
       );
       await render(createElement(Icon));
-      await render(createElement(dynamicIcon({}, 'Missing')));
+      await render(createElement(Icon));
       expect(warn.mock.calls).toEqual([
-        ['[react-web3-icons] Icon "Missing" not found.'],
+        [
+          '[react-web3-icons] TestIcon: the chunk of icon "Missing" does not export it; rendering the fallback until a later render retries.',
+        ],
+      ]);
+    });
+
+    it('warn once per unknown or missing variant', async () => {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(noop);
+      const Icon = dynamicIcon({}, 'Other', ['Circle', 'Square']);
+      await render(createElement(Icon, { variant: 'Circle' }));
+      await render(createElement(Icon, { variant: 'Circle' }));
+      await render(createElement(Icon));
+      // @ts-expect-error a variant the category does not ship
+      await render(createElement(Icon, { variant: 'Round' }));
+      // @ts-expect-error a variant the category does not ship
+      await render(createElement(Icon, { variant: 'Round' }));
+      expect(warn.mock.calls).toEqual([
+        [
+          '[react-web3-icons] TestIcon: Other has no "Circle" variant; rendering the fallback.',
+        ],
+        [
+          '[react-web3-icons] TestIcon: Other has no "colored" variant; rendering the fallback.',
+        ],
+        [
+          '[react-web3-icons] TestIcon: unknown variant "Round" (expected one of "colored", "mono", "Circle", "Square"); rendering the fallback.',
+        ],
       ]);
     });
 
@@ -222,6 +285,10 @@ describe('createDynamicIcon', () => {
       vi.stubEnv('NODE_ENV', 'production');
       const warn = vi.spyOn(console, 'warn');
       await render(createElement(dynamicIcon({}, null), { name: 'prod' }));
+      await render(
+        // @ts-expect-error a variant the category does not ship
+        createElement(dynamicIcon({}), { variant: 'ProdVariant' }),
+      );
       await render(createElement(dynamicIcon({}, 'ProdUnmapped')));
       await render(
         createElement(
@@ -242,15 +309,43 @@ describe('createDynamicIcon', () => {
       expect(warn).not.toHaveBeenCalled();
     });
 
-    it('are silent where no bundler defined process.env.NODE_ENV', async () => {
-      vi.stubGlobal('process', undefined);
+    it('are silent where no bundler defined process.env.NODE_ENV', () => {
       const warn = vi.spyOn(console, 'warn');
-      const { container } = await render(
-        createElement(dynamicIcon({}, null), { name: 'no-process', fallback }),
-      );
-      vi.unstubAllGlobals();
-      expect(container.textContent).toBe('fallback');
+      const element = createElement(dynamicIcon({}, null), {
+        name: 'no-process',
+        fallback,
+      });
+      // Render synchronously so `process` is missing only while this code
+      // runs: removing it across an await would also break Vitest's own
+      // process.nextTick-based RPC.
+      vi.stubGlobal('process', undefined);
+      let markup: string;
+      try {
+        markup = renderToStaticMarkup(element);
+      } finally {
+        vi.unstubAllGlobals();
+      }
+      expect(markup).toBe('<span>fallback</span>');
       expect(warn).not.toHaveBeenCalled();
     });
+  });
+});
+
+describe('variantSuffix', () => {
+  const variants = ['Circle', 'CircleMono'];
+
+  it.each([
+    [undefined, ''],
+    [null, ''],
+    ['colored', ''],
+    ['mono', 'Mono'],
+    ['Circle', 'Circle'],
+    ['CircleMono', 'CircleMono'],
+  ])('%j selects %j', (variant, suffix) => {
+    expect(variantSuffix(variant, variants)).toBe(suffix);
+  });
+
+  it.each(['Square', 'circle', 'Mono', '', 1])('rejects %j', variant => {
+    expect(variantSuffix(variant, variants)).toBeUndefined();
   });
 });

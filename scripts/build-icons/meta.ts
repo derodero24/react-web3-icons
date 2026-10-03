@@ -11,6 +11,7 @@
  * `deprecatedExports()`.
  */
 
+import { normalizeKey } from '../../src/dynamic/normalize.ts';
 import { quote } from './jsx.ts';
 import {
   type Category,
@@ -204,9 +205,18 @@ export function deprecatedExports(unit: SourceUnit): string[] {
 export type LookupEntries = ReadonlyMap<number | string, string>;
 
 interface Claim {
+  /** The key as the unit declares it. */
+  readonly key: number | string;
   readonly exportName: string;
   readonly path: string;
 }
+
+/**
+ * What a key is unique by: chain IDs as they are, string keys after
+ * {@link normalizeKey}, which the dynamic components apply to both sides.
+ */
+const claimOf = (key: number | string): number | string =>
+  typeof key === 'number' ? key : normalizeKey(key);
 
 /**
  * The dynamic components render `<Target>` and `<Target>Mono`, and keys of
@@ -251,7 +261,11 @@ function specFor(
   return spec;
 }
 
-/** Records the unit's keys of one field in their map; keys are unique. */
+/**
+ * Records the unit's keys of one field in their map. Keys are unique, also
+ * after normalization: `arbitrum-nova` and `arbitrumnova` would both match
+ * the input `'Arbitrum Nova'`.
+ */
 function claimKeys(
   claimed: Map<number | string, Claim>,
   spec: LookupMapSpec,
@@ -260,13 +274,80 @@ function claimKeys(
   field: LookupField,
 ): void {
   for (const key of keysOf(lookup.keys, field)) {
-    const previous = claimed.get(key);
+    const previous = claimed.get(claimOf(key));
     if (previous) {
+      const clash =
+        previous.key === key
+          ? 'is already used by'
+          : `normalizes to ${JSON.stringify(claimOf(key))} like ${JSON.stringify(previous.key)} of`;
       throw new Error(
-        `${unit.path}: ${lookup.field}${field} ${JSON.stringify(key)} is already used by ${previous.path} (${spec.constName} keys must be unique)`,
+        `${unit.path}: ${lookup.field}${field} ${JSON.stringify(key)} ${clash} ${previous.path} (${spec.constName} keys must be unique after normalization: lowercase, without whitespace, ".", "-" and "_")`,
       );
     }
-    claimed.set(key, { exportName: lookup.exportName, path: unit.path });
+    claimed.set(claimOf(key), {
+      key,
+      exportName: lookup.exportName,
+      path: unit.path,
+    });
+  }
+}
+
+/** Exports of the unit that some lookup key resolves to. */
+export function lookupTargets(unit: SourceUnit): string[] {
+  return unitLookups(unit)
+    .filter(lookup => LOOKUP_FIELDS.some(f => keysOf(lookup.keys, f).length))
+    .map(lookup => lookup.exportName);
+}
+
+/**
+ * Manifest `aliases` are search terms, but the dynamic components resolve
+ * lookup keys only. So that every alias of a dynamic category still
+ * resolves, and resolves to its own icon, each one must normalize to a
+ * string key of the unit. A unit without lookup targets (all its exports
+ * are deprecated) may point its aliases at its replacement instead.
+ */
+function assertAliases(
+  units: readonly SourceUnit[],
+  claims: ReadonlyMap<LookupMapSpec, ReadonlyMap<number | string, Claim>>,
+): void {
+  for (const unit of units) {
+    const specs = LOOKUP_MAPS.filter(
+      s => s.category === unit.category && s.field !== 'chainIds',
+    );
+    const aliases = isArtwork(unit.meta) ? (unit.meta.aliases ?? []) : [];
+    const own = new Set(lookupTargets(unit));
+    for (const alias of specs.length > 0 ? aliases : []) {
+      assertAlias(unit, own, alias, claimOfAlias(specs, claims, alias));
+    }
+  }
+}
+
+/** The claim of the key an alias normalizes to, in one of `specs`. */
+function claimOfAlias(
+  specs: readonly LookupMapSpec[],
+  claims: ReadonlyMap<LookupMapSpec, ReadonlyMap<number | string, Claim>>,
+  alias: string,
+): Claim | undefined {
+  return specs
+    .map(s => claims.get(s)?.get(normalizeKey(alias)))
+    .find(c => c !== undefined);
+}
+
+function assertAlias(
+  unit: SourceUnit,
+  own: ReadonlySet<string>,
+  alias: string,
+  claim: Claim | undefined,
+): void {
+  if (claim === undefined) {
+    throw new Error(
+      `${unit.path}: alias ${JSON.stringify(alias)} is not a lookup key; add it to slugs/tickers (the dynamic components resolve lookup keys only)`,
+    );
+  }
+  if (own.size > 0 && !own.has(claim.exportName)) {
+    throw new Error(
+      `${unit.path}: alias ${JSON.stringify(alias)} resolves to ${claim.exportName} (key ${JSON.stringify(claim.key)} of ${claim.path}), not to this icon`,
+    );
   }
 }
 
@@ -279,8 +360,10 @@ function compareKeys(a: number | string, b: number | string): number {
 /**
  * Collects every map of {@link LOOKUP_MAPS} from the units of all
  * categories. Fails on a lookup field the unit's category has no map for,
- * on a key used twice within one map, and on a target that the dynamic
- * components could not render (missing export or `Mono` counterpart).
+ * on a key used twice within one map (also after {@link normalizeKey}), on
+ * a target that the dynamic components could not render (missing export or
+ * `Mono` counterpart), and on a manifest alias that no key of the unit
+ * matches (see {@link assertAliases}).
  */
 export function collectLookups(
   units: readonly SourceUnit[],
@@ -302,13 +385,14 @@ export function collectLookups(
       }
     }
   }
+  assertAliases(units, claims);
   return new Map(
     LOOKUP_MAPS.map(spec => [
       spec,
       new Map(
-        [...(claims.get(spec) ?? [])]
-          .sort(([a], [b]) => compareKeys(a, b))
-          .map(([key, claim]) => [key, claim.exportName]),
+        [...(claims.get(spec)?.values() ?? [])]
+          .sort((a, b) => compareKeys(a.key, b.key))
+          .map(claim => [claim.key, claim.exportName]),
       ),
     ]),
   );

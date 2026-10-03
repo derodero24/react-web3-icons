@@ -21,8 +21,12 @@ import { Ens } from 'react-web3-icons/domain';
 import {
   ChainIcon,
   type ChainIconProps,
+  type ChainVariant,
   CoinIcon,
+  DefiIcon,
+  type DefiVariant,
   WalletIcon,
+  type WalletIconProps,
 } from 'react-web3-icons/dynamic';
 import { Binance, Bybit, type BybitProps } from 'react-web3-icons/exchange';
 import { Arbiscan } from 'react-web3-icons/explorer';
@@ -43,6 +47,12 @@ const ref = createRef<SVGSVGElement>();
 const props: IconProps = { size: 24, title: 'Ethereum', titleId: 'eth-title' };
 const chainProps: ChainIconProps = { chainId: 1, variant: 'mono' };
 const bybitProps: IconProps & BybitProps = { fill1: '#000', size: 24 };
+// `variant` is a strict per-category union.
+const chainVariant: ChainVariant = 'CircleMono';
+const defiVariant: DefiVariant = 'mono';
+// Identifiers keep autocomplete but accept any runtime string.
+const connectorId: string = 'metaMaskSDK';
+const walletProps: WalletIconProps = { name: connectorId, variant: 'Square' };
 
 export const elements: ReactElement[] = [
   <Ethereum key="root" ref={ref} {...props} />,
@@ -65,6 +75,15 @@ export const elements: ReactElement[] = [
   <ChainIcon key="dynamic-chain" {...chainProps} fallback={null} />,
   <CoinIcon key="dynamic-coin" symbol="ETH" size={20} />,
   <WalletIcon key="dynamic-wallet" name="metamask" ref={ref} />,
+  <WalletIcon key="dynamic-connector" {...walletProps} />,
+  <ChainIcon key="dynamic-variant" name="ethereum" variant={chainVariant} />,
+  <ChainIcon key="dynamic-id-name" chainId={999_999} name="base" />,
+  <CoinIcon key="dynamic-coin-variant" symbol="btc" variant="Circle" />,
+  <DefiIcon key="dynamic-defi" name="ether.fi" variant={defiVariant} />,
+  // @ts-expect-error DeFi icons ship no Circle variant
+  <DefiIcon key="dynamic-bad-variant" name="aave" variant="Circle" />,
+  // @ts-expect-error variants are case-sensitive suffixes
+  <ChainIcon key="dynamic-variant-case" name="base" variant="circle" />,
   <AvalancheCircle key="extra-toggle" withBackground={false} ref={ref} />,
   <Bybit key="extra-fill" {...bybitProps} />,
   // @ts-expect-error extra props are typed per component

@@ -68,12 +68,18 @@
     "arb1"
   ],
   "slugs": [
-    "arbitrum"
+    "arbitrum",
+    "arb1"
   ],
   "chainIds": [
     42161
   ],
   "variantLookups": {
+    "One": {
+      "slugs": [
+        "arbitrum-one"
+      ]
+    },
     "Nova": {
       "slugs": [
         "arbitrum-nova"

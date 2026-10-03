@@ -109,7 +109,10 @@ interface ArtworkFields extends UnitBase {
   readonly variants: Readonly<Record<string, Variant>>;
   /** Export name → deprecation message. */
   readonly deprecated?: Readonly<Record<string, string>>;
-  /** Extra lowercase search terms for the manifest (not lookup keys). */
+  /**
+   * Extra lowercase search terms for the manifest. In a category with
+   * lookup keys each must also normalize to a key of the unit (meta.ts).
+   */
   readonly aliases?: readonly string[];
   /**
    * Lookup keys of a non-default variant, keyed by its suffix

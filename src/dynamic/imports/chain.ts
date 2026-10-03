@@ -2,7 +2,11 @@
 // Regenerate: pnpm run generate-icons
 // biome-ignore-all lint/style/useNamingConvention: keys are icon export names (PascalCase)
 
-/** Per-icon lazy import map for the chain category. */
+/**
+ * Per-icon lazy import map for the chain category: every export
+ * `<ChainIcon>` can render (a lookup target plus a variant suffix),
+ * and nothing else.
+ */
 export const chainImports: Record<
   string,
   () => Promise<Record<string, unknown>>
@@ -75,8 +79,6 @@ export const chainImports: Record<
   EthereumMono: () => import('../../chain/Ethereum'),
   EthereumSquare: () => import('../../chain/Ethereum'),
   EthereumSquareMono: () => import('../../chain/Ethereum'),
-  Fantom: () => import('../../chain/Fantom'),
-  FantomMono: () => import('../../chain/Fantom'),
   Fraxtal: () => import('../../chain/Fraxtal'),
   FraxtalMono: () => import('../../chain/Fraxtal'),
   GnosisChain: () => import('../../chain/GnosisChain'),
@@ -166,3 +168,31 @@ export const chainImports: Record<
   Zora: () => import('../../chain/Zora'),
   ZoraMono: () => import('../../chain/Zora'),
 };
+
+/**
+ * Variant suffixes `<ChainIcon variant>` accepts besides `'colored'`
+ * and `'mono'`: every one that some chain icon ships.
+ */
+export const chainVariants: readonly string[] = [
+  'Circle',
+  'CircleMono',
+  'Flat',
+  'FlatMono',
+  'Square',
+  'SquareMono',
+];
+
+/**
+ * `variant` of `<ChainIcon>`: `'colored'` (the default) and `'mono'`,
+ * plus every variant suffix some chain icon ships. An icon without
+ * the requested variant renders `fallback`.
+ */
+export type ChainVariant =
+  | 'colored'
+  | 'mono'
+  | 'Circle'
+  | 'CircleMono'
+  | 'Flat'
+  | 'FlatMono'
+  | 'Square'
+  | 'SquareMono';

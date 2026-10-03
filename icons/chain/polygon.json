@@ -34,7 +34,8 @@
     "matic"
   ],
   "slugs": [
-    "polygon"
+    "polygon",
+    "matic"
   ],
   "chainIds": [
     137

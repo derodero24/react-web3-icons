@@ -1,14 +1,20 @@
 import { describe, expect, it } from 'vitest';
+import { normalizeKey } from '../src/dynamic/normalize';
 import {
-  resolveBridgeExportName,
-  resolveChainExportName,
-  resolveCoinExportName,
-  resolveDefiExportName,
-  resolveDexExportName,
-  resolveExchangeExportName,
-  resolveOracleExportName,
-  resolveWalletExportName,
+  type Lookup,
+  lookupBy,
+  resolveBridgeSlug,
+  resolveChain,
+  resolveChainId,
+  resolveChainSlug,
+  resolveDefiSlug,
+  resolveDexSlug,
+  resolveExchangeSlug,
+  resolveOracleSlug,
+  resolveTicker,
+  resolveWalletSlug,
 } from '../src/dynamic/resolve';
+import { ICON_MANIFEST, type IconCategory } from '../src/manifest';
 import {
   BRIDGE_SLUG_TO_NAME,
   CHAIN_ID_TO_NAME,
@@ -21,240 +27,242 @@ import {
   WALLET_SLUG_TO_NAME,
 } from '../src/meta';
 
-describe('resolveChainExportName', () => {
-  it('resolves by chain ID', () => {
-    expect(resolveChainExportName({ chainId: 1 })).toBe('Ethereum');
-    expect(resolveChainExportName({ chainId: 42_161 })).toBe('Arbitrum');
-    expect(resolveChainExportName({ chainId: 8453 })).toBe('Base');
+describe('normalizeKey', () => {
+  it.each([
+    ['ethereum', 'ethereum'],
+    ['Ethereum', 'ethereum'],
+    ['ETH', 'eth'],
+    ['arbitrum-nova', 'arbitrumnova'],
+    ['Arbitrum Nova', 'arbitrumnova'],
+    ['arbitrum_nova', 'arbitrumnova'],
+    ['  Arbitrum \t Nova\n', 'arbitrumnova'],
+    ['Ether.fi', 'etherfi'],
+    ['Crypto.com', 'cryptocom'],
+    ['metaMaskSDK', 'metamasksdk'],
+    ['--_. .', ''],
+    ['1inch', '1inch'],
+  ])('%j → %j', (input, expected) => {
+    expect(normalizeKey(input)).toBe(expected);
   });
 
-  it('resolves mono variant by chain ID', () => {
-    expect(resolveChainExportName({ chainId: 1, variant: 'mono' })).toBe(
-      'EthereumMono',
-    );
+  it('is idempotent', () => {
+    for (const key of ['Arbitrum Nova', 'Ether.fi', 'polkadot_js']) {
+      expect(normalizeKey(normalizeKey(key))).toBe(normalizeKey(key));
+    }
+  });
+});
+
+describe('lookupBy', () => {
+  const lookup = lookupBy(
+    Object.fromEntries([
+      ['arbitrum-nova', 'ArbitrumNova'],
+      ['ETH', 'Eth'],
+    ]),
+  );
+
+  it('normalizes both the keys and the identifier', () => {
+    expect(lookup('arbitrum-nova')).toBe('ArbitrumNova');
+    expect(lookup('Arbitrum Nova')).toBe('ArbitrumNova');
+    expect(lookup('ARBITRUM_NOVA')).toBe('ArbitrumNova');
+    expect(lookup('arbitrumnova')).toBe('ArbitrumNova');
+    expect(lookup('eth')).toBe('Eth');
+    expect(lookup(' E.T.H ')).toBe('Eth');
+  });
+
+  it('resolves nothing for unknown keys and non-strings', () => {
+    expect(lookup('arbitrum')).toBeUndefined();
+    expect(lookup('')).toBeUndefined();
+    for (const value of [undefined, null, 1, {}, ['eth']]) {
+      expect(lookup(value)).toBeUndefined();
+    }
+  });
+
+  it('does not resolve inherited object keys', () => {
+    expect(lookup('constructor')).toBeUndefined();
+    expect(lookup('__proto__')).toBeUndefined();
+  });
+});
+
+describe('resolveChain', () => {
+  it('resolves by chain ID', () => {
+    expect(resolveChain({ chainId: 1 })).toBe('Ethereum');
+    expect(resolveChain({ chainId: 42_161 })).toBe('Arbitrum');
+    expect(resolveChain({ chainId: 42_170 })).toBe('ArbitrumNova');
   });
 
   it('resolves by slug', () => {
-    expect(resolveChainExportName({ name: 'ethereum' })).toBe('Ethereum');
-    expect(resolveChainExportName({ name: 'solana' })).toBe('Solana');
-    expect(resolveChainExportName({ name: 'Arbitrum' })).toBe('Arbitrum');
+    expect(resolveChain({ name: 'ethereum' })).toBe('Ethereum');
+    expect(resolveChain({ name: 'Arbitrum Nova' })).toBe('ArbitrumNova');
+    expect(resolveChain({ name: 'arbitrum-one' })).toBe('ArbitrumOne');
   });
 
-  it('chainId takes precedence over name', () => {
-    expect(resolveChainExportName({ chainId: 1, name: 'solana' })).toBe(
-      'Ethereum',
-    );
+  it('lets a known chain ID take precedence over name', () => {
+    expect(resolveChain({ chainId: 1, name: 'solana' })).toBe('Ethereum');
   });
 
-  it('returns null for unknown identifiers', () => {
-    expect(resolveChainExportName({ chainId: 999_999 })).toBeNull();
-    expect(resolveChainExportName({ name: 'notachain' })).toBeNull();
-    expect(resolveChainExportName({})).toBeNull();
-  });
-});
-
-describe('resolveCoinExportName', () => {
-  it('resolves by uppercase ticker', () => {
-    expect(resolveCoinExportName({ symbol: 'ETH' })).toBe('Eth');
-    expect(resolveCoinExportName({ symbol: 'BTC' })).toBe('Btc');
+  it('falls back to name when the chain ID is unknown', () => {
+    expect(resolveChain({ chainId: 999_999, name: 'solana' })).toBe('Solana');
+    expect(resolveChain({ chainId: Number.NaN, name: 'base' })).toBe('Base');
   });
 
-  it('is case-insensitive', () => {
-    expect(resolveCoinExportName({ symbol: 'eth' })).toBe('Eth');
-    expect(resolveCoinExportName({ symbol: 'Sol' })).toBe('Sol');
+  it('resolves nothing when neither identifier is known', () => {
+    expect(resolveChain({ chainId: 999_999 })).toBeUndefined();
+    expect(resolveChain({ chainId: 999_999, name: 'nope' })).toBeUndefined();
+    expect(resolveChain({ name: 'notachain' })).toBeUndefined();
+    expect(resolveChain({})).toBeUndefined();
   });
 
-  it('resolves mono variant', () => {
-    expect(resolveCoinExportName({ symbol: 'ETH', variant: 'mono' })).toBe(
-      'EthMono',
-    );
-  });
-
-  it('returns null for unknown ticker', () => {
-    expect(resolveCoinExportName({ symbol: 'NOTACOIN' })).toBeNull();
+  it('accepts a decimal chain ID string from untyped data', () => {
+    expect(resolveChainId('8453')).toBe('Base');
+    expect(resolveChainId('0x2105')).toBeUndefined();
+    expect(resolveChainId(null)).toBeUndefined();
+    expect(resolveChainId({})).toBeUndefined();
   });
 });
 
-describe('resolveWalletExportName', () => {
-  it('resolves known wallets', () => {
-    expect(resolveWalletExportName({ name: 'metamask' })).toBe('MetaMask');
-    expect(resolveWalletExportName({ name: 'rabby' })).toBe('Rabby');
-    expect(resolveWalletExportName({ name: 'ledger' })).toBe('Ledger');
-  });
-
-  it('is case-insensitive', () => {
-    expect(resolveWalletExportName({ name: 'MetaMask' })).toBe('MetaMask');
-    expect(resolveWalletExportName({ name: 'RABBY' })).toBe('Rabby');
-  });
-
-  it('resolves mono variant', () => {
-    expect(resolveWalletExportName({ name: 'metamask', variant: 'mono' })).toBe(
-      'MetaMaskMono',
-    );
-  });
-
-  it('returns null for unknown wallet', () => {
-    expect(resolveWalletExportName({ name: 'notawallet' })).toBeNull();
-  });
-});
-
-describe('resolveExchangeExportName', () => {
-  it('resolves known exchanges', () => {
-    expect(resolveExchangeExportName({ name: 'binance' })).toBe('Binance');
-    expect(resolveExchangeExportName({ name: 'coinbase' })).toBe('Coinbase');
-    expect(resolveExchangeExportName({ name: 'kraken' })).toBe('Kraken');
-  });
-
-  it('is case-insensitive', () => {
-    expect(resolveExchangeExportName({ name: 'Binance' })).toBe('Binance');
-    expect(resolveExchangeExportName({ name: 'KRAKEN' })).toBe('Kraken');
-  });
-
-  it('resolves mono variant', () => {
-    expect(
-      resolveExchangeExportName({ name: 'binance', variant: 'mono' }),
-    ).toBe('BinanceMono');
-  });
-
-  it('returns null for unknown exchange', () => {
-    expect(resolveExchangeExportName({ name: 'notanexchange' })).toBeNull();
+describe('category lookups', () => {
+  it.each([
+    [resolveTicker, 'eth', 'Eth'],
+    [resolveTicker, 'Sol', 'Sol'],
+    [resolveWalletSlug, 'MetaMask', 'MetaMask'],
+    [resolveWalletSlug, 'Trust Wallet', 'TrustWallet'],
+    [resolveExchangeSlug, 'Crypto.com', 'CryptoCom'],
+    [resolveExchangeSlug, 'Gate.io', 'Gateio'],
+    [resolveDefiSlug, 'ether.fi', 'EtherFi'],
+    [resolveDefiSlug, 'ether-fi', 'EtherFi'],
+    [resolveDefiSlug, 'Rocket Pool', 'RocketPool'],
+    [resolveDexSlug, 'cow_protocol', 'CowProtocol'],
+    // Before #813 only the DeFi lookup stripped "." and "-".
+    [resolveBridgeSlug, 'layer-zero', 'LayerZero'],
+    [resolveBridgeSlug, 'hop-protocol', 'HopProtocol'],
+    [resolveOracleSlug, 'RedStone', 'RedStone'],
+    [resolveChainSlug, 'Cosmos Hub', 'CosmosHub'],
+  ] as const)('%o(%j) → %j', (lookup: Lookup, input, expected) => {
+    expect(lookup(input)).toBe(expected);
   });
 });
 
-describe('resolveDefiExportName', () => {
-  it('resolves known protocols', () => {
-    expect(resolveDefiExportName({ name: 'aave' })).toBe('Aave');
-    expect(resolveDefiExportName({ name: 'lido' })).toBe('Lido');
-    expect(resolveDefiExportName({ name: 'eigenlayer' })).toBe('EigenLayer');
-  });
-
-  it('is case-insensitive', () => {
-    expect(resolveDefiExportName({ name: 'Aave' })).toBe('Aave');
-    expect(resolveDefiExportName({ name: 'LIDO' })).toBe('Lido');
-  });
-
-  it('resolves mono variant', () => {
-    expect(resolveDefiExportName({ name: 'aave', variant: 'mono' })).toBe(
-      'AaveMono',
-    );
-  });
-
-  it('returns null for unknown protocol', () => {
-    expect(resolveDefiExportName({ name: 'notadefi' })).toBeNull();
-  });
-
-  it('normalizes dots and hyphens in protocol names', () => {
-    expect(resolveDefiExportName({ name: 'ether.fi' })).toBe('EtherFi');
-    expect(resolveDefiExportName({ name: 'ether-fi' })).toBe('EtherFi');
-    expect(resolveDefiExportName({ name: 'etherfi' })).toBe('EtherFi');
-  });
-});
-
-describe('resolveDexExportName', () => {
-  it('resolves known DEXes', () => {
-    expect(resolveDexExportName({ name: 'uniswap' })).toBe('Uniswap');
-    expect(resolveDexExportName({ name: 'sushiswap' })).toBe('SushiSwap');
-    expect(resolveDexExportName({ name: 'jupiter' })).toBe('Jupiter');
-  });
-
-  it('is case-insensitive', () => {
-    expect(resolveDexExportName({ name: 'Uniswap' })).toBe('Uniswap');
-    expect(resolveDexExportName({ name: 'JUPITER' })).toBe('Jupiter');
-  });
-
-  it('resolves mono variant', () => {
-    expect(resolveDexExportName({ name: 'uniswap', variant: 'mono' })).toBe(
-      'UniswapMono',
-    );
-  });
-
-  it('returns null for unknown DEX', () => {
-    expect(resolveDexExportName({ name: 'notadex' })).toBeNull();
+/**
+ * Connector ids as wallet libraries report them (wagmi `connector.id`,
+ * RainbowKit wallet ids, CIP-30 keys) resolve to the wallet's icon.
+ */
+describe('wallet connector ids', () => {
+  it.each([
+    ['metaMask', 'MetaMask'],
+    ['metaMaskSDK', 'MetaMask'],
+    ['io.metamask', undefined],
+    ['coinbaseWallet', 'CoinbaseWallet'],
+    ['coinbaseWalletSDK', 'CoinbaseWallet'],
+    ['coinbase', 'CoinbaseWallet'],
+    ['walletConnect', 'WalletConnect'],
+    ['wc', 'WalletConnect'],
+    ['safe', 'Safe'],
+    ['phantom', 'PhantomWallet'],
+    ['rainbow', 'RainbowWallet'],
+    ['okx', 'OKXWallet'],
+    ['okxWallet', 'OKXWallet'],
+    ['backpack', 'BackpackWallet'],
+    ['trust', 'TrustWallet'],
+    ['bitget', 'BitgetWallet'],
+    ['bitKeep', 'BitgetWallet'],
+    ['uniswap', 'UniswapWallet'],
+    ['rabby', 'Rabby'],
+    ['zerion', 'Zerion'],
+    ['ledger', 'Ledger'],
+    ['imToken', 'ImToken'],
+    ['subWallet', 'SubWallet'],
+    ['argentX', 'Argent'],
+    ['polkadot-js', 'PolkadotJs'],
+    ['nami', 'NamiWallet'],
+    ['yoroi', 'YoroiWallet'],
+    ['daedalus', 'DaedalusWallet'],
+  ])('%j → %j', (id, expected) => {
+    expect(resolveWalletSlug(id)).toBe(expected);
   });
 });
 
-describe('resolveBridgeExportName', () => {
-  it('resolves known bridges', () => {
-    expect(resolveBridgeExportName({ name: 'layerzero' })).toBe('LayerZero');
-    expect(resolveBridgeExportName({ name: 'wormhole' })).toBe('Wormhole');
-    expect(resolveBridgeExportName({ name: 'across' })).toBe('Across');
-  });
+const DYNAMIC_LOOKUPS = {
+  bridge: [BRIDGE_SLUG_TO_NAME, resolveBridgeSlug],
+  chain: [CHAIN_SLUG_TO_NAME, resolveChainSlug],
+  coin: [TICKER_TO_COIN, resolveTicker],
+  defi: [DEFI_SLUG_TO_NAME, resolveDefiSlug],
+  dex: [DEX_SLUG_TO_NAME, resolveDexSlug],
+  exchange: [EXCHANGE_SLUG_TO_NAME, resolveExchangeSlug],
+  oracle: [ORACLE_SLUG_TO_NAME, resolveOracleSlug],
+  wallet: [WALLET_SLUG_TO_NAME, resolveWalletSlug],
+} as const satisfies Partial<
+  Record<IconCategory, readonly [Readonly<Record<string, string>>, Lookup]>
+>;
 
-  it('is case-insensitive', () => {
-    expect(resolveBridgeExportName({ name: 'LayerZero' })).toBe('LayerZero');
-    expect(resolveBridgeExportName({ name: 'WORMHOLE' })).toBe('Wormhole');
-  });
+type DynamicCategory = keyof typeof DYNAMIC_LOOKUPS;
 
-  it('resolves mono variant', () => {
-    expect(
-      resolveBridgeExportName({ name: 'layerzero', variant: 'mono' }),
-    ).toBe('LayerZeroMono');
-  });
+function isDynamicCategory(
+  category: IconCategory,
+): category is DynamicCategory {
+  return Object.hasOwn(DYNAMIC_LOOKUPS, category);
+}
 
-  it('returns null for unknown bridge', () => {
-    expect(resolveBridgeExportName({ name: 'notabridge' })).toBeNull();
-  });
-});
+/** Spellings of a key that normalize to it. */
+function spellings(key: string): string[] {
+  const spaced = key.replace(/-/g, ' ');
+  return [
+    key,
+    key.toUpperCase(),
+    key.toLowerCase(),
+    ` ${spaced} `,
+    key.replace(/-/g, '_'),
+    key.replace(/-/g, ''),
+  ];
+}
 
-describe('resolveOracleExportName', () => {
-  it('resolves known oracles', () => {
-    expect(resolveOracleExportName({ name: 'pyth' })).toBe('Pyth');
-    expect(resolveOracleExportName({ name: 'band' })).toBe('Band');
-    expect(resolveOracleExportName({ name: 'api3' })).toBe('Api3');
-    expect(resolveOracleExportName({ name: 'redstone' })).toBe('RedStone');
-  });
-
-  it('is case-insensitive', () => {
-    expect(resolveOracleExportName({ name: 'Pyth' })).toBe('Pyth');
-    expect(resolveOracleExportName({ name: 'BAND' })).toBe('Band');
-  });
-
-  it('resolves mono variant', () => {
-    expect(resolveOracleExportName({ name: 'pyth', variant: 'mono' })).toBe(
-      'PythMono',
-    );
-  });
-
-  it('returns null for unknown oracle', () => {
-    expect(resolveOracleExportName({ name: 'notanoracle' })).toBeNull();
-  });
-});
-
-// Every identifier in the meta maps must resolve to its mapped export, in any
-// letter case. meta.test.ts checks that each mapped name is exported, and
-// dynamic-imports.test.ts that each export is loadable.
-const RESOLVERS = [
-  ['chain slug', CHAIN_SLUG_TO_NAME, name => resolveChainExportName({ name })],
-  ['coin ticker', TICKER_TO_COIN, symbol => resolveCoinExportName({ symbol })],
-  ['wallet', WALLET_SLUG_TO_NAME, name => resolveWalletExportName({ name })],
-  [
-    'exchange',
-    EXCHANGE_SLUG_TO_NAME,
-    name => resolveExchangeExportName({ name }),
-  ],
-  ['defi', DEFI_SLUG_TO_NAME, name => resolveDefiExportName({ name })],
-  ['dex', DEX_SLUG_TO_NAME, name => resolveDexExportName({ name })],
-  ['bridge', BRIDGE_SLUG_TO_NAME, name => resolveBridgeExportName({ name })],
-  ['oracle', ORACLE_SLUG_TO_NAME, name => resolveOracleExportName({ name })],
-] as const satisfies readonly (readonly [
-  string,
-  Readonly<Record<string, string>>,
-  (id: string) => string | null,
-])[];
-
-describe.each(RESOLVERS)(
-  'every %s in the meta map resolves',
-  (_k, map, resolve) => {
-    it.each(Object.entries(map))('%s → %s', (id, name) => {
-      expect(resolve(id)).toBe(name);
-      expect(resolve(id.toUpperCase())).toBe(name);
-      expect(resolve(id.toLowerCase())).toBe(name);
+// Every key of the meta maps resolves to its mapped export in any spelling
+// that normalizes to it. meta.test.ts checks that each mapped name is
+// exported, and dynamic-imports.test.ts that each export is loadable.
+describe.each(Object.entries(DYNAMIC_LOOKUPS))(
+  'every %s key in the meta map resolves',
+  (_category, [map, lookup]) => {
+    it.each(Object.entries(map))('%s → %s', (key, name) => {
+      for (const spelling of spellings(key)) {
+        expect(lookup(spelling), spelling).toBe(name);
+      }
     });
   },
 );
 
 describe('every chain ID in the meta map resolves', () => {
   it.each(Object.entries(CHAIN_ID_TO_NAME))('%s → %s', (id, name) => {
-    expect(resolveChainExportName({ chainId: Number(id) })).toBe(name);
+    expect(resolveChain({ chainId: Number(id) })).toBe(name);
   });
+});
+
+/**
+ * Manifest aliases are search terms; the generator requires each one of a
+ * dynamic category to be a lookup key of its own icon too, so it resolves
+ * to it. Aliases of a fully deprecated icon resolve to its replacement
+ * (chain `Fantom`'s `ftm` → `Sonic`).
+ */
+describe('every manifest alias of a dynamic category resolves', () => {
+  const entries = ICON_MANIFEST.flatMap(entry => {
+    const { category } = entry;
+    return isDynamicCategory(category)
+      ? (entry.aliases ?? []).map(alias => ({ entry, alias, category }))
+      : [];
+  });
+
+  it('covers the aliases', () => {
+    expect(entries.length).toBeGreaterThan(30);
+  });
+
+  it.each(entries)(
+    '$category alias $alias → $entry.name',
+    ({ entry, alias, category }) => {
+      const [, lookup] = DYNAMIC_LOOKUPS[category];
+      const resolved = lookup(alias);
+      if (entry.deprecated) {
+        expect(resolved).toBeDefined();
+      } else {
+        expect(resolved).toBe(entry.name);
+      }
+    },
+  );
 });

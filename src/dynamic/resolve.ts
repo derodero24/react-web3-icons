@@ -9,116 +9,67 @@ import {
   TICKER_TO_COIN,
   WALLET_SLUG_TO_NAME,
 } from '../meta';
+import { normalizeKey } from './normalize';
 
-type Variant = 'colored' | 'mono';
+/**
+ * Resolves an identifier to the export name of its icon (the lookup target,
+ * e.g. `'Ethereum'`), or `undefined`. Identifiers from untyped data that
+ * are not strings resolve to nothing.
+ */
+export type Lookup = (key: unknown) => string | undefined;
 
-function withVariant(baseName: string, variant: Variant): string {
-  return variant === 'mono' ? `${baseName}Mono` : baseName;
+/**
+ * A lookup through one `react-web3-icons/meta` map. Both its keys and the
+ * identifier go through {@link normalizeKey}; the generator guarantees that
+ * no two keys of a map normalize alike. The normalized table is built on
+ * first use, so a component that never renders costs nothing at startup.
+ */
+export function lookupBy(map: Readonly<Record<string, string>>): Lookup {
+  let table: ReadonlyMap<string, string> | undefined;
+  return key => {
+    if (typeof key !== 'string') {
+      return;
+    }
+    table ??= new Map(
+      Object.entries(map).map(([k, name]) => [normalizeKey(k), name]),
+    );
+    return table.get(normalizeKey(key));
+  };
 }
 
-export function resolveChainExportName(props: {
-  name?: string;
-  chainId?: number;
-  variant?: Variant;
-}): string | null {
-  const variant = props.variant ?? 'colored';
-  let baseName: string | undefined;
+export const resolveChainSlug: Lookup =
+  /* @__PURE__ */ lookupBy(CHAIN_SLUG_TO_NAME);
+export const resolveTicker: Lookup = /* @__PURE__ */ lookupBy(TICKER_TO_COIN);
+export const resolveWalletSlug: Lookup =
+  /* @__PURE__ */ lookupBy(WALLET_SLUG_TO_NAME);
+export const resolveExchangeSlug: Lookup = /* @__PURE__ */ lookupBy(
+  EXCHANGE_SLUG_TO_NAME,
+);
+export const resolveDefiSlug: Lookup =
+  /* @__PURE__ */ lookupBy(DEFI_SLUG_TO_NAME);
+export const resolveDexSlug: Lookup =
+  /* @__PURE__ */ lookupBy(DEX_SLUG_TO_NAME);
+export const resolveBridgeSlug: Lookup =
+  /* @__PURE__ */ lookupBy(BRIDGE_SLUG_TO_NAME);
+export const resolveOracleSlug: Lookup =
+  /* @__PURE__ */ lookupBy(ORACLE_SLUG_TO_NAME);
 
-  if (props.chainId !== undefined) {
-    baseName = Object.hasOwn(CHAIN_ID_TO_NAME, props.chainId)
-      ? CHAIN_ID_TO_NAME[props.chainId as keyof typeof CHAIN_ID_TO_NAME]
-      : undefined;
-  } else if (props.name) {
-    const slug = props.name.toLowerCase().trim();
-    baseName = Object.hasOwn(CHAIN_SLUG_TO_NAME, slug)
-      ? CHAIN_SLUG_TO_NAME[slug as keyof typeof CHAIN_SLUG_TO_NAME]
-      : undefined;
-  }
-
-  return baseName ? withVariant(baseName, variant) : null;
-}
-
-export function resolveCoinExportName(props: {
-  symbol: string;
-  variant?: Variant;
-}): string | null {
-  const variant = props.variant ?? 'colored';
-  const ticker = props.symbol.toUpperCase().trim();
-  const baseName = Object.hasOwn(TICKER_TO_COIN, ticker)
-    ? TICKER_TO_COIN[ticker as keyof typeof TICKER_TO_COIN]
+/** An EVM chain ID (a number, or its decimal string from untyped data). */
+export function resolveChainId(chainId: unknown): string | undefined {
+  return (typeof chainId === 'number' || typeof chainId === 'string') &&
+    Object.hasOwn(CHAIN_ID_TO_NAME, chainId)
+    ? CHAIN_ID_TO_NAME[chainId as keyof typeof CHAIN_ID_TO_NAME]
     : undefined;
-  return baseName ? withVariant(baseName, variant) : null;
 }
 
-export function resolveWalletExportName(props: {
-  name: string;
-  variant?: Variant;
-}): string | null {
-  const variant = props.variant ?? 'colored';
-  const slug = props.name.toLowerCase().trim();
-  const baseName = Object.hasOwn(WALLET_SLUG_TO_NAME, slug)
-    ? WALLET_SLUG_TO_NAME[slug as keyof typeof WALLET_SLUG_TO_NAME]
-    : undefined;
-  return baseName ? withVariant(baseName, variant) : null;
-}
-
-export function resolveExchangeExportName(props: {
-  name: string;
-  variant?: Variant;
-}): string | null {
-  const variant = props.variant ?? 'colored';
-  const slug = props.name.toLowerCase().trim();
-  const baseName = Object.hasOwn(EXCHANGE_SLUG_TO_NAME, slug)
-    ? EXCHANGE_SLUG_TO_NAME[slug as keyof typeof EXCHANGE_SLUG_TO_NAME]
-    : undefined;
-  return baseName ? withVariant(baseName, variant) : null;
-}
-
-export function resolveDefiExportName(props: {
-  name: string;
-  variant?: Variant;
-}): string | null {
-  const variant = props.variant ?? 'colored';
-  // Normalize dots and hyphens so e.g. "ether.fi" / "ether-fi" resolve to "etherfi"
-  const slug = props.name.toLowerCase().trim().replace(/[.-]/g, '');
-  const baseName = Object.hasOwn(DEFI_SLUG_TO_NAME, slug)
-    ? DEFI_SLUG_TO_NAME[slug as keyof typeof DEFI_SLUG_TO_NAME]
-    : undefined;
-  return baseName ? withVariant(baseName, variant) : null;
-}
-
-export function resolveDexExportName(props: {
-  name: string;
-  variant?: Variant;
-}): string | null {
-  const variant = props.variant ?? 'colored';
-  const slug = props.name.toLowerCase().trim();
-  const baseName = Object.hasOwn(DEX_SLUG_TO_NAME, slug)
-    ? DEX_SLUG_TO_NAME[slug as keyof typeof DEX_SLUG_TO_NAME]
-    : undefined;
-  return baseName ? withVariant(baseName, variant) : null;
-}
-
-export function resolveBridgeExportName(props: {
-  name: string;
-  variant?: Variant;
-}): string | null {
-  const variant = props.variant ?? 'colored';
-  const slug = props.name.toLowerCase().trim();
-  const baseName = Object.hasOwn(BRIDGE_SLUG_TO_NAME, slug)
-    ? BRIDGE_SLUG_TO_NAME[slug as keyof typeof BRIDGE_SLUG_TO_NAME]
-    : undefined;
-  return baseName ? withVariant(baseName, variant) : null;
-}
-
-export function resolveOracleExportName(props: {
-  name: string;
-  variant?: Variant;
-}): string | null {
-  const variant = props.variant ?? 'colored';
-  const slug = props.name.toLowerCase().trim();
-  const baseName = Object.hasOwn(ORACLE_SLUG_TO_NAME, slug)
-    ? ORACLE_SLUG_TO_NAME[slug as keyof typeof ORACLE_SLUG_TO_NAME]
-    : undefined;
-  return baseName ? withVariant(baseName, variant) : null;
+/**
+ * `<ChainIcon>`: by `chainId`, else by `name`. An unknown `chainId` falls
+ * back to `name`, so a chain this package has no ID for still renders when
+ * its slug is known.
+ */
+export function resolveChain(props: {
+  readonly chainId?: unknown;
+  readonly name?: unknown;
+}): string | undefined {
+  return resolveChainId(props.chainId) ?? resolveChainSlug(props.name);
 }

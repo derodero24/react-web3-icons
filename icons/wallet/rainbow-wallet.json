@@ -38,7 +38,8 @@
     }
   },
   "slugs": [
-    "rainbowwallet"
+    "rainbowwallet",
+    "rainbow"
   ],
   "props": {
     "withBackground": {

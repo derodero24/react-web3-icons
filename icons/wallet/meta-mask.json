@@ -38,6 +38,7 @@
     "metamask"
   ],
   "slugs": [
-    "metamask"
+    "metamask",
+    "metamask-sdk"
   ]
 }

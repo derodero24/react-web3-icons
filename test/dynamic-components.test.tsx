@@ -9,11 +9,18 @@ import { createRoot, type Root } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { LayerZero, LayerZeroMono } from '../src/bridge';
-import { Base, Ethereum, EthereumMono } from '../src/chain';
-import { Eth, EthMono } from '../src/coin';
+import {
+  ArbitrumNovaFlat,
+  Base,
+  Ethereum,
+  EthereumCircle,
+  EthereumMono,
+} from '../src/chain';
+import { BtcCircleMono, Eth, EthMono } from '../src/coin';
 import { Aave, AaveMono } from '../src/defi';
 import { Uniswap, UniswapMono } from '../src/dex';
 import * as dynamic from '../src/dynamic';
+import type { DynamicIconProps } from '../src/dynamic/DynamicIcon';
 import { bridgeImports } from '../src/dynamic/imports/bridge';
 import { chainImports } from '../src/dynamic/imports/chain';
 import { coinImports } from '../src/dynamic/imports/coin';
@@ -22,10 +29,15 @@ import { dexImports } from '../src/dynamic/imports/dex';
 import { exchangeImports } from '../src/dynamic/imports/exchange';
 import { oracleImports } from '../src/dynamic/imports/oracle';
 import { walletImports } from '../src/dynamic/imports/wallet';
-import { Binance, BinanceMono } from '../src/exchange';
+import { Binance, BinanceMono, BybitInverted } from '../src/exchange';
 import { Pyth, PythMono } from '../src/oracle';
 import type { IconProps } from '../src/utils';
-import { MetaMask, MetaMaskMono } from '../src/wallet';
+import {
+  BackpackWallet,
+  MetaMask,
+  MetaMaskMono,
+  PhantomWalletSymbolMono,
+} from '../src/wallet';
 
 /**
  * Renders every public component of `react-web3-icons/dynamic` through a
@@ -92,7 +104,7 @@ const described: DynamicName[] = [];
 
 /** Props every dynamic component accepts besides its identifier. */
 type SharedProps = Pick<
-  dynamic.ChainIconProps,
+  DynamicIconProps<string>,
   'variant' | 'fallback' | 'width' | 'className'
 >;
 
@@ -282,6 +294,121 @@ describe('ChainIcon by chain ID', () => {
       root.render(<dynamic.ChainIcon chainId={8453} name="ethereum" />);
     });
     expect(container.innerHTML).toBe(renderToStaticMarkup(<Base />));
+  });
+
+  it('falls back to name when chainId is unknown', async () => {
+    await preload(chainImports, 'Base');
+    const { container, root } = mount();
+    await act(() => {
+      root.render(<dynamic.ChainIcon chainId={999_999} name="base" />);
+    });
+    expect(container.innerHTML).toBe(renderToStaticMarkup(<Base />));
+  });
+});
+
+describe('variants', () => {
+  const cases: [
+    string,
+    () => ReactElement,
+    ComponentType,
+    ImportMap,
+    string,
+  ][] = [
+    [
+      'ChainIcon variant="Circle"',
+      () => <dynamic.ChainIcon name="ethereum" variant="Circle" />,
+      EthereumCircle,
+      chainImports,
+      'EthereumCircle',
+    ],
+    [
+      'ChainIcon of a variant lookup, variant="Flat"',
+      () => <dynamic.ChainIcon name="Arbitrum Nova" variant="Flat" />,
+      ArbitrumNovaFlat,
+      chainImports,
+      'ArbitrumNovaFlat',
+    ],
+    [
+      'CoinIcon variant="CircleMono"',
+      () => <dynamic.CoinIcon symbol="btc" variant="CircleMono" />,
+      BtcCircleMono,
+      coinImports,
+      'BtcCircleMono',
+    ],
+    [
+      'WalletIcon variant="SymbolMono"',
+      () => <dynamic.WalletIcon name="phantom" variant="SymbolMono" />,
+      PhantomWalletSymbolMono,
+      walletImports,
+      'PhantomWalletSymbolMono',
+    ],
+    [
+      'ExchangeIcon variant="Inverted"',
+      () => <dynamic.ExchangeIcon name="bybit" variant="Inverted" />,
+      BybitInverted,
+      exchangeImports,
+      'BybitInverted',
+    ],
+  ];
+
+  it.each(cases)('%s', async (_, element, Icon, imports, exportName) => {
+    await preload(imports, exportName);
+    const { container, root } = mount();
+    await act(() => {
+      root.render(element());
+    });
+    expect(container.innerHTML).toBe(renderToStaticMarkup(<Icon />));
+  });
+
+  it('renders the fallback when the icon lacks the variant', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(noop);
+    const { container, root } = mount();
+    act(() => {
+      root.render(
+        <dynamic.ChainIcon name="aptos" variant="Circle" fallback={FALLBACK} />,
+      );
+    });
+    expect(container.innerHTML).toBe(FALLBACK_HTML);
+    expect(warn).toHaveBeenCalledWith(
+      '[react-web3-icons] ChainIcon: Aptos has no "Circle" variant; rendering the fallback.',
+    );
+    warn.mockRestore();
+  });
+
+  it('renders the fallback for a variant the category does not ship', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(noop);
+    const { container, root } = mount();
+    act(() => {
+      root.render(
+        // @ts-expect-error DefiIcon has no Circle variant
+        <dynamic.DefiIcon name="aave" variant="Circle" fallback={FALLBACK} />,
+      );
+    });
+    expect(container.innerHTML).toBe(FALLBACK_HTML);
+    expect(warn).toHaveBeenCalledWith(
+      '[react-web3-icons] DefiIcon: unknown variant "Circle" (expected one of "colored", "mono"); rendering the fallback.',
+    );
+    warn.mockRestore();
+  });
+});
+
+describe('connector ids and aliases', () => {
+  it('resolves a wallet connector id', async () => {
+    await preload(walletImports, 'BackpackWallet');
+    const { container, root } = mount();
+    await act(() => {
+      root.render(<dynamic.WalletIcon name="backpack" />);
+    });
+    expect(container.innerHTML).toBe(renderToStaticMarkup(<BackpackWallet />));
+  });
+
+  it('resolves a manifest alias', async () => {
+    await preload(bridgeImports, 'LayerZero');
+    const { container, root } = mount();
+    await act(() => {
+      root.render(<dynamic.BridgeIcon name="LZ" />);
+    });
+    expect(container.innerHTML).toBe(renderToStaticMarkup(<LayerZero />));
   });
 });
 

@@ -191,7 +191,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'ArbitrumNovaFlat', category: 'chain' },
   { name: 'ArbitrumNovaFlatMono', category: 'chain' },
   { name: 'ArbitrumNovaMono', category: 'chain' },
-  { name: 'ArbitrumOne', category: 'chain' },
+  { name: 'ArbitrumOne', category: 'chain', slug: 'arbitrum-one' },
   { name: 'ArbitrumOneFlat', category: 'chain' },
   { name: 'ArbitrumOneFlatMono', category: 'chain' },
   { name: 'ArbitrumOneMono', category: 'chain' },

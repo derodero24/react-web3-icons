@@ -181,17 +181,25 @@ A unit declares two different kinds of names:
 
   Keys are never inferred from the file name or `name` (`coin/mon.json` is
   `Monad` with ticker `MON`; `coin/btc.json` is `Btc`), so every unit of
-  these categories lists its keys explicitly — a test fails for any
-  non-deprecated icon no key resolves to. A key must be unique within its
-  map (the generator fails otherwise), may not point at a deprecated export,
-  and the unit must also export `<Name>Mono`. Legacy names of a rebrand stay
-  as extra keys on the new unit (`"slugs": ["kaia", "klaytn"]`); the first key
-  of each field is the primary one the manifest lists. Keys of a non-default
-  variant go in `variantLookups` (`"Nova": { "chainIds": [42170] }` →
-  `ArbitrumNova`).
+  these categories lists its keys explicitly — the generator fails for any
+  non-deprecated export no key reaches (see below). A key must be unique
+  within its map, also after normalization (the dynamic components compare
+  keys lowercased, without whitespace, `.`, `-` and `_`, see
+  `src/dynamic/normalize.ts`, so `arbitrum-nova` and `arbitrumnova` would
+  collide), may not point at a deprecated export, and the unit must also
+  export `<Name>Mono`. Legacy names of a rebrand stay as extra keys on the
+  new unit (`"slugs": ["kaia", "klaytn"]`); the first key of each field is
+  the primary one the manifest lists. Keys of a non-default variant go in
+  `variantLookups` (`"Nova": { "chainIds": [42170] }` → `ArbitrumNova`).
+  Wallet connector ids (`phantom`, `metamask-sdk`, …) are slugs too, but
+  only on the unit that genuinely is that product.
 - **`aliases`** are extra lowercase search terms for the manifest (icon
-  pickers, fuzzy search). They are never resolved by the dynamic components
-  and need not be unique.
+  pickers, fuzzy search) and need not be unique. The dynamic components
+  resolve lookup keys only, so in the categories above every alias must also
+  normalize to a lookup key of its own unit (the generator fails otherwise;
+  add it to `slugs` / `tickers`). A unit whose exports are all deprecated
+  may point its aliases at the replacement's keys (`Fantom`'s `ftm` →
+  `Sonic`). In the other categories aliases are search terms only.
 
 ```json
 {
@@ -202,6 +210,18 @@ A unit declares two different kinds of names:
   "chainIds": [8217]
 }
 ```
+
+The dynamic components render a lookup target plus a `variant` suffix
+(`<ChainIcon name="ethereum" variant="CircleMono" />` → `EthereumCircleMono`).
+A target's variants are the unit's exports that start with its name, minus
+those of a longer target (`ArbitrumNovaMono` belongs to the `ArbitrumNova`
+target). Every suffix some target of a category has becomes a value of that
+category's `variant` type (`ChainVariant`, …), so give a group of variants
+that is really a different icon its own `variantLookups` keys (like
+`ArbitrumOne` / `arbitrum-one`) instead of letting `One` become a variant.
+The generated import maps (`src/dynamic/imports/`) list exactly these
+reachable exports, without deprecated ones.
+
 ### Extra props
 
 A unit can give its components extra props in a `props` map (prop name →

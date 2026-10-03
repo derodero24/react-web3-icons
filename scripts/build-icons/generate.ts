@@ -3,7 +3,7 @@
  *
  *   src/<category>/<Name>.tsx       one module per unit
  *   src/<category>/index.ts         the category barrel
- *   src/dynamic/imports/<cat>.ts    per-icon lazy import maps
+ *   src/dynamic/imports/<cat>.ts    per-icon lazy import maps and variants
  *   src/meta/index.ts               lookup maps (slugs, chain IDs, tickers)
  *   src/deprecated.ts               DEPRECATED_ICON_NAMES
  *   src/manifest/index.ts           ICON_MANIFEST
@@ -11,11 +11,11 @@
  */
 
 import { join } from 'node:path';
+import { collectDynamic, emitDynamicImports } from './dynamic.ts';
 import type { Formatter } from './format.ts';
 import {
   CATEGORIES,
   DYNAMIC_CATEGORIES,
-  emitDynamicImports,
   generateCategory,
   loadCategory,
   type SourceUnit,
@@ -45,14 +45,16 @@ export function generateIconSources(root: string, format: Formatter): Outputs {
       add(`src/${category}/${file}`, content);
     }
     add(`src/${category}/index.ts`, generated.indexTs);
-    if (DYNAMIC_CATEGORIES.includes(category)) {
-      add(
-        `src/dynamic/imports/${category}.ts`,
-        emitDynamicImports(category, units),
-      );
-    }
   }
+  // Lookups first: their checks (unique keys, Mono counterparts) are what
+  // the dynamic import maps rely on.
   add('src/meta/index.ts', emitMeta(collectLookups(allUnits)));
+  for (const category of DYNAMIC_CATEGORIES) {
+    add(
+      `src/dynamic/imports/${category}.ts`,
+      emitDynamicImports(collectDynamic(category, allUnits)),
+    );
+  }
   add('src/deprecated.ts', emitDeprecated(allUnits));
   add('src/manifest/index.ts', renderManifestModule(buildManifest(allUnits)));
   files.set(

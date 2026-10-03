@@ -272,7 +272,7 @@ That is fine for an icon browser, but it costs the full library size (see [Bundl
 
 ### Dynamic Icon Components
 
-The `react-web3-icons/dynamic` entry point provides components that lazily load icons at runtime by identifier (ticker, slug, or chain ID). Each icon is a separate dynamic `import()`, so with a bundler that splits dynamic imports into chunks (Vite, webpack, Rollup, and Next.js do by default) rendering one icon downloads one small chunk, not the whole category. The components are Client Components (`'use client'`) built on `React.lazy` and `Suspense`. The following categories have dedicated dynamic components:
+The `react-web3-icons/dynamic` entry point provides components that lazily load icons at runtime by identifier (ticker, slug, connector id, or chain ID). Each icon is a separate dynamic `import()`, so with a bundler that splits dynamic imports into chunks (Vite, webpack, Rollup, and Next.js do by default) rendering one icon downloads one small chunk, not the whole category. The components are Client Components (`'use client'`) built on `React.lazy` and `Suspense`. The following categories have dedicated dynamic components:
 
 ```tsx
 import { ChainIcon, CoinIcon, WalletIcon, ExchangeIcon, DefiIcon, DexIcon, BridgeIcon, OracleIcon } from 'react-web3-icons/dynamic';
@@ -288,15 +288,40 @@ import { ChainIcon, CoinIcon, WalletIcon, ExchangeIcon, DefiIcon, DexIcon, Bridg
 <OracleIcon name="pyth" />              // Pyth oracle icon
 ```
 
-Use the `variant` prop to switch between colored and monochrome:
+`chainId` takes precedence over `name`; an unknown `chainId` falls back to `name`, so `<ChainIcon chainId={chain.id} name={chain.slug} />` still renders for chains without a registered ID.
+
+#### Identifiers
+
+An identifier resolves through the lookup keys of the [metadata maps](#metadata-lookups) (slugs, tickers, chain IDs). Both sides are normalized the same way — lowercased, with whitespace, `.`, `-` and `_` removed — so `'Arbitrum Nova'`, `'arbitrum_nova'` and `'arbitrum-nova'` are the same key, as are `'Ether.fi'` / `'etherfi'`, `'Crypto.com'` / `'cryptocom'` and `'eth'` / `'ETH'`. No two keys of a category normalize alike, so an identifier never matches more than one icon.
+
+The keys include legacy names (`'klaytn'` → Kaia, `'fantom'` → Sonic), every search alias the [manifest](#icon-manifest) lists for these categories (`'btc'`, `'wc'`, `'1inch'`, …), and common wallet connector ids, so `<WalletIcon name={connector.id} />` works for wagmi and RainbowKit connectors such as `'metaMaskSDK'`, `'coinbaseWalletSDK'`, `'walletConnect'`, `'safe'`, `'phantom'`, `'rainbow'`, `'okx'`, `'backpack'`, `'trust'`, `'bitget'` or `'uniswap'`.
+
+Identifier props are typed as the known keys plus any string (`name?: ChainSlug | (string & {})`): editors suggest the keys, and strings from API data still type-check.
+
+#### Variants
+
+The `variant` prop selects the artwork: `'colored'` (the default), `'mono'`, or any variant suffix the category ships. Each category exports its variant union, so a typo is a type error:
+
+| Component | Variant type | Values besides `'colored'` and `'mono'` |
+| --- | --- | --- |
+| `ChainIcon` | `ChainVariant` | `'Circle'`, `'CircleMono'`, `'Flat'`, `'FlatMono'`, `'Square'`, `'SquareMono'` |
+| `CoinIcon` | `CoinVariant` | `'Alt'`, `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'` |
+| `WalletIcon` | `WalletVariant` | `'Alt'`, `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'`, `'Symbol'`, `'SymbolMono'` |
+| `ExchangeIcon` | `ExchangeVariant` | `'Circle'`, `'CircleAlt'`, `'CircleMono'`, `'Inverted'` |
+| `DexIcon` | `DexVariant` | `'Square'`, `'SquareMono'` |
+| `DefiIcon`, `BridgeIcon`, `OracleIcon` | `DefiVariant`, `BridgeVariant`, `OracleVariant` | — |
 
 ```tsx
-<CoinIcon symbol="BTC" variant="mono" />
+<CoinIcon symbol="BTC" variant="mono" />          // BtcMono
+<ChainIcon name="ethereum" variant="Circle" />     // EthereumCircle
+<WalletIcon name="phantom" variant="SquareMono" /> // PhantomWalletSquareMono
 ```
+
+Not every icon ships every variant of its category (see the manifest's `variants`); an icon without the requested variant renders `fallback`, and so does a variant the category does not know. Every icon of these categories has a `mono` variant.
 
 #### Fallback
 
-Use the `fallback` prop to render alternative content while the icon chunk is loading, when the identifier is not recognized (including `undefined`/`null` from untyped data), or when the chunk fails to load (a later render retries the import):
+Use the `fallback` prop to render alternative content while the icon chunk is loading, when the identifier is not recognized (including `undefined`/`null` from untyped data), when the icon has no such variant, or when the chunk fails to load (a later render retries the import):
 
 ```tsx
 <CoinIcon symbol={token.symbol} fallback={<GenericTokenIcon />} />
@@ -305,7 +330,7 @@ Use the `fallback` prop to render alternative content while the icon chunk is lo
 
 When omitted, nothing is rendered for unknown identifiers and during loading.
 
-Other icon props (`size`, `title`, `className`, `fill`, etc.) and `ref` are forwarded to the loaded icon's `<svg>`. In development builds, unknown identifiers and failed loads log a `console.warn` once; production builds strip these warnings.
+Other icon props (`size`, `title`, `className`, `fill`, etc.) and `ref` are forwarded to the loaded icon's `<svg>`. In development builds, unknown identifiers, unknown or missing variants and failed loads log a `console.warn` once; production builds strip these warnings.
 
 ### Metadata Lookups
 

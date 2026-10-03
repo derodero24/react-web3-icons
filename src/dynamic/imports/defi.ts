@@ -2,7 +2,11 @@
 // Regenerate: pnpm run generate-icons
 // biome-ignore-all lint/style/useNamingConvention: keys are icon export names (PascalCase)
 
-/** Per-icon lazy import map for the defi category. */
+/**
+ * Per-icon lazy import map for the DeFi category: every export
+ * `<DefiIcon>` can render (a lookup target plus a variant suffix),
+ * and nothing else.
+ */
 export const defiImports: Record<
   string,
   () => Promise<Record<string, unknown>>
@@ -54,3 +58,16 @@ export const defiImports: Record<
   Yearn: () => import('../../defi/Yearn'),
   YearnMono: () => import('../../defi/Yearn'),
 };
+
+/**
+ * Variant suffixes `<DefiIcon variant>` accepts besides `'colored'`
+ * and `'mono'`: every one that some DeFi icon ships.
+ */
+export const defiVariants: readonly string[] = [];
+
+/**
+ * `variant` of `<DefiIcon>`: `'colored'` (the default) and `'mono'`,
+ * plus every variant suffix some DeFi icon ships. An icon without
+ * the requested variant renders `fallback`.
+ */
+export type DefiVariant = 'colored' | 'mono';

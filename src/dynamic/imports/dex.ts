@@ -2,7 +2,11 @@
 // Regenerate: pnpm run generate-icons
 // biome-ignore-all lint/style/useNamingConvention: keys are icon export names (PascalCase)
 
-/** Per-icon lazy import map for the dex category. */
+/**
+ * Per-icon lazy import map for the DEX category: every export
+ * `<DexIcon>` can render (a lookup target plus a variant suffix),
+ * and nothing else.
+ */
 export const dexImports: Record<
   string,
   () => Promise<Record<string, unknown>>
@@ -42,3 +46,16 @@ export const dexImports: Record<
   Velodrome: () => import('../../dex/Velodrome'),
   VelodromeMono: () => import('../../dex/Velodrome'),
 };
+
+/**
+ * Variant suffixes `<DexIcon variant>` accepts besides `'colored'`
+ * and `'mono'`: every one that some DEX icon ships.
+ */
+export const dexVariants: readonly string[] = ['Square', 'SquareMono'];
+
+/**
+ * `variant` of `<DexIcon>`: `'colored'` (the default) and `'mono'`,
+ * plus every variant suffix some DEX icon ships. An icon without
+ * the requested variant renders `fallback`.
+ */
+export type DexVariant = 'colored' | 'mono' | 'Square' | 'SquareMono';
