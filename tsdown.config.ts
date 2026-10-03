@@ -25,9 +25,15 @@ export default defineConfig({
     'src/manifest/index.ts',
   ],
   format: ['esm'],
+  // Explicit because tsdown would otherwise infer a Node target from
+  // `engines`, which this browser library does not publish. Matches the
+  // language level declared in tsconfig.json.
+  target: 'es2022',
   unbundle: true,
-  dts: true,
-  sourcemap: true,
+  // Sourcemaps are not published: the `.d.mts.map` files would point at
+  // `src/`, which is not in the tarball, and the JS is already unminified.
+  dts: { sourcemap: false },
+  sourcemap: false,
   clean: true,
   deps: {
     neverBundle: ['react', 'react-dom', 'react/jsx-runtime'],
