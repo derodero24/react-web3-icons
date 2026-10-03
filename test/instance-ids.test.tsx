@@ -5,6 +5,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it } from 'vitest';
 import { Ens, Ethereum, HardhatMono, NftStorageMono } from '../src';
 import { createIcon } from '../src/utils';
+import { toSvgId } from '../src/utils/createIcon';
 import { isIconComponent } from './helpers/units';
 
 /**
@@ -202,5 +203,50 @@ describe('createIcon v4 form', () => {
   it('defaultFill stays optional', () => {
     const [svg] = render(<Unfilled />);
     expect(svg?.hasAttribute('fill')).toBe(false);
+  });
+});
+
+describe('useId normalization', () => {
+  it.each([
+    [':r1:', 'r1'],
+    ['«r1»', 'r1'],
+    ['_r_1_', 'r1'],
+    [':R1H1:', 'R1H1'],
+    ['_R_1H1_', 'R1H1'],
+    [':app-r1:', 'app-r1'],
+    ['_app-R_0_', 'app-R0'],
+    ['_x_', 'x'],
+    ['plain', 'plain'],
+  ])('maps %j to %j', (reactId, svgId) => {
+    expect(toSvgId(reactId)).toBe(svgId);
+  });
+
+  it('keeps distinct identifierPrefix values distinct on every React format', () => {
+    for (const [a, b] of [
+      ['app_one-', 'appone-'],
+      ['a:b', 'ab'],
+      ['a.b', 'a_2e_b'],
+    ] as const) {
+      expect(toSvgId(`_${a}R_1_`)).not.toBe(toSvgId(`_${b}R_1_`));
+      expect(toSvgId(`:${a}r1:`)).not.toBe(toSvgId(`:${b}r1:`));
+      // The same prefix maps alike across formats.
+      expect(toSvgId(`_${a}R_1_`)).toBe(toSvgId(`:${a}R1:`));
+    }
+  });
+
+  it('renders distinct ids for roots with distinct identifierPrefix values', () => {
+    const idsOf = (identifierPrefix: string): string[] =>
+      [
+        ...renderToStaticMarkup(<HardhatMono />, { identifierPrefix }).matchAll(
+          / id="([^"]+)"/g,
+        ),
+      ].map(([, id]) => id ?? '');
+    const one = idsOf('app_one-');
+    const other = idsOf('appone-');
+    expect(one.length).toBeGreaterThan(0);
+    expect(one.filter(id => other.includes(id))).toEqual([]);
+    for (const id of [...one, ...other]) {
+      expect(id).toMatch(/^[A-Za-z0-9_-]+$/);
+    }
   });
 });

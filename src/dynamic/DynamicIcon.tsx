@@ -149,6 +149,9 @@ export function createDynamicIcon(
           if (isIconComponent(icon)) {
             return { default: loaded(icon) };
           }
+          // A chunk without the export (e.g. deploy skew) is a failed load
+          // too: forget it so that the next render imports again.
+          cache.delete(exportName);
           warnInDevelopment(() => [
             exportName,
             `Icon "${exportName}" not found.`,

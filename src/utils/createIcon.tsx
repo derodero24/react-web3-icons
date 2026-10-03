@@ -62,15 +62,45 @@ function isOptionsForm(args: OptionsForm | LegacyForm): args is OptionsForm {
   return typeof args[3] === 'object';
 }
 
+/** Outer delimiters of `useId()` output per React version. */
+const USE_ID_DELIMITERS: Readonly<Record<string, string>> = {
+  ':': ':', // React 18, 19.0: `:<prefix>r1:`
+  '«': '»', // React 19.1: `«<prefix>r1»`
+  _: '_', // React 19.2+: `_<prefix>r_1_`
+};
+
 /**
  * Turns `useId()` output into an id that is valid unescaped in `url(#…)` and
- * `href="#…"` on every React version: React 18 and 19.0 return `:r1:`, 19.1
- * `«r1»` and 19.2+ `_r_1_`; all of them map to `r1`, so markup is also the
- * same across versions. React's own characters are `[A-Za-z0-9]`, so only
- * its delimiters (and any such characters in `identifierPrefix`) are dropped.
+ * `href="#…"` and the same on every React version: `:r1:`, `«r1»` and
+ * `_r_1_` all become `r1`.
+ *
+ * Only React's own delimiters are dropped: the outer pair, and in the 19.2+
+ * format the `_` before the counter (React's counters never contain `_`, so
+ * it is the last one). Any other character outside `[A-Za-z0-9-]`, which can
+ * only come from a consumer's `identifierPrefix`, is escaped as `_<hex>_`
+ * rather than dropped, so distinct prefixes (`app_one-`, `appone-`) keep
+ * producing distinct ids.
+ *
+ * @internal exported for tests
  */
-function toSvgId(reactId: string): string {
-  return reactId.replace(/[^A-Za-z0-9-]/g, '');
+export function toSvgId(reactId: string): string {
+  const open = reactId.charAt(0);
+  const close = USE_ID_DELIMITERS[open];
+  let inner = reactId;
+  if (close !== undefined && reactId.length >= 2 && reactId.endsWith(close)) {
+    inner = reactId.slice(1, -1);
+    if (open === '_') {
+      const separator = inner.lastIndexOf('_');
+      if (separator !== -1) {
+        inner = inner.slice(0, separator) + inner.slice(separator + 1);
+      }
+    }
+  }
+  // Per UTF-16 code unit, so the escape stays reversible for any input.
+  return inner.replace(
+    /[^A-Za-z0-9-]/g,
+    unit => `_${unit.charCodeAt(0).toString(16)}_`,
+  );
 }
 
 /**

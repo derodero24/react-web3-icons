@@ -168,6 +168,24 @@ describe('createDynamicIcon', () => {
       expect(load).toHaveBeenCalledTimes(2);
       expect(container.querySelector('svg[data-stub]')).not.toBeNull();
     });
+
+    it('retries a chunk that loaded without the export', async () => {
+      vi.spyOn(console, 'warn').mockImplementation(noop);
+      const load = vi
+        .fn<() => Promise<Readonly<Record<string, unknown>>>>()
+        .mockResolvedValueOnce({})
+        .mockResolvedValue({ Stub: StubIcon });
+      const Icon = dynamicIcon({ Stub: load });
+
+      const { container, rerender } = await render(
+        createElement(Icon, { name: 'a', fallback }),
+      );
+      expect(container.textContent).toBe('fallback');
+
+      await rerender(createElement(Icon, { name: 'b', fallback }));
+      expect(load).toHaveBeenCalledTimes(2);
+      expect(container.querySelector('svg[data-stub]')).not.toBeNull();
+    });
   });
 
   describe('development warnings', () => {
