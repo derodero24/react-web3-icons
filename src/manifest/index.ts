@@ -1022,7 +1022,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'defi',
     slug: 'balancer',
     variants: ['', 'Mono'],
-    brandColor: '#68acff',
+    brandColor: '#000000',
   },
   { name: 'BalancerMono', category: 'defi' },
   {

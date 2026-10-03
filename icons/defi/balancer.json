@@ -1,13 +1,17 @@
 {
   "name": "Balancer",
+  "source": [
+    "https://raw.githubusercontent.com/balancer/brand-assets/main/logo/no-container/logo-balancer-black.svg"
+  ],
   "notes": [
-    "Paths sourced from balancer/balancer-v2-monorepo logo.svg"
+    "Colored: the official brand-assets logo-balancer-black.svg. The current Balancer mark is monochrome (the brand-assets repo ships black and white only, and the v3 app draws it in currentColor); the old #68ACFF→#4851FF gradient was the retired v2 artwork",
+    "Mono: the same three paths in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "balancer.svg",
-      "fill": "none"
+      "fill": "#000"
     },
     "Mono": {
       "file": "balancer.mono.svg",
