@@ -8,7 +8,7 @@
  * `./svg/*` contract.
  *
  * Internal ids (gradients, masks, clip paths) are prefixed per file with
- * `w3i-<category>-<kebab-name>-`, so any number of these files can be inlined
+ * `w3i-<category>-<kebab-name>_`, so any number of these files can be inlined
  * into one page without their ids colliding.
  */
 

@@ -84,7 +84,7 @@ describe('IconifyJSON collections', () => {
 
   it('internal ids are namespaced per icon', () => {
     const icon = sets.mono.icons['chain-ethereum-circle-mono'];
-    expect(icon?.body).toContain('id="chain-ethereum-circle-mono-ethc-a"');
-    expect(icon?.body).toContain('url(#chain-ethereum-circle-mono-ethc-a)');
+    expect(icon?.body).toContain('id="chain-ethereum-circle-mono_ethc-a"');
+    expect(icon?.body).toContain('url(#chain-ethereum-circle-mono_ethc-a)');
   });
 });

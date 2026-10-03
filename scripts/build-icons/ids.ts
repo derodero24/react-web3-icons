@@ -24,9 +24,10 @@ export function collectIds(
 
 /**
  * `url(#id)` in any of its CSS spellings: `url('#id')`, `url("#id")`,
- * `url( #id )`. Group 2 is the id.
+ * `url( #id )`, and `URL(#id)` (CSS function names are ASCII
+ * case-insensitive; the id itself is not). Group 2 is the id.
  */
-const URL_REF = /url\(\s*(['"]?)#([^'"()\s]+)\1\s*\)/g;
+const URL_REF = /url\(\s*(['"]?)#([^'"()\s]+)\1\s*\)/gi;
 
 /** A reference to an internal id: the id and its offset in the value. */
 interface IdRef {
@@ -124,18 +125,30 @@ export function rewriteIdRefs(
   return out + render.text(value.slice(last));
 }
 
+/** Joins a namespace prefix and an original id; never part of a prefix. */
+const ID_SEPARATOR = '_';
+
 /**
- * Prefixes every internal id (and every reference to one) with `prefix-`,
+ * Prefixes every internal id (and every reference to one) with `prefix_`,
  * so several inlined icons never collide on a page.
+ *
+ * The prefix must not contain the separator: `prefix_id` then splits back
+ * into its parts at the first `_`, so distinct prefixes can never produce
+ * the same id (`foo` + `bar-a` vs `foo-bar` + `a`), whatever the source ids.
  */
 export function namespaceIds(
   node: XmlNode,
   prefix: string,
   ids: ReadonlySet<string> = collectIds(node),
 ): XmlNode {
+  if (prefix === '' || prefix.includes(ID_SEPARATOR)) {
+    throw new Error(
+      `id prefix ${JSON.stringify(prefix)} must be non-empty and must not contain "${ID_SEPARATOR}"`,
+    );
+  }
   const render: IdRefRenderer = {
     text: text => text,
-    id: id => `${prefix}-${id}`,
+    id: id => `${prefix}${ID_SEPARATOR}${id}`,
   };
   return {
     tag: node.tag,

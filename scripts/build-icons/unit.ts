@@ -259,11 +259,18 @@ const moduleSpecifier = text(
   /^(?:\.\/|\.\.\/[a-z]+\/)[A-Z][A-Za-z0-9]*$/,
   'a module specifier like ./Name or ../category/Name',
 );
-/** Emitted inside `// …` comments, so it must stay on one line. */
-const lines = arrayOf(text(/^[^\r\n]*$/, 'a single line of text'));
-/** Emitted inside a `@deprecated` JSDoc block, so it must not close it. */
+/**
+ * Emitted inside `// …` comments, so it must stay on one line. U+2028 and
+ * U+2029 are JavaScript line terminators too and would end the comment.
+ */
+const lines = arrayOf(text(/^[^\r\n\u2028\u2029]*$/, 'a single line of text'));
+/**
+ * Emitted inside a `@deprecated` JSDoc block, so it must not close it. The
+ * character class rejects every line terminator, so the `.*` lookahead (which
+ * stops at one) always sees the whole message.
+ */
 const message = text(
-  /^(?!.*\*\/)[^\r\n]+$/,
+  /^(?!.*\*\/)[^\r\n\u2028\u2029]+$/,
   'a non-empty single-line message without "*/"',
 );
 

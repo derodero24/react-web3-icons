@@ -15,16 +15,22 @@
  */
 
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { CATEGORIES, isCategory, kebab } from './build-icons/lib.ts';
+import {
+  CATEGORIES,
+  isCategory,
+  kebab,
+  validateSvg,
+} from './build-icons/lib.ts';
 import {
   createOptimizer,
   normalizeRoot,
   type Optimizer,
 } from './build-icons/normalize.ts';
 import {
+  assertUnitMeta,
   type IconUnitMeta,
   SCHEMA_REF,
   type Variant,
@@ -32,6 +38,11 @@ import {
 import { getAttr, parseSvg, serializeSvg } from './build-icons/xml.ts';
 
 const ROOT = resolve(import.meta.dirname, '..');
+
+function fail(error: unknown): never {
+  console.error(error instanceof Error ? error.message : String(error));
+  process.exit(1);
+}
 
 const USAGE =
   'Usage: pnpm run new-icon --category <category> --name <PascalName> --svg <file> [--mono <file>] [--source <url>]';
@@ -103,9 +114,10 @@ function ingest(
   try {
     const optimized = optimize(readFileSync(fromPath, 'utf-8'), fromPath);
     root = normalizeRoot(parseSvg(optimized, fromPath), isMono);
+    // The same checks the generator applies when it loads icons/.
+    validateSvg(root, getAttr(root, 'fill'));
   } catch (error) {
-    console.error(error instanceof Error ? error.message : String(error));
-    process.exit(1);
+    return fail(error);
   }
   const fill = getAttr(root, 'fill');
   return {
@@ -135,15 +147,45 @@ const meta: IconUnitMeta = {
   ),
 };
 
-// Every input was processed successfully; only now touch icons/.
+// Validate the unit exactly as the generator will (e.g. a root fill that is
+// not a hex color, or a multi-line --source), before anything is written.
+const metaJson = `${JSON.stringify(meta, null, 2)}\n`;
+try {
+  assertUnitMeta(JSON.parse(metaJson), `icons/${category}/${slug}.json`);
+} catch (error) {
+  fail(error);
+}
+
+// Every input was processed successfully; only now touch icons/. If the
+// generator still rejects the unit (it also checks it against the rest of
+// the category), remove the new files so a retry starts from a clean tree.
+const written = [
+  ...[...ingested.values()].map(({ variant }) => join(dir, variant.file)),
+  jsonPath,
+];
+const existing = written.find(path => existsSync(path));
+if (existing !== undefined) {
+  console.error(`${existing} already exists.`);
+  process.exit(1);
+}
 for (const { variant, svg } of ingested.values()) {
   writeFileSync(join(dir, variant.file), svg);
 }
-writeFileSync(jsonPath, `${JSON.stringify(meta, null, 2)}\n`);
-execFileSync(process.execPath, ['scripts/build-icons/cli.ts'], {
-  cwd: ROOT,
-  stdio: 'inherit',
-});
+writeFileSync(jsonPath, metaJson);
+try {
+  execFileSync(process.execPath, ['scripts/build-icons/cli.ts'], {
+    cwd: ROOT,
+    stdio: 'inherit',
+  });
+} catch {
+  for (const path of written) {
+    rmSync(path, { force: true });
+  }
+  console.error(
+    `Generation failed; removed the new files under icons/${category}/.`,
+  );
+  process.exit(1);
+}
 
 console.log(`
 Created icons/${category}/${slug}.{svg,json} and generated src/${category}/${name}.tsx.

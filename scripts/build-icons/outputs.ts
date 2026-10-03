@@ -9,7 +9,7 @@
  */
 
 import { readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { compareStrings } from './lib.ts';
 
@@ -32,25 +32,68 @@ export interface OutputChanges {
   readonly orphans: readonly string[];
 }
 
-function readIfExists(path: string): string | undefined {
-  try {
-    return readFileSync(path, 'utf-8');
-  } catch (error) {
-    if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
-      return undefined;
-    }
-    throw error;
-  }
+/**
+ * The file-system operations the sync needs, on absolute paths. Injectable
+ * so the case-insensitive behavior of macOS and Windows can be tested.
+ */
+export interface OutputFs {
+  /** File names in `dir` with their on-disk spelling (empty if missing). */
+  readonly listFiles: (dir: string) => readonly string[];
+  readonly read: (path: string) => string;
+  readonly write: (path: string, content: string) => void;
+  readonly remove: (path: string) => void;
 }
 
-export function diffOutputs(root: string, outputs: Outputs): OutputChanges {
+const isEnoent = (error: unknown): boolean =>
+  error instanceof Error && 'code' in error && error.code === 'ENOENT';
+
+export const nodeOutputFs: OutputFs = {
+  listFiles: dir => {
+    try {
+      return readdirSync(dir, { withFileTypes: true })
+        .filter(entry => entry.isFile())
+        .map(entry => entry.name);
+    } catch (error) {
+      if (isEnoent(error)) {
+        return [];
+      }
+      throw error;
+    }
+  },
+  read: path => readFileSync(path, 'utf-8'),
+  write: (path, content) => writeFileSync(path, content),
+  remove: path => rmSync(path),
+};
+
+/**
+ * Compares the generated files with the tree. A generated file counts as up
+ * to date only if its directory lists it with exactly that spelling: on a
+ * case-insensitive file system, `Foo.tsx` on disk would otherwise satisfy a
+ * generated `FOO.tsx` and the case-only rename would never be applied.
+ */
+export function diffOutputs(
+  root: string,
+  outputs: Outputs,
+  fs: OutputFs = nodeOutputFs,
+): OutputChanges {
+  const listings = new Map<string, ReadonlySet<string>>();
+  const listing = (dir: string): ReadonlySet<string> => {
+    let names = listings.get(dir);
+    if (names === undefined) {
+      names = new Set(fs.listFiles(join(root, dir)));
+      listings.set(dir, names);
+    }
+    return names;
+  };
+  const upToDate = (path: string, content: string): boolean =>
+    listing(dirname(path)).has(path.slice(dirname(path).length + 1)) &&
+    fs.read(join(root, path)) === content;
   const changed = [...outputs.files]
-    .filter(([path, content]) => readIfExists(join(root, path)) !== content)
+    .filter(([path, content]) => !upToDate(path, content))
     .map(([path]) => path);
   const orphans = outputs.ownedDirs.flatMap(dir =>
-    readdirSync(join(root, dir), { withFileTypes: true })
-      .filter(entry => entry.isFile())
-      .map(entry => `${dir}/${entry.name}`)
+    [...listing(dir)]
+      .map(name => `${dir}/${name}`)
       .filter(path => !(outputs.files.has(path) || outputs.keep.has(path))),
   );
   return {
@@ -59,19 +102,26 @@ export function diffOutputs(root: string, outputs: Outputs): OutputChanges {
   };
 }
 
+/**
+ * Removes the orphans, then writes the changed files. That order matters for
+ * a case-only rename (`Foo.tsx` → `FOO.tsx`) on a case-insensitive file
+ * system, where both names are one file: writing first and removing the old
+ * spelling afterwards would delete the freshly generated output.
+ */
 export function applyOutputs(
   root: string,
   outputs: Outputs,
   changes: OutputChanges,
+  fs: OutputFs = nodeOutputFs,
 ): void {
+  for (const path of changes.orphans) {
+    fs.remove(join(root, path));
+  }
   for (const path of changes.changed) {
     const content = outputs.files.get(path);
     if (content !== undefined) {
-      writeFileSync(join(root, path), content);
+      fs.write(join(root, path), content);
     }
-  }
-  for (const path of changes.orphans) {
-    rmSync(join(root, path));
   }
 }
 

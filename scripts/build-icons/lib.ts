@@ -110,16 +110,24 @@ export interface SourceUnit {
 }
 
 /**
+ * An SVG `<number>`: optional sign, decimal digits with an optional fraction,
+ * optional exponent. Stricter than `Number()`, which also accepts `""`,
+ * `0x18`, `Infinity` and the like.
+ */
+const SVG_NUMBER = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/;
+
+/**
  * `"minX minY width height"` (whitespace and/or comma separated) → its four
  * numbers, or `undefined` when malformed or of non-positive size.
  */
 export function parseViewBox(
   viewBox: string,
 ): readonly [number, number, number, number] | undefined {
-  const parts = viewBox
-    .trim()
-    .split(/\s*,\s*|\s+/)
-    .map(Number);
+  const tokens = viewBox.trim().split(/\s*,\s*|\s+/);
+  if (!tokens.every(token => SVG_NUMBER.test(token))) {
+    return undefined;
+  }
+  const parts = tokens.map(Number);
   const [left, top, width, height, ...rest] = parts;
   if (
     left === undefined ||
@@ -137,7 +145,7 @@ export function parseViewBox(
 }
 
 /** Checks what every emitter relies on: root attributes, viewBox, ids. */
-function validateSvg(root: XmlNode, fill: string | undefined): void {
+export function validateSvg(root: XmlNode, fill: string | undefined): void {
   for (const [name] of root.attrs) {
     if (!ROOT_ATTRS.includes(name)) {
       throw new Error(
@@ -192,10 +200,11 @@ function loadVariant(
 
 /**
  * Rejects two units or exports that would resolve to the same output: one
- * `<Name>.tsx` module, one `dist/svg/<category>/<Export>.svg` file, or one
+ * `<Name>.tsx` module, one `dist/svg/<category>/<Export>.svg` file, one
  * export name in the category barrel (where `export *` silently drops
  * conflicting names). Compared case-insensitively, since macOS and Windows
- * file systems are.
+ * file systems are; that also keeps kebab-case names (Iconify icon names,
+ * dist/svg id prefixes) unique, as `kebab` only inserts hyphens.
  */
 function assertUniqueOutputs(units: readonly SourceUnit[]): void {
   const modules = new Map<string, string>();

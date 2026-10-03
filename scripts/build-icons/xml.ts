@@ -32,6 +32,8 @@ const NAMED_ENTITIES: ReadonlyMap<string, string> = new Map([
 
 /** Every `&…;` reference, plus any bare `&` (which XML does not allow). */
 const REFERENCE = /&(?:#x[0-9A-Fa-f]+;|#\d+;|[A-Za-z]+;)?/g;
+/** What attribute-value decoding rewrites: a line break, a tab, a reference. */
+const ATTR_TOKEN = new RegExp(`\\r\\n|[\\t\\n\\r]|${REFERENCE.source}`, 'g');
 
 /** Whether `code` is a character XML 1.0 allows in a document. */
 function isXmlChar(code: number): boolean {
@@ -148,18 +150,28 @@ class Parser {
     return [name, value];
   }
 
-  /** Decodes the attribute value `text[start, end)`. */
+  /**
+   * Decodes the attribute value `text[start, end)` the way an XML processor
+   * does: literal tabs and line breaks become spaces (a CRLF pair counts as
+   * one break), while the same characters written as character references
+   * (`&#10;`) are kept.
+   */
   decodeValue(start: number, end: number): string {
     const raw = this.text.slice(start, end);
     const lt = raw.indexOf('<');
     if (lt !== -1) {
       throw this.error('"<" must be escaped in attribute values', start + lt);
     }
-    return raw.replace(REFERENCE, (ref: string, offset: number) => {
-      const decoded = decodeReference(ref);
+    // One pass over the raw text, so reference offsets stay exact and
+    // characters produced by a reference are never normalized.
+    return raw.replace(ATTR_TOKEN, (token: string, offset: number) => {
+      if (!token.startsWith('&')) {
+        return ' ';
+      }
+      const decoded = decodeReference(token);
       if (decoded === undefined) {
         throw this.error(
-          `invalid reference ${JSON.stringify(ref)} (write a literal "&" as "&amp;")`,
+          `invalid reference ${JSON.stringify(token)} (write a literal "&" as "&amp;")`,
           start + offset,
         );
       }
@@ -193,11 +205,19 @@ class Parser {
   }
 }
 
+/**
+ * Escapes a decoded attribute value for a double-quoted attribute. Tabs and
+ * line breaks are written as character references: a literal one would be
+ * normalized to a space by the next XML parser (see `decodeValue`).
+ */
 export function encodeAttr(value: string): string {
   return value
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
-    .replace(/"/g, '&quot;');
+    .replace(/"/g, '&quot;')
+    .replace(/\t/g, '&#9;')
+    .replace(/\n/g, '&#10;')
+    .replace(/\r/g, '&#13;');
 }
 
 /**

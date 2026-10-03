@@ -31,7 +31,11 @@ import {
   isSvgoNormalized,
   normalizeRoot,
 } from '../scripts/build-icons/normalize.ts';
-import { applyOutputs, diffOutputs } from '../scripts/build-icons/outputs.ts';
+import {
+  applyOutputs,
+  diffOutputs,
+  type OutputFs,
+} from '../scripts/build-icons/outputs.ts';
 import {
   assertUnitMeta,
   UNIT_JSON_SCHEMA,
@@ -96,6 +100,25 @@ describe('XML parser', () => {
     expect(root.attrs).toEqual([['a', 'AB\'"<>&']]);
   });
 
+  it('normalizes literal whitespace but keeps character references', () => {
+    const root = parseSvg('<svg a="1\r\n2\t3\n4\r5" b="x&#10;y&#9;z&#13;"/>');
+    expect(root.attrs).toEqual([
+      ['a', '1 2 3 4 5'],
+      ['b', 'x\ny\tz\r'],
+    ]);
+    const serialized = serializeSvg(root);
+    expect(serialized).toBe('<svg a="1 2 3 4 5" b="x&#10;y&#9;z&#13;"/>');
+    // Round trip through a parser that applies XML attribute normalization.
+    expect(parseSvg(serialized).attrs).toEqual(root.attrs);
+    expect(
+      emitRender(
+        parseSvg(
+          `<svg ${XMLNS} viewBox="0 0 24 24"><path data-label="a&#10;b" d="M0 0"/></svg>`,
+        ),
+      ).body,
+    ).toContain("data-label={'a\\nb'}");
+  });
+
   it('re-encodes decoded values once (no &amp;#10; double encoding)', () => {
     const root = parseSvg('<svg a="x &amp;lt; y &#38; z"/>');
     expect(serializeSvg(root)).toBe('<svg a="x &amp;lt; y &amp; z"/>');
@@ -134,8 +157,8 @@ describe('internal id references', () => {
     );
     expect(() => validateIds(root)).not.toThrow();
     const prefixed = serializeSvg(namespaceIds(root, 'p'));
-    expect(prefixed).toContain('id="p-g"');
-    expect(prefixed).toMatch(/url\(\s*(?:['"]|&quot;)?#p-g/);
+    expect(prefixed).toContain('id="p_g"');
+    expect(prefixed).toMatch(/url\(\s*(?:['"]|&quot;)?#p_g/);
     expect(emitRender(root).body).toMatch(/url\(\s*['"]?#\$\{_id\}-g/);
   });
 
@@ -143,7 +166,31 @@ describe('internal id references', () => {
     const root = parseSvg(
       `<svg ${XMLNS} viewBox="0 0 24 24" fill="url(#g)"><linearGradient id="g"/></svg>`,
     );
-    expect(serializeSvg(namespaceIds(root, 'p'))).toContain('fill="url(#p-g)"');
+    expect(serializeSvg(namespaceIds(root, 'p'))).toContain('fill="url(#p_g)"');
+  });
+
+  it.each(['URL(#g)', 'Url(#g)'])(
+    'treats the function name in %s case-insensitively',
+    ref => {
+      const root = parseSvg(
+        svg(`<defs><linearGradient id="g"/></defs><path fill="${ref}"/>`),
+      );
+      expect(() => validateIds(root)).not.toThrow();
+      expect(serializeSvg(namespaceIds(root, 'p'))).toContain(
+        `fill="${ref.slice(0, 4)}#p_g)"`,
+      );
+      expect(emitRender(root).body).toContain(`${ref.slice(0, 4)}#\${_id}-g)`);
+      // The id itself stays case-sensitive.
+      expect(() =>
+        validateIds(parseSvg(svg('<g id="G"/><path fill="URL(#g)"/>'))),
+      ).toThrow(/references undefined id "g"/);
+    },
+  );
+
+  it.each(['', 'a_b'])('rejects the id prefix %j', prefix => {
+    expect(() => namespaceIds(parseSvg(svg('')), prefix)).toThrow(
+      /must be non-empty and must not contain "_"/,
+    );
   });
 
   it.each([
@@ -235,6 +282,28 @@ describe('unit definitions', () => {
       { ...valid, source: ['a\nb'] },
       /source\[0\] must be a single line/,
     ],
+    ...['\u2028', '\u2029'].flatMap((separator): [string, object, RegExp][] => [
+      [
+        `a source with U+${separator.charCodeAt(0).toString(16).toUpperCase()}`,
+        { ...valid, source: [`ok${separator}globalThis.marker = 42;`] },
+        /source\[0\] must be a single line/,
+      ],
+      [
+        `notes with U+${separator.charCodeAt(0).toString(16).toUpperCase()}`,
+        { ...valid, notes: [`ok${separator}globalThis.marker = 42;`] },
+        /notes\[0\] must be a single line/,
+      ],
+      [
+        `a deprecation message with U+${separator.charCodeAt(0).toString(16).toUpperCase()}`,
+        {
+          ...valid,
+          deprecated: Object.fromEntries([
+            ['Foo', `ok${separator}*/ globalThis.marker = 42; /*`],
+          ]),
+        },
+        /deprecated\.Foo must be a non-empty single-line message/,
+      ],
+    ]),
     [
       'a path-traversing file',
       { ...valid, variants: { '': { file: '../x.svg' } } },
@@ -347,7 +416,21 @@ describe('loading icons/', () => {
 
   it('parses comma-separated viewBoxes', () => {
     expect(parseViewBox('0,0, 24 ,32')).toEqual([0, 0, 24, 32]);
-    expect(parseViewBox('0 0 24 x')).toBeUndefined();
+    expect(parseViewBox(' -1.5 +.5 2e1 24. ')).toEqual([-1.5, 0.5, 20, 24]);
+  });
+
+  it.each([
+    '0 0 24 x',
+    '0,,24,24',
+    '0 0 0x18 24',
+    '0 0 Infinity 24',
+    '0 0 24',
+    '0 0 24 24 1',
+    '0 0 0 24',
+    '0 0 24 -1',
+    '',
+  ])('rejects the viewBox %j', viewBox => {
+    expect(parseViewBox(viewBox)).toBeUndefined();
   });
 });
 
@@ -405,6 +488,77 @@ describe('output sync', () => {
     );
   });
 
+  /**
+   * An in-memory file system under `/r/gen`; case-insensitive like the
+   * macOS and Windows defaults when `foldCase` is set.
+   */
+  function memoryFs(
+    initial: Readonly<Record<string, string>>,
+    foldCase: boolean,
+  ): { readonly fs: OutputFs; readonly names: () => string[] } {
+    const key = (name: string): string =>
+      foldCase ? name.toLowerCase() : name;
+    // key → [on-disk spelling, content]
+    const files = new Map<string, [string, string]>(
+      Object.entries(initial).map(([name, content]) => [
+        key(name),
+        [name, content],
+      ]),
+    );
+    const nameOf = (path: string): string => {
+      if (!path.startsWith('/r/gen/')) {
+        throw new Error(`unexpected path ${path}`);
+      }
+      return path.slice('/r/gen/'.length);
+    };
+    return {
+      fs: {
+        listFiles: dir =>
+          dir === '/r/gen' ? [...files.values()].map(([name]) => name) : [],
+        read: path => {
+          const file = files.get(key(nameOf(path)));
+          if (file === undefined) {
+            throw new Error(`ENOENT ${path}`);
+          }
+          return file[1];
+        },
+        write: (path, content) => {
+          const name = nameOf(path);
+          // Writing through another spelling keeps the existing one.
+          const spelling = files.get(key(name))?.[0] ?? name;
+          files.set(key(name), [spelling, content]);
+        },
+        remove: path => {
+          files.delete(key(nameOf(path)));
+        },
+      },
+      names: () => [...files.values()].map(([name]) => name).sort(),
+    };
+  }
+
+  it.each([
+    ['case-sensitive', false],
+    ['case-insensitive', true],
+  ])('applies a case-only rename on a %s file system', (_, foldCase) => {
+    const renamed = {
+      files: new Map([['gen/FOO.ts', 'same\n']]),
+      ownedDirs: ['gen'],
+      keep: new Set<string>(),
+    };
+    const { fs, names } = memoryFs({ 'Foo.ts': 'same\n' }, foldCase);
+    const changes = diffOutputs('/r', renamed, fs);
+    expect(changes).toEqual({
+      changed: ['gen/FOO.ts'],
+      orphans: ['gen/Foo.ts'],
+    });
+    applyOutputs('/r', renamed, changes, fs);
+    expect(names()).toEqual(['FOO.ts']);
+    expect(diffOutputs('/r', renamed, fs)).toEqual({
+      changed: [],
+      orphans: [],
+    });
+  });
+
   it('the CLI parses its flags instead of regenerating on --help', () => {
     const cli = join(ROOT, 'scripts/build-icons/cli.ts');
     expect(
@@ -438,8 +592,37 @@ describe('published artifacts', () => {
     );
     const prefix = distSvgIdPrefix('chain', 'EthereumCircleMono');
     expect(prefix).toBe('w3i-chain-ethereum-circle-mono');
-    expect(svg).toContain(`id="${prefix}-ethc-a"`);
-    expect(svg).toContain(`url(#${prefix}-ethc-a)`);
+    expect(svg).toContain(`id="${prefix}_ethc-a"`);
+    expect(svg).toContain(`url(#${prefix}_ethc-a)`);
+  });
+
+  it('dist/svg and Iconify ids cannot collide across icons', () => {
+    // `foo` + `bar-a` and `foo-bar` + `a` joined with "-" would both give
+    // `…-foo-bar-a`.
+    const gradient = (id: string): string =>
+      `<svg ${XMLNS} viewBox="0 0 24 24"><linearGradient id="${id}"/><path fill="url(#${id})" d="M0 0"/></svg>`;
+    const iconsDir = join(
+      fixture({
+        'icons/chain/foo.json': iconUnit('Foo', ['', 'foo.svg']),
+        'icons/chain/foo.svg': gradient('bar-a'),
+        'icons/chain/foo-bar.json': iconUnit('FooBar', ['', 'foo-bar.svg']),
+        'icons/chain/foo-bar.svg': gradient('a'),
+      }),
+      'icons',
+    );
+    const ids = (text: string | undefined): string[] =>
+      [...(text ?? '').matchAll(/\sid="([^"]*)"/g)].map(([, id]) => id ?? '');
+    const svgs = buildDistSvgs(iconsDir);
+    const distIds = [
+      ...ids(svgs.get('chain/Foo.svg')),
+      ...ids(svgs.get('chain/FooBar.svg')),
+    ];
+    expect(distIds).toEqual(['w3i-chain-foo_bar-a', 'w3i-chain-foo-bar_a']);
+    const { icons } = buildIconifySets(iconsDir).colored;
+    expect([
+      ...ids(icons['chain-foo']?.body),
+      ...ids(icons['chain-foo-bar']?.body),
+    ]).toEqual(['chain-foo_bar-a', 'chain-foo-bar_a']);
   });
 
   it('Iconify info.height is the common height, or omitted', () => {

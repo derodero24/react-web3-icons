@@ -18,7 +18,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^[^\\r\\n]*$",
+            "pattern": "^[^\\r\\n\\u2028\\u2029]*$",
             "description": "a single line of text"
           }
         },
@@ -26,7 +26,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^[^\\r\\n]*$",
+            "pattern": "^[^\\r\\n\\u2028\\u2029]*$",
             "description": "a single line of text"
           }
         },
@@ -66,7 +66,7 @@
           },
           "additionalProperties": {
             "type": "string",
-            "pattern": "^(?!.*\\*\\/)[^\\r\\n]+$",
+            "pattern": "^(?!.*\\*\\/)[^\\r\\n\\u2028\\u2029]+$",
             "description": "a non-empty single-line message without \"*/\""
           }
         },
@@ -133,7 +133,7 @@
               },
               "deprecated": {
                 "type": "string",
-                "pattern": "^(?!.*\\*\\/)[^\\r\\n]+$",
+                "pattern": "^(?!.*\\*\\/)[^\\r\\n\\u2028\\u2029]+$",
                 "description": "a non-empty single-line message without \"*/\""
               }
             },
@@ -170,7 +170,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^[^\\r\\n]*$",
+            "pattern": "^[^\\r\\n\\u2028\\u2029]*$",
             "description": "a single line of text"
           }
         },
@@ -178,7 +178,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^[^\\r\\n]*$",
+            "pattern": "^[^\\r\\n\\u2028\\u2029]*$",
             "description": "a single line of text"
           }
         },
@@ -218,7 +218,7 @@
           },
           "additionalProperties": {
             "type": "string",
-            "pattern": "^(?!.*\\*\\/)[^\\r\\n]+$",
+            "pattern": "^(?!.*\\*\\/)[^\\r\\n\\u2028\\u2029]+$",
             "description": "a non-empty single-line message without \"*/\""
           }
         },
@@ -285,7 +285,7 @@
               },
               "deprecated": {
                 "type": "string",
-                "pattern": "^(?!.*\\*\\/)[^\\r\\n]+$",
+                "pattern": "^(?!.*\\*\\/)[^\\r\\n\\u2028\\u2029]+$",
                 "description": "a non-empty single-line message without \"*/\""
               }
             },
@@ -322,7 +322,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^[^\\r\\n]*$",
+            "pattern": "^[^\\r\\n\\u2028\\u2029]*$",
             "description": "a single line of text"
           }
         },
@@ -330,7 +330,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^[^\\r\\n]*$",
+            "pattern": "^[^\\r\\n\\u2028\\u2029]*$",
             "description": "a single line of text"
           }
         },
@@ -398,7 +398,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^[^\\r\\n]*$",
+            "pattern": "^[^\\r\\n\\u2028\\u2029]*$",
             "description": "a single line of text"
           }
         },
@@ -406,7 +406,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^[^\\r\\n]*$",
+            "pattern": "^[^\\r\\n\\u2028\\u2029]*$",
             "description": "a single line of text"
           }
         },
@@ -446,7 +446,7 @@
                   },
                   "deprecated": {
                     "type": "string",
-                    "pattern": "^(?!.*\\*\\/)[^\\r\\n]+$",
+                    "pattern": "^(?!.*\\*\\/)[^\\r\\n\\u2028\\u2029]+$",
                     "description": "a non-empty single-line message without \"*/\""
                   }
                 },

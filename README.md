@@ -145,7 +145,7 @@ react-web3-icons/svg/<category>/<Name>.svg
 import ethereumSvgUrl from 'react-web3-icons/svg/chain/Ethereum.svg';
 ```
 
-The files have no fixed `width`/`height`, so they scale to their container. Mono variants use `currentColor` and inherit CSS `color`. Internal ids (gradients, masks, clip paths) are prefixed per file (`w3i-<category>-<name>-…`), so any number of these files can be inlined into one page.
+The files have no fixed `width`/`height`, so they scale to their container. Mono variants use `currentColor` and inherit CSS `color`. Internal ids (gradients, masks, clip paths) are prefixed per file (`w3i-<category>-<name>_…`), so any number of these files can be inlined into one page.
 
 You can also hotlink them from a CDN without installing the package:
 

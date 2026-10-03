@@ -94,8 +94,9 @@ function styleObject(value: string, ids: ReadonlySet<string>): string {
  * are prefixed with the component's unique `_id` at runtime.
  *
  * Plain values stay JSX string attributes (`d="M0 0"`), except values with a
- * `&` or `"`: JSX decodes HTML entities inside string attributes, so those
- * are emitted as JS string expressions (`{'a &amp; b'}`), which it does not.
+ * `&` or `"` (JSX decodes HTML entities inside string attributes) or a tab or
+ * line break (which JSX would collapse): those are emitted as JS string
+ * expressions (`{'a &amp; b'}`), which keep every character as is.
  */
 function attrValue(
   name: string,
@@ -109,7 +110,7 @@ function attrValue(
   if (dynamic !== undefined) {
     return `{\`${dynamic}\`}`;
   }
-  return /[&"]/.test(value) ? `{${quote(value)}}` : `"${value}"`;
+  return /[&"\t\n\r]/.test(value) ? `{${quote(value)}}` : `"${value}"`;
 }
 
 function emitNode(
