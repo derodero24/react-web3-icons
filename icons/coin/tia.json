@@ -1,13 +1,19 @@
 {
   "name": "Tia",
   "source": [
-    "https://celestia.org"
+    "https://celestia.org/images/brand/celestia-symbol.svg (official Celestia brand page https://celestia.org/brand/)"
   ],
+  "notes": [
+    "Colored: the official celestia-symbol.svg unchanged (one evenodd path in Void #0E1014), placed on the 64 grid",
+    "Mono: the same path in currentColor; on dark backgrounds use TiaMono with a light color (the brand's own white symbol, celestia-symbol-white.svg, is this geometry in white)",
+    "brandColor: the symbol is near-black Void, so the manifest uses the palette's brand colour Indigo #5640D1 (celestia.org/brand: 'Indigo and Amethyst carry the brand')"
+  ],
+  "brandColor": "#5640d1",
   "kind": "icon",
   "variants": {
     "": {
       "file": "tia.svg",
-      "fill": "#7A2BF9"
+      "fill": "#0E1014"
     },
     "Mono": {
       "file": "tia.mono.svg",
