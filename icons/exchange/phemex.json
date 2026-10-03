@@ -1,7 +1,7 @@
 {
   "name": "Phemex",
   "source": [
-    "https://phemex.com (official brand)"
+    "https://static.phemex.com/s/home/logo/logo-black-newhome-v3.svg"
   ],
   "kind": "icon",
   "variants": {
@@ -15,5 +15,9 @@
   },
   "slugs": [
     "phemex"
+  ],
+  "notes": [
+    "Colored: the symbol (two slanted bars) and its #87EC26 to #59D9D9 linear gradient copied unchanged out of the official logo-black-newhome-v3.svg lockup served by phemex.com (the PHEMEX lettering is left out), placed on the 64 grid",
+    "Mono: the same symbol path in currentColor"
   ]
 }

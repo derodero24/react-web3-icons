@@ -1,13 +1,16 @@
 {
   "name": "Enkrypt",
   "source": [
-    "https://enkrypt.com"
+    "https://github.com/enkryptcom/enKrypt/blob/main/packages/extension/src/ui/action/icons/common/logo.vue (official Enkrypt extension repository, inline SVG logo)"
+  ],
+  "notes": [
+    "Colored: the E symbol path and its #C549FF to #704BFF radial gradient copied unchanged out of the official extension logo (the #684CFF wordmark is left out), placed on the 64 grid; the previous artwork was the same E flattened to #C54AFF",
+    "Mono: the same E path in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "enkrypt.svg",
-      "fill": "#C54AFF"
+      "file": "enkrypt.svg"
     },
     "Mono": {
       "file": "enkrypt.mono.svg",

@@ -1340,7 +1340,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'dex',
     slug: 'aerodrome',
     variants: ['', 'Mono'],
-    brandColor: '#e84125',
+    brandColor: '#0433ff',
   },
   { name: 'AerodromeMono', category: 'dex' },
   {
@@ -1374,7 +1374,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'dex',
     slug: 'ekubo',
     variants: ['', 'Mono'],
-    brandColor: '#661cc4',
+    brandColor: '#101010',
   },
   { name: 'EkuboMono', category: 'dex' },
   {
@@ -1407,7 +1407,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'oneinch',
     variants: ['', 'Mono'],
     aliases: ['1inch'],
-    brandColor: '#e82219',
+    brandColor: '#000000',
   },
   { name: 'OneinchMono', category: 'dex' },
   {
@@ -1450,7 +1450,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'sushiswap',
     variants: ['', 'Mono'],
     aliases: ['sushi'],
-    brandColor: '#fa52a0',
+    brandColor: '#27b0e6',
   },
   { name: 'SushiSwapMono', category: 'dex' },
   {
@@ -1466,7 +1466,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'dex',
     slug: 'velodrome',
     variants: ['', 'Mono'],
-    brandColor: '#db2264',
+    brandColor: '#ff1100',
   },
   { name: 'VelodromeMono', category: 'dex' },
   {
@@ -1602,7 +1602,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'kucoin',
     variants: ['', 'Mono'],
-    brandColor: '#23af91',
+    brandColor: '#00b47d',
   },
   { name: 'KuCoinMono', category: 'exchange' },
   {
@@ -1627,7 +1627,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'phemex',
     variants: ['', 'Mono'],
-    brandColor: '#13dafd',
+    brandColor: '#87ec26',
   },
   { name: 'PhemexMono', category: 'exchange' },
   {
@@ -1963,7 +1963,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'coinbasewallet',
     variants: ['', 'Circle', 'CircleMono', 'Square', 'SquareMono', 'Mono'],
-    brandColor: '#0052ff',
+    brandColor: '#0000ff',
   },
   { name: 'CoinbaseWalletCircle', category: 'wallet' },
   { name: 'CoinbaseWalletCircleMono', category: 'wallet' },
@@ -1983,7 +1983,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'enkrypt',
     variants: ['', 'Mono'],
-    brandColor: '#c54aff',
+    brandColor: '#c549ff',
   },
   { name: 'EnkryptMono', category: 'wallet' },
   {
@@ -2079,7 +2079,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
       'SquareMono',
       'SymbolMono',
     ],
-    brandColor: '#534bb1',
+    brandColor: '#ab9ff2',
   },
   { name: 'PhantomWalletCircle', category: 'wallet' },
   { name: 'PhantomWalletCircleMono', category: 'wallet' },
@@ -2172,7 +2172,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'trustwallet',
     variants: ['', 'Mono', 'Square', 'Circle', 'SquareMono', 'CircleMono'],
-    brandColor: '#0a64bc',
+    brandColor: '#0500ff',
   },
   { name: 'TrustWalletCircle', category: 'wallet' },
   { name: 'TrustWalletCircleMono', category: 'wallet' },
@@ -2184,7 +2184,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'uniswapwallet',
     variants: ['', 'Mono'],
-    brandColor: '#ffd8ea',
+    brandColor: '#f50db4',
   },
   { name: 'UniswapWalletMono', category: 'wallet' },
   {
@@ -2213,7 +2213,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'yoroiwallet',
     variants: ['', 'Mono'],
-    brandColor: '#1a44b7',
+    brandColor: '#4b63f6',
   },
   { name: 'YoroiWalletMono', category: 'wallet' },
   {

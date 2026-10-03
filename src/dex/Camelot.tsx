@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Camelot DEX shield/crest emblem extracted from camelot.exchange/img/logo.svg (official)
+// Source: https://app.camelot.exchange/favicon.svg
+// Source: https://camelot.exchange/img/logo.svg
+// Camelot shield/crest emblem extracted from the official camelot.exchange/img/logo.svg lockup; identical to the official app.camelot.exchange favicon.svg (checked 2026-10-03)
 // Orange outer shield (#f58b00) with cream inner detail bands (#fff3d4)
 /** Camelot DEX icon (colored). */
 export const Camelot = /* @__PURE__ */ createIcon(

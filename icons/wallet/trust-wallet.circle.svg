@@ -1,4 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <circle cx="32" cy="32" r="32" fill="#0a64bc"/>
-  <path fill="none" stroke="#fff" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4" d="M32.63 14c6.32 5.28 13.57 4.96 15.65 4.96-.46 30.03-3.91 24.08-15.65 32.5-11.74-8.42-15.18-2.47-15.63-32.5 2.05 0 9.3.32 15.63-4.96z"/>
+  <circle cx="32" cy="32" r="32" fill="#fff"/>
+  <g>
+    <path fill="#0500FF" d="M14.17 17.78 32 12v40c-12.74-5.33-17.83-15.56-17.83-21.33z"/>
+    <path fill="url(#twc-a)" d="M38.33 6.37 19.6.3v42c13.37-5.6 18.72-16.33 18.72-22.4z" transform="translate(13.33 11.71)scale(.95238)"/>
+  </g>
+  <defs>
+    <linearGradient id="twc-a" x1="33.35" x2="19.29" y1="-2.64" y2="41.75" gradientUnits="userSpaceOnUse">
+      <stop offset=".02" stop-color="#0000FF"/>
+      <stop offset=".08" stop-color="#0094FF"/>
+      <stop offset=".16" stop-color="#48FF91"/>
+      <stop offset=".42" stop-color="#0094FF"/>
+      <stop offset=".68" stop-color="#0038FF"/>
+      <stop offset=".9" stop-color="#0500FF"/>
+    </linearGradient>
+  </defs>
 </svg>
