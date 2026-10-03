@@ -128,7 +128,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'bridge',
     slug: 'synapse',
     variants: ['', 'Mono'],
-    brandColor: '#bc68ff',
+    brandColor: '#d24dff',
   },
   { name: 'SynapseMono', category: 'bridge' },
   {
