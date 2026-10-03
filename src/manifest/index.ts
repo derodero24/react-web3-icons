@@ -610,7 +610,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     slug: 'tron',
     variants: ['', 'Mono'],
-    brandColor: '#c4342b',
+    brandColor: '#ea0029',
   },
   { name: 'TronMono', category: 'chain' },
   {
