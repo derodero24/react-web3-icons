@@ -141,6 +141,8 @@ export const coinImports: Record<
   SolCircleMono: () => import('../../coin/Sol'),
   SolMono: () => import('../../coin/Sol'),
   Sonic: () => import('../../coin/Sonic'),
+  SonicCircle: () => import('../../coin/Sonic'),
+  SonicCircleMono: () => import('../../coin/Sonic'),
   SonicMono: () => import('../../coin/Sonic'),
   Strk: () => import('../../coin/Strk'),
   StrkCircle: () => import('../../coin/Strk'),
