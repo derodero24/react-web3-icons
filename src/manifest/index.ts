@@ -1097,7 +1097,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'lido',
     variants: ['', 'Mono'],
     aliases: ['steth'],
-    brandColor: '#00a3ff',
+    brandColor: '#0085ff',
   },
   { name: 'LidoMono', category: 'defi' },
   {
