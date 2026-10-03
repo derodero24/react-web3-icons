@@ -1,7 +1,7 @@
 {
   "name": "HopProtocol",
-  "source": [
-    "https://hop.exchange"
+  "notes": [
+    "The former source https://hop.exchange lapsed and now serves an unrelated gambling site, so it is no longer cited; the artwork is unchanged while the unit's deprecation is pending"
   ],
   "kind": "icon",
   "variants": {

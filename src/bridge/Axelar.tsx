@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://github.com/axelarnetwork/axelar-docs/blob/main/public/images/chains/axelar.svg
 // Path sourced from axelarnetwork/axelar-docs (public/images/chains/axelar.svg)
 /** Axelar bridge icon (colored). */
 export const Axelar = /* @__PURE__ */ createIcon(

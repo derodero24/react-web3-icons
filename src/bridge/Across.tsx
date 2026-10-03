@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://across.to (official site logomark)
 // Paths sourced from across.to — the circular logomark
 // X-shaped crossing path (dark foreground)
 /** Across bridge icon (colored). */
