@@ -33,7 +33,10 @@ own `engines`.
 | `pnpm test`            | Run tests                       |
 | `pnpm run build`       | Build the package               |
 | `pnpm run new-icon`    | Scaffold a new icon component   |
+| `pnpm run generate-icons` | Regenerate `src/` from `icons/` (`--check`: verify only) |
+| `pnpm run generate-manifest` | Regenerate `src/manifest` (`--check`: verify only) |
 | `pnpm run optimize:svg`| Optimize an SVG with SVGO       |
+| `pnpm run check:svgo`  | List icon SVGs SVGO would still change |
 
 ## Project Structure
 
@@ -82,8 +85,10 @@ pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.s
   [--mono path/to/icon.mono.svg] [--source <official URL>]
 ```
 
-This optimizes the SVG with SVGO, writes `icons/<category>/<slug>.svg` and
-`<slug>.json`, and regenerates `src/<category>/` (the input SVGs are only
+This optimizes the SVG with SVGO, normalizes the root element (sizing and
+metadata attributes are dropped; inherited presentation attributes such as a
+root `stroke` move onto a wrapping `<g>`), writes `icons/<category>/<slug>.svg`
+and `<slug>.json`, and regenerates `src/<category>/` (the input SVGs are only
 read, never modified). Follow the printed next steps (meta maps, manifest,
 changeset).
 
@@ -116,7 +121,14 @@ icons/chain/ethereum.json         # metadata:
   function — so the DOM ends up with `w3i-ethereumcirclemono-ethc-a`.
 - The root element may only carry `xmlns`, `viewBox`, and `fill`. No fixed
   `width`/`height`, no `<style>` tags, no text content.
+- Every `url(#…)` / `href="#…"` must point at an `id` defined in the same
+  file, and ids must be unique within it; the generator fails otherwise.
 - `deprecated` (map of export name → message) marks deprecated artwork exports.
+- Unit files are validated strictly (unknown keys are errors, names must be
+  PascalCase identifiers, comments single-line). `icons/schema.json` is the
+  matching JSON Schema, generated from `scripts/build-icons/unit.ts`; add
+  `"$schema": "../schema.json"` to a unit (`new-icon` does) for editor
+  completion and validation.
 
 ### Aliases and re-exports
 
@@ -143,22 +155,19 @@ generator emits `/** @deprecated … */ export const Old = New;` (see
 ### Regenerating
 
 ```sh
-pnpm run generate-icons     # icons/ → src/<category>/ (+ lock file)
+pnpm run generate-icons     # icons/ → src/<category>/, src/dynamic/imports/, icons/schema.json
+pnpm run generate-manifest  # icons/ + src/meta + src/deprecated.ts → src/manifest/
 pnpm run build              # dist + static SVGs + Iconify JSON + manifest.json
-pnpm run generate-manifest  # refresh src/manifest from the built dist
-pnpm run build              # optional: refresh dist/manifest.json from the new src/manifest
 ```
 
-`generate-manifest` reads the built `dist/` and rewrites `src/manifest/index.ts`,
-so `dist/manifest.json` is one step behind until the next `pnpm run build`.
-That is fine for day-to-day work (tests import `src/`), and publishing always
-rebuilds (the release workflow builds before publishing; `prepublishOnly`
-covers manual publishes); the final `build` above is only needed when you
-want to inspect `dist/manifest.json` locally.
-
-`test/icons-sync.test.ts` fails CI whenever `icons/` and `src/` drift,
-`test/manifest-sync.test.ts` does the same for the manifest, and the
-snapshot/visual suites verify rendered output.
+Both generators work from the sources alone (no build needed), compute every
+file in memory before writing, rewrite only files whose content changed, and
+delete generated modules whose unit is gone. With `--check` they write
+nothing and exit 1 if anything would change; CI runs that, so a PR fails when
+`icons/` *or* the generator changed without regenerating.
+`test/icons-sync.test.ts` runs the same comparison locally,
+`test/manifest-sync.test.ts` checks the manifest against the actual exports,
+and the snapshot/visual suites verify rendered output.
 
 ## Icon Variant Naming Convention
 
@@ -379,6 +388,11 @@ To optimize an SVG without scaffolding a unit:
 pnpm run optimize:svg path/to/icon.svg      # one file
 pnpm run optimize:svg -r path/to/svgs/      # a directory
 ```
+
+`pnpm run check:svgo [files…]` lists icon sources that SVGO would still change
+(ignoring attribute order and whitespace). Many older sources predate the
+current configuration and are not normalized; check the files you add or
+touch.
 
 ### 3. Add variants
 

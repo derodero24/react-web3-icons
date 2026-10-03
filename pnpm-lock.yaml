@@ -11,6 +11,12 @@ importers:
       '@biomejs/biome':
         specifier: 2.5.14
         version: 2.5.14
+      '@biomejs/js-api':
+        specifier: 6.0.0
+        version: 6.0.0(@biomejs/wasm-nodejs@2.5.14)
+      '@biomejs/wasm-nodejs':
+        specifier: 2.5.14
+        version: 2.5.14
       '@changesets/changelog-github':
         specifier: ^1.0.1
         version: 1.0.1
@@ -238,6 +244,23 @@ packages:
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
+
+  '@biomejs/js-api@6.0.0':
+    resolution: {integrity: sha512-8HP7wexjQo5Np1J9h0B2x8L5G0GZpCacgjykxLHtvLPvF0hNqSG754oh8bxo+OSFDpVGMfSjmLO+ZY/5KbfjmQ==}
+    peerDependencies:
+      '@biomejs/wasm-bundler': ^2.5.0
+      '@biomejs/wasm-nodejs': ^2.5.0
+      '@biomejs/wasm-web': ^2.5.0
+    peerDependenciesMeta:
+      '@biomejs/wasm-bundler':
+        optional: true
+      '@biomejs/wasm-nodejs':
+        optional: true
+      '@biomejs/wasm-web':
+        optional: true
+
+  '@biomejs/wasm-nodejs@2.5.14':
+    resolution: {integrity: sha512-Iq/p5C8C/vl/cglAWYeSb3HZX9pKJAYQE8hgj3WJd25Ez3AFEiAHZtJMUJ5uKsZzRM9xnQllcOoHMjrPEHxYZg==}
 
   '@blazediff/core@1.9.1':
     resolution: {integrity: sha512-ehg3jIkYKulZh+8om/O25vkvSsXXwC+skXmyA87FFx6A/45eqOkZsBltMw/TVteb0mloiGT8oGRTcjRAz66zaA==}
@@ -2915,6 +2938,12 @@ snapshots:
 
   '@biomejs/cli-win32-x64@2.5.14':
     optional: true
+
+  '@biomejs/js-api@6.0.0(@biomejs/wasm-nodejs@2.5.14)':
+    optionalDependencies:
+      '@biomejs/wasm-nodejs': 2.5.14
+
+  '@biomejs/wasm-nodejs@2.5.14': {}
 
   '@blazediff/core@1.9.1': {}
 

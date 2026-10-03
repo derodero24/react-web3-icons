@@ -59,6 +59,14 @@ jobs:
       - name: Install deps
         run: pnpm install --frozen-lockfile
 
+      # Regenerates every generated source in memory and fails on any
+      # difference from the committed files: stale or hand-edited output
+      # (whether icons/ or the generator changed) and orphaned modules.
+      - name: Check generated sources
+        run: |
+          pnpm run generate-icons --check
+          pnpm run generate-manifest --check
+
       - name: Lint
         run: pnpm run check
 

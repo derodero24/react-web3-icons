@@ -6,10 +6,10 @@
  * `unit.ts` for their shapes.
  */
 
-import { createHash } from 'node:crypto';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { emitRender } from './jsx.ts';
+import { validateIds } from './ids.ts';
+import { emitRender, quote, ROOT_ATTRS } from './jsx.ts';
 import {
   type AliasUnitMeta,
   assertUnitMeta,
@@ -17,8 +17,9 @@ import {
   isArtwork,
   type ReexportSpec,
   type UnitMeta,
+  type Variant,
 } from './unit.ts';
-import { parseSvg } from './xml.ts';
+import { getAttr, parseSvg, type XmlNode } from './xml.ts';
 
 export const CATEGORIES = [
   'bridge',
@@ -64,6 +65,25 @@ const CATEGORY_LABEL: Readonly<Record<Category, string>> = {
   wallet: 'wallet',
 };
 
+/**
+ * Locale-independent string order (UTF-16 code units), used for every sort
+ * that shapes generated output. `localeCompare()` without a fixed locale
+ * would make the output depend on the machine's `LANG`/`LC_ALL`.
+ */
+export function compareStrings(a: string, b: string): number {
+  if (a === b) {
+    return 0;
+  }
+  return a < b ? -1 : 1;
+}
+
+/** Kebab-case of a PascalCase export name (`EthereumCircle` → `ethereum-circle`). */
+export const kebab = (name: string): string =>
+  name
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
+    .toLowerCase();
+
 /** One artwork variant of a unit, with its SVG source loaded. */
 export interface VariantSource {
   /** Export-name suffix (`''`, `'Mono'`, `'CircleMono'`, …). */
@@ -72,45 +92,169 @@ export interface VariantSource {
   readonly exportName: string;
   /** Root `fill` declared in the unit metadata. */
   readonly fill: string | undefined;
+  /** Source path relative to the repository root, for error messages. */
+  readonly path: string;
   readonly svg: string;
+  /** The parsed and validated document. */
+  readonly root: XmlNode;
 }
 
 export interface SourceUnit {
   readonly category: Category;
   readonly slug: string;
+  /** Path of the unit definition relative to the repository root. */
+  readonly path: string;
   readonly meta: UnitMeta;
   /** Artwork variants in declaration order (empty for JSON-only units). */
   readonly variants: readonly VariantSource[];
 }
 
-export function sha256(text: string): string {
-  return createHash('sha256').update(text).digest('hex').slice(0, 16);
+/**
+ * An SVG `<number>`: optional sign, decimal digits with an optional fraction,
+ * optional exponent. Stricter than `Number()`, which also accepts `""`,
+ * `0x18`, `Infinity` and the like.
+ */
+const SVG_NUMBER = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/;
+
+/**
+ * `"minX minY width height"` (whitespace and/or comma separated) → its four
+ * numbers, or `undefined` when malformed or of non-positive size.
+ */
+export function parseViewBox(
+  viewBox: string,
+): readonly [number, number, number, number] | undefined {
+  const tokens = viewBox.trim().split(/\s*,\s*|\s+/);
+  if (!tokens.every(token => SVG_NUMBER.test(token))) {
+    return undefined;
+  }
+  const parts = tokens.map(Number);
+  const [left, top, width, height, ...rest] = parts;
+  if (
+    left === undefined ||
+    top === undefined ||
+    width === undefined ||
+    height === undefined ||
+    rest.length > 0 ||
+    !parts.every(Number.isFinite) ||
+    width <= 0 ||
+    height <= 0
+  ) {
+    return undefined;
+  }
+  return [left, top, width, height];
 }
 
-/** Loads every unit definition in a category directory. */
+/** Checks what every emitter relies on: root attributes, viewBox, ids. */
+export function validateSvg(root: XmlNode, fill: string | undefined): void {
+  for (const [name] of root.attrs) {
+    if (!ROOT_ATTRS.includes(name)) {
+      throw new Error(
+        `unexpected root <svg> attribute ${name} (allowed: ${ROOT_ATTRS.join(', ')})`,
+      );
+    }
+  }
+  const viewBox = getAttr(root, 'viewBox');
+  if (viewBox === undefined || parseViewBox(viewBox) === undefined) {
+    throw new Error(`malformed or missing viewBox ${JSON.stringify(viewBox)}`);
+  }
+  const rootFill = getAttr(root, 'fill');
+  if (rootFill !== fill) {
+    throw new Error(
+      `root fill ${rootFill ?? '(none)'} does not match the variant's "fill" ${fill ?? '(none)'}`,
+    );
+  }
+  validateIds(root);
+}
+
+/** Adds the file path to errors thrown by `load`. */
+function withPath<T>(path: string, load: () => T): T {
+  try {
+    return load();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(message.startsWith(path) ? message : `${path}: ${message}`);
+  }
+}
+
+function loadVariant(
+  iconsDir: string,
+  category: Category,
+  unitName: string,
+  [suffix, variant]: readonly [string, Variant],
+): VariantSource {
+  const path = `icons/${category}/${variant.file}`;
+  return withPath(path, () => {
+    const svg = readFileSync(join(iconsDir, category, variant.file), 'utf-8');
+    const root = parseSvg(svg, path);
+    validateSvg(root, variant.fill);
+    return {
+      suffix,
+      exportName: unitName + suffix,
+      fill: variant.fill,
+      path,
+      svg,
+      root,
+    };
+  });
+}
+
+/**
+ * Rejects two units or exports that would resolve to the same output: one
+ * `<Name>.tsx` module, one `dist/svg/<category>/<Export>.svg` file, one
+ * export name in the category barrel (where `export *` silently drops
+ * conflicting names). Compared case-insensitively, since macOS and Windows
+ * file systems are; that also keeps kebab-case names (Iconify icon names,
+ * dist/svg id prefixes) unique, as `kebab` only inserts hyphens.
+ */
+function assertUniqueOutputs(units: readonly SourceUnit[]): void {
+  const modules = new Map<string, string>();
+  const exports = new Map<string, string>();
+  const claim = (
+    seen: Map<string, string>,
+    key: string,
+    what: string,
+    path: string,
+  ): void => {
+    const previous = seen.get(key.toLowerCase());
+    if (previous !== undefined) {
+      throw new Error(
+        `${path}: ${what} ${key} is already defined by ${previous}`,
+      );
+    }
+    seen.set(key.toLowerCase(), path);
+  };
+  for (const unit of units) {
+    claim(modules, unit.meta.name, 'module', unit.path);
+    for (const name of unitAllExportNames(unit)) {
+      claim(exports, name, 'export', unit.path);
+    }
+  }
+}
+
+/** Loads and validates every unit definition in a category directory. */
 export function loadCategory(
   iconsDir: string,
   category: Category,
 ): SourceUnit[] {
   const dir = join(iconsDir, category);
   const units: SourceUnit[] = [];
-  for (const file of readdirSync(dir).sort()) {
+  for (const file of readdirSync(dir).sort(compareStrings)) {
     if (!file.endsWith('.json')) {
       continue;
     }
-    const slug = file.slice(0, -5);
-    const meta: unknown = JSON.parse(readFileSync(join(dir, file), 'utf-8'));
-    assertUnitMeta(meta, `icons/${category}/${file}`);
+    const path = `icons/${category}/${file}`;
+    const meta: unknown = withPath(path, () =>
+      JSON.parse(readFileSync(join(dir, file), 'utf-8')),
+    );
+    assertUnitMeta(meta, path);
     const variants = isArtwork(meta)
-      ? Object.entries(meta.variants).map(([suffix, variant]) => ({
-          suffix,
-          exportName: meta.name + suffix,
-          fill: variant.fill,
-          svg: readFileSync(join(dir, variant.file), 'utf-8'),
-        }))
+      ? Object.entries(meta.variants).map(entry =>
+          loadVariant(iconsDir, category, meta.name, entry),
+        )
       : [];
-    units.push({ category, slug, meta, variants });
+    units.push({ category, slug: file.slice(0, -5), path, meta, variants });
   }
+  assertUniqueOutputs(units);
   return units;
 }
 
@@ -164,12 +308,9 @@ function emitIconUnit(unit: SourceUnit, meta: IconUnitMeta): string {
   }
   for (const variant of unit.variants) {
     const { suffix, exportName: name } = variant;
-    const { body, usesId, viewBox, fill } = emitRender(parseSvg(variant.svg));
-    if (variant.fill !== fill) {
-      throw new Error(
-        `${category}/${meta.name}${suffix}: root fill ${fill ?? '(none)'} does not match variant metadata`,
-      );
-    }
+    const { body, usesId, viewBox, fill } = withPath(variant.path, () =>
+      emitRender(variant.root),
+    );
     const deprecatedMsg = meta.deprecated?.[name];
     const jsdoc = jsdocFor(
       name,
@@ -178,9 +319,9 @@ function emitIconUnit(unit: SourceUnit, meta: IconUnitMeta): string {
       deprecatedMsg,
     );
     const param = usesId ? '_id =>' : '() =>';
-    const args = [`'${name}'`, `'${viewBox}'`, `${param} ${wrapBody(body)}`];
+    const args = [quote(name), quote(viewBox), `${param} ${wrapBody(body)}`];
     if (fill) {
-      args.push(`'${fill}'`);
+      args.push(quote(fill));
     }
     blocks.push(
       `${jsdoc}\nexport const ${name} = /* @__PURE__ */ createIcon(\n  ${args.join(',\n  ')},\n);`,
@@ -245,9 +386,7 @@ export function generateCategory(
       files.set(`${unit.meta.name}.tsx`, content);
     }
   }
-  const moduleNames = units
-    .map(unit => unit.meta.name)
-    .sort((a, b) => a.localeCompare(b));
+  const moduleNames = units.map(unit => unit.meta.name).sort(compareStrings);
   const indexTs = `${moduleNames.map(n => `export * from './${n}';`).join('\n')}\n`;
   return { files, indexTs };
 }
@@ -328,16 +467,16 @@ export function emitDynamicImports(
   category: Category,
   units: readonly SourceUnit[],
 ): string {
-  const entries: string[] = [];
-  for (const unit of units) {
-    for (const name of unitAllExportNames(unit)) {
-      entries.push(
-        `  ${name}: () => import('../../${category}/${unit.meta.name}'),`,
-      );
-    }
-  }
-  entries.sort();
-  return `// Auto-generated by scripts/build-icons/cli.mjs — do not edit manually.
+  const entries = units
+    .flatMap(unit =>
+      unitAllExportNames(unit).map(name => ({ name, module: unit.meta.name })),
+    )
+    .sort((a, b) => compareStrings(a.name, b.name))
+    .map(
+      ({ name, module }) =>
+        `  ${name}: () => import('../../${category}/${module}'),`,
+    );
+  return `// Auto-generated by scripts/build-icons/cli.ts — do not edit manually.
 // Regenerate: pnpm run generate-icons
 // biome-ignore-all lint/style/useNamingConvention: keys are icon export names (PascalCase)
 

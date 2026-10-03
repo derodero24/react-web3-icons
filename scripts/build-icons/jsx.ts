@@ -33,12 +33,25 @@ function jsxAttrName(name: string): string {
   return SPECIAL.get(name) ?? name.replace(/[-:]([a-z])/g, upper);
 }
 
+/**
+ * CSS property → React style key: `mask-type` → `maskType`,
+ * `-webkit-mask` → `WebkitMask`, but `-ms-transform` → `msTransform` (React's
+ * one lowercase vendor prefix). Custom properties stay verbatim.
+ */
 function cssPropName(name: string): string {
-  return name.startsWith('--') ? name : name.replace(/-([a-z])/g, upper);
+  if (name.startsWith('--')) {
+    return name;
+  }
+  return name.replace(/^-ms-/, 'ms-').replace(/-([a-z])/g, upper);
 }
 
-function quote(value: string): string {
-  return `'${value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
+/** A single-quoted JS string literal (control characters escaped). */
+export function quote(value: string): string {
+  const escaped = JSON.stringify(value)
+    .slice(1, -1)
+    .replace(/\\"/g, '"')
+    .replace(/'/g, "\\'");
+  return `'${escaped}'`;
 }
 
 function template(value: string): string {
@@ -54,8 +67,11 @@ const ID_TEMPLATE: IdRefRenderer = {
   id: id => `\${_id}-${template(id)}`,
 };
 
-/** style="a: b; c: d" → style={{ a: 'b', c: 'd' }} */
-function styleObject(value: string): string {
+/**
+ * style="a: b; c: url(#g)" → style={{ a: 'b', c: `url(#${_id}-g)` }}, with
+ * id references rewritten exactly as in presentation attributes.
+ */
+function styleObject(value: string, ids: ReadonlySet<string>): string {
   const entries = value
     .split(';')
     .map(part => part.trim())
@@ -67,7 +83,8 @@ function styleObject(value: string): string {
       }
       const prop = cssPropName(part.slice(0, idx).trim());
       const val = part.slice(idx + 1).trim();
-      return `${prop}: ${quote(val)}`;
+      const dynamic = rewriteIdRefs('style', val, ids, ID_TEMPLATE);
+      return `${prop}: ${dynamic === undefined ? quote(val) : `\`${dynamic}\``}`;
     });
   return `{{ ${entries.join(', ')} }}`;
 }
@@ -75,6 +92,11 @@ function styleObject(value: string): string {
 /**
  * Renders an attribute value, rewriting references to internal ids so they
  * are prefixed with the component's unique `_id` at runtime.
+ *
+ * Plain values stay JSX string attributes (`d="M0 0"`), except values with a
+ * `&` or `"` (JSX decodes HTML entities inside string attributes) or a tab or
+ * line break (which JSX would collapse): those are emitted as JS string
+ * expressions (`{'a &amp; b'}`), which keep every character as is.
  */
 function attrValue(
   name: string,
@@ -82,13 +104,13 @@ function attrValue(
   ids: ReadonlySet<string>,
 ): string {
   if (name === 'style') {
-    return styleObject(value);
+    return styleObject(value, ids);
   }
   const dynamic = rewriteIdRefs(name, value, ids, ID_TEMPLATE);
   if (dynamic !== undefined) {
     return `{\`${dynamic}\`}`;
   }
-  return `"${value.replace(/"/g, '&quot;')}"`;
+  return /[&"\t\n\r]/.test(value) ? `{${quote(value)}}` : `"${value}"`;
 }
 
 function emitNode(

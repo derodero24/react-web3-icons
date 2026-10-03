@@ -22,13 +22,26 @@ export default {
           // Preserve brand colors exactly (disable hex shortening, name conversion, etc.)
           convertColors: false,
 
-          // 2 decimal places — good balance of file size vs. visual accuracy
+          // Rounds plain numeric attributes (x, width, r, stroke-width, …) to
+          // 2 decimals. Path data and transforms are not affected: they keep
+          // the 3-decimal default of convertPathData / convertTransform
+          // (lowering those would rewrite most committed artwork).
           cleanupNumericValues: {
             floatPrecision: 2,
+          },
+
+          // Remove every <desc>, not only editor boilerplate: the icon
+          // parser rejects text content.
+          removeDesc: {
+            removeAny: true,
           },
         },
       },
     },
+
+    // SVGO v4 keeps <title> by default; icons get theirs from the `title`
+    // prop, and the icon parser rejects text content.
+    'removeTitle',
 
     // Strip fixed width/height — sizing is controlled via component props
     'removeDimensions',

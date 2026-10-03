@@ -1,11 +1,8 @@
 import { join } from 'node:path';
 import { quicklyValidateIconSet } from '@iconify/utils';
 import { describe, expect, it } from 'vitest';
-import {
-  buildIconifySets,
-  kebab,
-} from '../scripts/build-icons/emit-iconify.ts';
-import { CATEGORIES, loadCategory } from '../scripts/build-icons/lib.ts';
+import { buildIconifySets } from '../scripts/build-icons/emit-iconify.ts';
+import { CATEGORIES, kebab, loadCategory } from '../scripts/build-icons/lib.ts';
 import { ICON_MANIFEST } from '../src/manifest';
 
 const ICONS = join(import.meta.dirname, '../icons');
@@ -87,7 +84,7 @@ describe('IconifyJSON collections', () => {
 
   it('internal ids are namespaced per icon', () => {
     const icon = sets.mono.icons['chain-ethereum-circle-mono'];
-    expect(icon?.body).toContain('id="chain-ethereum-circle-mono-ethc-a"');
-    expect(icon?.body).toContain('url(#chain-ethereum-circle-mono-ethc-a)');
+    expect(icon?.body).toContain('id="chain-ethereum-circle-mono_ethc-a"');
+    expect(icon?.body).toContain('url(#chain-ethereum-circle-mono_ethc-a)');
   });
 });
