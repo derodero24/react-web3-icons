@@ -496,7 +496,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'polygon',
     variants: ['', 'Mono', 'Square', 'SquareMono', 'Circle', 'CircleMono'],
     aliases: ['matic'],
-    brandColor: '#a726c1',
+    brandColor: '#670de5',
   },
   { name: 'PolygonCircle', category: 'chain' },
   { name: 'PolygonCircleMono', category: 'chain' },

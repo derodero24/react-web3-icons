@@ -1,34 +1,21 @@
 import { createIcon } from '../utils';
 
-// Source: https://polygon.technology
-// Square variant: original viewBox 14.85 41.75 470.3 416.51 → scale 0.09783, translate(7.55, 7.54)
+// Source: https://polygon.technology/brand-guidelines (official brand guidelines; logo files in the linked Google Drive "Polygon Logo Repository")
+// Source: https://drive.google.com/drive/folders/1DE7ujCZf6g5INteEpTmvHSfqoZ8VYlJH (Polygon Logo Repository: Icon/SVG/polygon-icon-primary-purple.svg, Round/SVG/polygon-round-primary-dark.svg, Rounded Square/SVG/polygon-rounded sq-primary-dark.svg)
+// Default: the official icon polygon-icon-primary-purple.svg (solid #670DE5; the guidelines forbid gradients), replacing the older rounded-corner gradient mark
+// Circle: the official polygon-round-primary-dark.svg (#670DE5 disc, white icon); Square: the official polygon-rounded sq-primary-dark.svg (#670DE5 tile with rx 20/320, white icon)
+// Mono: the icon path in currentColor; CircleMono and SquareMono: the official disc / rounded square in currentColor with the same icon path knocked out (fill-rule=evenodd), like the kit's monochrome round and rounded-square files
 /** Polygon chain icon (colored). */
 export const Polygon = /* @__PURE__ */ createIcon(
   'Polygon',
   '0 0 64 64',
-  (_props, _id) => (
-    <g transform="translate(2.23 2.23)scale(.11907)">
-      <defs>
-        <linearGradient
-          id={`${_id}-plgn-a`}
-          x1="54.83"
-          x2="459.03"
-          y1="392.31"
-          y2="97.58"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0" stopColor="#a726c1" />
-          <stop offset=".88" stopColor="#803bdf" />
-          <stop offset="1" stopColor="#7b3fe4" />
-        </linearGradient>
-      </defs>
-      <path
-        fill={`url(#${_id}-plgn-a)`}
-        d="m364.03 335.08 111.55-64.4a19.2 19.2 0 0 0 9.57-16.58V125.28a19.2 19.2 0 0 0-9.57-16.58L364.03 44.3a19.2 19.2 0 0 0-19.14 0l-111.55 64.4a19.2 19.2 0 0 0-9.57 16.58v230.19l-78.22 45.15-78.22-45.15v-90.33l78.22-45.15 51.6 29.78v-60.59l-42.03-24.26a19.2 19.2 0 0 0-19.14 0L24.42 229.33a19.2 19.2 0 0 0-9.57 16.58v128.81a19.2 19.2 0 0 0 9.57 16.58l111.55 64.41c5.9 3.4 13.23 3.4 19.14 0l111.55-64.4a19.2 19.2 0 0 0 9.57-16.58V144.54l1.41-.81 76.81-44.34 78.22 45.16v90.32l-78.22 45.16-51.52-29.74v60.59l41.95 24.23c5.9 3.4 13.24 3.4 19.14 0z"
-      />
-    </g>
+  () => (
+    <path
+      fill="#670DE5"
+      d="m25 23.93-5.24-3.03-15.74 9.08v18.16l15.74 9.08 15.74-9.08V19.89l8.74-5.04L53 19.89V30l-8.75 5.04L39 32v8.07l5.24 3.03 15.74-9.08V15.86L44.24 6.78 28.5 15.86V44.1l-8.74 5.04-8.74-5.04V34l8.74-5.04L25 32z"
+    />
   ),
-  { ids: true },
+  {},
 );
 
 /** Polygon chain icon (monochrome). */
@@ -36,7 +23,7 @@ export const PolygonMono = /* @__PURE__ */ createIcon(
   'PolygonMono',
   '0 0 64 64',
   () => (
-    <path d="m45.58 42.13 13.28-7.67c.7-.4 1.14-1.16 1.14-1.97V17.15a2.3 2.3 0 0 0-1.14-1.98L45.58 7.51a2.3 2.3 0 0 0-2.28 0l-13.28 7.66a2.3 2.3 0 0 0-1.14 1.98v27.4l-9.32 5.38-9.31-5.37V33.8l9.31-5.37 6.15 3.54v-7.21l-5-2.9a2.3 2.3 0 0 0-2.29 0L5.14 29.55A2.3 2.3 0 0 0 4 31.5v15.34a2.3 2.3 0 0 0 1.14 1.97l13.28 7.67c.7.4 1.58.4 2.28 0l13.28-7.66a2.3 2.3 0 0 0 1.14-1.98v-27.4l.17-.1 9.15-5.28 9.31 5.37V30.2l-9.31 5.37-6.14-3.54v7.22l5 2.88c.7.4 1.57.4 2.28 0" />
+    <path d="m25 23.93-5.24-3.03-15.74 9.08v18.16l15.74 9.08 15.74-9.08V19.89l8.74-5.04L53 19.89V30l-8.75 5.04L39 32v8.07l5.24 3.03 15.74-9.08V15.86L44.24 6.78 28.5 15.86V44.1l-8.74 5.04-8.74-5.04V34l8.74-5.04L25 32z" />
   ),
   { fill: 'currentColor' },
 );
@@ -46,15 +33,13 @@ export const PolygonSquare = /* @__PURE__ */ createIcon(
   'PolygonSquare',
   '0 0 64 64',
   () => (
-    <>
-      <rect width="64" height="64" fill="#7b3fe4" rx="12.8" />
-      <g>
-        <path
-          fill="#fff"
-          d="m43.16 40.32 10.92-6.3c.57-.33.93-.95.93-1.62V19.8a1.9 1.9 0 0 0-.93-1.63l-10.92-6.3a1.9 1.9 0 0 0-1.87 0l-10.91 6.3a1.9 1.9 0 0 0-.94 1.63v22.52l-7.65 4.41-7.65-4.41v-8.84l7.65-4.42 5.05 2.91v-5.92l-4.11-2.38a1.9 1.9 0 0 0-1.88 0l-10.91 6.3A1.9 1.9 0 0 0 9 31.6v12.6a1.9 1.9 0 0 0 .94 1.62l10.91 6.3c.58.33 1.3.33 1.87 0l10.92-6.3a1.9 1.9 0 0 0 .93-1.62V21.68l.14-.08 7.52-4.34 7.65 4.42v8.84l-7.65 4.42-5.04-2.91v5.92l4.1 2.37c.58.34 1.3.34 1.87 0"
-        />
-      </g>
-    </>
+    <g transform="scale(.2)">
+      <rect width="320" height="320" fill="#670DE5" rx="20" />
+      <path
+        fill="white"
+        d="m142.25 139.52-13.31-7.68L89 154.88v46.08L128.94 224l39.94-23.04v-71.68l22.18-12.8 22.2 12.8v25.6l-22.2 12.8-13.3-7.68v20.48l13.3 7.68L231 165.12v-46.08L191.06 96l-39.93 23.04v71.68l-22.2 12.8-22.18-12.8v-25.6l22.19-12.8 13.3 7.68z"
+      />
+    </g>
   ),
   {},
 );
@@ -63,82 +48,40 @@ export const PolygonSquare = /* @__PURE__ */ createIcon(
 export const PolygonSquareMono = /* @__PURE__ */ createIcon(
   'PolygonSquareMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <>
-      <rect width="64" height="64" mask={`url(#${_id}-plgns-a)`} rx="12.8" />
-      <defs>
-        <mask id={`${_id}-plgns-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
-          <g fill="#000">
-            <path d="m43.16 40.32 10.92-6.3c.57-.33.93-.95.93-1.62V19.8a1.9 1.9 0 0 0-.93-1.63l-10.92-6.3a1.9 1.9 0 0 0-1.87 0l-10.91 6.3a1.9 1.9 0 0 0-.94 1.63v22.52l-7.65 4.41-7.65-4.41v-8.84l7.65-4.42 5.05 2.91v-5.92l-4.11-2.38a1.9 1.9 0 0 0-1.88 0l-10.91 6.3A1.9 1.9 0 0 0 9 31.6v12.6a1.9 1.9 0 0 0 .94 1.62l10.91 6.3c.58.33 1.3.33 1.87 0l10.92-6.3a1.9 1.9 0 0 0 .93-1.62V21.68l.14-.08 7.52-4.34 7.65 4.42v8.84l-7.65 4.42-5.04-2.91v5.92l4.1 2.37c.58.34 1.3.34 1.87 0" />
-          </g>
-        </mask>
-      </defs>
-    </>
+  () => (
+    <path
+      fillRule="evenodd"
+      d="M4 0h56a4 4 0 0 1 4 4v56a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4m24.45 27.9-2.66-1.53-7.99 4.6v9.22l7.99 4.61 7.99-4.6V25.85l4.43-2.56 4.44 2.56v5.12l-4.44 2.56L35.55 32v4.1l2.66 1.53 7.99-4.6V23.8l-7.99-4.61-7.98 4.6v14.34l-4.44 2.56-4.44-2.56v-5.12l4.44-2.56L28.45 32z"
+    />
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );
 
 /** Polygon Circle chain icon (colored). */
 export const PolygonCircle = /* @__PURE__ */ createIcon(
   'PolygonCircle',
   '0 0 64 64',
-  (_props, _id) => (
-    <g transform="translate(-.65 -.65)scale(.1306)">
-      <defs>
-        <linearGradient
-          id={`${_id}-plgn2-b`}
-          x1="-116.09"
-          x2="437.45"
-          y1="25.97"
-          y2="364.71"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0" stopColor="#a229c5" />
-          <stop offset="1" stopColor="#7b3fe4" />
-        </linearGradient>
-        <clipPath id={`${_id}-plgn2-a`}>
-          <circle cx="250" cy="250" r="244.91" fill="none" />
-        </clipPath>
-      </defs>
+  () => (
+    <g transform="scale(.2)">
+      <rect width="320" height="320" fill="#670DE5" rx="160" />
       <path
-        fill={`url(#${_id}-plgn2-b)`}
-        d="M-18.1-18.1h536.2v536.2H-18.1z"
-        clipPath={`url(#${_id}-plgn2-a)`}
-      />
-      <path
-        fill="#fff"
-        d="m320.83 302.85 69.29-40.01a11.9 11.9 0 0 0 5.94-10.3v-80.01c0-4.23-2.28-8.18-5.94-10.3l-69.29-40.01a11.9 11.9 0 0 0-11.89 0l-69.29 40.01a11.9 11.9 0 0 0-5.94 10.3v142.99l-48.59 28.05-48.59-28.05v-56.11l48.59-28.05 32.05 18.5v-37.64l-26.11-15.07a11.9 11.9 0 0 0-11.89 0l-69.29 40.01a11.9 11.9 0 0 0-5.94 10.3v80.01c0 4.23 2.28 8.18 5.94 10.3l69.29 40.01a12 12 0 0 0 11.89 0l69.29-40a11.9 11.9 0 0 0 5.94-10.3V184.49l.88-.5 47.71-27.55 48.59 28.05v56.11l-48.59 28.05-32-18.48v37.64l26.06 15.05a12 12 0 0 0 11.89 0Z"
+        fill="white"
+        d="m142.25 139.52-13.31-7.68L89 154.88v46.08L128.94 224l39.94-23.04v-71.68l22.18-12.8 22.2 12.8v25.6l-22.2 12.8-13.3-7.68v20.48l13.3 7.68L231 165.12v-46.08L191.06 96l-39.93 23.04v71.68l-22.2 12.8-22.18-12.8v-25.6l22.19-12.8 13.3 7.68z"
       />
     </g>
   ),
-  { ids: true },
+  {},
 );
 
 /** Polygon Circle chain icon (monochrome). */
 export const PolygonCircleMono = /* @__PURE__ */ createIcon(
   'PolygonCircleMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <g transform="translate(-.65 -.65)scale(.1306)">
-      <path
-        d="M-18.1-18.1h536.2v536.2H-18.1z"
-        clipPath={`url(#${_id}-plgnm2-a)`}
-        mask={`url(#${_id}-plgnm2-b)`}
-      />
-      <defs>
-        <clipPath id={`${_id}-plgnm2-a`}>
-          <circle cx="250" cy="250" r="244.91" fill="none" />
-        </clipPath>
-        <mask id={`${_id}-plgnm2-b`}>
-          <rect width="982" height="978" fill="#fff" />
-          <path
-            fill="#000"
-            d="m320.83 302.85 69.29-40.01a11.9 11.9 0 0 0 5.94-10.3v-80.01c0-4.23-2.28-8.18-5.94-10.3l-69.29-40.01a11.9 11.9 0 0 0-11.89 0l-69.29 40.01a11.9 11.9 0 0 0-5.94 10.3v142.99l-48.59 28.05-48.59-28.05v-56.11l48.59-28.05 32.05 18.5v-37.64l-26.11-15.07a11.9 11.9 0 0 0-11.89 0l-69.29 40.01a11.9 11.9 0 0 0-5.94 10.3v80.01c0 4.23 2.28 8.18 5.94 10.3l69.29 40.01a12 12 0 0 0 11.89 0l69.29-40a11.9 11.9 0 0 0 5.94-10.3V184.49l.88-.5 47.71-27.55 48.59 28.05v56.11l-48.59 28.05-32-18.48v37.64l26.06 15.05a12 12 0 0 0 11.89 0Z"
-          />
-        </mask>
-      </defs>
-    </g>
+  () => (
+    <path
+      fillRule="evenodd"
+      d="M32 0a32 32 0 1 1 0 64 32 32 0 0 1 0-64m-3.55 27.9-2.66-1.53-7.99 4.6v9.22l7.99 4.61 7.99-4.6V25.85l4.43-2.56 4.44 2.56v5.12l-4.44 2.56L35.55 32v4.1l2.66 1.53 7.99-4.6V23.8l-7.99-4.61-7.98 4.6v14.34l-4.44 2.56-4.44-2.56v-5.12l4.44-2.56L28.45 32z"
+    />
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );
