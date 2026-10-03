@@ -155,6 +155,8 @@ export const coinImports: Record<
   Sui: () => import('../../coin/Sui'),
   SuiMono: () => import('../../coin/Sui'),
   Taiko: () => import('../../coin/Taiko'),
+  TaikoCircle: () => import('../../coin/Taiko'),
+  TaikoCircleMono: () => import('../../coin/Taiko'),
   TaikoMono: () => import('../../coin/Taiko'),
   Tia: () => import('../../coin/Tia'),
   TiaMono: () => import('../../coin/Tia'),

@@ -601,9 +601,11 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     chainId: 167_000,
     slug: 'taiko',
-    variants: ['', 'Mono'],
+    variants: ['', 'Mono', 'Circle', 'CircleMono'],
     brandColor: '#e81899',
   },
+  { name: 'TaikoCircle', category: 'chain' },
+  { name: 'TaikoCircleMono', category: 'chain' },
   { name: 'TaikoMono', category: 'chain' },
   {
     name: 'Ton',
@@ -944,6 +946,8 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'Sui', category: 'coin', ticker: 'SUI' },
   { name: 'SuiMono', category: 'coin' },
   { name: 'Taiko', category: 'coin', ticker: 'TAIKO' },
+  { name: 'TaikoCircle', category: 'coin' },
+  { name: 'TaikoCircleMono', category: 'coin' },
   { name: 'TaikoMono', category: 'coin' },
   {
     name: 'Tia',

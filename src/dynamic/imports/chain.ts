@@ -160,6 +160,8 @@ export const chainImports: Record<
   Sui: () => import('../../chain/Sui'),
   SuiMono: () => import('../../chain/Sui'),
   Taiko: () => import('../../chain/Taiko'),
+  TaikoCircle: () => import('../../chain/Taiko'),
+  TaikoCircleMono: () => import('../../chain/Taiko'),
   TaikoMono: () => import('../../chain/Taiko'),
   Ton: () => import('../../chain/Ton'),
   TonMono: () => import('../../chain/Ton'),

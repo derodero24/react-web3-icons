@@ -1,7 +1,12 @@
 {
   "name": "Taiko",
   "source": [
-    "https://taiko.xyz"
+    "https://taiko.xyz",
+    "https://taiko.xyz/img/brand/taiko.zip (official brand kit: Taiko Logos/TKO_Icon/Svgs/Tko_512x512.svg, the TKO token icon)"
+  ],
+  "notes": [
+    "Circle: the official TKO token icon (Tko_512x512.svg in the brand kit: the #FAFAFA mark on a #E81899 disc), paths unchanged and full-bleed on the 64 grid; its full-viewBox clip-path is a no-op and is left out",
+    "CircleMono: the token's disc in currentColor with the mark knocked out (fill-rule=evenodd)"
   ],
   "kind": "icon",
   "variants": {
@@ -10,6 +15,14 @@
     },
     "Mono": {
       "file": "taiko.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "taiko.circle.svg",
+      "fill": "#E81899"
+    },
+    "CircleMono": {
+      "file": "taiko.circle-mono.svg",
       "fill": "currentColor"
     }
   },
