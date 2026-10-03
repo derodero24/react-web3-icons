@@ -1,26 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
   <defs>
-    <linearGradient id="osmo-a" x1="17.434" x2="8.232" y1="6.686" y2="13.62" gradientUnits="userSpaceOnUse">
+    <linearGradient id="osmo-a" x1="17.43" x2="8.23" y1="6.69" y2="13.62" gradientUnits="userSpaceOnUse">
       <stop offset=".29" stop-color="#fff"/>
       <stop offset=".78" stop-color="#fff" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="osmo-d" x1="10.685" x2="13.877" y1="20.869" y2="3.048" gradientUnits="userSpaceOnUse">
+    <linearGradient id="osmo-d" x1="10.69" x2="13.88" y1="20.87" y2="3.05" gradientUnits="userSpaceOnUse">
       <stop stop-color="#81FFFF"/>
       <stop offset=".62" stop-color="#fff" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="osmo-e" x1="3.801" x2="20.2" y1="11.993" y2="11.993" gradientUnits="userSpaceOnUse">
+    <linearGradient id="osmo-e" x1="3.8" x2="20.2" y1="11.99" y2="11.99" gradientUnits="userSpaceOnUse">
       <stop stop-color="#0002E9"/>
       <stop offset="1" stop-color="#FF00C7"/>
     </linearGradient>
-    <linearGradient id="osmo-f" x1="21.695" x2="2.41" y1="4.575" y2="20.57" gradientUnits="userSpaceOnUse">
+    <linearGradient id="osmo-f" x1="21.7" x2="2.41" y1="4.58" y2="20.57" gradientUnits="userSpaceOnUse">
       <stop offset=".29" stop-color="#fff"/>
       <stop offset=".78" stop-color="#fff" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="osmo-g" x1="3.421" x2="20.219" y1="11.993" y2="11.993" gradientUnits="userSpaceOnUse">
+    <linearGradient id="osmo-g" x1="3.42" x2="20.22" y1="11.99" y2="11.99" gradientUnits="userSpaceOnUse">
       <stop stop-color="#000292"/>
       <stop offset="1" stop-color="#7D00C7"/>
     </linearGradient>
-    <linearGradient id="osmo-h" x1="3.815" x2="20.206" y1="12.016" y2="12.016" gradientUnits="userSpaceOnUse">
+    <linearGradient id="osmo-h" x1="3.81" x2="20.21" y1="12.02" y2="12.02" gradientUnits="userSpaceOnUse">
       <stop stop-color="#000292"/>
       <stop offset="1" stop-color="#BE00C7"/>
     </linearGradient>

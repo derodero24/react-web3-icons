@@ -14,14 +14,14 @@ export const Zora = /* @__PURE__ */ createIcon(
           cx="0"
           cy="0"
           r="1"
-          gradientTransform="rotate(180 8.043 3.92)scale(15.2029)"
+          gradientTransform="translate(16.086 7.84)scale(-15.2029)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".007" stopColor="#F2CEFE" />
-          <stop offset=".191" stopColor="#AFBAF1" />
-          <stop offset=".498" stopColor="#4281D3" />
-          <stop offset=".667" stopColor="#2E427D" />
-          <stop offset=".823" stopColor="#230101" />
+          <stop offset=".01" stopColor="#F2CEFE" />
+          <stop offset=".19" stopColor="#AFBAF1" />
+          <stop offset=".5" stopColor="#4281D3" />
+          <stop offset=".67" stopColor="#2E427D" />
+          <stop offset=".82" stopColor="#230101" />
           <stop offset="1" stopColor="#8F6B40" />
         </radialGradient>
       </defs>

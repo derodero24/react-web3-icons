@@ -10,15 +10,15 @@ export const RocketPool = /* @__PURE__ */ createIcon(
       <defs>
         <linearGradient
           id={`${_id}-rpl-a`}
-          x1="4.451"
+          x1="4.45"
           x2="21"
-          y1="18.034"
-          y2="5.848"
+          y1="18.03"
+          y2="5.85"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FB9533" />
-          <stop offset=".261" stopColor="#FEBA67" />
-          <stop offset=".747" stopColor="#FF9976" />
+          <stop offset=".26" stopColor="#FEBA67" />
+          <stop offset=".75" stopColor="#FF9976" />
           <stop offset="1" stopColor="#FF6350" />
         </linearGradient>
       </defs>

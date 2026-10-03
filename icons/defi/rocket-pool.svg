@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
   <defs>
-    <linearGradient id="rpl-a" x1="4.451" x2="21" y1="18.034" y2="5.848" gradientUnits="userSpaceOnUse">
+    <linearGradient id="rpl-a" x1="4.45" x2="21" y1="18.03" y2="5.85" gradientUnits="userSpaceOnUse">
       <stop stop-color="#FB9533"/>
-      <stop offset=".261" stop-color="#FEBA67"/>
-      <stop offset=".747" stop-color="#FF9976"/>
+      <stop offset=".26" stop-color="#FEBA67"/>
+      <stop offset=".75" stop-color="#FF9976"/>
       <stop offset="1" stop-color="#FF6350"/>
     </linearGradient>
   </defs>

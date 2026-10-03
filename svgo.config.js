@@ -1,7 +1,51 @@
+/**
+ * An icon's root `fill` is the default `fill` of its component (the
+ * variant's `"fill"` in icons/<category>/<unit>.json), not a redundant
+ * default: SVGO would drop a root `fill="#000"` (the initial value), so it
+ * is set aside for the run. Only black is set aside: SVGO computes inherited
+ * styles from it, which a hidden non-default fill would falsify.
+ */
+const ROOT_FILL_STASH = 'data-w3i-root-fill';
+const BLACK = new Set(['#000', '#000000', 'black']);
+
+/** @type {import('svgo').CustomPlugin} */
+const stashRootFill = {
+  name: 'stashRootFill',
+  fn: () => ({
+    element: {
+      enter(node, parent) {
+        const fill = node.attributes['fill'];
+        if (parent.type === 'root' && fill !== undefined && BLACK.has(fill)) {
+          node.attributes[ROOT_FILL_STASH] = fill;
+          delete node.attributes['fill'];
+        }
+      },
+    },
+  }),
+};
+
+/** @type {import('svgo').CustomPlugin} */
+const restoreRootFill = {
+  name: 'restoreRootFill',
+  fn: () => ({
+    element: {
+      enter(node, parent) {
+        const fill = node.attributes[ROOT_FILL_STASH];
+        if (parent.type === 'root' && fill !== undefined) {
+          node.attributes['fill'] = fill;
+          delete node.attributes[ROOT_FILL_STASH];
+        }
+      },
+    },
+  }),
+};
+
 /** @type {import('svgo').Config} */
 export default {
   multipass: true,
   plugins: [
+    stashRootFill,
+
     {
       name: 'preset-default',
       params: {
@@ -45,5 +89,7 @@ export default {
 
     // Strip fixed width/height — sizing is controlled via component props
     'removeDimensions',
+
+    restoreRootFill,
   ],
 };

@@ -8,11 +8,11 @@ export const ZkSync = /* @__PURE__ */ createIcon(
   '0 0 40 40',
   () => (
     <>
-      <path d="M0 0h40v40H0z" fill="#000" />
+      <path d="M0 0h40v40H0z" />
       <path
-        d="m32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7l6.954-6.922ZM7.75 20.005l6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7L7.75 20.004Z"
         fill="#fff"
         fillRule="evenodd"
+        d="m32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7zm-24.5 0 6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7z"
         clipRule="evenodd"
       />
     </>
@@ -31,9 +31,9 @@ export const ZkSyncMono = /* @__PURE__ */ createIcon(
         <mask id={`${_id}-a`}>
           <rect width="40" height="40" fill="#fff" />
           <path
-            d="m32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7l6.954-6.922ZM7.75 20.005l6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7L7.75 20.004Z"
             fill="#000"
             fillRule="evenodd"
+            d="m32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7zm-24.5 0 6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7z"
             clipRule="evenodd"
           />
         </mask>
@@ -49,12 +49,12 @@ export const ZkSyncCircle = /* @__PURE__ */ createIcon(
   '0 0 64 64',
   () => (
     <>
-      <circle cx="32" cy="32" r="32" fill="#000" />
-      <g transform="translate(9 9) scale(1.15)">
+      <circle cx="32" cy="32" r="32" />
+      <g>
         <path
-          d="m32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7l6.954-6.922ZM7.75 20.005l6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7L7.75 20.004Z"
           fill="#fff"
           fillRule="evenodd"
+          d="m46.088 32.006-7.998-7.96v5.825l-7.936 5.84h7.936v4.255zm-28.175 0 7.997 7.961v-5.791l7.936-5.887H25.91v-4.255l-7.997 7.97Z"
           clipRule="evenodd"
         />
       </g>
@@ -69,12 +69,12 @@ export const ZkSyncSquare = /* @__PURE__ */ createIcon(
   '0 0 64 64',
   () => (
     <>
-      <rect width="64" height="64" rx="12.8" fill="#000" />
-      <g transform="translate(9 9) scale(1.15)">
+      <rect width="64" height="64" rx="12.8" />
+      <g>
         <path
-          d="m32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7l6.954-6.922ZM7.75 20.005l6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7L7.75 20.004Z"
           fill="#fff"
           fillRule="evenodd"
+          d="m46.088 32.006-7.998-7.96v5.825l-7.936 5.84h7.936v4.255zm-28.175 0 7.997 7.961v-5.791l7.936-5.887H25.91v-4.255l-7.997 7.97Z"
           clipRule="evenodd"
         />
       </g>
@@ -89,14 +89,14 @@ export const ZkSyncSquareMono = /* @__PURE__ */ createIcon(
   '0 0 64 64',
   (_props, _id) => (
     <>
-      <rect width="64" height="64" rx="12.8" mask={`url(#${_id}-zkss-a)`} />
+      <rect width="64" height="64" mask={`url(#${_id}-zkss-a)`} rx="12.8" />
       <defs>
         <mask id={`${_id}-zkss-a`}>
           <rect width="100%" height="100%" fill="#fff" />
-          <g transform="translate(9 9) scale(1.15)" fill="#000">
+          <g fill="#000">
             <path
-              d="m32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7l6.954-6.922ZM7.75 20.005l6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7L7.75 20.004Z"
               fillRule="evenodd"
+              d="m46.088 32.006-7.998-7.96v5.825l-7.936 5.84h7.936v4.255zm-28.175 0 7.997 7.961v-5.791l7.936-5.887H25.91v-4.255l-7.997 7.97Z"
               clipRule="evenodd"
             />
           </g>
@@ -117,10 +117,10 @@ export const ZkSyncCircleMono = /* @__PURE__ */ createIcon(
       <defs>
         <mask id={`${_id}-zksc-a`}>
           <rect width="100%" height="100%" fill="#fff" />
-          <g transform="translate(9 9) scale(1.15)" fill="#000">
+          <g fill="#000">
             <path
-              d="m32.25 20.005-6.954-6.922v5.066l-6.901 5.078h6.901v3.7l6.954-6.922ZM7.75 20.005l6.954 6.923v-5.036l6.901-5.119h-6.901v-3.7L7.75 20.004Z"
               fillRule="evenodd"
+              d="m46.088 32.006-7.998-7.96v5.825l-7.936 5.84h7.936v4.255zm-28.175 0 7.997 7.961v-5.791l7.936-5.887H25.91v-4.255l-7.997 7.97Z"
               clipRule="evenodd"
             />
           </g>

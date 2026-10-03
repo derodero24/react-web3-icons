@@ -16,10 +16,10 @@ export const MantaPacific = /* @__PURE__ */ createIcon(
       <defs>
         <linearGradient
           id={`${_id}-a`}
-          x1="2.839"
-          x2="21.161"
-          y1="12.166"
-          y2="11.831"
+          x1="2.84"
+          x2="21.16"
+          y1="12.17"
+          y2="11.83"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#29CCB9" />

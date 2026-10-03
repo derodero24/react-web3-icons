@@ -12,8 +12,8 @@ export const Synapse = /* @__PURE__ */ createIcon(
         <linearGradient
           id={`${_id}-syn-g`}
           x1="-24"
-          y1="0"
           x2="24"
+          y1="0"
           y2="0"
           gradientUnits="userSpaceOnUse"
         >
@@ -22,12 +22,11 @@ export const Synapse = /* @__PURE__ */ createIcon(
         </linearGradient>
       </defs>
       <path
-        d="M0 18 18 0 H-18 L0 -18"
         stroke={`url(#${_id}-syn-g)`}
-        strokeWidth="5.5"
         strokeLinejoin="bevel"
-        opacity="0.5"
-        fill="none"
+        strokeWidth="5.5"
+        d="M0 18 18 0h-36L0-18"
+        opacity=".5"
       />
       <circle cy="18" r="6" fill={`url(#${_id}-syn-g)`} />
       <circle cx="18" r="6" fill={`url(#${_id}-syn-g)`} />
@@ -45,12 +44,12 @@ export const SynapseMono = /* @__PURE__ */ createIcon(
   () => (
     <>
       <path
-        d="M0 18 18 0 H-18 L0 -18"
-        strokeWidth="5.5"
-        strokeLinejoin="bevel"
-        opacity="0.5"
         fill="none"
         stroke="currentColor"
+        strokeLinejoin="bevel"
+        strokeWidth="5.5"
+        d="M0 18 18 0h-36L0-18"
+        opacity=".5"
       />
       <circle cy="18" r="6" />
       <circle cx="18" r="6" />

@@ -7,22 +7,22 @@ export const Dydx = /* @__PURE__ */ createIcon(
   '41 38 100.77 108',
   (_props, _id) => (
     <>
-      <path d="M116.379 38L41 145.991h23.143L139.912 38h-23.533z" fill="#fff" />
+      <path fill="#fff" d="M116.379 38 41 145.991h23.143L139.912 38z" />
       <path
-        d="M66.554 38l22.179 31.821-11.571 17.357L42.929 38h23.625z"
         fill={`url(#${_id}-dydx-a)`}
+        d="m66.554 38 22.179 31.821-11.571 17.357L42.929 38z"
       />
       <path
-        d="M118.625 146l-24.589-35.196 11.571-16.875L141.768 146h-23.143z"
         fill={`url(#${_id}-dydx-b)`}
+        d="m118.625 146-24.589-35.196 11.571-16.875L141.768 146z"
       />
       <defs>
         <linearGradient
           id={`${_id}-dydx-a`}
           x1="61.25"
-          y1="44.75"
           x2="93"
-          y2="83.079"
+          y1="44.75"
+          y2="83.08"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#fff" />
@@ -30,10 +30,10 @@ export const Dydx = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-dydx-b`}
-          x1="123.929"
-          y1="137.804"
+          x1="123.93"
           x2="84.92"
-          y2="85.216"
+          y1="137.8"
+          y2="85.22"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#6966ff" />
@@ -52,38 +52,38 @@ export const DydxSquare = /* @__PURE__ */ createIcon(
   (_props, _id) => (
     <>
       <rect
-        x="1"
-        y="1"
         width="181"
         height="181"
-        rx="37"
+        x="1"
+        y="1"
         fill={`url(#${_id}-dydx-2a)`}
+        rx="37"
       />
-      <path d="M115.316 43L45 141.992h21.588L137.269 43h-21.953z" fill="#fff" />
+      <path fill="#fff" d="M115.316 43 45 141.992h21.588L137.269 43z" />
       <path
-        d="M68.838 43l20.689 29.17L78.732 88.08 46.799 43h22.038z"
         fill={`url(#${_id}-dydx-2b)`}
+        d="m68.838 43 20.689 29.17-10.795 15.91L46.799 43z"
       />
       <path
-        d="M117.411 142l-22.937-32.263 10.794-15.469L139 142h-21.589z"
         fill={`url(#${_id}-dydx-2c)`}
+        d="m117.411 142-22.937-32.263 10.794-15.469L139 142z"
       />
       <rect
-        x="1"
-        y="1"
         width="181"
         height="181"
-        rx="37"
+        x="1"
+        y="1"
+        fill="none"
         stroke="#2d2d3d"
         strokeWidth="2"
-        fill="none"
+        rx="37"
       />
       <defs>
         <linearGradient
           id={`${_id}-dydx-2a`}
           x1="147.5"
-          y1="-24.5"
           x2="103"
+          y1="-24.5"
           y2="160.5"
           gradientUnits="userSpaceOnUse"
         >
@@ -93,9 +93,9 @@ export const DydxSquare = /* @__PURE__ */ createIcon(
         <linearGradient
           id={`${_id}-dydx-2b`}
           x1="63.89"
-          y1="49.188"
-          x2="92.895"
-          y2="84.821"
+          x2="92.89"
+          y1="49.19"
+          y2="84.82"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#fff" />
@@ -103,10 +103,10 @@ export const DydxSquare = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-dydx-2c`}
-          x1="122.359"
-          y1="134.487"
-          x2="86.787"
-          y2="85.686"
+          x1="122.36"
+          x2="86.79"
+          y1="134.49"
+          y2="85.69"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#6966ff" />
@@ -123,7 +123,7 @@ export const DydxMono = /* @__PURE__ */ createIcon(
   'DydxMono',
   '41 38 100.77 108',
   () => (
-    <path d="M116.379 38L41 145.991h23.143L139.912 38h-23.533zm-49.825 0l22.179 31.821-11.571 17.357L42.929 38h23.625zm52.071 108l-24.589-35.196 11.571-16.875L141.768 146h-23.143z" />
+    <path d="M116.379 38 41 145.991h23.143L139.912 38zm-49.825 0 22.179 31.821-11.571 17.357L42.929 38zm52.071 108-24.589-35.196 11.571-16.875L141.768 146z" />
   ),
   { fill: 'currentColor' },
 );
@@ -135,19 +135,19 @@ export const DydxSquareMono = /* @__PURE__ */ createIcon(
   (_props, _id) => (
     <>
       <rect
-        x="1"
-        y="1"
         width="181"
         height="181"
-        rx="37"
+        x="1"
+        y="1"
         mask={`url(#${_id}-dydxm2-a)`}
+        rx="37"
       />
       <defs>
         <mask id={`${_id}-dydxm2-a`}>
           <rect width="100%" height="100%" fill="#fff" />
           <path
-            d="M115.316 43L45 141.992h21.588L137.269 43h-21.953zm-46.478 0l20.689 29.17-10.795 15.91L46.799 43h22.038zm48.573 99l-22.937-32.263 10.794-15.469L139 142h-21.589z"
             fill="#000"
+            d="M115.316 43 45 141.992h21.588L137.269 43zm-46.478 0 20.689 29.17-10.795 15.91L46.799 43zm48.573 99-22.937-32.263 10.794-15.469L139 142z"
           />
         </mask>
       </defs>

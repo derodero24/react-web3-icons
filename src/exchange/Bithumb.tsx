@@ -22,10 +22,10 @@ export const Bithumb = /* @__PURE__ */ createIcon(
       <defs>
         <linearGradient
           id={`${_id}-a`}
-          x1="18.231"
-          x2="13.097"
-          y1="15.912"
-          y2="8.033"
+          x1="18.23"
+          x2="13.1"
+          y1="15.91"
+          y2="8.03"
           gradientUnits="userSpaceOnUse"
         >
           <stop offset=".41" stopColor="#F47320" />

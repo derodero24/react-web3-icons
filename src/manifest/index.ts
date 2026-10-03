@@ -147,13 +147,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'AlgorandCircle', category: 'chain' },
   { name: 'AlgorandCircleMono', category: 'chain' },
   { name: 'AlgorandMono', category: 'chain' },
-  {
-    name: 'Aptos',
-    category: 'chain',
-    slug: 'aptos',
-    variants: ['', 'Mono'],
-    brandColor: '#000000',
-  },
+  { name: 'Aptos', category: 'chain', slug: 'aptos', variants: ['', 'Mono'] },
   { name: 'AptosMono', category: 'chain' },
   {
     name: 'Arbitrum',
@@ -362,13 +356,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#3e6957',
   },
   { name: 'GnosisChainMono', category: 'chain' },
-  {
-    name: 'Hedera',
-    category: 'chain',
-    slug: 'hedera',
-    variants: ['', 'Mono'],
-    brandColor: '#000000',
-  },
+  { name: 'Hedera', category: 'chain', slug: 'hedera', variants: ['', 'Mono'] },
   { name: 'HederaMono', category: 'chain' },
   { name: 'Hyperliquid', category: 'chain', chainId: 999, slug: 'hyperliquid' },
   { name: 'HyperliquidMono', category: 'chain' },
@@ -422,7 +410,6 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 59_144,
     slug: 'linea',
     variants: ['', 'Mono'],
-    brandColor: '#000000',
   },
   { name: 'LineaMono', category: 'chain' },
   {
@@ -441,7 +428,6 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 5000,
     slug: 'mantle',
     variants: ['', 'Mono'],
-    brandColor: '#000000',
   },
   { name: 'MantleMono', category: 'chain' },
   {
@@ -642,7 +628,6 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'zksync',
     variants: ['', 'Mono', 'Circle', 'Square', 'SquareMono', 'CircleMono'],
     aliases: ['zk'],
-    brandColor: '#000000',
   },
   { name: 'ZkSyncCircle', category: 'chain' },
   { name: 'ZkSyncCircleMono', category: 'chain' },

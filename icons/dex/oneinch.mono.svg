@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="currentColor">
-  <rect width="40" height="40" rx="8" mask="url(#1i-m)"/>
+<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 40 40">
+  <rect width="40" height="40" mask="url(#1i-m)" rx="8"/>
   <defs>
     <mask id="1i-m">
       <rect width="40" height="40" fill="white"/>
-      <path d="M12.9957 30.3368H27.0039V27.3877H21.843V9.66367H18.7759C18.658 12.1409 17.9502 12.7602 14.5587 12.7602H12.9957V15.5913H18.1566V27.3877H12.9957V30.3368Z" fill="black"/>
-      <path d="M28.4786 15.5918V9.66413H25.5295V15.5918H28.4786Z" fill="black"/>
-      <path d="M33.665 15.5918V9.66413H30.7159V15.5918H33.665Z" fill="black"/>
+      <path fill="black" d="M12.996 30.337h14.008v-2.95h-5.161V9.665h-3.067c-.118 2.477-.826 3.096-4.217 3.096h-1.563v2.831h5.16v11.797h-5.16z"/>
+      <path fill="black" d="M28.479 15.592V9.664h-2.95v5.928z"/>
+      <path fill="black" d="M33.665 15.592V9.664h-2.95v5.928z"/>
     </mask>
   </defs>
 </svg>

@@ -14,28 +14,28 @@ export const Polkadot = /* @__PURE__ */ createIcon(
         cy="720.38"
         rx="254.27"
         ry="147.95"
-        transform="matrix(.5 -.866025 .866025 .5 -365.13 808.33)"
+        transform="rotate(-60 517.47 720.377)"
       />
       <ellipse
         cx="1482.53"
         cy="1277.56"
         rx="254.27"
         ry="147.95"
-        transform="matrix(.5 -.866025 .866025 .5 -365.13 1922.69)"
+        transform="rotate(-60 1482.534 1277.557)"
       />
       <ellipse
         cx="517.47"
         cy="1277.56"
         rx="147.95"
         ry="254.27"
-        transform="matrix(.866025 -.5 .5 .866025 -569.45 429.89)"
+        transform="rotate(-30 517.46 1277.553)"
       />
       <ellipse
         cx="1482.53"
         cy="720.38"
         rx="147.95"
         ry="254.27"
-        transform="matrix(.866025 -.5 .5 .866025 -161.57 837.78)"
+        transform="rotate(-30 1482.533 720.384)"
       />
     </>
   ),
@@ -55,28 +55,28 @@ export const PolkadotMono = /* @__PURE__ */ createIcon(
         cy="720.38"
         rx="254.27"
         ry="147.95"
-        transform="matrix(.5 -.866025 .866025 .5 -365.13 808.33)"
+        transform="rotate(-60 517.47 720.377)"
       />
       <ellipse
         cx="1482.53"
         cy="1277.56"
         rx="254.27"
         ry="147.95"
-        transform="matrix(.5 -.866025 .866025 .5 -365.13 1922.69)"
+        transform="rotate(-60 1482.534 1277.557)"
       />
       <ellipse
         cx="517.47"
         cy="1277.56"
         rx="147.95"
         ry="254.27"
-        transform="matrix(.866025 -.5 .5 .866025 -569.45 429.89)"
+        transform="rotate(-30 517.46 1277.553)"
       />
       <ellipse
         cx="1482.53"
         cy="720.38"
         rx="147.95"
         ry="254.27"
-        transform="matrix(.866025 -.5 .5 .866025 -161.57 837.78)"
+        transform="rotate(-30 1482.533 720.384)"
       />
     </>
   ),

@@ -10,10 +10,10 @@ export const Rabby = /* @__PURE__ */ createIcon(
       <defs>
         <linearGradient
           id={`${_id}-rabby-a`}
-          x1="8.311"
-          x2="20.827"
-          y1="11.714"
-          y2="15.125"
+          x1="8.31"
+          x2="20.83"
+          y1="11.71"
+          y2="15.13"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#8697FF" />
@@ -22,9 +22,9 @@ export const Rabby = /* @__PURE__ */ createIcon(
         <linearGradient
           id={`${_id}-rabby-b`}
           x1="18.66"
-          x2="9.323"
-          y1="11.468"
-          y2="2.473"
+          x2="9.32"
+          y1="11.47"
+          y2="2.47"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#8697FF" />
@@ -32,10 +32,10 @@ export const Rabby = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-rabby-c`}
-          x1="14.023"
-          x2="5.231"
-          y1="16.707"
-          y2="11.849"
+          x1="14.02"
+          x2="5.23"
+          y1="16.71"
+          y2="11.85"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#465EED" />
@@ -43,14 +43,14 @@ export const Rabby = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-rabby-d`}
-          x1="9.054"
-          x2="15.173"
-          y1="11.617"
-          y2="19.089"
+          x1="9.05"
+          x2="15.17"
+          y1="11.62"
+          y2="19.09"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#8898FF" />
-          <stop offset=".984" stopColor="#6277F1" />
+          <stop offset=".98" stopColor="#6277F1" />
         </linearGradient>
       </defs>
       <path

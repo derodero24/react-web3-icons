@@ -12,8 +12,8 @@ export const Gmx = /* @__PURE__ */ createIcon(
         <linearGradient
           id={`${_id}-gmx-a`}
           x1="12"
-          y1="5"
           x2="12"
+          y1="5"
           y2="19"
           gradientUnits="userSpaceOnUse"
         >
@@ -22,8 +22,8 @@ export const Gmx = /* @__PURE__ */ createIcon(
         </linearGradient>
       </defs>
       <path
-        d="M21 19.0001L12.015 5L3 19.0001H15.5599L12.01 13.655L10.26 16.5H8.38501L12.015 10.85L17.26 19.0001H21Z"
         fill={`url(#${_id}-gmx-a)`}
+        d="M21 19 12.015 5 3 19h12.56l-3.55-5.345-1.75 2.845H8.385l3.63-5.65L17.26 19z"
       />
     </>
   ),
@@ -35,7 +35,7 @@ export const GmxMono = /* @__PURE__ */ createIcon(
   'GmxMono',
   '0 0 24 24',
   () => (
-    <path d="M21 19.0001L12.015 5L3 19.0001H15.5599L12.01 13.655L10.26 16.5H8.38501L12.015 10.85L17.26 19.0001H21Z" />
+    <path d="M21 19 12.015 5 3 19h12.56l-3.55-5.345-1.75 2.845H8.385l3.63-5.65L17.26 19z" />
   ),
   { fill: 'currentColor' },
 );

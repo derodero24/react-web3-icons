@@ -10,10 +10,10 @@ export const Exodus = /* @__PURE__ */ createIcon(
       <defs>
         <linearGradient
           id={`${_id}-exodus-a`}
-          x1="18.475"
-          x2="13.422"
-          y1="22.238"
-          y2=".981"
+          x1="18.48"
+          x2="13.42"
+          y1="22.24"
+          y2=".98"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#0B46F9" />
@@ -21,10 +21,10 @@ export const Exodus = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-exodus-b`}
-          x1="18.475"
-          x2="13.423"
-          y1="22.238"
-          y2=".981"
+          x1="18.48"
+          x2="13.42"
+          y1="22.24"
+          y2=".98"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#0B46F9" />
@@ -32,10 +32,10 @@ export const Exodus = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-exodus-f`}
-          x1="4.215"
-          x2="13.103"
+          x1="4.21"
+          x2="13.1"
           y1="7.05"
-          y2="13.688"
+          y2="13.69"
           gradientUnits="userSpaceOnUse"
         >
           <stop offset=".12" stopColor="#8952FF" stopOpacity=".87" />

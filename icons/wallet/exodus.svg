@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
   <defs>
-    <linearGradient id="exodus-a" x1="18.475" x2="13.422" y1="22.238" y2=".981" gradientUnits="userSpaceOnUse">
+    <linearGradient id="exodus-a" x1="18.48" x2="13.42" y1="22.24" y2=".98" gradientUnits="userSpaceOnUse">
       <stop stop-color="#0B46F9"/>
       <stop offset="1" stop-color="#BBFBE0"/>
     </linearGradient>
-    <linearGradient id="exodus-b" x1="18.475" x2="13.423" y1="22.238" y2=".981" gradientUnits="userSpaceOnUse">
+    <linearGradient id="exodus-b" x1="18.48" x2="13.42" y1="22.24" y2=".98" gradientUnits="userSpaceOnUse">
       <stop stop-color="#0B46F9"/>
       <stop offset="1" stop-color="#BBFBE0"/>
     </linearGradient>
-    <linearGradient id="exodus-f" x1="4.215" x2="13.103" y1="7.05" y2="13.688" gradientUnits="userSpaceOnUse">
+    <linearGradient id="exodus-f" x1="4.21" x2="13.1" y1="7.05" y2="13.69" gradientUnits="userSpaceOnUse">
       <stop offset=".12" stop-color="#8952FF" stop-opacity=".87"/>
       <stop offset="1" stop-color="#DABDFF" stop-opacity="0"/>
     </linearGradient>

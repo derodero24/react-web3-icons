@@ -10,10 +10,10 @@ export const Mexc = /* @__PURE__ */ createIcon(
       <defs>
         <linearGradient
           id={`${_id}-mx-a`}
-          x1="9.029"
-          x2="18.187"
-          y1="15.981"
-          y2="15.981"
+          x1="9.03"
+          x2="18.19"
+          y1="15.98"
+          y2="15.98"
           gradientUnits="userSpaceOnUse"
         >
           <stop offset=".12" stopColor="#1C6AD9" />

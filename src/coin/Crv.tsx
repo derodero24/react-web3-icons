@@ -57,7 +57,7 @@ export const Crv = /* @__PURE__ */ createIcon(
       />
       <path
         fill={`url(#${_id}-crv-l)`}
-        fillOpacity="0.5"
+        fillOpacity=".5"
         d="M6.624 12.953c-.945.175-1.726-.122-1.998-.292.257-.52.93-1.649 2.202-1.736 1.15-.078 1.885.85 2.216 1.55-.481-.039-1.475.303-2.42.478"
       />
       <path
@@ -85,19 +85,19 @@ export const Crv = /* @__PURE__ */ createIcon(
           id={`${_id}-crv-a`}
           x1="8.61"
           x2="21.2"
-          y1="3.522"
-          y2="9.304"
+          y1="3.52"
+          y2="9.3"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".339" stopColor="#FF7301" />
-          <stop offset=".948" stopColor="#FFDD01" />
+          <stop offset=".34" stopColor="#FF7301" />
+          <stop offset=".95" stopColor="#FFDD01" />
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-b`}
           x1="4.17"
-          x2="20.755"
-          y1="3.001"
-          y2="14.631"
+          x2="20.75"
+          y1="3"
+          y2="14.63"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FF8101" />
@@ -105,24 +105,24 @@ export const Crv = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-c`}
-          x1="-2.481"
-          x2="-3.115"
-          y1="11.141"
+          x1="-2.48"
+          x2="-3.12"
+          y1="11.14"
           y2="22.14"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FF9100" />
-          <stop offset=".314" stopColor="#D4FF23" />
+          <stop offset=".31" stopColor="#D4FF23" />
           <stop offset=".49" stopColor="#87FF70" />
-          <stop offset=".688" stopColor="#1CFFDB" />
+          <stop offset=".69" stopColor="#1CFFDB" />
           <stop offset="1" stopColor="#00BEFF" />
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-d`}
-          x1="15.075"
+          x1="15.07"
           x2="19.88"
-          y1="3.562"
-          y2="5.278"
+          y1="3.56"
+          y2="5.28"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FF4E00" />
@@ -130,10 +130,10 @@ export const Crv = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-e`}
-          x1="15.388"
-          x2="20.878"
-          y1="6.527"
-          y2="7.276"
+          x1="15.39"
+          x2="20.88"
+          y1="6.53"
+          y2="7.28"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FA0F00" />
@@ -141,10 +141,10 @@ export const Crv = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-f`}
-          x1="5.183"
-          x2="9.839"
-          y1="9.301"
-          y2="24.575"
+          x1="5.18"
+          x2="9.84"
+          y1="9.3"
+          y2="24.57"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#A80000" />
@@ -152,35 +152,35 @@ export const Crv = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-g`}
-          x1="10.512"
-          x2="13.726"
-          y1="7.057"
-          y2="17.164"
+          x1="10.51"
+          x2="13.73"
+          y1="7.06"
+          y2="17.16"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FFE600" />
-          <stop offset=".469" stopColor="#7AFF7D" />
-          <stop offset=".891" stopColor="#1CFFDB" />
+          <stop offset=".47" stopColor="#7AFF7D" />
+          <stop offset=".89" stopColor="#1CFFDB" />
           <stop offset="1" stopColor="#00DCFE" />
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-h`}
-          x1="12.406"
-          x2="8.119"
-          y1="8.574"
-          y2="18.454"
+          x1="12.41"
+          x2="8.12"
+          y1="8.57"
+          y2="18.45"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#F1FC06" />
-          <stop offset=".469" stopColor="#7AFF7D" />
+          <stop offset=".47" stopColor="#7AFF7D" />
           <stop offset="1" stopColor="#1CFFDB" />
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-i`}
-          x1="6.532"
-          x2="21.489"
+          x1="6.53"
+          x2="21.49"
           y1="7.57"
-          y2="16.192"
+          y2="16.19"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FFC100" />
@@ -188,10 +188,10 @@ export const Crv = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-j`}
-          x1="12.002"
-          x2="12.002"
-          y1="2.999"
-          y2="21.002"
+          x1="12"
+          x2="12"
+          y1="3"
+          y2="21"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FFD701" />
@@ -199,25 +199,25 @@ export const Crv = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-k`}
-          x1="8.781"
-          x2="10.198"
-          y1="4.262"
+          x1="8.78"
+          x2="10.2"
+          y1="4.26"
           y2="21.15"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FFA300" />
-          <stop offset=".214" stopColor="#DEFF19" />
-          <stop offset=".464" stopColor="#A4FF53" />
-          <stop offset=".688" stopColor="#36FFC1" />
-          <stop offset=".865" stopColor="#00A0FF" />
-          <stop offset=".974" stopColor="#0064FF" />
+          <stop offset=".21" stopColor="#DEFF19" />
+          <stop offset=".46" stopColor="#A4FF53" />
+          <stop offset=".69" stopColor="#36FFC1" />
+          <stop offset=".86" stopColor="#00A0FF" />
+          <stop offset=".97" stopColor="#0064FF" />
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-l`}
-          x1="5.115"
-          x2="30.267"
-          y1="11.248"
-          y2="12.041"
+          x1="5.12"
+          x2="30.27"
+          y1="11.25"
+          y2="12.04"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FF8A01" />
@@ -225,10 +225,10 @@ export const Crv = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-n`}
-          x1="18.077"
-          x2="8.979"
-          y1="9.628"
-          y2="14.612"
+          x1="18.08"
+          x2="8.98"
+          y1="9.63"
+          y2="14.61"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#14F3E6" />
@@ -236,10 +236,10 @@ export const Crv = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-o`}
-          x1="4.482"
-          x2="12.235"
-          y1="4.914"
-          y2="7.717"
+          x1="4.48"
+          x2="12.23"
+          y1="4.91"
+          y2="7.72"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#09D3F3" />
@@ -247,24 +247,24 @@ export const Crv = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-p`}
-          x1="7.425"
-          x2="8.079"
-          y1="11.291"
-          y2="23.711"
+          x1="7.42"
+          x2="8.08"
+          y1="11.29"
+          y2="23.71"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FF9100" />
-          <stop offset=".314" stopColor="#D4FF23" />
+          <stop offset=".31" stopColor="#D4FF23" />
           <stop offset=".49" stopColor="#87FF70" />
-          <stop offset=".688" stopColor="#1CFFDB" />
+          <stop offset=".69" stopColor="#1CFFDB" />
           <stop offset="1" stopColor="#00D8FF" />
         </linearGradient>
         <linearGradient
           id={`${_id}-crv-q`}
-          x1="3.906"
-          x2="11.039"
-          y1="9.407"
-          y2="20.221"
+          x1="3.91"
+          x2="11.04"
+          y1="9.41"
+          y2="20.22"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FF4E01" />

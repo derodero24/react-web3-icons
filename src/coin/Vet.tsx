@@ -15,9 +15,9 @@ export const Vet = /* @__PURE__ */ createIcon(
         <linearGradient
           id={`${_id}-a`}
           x1="3"
-          x2="20.048"
-          y1="20.593"
-          y2="1.144"
+          x2="20.05"
+          y1="20.59"
+          y2="1.14"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#582974" />

@@ -30,7 +30,7 @@ toolchain dependencies' own `engines`.
 
 | Command | Description |
 | --- | --- |
-| `pnpm run check` | Lint and format check exactly as CI runs it (`biome ci --error-on-warnings`) |
+| `pnpm run check` | Lint and format check exactly as CI runs it (`biome ci --error-on-warnings`), then `check:svgo` |
 | `pnpm run lint` | Run Biome (lint, format, import order) and report problems |
 | `pnpm run lint:fix` | Apply Biome's safe fixes and formatting |
 | `pnpm run format` | Format only |
@@ -45,7 +45,7 @@ toolchain dependencies' own `engines`.
 | `pnpm run new-icon` | Scaffold a new icon unit from an SVG |
 | `pnpm run generate-icons` | Regenerate `src/` (icons, dynamic import maps, meta, deprecated set, manifest) and `icons/schema.json` from `icons/` (`--check`: verify only) |
 | `pnpm run optimize:svg` | Optimize an SVG with SVGO |
-| `pnpm run check:svgo` | List icon SVGs SVGO would still change |
+| `pnpm run check:svgo` | List icon SVGs SVGO would still change (fails if any) |
 | `pnpm changeset` | Add a changeset for a change to the published package |
 
 ## Project Structure
@@ -346,9 +346,11 @@ pnpm run optimize:svg -r path/to/svgs/      # a directory
 ```
 
 `pnpm run check:svgo [files…]` lists icon sources that SVGO would still change
-(ignoring attribute order and whitespace). Many older sources predate the
-current configuration and are not normalized; check the files you add or
-touch.
+(ignoring attribute order and whitespace). Every source under `icons/` is
+SVGO-normalized, and `pnpm run check` (run by CI and the pre-push hook) fails
+when one is not; run `pnpm run optimize:svg <file>` on a source you edit by
+hand. The configuration keeps a root `fill="#000"`, which SVGO would drop as
+the initial value: a root `fill` is the component's default `fill`.
 
 ### 3. Add variants
 

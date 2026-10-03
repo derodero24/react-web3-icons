@@ -18,10 +18,10 @@ export const Inj = /* @__PURE__ */ createIcon(
       <defs>
         <linearGradient
           id={`${_id}-a`}
-          x1="3.001"
-          x2="33.459"
-          y1="11.124"
-          y2="11.124"
+          x1="3"
+          x2="33.46"
+          y1="11.12"
+          y2="11.12"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#0082FA" />
@@ -29,7 +29,7 @@ export const Inj = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-b`}
-          x1="3.001"
+          x1="3"
           x2="21"
           y1="12"
           y2="12"

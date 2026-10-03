@@ -14,10 +14,10 @@ export const ImToken = /* @__PURE__ */ createIcon(
       <defs>
         <linearGradient
           id={`${_id}-a`}
-          x1="19.143"
-          x2="5.727"
-          y1="8.706"
-          y2="16.386"
+          x1="19.14"
+          x2="5.73"
+          y1="8.71"
+          y2="16.39"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#0CC5FF" />

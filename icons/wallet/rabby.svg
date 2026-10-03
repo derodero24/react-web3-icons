@@ -1,20 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
   <defs>
-    <linearGradient id="rabby-a" x1="8.311" x2="20.827" y1="11.714" y2="15.125" gradientUnits="userSpaceOnUse">
+    <linearGradient id="rabby-a" x1="8.31" x2="20.83" y1="11.71" y2="15.13" gradientUnits="userSpaceOnUse">
       <stop stop-color="#8697FF"/>
       <stop offset="1" stop-color="#ABB7FF"/>
     </linearGradient>
-    <linearGradient id="rabby-b" x1="18.66" x2="9.323" y1="11.468" y2="2.473" gradientUnits="userSpaceOnUse">
+    <linearGradient id="rabby-b" x1="18.66" x2="9.32" y1="11.47" y2="2.47" gradientUnits="userSpaceOnUse">
       <stop stop-color="#8697FF"/>
       <stop offset="1" stop-color="#5156D8" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="rabby-c" x1="14.023" x2="5.231" y1="16.707" y2="11.849" gradientUnits="userSpaceOnUse">
+    <linearGradient id="rabby-c" x1="14.02" x2="5.23" y1="16.71" y2="11.85" gradientUnits="userSpaceOnUse">
       <stop stop-color="#465EED"/>
       <stop offset="1" stop-color="#8697FF" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="rabby-d" x1="9.054" x2="15.173" y1="11.617" y2="19.089" gradientUnits="userSpaceOnUse">
+    <linearGradient id="rabby-d" x1="9.05" x2="15.17" y1="11.62" y2="19.09" gradientUnits="userSpaceOnUse">
       <stop stop-color="#8898FF"/>
-      <stop offset=".984" stop-color="#6277F1"/>
+      <stop offset=".98" stop-color="#6277F1"/>
     </linearGradient>
   </defs>
   <path fill="url(#rabby-a)" d="M20.908 13.17c.707-1.644-2.788-6.235-6.127-8.148-2.105-1.482-4.298-1.279-4.742-.628-.975 1.428 3.228 2.638 6.038 4.05a3.25 3.25 0 0 0-1.508 1.39c-1.048-1.19-3.347-2.216-6.046-1.39-1.819.556-3.33 1.868-3.914 3.85a1.1 1.1 0 0 0-.464-.103c-.632 0-1.145.533-1.145 1.191s.513 1.191 1.145 1.191c.117 0 .483-.081.483-.081l5.855.044c-2.341 3.865-4.192 4.43-4.192 5.1s1.77.488 2.436.238c3.182-1.195 6.6-4.919 7.187-5.99 2.463.32 4.533.357 4.994-.715"/>
