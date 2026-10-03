@@ -1961,7 +1961,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'coinbasewallet',
     variants: ['', 'Circle', 'CircleMono', 'Square', 'SquareMono', 'Mono'],
-    brandColor: '#0052ff',
+    brandColor: '#0000ff',
   },
   { name: 'CoinbaseWalletCircle', category: 'wallet' },
   { name: 'CoinbaseWalletCircleMono', category: 'wallet' },

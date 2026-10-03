@@ -1,11 +1,14 @@
 {
   "name": "CoinbaseWallet",
   "source": [
-    "https://wallet.coinbase.com"
+    "https://base.app/ (official Coinbase Wallet site; inline <svg aria-label=\"Coinbase Wallet Logo\" viewBox=\"0 0 32 32\">, retrieved 2026-10-03)",
+    "https://base.app/static-open-graph/v1/favicon.png (official favicon, the same standalone C-ring)"
   ],
   "notes": [
-    "Coinbase \"C\" symbol paths (white circle + blue inner rect) shared across variants",
-    "Original viewBox 0 0 2500 2500 → scale 0.0256 (64/2500)"
+    "Colored: the C-ring path and its #0000FF/#00C3FF/#00FFFF/#FFEE7D linear gradient copied unchanged from the inline 'Coinbase Wallet Logo' SVG on base.app, placed on the 64 grid. The app was renamed Base app in July 2025 and back to Coinbase Wallet on 2026-09-10; the export name is unchanged",
+    "Mono: the same C-ring path in currentColor",
+    "No official Circle or Square asset is published; both are plain container compositions: a white circle r=32 / white 64x64 square with rx=12.8 behind the unchanged gradient ring, scaled 1.25 and translated (12 12) so the ring is 40 units wide",
+    "CircleMono / SquareMono: the container in currentColor with the ring knocked out by a mask"
   ],
   "kind": "icon",
   "variants": {

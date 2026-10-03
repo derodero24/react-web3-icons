@@ -1,5 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#0052ff" rx="12.8"/>
-  <path fill="#fff" d="M32 9.27c12.55 0 22.73 10.18 22.73 22.73S44.55 54.73 32 54.73 9.27 44.55 9.27 32 19.45 9.27 32 9.27"/>
-  <path fill="#0052ff" d="M26.4 24.73h11.2c.92 0 1.66.8 1.66 1.8v10.94c0 1-.74 1.8-1.66 1.8H26.4c-.92 0-1.67-.81-1.67-1.8V26.53c0-1 .75-1.8 1.67-1.8"/>
+  <rect width="64" height="64" fill="#fff" rx="12.8"/>
+  <path fill="url(#cbws-a)" d="M16 24a8 8 0 0 1-8-8 8 8 0 0 1 8-8c3.96 0 7.25 2.89 7.88 6.67h8.06C31.26 6.45 24.39 0 16 0 7.17 0 0 7.17 0 16s7.17 16 16 16c8.39 0 15.26-6.45 15.94-14.67h-8.06C23.25 21.11 19.96 24 16 24" transform="translate(12 12)scale(1.25)"/>
+  <defs>
+    <linearGradient id="cbws-a" x1="4.06" x2="32.1" y1="0" y2="28.05" gradientUnits="userSpaceOnUse">
+      <stop offset=".03" stop-color="#0000FF"/>
+      <stop offset=".43" stop-color="#00C3FF"/>
+      <stop offset=".72" stop-color="#00FFFF"/>
+      <stop offset="1" stop-color="#FFEE7D"/>
+    </linearGradient>
+  </defs>
 </svg>
