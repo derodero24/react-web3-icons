@@ -8,9 +8,14 @@
  *  - "reexport" — renames exports of another module (`export { A as B } from …`)
  *  - "alias"    — deprecated `export const A = B;` aliases with JSDoc
  *
- * Validation checks the shape of every field the pipeline reads, so a typo
- * fails with the file and field instead of a context-free TypeError. Keys the
- * pipeline does not read are ignored.
+ * Validation is strict: every field is checked for its shape and, since
+ * values are interpolated into generated TypeScript, for a safe spelling
+ * (identifiers, module specifiers, single-line comments); unknown keys are
+ * errors, so a typo fails with the file and field instead of being ignored.
+ *
+ * The same rules describe themselves as JSON Schema: `pnpm run
+ * generate-icons` writes `icons/schema.json` from `UNIT_JSON_SCHEMA` for
+ * editor support, so the schema cannot disagree with this validator.
  */
 
 import { isArray, isRecord } from '../guards.ts';
@@ -46,7 +51,12 @@ export interface AliasConstSpec {
   readonly exports: readonly ConstAlias[];
 }
 
+/** Path of the JSON Schema, relative to a unit file. */
+export const SCHEMA_REF = '../schema.json';
+
 interface UnitBase {
+  /** Optional editor hint; always {@link SCHEMA_REF}. */
+  readonly $schema?: typeof SCHEMA_REF;
   /** Canonical PascalCase export name, also the module file name. */
   readonly name: string;
   readonly source?: readonly string[];
@@ -94,12 +104,27 @@ export function isArtwork(meta: UnitMeta): meta is ArtworkUnitMeta {
   return meta.kind === 'icon' || meta.kind === 'custom';
 }
 
-/** Validates `value`; `path` locates it as `<file>: <field path>`. */
-type Check = (value: unknown, path: string) => void;
+/** A JSON value, as written to the schema file. */
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | readonly Json[]
+  | { readonly [key: string]: Json };
+
+type JsonObject = { readonly [key: string]: Json };
+
+/** A validator together with its JSON Schema description. */
+interface Rule {
+  /** Throws when `value` is invalid; `path` locates it as `<file>: <field>`. */
+  readonly check: (value: unknown, path: string) => void;
+  readonly schema: JsonObject;
+}
 
 /** Marks a field that may be absent. */
 interface Optional {
-  readonly optional: Check;
+  readonly optional: Rule;
 }
 
 type OptionalKeys<T> = {
@@ -107,11 +132,11 @@ type OptionalKeys<T> = {
 }[keyof T];
 
 /**
- * One check per field of `T`, optional fields wrapped in `{ optional }`, so a
+ * One rule per field of `T`, optional fields wrapped in `{ optional }`, so a
  * schema cannot miss, invent, or mis-mark a field of the type it validates.
  */
 type Schema<T> = {
-  readonly [K in Exclude<keyof T, OptionalKeys<T>>]: Check;
+  readonly [K in Exclude<keyof T, OptionalKeys<T>>]: Rule;
 } & { readonly [K in OptionalKeys<T>]-?: Optional };
 
 function fail(path: string, expected: string): never {
@@ -125,96 +150,179 @@ function field(path: string, key: string): string {
   return path.endsWith(':') ? `${path} ${key}` : `${path}.${key}`;
 }
 
-const string: Check = (value, path) => {
-  if (typeof value !== 'string') {
-    fail(path, 'a string');
-  }
-};
-
-function arrayOf(item: Check): Check {
-  return (value, path) => {
-    if (!isArray(value)) {
-      fail(path, 'an array');
-    }
-    for (const [i, entry] of value.entries()) {
-      item(entry, `${path}[${i}]`);
-    }
-  };
-}
-
-function recordOf(item: Check): Check {
-  return (value, path) => {
-    if (!isRecord(value)) {
-      fail(path, 'an object');
-    }
-    for (const [key, entry] of Object.entries(value)) {
-      item(entry, field(path, key));
-    }
-  };
-}
-
-function object<T>(schema: Schema<T>): Check {
-  const fields: Readonly<Record<string, Check | Optional>> = schema;
-  return (value, path) => {
-    if (!isRecord(value)) {
-      fail(path, 'an object');
-    }
-    for (const [key, spec] of Object.entries(fields)) {
-      if (typeof spec === 'function') {
-        spec(value[key], field(path, key));
-      } else if (value[key] !== undefined) {
-        spec.optional(value[key], field(path, key));
+/** A string matching `pattern`, which must be anchored (`^…$`). */
+function text(pattern: RegExp, description: string): Rule {
+  return {
+    check: (value, path) => {
+      if (typeof value !== 'string') {
+        fail(path, 'a string');
       }
-    }
+      if (!pattern.test(value)) {
+        fail(path, `${description}, got ${JSON.stringify(value)}`);
+      }
+    },
+    schema: { type: 'string', pattern: pattern.source, description },
   };
 }
 
-const optional = (check: Check): Optional => ({ optional: check });
+function literal(value: string): Rule {
+  return {
+    check: (actual, path) => {
+      if (actual !== value) {
+        fail(path, JSON.stringify(value));
+      }
+    },
+    schema: { const: value },
+  };
+}
 
-const strings = arrayOf(string);
+function arrayOf(item: Rule): Rule {
+  return {
+    check: (value, path) => {
+      if (!isArray(value)) {
+        fail(path, 'an array');
+      }
+      for (const [i, entry] of value.entries()) {
+        item.check(entry, `${path}[${i}]`);
+      }
+    },
+    schema: { type: 'array', items: item.schema },
+  };
+}
+
+/** An object used as a map: arbitrary keys matching `key`, `item` values. */
+function recordOf(key: Rule, item: Rule): Rule {
+  return {
+    check: (value, path) => {
+      if (!isRecord(value)) {
+        fail(path, 'an object');
+      }
+      for (const [name, entry] of Object.entries(value)) {
+        key.check(name, `${path} key ${JSON.stringify(name)}`);
+        item.check(entry, field(path, name));
+      }
+    },
+    schema: {
+      type: 'object',
+      propertyNames: key.schema,
+      additionalProperties: item.schema,
+    },
+  };
+}
+
+function object<T>(schema: Schema<T>): Rule {
+  const fields: Readonly<Record<string, Rule | Optional>> = schema;
+  const entries = Object.entries(fields);
+  const properties: Record<string, Json> = {};
+  const required: string[] = [];
+  for (const [key, spec] of entries) {
+    if ('optional' in spec) {
+      properties[key] = spec.optional.schema;
+    } else {
+      properties[key] = spec.schema;
+      required.push(key);
+    }
+  }
+  return {
+    check: (value, path) => {
+      if (!isRecord(value)) {
+        fail(path, 'an object');
+      }
+      for (const key of Object.keys(value)) {
+        if (!Object.hasOwn(fields, key)) {
+          throw new Error(
+            `${field(path, key)} is not a known key (expected one of ${Object.keys(fields).join(', ')})`,
+          );
+        }
+      }
+      for (const [key, spec] of entries) {
+        if (!('optional' in spec)) {
+          spec.check(value[key], field(path, key));
+        } else if (value[key] !== undefined) {
+          spec.optional.check(value[key], field(path, key));
+        }
+      }
+    },
+    schema: {
+      type: 'object',
+      properties,
+      required,
+      additionalProperties: false,
+    },
+  };
+}
+
+const optional = (rule: Rule): Optional => ({ optional: rule });
+
+const identifier = text(/^[A-Z][A-Za-z0-9]*$/, 'a PascalCase identifier');
+const moduleSpecifier = text(
+  /^(?:\.\/|\.\.\/[a-z]+\/)[A-Z][A-Za-z0-9]*$/,
+  'a module specifier like ./Name or ../category/Name',
+);
+/** Emitted inside `// …` comments, so it must stay on one line. */
+const lines = arrayOf(text(/^[^\r\n]*$/, 'a single line of text'));
+/** Emitted inside a `@deprecated` JSDoc block, so it must not close it. */
+const message = text(
+  /^(?!.*\*\/)[^\r\n]+$/,
+  'a non-empty single-line message without "*/"',
+);
 
 const reexportSpec = object<ReexportSpec>({
-  from: string,
-  exports: arrayOf(object<ReexportName>({ of: string, as: string })),
+  from: moduleSpecifier,
+  exports: arrayOf(object<ReexportName>({ of: identifier, as: identifier })),
 });
 
 const constAliases = arrayOf(
   object<ConstAlias>({
-    name: string,
-    target: string,
-    deprecated: optional(string),
+    name: identifier,
+    target: identifier,
+    deprecated: optional(message),
   }),
 );
 
 const BASE: Schema<UnitBase> = {
-  name: string,
-  source: optional(strings),
-  notes: optional(strings),
+  $schema: optional(literal(SCHEMA_REF)),
+  name: identifier,
+  source: optional(lines),
+  notes: optional(lines),
 };
 
 const ARTWORK: Schema<ArtworkFields> = {
   ...BASE,
-  variants: recordOf(object<Variant>({ file: string, fill: optional(string) })),
-  deprecated: optional(recordOf(string)),
-  aliases: optional(strings),
+  variants: recordOf(
+    text(/^(?:[A-Z][A-Za-z0-9]*)?$/, 'an empty or PascalCase variant suffix'),
+    object<Variant>({
+      file: text(/^[a-z0-9][a-z0-9.-]*\.svg$/, 'a sibling .svg file name'),
+      fill: optional(
+        text(
+          /^(?:none|currentColor|#[0-9A-Fa-f]{3,8})$/,
+          'none, currentColor, or a hex color',
+        ),
+      ),
+    }),
+  ),
+  deprecated: optional(recordOf(identifier, message)),
+  aliases: optional(
+    arrayOf(text(/^[a-z0-9][a-z0-9 .-]*$/, 'a lowercase search term')),
+  ),
   reexport: optional(reexportSpec),
   localAliases: optional(constAliases),
 };
 
-const CHECKS: Readonly<Record<UnitMeta['kind'], Check>> = {
-  icon: object<IconUnitMeta>({ ...ARTWORK, kind: string }),
-  custom: object<CustomUnitMeta>({ ...ARTWORK, kind: string }),
+const RULES: Readonly<Record<UnitMeta['kind'], Rule>> = {
+  icon: object<IconUnitMeta>({ ...ARTWORK, kind: literal('icon') }),
+  custom: object<CustomUnitMeta>({ ...ARTWORK, kind: literal('custom') }),
   reexport: object<ReexportUnitMeta>({
     ...BASE,
-    kind: string,
+    kind: literal('reexport'),
     reexport: reexportSpec,
   }),
   alias: object<AliasUnitMeta>({
     ...BASE,
-    kind: string,
+    kind: literal('alias'),
     aliasConst: object<AliasConstSpec>({
-      importFrom: string,
-      imports: strings,
+      importFrom: moduleSpecifier,
+      imports: arrayOf(identifier),
       exports: constAliases,
     }),
   }),
@@ -231,7 +339,7 @@ function isKind(kind: unknown): kind is UnitMeta['kind'] {
 
 /**
  * Asserts that parsed JSON is a valid unit definition. The value is narrowed
- * in place (not copied), so its key order and any extra keys are preserved.
+ * in place (not copied), so its key order is preserved.
  *
  * @param file path used in error messages
  */
@@ -244,7 +352,16 @@ export function assertUnitMeta(
   }
   const { kind } = value;
   if (!isKind(kind)) {
-    fail(`${file}: kind`, `one of ${Object.keys(CHECKS).join(', ')}`);
+    fail(`${file}: kind`, `one of ${Object.keys(RULES).join(', ')}`);
   }
-  CHECKS[kind](value, `${file}:`);
+  RULES[kind].check(value, `${file}:`);
 }
+
+/** JSON Schema (draft 2020-12) equivalent of {@link assertUnitMeta}. */
+export const UNIT_JSON_SCHEMA = {
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
+  title: 'react-web3-icons icon unit',
+  description:
+    'icons/<category>/<slug>.json. Generated from scripts/build-icons/unit.ts by `pnpm run generate-icons`; do not edit.',
+  oneOf: Object.values(RULES).map(rule => rule.schema),
+} satisfies JsonObject;

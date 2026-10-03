@@ -1,6 +1,15 @@
-import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import {
+  CATEGORIES,
+  compareStrings,
+  loadCategory,
+  type SourceUnit,
+} from '../scripts/build-icons/lib.ts';
+import {
+  type ArtworkUnitMeta,
+  isArtwork,
+} from '../scripts/build-icons/unit.ts';
 import * as bridge from '../src/bridge';
 import * as chain from '../src/chain';
 import * as coin from '../src/coin';
@@ -118,7 +127,7 @@ function deriveExpected(): IconManifestEntry[] {
   }
   entries.sort(
     (a, b) =>
-      a.category.localeCompare(b.category) || a.name.localeCompare(b.name),
+      compareStrings(a.category, b.category) || compareStrings(a.name, b.name),
   );
   return entries;
 }
@@ -133,36 +142,28 @@ function baseProjection(entry: IconManifestEntry): IconManifestEntry {
   return base;
 }
 
-interface UnitMeta {
-  name: string;
-  aliases?: string[];
-  variants?: Record<string, { file: string }>;
-  localAliases?: { name: string; target: string; deprecated?: boolean }[];
-  /** Directory the unit was loaded from (set by loadIconUnits). */
-  dir?: string;
-}
-
 /**
  * True when the unit's colored default artwork (the `""` variant, or the
  * variant behind a `""` local alias) declares at least one hex colour, i.e.
  * when the generator must have been able to derive a `brandColor`.
  */
-function defaultArtworkHasHexColor(unit: UnitMeta): boolean {
-  const variants = unit.variants ?? {};
-  const aliasTarget = (unit.localAliases ?? []).find(
-    a => !a.deprecated && a.name === unit.name,
-  )?.target;
-  const suffix =
-    '' in variants
-      ? ''
-      : aliasTarget?.startsWith(unit.name)
-        ? aliasTarget.slice(unit.name.length)
-        : undefined;
-  const file = suffix === undefined ? undefined : variants[suffix]?.file;
-  if (!(file && unit.dir)) {
+function defaultArtworkHasHexColor({ meta, variants }: SourceUnit): boolean {
+  if (!isArtwork(meta)) {
     return false;
   }
-  const svg = readFileSync(join(unit.dir, file), 'utf-8');
+  const aliasTarget = (meta.localAliases ?? []).find(
+    a => !a.deprecated && a.name === meta.name,
+  )?.target;
+  const suffix =
+    '' in meta.variants
+      ? ''
+      : aliasTarget?.startsWith(meta.name)
+        ? aliasTarget.slice(meta.name.length)
+        : undefined;
+  const svg = variants.find(v => v.suffix === suffix)?.svg;
+  if (svg === undefined) {
+    return false;
+  }
   // Mirror the generator: white (#fff / #ffffff) never counts as a brand colour.
   return [...svg.matchAll(/(?:fill|stroke|stop-color)="(#[0-9a-fA-F]{3,8})"/g)]
     .map(m => m[1]?.toLowerCase() ?? '')
@@ -170,39 +171,34 @@ function defaultArtworkHasHexColor(unit: UnitMeta): boolean {
 }
 
 /** Same variant derivation as scripts/generate-manifest.ts. */
-function expectedVariants(unit: UnitMeta | undefined): string[] {
-  if (!unit) {
+function expectedVariants(unit: SourceUnit | undefined): string[] {
+  if (!(unit && isArtwork(unit.meta))) {
     return [];
   }
-  const variants = unit.variants ?? {};
-  const aliasSuffixes = (unit.localAliases ?? [])
+  const { meta } = unit;
+  const aliasSuffixes = (meta.localAliases ?? [])
     .filter(
       a =>
         !a.deprecated &&
-        a.name.startsWith(unit.name) &&
-        a.target.startsWith(unit.name) &&
-        a.target.slice(unit.name.length) in variants,
+        a.name.startsWith(meta.name) &&
+        a.target.startsWith(meta.name) &&
+        a.target.slice(meta.name.length) in meta.variants,
     )
-    .map(a => a.name.slice(unit.name.length));
-  return [...aliasSuffixes, ...Object.keys(variants)];
+    .map(a => a.name.slice(meta.name.length));
+  return [...aliasSuffixes, ...Object.keys(meta.variants)];
 }
 
-function loadIconUnits(): Map<string, UnitMeta> {
+function artworkOf(unit: SourceUnit | undefined): ArtworkUnitMeta | undefined {
+  return unit && isArtwork(unit.meta) ? unit.meta : undefined;
+}
+
+function loadIconUnits(): Map<string, SourceUnit> {
   const iconsDir = join(import.meta.dirname, '../icons');
-  const unitByKey = new Map<string, UnitMeta>();
-  for (const category of readdirSync(iconsDir)) {
-    for (const file of readdirSync(join(iconsDir, category))) {
-      if (!file.endsWith('.json')) {
-        continue;
-      }
-      const meta = JSON.parse(
-        readFileSync(join(iconsDir, category, file), 'utf-8'),
-      ) as UnitMeta;
-      meta.dir = join(iconsDir, category);
-      unitByKey.set(`${category}/${meta.name}`, meta);
-    }
-  }
-  return unitByKey;
+  return new Map(
+    CATEGORIES.flatMap(category => loadCategory(iconsDir, category)).map(
+      unit => [`${unit.category}/${unit.meta.name}`, unit],
+    ),
+  );
 }
 
 /** Variant suffixes whose `name + suffix` is not a component export. */
@@ -222,7 +218,7 @@ function missingVariantExports(
 /** Why an entry's `brandColor` is wrong, or undefined when it is fine. */
 function brandColorProblem(
   entry: IconManifestEntry,
-  unit: UnitMeta | undefined,
+  unit: SourceUnit | undefined,
 ): string | undefined {
   if (entry.brandColor) {
     return /^#[0-9a-f]{6}$/.test(entry.brandColor)
@@ -246,9 +242,10 @@ describe('Icon manifest sync', () => {
     const unitByKey = loadIconUnits();
     for (const entry of ICON_MANIFEST) {
       const unit = unitByKey.get(`${entry.category}/${entry.name}`);
+      const artwork = artworkOf(unit);
       // Guard on the unit too, so a manifest entry that dropped `variants`
       // entirely fails instead of being skipped.
-      if (unit?.variants || entry.variants) {
+      if (artwork || entry.variants) {
         expect(entry.variants ?? [], `${entry.name} variants`).toEqual(
           expectedVariants(unit),
         );
@@ -259,7 +256,7 @@ describe('Icon manifest sync', () => {
       }
       if (entry.aliases) {
         expect(entry.aliases, `${entry.name} aliases`).toEqual(
-          unit?.aliases ?? [],
+          artwork?.aliases ?? [],
         );
       }
       expect(brandColorProblem(entry, unit), entry.name).toBeUndefined();

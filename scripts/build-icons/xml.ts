@@ -3,11 +3,12 @@
  *
  * The inputs are machine-generated, well-formed SVG documents, so the parser
  * intentionally rejects anything exotic (comments, CDATA, processing
- * instructions, doctypes, text content) instead of guessing. Any icon that
- * needs more than this should be a `custom` unit with hand-written TSX.
+ * instructions, doctypes, text content, entities beyond the five XML
+ * predefines) instead of guessing. Any icon that needs more than this should
+ * be a `custom` unit with hand-written TSX.
  */
 
-/** One attribute, in source order. */
+/** One attribute, in source order, with its value fully decoded. */
 export type XmlAttr = readonly [name: string, value: string];
 
 /** An element; icon SVGs carry no text nodes. */
@@ -20,18 +21,59 @@ export interface XmlNode {
 const NAME = /[A-Za-z_][\w.:-]*/y;
 const SPACE = /\s*/y;
 
+/** The five entities XML predefines; icon SVGs declare no others. */
+const NAMED_ENTITIES: ReadonlyMap<string, string> = new Map([
+  ['lt', '<'],
+  ['gt', '>'],
+  ['amp', '&'],
+  ['quot', '"'],
+  ['apos', "'"],
+]);
+
+/** Every `&…;` reference, plus any bare `&` (which XML does not allow). */
+const REFERENCE = /&(?:#x[0-9A-Fa-f]+;|#\d+;|[A-Za-z]+;)?/g;
+
+/** Whether `code` is a character XML 1.0 allows in a document. */
+function isXmlChar(code: number): boolean {
+  return (
+    code === 0x9 ||
+    code === 0xa ||
+    code === 0xd ||
+    (code >= 0x20 && code <= 0xd7_ff) ||
+    (code >= 0xe0_00 && code <= 0xff_fd) ||
+    (code >= 0x1_00_00 && code <= 0x10_ff_ff)
+  );
+}
+
+/** Decodes one reference matched by REFERENCE, or `undefined` if invalid. */
+function decodeReference(ref: string): string | undefined {
+  if (ref.startsWith('&#')) {
+    const code = ref.startsWith('&#x')
+      ? Number.parseInt(ref.slice(3, -1), 16)
+      : Number.parseInt(ref.slice(2, -1), 10);
+    return isXmlChar(code) ? String.fromCodePoint(code) : undefined;
+  }
+  return NAMED_ENTITIES.get(ref.slice(1, -1));
+}
+
 class Parser {
   readonly text: string;
+  /** Names the document in error messages (usually its path). */
+  readonly source: string;
   pos = 0;
 
-  constructor(text: string) {
+  constructor(text: string, source: string) {
     this.text = text;
+    this.source = source;
   }
 
-  error(message: string): Error {
-    const context = this.text.slice(Math.max(0, this.pos - 40), this.pos + 40);
+  error(message: string, pos = this.pos): Error {
+    const before = this.text.slice(0, pos);
+    const line = before.split('\n').length;
+    const column = pos - before.lastIndexOf('\n');
+    const context = this.text.slice(Math.max(0, pos - 40), pos + 40);
     return new Error(
-      `XML parse error at ${this.pos}: ${message}\n…${context}…`,
+      `${this.source}:${line}:${column}: XML parse error: ${message}\n…${context}…`,
     );
   }
 
@@ -75,7 +117,12 @@ class Parser {
       if (this.eat('>')) {
         return { tag, attrs, children: this.parseChildren(tag) };
       }
-      attrs.push(this.parseAttr());
+      const start = this.pos;
+      const attr = this.parseAttr();
+      if (attrs.some(([name]) => name === attr[0])) {
+        throw this.error(`duplicate attribute ${attr[0]} on <${tag}>`, start);
+      }
+      attrs.push(attr);
     }
   }
 
@@ -96,9 +143,28 @@ class Parser {
     if (end === -1) {
       throw this.error('unterminated attribute value');
     }
-    const value = decodeEntities(this.text.slice(this.pos, end));
+    const value = this.decodeValue(this.pos, end);
     this.pos = end + 1;
     return [name, value];
+  }
+
+  /** Decodes the attribute value `text[start, end)`. */
+  decodeValue(start: number, end: number): string {
+    const raw = this.text.slice(start, end);
+    const lt = raw.indexOf('<');
+    if (lt !== -1) {
+      throw this.error('"<" must be escaped in attribute values', start + lt);
+    }
+    return raw.replace(REFERENCE, (ref: string, offset: number) => {
+      const decoded = decodeReference(ref);
+      if (decoded === undefined) {
+        throw this.error(
+          `invalid reference ${JSON.stringify(ref)} (write a literal "&" as "&amp;")`,
+          start + offset,
+        );
+      }
+      return decoded;
+    });
   }
 
   /** Parses the children of `<tag>` up to and including its closing tag. */
@@ -127,16 +193,6 @@ class Parser {
   }
 }
 
-function decodeEntities(value: string): string {
-  return value
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#x27;/g, "'")
-    .replace(/&#39;/g, "'")
-    .replace(/&amp;/g, '&');
-}
-
 export function encodeAttr(value: string): string {
   return value
     .replace(/&/g, '&amp;')
@@ -146,17 +202,18 @@ export function encodeAttr(value: string): string {
 
 /**
  * Parses a standalone SVG document.
+ * @param source names the document in error messages (usually its path)
  * @returns the root <svg> node
  */
-export function parseSvg(text: string): XmlNode {
-  const parser = new Parser(text.trim());
+export function parseSvg(text: string, source = 'SVG'): XmlNode {
+  const parser = new Parser(text.trim(), source);
   const root = parser.parseElement();
   parser.match(SPACE);
   if (parser.pos !== parser.text.length) {
     throw parser.error('trailing content after root element');
   }
   if (root.tag !== 'svg') {
-    throw new Error(`expected <svg> root, got <${root.tag}>`);
+    throw new Error(`${source}: expected <svg> root, got <${root.tag}>`);
   }
   return root;
 }

@@ -1,0 +1,477 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "react-web3-icons icon unit",
+  "description": "icons/<category>/<slug>.json. Generated from scripts/build-icons/unit.ts by `pnpm run generate-icons`; do not edit.",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "const": "../schema.json"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Za-z0-9]*$",
+          "description": "a PascalCase identifier"
+        },
+        "source": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^\\r\\n]*$",
+            "description": "a single line of text"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^\\r\\n]*$",
+            "description": "a single line of text"
+          }
+        },
+        "variants": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^(?:[A-Z][A-Za-z0-9]*)?$",
+            "description": "an empty or PascalCase variant suffix"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9.-]*\\.svg$",
+                "description": "a sibling .svg file name"
+              },
+              "fill": {
+                "type": "string",
+                "pattern": "^(?:none|currentColor|#[0-9A-Fa-f]{3,8})$",
+                "description": "none, currentColor, or a hex color"
+              }
+            },
+            "required": [
+              "file"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "deprecated": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9]*$",
+            "description": "a PascalCase identifier"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^(?!.*\\*\\/)[^\\r\\n]+$",
+            "description": "a non-empty single-line message without \"*/\""
+          }
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9 .-]*$",
+            "description": "a lowercase search term"
+          }
+        },
+        "reexport": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string",
+              "pattern": "^(?:\\.\\/|\\.\\.\\/[a-z]+\\/)[A-Z][A-Za-z0-9]*$",
+              "description": "a module specifier like ./Name or ../category/Name"
+            },
+            "exports": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "of": {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Za-z0-9]*$",
+                    "description": "a PascalCase identifier"
+                  },
+                  "as": {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Za-z0-9]*$",
+                    "description": "a PascalCase identifier"
+                  }
+                },
+                "required": [
+                  "of",
+                  "as"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "from",
+            "exports"
+          ],
+          "additionalProperties": false
+        },
+        "localAliases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Za-z0-9]*$",
+                "description": "a PascalCase identifier"
+              },
+              "target": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Za-z0-9]*$",
+                "description": "a PascalCase identifier"
+              },
+              "deprecated": {
+                "type": "string",
+                "pattern": "^(?!.*\\*\\/)[^\\r\\n]+$",
+                "description": "a non-empty single-line message without \"*/\""
+              }
+            },
+            "required": [
+              "name",
+              "target"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "kind": {
+          "const": "icon"
+        }
+      },
+      "required": [
+        "name",
+        "variants",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "const": "../schema.json"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Za-z0-9]*$",
+          "description": "a PascalCase identifier"
+        },
+        "source": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^\\r\\n]*$",
+            "description": "a single line of text"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^\\r\\n]*$",
+            "description": "a single line of text"
+          }
+        },
+        "variants": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^(?:[A-Z][A-Za-z0-9]*)?$",
+            "description": "an empty or PascalCase variant suffix"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9.-]*\\.svg$",
+                "description": "a sibling .svg file name"
+              },
+              "fill": {
+                "type": "string",
+                "pattern": "^(?:none|currentColor|#[0-9A-Fa-f]{3,8})$",
+                "description": "none, currentColor, or a hex color"
+              }
+            },
+            "required": [
+              "file"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "deprecated": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9]*$",
+            "description": "a PascalCase identifier"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^(?!.*\\*\\/)[^\\r\\n]+$",
+            "description": "a non-empty single-line message without \"*/\""
+          }
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9 .-]*$",
+            "description": "a lowercase search term"
+          }
+        },
+        "reexport": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string",
+              "pattern": "^(?:\\.\\/|\\.\\.\\/[a-z]+\\/)[A-Z][A-Za-z0-9]*$",
+              "description": "a module specifier like ./Name or ../category/Name"
+            },
+            "exports": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "of": {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Za-z0-9]*$",
+                    "description": "a PascalCase identifier"
+                  },
+                  "as": {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Za-z0-9]*$",
+                    "description": "a PascalCase identifier"
+                  }
+                },
+                "required": [
+                  "of",
+                  "as"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "from",
+            "exports"
+          ],
+          "additionalProperties": false
+        },
+        "localAliases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Za-z0-9]*$",
+                "description": "a PascalCase identifier"
+              },
+              "target": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Za-z0-9]*$",
+                "description": "a PascalCase identifier"
+              },
+              "deprecated": {
+                "type": "string",
+                "pattern": "^(?!.*\\*\\/)[^\\r\\n]+$",
+                "description": "a non-empty single-line message without \"*/\""
+              }
+            },
+            "required": [
+              "name",
+              "target"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "kind": {
+          "const": "custom"
+        }
+      },
+      "required": [
+        "name",
+        "variants",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "const": "../schema.json"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Za-z0-9]*$",
+          "description": "a PascalCase identifier"
+        },
+        "source": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^\\r\\n]*$",
+            "description": "a single line of text"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^\\r\\n]*$",
+            "description": "a single line of text"
+          }
+        },
+        "kind": {
+          "const": "reexport"
+        },
+        "reexport": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string",
+              "pattern": "^(?:\\.\\/|\\.\\.\\/[a-z]+\\/)[A-Z][A-Za-z0-9]*$",
+              "description": "a module specifier like ./Name or ../category/Name"
+            },
+            "exports": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "of": {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Za-z0-9]*$",
+                    "description": "a PascalCase identifier"
+                  },
+                  "as": {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Za-z0-9]*$",
+                    "description": "a PascalCase identifier"
+                  }
+                },
+                "required": [
+                  "of",
+                  "as"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "from",
+            "exports"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "reexport"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "const": "../schema.json"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Za-z0-9]*$",
+          "description": "a PascalCase identifier"
+        },
+        "source": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^\\r\\n]*$",
+            "description": "a single line of text"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^\\r\\n]*$",
+            "description": "a single line of text"
+          }
+        },
+        "kind": {
+          "const": "alias"
+        },
+        "aliasConst": {
+          "type": "object",
+          "properties": {
+            "importFrom": {
+              "type": "string",
+              "pattern": "^(?:\\.\\/|\\.\\.\\/[a-z]+\\/)[A-Z][A-Za-z0-9]*$",
+              "description": "a module specifier like ./Name or ../category/Name"
+            },
+            "imports": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Za-z0-9]*$",
+                "description": "a PascalCase identifier"
+              }
+            },
+            "exports": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Za-z0-9]*$",
+                    "description": "a PascalCase identifier"
+                  },
+                  "target": {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Za-z0-9]*$",
+                    "description": "a PascalCase identifier"
+                  },
+                  "deprecated": {
+                    "type": "string",
+                    "pattern": "^(?!.*\\*\\/)[^\\r\\n]+$",
+                    "description": "a non-empty single-line message without \"*/\""
+                  }
+                },
+                "required": [
+                  "name",
+                  "target"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "importFrom",
+            "imports",
+            "exports"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "aliasConst"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}
