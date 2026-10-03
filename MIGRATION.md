@@ -64,16 +64,29 @@ Migration options, depending on what you used it for:
 + </div>
 ```
 
-For `className`/`style`/other defaults, wrap once yourself:
+For `className`/`style`/other defaults, wrap the icons you use once, at module scope:
 
 ```tsx
-import type { IconProps } from 'react-web3-icons';
+import { type ComponentType, forwardRef, type RefAttributes } from 'react';
+import { Bitcoin, Ethereum, type IconProps } from 'react-web3-icons';
 
-const withDefaults =
-  (Icon: React.ComponentType<IconProps>) => (props: IconProps) => (
-    <Icon size={32} className="my-icon" {...props} />
-  );
+type IconComponent = ComponentType<Omit<IconProps, 'ref'> & RefAttributes<SVGSVGElement>>;
+
+// Call at module scope, never inside a component: each call creates a new
+// component type, and React remounts the icon whenever the type changes.
+function withDefaults(Icon: IconComponent, defaults: Omit<IconProps, 'ref'>) {
+  const WithDefaults = forwardRef<SVGSVGElement, Omit<IconProps, 'ref'>>((props, ref) => (
+    <Icon {...defaults} {...props} ref={ref} />
+  ));
+  WithDefaults.displayName = `WithDefaults(${Icon.displayName ?? 'Icon'})`;
+  return WithDefaults;
+}
+
+export const AppEthereum = withDefaults(Ethereum, { size: 32, className: 'my-icon' });
+export const AppBitcoin = withDefaults(Bitcoin, { size: 32, className: 'my-icon' });
 ```
+
+`forwardRef` keeps `ref` working on React 18 as well as 19. Props passed at the call site override the defaults; unlike `IconContext`, `style` is replaced rather than merged.
 
 ## 2. Deterministic internal SVG ids
 
@@ -82,9 +95,39 @@ Internal `id` attributes (masks, gradients) previously used React's `useId` and 
 - Rendering the same icon multiple times on one page duplicates those ids. The duplicate definitions are identical, so icons render correctly — but if your tooling requires globally unique DOM ids, render such icons once and reuse via CSS.
 - Markup snapshots that captured the old `useId`-based values need to be regenerated.
 
-## 3. Node.js 20 support dropped
+## 3. Node.js 20 support dropped (4.0.0 only)
 
-`engines.node` is now `>=22.12.0`. Node 20 reached end-of-life on 2026-04-30. This only affects the declared support matrix — the published files are plain ESM and unchanged — but package managers will warn (or fail, with `engine-strict`) when installing on Node 20. That check ran even for apps that only use the package in a browser bundle, because it is tied to the Node version running the install. Later 4.x releases no longer publish `engines`; Node `^22.18.0 || >=24.11.0` is only required to build the library from source.
+4.0.0 declares `engines.node` `>=22.12.0`. Node 20 reached end-of-life on 2026-04-30. This only affects the declared support matrix — the published files are plain ESM and unchanged — but package managers will warn (or fail, with `engine-strict`) when installing 4.0.0 on Node 20. That check ran even for apps that only use the package in a browser bundle, because it is tied to the Node version running the install.
+
+Releases after 4.0.0 no longer declare `engines`. What consumers need is an **ES2022** baseline: the published JavaScript is compiled to ES2022 and runs in any browser, bundler, or runtime that supports it, whatever the Node version. Node `^22.18.0 || >=24.11.0` is only required to build the library from source.
+
+## 4. Artwork changes to existing icons
+
+No export was renamed, but some existing icons look different in 4.0.0. Review them if you depend on their exact appearance (screenshots, visual-regression baselines, design files):
+
+- **`Optimism`** (and its coin alias `Op`): a missing `fill-rule="evenodd"` hid the red core of the OP Mainnet sun; it is now visible.
+- **`DeBridge`** and **`DeBridgeMono`**: replaced with the official standalone logomark from [debridge.com/brand](https://debridge.com/brand). The previous artwork was the avatar tile.
+- **Mono variants redrawn to match their colored counterparts**: `BaseMono`, `CakeMono`, `CamelotMono`, `CoinGeckoMono`, `EkuboMono`, `LiquityMono`, `OptimismMono` (and `OpMono`), `OsmosisMono`, `PhantomWalletMono`, `RocketPoolMono`, `StargateMono`, `TallyMono`, `XmrMono`, `ZecMono`.
+
+See the 4.0.0 entries in [CHANGELOG.md](./CHANGELOG.md) for what changed in each.
+
+## 5. Fantom deprecated in favor of Sonic
+
+Fantom Opera was succeeded by Sonic (FTM was upgraded 1:1 to S), so 4.0.0 adds `Sonic` / `SonicMono` (exported from both `react-web3-icons/chain` and `react-web3-icons/coin`) and deprecates the Fantom exports, following the [icon lifecycle policy](./docs/icon-lifecycle.md):
+
+| Deprecated | Replacement |
+| --- | --- |
+| `Fantom` (chain) | `Sonic` |
+| `FantomMono` (chain) | `SonicMono` |
+| `Ftm` (coin) | `Sonic` |
+| `FtmMono` (coin) | `SonicMono` |
+
+The deprecated exports still work and render the Fantom artwork, but they carry `@deprecated` JSDoc and are listed in `DEPRECATED_ICON_NAMES`. They will be removed in a future major release.
+
+```diff
+- import { Fantom, Ftm } from 'react-web3-icons';
++ import { Sonic } from 'react-web3-icons';
+```
 
 ## Checklist
 
@@ -92,6 +135,8 @@ Internal `id` attributes (masks, gradients) previously used React's `useId` and 
 - [ ] Remove `IconContextValue` type imports
 - [ ] Regenerate any markup snapshots containing icon defs ids
 - [ ] Only if you install 4.0.0 exactly with `engine-strict`: run Node 22.12+ (later 4.x releases drop `engines`)
+- [ ] Review screenshots or visual baselines that include the icons listed in section 4
+- [ ] Optionally replace `Fantom` / `FantomMono` / `Ftm` / `FtmMono` with `Sonic` / `SonicMono`
 
 ---
 

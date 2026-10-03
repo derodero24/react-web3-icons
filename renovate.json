@@ -46,7 +46,8 @@
     {
       "description": "Group and automerge example app dependencies (non-major)",
       "matchFileNames": [
-        "example/package.json"
+        "example/package.json",
+        "examples/stackblitz/package.json"
       ],
       "matchUpdateTypes": [
         "minor",
@@ -59,7 +60,8 @@
     {
       "description": "Group example app major updates (no automerge)",
       "matchFileNames": [
-        "example/package.json"
+        "example/package.json",
+        "examples/stackblitz/package.json"
       ],
       "matchUpdateTypes": [
         "major"

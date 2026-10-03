@@ -23,10 +23,12 @@
 
 ## Checklist
 
+- [ ] Generated sources are up to date (`pnpm run generate-icons --check`)
 - [ ] Lint passes (`pnpm run check`)
-- [ ] Tests pass (`pnpm test`)
-- [ ] Build succeeds (`pnpm run build`)
-- [ ] Changeset included (if `src/` changed): `pnpm changeset`
+- [ ] Types check (`pnpm run typecheck`)
+- [ ] Tests pass with full coverage (`pnpm test --coverage`)
+- [ ] Build succeeds and stays within the size budgets (`pnpm run build && pnpm run size`)
+- [ ] Changeset included (if the published package changed, e.g. `src/` or `icons/`): `pnpm changeset`
 - [ ] Official icon source and usage context documented above (or N/A)
 - [ ] `// Source:` comment added or verified in each icon `.tsx` file (or N/A)
 - [ ] Default icon geometry/colors match official asset (or N/A)

@@ -465,36 +465,6 @@
   - `Ton` (colored)
   - `TonMono` (monochrome)
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/),
-and this project adheres to [Semantic Versioning](https://semver.org/).
-
-## [Unreleased]
-
-### Added
-
-- Mono variant contract tests and alias equivalence tests
-- Coverage thresholds (100% statements, functions, lines, branches)
-- Pre-push hooks with parallel execution via Lefthook
-
-### Changed
-
-- Migrated git hooks from Husky to Lefthook
-- Migrated package manager from npm to pnpm
-- Migrated linter/formatter from ESLint + Prettier to Biome
-- Migrated test framework from Jest to Vitest
-- Migrated build tool from dts-cli to tsup (then to tsdown)
-- Updated all dependencies to latest versions
-- Added `"type": "module"` to package.json
-- Converted example config files from JS to TypeScript
-
-### Fixed
-
-- Replaced inline `<style>` tag with inline styles in MetaMask2
-- Fixed React key anti-pattern in example app IconTable
-- Fixed TypeScript type errors in example app
-
 ## [1.7.0] - 2023-04-07
 
 ### Added
@@ -599,7 +569,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - Initial public release with chain, coin, dex, wallet, and marketplace icons
 
-[Unreleased]: https://github.com/derodero24/react-web3-icons/compare/v1.7.0...HEAD
 [1.7.0]: https://github.com/derodero24/react-web3-icons/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/derodero24/react-web3-icons/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/derodero24/react-web3-icons/compare/1.4.0...v1.5.0

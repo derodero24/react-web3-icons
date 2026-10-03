@@ -2,7 +2,7 @@
 /**
  * Mono-quality audit: rasterizes every colored/mono variant pair from the
  * icons/ source tree and reports pairs whose mono departs from the colored
- * silhouette (see "Mono design rules" in CONTRIBUTING.md).
+ * silhouette (see "Mono design rules" in docs/icon-variants.md).
  *
  *   node scripts/audit-mono.ts            # table of outliers
  *   node scripts/audit-mono.ts --all      # full metric table
