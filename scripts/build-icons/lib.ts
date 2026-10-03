@@ -10,7 +10,19 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { validateIds } from './ids.ts';
 import { isolateMaskContent } from './isolate.ts';
-import { emitRender, quote, ROOT_ATTRS } from './jsx.ts';
+import {
+  emitRender,
+  quote,
+  type RenderedIcon,
+  ROOT_ATTRS,
+  stripFillProps,
+} from './jsx.ts';
+import {
+  emitIconCall,
+  emitPropsInterface,
+  emitToggleArtworks,
+  validateProps,
+} from './props.ts';
 import {
   type AliasUnitMeta,
   assertUnitMeta,
@@ -98,9 +110,15 @@ export interface VariantSource {
   readonly svg: string;
   /**
    * The parsed and validated document, with mask content isolated from the
-   * host document (see isolate.ts); every emitter renders this tree.
+   * host document (see isolate.ts); every emitter but the TSX one renders
+   * this tree.
    */
   readonly root: XmlNode;
+  /**
+   * `root` with its `data-fill-prop` marks (see props.ts), which only the
+   * TSX emitter renders.
+   */
+  readonly template: XmlNode;
 }
 
 export interface SourceUnit {
@@ -191,13 +209,15 @@ function loadVariant(
     const svg = readFileSync(join(iconsDir, category, variant.file), 'utf-8');
     const parsed = parseSvg(svg, path);
     validateSvg(parsed, variant.fill);
+    const template = isolateMaskContent(parsed);
     return {
       suffix,
       exportName: unitName + suffix,
       fill: variant.fill,
       path,
       svg,
-      root: isolateMaskContent(parsed),
+      root: stripFillProps(template),
+      template,
     };
   });
 }
@@ -256,7 +276,11 @@ export function loadCategory(
           loadVariant(iconsDir, category, meta.name, entry),
         )
       : [];
-    units.push({ category, slug: file.slice(0, -5), path, meta, variants });
+    const unit = { category, slug: file.slice(0, -5), path, meta, variants };
+    if (isArtwork(meta)) {
+      withPath(path, () => validateProps({ meta, variants }));
+    }
+    units.push(unit);
   }
   assertUniqueOutputs(units);
   return units;
@@ -299,10 +323,6 @@ function reexportStatement(reexport: ReexportSpec): string {
   return `export {\n${specs}\n} from '${reexport.from}';`;
 }
 
-function wrapBody(body: string): string {
-  return `(\n  ${body}\n)`;
-}
-
 /** Emits the TSX module for an artwork ("icon") unit. */
 function emitIconUnit(unit: SourceUnit, meta: IconUnitMeta): string {
   const { category } = unit;
@@ -310,11 +330,26 @@ function emitIconUnit(unit: SourceUnit, meta: IconUnitMeta): string {
   if (meta.reexport) {
     blocks.push(reexportStatement(meta.reexport));
   }
-  for (const variant of unit.variants) {
-    const { suffix, exportName: name } = variant;
-    const { body, usesId, viewBox, fill } = withPath(variant.path, () =>
-      emitRender(variant.root),
-    );
+  const rendered = new Map(
+    unit.variants.map(variant => [
+      variant.suffix,
+      withPath(variant.path, () => emitRender(variant.template)),
+    ]),
+  );
+  const renderedOf = (suffix: string): RenderedIcon => {
+    const icon = rendered.get(suffix);
+    if (icon === undefined) {
+      throw new Error(`${unit.path}: no variant "${suffix}"`);
+    }
+    return icon;
+  };
+  const artwork = { meta, variants: unit.variants };
+  const propsInterface = emitPropsInterface(artwork);
+  if (propsInterface !== undefined) {
+    blocks.push(propsInterface);
+  }
+  blocks.push(...emitToggleArtworks(artwork, renderedOf));
+  for (const { suffix, exportName: name } of unit.variants) {
     const deprecatedMsg = meta.deprecated?.[name];
     const jsdoc = jsdocFor(
       name,
@@ -322,19 +357,10 @@ function emitIconUnit(unit: SourceUnit, meta: IconUnitMeta): string {
       suffix.endsWith('Mono'),
       deprecatedMsg,
     );
-    const param = usesId ? '(_props, _id) =>' : '() =>';
-    const options = [
-      ...(fill ? [`fill: ${quote(fill)}`] : []),
-      ...(usesId ? ['ids: true'] : []),
-    ];
-    const args = [
-      quote(name),
-      quote(viewBox),
-      `${param} ${wrapBody(body)}`,
-      options.length > 0 ? `{ ${options.join(', ')} }` : '{}',
-    ];
+    const call = emitIconCall(artwork, suffix, renderedOf);
+    const args = [quote(name), call.viewBox, call.render, call.options];
     blocks.push(
-      `${jsdoc}\nexport const ${name} = /* @__PURE__ */ createIcon(\n  ${args.join(',\n  ')},\n);`,
+      `${jsdoc}\nexport const ${name} = /* @__PURE__ */ createIcon${call.typeArgs}(\n  ${args.join(',\n  ')},\n);`,
     );
   }
   for (const alias of meta.localAliases ?? []) {
@@ -362,8 +388,8 @@ function emitAliasUnit(meta: AliasUnitMeta): string {
   return `${importLine}\n\n${commentBlock(meta)}${consts}\n`;
 }
 
-/** TSX module source for a unit, or `undefined` for hand-written units. */
-function emitUnit(unit: SourceUnit): string | undefined {
+/** TSX module source for a unit. */
+function emitUnit(unit: SourceUnit): string {
   const { meta } = unit;
   switch (meta.kind) {
     case 'icon':
@@ -372,15 +398,13 @@ function emitUnit(unit: SourceUnit): string | undefined {
       return `${commentBlock(meta)}${reexportStatement(meta.reexport)}\n`;
     case 'alias':
       return emitAliasUnit(meta);
-    case 'custom':
-      return undefined;
     default:
       return meta satisfies never;
   }
 }
 
 export interface GeneratedCategory {
-  /** '<Base>.tsx' → content (custom units are omitted). */
+  /** '<Base>.tsx' → content. */
   readonly files: ReadonlyMap<string, string>;
   readonly indexTs: string;
 }
@@ -391,10 +415,7 @@ export function generateCategory(
 ): GeneratedCategory {
   const files = new Map<string, string>();
   for (const unit of units) {
-    const content = emitUnit(unit);
-    if (content !== undefined) {
-      files.set(`${unit.meta.name}.tsx`, content);
-    }
+    files.set(`${unit.meta.name}.tsx`, emitUnit(unit));
   }
   const moduleNames = units.map(unit => unit.meta.name).sort(compareStrings);
   const indexTs = `${moduleNames.map(n => `export * from './${n}';`).join('\n')}\n`;

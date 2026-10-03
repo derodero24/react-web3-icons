@@ -4,8 +4,7 @@
  * The inputs are machine-generated, well-formed SVG documents, so the parser
  * intentionally rejects anything exotic (comments, CDATA, processing
  * instructions, doctypes, text content, entities beyond the five XML
- * predefines) instead of guessing. Any icon that needs more than this should
- * be a `custom` unit with hand-written TSX.
+ * predefines) instead of guessing.
  */
 
 /** One attribute, in source order, with its value fully decoded. */

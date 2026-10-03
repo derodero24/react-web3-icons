@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { loadCustomUnits, SRC } from './helpers/units';
+import { SRC } from './helpers/units';
 
 /**
  * Static guard for React Server Components compatibility. test/rsc/ renders
@@ -49,10 +49,8 @@ describe('React Server Components compatibility', () => {
     expect(HOOK_CALL_RE.test('const id = React.useId();')).toBe(false);
   });
 
-  it('the scan covers createIcon and every custom unit', () => {
+  it('the scan covers createIcon and the icon modules', () => {
     expect(serverModules).toContain(join(SRC, 'utils/createIcon.tsx'));
-    for (const unit of loadCustomUnits()) {
-      expect(serverModules).toContain(unit.modulePath);
-    }
+    expect(serverModules).toContain(join(SRC, 'chain/Avalanche.tsx'));
   });
 });

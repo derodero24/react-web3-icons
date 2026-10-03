@@ -8,8 +8,11 @@ import {
 } from 'react';
 import type { IconProps } from './index';
 
+/** Icons without extra props. */
+export type NoExtraProps = Readonly<Record<never, never>>;
+
 /** Options of the `createIcon(displayName, viewBox, render, options)` form. */
-export interface IconOptions {
+export interface IconOptions<P extends object = NoExtraProps> {
   /** Default `fill` of the `<svg>` element (e.g. `'currentColor'`); a `fill` prop overrides it. */
   readonly fill?: string;
   /**
@@ -18,22 +21,35 @@ export interface IconOptions {
    * `useId`; without `ids`, the component calls no hooks at all.
    */
   readonly ids?: boolean;
+  /**
+   * Names of the extra props (`P`) that `render` reads. They are passed to
+   * `render` and not forwarded to the `<svg>`.
+   */
+  readonly props?: readonly (keyof P & string)[];
 }
 
-/** The extra props `render` receives; icons without extra props get none. */
-export type NoExtraProps = Readonly<Record<never, never>>;
+/** An icon component made by {@link createIcon}, with extra props `P`. */
+export type IconComponent<P extends object = NoExtraProps> =
+  ForwardRefExoticComponent<
+    Omit<IconProps, 'ref'> & P & RefAttributes<SVGSVGElement>
+  >;
 
-/** An icon component made by {@link createIcon}. */
-export type IconComponent = ForwardRefExoticComponent<
-  Omit<IconProps, 'ref'> & RefAttributes<SVGSVGElement>
->;
+/** A `viewBox`, or a function of the extra props that returns one. */
+export type IconViewBox<P extends object> =
+  | string
+  | ((props: Readonly<P>) => string);
 
-type RenderWithId = (props: NoExtraProps, id: string) => ReactNode;
+/**
+ * What the implementation sees of the props: the extra props `P` are only
+ * passed through to `render` (and `viewBox`), so they stay opaque here.
+ */
+type SvgProps = Omit<IconProps, 'ref'>;
+type Render = (props: SvgProps, id: string) => ReactNode;
 type OptionsForm = [
   displayName: string,
-  viewBox: string,
-  render: RenderWithId,
-  options: IconOptions,
+  viewBox: IconViewBox<SvgProps>,
+  render: Render,
+  options: IconOptions<Readonly<Record<string, unknown>>>,
 ];
 type LegacyForm = [
   displayName: string,
@@ -45,8 +61,6 @@ type LegacyForm = [
 function isOptionsForm(args: OptionsForm | LegacyForm): args is OptionsForm {
   return typeof args[3] === 'object';
 }
-
-const NO_EXTRA_PROPS: NoExtraProps = {};
 
 /**
  * Turns `useId()` output into an id that is valid unescaped in `url(#…)` and
@@ -69,9 +83,11 @@ function toSvgId(reactId: string): string {
  *
  * Two call forms are supported:
  *
- * - `createIcon(displayName, viewBox, render, options)` — `render(props, id)`
- *   receives the icon's extra props (none here) and, when `options.ids` is
- *   set, a per-instance id prefix for internal `id` attributes. This is the
+ * - `createIcon<P>(displayName, viewBox, render, options)` — `render(props,
+ *   id)` receives the component's props, from which it reads its extra props
+ *   `P` (listed in `options.props`, e.g. `withBackground`), and, when
+ *   `options.ids` is set, a per-instance id prefix for internal `id`
+ *   attributes. `viewBox` may also be a function of the props. This is the
  *   form the icon generator emits.
  * - `createIcon(displayName, viewBox, render, defaultFill?)` — the v4 form:
  *   `render(id)` always receives a per-instance id prefix.
@@ -80,23 +96,23 @@ function toSvgId(reactId: string): string {
  * reference never resolves into another instance, which may be hidden
  * (`display: none`) or styled differently.
  *
- * @param displayName - Component display name shown in React DevTools; also part of the id prefix (`w3i-<lowercased name>-<id>`).
+ * @param displayName - Component display name shown in React DevTools; also part of the id prefix (`w3i-<lowercased name>-<instance>`).
  * @param viewBox - SVG `viewBox` attribute value (e.g. `"0 0 24 24"`).
  * @param render - Function that returns the SVG content.
- * @param options - Default `fill` and whether `render` needs ids; or, in the v4 form, the default `fill`.
+ * @param options - Default `fill`, extra props, and whether `render` needs ids; or, in the v4 form, the default `fill`.
  */
-export function createIcon(
+export function createIcon<P extends object = NoExtraProps>(
   displayName: string,
-  viewBox: string,
-  render: RenderWithId,
-  options: IconOptions & { readonly ids: true },
-): IconComponent;
-export function createIcon(
+  viewBox: IconViewBox<P>,
+  render: (props: Readonly<P>, id: string) => ReactNode,
+  options: IconOptions<P> & { readonly ids: true },
+): IconComponent<P>;
+export function createIcon<P extends object = NoExtraProps>(
   displayName: string,
-  viewBox: string,
-  render: (props: NoExtraProps) => ReactNode,
-  options: IconOptions & { readonly ids?: false },
-): IconComponent;
+  viewBox: IconViewBox<P>,
+  render: (props: Readonly<P>) => ReactNode,
+  options: IconOptions<P> & { readonly ids?: false },
+): IconComponent<P>;
 export function createIcon(
   displayName: string,
   viewBox: string,
@@ -105,8 +121,8 @@ export function createIcon(
 ): IconComponent;
 export function createIcon(...args: OptionsForm | LegacyForm): IconComponent {
   const [displayName, viewBox] = args;
-  let draw: RenderWithId;
-  let options: IconOptions;
+  let draw: Render;
+  let options: OptionsForm[3];
   if (isOptionsForm(args)) {
     [, , draw, options] = args;
   } else {
@@ -115,13 +131,17 @@ export function createIcon(...args: OptionsForm | LegacyForm): IconComponent {
     options = fill === undefined ? { ids: true } : { fill, ids: true };
   }
   const prefix = `w3i-${displayName.toLowerCase()}`;
+  const extraProps = options.props ?? [];
 
   function renderSvg(
-    rawProps: Omit<IconProps, 'ref'>,
+    allProps: SvgProps,
     ref: ForwardedRef<SVGSVGElement>,
     id: string,
   ) {
-    const { title, titleId, size = '1em', width, height, ...props } = rawProps;
+    const { title, titleId, size = '1em', width, height, ...props } = allProps;
+    for (const name of extraProps) {
+      Reflect.deleteProperty(props, name);
+    }
     const isDecorative = !(
       title ||
       props['aria-label'] ||
@@ -130,7 +150,7 @@ export function createIcon(...args: OptionsForm | LegacyForm): IconComponent {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox={viewBox}
+        viewBox={typeof viewBox === 'string' ? viewBox : viewBox(allProps)}
         width={width ?? size}
         height={height ?? size}
         fill={options.fill}
@@ -141,7 +161,7 @@ export function createIcon(...args: OptionsForm | LegacyForm): IconComponent {
         {...props}
       >
         {title && <title id={titleId}>{title}</title>}
-        {draw(NO_EXTRA_PROPS, id)}
+        {draw(allProps, id)}
       </svg>
     );
   }
@@ -149,10 +169,10 @@ export function createIcon(...args: OptionsForm | LegacyForm): IconComponent {
   // Chosen once per component, so the hook order of an instance never
   // changes: only icons with internal ids call useId.
   const Icon: IconComponent = options.ids
-    ? forwardRef<SVGSVGElement, Omit<IconProps, 'ref'>>((props, ref) =>
+    ? forwardRef<SVGSVGElement, SvgProps>((props, ref) =>
         renderSvg(props, ref, `${prefix}-${toSvgId(useId())}`),
       )
-    : forwardRef<SVGSVGElement, Omit<IconProps, 'ref'>>((props, ref) =>
+    : forwardRef<SVGSVGElement, SvgProps>((props, ref) =>
         renderSvg(props, ref, prefix),
       );
   Icon.displayName = displayName;

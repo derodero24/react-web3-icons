@@ -3,7 +3,7 @@
   "source": [
     "https://bybit.com (official brand)"
   ],
-  "kind": "custom",
+  "kind": "icon",
   "variants": {
     "": {
       "file": "bybit.svg"
@@ -12,7 +12,18 @@
       "file": "bybit.inverted.svg"
     },
     "Mono": {
-      "file": "bybit.mono.svg"
+      "file": "bybit.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "props": {
+    "fill1": {
+      "type": "fill",
+      "description": "Fill of the bar of the logo."
+    },
+    "fill2": {
+      "type": "fill",
+      "description": "Fill of the lettering."
     }
   },
   "slugs": [

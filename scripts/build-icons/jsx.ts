@@ -7,7 +7,23 @@
  */
 
 import { collectIds, type IdRefRenderer, rewriteIdRefs } from './ids.ts';
-import type { XmlNode } from './xml.ts';
+import { getAttr, type XmlNode } from './xml.ts';
+
+/**
+ * Marks an element whose `fill` is an extra prop of the component
+ * (`data-fill-prop="fill1"` → `fill={fill1}`); the element's own `fill`, if
+ * any, becomes the prop's default. See `FillPropSpec` in unit.ts.
+ */
+export const FILL_PROP_ATTR = 'data-fill-prop';
+
+/** Removes every {@link FILL_PROP_ATTR} mark (for the non-React outputs). */
+export function stripFillProps(node: XmlNode): XmlNode {
+  return {
+    tag: node.tag,
+    attrs: node.attrs.filter(([name]) => name !== FILL_PROP_ATTR),
+    children: node.children.map(stripFillProps),
+  };
+}
 
 /** Attribute names kept verbatim (React passes these through unchanged). */
 const KEEP_VERBATIM = /^(data-|aria-)/;
@@ -113,21 +129,55 @@ function attrValue(
   return /[&"\t\n\r]/.test(value) ? `{${quote(value)}}` : `"${value}"`;
 }
 
+/** Fill prop name → the `fill` its elements declare in the source (if any). */
+type FillProps = Map<string, string | undefined>;
+
+/**
+ * Records the fill prop an element binds, if any, and returns its name. All
+ * elements bound to one prop must declare the same default.
+ */
+function bindFillProp(node: XmlNode, fillProps: FillProps): string | undefined {
+  const prop = getAttr(node, FILL_PROP_ATTR);
+  if (prop === undefined) {
+    return undefined;
+  }
+  if (!/^[a-z][A-Za-z0-9]*$/.test(prop)) {
+    throw new Error(`${FILL_PROP_ATTR}="${prop}" is not a camelCase prop name`);
+  }
+  const fill = getAttr(node, 'fill');
+  if (fillProps.has(prop) && fillProps.get(prop) !== fill) {
+    throw new Error(
+      `${FILL_PROP_ATTR}="${prop}" marks elements with different fills (${fillProps.get(prop) ?? 'none'}, ${fill ?? 'none'})`,
+    );
+  }
+  fillProps.set(prop, fill);
+  return prop;
+}
+
 function emitNode(
   node: XmlNode,
   ids: ReadonlySet<string>,
   indent: string,
+  fillProps: FillProps,
 ): string {
+  const prop = bindFillProp(node, fillProps);
+  // A bound fill takes the place of the element's own fill, or of the mark
+  // when the element has none.
+  const propSlot =
+    getAttr(node, 'fill') === undefined ? FILL_PROP_ATTR : 'fill';
   const attrs = node.attrs
-    .map(
-      ([name, value]) => ` ${jsxAttrName(name)}=${attrValue(name, value, ids)}`,
-    )
+    .map(([name, value]) => {
+      if (prop !== undefined && (name === 'fill' || name === FILL_PROP_ATTR)) {
+        return name === propSlot ? ` fill={${prop}}` : '';
+      }
+      return ` ${jsxAttrName(name)}=${attrValue(name, value, ids)}`;
+    })
     .join('');
   if (node.children.length === 0) {
     return `${indent}<${node.tag}${attrs} />`;
   }
   const children = node.children
-    .map(child => emitNode(child, ids, `${indent}  `))
+    .map(child => emitNode(child, ids, `${indent}  `, fillProps))
     .join('\n');
   return `${indent}<${node.tag}${attrs}>\n${children}\n${indent}</${node.tag}>`;
 }
@@ -139,11 +189,14 @@ export interface RenderedIcon {
   readonly usesId: boolean;
   readonly viewBox: string;
   readonly fill: string | undefined;
+  /** Fill props the body reads, with their defaults from the source. */
+  readonly fillProps: ReadonlyMap<string, string | undefined>;
 }
 
 /**
  * Emits the render callback body for `createIcon` from the root <svg> node's
- * children.
+ * children. Elements marked with {@link FILL_PROP_ATTR} read their `fill`
+ * from the prop of that name, which the caller must have in scope.
  */
 export function emitRender(svgRoot: XmlNode): RenderedIcon {
   const rootAttrs = new Map(svgRoot.attrs);
@@ -158,15 +211,16 @@ export function emitRender(svgRoot: XmlNode): RenderedIcon {
     }
   }
   const ids = collectIds(svgRoot);
+  const fillProps: FillProps = new Map();
   const [first, ...rest] = svgRoot.children;
   let body: string;
   if (first !== undefined && rest.length === 0) {
-    body = emitNode(first, ids, '  ').trimStart();
+    body = emitNode(first, ids, '  ', fillProps).trimStart();
   } else {
     const inner = svgRoot.children
-      .map(child => emitNode(child, ids, '    '))
+      .map(child => emitNode(child, ids, '    ', fillProps))
       .join('\n');
     body = `<>\n${inner}\n  </>`;
   }
-  return { body, usesId: ids.size > 0, viewBox, fill };
+  return { body, usesId: ids.size > 0, viewBox, fill, fillProps };
 }

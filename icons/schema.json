@@ -214,230 +214,68 @@
             "additionalProperties": false
           }
         },
-        "kind": {
-          "const": "icon"
-        }
-      },
-      "required": [
-        "name",
-        "variants",
-        "kind"
-      ],
-      "additionalProperties": false
-    },
-    {
-      "type": "object",
-      "properties": {
-        "$schema": {
-          "const": "../schema.json"
-        },
-        "name": {
-          "type": "string",
-          "pattern": "^[A-Z][A-Za-z0-9]*$",
-          "description": "a PascalCase identifier"
-        },
-        "source": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^[^\\r\\n\\u2028\\u2029]*$",
-            "description": "a single line of text"
-          }
-        },
-        "notes": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^[^\\r\\n\\u2028\\u2029]*$",
-            "description": "a single line of text"
-          }
-        },
-        "slugs": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
-            "description": "a lowercase kebab-case slug"
-          }
-        },
-        "chainIds": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 9007199254740991,
-            "description": "a positive integer chain ID"
-          }
-        },
-        "tickers": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^[A-Z0-9]+$",
-            "description": "an uppercase alphanumeric ticker"
-          }
-        },
-        "variants": {
+        "props": {
           "type": "object",
           "propertyNames": {
             "type": "string",
-            "pattern": "^(?:[A-Z][A-Za-z0-9]*)?$",
-            "description": "an empty or PascalCase variant suffix"
+            "pattern": "^[a-z][A-Za-z0-9]*$",
+            "description": "a camelCase prop name"
           },
           "additionalProperties": {
-            "type": "object",
-            "properties": {
-              "file": {
-                "type": "string",
-                "pattern": "^[a-z0-9][a-z0-9.-]*\\.svg$",
-                "description": "a sibling .svg file name"
-              },
-              "fill": {
-                "type": "string",
-                "pattern": "^(?:none|currentColor|#(?:[0-9A-Fa-f]{3,4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8}))$",
-                "description": "none, currentColor, or a hex color"
-              }
-            },
-            "required": [
-              "file"
-            ],
-            "additionalProperties": false
-          }
-        },
-        "deprecated": {
-          "type": "object",
-          "propertyNames": {
-            "type": "string",
-            "pattern": "^[A-Z][A-Za-z0-9]*$",
-            "description": "a PascalCase identifier"
-          },
-          "additionalProperties": {
-            "type": "string",
-            "pattern": "^(?!.*\\*\\/)[^\\r\\n\\u2028\\u2029]+$",
-            "description": "a non-empty single-line message without \"*/\""
-          }
-        },
-        "aliases": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^[a-z0-9][a-z0-9 .-]*$",
-            "description": "a lowercase search term"
-          }
-        },
-        "brandColor": {
-          "type": "string",
-          "pattern": "^#[0-9a-f]{6}$",
-          "description": "a lowercase #rrggbb color"
-        },
-        "variantLookups": {
-          "type": "object",
-          "propertyNames": {
-            "type": "string",
-            "pattern": "^[A-Z][A-Za-z0-9]*$",
-            "description": "a PascalCase identifier"
-          },
-          "additionalProperties": {
-            "type": "object",
-            "properties": {
-              "slugs": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
-                  "description": "a lowercase kebab-case slug"
-                }
-              },
-              "chainIds": {
-                "type": "array",
-                "items": {
-                  "type": "integer",
-                  "minimum": 1,
-                  "maximum": 9007199254740991,
-                  "description": "a positive integer chain ID"
-                }
-              },
-              "tickers": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "pattern": "^[A-Z0-9]+$",
-                  "description": "an uppercase alphanumeric ticker"
-                }
-              }
-            },
-            "required": [],
-            "additionalProperties": false
-          }
-        },
-        "reexport": {
-          "type": "object",
-          "properties": {
-            "from": {
-              "type": "string",
-              "pattern": "^(?:\\.\\/|\\.\\.\\/[a-z]+\\/)[A-Z][A-Za-z0-9]*$",
-              "description": "a module specifier like ./Name or ../category/Name"
-            },
-            "exports": {
-              "type": "array",
-              "items": {
+            "oneOf": [
+              {
                 "type": "object",
                 "properties": {
-                  "of": {
-                    "type": "string",
-                    "pattern": "^[A-Z][A-Za-z0-9]*$",
-                    "description": "a PascalCase identifier"
+                  "type": {
+                    "const": "toggle"
                   },
-                  "as": {
+                  "description": {
                     "type": "string",
-                    "pattern": "^[A-Z][A-Za-z0-9]*$",
-                    "description": "a PascalCase identifier"
+                    "pattern": "^(?!.*\\*\\/)[^\\r\\n\\u2028\\u2029]+$",
+                    "description": "a non-empty single-line description without \"*/\""
+                  },
+                  "on": {
+                    "type": "string",
+                    "pattern": "^(?:[A-Z][A-Za-z0-9]*)?$",
+                    "description": "an empty or PascalCase variant suffix"
+                  },
+                  "off": {
+                    "type": "string",
+                    "pattern": "^(?:[A-Z][A-Za-z0-9]*)?$",
+                    "description": "an empty or PascalCase variant suffix"
                   }
                 },
                 "required": [
-                  "of",
-                  "as"
+                  "type",
+                  "description",
+                  "on",
+                  "off"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "fill"
+                  },
+                  "description": {
+                    "type": "string",
+                    "pattern": "^(?!.*\\*\\/)[^\\r\\n\\u2028\\u2029]+$",
+                    "description": "a non-empty single-line description without \"*/\""
+                  }
+                },
+                "required": [
+                  "type",
+                  "description"
                 ],
                 "additionalProperties": false
               }
-            }
-          },
-          "required": [
-            "from",
-            "exports"
-          ],
-          "additionalProperties": false
-        },
-        "localAliases": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "pattern": "^[A-Z][A-Za-z0-9]*$",
-                "description": "a PascalCase identifier"
-              },
-              "target": {
-                "type": "string",
-                "pattern": "^[A-Z][A-Za-z0-9]*$",
-                "description": "a PascalCase identifier"
-              },
-              "deprecated": {
-                "type": "string",
-                "pattern": "^(?!.*\\*\\/)[^\\r\\n\\u2028\\u2029]+$",
-                "description": "a non-empty single-line message without \"*/\""
-              }
-            },
-            "required": [
-              "name",
-              "target"
-            ],
-            "additionalProperties": false
+            ]
           }
         },
         "kind": {
-          "const": "custom"
+          "const": "icon"
         }
       },
       "required": [

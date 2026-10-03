@@ -1,120 +1,75 @@
 import type { ReactElement } from 'react';
-import { flushSync } from 'react-dom';
-import ReactDOM from 'react-dom/client';
-import { afterEach, describe, expect, it } from 'vitest';
-import { Avalanche, Ethereum, MetaMask, Uniswap } from '../src';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { describe, expect, it } from 'vitest';
+import * as icons from '../src';
+import { isIconComponent } from './helpers/units';
 
-// Icons created via the createIcon factory (excludes manual forwardRef icons like Avalanche)
-const createIconIcons = [
-  ['Ethereum', Ethereum],
-  ['MetaMask', MetaMask],
-  ['Uniswap', Uniswap],
-] as const;
+/** Every exported icon component; all of them are built by createIcon. */
+const components = Object.entries(icons).flatMap(([name, value]) =>
+  isIconComponent(value) ? [[name, value] as const] : [],
+);
 
-const testIcons = [
-  ['Ethereum', Ethereum],
-  ['MetaMask', MetaMask],
-  ['Uniswap', Uniswap],
-  // Manual forwardRef icon (not using createIcon factory)
-  ['Avalanche', Avalanche],
-] as const;
-
-const roots: ReturnType<typeof ReactDOM.createRoot>[] = [];
-
-afterEach(() => {
-  for (const root of roots) {
-    root.unmount();
-  }
-  roots.length = 0;
-});
-
-function renderToContainer(element: ReactElement): HTMLElement {
+function renderSvg(element: ReactElement): SVGSVGElement {
   const container = document.createElement('div');
-  const root = ReactDOM.createRoot(container);
-  roots.push(root);
-  flushSync(() => {
-    root.render(element);
-  });
-  return container;
+  container.innerHTML = renderToStaticMarkup(element);
+  const svg = container.querySelector('svg');
+  if (!svg) {
+    throw new Error('expected an <svg> root');
+  }
+  return svg;
 }
 
-describe.each(testIcons)('%s accessibility', (_name, Icon) => {
+it('covers every exported icon', () => {
+  expect(components.length).toBeGreaterThan(600);
+});
+
+describe.each(components)('%s accessibility', (_name, Icon) => {
   it('is decorative by default (aria-hidden, no role)', () => {
-    const container = renderToContainer(<Icon />);
-    const svg = container.querySelector('svg');
-    expect(svg?.getAttribute('aria-hidden')).toBe('true');
-    expect(svg?.getAttribute('role')).toBeNull();
+    const svg = renderSvg(<Icon />);
+    expect(svg.getAttribute('aria-hidden')).toBe('true');
+    expect(svg.getAttribute('role')).toBeNull();
+    expect(svg.querySelector('title')).toBeNull();
   });
 
   it('becomes non-decorative when title is provided', () => {
-    const container = renderToContainer(<Icon title="Icon title" />);
-    const svg = container.querySelector('svg');
-    expect(svg?.getAttribute('aria-hidden')).toBeNull();
-    expect(svg?.getAttribute('role')).toBe('img');
+    const svg = renderSvg(<Icon title="Icon title" />);
+    expect(svg.getAttribute('aria-hidden')).toBeNull();
+    expect(svg.getAttribute('role')).toBe('img');
+    expect(svg.querySelector('title')?.textContent).toBe('Icon title');
   });
 
-  it('becomes non-decorative when aria-label is provided', () => {
-    const container = renderToContainer(<Icon aria-label="Icon label" />);
-    const svg = container.querySelector('svg');
-    expect(svg?.getAttribute('aria-hidden')).toBeNull();
-    expect(svg?.getAttribute('role')).toBe('img');
+  it.each([
+    ['aria-label', { 'aria-label': 'Icon label' }],
+    ['aria-labelledby', { 'aria-labelledby': 'external-label' }],
+  ] as const)('becomes non-decorative when %s is provided', (_attr, label) => {
+    const svg = renderSvg(<Icon {...label} />);
+    expect(svg.getAttribute('aria-hidden')).toBeNull();
+    expect(svg.getAttribute('role')).toBe('img');
   });
 
-  it('becomes non-decorative when aria-labelledby is provided', () => {
-    const container = renderToContainer(
-      <Icon aria-labelledby="external-label" />,
+  it('links the <title> through aria-labelledby when titleId is given', () => {
+    const svg = renderSvg(<Icon title="Accessible" titleId="my-title" />);
+    expect(svg.querySelector('title')?.getAttribute('id')).toBe('my-title');
+    expect(svg.getAttribute('aria-labelledby')).toBe('my-title');
+  });
+
+  it('does not set aria-labelledby for a title without titleId', () => {
+    const svg = renderSvg(<Icon title="Accessible" />);
+    expect(svg.getAttribute('aria-labelledby')).toBeNull();
+  });
+
+  it('lets an explicit aria-labelledby override the title link', () => {
+    const svg = renderSvg(
+      <Icon title="Accessible" titleId="my-title" aria-labelledby="custom" />,
     );
-    const svg = container.querySelector('svg');
-    expect(svg?.getAttribute('aria-hidden')).toBeNull();
-    expect(svg?.getAttribute('role')).toBe('img');
-  });
-
-  it('renders title with titleId for aria-labelledby linking', () => {
-    const container = renderToContainer(
-      <Icon title="Accessible" titleId="my-title" />,
-    );
-    const title = container.querySelector('title');
-    expect(title?.getAttribute('id')).toBe('my-title');
-    expect(title?.textContent).toBe('Accessible');
+    expect(svg.getAttribute('aria-labelledby')).toBe('custom');
   });
 
   it('passes through arbitrary aria-* attributes', () => {
-    const container = renderToContainer(
+    const svg = renderSvg(
       <Icon aria-describedby="desc-id" aria-live="polite" />,
     );
-    const svg = container.querySelector('svg');
-    expect(svg?.getAttribute('aria-describedby')).toBe('desc-id');
-    expect(svg?.getAttribute('aria-live')).toBe('polite');
+    expect(svg.getAttribute('aria-describedby')).toBe('desc-id');
+    expect(svg.getAttribute('aria-live')).toBe('polite');
   });
 });
-
-describe.each(createIconIcons)(
-  '%s aria-labelledby auto-wire',
-  (_name, Icon) => {
-    it('auto-wires aria-labelledby when both title and titleId are provided', () => {
-      const container = renderToContainer(
-        <Icon title="Ethereum logo" titleId="eth-title" />,
-      );
-      const svg = container.querySelector('svg');
-      expect(svg?.getAttribute('aria-labelledby')).toBe('eth-title');
-    });
-
-    it('does not set aria-labelledby when only title is provided (no titleId)', () => {
-      const container = renderToContainer(<Icon title="Ethereum logo" />);
-      const svg = container.querySelector('svg');
-      expect(svg?.getAttribute('aria-labelledby')).toBeNull();
-    });
-
-    it('explicit aria-labelledby prop overrides auto-wire', () => {
-      const container = renderToContainer(
-        <Icon
-          title="Ethereum logo"
-          titleId="eth-title"
-          aria-labelledby="custom-label"
-        />,
-      );
-      const svg = container.querySelector('svg');
-      expect(svg?.getAttribute('aria-labelledby')).toBe('custom-label');
-    });
-  },
-);

@@ -7,7 +7,7 @@
     "Square variant: AVALANCHE_PATH in 1502×1502 space → scale to fit ~46px in 64×64",
     "Full circle is 1502 wide → scale 0.0306, translate(9, 9)"
   ],
-  "kind": "custom",
+  "kind": "icon",
   "variants": {
     "Circle": {
       "file": "avalanche.circle.svg",
@@ -38,5 +38,13 @@
   ],
   "chainIds": [
     43114
-  ]
+  ],
+  "props": {
+    "withBackground": {
+      "type": "toggle",
+      "description": "Fill the cut-out of the mark with white.",
+      "on": "Circle",
+      "off": "CircleMono"
+    }
+  }
 }

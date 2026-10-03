@@ -12,9 +12,27 @@ Icons with internal ids (masks, gradients, clip paths) now call `useId` and rend
 - Markup snapshots that contain icon ids need to be regenerated.
 - If you mount several React roots on one page, give each its own `identifierPrefix` (`createRoot(el, { identifierPrefix: 'a-' })`), as for any `useId` consumer.
 
+## 2. Icons with extra props are generated like every other icon
+
+`AvalancheCircle(Mono)`, `Bybit*` and `RainbowWallet(Symbol)` were hand-written and are now generated from `icons/` like the rest, which fixes their drift from the other icons:
+
+- With `title` and `titleId`, they now set `aria-labelledby` like every other icon.
+- They are annotated `/* @__PURE__ */`, so importing one export of `Avalanche`, `Bybit` or `RainbowWallet` no longer bundles its siblings.
+- `withBackground`, `fill1` and `fill2` render exactly as before for every combination of values.
+- **`BybitProps` now holds only the extra props** (`fill1`, `fill2`); it no longer extends `IconProps`. `AvalancheProps` and `RainbowWalletProps` are now exported the same way.
+
+```diff
+- const props: BybitProps = { fill1: '#000', size: 24 };
++ const props: IconProps & BybitProps = { fill1: '#000', size: 24 };
++ // or: ComponentProps<typeof Bybit>
+```
+
+- `BybitMono` declares `fill="currentColor"` on its `<svg>` (like every mono icon) instead of on each path. It renders the same, and a CSS `fill` on the icon now reaches the paths.
+
 ## Checklist
 
 - [ ] Regenerate markup snapshots containing icon defs ids
+- [ ] Type full `Bybit` props as `IconProps & BybitProps` (or `ComponentProps<typeof Bybit>`)
 
 ---
 

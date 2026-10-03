@@ -73,9 +73,9 @@ type-checks them with the same `strictest` settings as `src`.
 
 Icons are **SVG-first**: the source of truth is the `icons/` tree, and the React
 components under `src/<category>/` are generated from it. Never edit generated
-`.tsx` files by hand — a sync test will fail. The three hand-written exceptions
-(`Avalanche`, `Bybit`, `RainbowWallet`, marked `"kind": "custom"`) are the only
-icon modules maintained as TSX.
+`.tsx` files by hand — a sync test will fail. There are no hand-written icon
+modules; icons with extra props (`withBackground`, `fill1`) declare them in
+their unit JSON too (see [Extra props](#extra-props)).
 
 ### Quick Start (Scaffolding)
 
@@ -186,6 +186,25 @@ A unit declares two different kinds of names:
   "chainIds": [8217]
 }
 ```
+### Extra props
+
+A unit can give its components extra props in a `props` map (prop name →
+spec). The generator declares them in an exported `<Name>Props` interface
+and passes them to `createIcon`, which keeps them off the `<svg>`. Two kinds
+exist:
+
+- `"type": "toggle"` — a boolean that switches between the artwork of two
+  variants, e.g. `withBackground` in `icons/chain/avalanche.json`:
+  `{ "type": "toggle", "description": "…", "on": "Circle", "off": "CircleMono" }`.
+  Both variants accept the prop and default to their own artwork (`true` for
+  `on`); each keeps its own root `fill`, and the `viewBox` switches with the
+  artwork. A variant can be switched by one toggle only.
+- `"type": "fill"` — a string that sets the `fill` of every element marked
+  `data-fill-prop="<name>"` in a variant's SVG, e.g. `fill1` in
+  `icons/exchange/bybit.svg`. The element's own `fill` (if any) is the
+  default. The marks are removed from `dist/svg` and the Iconify sets.
+
+`dist/svg` and Iconify render each variant with its default props.
 
 ### Aliases and re-exports
 
@@ -359,13 +378,7 @@ When adding a new icon, follow this workflow:
 ```
 
 Everything under `src/<category>/` is generated from `icons/`; the only manual
-artifacts are the SVG files and the unit JSON. The exception is the handful of
-`"kind": "custom"` units (`Avalanche`, `Bybit`, `RainbowWallet`): their TSX is
-hand-maintained and skipped by the TSX generator, but their SVGs in `icons/`
-are still real inputs — the build copies them into `dist/svg` and the Iconify
-collections. `test/icons-sync.test.ts` only checks that every declared variant
-is exported from the TSX, not that the geometry matches, so when you touch a
-custom unit update the SVG and the TSX together and verify them visually.
+artifacts are the SVG files and the unit JSON.
 
 ### 1. Source the SVG
 
@@ -378,9 +391,8 @@ Every new unit records where its artwork came from in the `source` array of
 the JSON). For generated units the generator emits it as a `// Source:` comment
 right after the imports in the `.tsx`, so `grep -r "// Source:" src/` still
 works for audits — never edit that comment by hand; change the JSON and
-regenerate. For `"kind": "custom"` units, keep the `// Source:` comment in the
-hand-written TSX yourself. A few older units predate the `source` field; add it
-when you touch them.
+regenerate. A few older units predate the `source` field; add it when you
+touch them.
 
 ```json
 {
@@ -456,10 +468,8 @@ touch.
 ### 3. Add variants
 
 Each key in the unit's `variants` map is an export suffix backed by one SVG
-file. For generated (`"kind": "icon"`) units, mono variants set
-`"fill": "currentColor"` (or `"none"` for stroke-only artwork) and that value
-becomes the default `fill` on the rendered `<svg>`; custom units handle it in
-their hand-written TSX.
+file. Mono variants set `"fill": "currentColor"` (or `"none"` for stroke-only
+artwork) and that value becomes the default `fill` on the rendered `<svg>`.
 
 #### Circle / Square Variants
 
