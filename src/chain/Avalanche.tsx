@@ -1,11 +1,12 @@
 import { createIcon } from '../utils';
 
-// Source: https://www.avax.network/favicon-light.svg
+// Source: https://support.avax.network/en/articles/4132288-avalanche-press-kit-and-brand-assets
+// Source: https://drive.google.com/drive/folders/1i81sIjB6Z8hmQIITyXB37c1thodumFKJ
 // Source: https://www.avax.network/touchicon.svg
-// Default: the current Avalanche mark (two shapes in #E6212F) as drawn in the official site icons favicon-light.svg and touchicon.svg (paths from the 256-unit touchicon.svg, clipped to its 196x173 artwork box as in the file); it replaces the older #E84142 disc-cut mark. avax.network publishes no brand kit (/brand returns 404)
+// Default: the current Avalanche logomark (two shapes in #E6212F), identical in shape and colour to Avalanche_Logomark_Red.svg in the official brand-assets kit (linked from support.avax.network; Avalanche Logomark/SVG); paths from the site's 256-unit touchicon.svg, clipped to its 196x173 artwork box as in the file. It replaces the older #E84142 disc-cut mark
 // Mono: the same two shapes in currentColor
 // Square: the official touchicon.svg (the #E6212F mark on a #1D1D1D square); SquareMono is that square in currentColor with the mark knocked out (fill-rule=evenodd)
-// Circle: no official circle exists; a repo-convention #E6212F disc with the mark in white, scaled by 37.1/196 and centred (the width of the previous mark); CircleMono knocks the same mark out of the disc (fill-rule=evenodd), which is what withBackground=false shows
+// Circle: the official AVAX token (Avax Token/Avalanche_AvaxToken 1.svg in the brand-assets kit), a #E6212F disc with the mark cut out over a white inner disc; CircleMono is the token's disc path alone in currentColor (the mark knocked out), which is what withBackground=false shows
 /** Extra props of the Avalanche icons (on top of `IconProps`). */
 export interface AvalancheProps {
   /** Fill the cut-out of the mark with white. Defaults to `true` for `AvalancheCircle` and `false` for `AvalancheCircleMono`. */
@@ -16,17 +17,14 @@ export interface AvalancheProps {
 const withBackgroundArtwork = (withBackground: boolean) =>
   withBackground ? (
     <>
-      <path d="M32 0a32 32 0 1 1 0 64 32 32 0 0 1 0-64" />
       <path
         fill="#fff"
-        d="M36.67 48.34h12.4c1.1 0 1.79-1.18 1.24-2.13l-6.2-10.75a1.42 1.42 0 0 0-2.47 0l-6.2 10.75c-.55.95.13 2.13 1.23 2.13m1.55-23.07-5.1-8.83c-.52-.9-1.8-.9-2.32 0l-17.15 29.7c-.56.98.14 2.2 1.27 2.2h10.21c1.09 0 2.1-.58 2.64-1.52l10.45-18.1a3.4 3.4 0 0 0 0-3.45"
+        d="M32 56.43c13.5 0 24.43-10.94 24.43-24.43S45.5 7.56 32 7.56 7.56 18.5 7.56 32 18.5 56.43 32 56.43"
       />
+      <path d="M32 0c17.67 0 32 14.33 32 32S49.67 64 32 64 0 49.67 0 32 14.33 0 32 0m12.33 31.86c-.58-1-2.02-1-2.6 0L35.6 42.5a1.5 1.5 0 0 0 1.3 2.24h12.27a1.5 1.5 0 0 0 1.3-2.24zm-11.04-19.1c-.57-1-2-1-2.58 0L13.54 42.49a1.5 1.5 0 0 0 1.3 2.24h10.25a3.2 3.2 0 0 0 2.77-1.6l10.56-18.3a3.2 3.2 0 0 0 0-3.2z" />
     </>
   ) : (
-    <path
-      fillRule="evenodd"
-      d="M32 0a32 32 0 1 1 0 64 32 32 0 0 1 0-64m4.67 48.34h12.4c1.1 0 1.79-1.18 1.24-2.13l-6.2-10.75a1.42 1.42 0 0 0-2.47 0l-6.2 10.75c-.55.95.13 2.13 1.23 2.13m1.55-23.07-5.1-8.83c-.52-.9-1.8-.9-2.32 0l-17.15 29.7c-.56.98.14 2.2 1.27 2.2h10.21c1.09 0 2.1-.58 2.64-1.52l10.45-18.1a3.4 3.4 0 0 0 0-3.45"
-    />
+    <path d="M32 0c17.67 0 32 14.33 32 32S49.67 64 32 64 0 49.67 0 32 14.33 0 32 0m12.33 31.86c-.58-1-2.02-1-2.6 0L35.6 42.5a1.5 1.5 0 0 0 1.3 2.24h12.27a1.5 1.5 0 0 0 1.3-2.24zm-11.04-19.1c-.57-1-2-1-2.58 0L13.54 42.49a1.5 1.5 0 0 0 1.3 2.24h10.25a3.2 3.2 0 0 0 2.77-1.6l10.56-18.3a3.2 3.2 0 0 0 0-3.2z" />
   );
 
 /** Avalanche Circle chain icon (colored). */
