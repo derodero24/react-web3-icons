@@ -1,0 +1,24 @@
+{
+  "name": "Render",
+  "source": [
+    "https://rendernetwork.com/api/medias/file/logo-footer.svg (official Render Network site lockup; the Render Network Foundation press page, https://renderfoundation.com/press, offers the logos as PNG only)"
+  ],
+  "notes": [
+    "Colored: the symbol (ring with its satellite and the centre dot, one #242532 evenodd path) copied unchanged out of the official logo-footer.svg lockup (the Render Network lettering is left out), placed on the 64 grid",
+    "Mono: the same path in currentColor"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "render.svg"
+    },
+    "Mono": {
+      "file": "render.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "tickers": [
+    "RENDER",
+    "RNDR"
+  ]
+}
