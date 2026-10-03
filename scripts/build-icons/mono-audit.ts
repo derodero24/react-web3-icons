@@ -196,6 +196,11 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'The white of the official symbol (the M and the band above the grey base) is open in the mono and reaches the disc edge, as in the transparent monero-symbol-1280.png, so the footprint flood fill enters it (refMiss 0.33%).',
   },
+  'defi/Ethena': {
+    kind: 'false-positive',
+    reason:
+      'The gradient disc and the fading radial rim inflate the colour-boundary count; the lettermark knockout reads at every size.',
+  },
   'devtool/Drizzle': {
     kind: 'false-positive',
     reason: 'Threshold-faithful (refMiss 2.0%); kept as-is.',

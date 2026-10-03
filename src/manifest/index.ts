@@ -1056,7 +1056,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'defi',
     slug: 'ethena',
     variants: ['', 'Mono'],
-    brandColor: '#111111',
+    brandColor: '#040404',
   },
   { name: 'EthenaMono', category: 'defi' },
   {
