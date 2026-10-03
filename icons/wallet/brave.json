@@ -1,10 +1,16 @@
 {
   "name": "Brave",
+  "source": [
+    "https://brave.com/static-assets/images/brave-logo-sans-text.svg"
+  ],
+  "notes": [
+    "Colored: the official brave-logo-sans-text.svg (served by brave.com, e.g. on https://brave.com/press/) unchanged: the lion head in the #FF5500 to #FF2000 gradient, the white face and the #FF452A to #FF2000 highlight on the mane, placed on the 64 grid",
+    "Mono: the head silhouette in currentColor with the white face (and snout) of the official artwork knocked out (evenodd); the mane highlight is shading and is dropped"
+  ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "brave.svg",
-      "fill": "#FF2000"
+      "file": "brave.svg"
     },
     "Mono": {
       "file": "brave.mono.svg",
