@@ -144,6 +144,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     slug: 'algorand',
     variants: ['', 'Mono', 'Circle', 'CircleMono'],
+    brandColor: '#2d2df1',
   },
   { name: 'AlgorandCircle', category: 'chain' },
   { name: 'AlgorandCircleMono', category: 'chain' },
