@@ -986,7 +986,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'coin',
     ticker: 'XRP',
     variants: ['', 'Mono', 'Circle', 'CircleMono'],
-    brandColor: '#23292f',
+    brandColor: '#141414',
   },
   { name: 'XrpCircle', category: 'coin' },
   { name: 'XrpCircleMono', category: 'coin' },
