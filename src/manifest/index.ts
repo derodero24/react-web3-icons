@@ -1625,7 +1625,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'phemex',
     variants: ['', 'Mono'],
-    brandColor: '#13dafd',
+    brandColor: '#87ec26',
   },
   { name: 'PhemexMono', category: 'exchange' },
   {

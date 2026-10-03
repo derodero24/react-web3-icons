@@ -1,4 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <path fill="#13DAFD" d="M12.05 20.45V46.7c0 5.6 9.8 13.3 16.45 13.3V33.75c0-5.25-9.8-13.3-16.45-13.3"/>
-  <path fill="#003398" d="M35.5 4v26.25c0 5.6 9.8 13.3 16.45 13.3V17.3c0-5.6-9.8-13.3-16.45-13.3"/>
+  <g transform="translate(16.4 3.56)scale(.6539)">
+    <path fill="url(#phx-a)" d="M21.53 70.95c0 2.26-1.03 4.4-2.8 5.82L6.93 86.3V47.9a7.4 7.4 0 0 1 2.79-5.79l11.82-9.4zm19.27-32c0 2.26-1.03 4.4-2.8 5.82l-11.8 9.51V15.9a7.4 7.4 0 0 1 2.79-5.8L40.8.72z"/>
+    <defs>
+      <linearGradient id="phx-a" x1="6.91" x2="42.04" y1="87.18" y2=".35" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#87EC26"/>
+        <stop offset="1" stop-color="#59D9D9"/>
+      </linearGradient>
+    </defs>
+  </g>
 </svg>
