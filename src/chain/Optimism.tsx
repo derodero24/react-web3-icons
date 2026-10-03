@@ -1,19 +1,23 @@
 import { createIcon } from '../utils';
 
-// Source: https://optimism.io
-// Source: https://cdn.sanity.io/images/y6ka751a/production/0619395edc911805bcea3268156418134c1c5b32-2500x1875.svg
-// Circle/Square: the OP Mainnet glyph (same geometry as the official symbol linked from https://optimism.io/brand) at about 63% of the container height, filled with fill-rule="evenodd" so the centre sparkle is cut out, as in the official symbol
+// Source: https://optimism.io/brand (official brand assets, accessed 2026-10-03)
+// Source: https://optimism.io/files/5a7eaedf4e0c96529342e556b52cb05da12d9f23.zip (Optimism - Brand Kit.zip: OP Mainnet/SVG/OP_mainnet.svg)
+// Source: https://cdn.sanity.io/images/y6ka751a/production/0619395edc911805bcea3268156418134c1c5b32-2500x1875.svg (the brand page's OP Mainnet symbol card)
+// Default: the official OP Mainnet symbol, OP_mainnet.svg from the brand kit (the same file as the brand page's "OP Mainnet" download): a full-bleed #FF0421 (Optimism Red) square with the glyph in #FAFAF9, paths unchanged and scaled 1024 -> 64. It replaces a #FF0420 disc with a white glyph, a shape and colours the current kit does not ship
+// Square: the OP Mainnet symbol as the brand page draws it on its symbol card, the same glyph on a #FF0421 square with rounded corners (rx 80 on 817, 6.27 on the 64 grid), cropped to the tile; paths unchanged
+// Circle: no official circular OP Mainnet asset exists (the kit's round Token.svg is the OP token mark, the letters OP, not this glyph); a repo-convention #FF0421 disc holding the official glyph in #FAFAF9 at the symbol's own scale (the glyph lies within 28.25 units of the centre, so it fits the r=32 disc)
+// Mono, CircleMono and SquareMono: each variant's container in currentColor with the glyph knocked out as one evenodd path; the centre sparkle, a hole in the glyph, stays ink as the red shows through it in the colour artwork
+// The OP token logo (the letters OP in #FAFAF9 on a #FF0421 disc, kit Token/SVG/Token.svg) and the Optimism avatar (Avatar/SVG/Avatar.svg, the same letters on a square) are separate marks the brand page reserves for the token and for avatars; they are not used here. The Op coin unit uses Token.svg, see icons/coin/op.json
 /** Optimism chain icon (colored). */
 export const Optimism = /* @__PURE__ */ createIcon(
   'Optimism',
   '0 0 64 64',
   () => (
-    <g transform="scale(2.28571)">
-      <circle cx="14" cy="14" r="14" fill="#FF0420" />
+    <g transform="scale(.0625)">
+      <rect width="1024" height="1024" fill="#FF0421" />
       <path
-        fill="#fff"
-        fillRule="evenodd"
-        d="M14 26.25v-5.18c5.33 0 9.66-4.33 9.66-9.66S19.33 1.75 14 1.75v5.19c-5.33 0-9.66 4.32-9.66 9.65s4.33 9.66 9.66 9.66m4.78-12.2v-.1q-3.16-1.57-4.74-4.73h-.09q-1.57 3.16-4.73 4.74v.09q3.16 1.57 4.73 4.73h.1q1.57-3.16 4.73-4.73"
+        fill="#FAFAF9"
+        d="M512.34 60c196.77 0 356.33 159.56 356.33 356.34S709.11 772.68 512.34 772.68v191.3C315.56 963.97 156 804.4 156 607.63s159.56-356.34 356.34-356.34zm-1.65 275.7q-58.07 116.56-174.65 174.63v3.3q116.58 58.08 174.65 174.65h3.3q58.06-116.58 174.64-174.64v-3.3q-116.58-58.07-174.64-174.65z"
       />
     </g>
   ),
@@ -27,7 +31,7 @@ export const OptimismMono = /* @__PURE__ */ createIcon(
   () => (
     <path
       fillRule="evenodd"
-      d="M0 32a32 32 0 1 0 64 0 32 32 0 1 0-64 0m32 28V48.15c12.19 0 22.08-9.88 22.08-22.07S44.19 4 32 4v11.85c-12.19 0-22.08 9.88-22.08 22.07S19.81 60 32 60m10.92-27.9v-.2Q35.7 28.3 32.1 21.08h-.2Q28.3 28.3 21.08 31.9v.2q7.22 3.6 10.82 10.82h.2q3.6-7.22 10.82-10.82"
+      d="M0 0h64v64H0Zm32.02 3.75c12.3 0 22.27 9.97 22.27 22.27S44.32 48.3 32.02 48.3v11.96c-12.3 0-22.27-9.97-22.27-22.27S19.72 15.7 32.02 15.7zm-.1 17.23Q28.29 28.27 21 31.9v.2q7.29 3.63 10.92 10.92h.2q3.63-7.29 10.92-10.92v-.2q-7.29-3.63-10.92-10.92z"
     />
   ),
   { fill: 'currentColor' },
@@ -38,16 +42,13 @@ export const OptimismCircle = /* @__PURE__ */ createIcon(
   'OptimismCircle',
   '0 0 64 64',
   () => (
-    <>
-      <circle cx="32" cy="32" r="32" fill="#FF0420" />
-      <g>
-        <path
-          fill="#fff"
-          fillRule="evenodd"
-          d="M32 52.13V43.6c8.76 0 15.87-7.1 15.87-15.87S40.77 11.88 32 11.88v8.51c-8.76 0-15.87 7.1-15.87 15.87S23.24 52.13 32 52.13m7.85-20.05v-.15q-5.19-2.6-7.77-7.78h-.15q-2.6 5.19-7.78 7.78v.15q5.19 2.58 7.78 7.77h.15q2.58-5.19 7.77-7.77"
-        />
-      </g>
-    </>
+    <g transform="scale(.0625)">
+      <circle cx="512" cy="512" r="512" fill="#FF0421" />
+      <path
+        fill="#FAFAF9"
+        d="M512.34 60c196.77 0 356.33 159.56 356.33 356.34S709.11 772.68 512.34 772.68v191.3C315.56 963.97 156 804.4 156 607.63s159.56-356.34 356.34-356.34zm-1.65 275.7q-58.07 116.56-174.65 174.63v3.3q116.58 58.08 174.65 174.65h3.3q58.06-116.58 174.64-174.64v-3.3q-116.58-58.07-174.64-174.65z"
+      />
+    </g>
   ),
   {},
 );
@@ -57,16 +58,13 @@ export const OptimismSquare = /* @__PURE__ */ createIcon(
   'OptimismSquare',
   '0 0 64 64',
   () => (
-    <>
-      <rect width="64" height="64" fill="#FF0420" rx="12.8" />
-      <g>
-        <path
-          fill="#fff"
-          fillRule="evenodd"
-          d="M32 52.13V43.6c8.76 0 15.87-7.1 15.87-15.87S40.77 11.88 32 11.88v8.51c-8.76 0-15.87 7.1-15.87 15.87S23.24 52.13 32 52.13m7.85-20.05v-.15q-5.19-2.6-7.77-7.78h-.15q-2.6 5.19-7.78 7.78v.15q5.19 2.58 7.78 7.77h.15q2.58-5.19 7.77-7.77"
-        />
-      </g>
-    </>
+    <g transform="translate(-65.88 -41.44)scale(.07834)">
+      <rect width="817" height="817" x="841" y="529" fill="#FF0421" rx="80" />
+      <path
+        fill="#FAFAF9"
+        d="M1249.77 576.87c156.99 0 284.3 127.31 284.3 284.3s-127.31 284.31-284.3 284.31v152.63c-157 0-284.3-127.31-284.3-284.31s127.3-284.3 284.3-284.3zm-1.32 219.96q-46.32 93.02-139.34 139.34v2.64q93.02 46.33 139.34 139.33h2.64q46.33-93 139.33-139.33v-2.64q-93-46.32-139.33-139.34z"
+      />
+    </g>
   ),
   {},
 );
@@ -75,44 +73,24 @@ export const OptimismSquare = /* @__PURE__ */ createIcon(
 export const OptimismSquareMono = /* @__PURE__ */ createIcon(
   'OptimismSquareMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <>
-      <rect width="64" height="64" mask={`url(#${_id}-opts-a)`} rx="12.8" />
-      <defs>
-        <mask id={`${_id}-opts-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
-          <g fill="#000">
-            <path
-              fillRule="evenodd"
-              d="M32 52.13V43.6c8.76 0 15.87-7.1 15.87-15.87S40.77 11.88 32 11.88v8.51c-8.76 0-15.87 7.1-15.87 15.87S23.24 52.13 32 52.13m7.85-20.05v-.15q-5.19-2.6-7.77-7.78h-.15q-2.6 5.19-7.78 7.78v.15q5.19 2.58 7.78 7.77h.15q2.58-5.19 7.77-7.77"
-            />
-          </g>
-        </mask>
-      </defs>
-    </>
+  () => (
+    <path
+      fillRule="evenodd"
+      d="M6.27 0h51.46A6.27 6.27 0 0 1 64 6.27v51.46A6.27 6.27 0 0 1 57.73 64H6.27A6.27 6.27 0 0 1 0 57.73V6.27A6.27 6.27 0 0 1 6.27 0m25.75 3.75c12.3 0 22.27 9.97 22.27 22.27S44.32 48.3 32.02 48.3v11.96c-12.3 0-22.27-9.97-22.27-22.27S19.72 15.7 32.02 15.7zm-.1 17.23Q28.29 28.27 21 31.9v.2q7.29 3.63 10.92 10.92h.2q3.63-7.29 10.92-10.92v-.2q-7.29-3.63-10.92-10.92z"
+    />
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );
 
 /** Optimism Circle chain icon (monochrome). */
 export const OptimismCircleMono = /* @__PURE__ */ createIcon(
   'OptimismCircleMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <>
-      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-optc-a)`} />
-      <defs>
-        <mask id={`${_id}-optc-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
-          <g fill="#000">
-            <path
-              fillRule="evenodd"
-              d="M32 52.13V43.6c8.76 0 15.87-7.1 15.87-15.87S40.77 11.88 32 11.88v8.51c-8.76 0-15.87 7.1-15.87 15.87S23.24 52.13 32 52.13m7.85-20.05v-.15q-5.19-2.6-7.77-7.78h-.15q-2.6 5.19-7.78 7.78v.15q5.19 2.58 7.78 7.77h.15q2.58-5.19 7.77-7.77"
-            />
-          </g>
-        </mask>
-      </defs>
-    </>
+  () => (
+    <path
+      fillRule="evenodd"
+      d="M0 32a32 32 0 1 0 64 0 32 32 0 1 0-64 0M32.02 3.75c12.3 0 22.27 9.97 22.27 22.27S44.32 48.3 32.02 48.3v11.96c-12.3 0-22.27-9.97-22.27-22.27S19.72 15.7 32.02 15.7zm-.1 17.23Q28.29 28.27 21 31.9v.2q7.29 3.63 10.92 10.92h.2q3.63-7.29 10.92-10.92v-.2q-7.29-3.63-10.92-10.92z"
+    />
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );
