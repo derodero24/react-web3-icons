@@ -1303,7 +1303,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Thirdweb',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#f213a4',
+    brandColor: '#ff00a8',
   },
   { name: 'ThirdwebMono', category: 'devtool' },
   {
