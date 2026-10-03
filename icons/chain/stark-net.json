@@ -5,7 +5,8 @@
   ],
   "notes": [
     "Circle variant: 24×24 content scaled to ~46px centered in 64×64",
-    "Gradient coordinates pre-computed: new = 9 + original * 1.917"
+    "Gradient coordinates pre-computed: new = 9 + original * 1.917",
+    "Mono variants: the white wave and the pink underside are knocked out separately, kept apart by a 1.2-unit ink seam (the pink shape minus the wave offset by 1.2)."
   ],
   "kind": "icon",
   "variants": {
