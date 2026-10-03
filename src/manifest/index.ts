@@ -1145,7 +1145,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'defi',
     slug: 'rocketpool',
     variants: ['', 'Mono'],
-    brandColor: '#fb9533',
+    brandColor: '#f2681d',
   },
   { name: 'RocketPoolMono', category: 'defi' },
   {
