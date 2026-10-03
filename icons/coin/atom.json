@@ -4,7 +4,8 @@
     "https://raw.githubusercontent.com/cosmos/chain-registry/master/cosmoshub/images/atom.svg"
   ],
   "notes": [
-    "Colored: the official Cosmos chain-registry atom.svg (cosmoshub/images), paths unchanged: disc #2E3148 with inner disc #1B1E36, orbits #6F7390, electrons and nucleus #B7B9C8"
+    "Colored: the official Cosmos chain-registry atom.svg (cosmoshub/images), paths unchanged: disc #2E3148 with inner disc #1B1E36, orbits #6F7390, electrons and nucleus #B7B9C8",
+    "Mono: the disc in ink with the three orbits (1.5 units, the coloured 1.2-unit strokes slightly widened so they survive at 24 px), the electrons and the nucleus knocked out, built from the coloured paths"
   ],
   "kind": "icon",
   "variants": {
