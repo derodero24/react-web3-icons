@@ -113,7 +113,7 @@ function deriveEntry(
   return entry;
 }
 
-/** Same derivation as scripts/generate-manifest.ts, but from src modules. */
+/** Same derivation as scripts/build-icons/manifest.ts, but from src modules. */
 function deriveExpected(): IconManifestEntry[] {
   const entries: IconManifestEntry[] = [];
   for (const [category, mod] of Object.entries(CATEGORY_MODULES)) {
@@ -170,7 +170,7 @@ function defaultArtworkHasHexColor({ meta, variants }: SourceUnit): boolean {
     .some(hex => !/^#(?:fff|ffffff)(?:[0-9a-f]{2})?$/.test(hex));
 }
 
-/** Same variant derivation as scripts/generate-manifest.ts. */
+/** Same variant derivation as scripts/build-icons/manifest.ts. */
 function expectedVariants(unit: SourceUnit | undefined): string[] {
   if (!(unit && isArtwork(unit.meta))) {
     return [];
@@ -233,7 +233,7 @@ function brandColorProblem(
 
 describe('Icon manifest sync', () => {
   // Fails when icons, meta maps, or deprecations change without running:
-  //   pnpm run build && pnpm run generate-manifest
+  //   pnpm run generate-manifest
   it('src/manifest/index.ts matches the actual category exports', () => {
     expect(ICON_MANIFEST.map(baseProjection)).toEqual(deriveExpected());
   });
