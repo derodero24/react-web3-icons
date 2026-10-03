@@ -4,6 +4,7 @@
     <mask id="twsm-a">
       <rect width="64" height="64" fill="#fff"/>
       <path fill="#000" d="M14.17 17.78 32 12l17.83 5.78v12.89c0 5.77-5.1 16-17.83 21.33-12.74-5.33-17.83-15.56-17.83-21.33Z"/>
+      <path stroke="#fff" d="M32 12v40"/>
     </mask>
   </defs>
 </svg>

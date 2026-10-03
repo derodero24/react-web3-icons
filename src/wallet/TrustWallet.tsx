@@ -4,7 +4,7 @@ import { createIcon } from '../utils';
 // Source: https://trustwallet.com/press (official press kit, logos.zip: Trust Core Logo, the same two-part shield)
 // Shield: the two paths of the official icon.svg (#0500FF left half, right half in the official #0000FF/#0094FF/#48FF91/#0038FF/#0500FF gradient), unchanged, scaled 0.95238 and translated (13.33 11.71) so the shield is 40 units tall and centred
 // No official Circle or Square asset is published; both are plain container compositions: a white circle r=32 / white 64x64 square with rx=12.8 (the repository's Square convention) behind the unchanged coloured shield
-// CircleMono / SquareMono: the container in currentColor with the shield silhouette (outline of both halves) knocked out by a mask; the colour split between the halves is dropped
+// CircleMono / SquareMono: the container in currentColor with the shield silhouette knocked out by a mask, and a 1-unit ink seam on the centre line where the two halves of the colored shield meet
 /** Trust Wallet Square wallet icon (colored). */
 export const TrustWalletSquare = /* @__PURE__ */ createIcon(
   'TrustWalletSquare',
@@ -93,12 +93,13 @@ export const TrustWalletSquareMono = /* @__PURE__ */ createIcon(
     <>
       <rect width="64" height="64" mask={`url(#${_id}-twsm-a)`} rx="12.8" />
       <defs>
-        <mask id={`${_id}-twsm-a`}>
+        <mask id={`${_id}-twsm-a`} fill="#000">
           <rect width="64" height="64" fill="#fff" />
           <path
             fill="#000"
             d="M14.17 17.78 32 12l17.83 5.78v12.89c0 5.77-5.1 16-17.83 21.33-12.74-5.33-17.83-15.56-17.83-21.33Z"
           />
+          <path stroke="#fff" d="M32 12v40" />
         </mask>
       </defs>
     </>
@@ -114,12 +115,13 @@ export const TrustWalletCircleMono = /* @__PURE__ */ createIcon(
     <>
       <circle cx="32" cy="32" r="32" mask={`url(#${_id}-twcm-a)`} />
       <defs>
-        <mask id={`${_id}-twcm-a`}>
+        <mask id={`${_id}-twcm-a`} fill="#000">
           <rect width="64" height="64" fill="#fff" />
           <path
             fill="#000"
             d="M14.17 17.78 32 12l17.83 5.78v12.89c0 5.77-5.1 16-17.83 21.33-12.74-5.33-17.83-15.56-17.83-21.33Z"
           />
+          <path stroke="#fff" d="M32 12v40" />
         </mask>
       </defs>
     </>
