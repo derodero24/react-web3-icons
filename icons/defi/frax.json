@@ -5,8 +5,8 @@
   ],
   "notes": [
     "Frax Finance target/crosshair mark; strictly black-and-white brand",
-    "No downloadable brand SVG exists; the crosshair path is copied unchanged from the FraxIcon component on docs.frax.com (accessed 2026-10-03), without its black disc and white ring, and drawn in black as before",
-    "Mono: the same path in currentColor"
+    "No downloadable brand SVG exists; the artwork is the FraxIcon component on docs.frax.com (accessed 2026-10-03) as is: a #000 disc (r 129) inside a white keyline ring (r 141) with the white crosshair, paths unchanged",
+    "Mono: the disc in currentColor with the crosshair knocked out; the disc takes the full r 141 footprint, so the white keyline merges into it"
   ],
   "kind": "icon",
   "variants": {
