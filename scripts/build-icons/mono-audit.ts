@@ -195,12 +195,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'The gap that keeps the head apart from the disc opens between the ears and joins the muzzle knockout, so the footprint flood fill enters it.',
   },
-  'defi/Pendle': {
-    kind: 'pending',
-    issue: '#746',
-    reason:
-      'The colored artwork itself is defective (white main circle) and is being replaced; redo the mono from the new artwork.',
-  },
   'defi/RocketPool': {
     kind: 'false-positive',
     reason:
@@ -215,17 +209,10 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'Knockout polarity: the cream chevrons and blade are holes in the mono and open into the background at the top of the blade, so the footprint flood fill enters them.',
   },
-  'dex/Dydx': {
-    kind: 'pending',
-    issue: '#746',
-    reason:
-      'The colored artwork is defective (white X stroke) and is being replaced; recheck the mono against the new artwork.',
-  },
   'dex/DydxSquare': {
-    kind: 'pending',
-    issue: '#746',
+    kind: 'false-positive',
     reason:
-      'The colored artwork is being replaced together with Dydx; the X knockout itself reads (edge ratio sits on the threshold).',
+      'The gradient tile and the gradient X strokes inflate the colour-boundary count (the edge ratio sits on the threshold); the X knockout reads at every size.',
   },
   'dex/Osmosis': {
     kind: 'false-positive',
