@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
-// Source: https://3936590801-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FuBDUa2ODcAkHHV15nEGc%2Fuploads%2FwxPh8w7T5qZabdC5qb0i%2FCG-GT%20Logos.zip?alt=media&token=57828ee9-0a87-4598-92a1-7a580f0f861b
-// Official brand kit "CG-GT Logos.zip" linked from https://brand.coingecko.com/resources/brand-kit
+// Source: https://brand.coingecko.com/resources/brand-kit
+// Official brand kit "CG-GT Logos.zip", downloaded from the brand-kit page above
 // Colored: CG/CG-Symbol.svg (the rebrand symbol: #FFE866 coin, #4BCC00/#35AF00 gecko, #0D1217 eye), without its no-op clip path
 // Mono: CG/CG-Symbol-2.svg, the official one-colour symbol, in currentColor
 /** Coin Gecko tracker icon (colored). */
