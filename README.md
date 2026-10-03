@@ -92,6 +92,41 @@ Every icon has a `Mono` variant that uses `currentColor`, making it easy to matc
 <BitcoinMono className="text-gray-500" /> {/* Tailwind */}
 ```
 
+### Dark Backgrounds and Theming
+
+Colored icons reproduce the official brand artwork, and some brand marks are black (Aptos, LayerZero, Ledger, …) or nearly white, so they disappear on a background of the same tone. Pick the variant by how much brand color you need:
+
+- **`Mono` + CSS `color`** — one color that follows your theme via `currentColor`. For black-only marks this is exactly the brand's reversed logo, so `<AptosMono />` in white is the dark-mode Aptos.
+- **`Circle` / `Square`** — the mark on its brand background (`EthereumCircle`, `ArbitrumSquare`), legible on any page color.
+- **`Inverted`** — brand colors reworked for dark backgrounds (`BybitInverted`, `EtherscanInverted`).
+
+```tsx
+import { AptosMono, Bitcoin, BybitInverted, EthereumCircle } from 'react-web3-icons';
+
+<div style={{ background: '#0b0d12', color: '#f5f5f5' }}>
+  <AptosMono /> {/* inherits the light text color */}
+  <EthereumCircle />
+  <BybitInverted />
+  <Bitcoin /> {/* already legible on dark */}
+</div>
+```
+
+Each base entry of the [icon manifest](#icon-manifest) lists its `variants`, so you can choose one at runtime:
+
+```ts
+import { ICON_MANIFEST } from 'react-web3-icons/manifest';
+
+const onDark = (name: string) => {
+  const variants = ICON_MANIFEST.find(e => e.name === name)?.variants ?? [];
+  const suffix = ['Inverted', 'Circle', 'Square'].find(v => variants.includes(v));
+  return suffix ? `${name}${suffix}` : `${name}Mono`; // Mono: set a light `color`
+};
+onDark('Ethereum'); // 'EthereumCircle'
+onDark('Aptos'); // 'AptosMono'
+```
+
+A test audits every colored icon: when its artwork would vanish on a dark (or light) background, the icon must ship one of these options.
+
 ### Accessibility
 
 Add a `title` prop for screen reader support:

@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`dark/light background legibility (issue #712) > documents how each affected icon stays legible 1`] = `
+[
+  "dark: bridge/Axelar → monochrome AxelarMono",
+  "dark: bridge/LayerZero → monochrome LayerZeroMono",
+  "dark: chain/Algorand → variant AlgorandCircle",
+  "dark: chain/Aptos → monochrome AptosMono",
+  "dark: chain/Eclipse → monochrome EclipseMono",
+  "dark: chain/Ethereum → variant EthereumCircle",
+  "dark: chain/Fraxtal → monochrome FraxtalMono",
+  "dark: chain/ImmutableX → monochrome ImmutableXMono",
+  "dark: chain/Stacks → monochrome StacksMono",
+  "dark: chain/Stellar → monochrome StellarMono",
+  "dark: chain/WorldChain → monochrome WorldChainMono",
+  "dark: coin/Fet → monochrome FetMono",
+  "dark: coin/Hbar → monochrome HbarMono",
+  "dark: coin/Looks → exempt (legible-variant)",
+  "dark: coin/Wld → monochrome WldMono",
+  "dark: coin/Xrp → variant XrpCircle",
+  "dark: defi/Frax → monochrome FraxMono",
+  "dark: defi/SafeProtocol → monochrome SafeProtocolMono",
+  "dark: defi/Synthetix → monochrome SynthetixMono",
+  "dark: devtool/Remix → monochrome RemixMono",
+  "dark: devtool/Viem → monochrome ViemMono",
+  "dark: devtool/Wagmi → monochrome WagmiMono",
+  "light: dex/Dydx → variant DydxSquare",
+  "light: exchange/Htx → exempt (no-official-alternative)",
+  "dark: exchange/Okx → monochrome OkxMono",
+  "dark: oracle/Pyth → monochrome PythMono",
+  "dark: storage/Arweave → monochrome ArweaveMono",
+  "dark: wallet/Ledger → monochrome LedgerMono",
+  "dark: wallet/OKXWallet → monochrome OKXWalletMono",
+  "dark: wallet/Safe → monochrome SafeMono",
+  "dark: wallet/Tangem → monochrome TangemMono",
+  "dark: wallet/Trezor → monochrome TrezorMono",
+]
+`;
