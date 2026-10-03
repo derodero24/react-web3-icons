@@ -11,6 +11,7 @@ import { describe, expect, it } from 'vitest';
  * - `input` hashes cover icons/<category>/<slug>.json + its SVG variants
  * - `output` hashes cover the generated (Biome-formatted) TSX modules
  * - `indexes` cover each category's index.ts
+ * - `dynamicImports` cover the generated src/dynamic/imports/<category>.ts
  */
 
 const ROOT = join(import.meta.dirname, '..');
@@ -21,6 +22,7 @@ const lock = JSON.parse(
 ) as {
   units: Record<string, { input: string; output?: string }>;
   indexes: Record<string, string>;
+  dynamicImports: Record<string, string>;
 };
 
 function sha256(text: string): string {
@@ -105,6 +107,19 @@ describe('icons/ ↔ src/ pipeline sync', () => {
     for (const [category, hash] of Object.entries(lock.indexes)) {
       const content = readFileSync(join(SRC, category, 'index.ts'), 'utf-8');
       expect(sha256(content), `${category}/index.ts`).toBe(hash);
+    }
+  });
+
+  it('dynamic import maps match the lock (do not hand-edit generated files)', () => {
+    const dir = join(SRC, 'dynamic/imports');
+    const files = readdirSync(dir)
+      .filter(file => file.endsWith('.ts'))
+      .map(file => file.slice(0, -3))
+      .sort();
+    expect(files).toEqual(Object.keys(lock.dynamicImports).sort());
+    for (const [category, hash] of Object.entries(lock.dynamicImports)) {
+      const content = readFileSync(join(dir, `${category}.ts`), 'utf-8');
+      expect(sha256(content), `dynamic/imports/${category}.ts`).toBe(hash);
     }
   });
 

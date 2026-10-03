@@ -4,8 +4,9 @@
  *
  *   pnpm run generate-icons
  *
- * Writes one TSX module per icon unit plus each category's index.ts, runs
- * Biome over the generated files, and records content hashes in
+ * Writes one TSX module per icon unit plus each category's index.ts (and the
+ * per-icon lazy import maps under src/dynamic/imports/), runs Biome over the
+ * generated files, and records content hashes in
  * `scripts/build-icons/icons.lock.json` so test/icons-sync.test.ts can detect
  * drift (icons/ edited without regeneration, or generated files hand-edited).
  *
@@ -29,7 +30,7 @@ const ICONS = join(ROOT, 'icons');
 const SRC = join(ROOT, 'src');
 const LOCK = join(ROOT, 'scripts/build-icons/icons.lock.json');
 
-const lock = { units: {}, indexes: {} };
+const lock = { units: {}, indexes: {}, dynamicImports: {} };
 const written = [];
 
 for (const category of CATEGORIES) {
@@ -80,6 +81,11 @@ for (const category of CATEGORIES) {
   lock.indexes[category] = sha256(
     readFileSync(join(SRC, category, 'index.ts'), 'utf-8'),
   );
+  if (DYNAMIC_CATEGORIES.includes(category)) {
+    lock.dynamicImports[category] = sha256(
+      readFileSync(join(SRC, 'dynamic/imports', `${category}.ts`), 'utf-8'),
+    );
+  }
 }
 
 writeFileSync(LOCK, `${JSON.stringify(lock, null, 2)}\n`);

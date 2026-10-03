@@ -1,7 +1,4 @@
 import { describe, expect, it } from 'vitest';
-import * as bridge from '../src/bridge';
-import * as defi from '../src/defi';
-import * as dex from '../src/dex';
 import {
   resolveBridgeExportName,
   resolveChainExportName,
@@ -12,9 +9,17 @@ import {
   resolveOracleExportName,
   resolveWalletExportName,
 } from '../src/dynamic/resolve';
-import * as exchange from '../src/exchange';
-import * as oracle from '../src/oracle';
-import * as wallet from '../src/wallet';
+import {
+  BRIDGE_SLUG_TO_NAME,
+  CHAIN_ID_TO_NAME,
+  CHAIN_SLUG_TO_NAME,
+  DEFI_SLUG_TO_NAME,
+  DEX_SLUG_TO_NAME,
+  EXCHANGE_SLUG_TO_NAME,
+  ORACLE_SLUG_TO_NAME,
+  TICKER_TO_COIN,
+  WALLET_SLUG_TO_NAME,
+} from '../src/meta';
 
 describe('resolveChainExportName', () => {
   it('resolves by chain ID', () => {
@@ -91,45 +96,6 @@ describe('resolveWalletExportName', () => {
   it('returns null for unknown wallet', () => {
     expect(resolveWalletExportName({ name: 'notawallet' })).toBeNull();
   });
-
-  it('every resolved name references an exported wallet icon', () => {
-    const walletNames = new Set(Object.keys(wallet));
-    const slugs = [
-      'argent',
-      'backpackwallet',
-      'bitgetwallet',
-      'coinbasewallet',
-      'daedaluswallet',
-      'enkrypt',
-      'exodus',
-      'imtoken',
-      'keplr',
-      'ledger',
-      'metamask',
-      'namiwallet',
-      'okxwallet',
-      'phantomwallet',
-      'polkadotjs',
-      'rabby',
-      'rainbowwallet',
-      'safe',
-      'subwallet',
-      'tangem',
-      'trezor',
-      'trustwallet',
-      'walletconnect',
-      'yoroiwallet',
-      'zerion',
-    ];
-    for (const slug of slugs) {
-      const name = resolveWalletExportName({ name: slug });
-      expect(name).not.toBeNull();
-      expect(
-        walletNames.has(name as string),
-        `wallet slug '${slug}' resolves to '${name}' which is not exported`,
-      ).toBe(true);
-    }
-  });
 });
 
 describe('resolveExchangeExportName', () => {
@@ -152,38 +118,6 @@ describe('resolveExchangeExportName', () => {
 
   it('returns null for unknown exchange', () => {
     expect(resolveExchangeExportName({ name: 'notanexchange' })).toBeNull();
-  });
-
-  it('every resolved name references an exported exchange icon', () => {
-    const exchangeNames = new Set(Object.keys(exchange));
-    const slugs = [
-      'binance',
-      'bitfinex',
-      'bitget',
-      'bithumb',
-      'bitstamp',
-      'bybit',
-      'coinbase',
-      'cryptocom',
-      'deribit',
-      'gateio',
-      'gemini',
-      'htx',
-      'kraken',
-      'kucoin',
-      'mexc',
-      'okx',
-      'phemex',
-      'upbit',
-    ];
-    for (const slug of slugs) {
-      const name = resolveExchangeExportName({ name: slug });
-      expect(name).not.toBeNull();
-      expect(
-        exchangeNames.has(name as string),
-        `exchange slug '${slug}' resolves to '${name}' which is not exported`,
-      ).toBe(true);
-    }
   });
 });
 
@@ -214,40 +148,6 @@ describe('resolveDefiExportName', () => {
     expect(resolveDefiExportName({ name: 'ether-fi' })).toBe('EtherFi');
     expect(resolveDefiExportName({ name: 'etherfi' })).toBe('EtherFi');
   });
-
-  it('every resolved name references an exported defi icon', () => {
-    const defiNames = new Set(Object.keys(defi));
-    const slugs = [
-      'aave',
-      'babylon',
-      'balancer',
-      'compound',
-      'convex',
-      'eigenlayer',
-      'ethena',
-      'etherfi',
-      'frax',
-      'gmx',
-      'lido',
-      'liquity',
-      'makerdao',
-      'morpho',
-      'pendle',
-      'rocketpool',
-      'safeprotocol',
-      'spark',
-      'synthetix',
-      'yearn',
-    ];
-    for (const slug of slugs) {
-      const name = resolveDefiExportName({ name: slug });
-      expect(name).not.toBeNull();
-      expect(
-        defiNames.has(name as string),
-        `defi slug '${slug}' resolves to '${name}' which is not exported`,
-      ).toBe(true);
-    }
-  });
 });
 
 describe('resolveDexExportName', () => {
@@ -271,34 +171,6 @@ describe('resolveDexExportName', () => {
   it('returns null for unknown DEX', () => {
     expect(resolveDexExportName({ name: 'notadex' })).toBeNull();
   });
-
-  it('every resolved name references an exported dex icon', () => {
-    const dexNames = new Set(Object.keys(dex));
-    const slugs = [
-      'aerodrome',
-      'camelot',
-      'cowprotocol',
-      'dydx',
-      'ekubo',
-      'hyperliquid',
-      'jupiter',
-      'oneinch',
-      'osmosis',
-      'pancakeswap',
-      'raydium',
-      'sushiswap',
-      'uniswap',
-      'velodrome',
-    ];
-    for (const slug of slugs) {
-      const name = resolveDexExportName({ name: slug });
-      expect(name).not.toBeNull();
-      expect(
-        dexNames.has(name as string),
-        `dex slug '${slug}' resolves to '${name}' which is not exported`,
-      ).toBe(true);
-    }
-  });
 });
 
 describe('resolveBridgeExportName', () => {
@@ -321,25 +193,6 @@ describe('resolveBridgeExportName', () => {
 
   it('returns null for unknown bridge', () => {
     expect(resolveBridgeExportName({ name: 'notabridge' })).toBeNull();
-  });
-
-  it('every resolved name references an exported bridge icon', () => {
-    const bridgeNames = new Set(Object.keys(bridge));
-    const slugs = [
-      'across',
-      'hopprotocol',
-      'layerzero',
-      'stargate',
-      'wormhole',
-    ];
-    for (const slug of slugs) {
-      const name = resolveBridgeExportName({ name: slug });
-      expect(name).not.toBeNull();
-      expect(
-        bridgeNames.has(name as string),
-        `bridge slug '${slug}' resolves to '${name}' which is not exported`,
-      ).toBe(true);
-    }
   });
 });
 
@@ -365,17 +218,43 @@ describe('resolveOracleExportName', () => {
   it('returns null for unknown oracle', () => {
     expect(resolveOracleExportName({ name: 'notanoracle' })).toBeNull();
   });
+});
 
-  it('every resolved name references an exported oracle icon', () => {
-    const oracleNames = new Set(Object.keys(oracle));
-    const slugs = ['api3', 'band', 'pyth', 'redstone'];
-    for (const slug of slugs) {
-      const name = resolveOracleExportName({ name: slug });
-      expect(name).not.toBeNull();
-      expect(
-        oracleNames.has(name as string),
-        `oracle slug '${slug}' resolves to '${name}' which is not exported`,
-      ).toBe(true);
-    }
+// Every identifier in the meta maps must resolve to its mapped export, in any
+// letter case. meta.test.ts checks that each mapped name is exported, and
+// dynamic-imports.test.ts that each export is loadable.
+const RESOLVERS = [
+  ['chain slug', CHAIN_SLUG_TO_NAME, name => resolveChainExportName({ name })],
+  ['coin ticker', TICKER_TO_COIN, symbol => resolveCoinExportName({ symbol })],
+  ['wallet', WALLET_SLUG_TO_NAME, name => resolveWalletExportName({ name })],
+  [
+    'exchange',
+    EXCHANGE_SLUG_TO_NAME,
+    name => resolveExchangeExportName({ name }),
+  ],
+  ['defi', DEFI_SLUG_TO_NAME, name => resolveDefiExportName({ name })],
+  ['dex', DEX_SLUG_TO_NAME, name => resolveDexExportName({ name })],
+  ['bridge', BRIDGE_SLUG_TO_NAME, name => resolveBridgeExportName({ name })],
+  ['oracle', ORACLE_SLUG_TO_NAME, name => resolveOracleExportName({ name })],
+] as const satisfies readonly (readonly [
+  string,
+  Readonly<Record<string, string>>,
+  (id: string) => string | null,
+])[];
+
+describe.each(RESOLVERS)(
+  'every %s in the meta map resolves',
+  (_k, map, resolve) => {
+    it.each(Object.entries(map))('%s → %s', (id, name) => {
+      expect(resolve(id)).toBe(name);
+      expect(resolve(id.toUpperCase())).toBe(name);
+      expect(resolve(id.toLowerCase())).toBe(name);
+    });
+  },
+);
+
+describe('every chain ID in the meta map resolves', () => {
+  it.each(Object.entries(CHAIN_ID_TO_NAME))('%s → %s', (id, name) => {
+    expect(resolveChainExportName({ chainId: Number(id) })).toBe(name);
   });
 });
