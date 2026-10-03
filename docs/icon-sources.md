@@ -28,10 +28,15 @@ when you touch them.
 | --- | --- |
 | Official SVG URL | `https://github.com/org/repo/blob/main/logo.svg` |
 | Brand asset page (no direct URL) | `https://brand.uniswap.org (official brand kit)` |
-| Third-party package (with license) | `@web3icons/react (MIT) — OSMO token SVG` |
 | App/favicon asset | `https://app.eigenlayer.xyz/logo/markLightA.svg` |
-| Hand-crafted / no public source | `hand-crafted — no public SVG; traced from https://...` |
 | Re-export / alias unit (no own artwork) | `re-export of Bitcoin — see src/chain/Bitcoin.tsx` |
+
+Some existing icons predate the authenticity policy below and record a
+**legacy** source instead: a third-party package (`@web3icons/react (MIT) —
+OSMO token SVG`) or a hand-traced mark (`hand-crafted — no public SVG; traced
+from https://...`). These entries only document where existing artwork came
+from; they are not accepted for new icons or artwork updates, which must cite
+an official source.
 
 ## Icon Authenticity Policy (Required)
 
