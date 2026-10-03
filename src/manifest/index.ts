@@ -1816,7 +1816,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'oracle',
     slug: 'api3',
     variants: ['', 'Mono'],
-    brandColor: '#4b6eff',
+    brandColor: '#1f267b',
   },
   { name: 'Api3Mono', category: 'oracle' },
   {

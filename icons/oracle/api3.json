@@ -1,13 +1,16 @@
 {
   "name": "Api3",
+  "source": [
+    "https://github.com/api3dao/logos/blob/main/raw/symbols/api3.svg"
+  ],
   "notes": [
-    "Paths sourced from api3dao/logos (MIT)"
+    "Default: the official Api3 symbol (api3dao/logos raw/symbols/api3.svg: #1F267B disc with the #FAFAFA triangle mark), a container drawn full-bleed; it replaces the bare #4B6EFF triangle",
+    "Mono: the disc in currentColor with the triangle mark knocked out (fill-rule=evenodd), so the mark's inner shapes stay ink as in the colored symbol"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "api3.svg",
-      "fill": "#4B6EFF"
+      "file": "api3.svg"
     },
     "Mono": {
       "file": "api3.mono.svg",
