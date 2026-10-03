@@ -473,7 +473,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 10,
     slug: 'optimism',
     variants: ['', 'Mono', 'Circle', 'Square', 'SquareMono', 'CircleMono'],
-    brandColor: '#ff0420',
+    brandColor: '#ff0421',
   },
   { name: 'OptimismCircle', category: 'chain' },
   { name: 'OptimismCircleMono', category: 'chain' },
