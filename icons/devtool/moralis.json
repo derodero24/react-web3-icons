@@ -5,7 +5,7 @@
   ],
   "notes": [
     "Colored: the mark of the official 2025 Moralis-Logo-Light.svg (linked from https://moralis.com/brand): the clipped group of five gradient paths (blue #3A7AFF/#4033FF to magenta #EE16FF/#FF11FF) without the wordmark; paths, gradients and clip copied unchanged",
-    "Mono: no official one-colour logo exists; the mark's four body paths in currentColor, with a thin seam knocked out along the edge of each part (a mask stroke under each path) so the fold of the upper band over the body stays readable; the hairline highlight path is dropped"
+    "Mono: no official one-colour logo exists; the solid silhouette of the mark's four body paths in currentColor (same clip), dropping only the hairline highlight path. A variant with a seam along the edge where the right lobe overlaps the left read worse at 24 px"
   ],
   "kind": "icon",
   "variants": {
