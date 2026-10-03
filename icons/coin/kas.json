@@ -1,7 +1,11 @@
 {
   "name": "Kas",
   "source": [
-    "https://kaspa.org"
+    "https://kaspa.org/icon.svg (official site)"
+  ],
+  "notes": [
+    "Colored: the official icon.svg unchanged (#6FC7BA shape with the K cut out over a white disc, so the K stays white on any background), without its invisible fill:none frame rect and with its CSS classes inlined and the circle written as the equivalent path; placed on the 64 grid",
+    "Mono: the #6FC7BA path in currentColor with the K open"
   ],
   "kind": "icon",
   "variants": {

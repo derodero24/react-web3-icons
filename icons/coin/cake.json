@@ -1,7 +1,10 @@
 {
   "name": "Cake",
   "source": [
-    "https://pancakeswap.finance"
+    "https://docs.pancakeswap.finance/welcome-to-pancakeswap/about-us/brand (official brand page; PancakeSwap Logos.zip, file CAKE Token/cake-token.svg)"
+  ],
+  "notes": [
+    "Colored: renders identically to the official cake-token.svg of the PancakeSwap brand kit (audited in #836)"
   ],
   "kind": "icon",
   "variants": {

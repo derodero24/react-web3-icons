@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Source: https://looksrare.org
+// Source: https://docs.looksrare.org/assets/files/LooksRare_Brand_Assets-58613b3d791f31eeedf46caf2c2d428c.zip (official LooksRare brand assets, files LOOKS Token/looks-black.svg and looks-green.svg)
+// Looks renders identically to the official looks-black.svg and LooksAlt to looks-green.svg (#0CE466) of the LooksRare brand assets (audited in #836)
 /** Looks coin icon (colored). */
 export const Looks = /* @__PURE__ */ createIcon(
   'Looks',
