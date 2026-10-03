@@ -201,6 +201,16 @@ A unit declares two different kinds of names:
   may point its aliases at the replacement's keys (`Fantom`'s `ftm` →
   `Sonic`). In the other categories aliases are search terms only.
 
+```json
+{
+  "name": "Kaia",
+  "kind": "icon",
+  "variants": { "": { "file": "kaia.svg" }, "Mono": { "file": "kaia.mono.svg", "fill": "currentColor" } },
+  "slugs": ["kaia", "klaytn"],
+  "chainIds": [8217]
+}
+```
+
 The dynamic components render a lookup target plus a `variant` suffix
 (`<ChainIcon name="ethereum" variant="CircleMono" />` → `EthereumCircleMono`).
 A target's variants are the unit's exports that start with its name, minus
@@ -212,15 +222,6 @@ that is really a different icon its own `variantLookups` keys (like
 The generated import maps (`src/dynamic/imports/`) list exactly these
 reachable exports, without deprecated ones.
 
-```json
-{
-  "name": "Kaia",
-  "kind": "icon",
-  "variants": { "": { "file": "kaia.svg" }, "Mono": { "file": "kaia.mono.svg", "fill": "currentColor" } },
-  "slugs": ["kaia", "klaytn"],
-  "chainIds": [8217]
-}
-```
 ### Extra props
 
 A unit can give its components extra props in a `props` map (prop name →

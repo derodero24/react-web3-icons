@@ -35,10 +35,26 @@ Icons with internal ids (masks, gradients, clip paths) now call `useId` and rend
 
 - If you relied on an error boundary to catch failed icon chunks, handle it with `fallback` instead.
 
+## 4. Dynamic components: every variant, stricter `variant`, normalized identifiers
+
+`variant` now accepts every variant suffix the category ships (`<ChainIcon name="ethereum" variant="Circle" />`), typed per category (`ChainVariant`, `CoinVariant`, `WalletVariant`, … from `react-web3-icons/dynamic`). `'colored'` and `'mono'` work as before.
+
+- **An unknown variant renders `fallback`.** In v4, any `variant` other than `'mono'` rendered the colored icon. Now a value the category does not ship, or a variant the resolved icon lacks, renders `fallback` and warns once in development. TypeScript already rejects unknown literals; check values that come from untyped data or casts.
+
+  ```diff
+  - <CoinIcon symbol={symbol} variant={theme} />          // 'dark' rendered the colored icon
+  + <CoinIcon symbol={symbol} variant={theme === 'dark' ? 'mono' : 'colored'} />
+  ```
+
+- **An unknown `chainId` falls back to `name`.** `<ChainIcon chainId={id} name={slug} />` with an ID this package does not know now renders the icon for `name` instead of `fallback`. Pass only `chainId` to keep the old behaviour.
+- **Identifiers are normalized in every component**: case-insensitive, ignoring whitespace, `.`, `-` and `_` (`'layer-zero'`, `'Arbitrum Nova'`, `'Crypto.com'`), and manifest aliases and common wallet connector ids (`'phantom'`, `'metaMaskSDK'`, `'okx'`, …) resolve. Inputs that used to render `fallback` may now render an icon.
+- **Types:** the `variant` prop of `ChainIconProps`, `CoinIconProps`, … is the category's variant union instead of `'colored' | 'mono'`. Code that copies it into a `'colored' | 'mono'` variable needs the wider type.
+
 ## Checklist
 
 - [ ] Regenerate markup snapshots containing icon defs ids
 - [ ] Type full `Bybit` props as `IconProps & BybitProps` (or `ComponentProps<typeof Bybit>`)
+- [ ] Pass dynamic components only `variant` values of their category (`ChainVariant`, …); others render `fallback`
 
 ---
 
