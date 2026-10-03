@@ -2181,7 +2181,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'uniswapwallet',
     variants: ['', 'Mono'],
-    brandColor: '#ffd8ea',
+    brandColor: '#f50db4',
   },
   { name: 'UniswapWalletMono', category: 'wallet' },
   {
