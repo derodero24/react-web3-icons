@@ -207,7 +207,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 43_114,
     slug: 'avalanche',
     variants: ['Circle', '', 'CircleMono', 'Square', 'SquareMono', 'Mono'],
-    brandColor: '#e84142',
+    brandColor: '#e6212f',
   },
   { name: 'AvalancheCircle', category: 'chain' },
   { name: 'AvalancheCircleMono', category: 'chain' },
