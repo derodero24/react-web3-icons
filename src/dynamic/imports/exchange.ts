@@ -2,7 +2,11 @@
 // Regenerate: pnpm run generate-icons
 // biome-ignore-all lint/style/useNamingConvention: keys are icon export names (PascalCase)
 
-/** Per-icon lazy import map for the exchange category. */
+/**
+ * Per-icon lazy import map for the exchange category: every export
+ * `<ExchangeIcon>` can render (a lookup target plus a variant suffix),
+ * and nothing else.
+ */
 export const exchangeImports: Record<
   string,
   () => Promise<Record<string, unknown>>
@@ -21,7 +25,6 @@ export const exchangeImports: Record<
   BitstampMono: () => import('../../exchange/Bitstamp'),
   Bybit: () => import('../../exchange/Bybit'),
   BybitInverted: () => import('../../exchange/Bybit'),
-  BybitLight: () => import('../../exchange/BybitLight'),
   BybitMono: () => import('../../exchange/Bybit'),
   Coinbase: () => import('../../exchange/Coinbase'),
   CoinbaseCircle: () => import('../../exchange/Coinbase'),
@@ -51,3 +54,27 @@ export const exchangeImports: Record<
   Upbit: () => import('../../exchange/Upbit'),
   UpbitMono: () => import('../../exchange/Upbit'),
 };
+
+/**
+ * Variant suffixes `<ExchangeIcon variant>` accepts besides `'colored'`
+ * and `'mono'`: every one that some exchange icon ships.
+ */
+export const exchangeVariants: readonly string[] = [
+  'Circle',
+  'CircleAlt',
+  'CircleMono',
+  'Inverted',
+];
+
+/**
+ * `variant` of `<ExchangeIcon>`: `'colored'` (the default) and `'mono'`,
+ * plus every variant suffix some exchange icon ships. An icon without
+ * the requested variant renders `fallback`.
+ */
+export type ExchangeVariant =
+  | 'colored'
+  | 'mono'
+  | 'Circle'
+  | 'CircleAlt'
+  | 'CircleMono'
+  | 'Inverted';

@@ -2,7 +2,11 @@
 // Regenerate: pnpm run generate-icons
 // biome-ignore-all lint/style/useNamingConvention: keys are icon export names (PascalCase)
 
-/** Per-icon lazy import map for the oracle category. */
+/**
+ * Per-icon lazy import map for the oracle category: every export
+ * `<OracleIcon>` can render (a lookup target plus a variant suffix),
+ * and nothing else.
+ */
 export const oracleImports: Record<
   string,
   () => Promise<Record<string, unknown>>
@@ -16,3 +20,16 @@ export const oracleImports: Record<
   RedStone: () => import('../../oracle/RedStone'),
   RedStoneMono: () => import('../../oracle/RedStone'),
 };
+
+/**
+ * Variant suffixes `<OracleIcon variant>` accepts besides `'colored'`
+ * and `'mono'`: every one that some oracle icon ships.
+ */
+export const oracleVariants: readonly string[] = [];
+
+/**
+ * `variant` of `<OracleIcon>`: `'colored'` (the default) and `'mono'`,
+ * plus every variant suffix some oracle icon ships. An icon without
+ * the requested variant renders `fallback`.
+ */
+export type OracleVariant = 'colored' | 'mono';

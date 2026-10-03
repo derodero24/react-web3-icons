@@ -2,7 +2,11 @@
 // Regenerate: pnpm run generate-icons
 // biome-ignore-all lint/style/useNamingConvention: keys are icon export names (PascalCase)
 
-/** Per-icon lazy import map for the wallet category. */
+/**
+ * Per-icon lazy import map for the wallet category: every export
+ * `<WalletIcon>` can render (a lookup target plus a variant suffix),
+ * and nothing else.
+ */
 export const walletImports: Record<
   string,
   () => Promise<Record<string, unknown>>
@@ -27,8 +31,6 @@ export const walletImports: Record<
   EnkryptMono: () => import('../../wallet/Enkrypt'),
   Exodus: () => import('../../wallet/Exodus'),
   ExodusMono: () => import('../../wallet/Exodus'),
-  GnosisSafe: () => import('../../wallet/GnosisSafe'),
-  GnosisSafeMono: () => import('../../wallet/GnosisSafe'),
   ImToken: () => import('../../wallet/ImToken'),
   ImTokenMono: () => import('../../wallet/ImToken'),
   Keplr: () => import('../../wallet/Keplr'),
@@ -102,3 +104,33 @@ export const walletImports: Record<
   ZerionSquare: () => import('../../wallet/Zerion'),
   ZerionSquareMono: () => import('../../wallet/Zerion'),
 };
+
+/**
+ * Variant suffixes `<WalletIcon variant>` accepts besides `'colored'`
+ * and `'mono'`: every one that some wallet icon ships.
+ */
+export const walletVariants: readonly string[] = [
+  'Alt',
+  'Circle',
+  'CircleMono',
+  'Square',
+  'SquareMono',
+  'Symbol',
+  'SymbolMono',
+];
+
+/**
+ * `variant` of `<WalletIcon>`: `'colored'` (the default) and `'mono'`,
+ * plus every variant suffix some wallet icon ships. An icon without
+ * the requested variant renders `fallback`.
+ */
+export type WalletVariant =
+  | 'colored'
+  | 'mono'
+  | 'Alt'
+  | 'Circle'
+  | 'CircleMono'
+  | 'Square'
+  | 'SquareMono'
+  | 'Symbol'
+  | 'SymbolMono';

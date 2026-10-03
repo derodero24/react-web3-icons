@@ -13,6 +13,10 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import {
+  collectDynamic,
+  emitDynamicImports,
+} from '../scripts/build-icons/dynamic.ts';
+import {
   buildDistSvgs,
   distSvgIdPrefix,
 } from '../scripts/build-icons/emit-dist-svg.ts';
@@ -838,6 +842,155 @@ describe('lookup keys', () => {
     expect(() => unit && deprecatedExports(unit)).toThrow(
       /deprecated\.Beta is not a variant export of Alpha/,
     );
+  });
+
+  it.each([
+    [
+      'keys that collide after normalization',
+      {
+        ...chainUnit('a', 'Alpha', { slugs: ['alpha-one'] }),
+        ...chainUnit('b', 'Beta', { slugs: ['alphaone'] }),
+      },
+      /icons\/chain\/b\.json: slugs "alphaone" normalizes to "alphaone" like "alpha-one" of icons\/chain\/a\.json/,
+    ],
+    [
+      'an alias that is not a lookup key',
+      chainUnit('a', 'Alpha', { slugs: ['alpha'], aliases: ['alp'] }),
+      /icons\/chain\/a\.json: alias "alp" is not a lookup key; add it to slugs\/tickers/,
+    ],
+    [
+      "an alias that is another icon's key",
+      {
+        ...chainUnit('a', 'Alpha', { slugs: ['alpha'], aliases: ['beta'] }),
+        ...chainUnit('b', 'Beta', { slugs: ['beta'] }),
+      },
+      /icons\/chain\/a\.json: alias "beta" resolves to Beta \(key "beta" of icons\/chain\/b\.json\), not to this icon/,
+    ],
+  ])('rejects %s', (_, files, message) => {
+    expect(() => collectLookups(loadChain(files))).toThrow(message);
+  });
+
+  it('accepts aliases that normalize to a key of the icon', () => {
+    const units = loadChain({
+      ...chainUnit('a', 'Alpha', {
+        slugs: ['alpha-one'],
+        aliases: ['alpha one', 'alpha.one'],
+      }),
+      // A fully deprecated icon may point its aliases at its replacement.
+      ...chainUnit('o', 'Old', {
+        aliases: ['alpha-one'],
+        deprecated: Object.fromEntries([
+          ['Old', 'Use Alpha.'],
+          ['OldMono', 'Use AlphaMono.'],
+        ]),
+      }),
+    });
+    expect(tableOf('CHAIN_SLUG_TO_NAME', units)).toEqual([
+      ['alpha-one', 'Alpha'],
+    ]);
+  });
+});
+
+describe('dynamic import maps', () => {
+  const MonoSvg = `<svg ${XMLNS} viewBox="0 0 24 24" fill="currentColor"/>`;
+  /** A chain unit `name` with the given variants plus `extra` fields. */
+  const unit = (
+    slug: string,
+    name: string,
+    suffixes: readonly string[],
+    extra: Readonly<Record<string, unknown>> = {},
+  ): Record<string, string> => ({
+    [`icons/chain/${slug}.json`]: JSON.stringify({
+      name,
+      kind: 'icon',
+      variants: Object.fromEntries(
+        suffixes.map(suffix => [
+          suffix,
+          suffix.endsWith('Mono')
+            ? { file: `${slug}.mono.svg`, fill: 'currentColor' }
+            : { file: `${slug}.svg` },
+        ]),
+      ),
+      ...extra,
+    }),
+    [`icons/chain/${slug}.svg`]: SQUARE,
+    [`icons/chain/${slug}.mono.svg`]: MonoSvg,
+  });
+  const dynamicOf = (files: Readonly<Record<string, string>>) =>
+    collectDynamic('chain', loadChain(files));
+
+  it('lists every variant of every target, and the extra suffixes', () => {
+    const result = dynamicOf({
+      ...unit('a', 'Alpha', ['', 'Mono', 'Circle', 'Nova', 'NovaMono'], {
+        slugs: ['alpha'],
+        variantLookups: Object.fromEntries([['Nova', { slugs: ['nova'] }]]),
+      }),
+      ...unit('b', 'Beta', ['', 'Mono', 'Square'], { slugs: ['beta'] }),
+    });
+    expect(
+      [...result.exports].map(([name, r]) => [name, r.target, r.suffix]),
+    ).toEqual([
+      ['Alpha', 'Alpha', ''],
+      ['AlphaCircle', 'Alpha', 'Circle'],
+      ['AlphaMono', 'Alpha', 'Mono'],
+      ['AlphaNova', 'AlphaNova', ''],
+      ['AlphaNovaMono', 'AlphaNova', 'Mono'],
+      ['Beta', 'Beta', ''],
+      ['BetaMono', 'Beta', 'Mono'],
+      ['BetaSquare', 'Beta', 'Square'],
+    ]);
+    expect(result.variants).toEqual(['Circle', 'Square']);
+    const source = emitDynamicImports(result);
+    expect(source).toContain(
+      "  AlphaNovaMono: () => import('../../chain/Alpha'),",
+    );
+    expect(source).toContain(
+      "export const chainVariants: readonly string[] = ['Circle', 'Square'];",
+    );
+    expect(source).toContain(
+      "export type ChainVariant =\n  | 'colored'\n  | 'mono'\n  | 'Circle'\n  | 'Square';",
+    );
+  });
+
+  it('leaves out deprecated exports and accepts aliases of reachable ones', () => {
+    const result = dynamicOf({
+      ...unit('a', 'Alpha', ['', 'Mono', 'Old'], {
+        slugs: ['alpha'],
+        deprecated: Object.fromEntries([['AlphaOld', 'Gone.']]),
+      }),
+      'icons/chain/g.json': JSON.stringify({
+        name: 'Gamma',
+        kind: 'alias',
+        aliasConst: {
+          importFrom: './Alpha',
+          imports: ['Alpha'],
+          exports: [{ name: 'Gamma', target: 'Alpha' }],
+        },
+      }),
+    });
+    expect([...result.exports.keys()]).toEqual(['Alpha', 'AlphaMono']);
+  });
+
+  it.each([
+    [
+      'an icon without lookup keys',
+      {
+        ...unit('a', 'Alpha', ['', 'Mono'], { slugs: ['alpha'] }),
+        ...unit('z', 'Zeta', ['', 'Mono']),
+      },
+      /icons\/chain\/z\.json: Zeta is not reachable through the dynamic components/,
+    ],
+    [
+      'a target plus a variant naming another target',
+      {
+        ...unit('a', 'Alpha', ['', 'Mono'], { slugs: ['alpha'] }),
+        ...unit('ac', 'AlphaCircle', ['', 'Mono'], { slugs: ['alpha-circle'] }),
+        ...unit('b', 'Beta', ['', 'Mono', 'Circle'], { slugs: ['beta'] }),
+      },
+      /AlphaCircle: Alpha \+ variant "Circle" names AlphaCircle, a variant of AlphaCircle/,
+    ],
+  ])('rejects %s', (_, files, message) => {
+    expect(() => dynamicOf(files)).toThrow(message);
   });
 });
 

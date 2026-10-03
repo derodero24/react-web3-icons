@@ -2,7 +2,11 @@
 // Regenerate: pnpm run generate-icons
 // biome-ignore-all lint/style/useNamingConvention: keys are icon export names (PascalCase)
 
-/** Per-icon lazy import map for the coin category. */
+/**
+ * Per-icon lazy import map for the coin category: every export
+ * `<CoinIcon>` can render (a lookup target plus a variant suffix),
+ * and nothing else.
+ */
 export const coinImports: Record<
   string,
   () => Promise<Record<string, unknown>>
@@ -73,12 +77,8 @@ export const coinImports: Record<
   FetMono: () => import('../../coin/Fet'),
   Fil: () => import('../../coin/Fil'),
   FilMono: () => import('../../coin/Fil'),
-  Flare: () => import('../../coin/Flare'),
-  FlareMono: () => import('../../coin/Flare'),
   Flr: () => import('../../coin/Flr'),
   FlrMono: () => import('../../coin/Flr'),
-  Ftm: () => import('../../coin/Ftm'),
-  FtmMono: () => import('../../coin/Ftm'),
   Hbar: () => import('../../coin/Hbar'),
   HbarMono: () => import('../../coin/Hbar'),
   Hype: () => import('../../coin/Hype'),
@@ -104,10 +104,6 @@ export const coinImports: Record<
   LooksMono: () => import('../../coin/Looks'),
   Ltc: () => import('../../coin/Ltc'),
   LtcMono: () => import('../../coin/Ltc'),
-  Matic: () => import('../../coin/Matic'),
-  MaticCircle: () => import('../../coin/Matic'),
-  MaticCircleMono: () => import('../../coin/Matic'),
-  MaticMono: () => import('../../coin/Matic'),
   Mkr: () => import('../../coin/Mkr'),
   MkrMono: () => import('../../coin/Mkr'),
   Mnt: () => import('../../coin/Mnt'),
@@ -183,3 +179,29 @@ export const coinImports: Record<
   Zec: () => import('../../coin/Zec'),
   ZecMono: () => import('../../coin/Zec'),
 };
+
+/**
+ * Variant suffixes `<CoinIcon variant>` accepts besides `'colored'`
+ * and `'mono'`: every one that some coin icon ships.
+ */
+export const coinVariants: readonly string[] = [
+  'Alt',
+  'Circle',
+  'CircleMono',
+  'Square',
+  'SquareMono',
+];
+
+/**
+ * `variant` of `<CoinIcon>`: `'colored'` (the default) and `'mono'`,
+ * plus every variant suffix some coin icon ships. An icon without
+ * the requested variant renders `fallback`.
+ */
+export type CoinVariant =
+  | 'colored'
+  | 'mono'
+  | 'Alt'
+  | 'Circle'
+  | 'CircleMono'
+  | 'Square'
+  | 'SquareMono';
