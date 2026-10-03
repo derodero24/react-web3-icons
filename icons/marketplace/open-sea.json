@@ -1,7 +1,14 @@
 {
   "name": "OpenSea",
   "source": [
-    "https://opensea.io"
+    "https://opensea.io (site header logo: the inline <svg aria-label=\"OpenSea\"> of its OpenSeaBrandLogo component, viewBox 0 0 30 30)"
+  ],
+  "notes": [
+    "No downloadable brand-kit SVG exists; the artwork is OpenSea's own site asset, accessed 2026-10-03",
+    "OpenSea / OpenSeaMono: the header logo with background (#0086FF disc, #FFF ship); the mono knocks the ship out of the disc (evenodd)",
+    "OpenSeaSymbol / OpenSeaSymbolMono: the same component without background, which draws the ship alone in #0086FF",
+    "OpenSeaAlt is still the pre-2025 white-disc artwork (#2081E2 ship): the current brand has no official white-disc asset",
+    "opensea.io also ships an opt-in \"os-rebrand\" lab logo (viewBox 0 0 360 360); it is not the default yet and is not used here"
   ],
   "kind": "icon",
   "variants": {
@@ -17,7 +24,7 @@
     },
     "Symbol": {
       "file": "open-sea.symbol.svg",
-      "fill": "#2081e2"
+      "fill": "#0086FF"
     },
     "SymbolMono": {
       "file": "open-sea.symbol-mono.svg",
