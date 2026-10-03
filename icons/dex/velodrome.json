@@ -1,14 +1,16 @@
 {
   "name": "Velodrome",
+  "source": [
+    "https://velodrome.finance/brand-kit/VELO/symbol.svg (official brand kit, https://velodrome.finance/brand)"
+  ],
   "notes": [
-    "Velodrome Finance icon mark — curved swoosh + circular dot",
-    "Sourced from @web3icons/react (MIT), viewBox 0 0 24 24"
+    "Colored: the official brand-kit symbol.svg unchanged (two interlocking rings striped #FF1100, #FDBF41, #F1ECE2 and #007FFF, with the kit's 48% #191919 shadow gradient), placed on the 64 grid",
+    "Mono: the same paths in the same painting order, read in black and white by luminance: the #FF1100 and #007FFF stripes are ink, the #FDBF41 and #F1ECE2 stripes are knocked out by a mask, and the shadow is dropped, so each ring stays a readable double band"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "velodrome.svg",
-      "fill": "#DB2264"
+      "file": "velodrome.svg"
     },
     "Mono": {
       "file": "velodrome.mono.svg",

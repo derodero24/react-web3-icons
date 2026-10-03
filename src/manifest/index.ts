@@ -1464,7 +1464,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'dex',
     slug: 'velodrome',
     variants: ['', 'Mono'],
-    brandColor: '#db2264',
+    brandColor: '#ff1100',
   },
   { name: 'VelodromeMono', category: 'dex' },
   {
