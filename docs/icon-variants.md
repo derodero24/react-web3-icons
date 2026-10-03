@@ -40,7 +40,7 @@ Whether the base icon (`Foo`) includes a background container depends on the off
 
 - **Include the background in the base variant** when the brand's official icon is always presented with a specific background (colored square, circle, or rounded rectangle) in all official assets — the background is integral to the brand mark.
 
-  _Examples_: `ZkSync` (black square), `Scroll` (beige rectangle), `Mantle` (black circle), `Linea` (black rectangle)
+  _Examples_: `Scroll` (beige rectangle), `Mantle` (black circle), `Linea` (black rectangle)
 
   In these cases, do **not** add a separate `FooCircle`/`FooSquare` variant unless the mark also officially exists without a background.
 

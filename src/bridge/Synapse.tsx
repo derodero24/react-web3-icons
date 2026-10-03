@@ -1,7 +1,10 @@
 import { createIcon } from '../utils';
 
-// Paths sourced from synapsecns/sanguine (docs/bridge/static/brand-assets/synapse-mark.svg)
-// Brand colors: linear gradient from hsl(285deg 100% 65%) to hsl(265deg 100% 75%) (#BC68FF to #9C72FF)
+// Source: https://github.com/synapsecns/sanguine/blob/master/docs/bridge/static/brand-assets/synapse-mark.svg
+// Source: https://github.com/synapsecns/sanguine/blob/master/docs/bridge/static/brand-assets/synapse-mark-black.svg
+// Geometry from the official synapse-mark.svg (synapsecns/sanguine docs/bridge/static/brand-assets): four circles and the half-opacity bevelled rhombus stroke
+// Gradient as in the official file: a default (objectBoundingBox, left to right) linear gradient on each element from hsl(285deg 100% 65%) = #D24DFF to hsl(265deg 100% 75%) = #B580FF; the previous artwork used mis-converted stops (#BC68FF, #9C72FF) in one user-space gradient across the whole mark
+// Mono: follows Synapse's own one-colour marks (synapse-mark-black.svg / synapse-mark-white.svg), which keep the connector stroke at opacity .5 under solid circles; that official opacity is kept rather than a binary redraw
 /** Synapse bridge icon (colored). */
 export const Synapse = /* @__PURE__ */ createIcon(
   'Synapse',
@@ -9,16 +12,9 @@ export const Synapse = /* @__PURE__ */ createIcon(
   (_props, _id) => (
     <g transform="translate(32 32)scale(1.16666)">
       <defs>
-        <linearGradient
-          id={`${_id}-syn-g`}
-          x1="-24"
-          x2="24"
-          y1="0"
-          y2="0"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0%" stopColor="#BC68FF" />
-          <stop offset="100%" stopColor="#9C72FF" />
+        <linearGradient id={`${_id}-syn-g`}>
+          <stop offset="0" stopColor="#D24DFF" />
+          <stop offset="1" stopColor="#B580FF" />
         </linearGradient>
       </defs>
       <path

@@ -1,13 +1,17 @@
 {
   "name": "Ton",
   "source": [
-    "https://ton.org"
+    "https://ton.org/assets/media/ton_white_logo.zip",
+    "https://ton.org/assets/media/ton_logo.zip"
+  ],
+  "notes": [
+    "Default: the TON symbol from the official Media Assets kit (ton.org/media). Geometry is the vector symbol of `TON Logo White.svg` (ton_white_logo.zip); colours follow `TON Logo on White` (ton_logo.zip), a #0098EA disc with a white mark, whose symbol is shipped only as an embedded PNG. Drawn full-bleed as a container",
+    "Mono: the vector symbol of `TON Logo White.svg` unchanged, the disc in currentColor with the mark knocked out"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "ton.svg",
-      "fill": "#0098EA"
+      "file": "ton.svg"
     },
     "Mono": {
       "file": "ton.mono.svg",

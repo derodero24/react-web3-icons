@@ -1,10 +1,13 @@
 {
   "name": "ZkSync",
   "source": [
-    "https://zksync.io"
+    "https://www.zksync.io/brand/zksync-logo/zksync-logomark-dark-transparent.svg",
+    "https://www.zksync.io/brand/zksync-logo-brand-assets.zip (official brand assets)"
   ],
   "notes": [
-    "Circle variant: 40×40 content scaled to ~46px centered in 64×64"
+    "Default: the official ZKsync logomark zksync-logomark-dark-transparent.svg (#11141A arrows on transparent); the brand kit ships the logomark only without a background, so it replaces the black tile with white arrows (whose shaft offset also differed)",
+    "Mono: the logomark's two arrows in currentColor",
+    "Circle and Square: no official container exists; the repo's black disc / rx=12.8 tile is kept, with the official arrows in white (as in zksync-logomark-light-transparent.svg) at translate(17.9 23.9457) scale(0.56632), the size of the previous arrows; CircleMono and SquareMono knock the same arrows out (fill-rule=evenodd)"
   ],
   "kind": "icon",
   "variants": {

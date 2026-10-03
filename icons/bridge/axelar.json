@@ -1,5 +1,8 @@
 {
   "name": "Axelar",
+  "source": [
+    "https://github.com/axelarnetwork/axelar-docs/blob/main/public/images/chains/axelar.svg"
+  ],
   "notes": [
     "Path sourced from axelarnetwork/axelar-docs (public/images/chains/axelar.svg)"
   ],

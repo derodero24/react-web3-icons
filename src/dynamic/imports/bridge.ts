@@ -22,6 +22,7 @@ export const bridgeImports: Record<
   LayerZero: () => import('../../bridge/LayerZero'),
   LayerZeroMono: () => import('../../bridge/LayerZero'),
   Orbiter: () => import('../../bridge/Orbiter'),
+  OrbiterInverted: () => import('../../bridge/Orbiter'),
   OrbiterMono: () => import('../../bridge/Orbiter'),
   Socket: () => import('../../bridge/Socket'),
   SocketMono: () => import('../../bridge/Socket'),
@@ -37,11 +38,11 @@ export const bridgeImports: Record<
  * Variant suffixes `<BridgeIcon variant>` accepts besides `'colored'`
  * and `'mono'`: every one that some bridge icon ships.
  */
-export const bridgeVariants: readonly string[] = [];
+export const bridgeVariants: readonly string[] = ['Inverted'];
 
 /**
  * `variant` of `<BridgeIcon>`: `'colored'` (the default) and `'mono'`,
  * plus every variant suffix some bridge icon ships. An icon without
  * the requested variant renders `fallback`.
  */
-export type BridgeVariant = 'colored' | 'mono';
+export type BridgeVariant = 'colored' | 'mono' | 'Inverted';

@@ -1,13 +1,16 @@
 {
   "name": "Polkadot",
   "source": [
-    "https://polkadot.network"
+    "https://polkadot.com/favicon-light.svg"
+  ],
+  "notes": [
+    "Default: the current Polkadot symbol (six ellipses of varying size, #171717) from the official site's favicon-light.svg; polkadot.com, docs.polkadot.com and wiki.polkadot.com all use it, and the former pink #E6007A symbol no longer appears there. No brand kit is published (polkadot.com/community/brand-hub returns 404)",
+    "Mono: the same six ellipses in currentColor (the site's favicon-dark.svg is this symbol in #F5F5F5)"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "polkadot.svg",
-      "fill": "#e6007a"
+      "file": "polkadot.svg"
     },
     "Mono": {
       "file": "polkadot.mono.svg",

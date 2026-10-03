@@ -1,7 +1,11 @@
 {
   "name": "Sei",
   "source": [
-    "https://sei.io"
+    "https://brand.sei.io/sei-brand-assets.zip (official brand assets: SeiBrandAssets/Logomark/SeiToken.svg and SeiLogomark-lightmode.svg)"
+  ],
+  "notes": [
+    "Default: the official colored Sei mark SeiToken.svg (#600014) from the brand kit, replacing the 2023 #90305C -> #DF3C41 gradient mark",
+    "Mono: the kit's one-colour logomark (SeiLogomark-lightmode.svg, same geometry) in currentColor"
   ],
   "kind": "icon",
   "variants": {

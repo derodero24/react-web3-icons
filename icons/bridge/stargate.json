@@ -1,15 +1,16 @@
 {
   "name": "Stargate",
+  "source": [
+    "https://stargate.finance/static/logo-mobile.svg"
+  ],
   "notes": [
-    "Paths sourced from stargate.finance/static/logo-mobile-dark.svg",
-    "Corner arc shapes (outer, gray in original)",
-    "Center star shape (white in original)"
+    "Default: Stargate's official light-theme symbol (logo-mobile.svg on stargate.finance: #999999 corner arcs, #141414 star); the previous artwork was the dark-theme logo-mobile-dark.svg, whose #FAFAFA star vanished on light backgrounds",
+    "Mono: the same arcs and star in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "stargate.svg",
-      "fill": "none"
+      "file": "stargate.svg"
     },
     "Mono": {
       "file": "stargate.mono.svg",

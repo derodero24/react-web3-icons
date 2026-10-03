@@ -172,9 +172,9 @@ describe('IconifyJSON collections', () => {
   });
 
   it('keeps brand colours that live on the root element', () => {
-    // chain/ton.svg: <svg fill="#0098EA"> with fill-less paths.
-    expect(sets.colored.icons['chain-ton']?.body).toMatch(
-      /^<g fill="#0098EA"><path /,
+    // oracle/pyth.svg: <svg fill="#110F23"> with fill-less paths.
+    expect(sets.colored.icons['oracle-pyth']?.body).toMatch(
+      /^<g fill="#110F23"><path /,
     );
     // dex/pancake-swap.mono.svg: <svg fill="none"> with the ink on its paths.
     expect(sets.mono.icons['dex-pancake-swap-mono']?.body).toMatch(
