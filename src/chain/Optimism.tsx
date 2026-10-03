@@ -7,7 +7,7 @@ import { createIcon } from '../utils';
 // Square: the OP Mainnet symbol as the brand page draws it on its symbol card, the same glyph on a #FF0421 square with rounded corners (rx 80 on 817, 6.27 on the 64 grid), cropped to the tile; paths unchanged
 // Circle: no official circular OP Mainnet asset exists (the kit's round Token.svg is the OP token mark, the letters OP, not this glyph); a repo-convention #FF0421 disc holding the official glyph in #FAFAF9 at the symbol's own scale (the glyph lies within 28.25 units of the centre, so it fits the r=32 disc)
 // Mono, CircleMono and SquareMono: each variant's container in currentColor with the glyph knocked out as one evenodd path; the centre sparkle, a hole in the glyph, stays ink as the red shows through it in the colour artwork
-// The OP token logo (the letters OP in #FAFAF9 on a #FF0421 disc, kit Token/SVG/Token.svg) and the Optimism avatar (Avatar/SVG/Avatar.svg, the same letters on a square) are separate marks the brand page reserves for the token and for avatars; they are not used here. The Op coin unit re-exports these Optimism variants
+// The OP token logo (the letters OP in #FAFAF9 on a #FF0421 disc, kit Token/SVG/Token.svg) and the Optimism avatar (Avatar/SVG/Avatar.svg, the same letters on a square) are separate marks the brand page reserves for the token and for avatars; they are not used here. The Op coin unit uses Token.svg, see icons/coin/op.json
 /** Optimism chain icon (colored). */
 export const Optimism = /* @__PURE__ */ createIcon(
   'Optimism',
