@@ -19,7 +19,13 @@ function expect(condition, message) {
 const sameJson = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 for (const subpath of Object.keys(pkg.exports)) {
-  const specifier = `${pkg.name}${subpath.slice(1)}`.replace(
+  // Node allows a single `*` per exports pattern; reject anything else rather
+  // than silently substituting only part of it.
+  expect(
+    subpath.split('*').length <= 2,
+    `${subpath} has more than one wildcard`,
+  );
+  const specifier = `${pkg.name}${subpath.slice(1)}`.replaceAll(
     '*',
     WILDCARD_SAMPLE,
   );
