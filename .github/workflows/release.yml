@@ -96,6 +96,32 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      # changesets/action takes its version path whenever unreleased
+      # changesets exist and its publish path otherwise. Deciding that here
+      # lets the two paths run as separate steps, so the npm token is only in
+      # the environment of the step that actually publishes.
+      - name: Detect pending changesets
+        id: pending
+        run: |
+          if find .changeset -maxdepth 1 -name '*.md' ! -name 'README.md' | grep -q .; then
+            echo "changesets=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changesets=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Version path: opens or updates the version PR. No npm credentials.
+      - name: Create or update the version PR
+        if: steps.pending.outputs.changesets == 'true'
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+        with:
+          version: pnpm changeset version
+          title: 'chore: version packages'
+          commit: 'chore: version packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Publish path: only reached when no changeset is pending, i.e. after
+      # the version PR was merged.
       # `pnpm changeset publish` spawns `pnpm publish --access public --tag
       # latest --no-git-checks --json` with the inherited environment, and
       # pnpm (which hands the upload to `npm publish`) honours
@@ -104,14 +130,12 @@ jobs:
       # NPM_TOKEN is deliberately not set: the action would only copy it into
       # ~/.npmrc, which outlives this step, while setup-node's .npmrc already
       # authenticates through NODE_AUTH_TOKEN.
-      - name: Create release PR or publish
+      - name: Publish
         id: changesets
+        if: steps.pending.outputs.changesets == 'false'
         uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
         with:
-          version: pnpm changeset version
           publish: pnpm changeset publish
-          title: 'chore: version packages'
-          commit: 'chore: version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
