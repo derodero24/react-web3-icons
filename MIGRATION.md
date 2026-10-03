@@ -29,6 +29,12 @@ Icons with internal ids (masks, gradients, clip paths) now call `useId` and rend
 
 - `BybitMono` declares `fill="currentColor"` on its `<svg>` (like every mono icon) instead of on each path. It renders the same, and a CSS `fill` on the icon now reaches the paths.
 
+## 3. Dynamic components render `fallback` when a chunk fails to load
+
+`react-web3-icons/dynamic` components (`ChainIcon`, `CoinIcon`, …) no longer throw to the nearest error boundary when an icon chunk fails to load (network error, deploy skew). They render `fallback` and import the chunk again on a later render. They also forward `ref` to the `<svg>`, show their own names in React DevTools, and render `fallback` instead of throwing for `undefined`/`null` identifiers.
+
+- If you relied on an error boundary to catch failed icon chunks, handle it with `fallback` instead.
+
 ## Checklist
 
 - [ ] Regenerate markup snapshots containing icon defs ids

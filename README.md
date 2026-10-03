@@ -229,7 +229,7 @@ Use the `variant` prop to switch between colored and monochrome:
 
 #### Fallback
 
-Use the `fallback` prop to render alternative content while the icon chunk is loading or when the identifier is not recognized:
+Use the `fallback` prop to render alternative content while the icon chunk is loading, when the identifier is not recognized (including `undefined`/`null` from untyped data), or when the chunk fails to load (a later render retries the import):
 
 ```tsx
 <CoinIcon symbol={token.symbol} fallback={<GenericTokenIcon />} />
@@ -238,7 +238,7 @@ Use the `fallback` prop to render alternative content while the icon chunk is lo
 
 When omitted, nothing is rendered for unknown identifiers and during loading.
 
-All standard icon props (`size`, `className`, `fill`, etc.) are forwarded to the underlying SVG icon.
+All standard icon props (`size`, `className`, `fill`, etc.) and `ref` are forwarded to the underlying SVG icon. In development builds, unknown identifiers and failed loads log a `console.warn` once; production builds strip these warnings.
 
 ### Metadata Lookups
 

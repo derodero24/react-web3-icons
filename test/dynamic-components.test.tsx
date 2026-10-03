@@ -1,7 +1,13 @@
-import { act, type ComponentType } from 'react';
+import {
+  act,
+  type ComponentType,
+  createRef,
+  type ReactElement,
+  type RefAttributes,
+} from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { LayerZero, LayerZeroMono } from '../src/bridge';
 import { Base, Ethereum, EthereumMono } from '../src/chain';
 import { Eth, EthMono } from '../src/coin';
@@ -90,9 +96,12 @@ type SharedProps = Pick<
   'variant' | 'fallback' | 'width' | 'className'
 >;
 
+// biome-ignore lint/suspicious/noEmptyBlockStatements: intentional noop for mock
+function noop() {}
+
 function describeDynamicIcon<P extends SharedProps>(
   name: DynamicName,
-  Component: ComponentType<P>,
+  Component: ComponentType<P & RefAttributes<SVGSVGElement>>,
   spec: DynamicSpec<P>,
 ): void {
   described.push(name);
@@ -107,6 +116,21 @@ function describeDynamicIcon<P extends SharedProps>(
   describe(name, () => {
     it('is the component exported under this name', () => {
       expect(exportedComponents.get(name)).toBe(Component);
+    });
+
+    it(`is called ${name} in React DevTools`, () => {
+      expect(Component.displayName).toBe(name);
+    });
+
+    it('forwards a ref to the <svg>', async () => {
+      await preload(spec.imports, exportName);
+      const ref = createRef<SVGSVGElement>();
+      const { container, root } = mount();
+      await act(() => {
+        root.render(<Component {...props} ref={ref} />);
+      });
+      expect(ref.current).toBeInstanceOf(SVGSVGElement);
+      expect(ref.current).toBe(container.querySelector('svg'));
     });
 
     it(`resolves to ${exportName} and forwards icon props`, async () => {
@@ -153,14 +177,22 @@ function describeDynamicIcon<P extends SharedProps>(
     });
 
     it('renders the fallback for an unknown identifier', () => {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(noop);
       const { container, root } = mount();
       act(() => {
         root.render(<Component {...unknownProps} fallback={FALLBACK} />);
       });
       expect(container.innerHTML).toBe(FALLBACK_HTML);
+      expect(warn).toHaveBeenCalledWith(
+        expect.stringMatching(
+          new RegExp(`^\\[react-web3-icons\\] ${name}: no icon for `),
+        ),
+      );
+      warn.mockRestore();
     });
 
     it('renders nothing for an unknown identifier without a fallback', () => {
+      vi.spyOn(console, 'warn').mockImplementation(noop);
       const { container, root } = mount();
       act(() => {
         root.render(<Component {...unknownProps} />);
@@ -248,6 +280,70 @@ describe('ChainIcon by chain ID', () => {
     const { container, root } = mount();
     await act(() => {
       root.render(<dynamic.ChainIcon chainId={8453} name="ethereum" />);
+    });
+    expect(container.innerHTML).toBe(renderToStaticMarkup(<Base />));
+  });
+});
+
+describe('identifiers from untyped data', () => {
+  // Each element is typed wrongly on purpose: TypeScript rejects it, but
+  // untyped API data reaches the component all the same.
+  const cases: [string, () => ReactElement][] = [
+    [
+      'CoinIcon symbol={undefined}',
+      () => (
+        // @ts-expect-error a missing symbol
+        <dynamic.CoinIcon symbol={undefined} fallback={FALLBACK} />
+      ),
+    ],
+    [
+      'CoinIcon symbol={null}',
+      () => (
+        // @ts-expect-error a null symbol
+        <dynamic.CoinIcon symbol={null} fallback={FALLBACK} />
+      ),
+    ],
+    [
+      'WalletIcon name={1}',
+      () => (
+        // @ts-expect-error a numeric name
+        <dynamic.WalletIcon name={1} fallback={FALLBACK} />
+      ),
+    ],
+    [
+      'DexIcon name={undefined}',
+      () => (
+        // @ts-expect-error a missing name
+        <dynamic.DexIcon name={undefined} fallback={FALLBACK} />
+      ),
+    ],
+    [
+      'ChainIcon name={1}',
+      () => (
+        // @ts-expect-error a numeric name
+        <dynamic.ChainIcon name={1} fallback={FALLBACK} />
+      ),
+    ],
+  ];
+
+  it.each(cases)(
+    '%s renders the fallback instead of throwing',
+    (_, element) => {
+      vi.spyOn(console, 'warn').mockImplementation(noop);
+      const { container, root } = mount();
+      act(() => {
+        root.render(element());
+      });
+      expect(container.innerHTML).toBe(FALLBACK_HTML);
+    },
+  );
+
+  it('ChainIcon still resolves chainId next to a null name', async () => {
+    await preload(chainImports, 'Base');
+    const { container, root } = mount();
+    await act(() => {
+      // @ts-expect-error untyped API data can pass null
+      root.render(<dynamic.ChainIcon chainId={8453} name={null} />);
     });
     expect(container.innerHTML).toBe(renderToStaticMarkup(<Base />));
   });
