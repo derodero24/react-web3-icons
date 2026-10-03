@@ -1,13 +1,16 @@
 {
   "name": "Ton",
   "source": [
-    "https://ton.org"
+    "https://ton.org/assets/favicon.svg"
+  ],
+  "notes": [
+    "Default: the official site's symbol (ton.org/assets/favicon.svg: #30A1F5 disc with a white mark), a container drawn full-bleed; it replaces the #0098EA disc whose mark was a transparent cut-out. ton.org publishes no downloadable brand kit (ton.org/en/brand-assets serves the homepage)",
+    "Mono: the disc in currentColor with the mark knocked out (fill-rule=evenodd)"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "ton.svg",
-      "fill": "#0098EA"
+      "file": "ton.svg"
     },
     "Mono": {
       "file": "ton.mono.svg",
