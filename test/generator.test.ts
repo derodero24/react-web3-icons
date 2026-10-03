@@ -505,16 +505,18 @@ describe('output sync', () => {
         [name, content],
       ]),
     );
+    // Paths arrive joined with the platform separator (`\\r\\gen` on Windows).
+    const gen = join('/r', 'gen');
     const nameOf = (path: string): string => {
-      if (!path.startsWith('/r/gen/')) {
+      if (dirname(path) !== gen) {
         throw new Error(`unexpected path ${path}`);
       }
-      return path.slice('/r/gen/'.length);
+      return path.slice(gen.length + 1);
     };
     return {
       fs: {
         listFiles: dir =>
-          dir === '/r/gen' ? [...files.values()].map(([name]) => name) : [],
+          dir === gen ? [...files.values()].map(([name]) => name) : [],
         read: path => {
           const file = files.get(key(nameOf(path)));
           if (file === undefined) {
@@ -558,6 +560,28 @@ describe('output sync', () => {
       orphans: [],
     });
   });
+
+  it.each([
+    ['case-sensitive', false],
+    ['case-insensitive', true],
+  ])(
+    'refuses to delete a hand-written file renamed only in case (%s)',
+    (_, foldCase) => {
+      const custom = {
+        files: new Map<string, string>(),
+        ownedDirs: ['gen'],
+        keep: new Set(['gen/BYBIT.tsx']),
+      };
+      const { fs, names } = memoryFs(
+        { 'Bybit.tsx': 'hand-written\n' },
+        foldCase,
+      );
+      expect(() => diffOutputs('/r', custom, fs)).toThrow(
+        /rename them \(git mv\) first:\n {2}gen\/Bybit\.tsx → gen\/BYBIT\.tsx/,
+      );
+      expect(names()).toEqual(['Bybit.tsx']);
+    },
+  );
 
   it('the CLI parses its flags instead of regenerating on --help', () => {
     const cli = join(ROOT, 'scripts/build-icons/cli.ts');

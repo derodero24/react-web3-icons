@@ -96,6 +96,21 @@ export function diffOutputs(
       .map(name => `${dir}/${name}`)
       .filter(path => !(outputs.files.has(path) || outputs.keep.has(path))),
   );
+  // A hand-written file whose unit was renamed only in case (`Bybit.tsx` on
+  // disk, `BYBIT.tsx` kept) would look like an orphan. It cannot be
+  // regenerated, so refuse instead of deleting it.
+  const kept = new Map(
+    [...outputs.keep].map(path => [path.toLowerCase(), path] as const),
+  );
+  const renamed = orphans.flatMap(path => {
+    const keptPath = kept.get(path.toLowerCase());
+    return keptPath === undefined ? [] : [`${path} → ${keptPath}`];
+  });
+  if (renamed.length > 0) {
+    throw new Error(
+      `hand-written file(s) differ from their unit name only in case; rename them (git mv) first:\n  ${renamed.join('\n  ')}`,
+    );
+  }
   return {
     changed: changed.sort(compareStrings),
     orphans: orphans.sort(compareStrings),
