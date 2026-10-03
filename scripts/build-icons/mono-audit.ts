@@ -204,6 +204,11 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     kind: 'false-positive',
     reason: 'Threshold-faithful (refMiss 2.0%); kept as-is.',
   },
+  'dex/Aerodrome': {
+    kind: 'false-positive',
+    reason:
+      'All five stripes are ink, kept apart by knockout seams; the pale #9CADFF and near-white #F5F3E6 stripes fall above the threshold cut of the reference.',
+  },
   'dex/Camelot': {
     kind: 'false-positive',
     reason:
