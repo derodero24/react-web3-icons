@@ -809,7 +809,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'coin',
     ticker: 'ICP',
     variants: ['', 'Mono'],
-    brandColor: '#46abe3',
+    brandColor: '#f15a24',
   },
   { name: 'IcpMono', category: 'coin' },
   {
