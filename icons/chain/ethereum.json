@@ -5,7 +5,8 @@
   ],
   "notes": [
     "Ethereum diamond paths scaled to fit in a 64×64 circle (≈72% fill).",
-    "Original viewBox 0 0 784.37 1277.39 → scale 0.036, translate(17.9, 9)"
+    "Original viewBox 0 0 784.37 1277.39 → scale 0.036, translate(17.9, 9)",
+    "CircleMono / SquareMono: the diamond is knocked out with 1.2-unit ink seams on the facet edges that the colored art shows (the left/right split and the inner edge of the translucent left facet), derived from the colored facet paths."
   ],
   "kind": "icon",
   "variants": {

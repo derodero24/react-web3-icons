@@ -4,7 +4,8 @@
     "https://docs.pancakeswap.finance/welcome-to-pancakeswap/about-us/brand (official brand page; PancakeSwap Logos.zip, file CAKE Token/cake-token.svg)"
   ],
   "notes": [
-    "Colored: renders identically to the official cake-token.svg of the PancakeSwap brand kit (audited in #836)"
+    "Colored: renders identically to the official cake-token.svg of the PancakeSwap brand kit (audited in #836)",
+    "Mono: the bunny silhouette (outline included) is knocked out of the disc; the eyes and the pancake crescent stay ink, matching PancakeSwapMono in the opposite polarity."
   ],
   "kind": "icon",
   "variants": {

@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
 // Paths sourced from @web3icons/react (MIT) — MX token SVG (MEXC exchange)
+// Mono: the dark front peak stays whole and the back peak is cut back from it by a 1.2-unit seam.
 /** Mexc exchange icon (colored). */
 export const Mexc = /* @__PURE__ */ createIcon(
   'Mexc',
@@ -42,11 +43,10 @@ export const MexcMono = /* @__PURE__ */ createIcon(
   'MexcMono',
   '0 0 64 64',
   () => (
-    <>
-      <path d="M17.09 17.72a6.57 6.57 0 0 1 11.5 0l18.08 31.96h-35.8c-5.26 0-8.54-5.81-5.92-10.47z" />
-      <path d="M46.93 17.72a6.57 6.57 0 0 0-11.5 0L22.6 40.4c-2.34 4.13.58 9.28 5.23 9.28h25.3c5.27 0 8.55-5.81 5.93-10.47z" />
-      <path d="M27.84 49.68h18.83L32 23.75 22.59 40.4c-2.32 4.12.6 9.28 5.25 9.28" />
-    </>
+    <path
+      fillRule="evenodd"
+      d="M59.06 39.21c2.64 4.64-.65 10.48-5.9 10.48H27.83c-4.66 0-7.58-5.16-5.22-9.3l12.81-22.7a6.56 6.56 0 0 1 11.5 0zM17.09 17.7a6.56 6.56 0 0 1 11.5 0l2.73 4.84-9.74 17.27c-1.26 2.4-1.18 5.34-.03 7.37.56.99 1.42 1.86 2.46 2.51H10.87c-5.29 0-8.55-5.81-5.91-10.48z"
+    />
   ),
   { fill: 'currentColor' },
 );
