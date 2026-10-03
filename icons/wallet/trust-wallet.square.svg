@@ -1,4 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <path fill="#fff" d="M0 16.25C0 7.28 7.28 0 16.25 0h31.5C56.72 0 64 7.28 64 16.25v31.5C64 56.72 56.72 64 47.75 64h-31.5C7.28 64 0 56.72 0 47.75z"/>
-  <path fill="none" stroke="#0a64bc" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4.38" d="M32.02 13.44C38.48 18.83 45.88 18.5 48 18.5c-.47 30.67-4 24.59-15.98 33.19-12-8.6-15.5-2.52-15.96-33.2 2.1 0 9.5.34 15.96-5.05z"/>
+  <rect width="64" height="64" fill="#fff" rx="12.8"/>
+  <g>
+    <path fill="#0500FF" d="M14.17 17.78 32 12v40c-12.74-5.33-17.83-15.56-17.83-21.33z"/>
+    <path fill="url(#tws-a)" d="M38.33 6.37 19.6.3v42c13.37-5.6 18.72-16.33 18.72-22.4z" transform="translate(13.33 11.71)scale(.95238)"/>
+  </g>
+  <defs>
+    <linearGradient id="tws-a" x1="33.35" x2="19.29" y1="-2.64" y2="41.75" gradientUnits="userSpaceOnUse">
+      <stop offset=".02" stop-color="#0000FF"/>
+      <stop offset=".08" stop-color="#0094FF"/>
+      <stop offset=".16" stop-color="#48FF91"/>
+      <stop offset=".42" stop-color="#0094FF"/>
+      <stop offset=".68" stop-color="#0038FF"/>
+      <stop offset=".9" stop-color="#0500FF"/>
+    </linearGradient>
+  </defs>
 </svg>

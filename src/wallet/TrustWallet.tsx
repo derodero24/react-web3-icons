@@ -1,47 +1,88 @@
 import { createIcon } from '../utils';
 
-// Source: https://trustwallet.com
+// Source: https://trustwallet.com/icon.svg
+// Source: https://trustwallet.com/press (official press kit, logos.zip: Trust Core Logo, the same two-part shield)
+// Shield: the two paths of the official icon.svg (#0500FF left half, right half in the official #0000FF/#0094FF/#48FF91/#0038FF/#0500FF gradient), unchanged, scaled 0.95238 and translated (13.33 11.71) so the shield is 40 units tall and centred
+// No official Circle or Square asset is published; both are plain container compositions: a white circle r=32 / white 64x64 square with rx=12.8 (the repository's Square convention) behind the unchanged coloured shield
+// CircleMono / SquareMono: the container in currentColor with the shield silhouette (outline of both halves) knocked out by a mask; the colour split between the halves is dropped
 /** Trust Wallet Square wallet icon (colored). */
 export const TrustWalletSquare = /* @__PURE__ */ createIcon(
   'TrustWalletSquare',
   '0 0 64 64',
-  () => (
+  (_props, _id) => (
     <>
-      <path
-        fill="#fff"
-        d="M0 16.25C0 7.28 7.28 0 16.25 0h31.5C56.72 0 64 7.28 64 16.25v31.5C64 56.72 56.72 64 47.75 64h-31.5C7.28 64 0 56.72 0 47.75z"
-      />
-      <path
-        fill="none"
-        stroke="#0a64bc"
-        strokeLinejoin="round"
-        strokeMiterlimit="10"
-        strokeWidth="4.38"
-        d="M32.02 13.44C38.48 18.83 45.88 18.5 48 18.5c-.47 30.67-4 24.59-15.98 33.19-12-8.6-15.5-2.52-15.96-33.2 2.1 0 9.5.34 15.96-5.05z"
-      />
+      <rect width="64" height="64" fill="#fff" rx="12.8" />
+      <g>
+        <path
+          fill="#0500FF"
+          d="M14.17 17.78 32 12v40c-12.74-5.33-17.83-15.56-17.83-21.33z"
+        />
+        <path
+          fill={`url(#${_id}-tws-a)`}
+          d="M38.33 6.37 19.6.3v42c13.37-5.6 18.72-16.33 18.72-22.4z"
+          transform="translate(13.33 11.71)scale(.95238)"
+        />
+      </g>
+      <defs>
+        <linearGradient
+          id={`${_id}-tws-a`}
+          x1="33.35"
+          x2="19.29"
+          y1="-2.64"
+          y2="41.75"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset=".02" stopColor="#0000FF" />
+          <stop offset=".08" stopColor="#0094FF" />
+          <stop offset=".16" stopColor="#48FF91" />
+          <stop offset=".42" stopColor="#0094FF" />
+          <stop offset=".68" stopColor="#0038FF" />
+          <stop offset=".9" stopColor="#0500FF" />
+        </linearGradient>
+      </defs>
     </>
   ),
-  {},
+  { ids: true },
 );
 
 /** Trust Wallet Circle wallet icon (colored). */
 export const TrustWalletCircle = /* @__PURE__ */ createIcon(
   'TrustWalletCircle',
   '0 0 64 64',
-  () => (
+  (_props, _id) => (
     <>
-      <circle cx="32" cy="32" r="32" fill="#0a64bc" />
-      <path
-        fill="none"
-        stroke="#fff"
-        strokeLinejoin="round"
-        strokeMiterlimit="10"
-        strokeWidth="4"
-        d="M32.63 14c6.32 5.28 13.57 4.96 15.65 4.96-.46 30.03-3.91 24.08-15.65 32.5-11.74-8.42-15.18-2.47-15.63-32.5 2.05 0 9.3.32 15.63-4.96z"
-      />
+      <circle cx="32" cy="32" r="32" fill="#fff" />
+      <g>
+        <path
+          fill="#0500FF"
+          d="M14.17 17.78 32 12v40c-12.74-5.33-17.83-15.56-17.83-21.33z"
+        />
+        <path
+          fill={`url(#${_id}-twc-a)`}
+          d="M38.33 6.37 19.6.3v42c13.37-5.6 18.72-16.33 18.72-22.4z"
+          transform="translate(13.33 11.71)scale(.95238)"
+        />
+      </g>
+      <defs>
+        <linearGradient
+          id={`${_id}-twc-a`}
+          x1="33.35"
+          x2="19.29"
+          y1="-2.64"
+          y2="41.75"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset=".02" stopColor="#0000FF" />
+          <stop offset=".08" stopColor="#0094FF" />
+          <stop offset=".16" stopColor="#48FF91" />
+          <stop offset=".42" stopColor="#0094FF" />
+          <stop offset=".68" stopColor="#0038FF" />
+          <stop offset=".9" stopColor="#0500FF" />
+        </linearGradient>
+      </defs>
     </>
   ),
-  {},
+  { ids: true },
 );
 
 /** Trust Wallet Square wallet icon (monochrome). */
@@ -49,25 +90,18 @@ export const TrustWalletSquareMono = /* @__PURE__ */ createIcon(
   'TrustWalletSquareMono',
   '0 0 64 64',
   (_props, _id) => (
-    <g transform="scale(.0625)">
+    <>
+      <rect width="64" height="64" mask={`url(#${_id}-twsm-a)`} rx="12.8" />
       <defs>
-        <mask id={`${_id}-twm-a`}>
-          <rect width="1024" height="1024" fill="#fff" />
+        <mask id={`${_id}-twsm-a`}>
+          <rect width="64" height="64" fill="#fff" />
           <path
-            fill="none"
-            stroke="black"
-            strokeLinejoin="round"
-            strokeMiterlimit="10"
-            strokeWidth="70"
-            d="M512.3 215c103.32 86.29 221.8 80.97 255.65 80.97C760.55 786.7 704.13 689.39 512.3 827 320.47 689.4 264.4 786.7 257 295.97c33.5 0 151.98 5.32 255.3-80.97z"
+            fill="#000"
+            d="M14.17 17.78 32 12l17.83 5.78v12.89c0 5.77-5.1 16-17.83 21.33-12.74-5.33-17.83-15.56-17.83-21.33Z"
           />
         </mask>
       </defs>
-      <path
-        d="M0 260C0 116.4 116.4 0 260 0h504c143.6 0 260 116.4 260 260v504c0 143.6-116.4 260-260 260H260C116.4 1024 0 907.6 0 764z"
-        mask={`url(#${_id}-twm-a)`}
-      />
-    </g>
+    </>
   ),
   { fill: 'currentColor', ids: true },
 );
@@ -78,20 +112,16 @@ export const TrustWalletCircleMono = /* @__PURE__ */ createIcon(
   '0 0 64 64',
   (_props, _id) => (
     <>
+      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-twcm-a)`} />
       <defs>
-        <mask id={`${_id}-twm-circle-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
+        <mask id={`${_id}-twcm-a`}>
+          <rect width="64" height="64" fill="#fff" />
           <path
-            fill="none"
-            stroke="black"
-            strokeLinejoin="round"
-            strokeMiterlimit="10"
-            strokeWidth="4"
-            d="M32.63 14c6.32 5.28 13.57 4.96 15.65 4.96-.46 30.03-3.91 24.08-15.65 32.5-11.74-8.42-15.18-2.47-15.63-32.5 2.05 0 9.3.32 15.63-4.96z"
+            fill="#000"
+            d="M14.17 17.78 32 12l17.83 5.78v12.89c0 5.77-5.1 16-17.83 21.33-12.74-5.33-17.83-15.56-17.83-21.33Z"
           />
         </mask>
       </defs>
-      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-twm-circle-a)`} />
     </>
   ),
   { fill: 'currentColor', ids: true },
