@@ -1405,7 +1405,6 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'oneinch',
     variants: ['', 'Mono'],
     aliases: ['1inch'],
-    brandColor: '#e82219',
   },
   { name: 'OneinchMono', category: 'dex' },
   {
