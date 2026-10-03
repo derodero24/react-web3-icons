@@ -1980,7 +1980,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'enkrypt',
     variants: ['', 'Mono'],
-    brandColor: '#c54aff',
+    brandColor: '#c549ff',
   },
   { name: 'EnkryptMono', category: 'wallet' },
   {
