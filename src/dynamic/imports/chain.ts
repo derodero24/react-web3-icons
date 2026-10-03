@@ -130,6 +130,8 @@ export const chainImports: Record<
   PolygonSquare: () => import('../../chain/Polygon'),
   PolygonSquareMono: () => import('../../chain/Polygon'),
   Ronin: () => import('../../chain/Ronin'),
+  RoninCircle: () => import('../../chain/Ronin'),
+  RoninCircleMono: () => import('../../chain/Ronin'),
   RoninMono: () => import('../../chain/Ronin'),
   Scroll: () => import('../../chain/Scroll'),
   ScrollMono: () => import('../../chain/Scroll'),

@@ -2,7 +2,12 @@
   "name": "Ronin",
   "kind": "icon",
   "source": [
-    "https://wiki.roninchain.com/brand-kit (official brand kit, Ronin_Mark_Blue.svg from the linked asset drive)"
+    "https://wiki.roninchain.com/brand-kit (official brand kit, Ronin_Mark_Blue.svg from the linked asset drive)",
+    "https://drive.usercontent.google.com/download?id=1xD7j1MAfS9mFxWLG7rOkvw6VXDhDjOXL&export=download (official RON token, Ronin Token/SVG/Ronin-Token.svg in the brand-kit drive)"
+  ],
+  "notes": [
+    "Circle: the official Ronin-Token.svg (the #F5F8FC mark on a #004DE5 disc), paths unchanged and full-bleed on the 64 grid; the token's clip-path is left out, since it clips nothing of the mark",
+    "CircleMono: the token's disc in currentColor with the mark knocked out (fill-rule=evenodd)"
   ],
   "variants": {
     "": {
@@ -10,6 +15,14 @@
     },
     "Mono": {
       "file": "ronin.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "ronin.circle.svg",
+      "fill": "#004DE5"
+    },
+    "CircleMono": {
+      "file": "ronin.circle-mono.svg",
       "fill": "currentColor"
     }
   },

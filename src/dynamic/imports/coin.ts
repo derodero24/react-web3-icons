@@ -129,6 +129,8 @@ export const coinImports: Record<
   Pyth: () => import('../../coin/Pyth'),
   PythMono: () => import('../../coin/Pyth'),
   Ronin: () => import('../../coin/Ronin'),
+  RoninCircle: () => import('../../coin/Ronin'),
+  RoninCircleMono: () => import('../../coin/Ronin'),
   RoninMono: () => import('../../coin/Ronin'),
   Sei: () => import('../../coin/Sei'),
   SeiMono: () => import('../../coin/Sei'),
