@@ -134,7 +134,7 @@
     "analyze": "size-limit --why",
     "build": "tsdown && node scripts/build-icons/emit-dist-svg.mjs && node scripts/build-icons/emit-iconify.mjs && node scripts/generate-manifest.mjs --json",
     "new-icon": "node scripts/new-icon.mjs",
-    "check": "biome ci",
+    "check": "biome ci --error-on-warnings",
     "format": "biome format --write",
     "lint": "biome check",
     "lint:fix": "biome check --write",

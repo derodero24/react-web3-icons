@@ -4,5 +4,7 @@ rules:
     config:
       policies:
         # Every action must be pinned to a full commit SHA. Renovate's
-        # pinGitHubActionDigests preset (renovate.json) keeps the digests fresh.
+        # pinGitHubActionDigestsToSemver preset (renovate.json) keeps the
+        # digests fresh and the trailing `# vX.Y.Z` comments exact, which the
+        # online `ref-version-mismatch` audit checks.
         '*': hash-pin

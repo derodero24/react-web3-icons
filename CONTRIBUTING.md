@@ -141,7 +141,8 @@ pnpm run build              # optional: refresh dist/manifest.json from the new 
 `generate-manifest` reads the built `dist/` and rewrites `src/manifest/index.ts`,
 so `dist/manifest.json` is one step behind until the next `pnpm run build`.
 That is fine for day-to-day work (tests import `src/`), and publishing always
-rebuilds (`prepublishOnly`); the final `build` above is only needed when you
+rebuilds (the release workflow builds before publishing; `prepublishOnly`
+covers manual publishes); the final `build` above is only needed when you
 want to inspect `dist/manifest.json` locally.
 
 `test/icons-sync.test.ts` fails CI whenever `icons/` and `src/` drift,

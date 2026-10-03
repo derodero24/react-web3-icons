@@ -1,66 +1,71 @@
-# Auto-labeler configuration for actions/labeler@v5
+# Auto-labeler configuration for actions/labeler@v7 (.github/workflows/labeler.yml)
 # Labels are applied when a PR modifies files matching any listed glob pattern.
 
-# Icon categories
+# Icon categories: icons/<category>/ holds the SVG sources and src/<category>/
+# the components generated from them, so a change to either applies the label.
 icon:bridge:
   - changed-files:
-    - any-glob-to-any-file: src/bridge/**
+    - any-glob-to-any-file: ['src/bridge/**', 'icons/bridge/**']
 
 icon:chain:
   - changed-files:
-    - any-glob-to-any-file: src/chain/**
+    - any-glob-to-any-file: ['src/chain/**', 'icons/chain/**']
 
 icon:coin:
   - changed-files:
-    - any-glob-to-any-file: src/coin/**
+    - any-glob-to-any-file: ['src/coin/**', 'icons/coin/**']
 
 icon:defi:
   - changed-files:
-    - any-glob-to-any-file: src/defi/**
+    - any-glob-to-any-file: ['src/defi/**', 'icons/defi/**']
 
 icon:devtool:
   - changed-files:
-    - any-glob-to-any-file: src/devtool/**
+    - any-glob-to-any-file: ['src/devtool/**', 'icons/devtool/**']
 
 icon:dex:
   - changed-files:
-    - any-glob-to-any-file: src/dex/**
+    - any-glob-to-any-file: ['src/dex/**', 'icons/dex/**']
 
 icon:domain:
   - changed-files:
-    - any-glob-to-any-file: src/domain/**
+    - any-glob-to-any-file: ['src/domain/**', 'icons/domain/**']
 
 icon:exchange:
   - changed-files:
-    - any-glob-to-any-file: src/exchange/**
+    - any-glob-to-any-file: ['src/exchange/**', 'icons/exchange/**']
 
 icon:explorer:
   - changed-files:
-    - any-glob-to-any-file: src/explorer/**
+    - any-glob-to-any-file: ['src/explorer/**', 'icons/explorer/**']
 
 icon:marketplace:
   - changed-files:
-    - any-glob-to-any-file: src/marketplace/**
+    - any-glob-to-any-file: ['src/marketplace/**', 'icons/marketplace/**']
 
 icon:node:
   - changed-files:
-    - any-glob-to-any-file: src/node/**
+    - any-glob-to-any-file: ['src/node/**', 'icons/node/**']
+
+icon:oracle:
+  - changed-files:
+    - any-glob-to-any-file: ['src/oracle/**', 'icons/oracle/**']
 
 icon:portfolio:
   - changed-files:
-    - any-glob-to-any-file: src/portfolio/**
+    - any-glob-to-any-file: ['src/portfolio/**', 'icons/portfolio/**']
 
 icon:storage:
   - changed-files:
-    - any-glob-to-any-file: src/storage/**
+    - any-glob-to-any-file: ['src/storage/**', 'icons/storage/**']
 
 icon:tracker:
   - changed-files:
-    - any-glob-to-any-file: src/tracker/**
+    - any-glob-to-any-file: ['src/tracker/**', 'icons/tracker/**']
 
 icon:wallet:
   - changed-files:
-    - any-glob-to-any-file: src/wallet/**
+    - any-glob-to-any-file: ['src/wallet/**', 'icons/wallet/**']
 
 # Other categories
 documentation:

@@ -1,9 +1,7 @@
 name: Size
 on: [pull_request]
 
-permissions:
-  contents: read
-  pull-requests: write
+permissions: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
@@ -12,15 +10,19 @@ concurrency:
 jobs:
   size:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 0
 
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
 
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '24.x'
           cache: pnpm
@@ -34,8 +36,10 @@ jobs:
       - name: Measure base branch bundle sizes
         # Best-effort: if the base branch fails to build or measure, the
         # report degrades to PR-only sizes instead of failing the job.
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
-          git worktree add /tmp/base-checkout ${{ github.event.pull_request.base.sha }}
+          git worktree add /tmp/base-checkout "$BASE_SHA"
           cd /tmp/base-checkout
           if pnpm install --frozen-lockfile && pnpm exec tsdown && pnpm exec size-limit --json > /tmp/size-base.json; then
             echo "Base branch measured."
@@ -54,7 +58,7 @@ jobs:
 
       - name: Comment size report on PR
         if: always()
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const { readFileSync, existsSync } = require('node:fs');
@@ -63,25 +67,33 @@ jobs:
             }
             const body = readFileSync('/tmp/size-report.md', 'utf-8');
             const marker = '<!-- size-report -->';
-            const { data: comments } = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              per_page: 100,
-            });
-            const existing = comments.find(c => c.body?.includes(marker));
-            if (existing) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: existing.id,
-                body,
-              });
-            } else {
-              await github.rest.issues.createComment({
+            // Fork PRs get a read-only token: the report is still in the job
+            // log, so a failed comment must not turn the job red.
+            try {
+              const comments = await github.paginate(github.rest.issues.listComments, {
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
-                body,
+                per_page: 100,
               });
+              const existing = comments.find(
+                c => c.user?.login === 'github-actions[bot]' && c.body?.includes(marker)
+              );
+              if (existing) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: existing.id,
+                  body,
+                });
+              } else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body,
+                });
+              }
+            } catch (err) {
+              core.warning(`Could not post size report comment (fork PR?): ${err.message}`);
             }

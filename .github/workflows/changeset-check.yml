@@ -1,19 +1,56 @@
 name: Changeset Check
 on: [pull_request]
 
-permissions:
-  contents: read
-  pull-requests: write
+permissions: {}
 
 jobs:
   check:
     name: Check for missing changeset
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
-      - name: Check if src/ changed without a changeset
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
+      # Inputs of the published package (`files: ["dist"]` + package.json):
+      #   - src/**                          compiled by tsdown into dist/
+      #   - icons/**                        SVG sources: dist/svg/*, iconify JSON
+      #   - tsdown.config.ts, tsconfig.json build entries/options, emitted types
+      #   - scripts/build-icons/*.mjs       dist emitters and their helpers
+      #     (except cli.mjs, which only writes src/ and is covered by src/**)
+      #   - scripts/generate-manifest.mjs   emits dist/manifest.json
+      #   - package.json                    only fields that ship to consumers
+      #     (exports, engines, peerDependencies, sideEffects, ...); dev-only
+      #     fields are ignored (see DEV_ONLY_FIELDS) so Renovate devDependency
+      #     bumps and the version PR do not trigger the reminder.
+      # Deliberately not listed (cannot change what consumers install): tests,
+      # example/, workflows, lint/test configs, pnpm-lock.yaml (no runtime
+      # dependencies), dev-only scripts, and docs. README.md is shipped but
+      # docs-only edits ride along with the next release.
+      - name: Check if the published package changed without a changeset
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
+            const PACKAGE_INPUTS = [
+              f => f.startsWith('src/'),
+              f => f.startsWith('icons/'),
+              f => f === 'tsdown.config.ts' || f === 'tsconfig.json',
+              f =>
+                f.startsWith('scripts/build-icons/') &&
+                f.endsWith('.mjs') &&
+                f !== 'scripts/build-icons/cli.mjs',
+              f => f === 'scripts/generate-manifest.mjs',
+            ];
+            const DEV_ONLY_FIELDS = [
+              'devDependencies',
+              'packageManager',
+              'size-limit',
+              'version', // bumped by `changeset version` itself
+            ];
+            // Scripts that decide what ends up in dist / the tarball; every
+            // other script is contributor tooling and is ignored.
+            const SHIPPING_SCRIPTS = ['build', 'prepack', 'prepublishOnly', 'postpack'];
+
             const files = await github.paginate(github.rest.pulls.listFiles, {
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -21,18 +58,48 @@ jobs:
               per_page: 100,
             });
 
-            const srcChanged = files.some(f => f.filename.startsWith('src/'));
+            // package.json minus dev-only fields, at the given commit.
+            const shippedPackageJson = async ref => {
+              const { data } = await github.rest.repos.getContent({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                path: 'package.json',
+                ref,
+              });
+              const pkg = JSON.parse(Buffer.from(data.content, 'base64').toString('utf8'));
+              for (const field of DEV_ONLY_FIELDS) {
+                delete pkg[field];
+              }
+              pkg.scripts = Object.fromEntries(
+                SHIPPING_SCRIPTS.map(name => [name, pkg.scripts?.[name] ?? null]),
+              );
+              return JSON.stringify(pkg);
+            };
+
+            // A rename reports its destination in `filename` and its source in
+            // `previous_filename`; check both so moving a published input out
+            // of a tracked path still counts as a change.
+            const changed = files
+              .flatMap(f => (f.previous_filename ? [f.filename, f.previous_filename] : [f.filename]))
+              .filter(f => PACKAGE_INPUTS.some(match => match(f)));
+            if (files.some(f => f.filename === 'package.json')) {
+              const { base, head } = context.payload.pull_request;
+              if ((await shippedPackageJson(base.sha)) !== (await shippedPackageJson(head.sha))) {
+                changed.push('package.json');
+              }
+            }
+
             const hasChangeset = files.some(
               f => f.filename.startsWith('.changeset/') && f.filename.endsWith('.md') && f.filename !== '.changeset/README.md' && f.status !== 'removed'
             );
 
-            if (srcChanged && !hasChangeset) {
+            if (changed.length > 0 && !hasChangeset) {
               const marker = '<!-- changeset-check-bot -->';
               const body = [
                 marker,
                 '## Changeset Missing',
                 '',
-                'This PR modifies files under `src/` but does not include a changeset.',
+                'This PR modifies inputs of the published package (`src/`, `icons/`, build config/scripts, or shipped `package.json` fields) but does not include a changeset.',
                 'If this change affects the published library, please run:',
                 '',
                 '```sh',
@@ -65,7 +132,7 @@ jobs:
                 }
               }
 
-              core.warning('src/ files changed without a changeset. See PR comment for details.');
+              core.warning(`Published package inputs changed without a changeset: ${changed.join(', ')}`);
             } else {
-              core.info(srcChanged ? 'Changeset found.' : 'No src/ changes — changeset not required.');
+              core.info(changed.length > 0 ? 'Changeset found.' : 'No published package inputs changed — changeset not required.');
             }
