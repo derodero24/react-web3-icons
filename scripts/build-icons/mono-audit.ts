@@ -186,10 +186,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'A gradient sphere: the mono is the solid disc, and the gradient inflates the colour-boundary count.',
   },
-  'coin/Cake': {
-    kind: 'false-positive',
-    reason: 'Knockout polarity; the threshold reference is degenerate.',
-  },
   'coin/Shib': {
     kind: 'false-positive',
     reason:
