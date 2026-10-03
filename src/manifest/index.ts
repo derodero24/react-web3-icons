@@ -585,7 +585,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     slug: 'sui',
     variants: ['', 'Mono'],
-    brandColor: '#4ba2ff',
+    brandColor: '#298dff',
   },
   { name: 'SuiMono', category: 'chain' },
   {
