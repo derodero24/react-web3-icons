@@ -12,7 +12,8 @@
   "kind": "icon",
   "variants": {
     "": {
-      "file": "oneinch.svg"
+      "file": "oneinch.svg",
+      "fill": "#000"
     },
     "Mono": {
       "file": "oneinch.mono.svg",

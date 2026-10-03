@@ -18,7 +18,7 @@ export const Oneinch = /* @__PURE__ */ createIcon(
       />
     </>
   ),
-  {},
+  { fill: '#000' },
 );
 
 /** Oneinch DEX icon (monochrome). */
