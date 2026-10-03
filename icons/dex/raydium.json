@@ -2,10 +2,12 @@
   "name": "Raydium",
   "source": [
     "https://raydium.io/favicon.ico (official favicon)",
-    "https://docs.raydium.io/resources/brand-kit (official brand kit)"
+    "https://docs.raydium.io/resources/brand-kit (official brand kit)",
+    "https://github.com/raydium-io/raydium-docs-v1/blob/master/logo/raydium-r.png (official symbol raster, the brand kit's master folder)"
   ],
   "notes": [
-    "Paths sourced from an earlier official raydium.io logo SVG; matches the current official favicon.ico and the brand kit's raydium-r.png (checked 2026-10-03)",
+    "Paths sourced from an earlier official raydium.io logo SVG, with its #C200FB / #3772FF / #5AC4BE stops",
+    "Gradient vector: the old file ran the gradient horizontally (purple left, teal right), which matches neither official raster. The official raydium-r.png and favicon.ico run teal at bottom-left through blue to purple at top-right, with the corner dot purple; the axis (x1/y1/x2/y2) was fitted to raydium-r.png's pixels with the same three stops (mean colour error 4/255 against the PNG; checked 2026-10-03)",
     "No official symbol SVG is reachable today: the brand kit names mark-dark.svg / mark-light.svg, but its master folder (github.com/raydium-io/raydium-docs-v1, /logo/) holds only PNGs"
   ],
   "kind": "icon",

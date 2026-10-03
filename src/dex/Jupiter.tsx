@@ -1,7 +1,8 @@
 import { createIcon } from '../utils';
 
 // Source: https://jup.ag/favicon.svg
-// Paths sourced from the official jup.ag favicon.svg (six arc segments, #00BEF0 to #C7F284); matches the current file (checked 2026-10-03)
+// Source: https://developers.jup.ag (official brand kit: JupiterLogo/logo-dark.svg)
+// Paths sourced from the official jup.ag favicon.svg (six arc segments, #00BEF0 to #C7F284); matches the current file (checked 2026-10-03); the developers.jup.ag brand kit's JupiterLogo/logo-dark.svg has the same six arcs and #00BEF0 to #C7F284 gradients
 /** Jupiter DEX icon (colored). */
 export const Jupiter = /* @__PURE__ */ createIcon(
   'Jupiter',

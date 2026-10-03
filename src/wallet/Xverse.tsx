@@ -1,25 +1,23 @@
 import { createIcon } from '../utils';
 
-// Source: https://xverseapp.notion.site/xverse-brand-public (official brand assets, Logo page: xverse_icon_whitecolor.svg)
-// Source: https://cdn.prod.website-files.com/624b08d53d7ac60ccfc11d8d/64637a0aafc684e4c2627b56_webclip.png (official app icon served by xverse.app)
-// White X body and #EE7A30 accent: the same two shapes as the official xverse_icon_whitecolor.svg symbol (checked 2026-10-03), on a #181818 disc
-// The official app icon (webclip.png) puts the symbol on a dark rounded square, not a disc; artwork unchanged here
+// Source: https://xverseapp.notion.site/xverse-brand-public (official brand assets, Logo page: Xverse Logo – Various Formats.zip, Symbol/Dark/xverse_icon_blackcolor 1.svg)
+// Default: the kit's standalone symbol for light backgrounds (Symbol/Dark/xverse_icon_blackcolor 1.svg: the #0F0F0F X body and the #EE7A30 accent), paths unchanged and placed on the 64 grid. It replaces the white X on a #181818 disc, a container no official asset uses (the kit's symbols have no background; the xverse.app webclip.png app icon is a dark rounded square)
+// Mono: the same two paths in currentColor; the body and the accent are already separated by the kit's own gap, so no seam is added (the kit's white symbol, xverse_icon_whitecolor.svg, has the same geometry)
 /** Xverse wallet icon (colored). */
 export const Xverse = /* @__PURE__ */ createIcon(
   'Xverse',
   '0 0 64 64',
   () => (
-    <g transform="scale(3.2)">
-      <rect width="20" height="20" fill="#181818" rx="10" />
+    <>
       <path
-        fill="#fff"
-        d="M14.24 14.1v-1.55a.14.14 0 0 0-.04-.14L7.57 5.78a.14.14 0 0 0-.17 0H5.85a.14.14 0 0 0-.14.07V7.3q0 .1.07.16l2.37 2.37a.14.14 0 0 1 0 .2l-2.4 2.4a.1.1 0 0 0-.04.1v1.57q.01.13.14.14h2.6a.14.14 0 0 0 .13-.14v-.93a.1.1 0 0 1 .04-.1l1.3-1.28a.14.14 0 0 1 .19 0l2.38 2.38q.07.07.17.07h1.44a.14.14 0 0 0 .14-.14"
+        fill="#0F0F0F"
+        d="M59.73 58.96V48.8q-.01-.62-.44-1.07L16.12 4.58a1.5 1.5 0 0 0-1.07-.45H4.91c-.5 0-.91.41-.91.91v9.43q.01.62.44 1.07l15.5 15.5a.9.9 0 0 1 0 1.28L4.27 47.99a1 1 0 0 0-.27.64v10.33c0 .5.4.9.9.9h16.96c.5 0 .9-.4.9-.9v-6.09q0-.37.27-.64l8.41-8.4a.9.9 0 0 1 1.29 0l15.6 15.6q.44.43 1.07.44h9.42c.5 0 .9-.41.9-.91z"
       />
       <path
         fill="#EE7A30"
-        d="M10.78 7.77h1.3a.14.14 0 0 1 .14.14v1.3a.13.13 0 0 0 .24.1l1.78-1.79a.1.1 0 0 0 .04-.1V5.87a.14.14 0 0 0-.14-.14h-1.59a.1.1 0 0 0-.1.04l-2.18 1.78a.14.14 0 0 0 .1.23z"
+        d="M37.12 17.57h8.49c.5 0 .91.4.91.91v8.5c0 .8.99 1.21 1.56.64l11.65-11.67q.26-.27.27-.64V5.09c0-.5-.41-.91-.92-.91l-10.36-.02q-.38 0-.65.27L36.47 16c-.57.57-.16 1.56.65 1.56"
       />
-    </g>
+    </>
   ),
   {},
 );
@@ -28,23 +26,11 @@ export const Xverse = /* @__PURE__ */ createIcon(
 export const XverseMono = /* @__PURE__ */ createIcon(
   'XverseMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <g transform="scale(3.2)">
-      <defs>
-        <mask id={`${_id}-xverse-a`}>
-          <rect width="20" height="20" fill="#fff" rx="10" />
-          <path
-            fill="#000"
-            d="M14.24 14.1v-1.55a.14.14 0 0 0-.04-.14L7.57 5.78a.14.14 0 0 0-.17 0H5.85a.14.14 0 0 0-.14.07V7.3q0 .1.07.16l2.37 2.37a.14.14 0 0 1 0 .2l-2.4 2.4a.1.1 0 0 0-.04.1v1.57q.01.13.14.14h2.6a.14.14 0 0 0 .13-.14v-.93a.1.1 0 0 1 .04-.1l1.3-1.28a.14.14 0 0 1 .19 0l2.38 2.38q.07.07.17.07h1.44a.14.14 0 0 0 .14-.14"
-          />
-          <path
-            fill="#000"
-            d="M10.78 7.77h1.3a.14.14 0 0 1 .14.14v1.3a.13.13 0 0 0 .24.1l1.78-1.79a.1.1 0 0 0 .04-.1V5.87a.14.14 0 0 0-.14-.14h-1.59a.1.1 0 0 0-.1.04l-2.18 1.78a.14.14 0 0 0 .1.23z"
-          />
-        </mask>
-      </defs>
-      <rect width="20" height="20" mask={`url(#${_id}-xverse-a)`} rx="10" />
-    </g>
+  () => (
+    <>
+      <path d="M59.73 58.96V48.8q-.01-.62-.44-1.07L16.12 4.58a1.5 1.5 0 0 0-1.07-.45H4.91c-.5 0-.91.41-.91.91v9.43q.01.62.44 1.07l15.5 15.5a.9.9 0 0 1 0 1.28L4.27 47.99a1 1 0 0 0-.27.64v10.33c0 .5.4.9.9.9h16.96c.5 0 .9-.4.9-.9v-6.09q0-.37.27-.64l8.41-8.4a.9.9 0 0 1 1.29 0l15.6 15.6q.44.43 1.07.44h9.42c.5 0 .9-.41.9-.91z" />
+      <path d="M37.12 17.57h8.49c.5 0 .91.4.91.91v8.5c0 .8.99 1.21 1.56.64l11.65-11.67q.26-.27.27-.64V5.09c0-.5-.41-.91-.92-.91l-10.36-.02q-.38 0-.65.27L36.47 16c-.57.57-.16 1.56.65 1.56" />
+    </>
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );

@@ -2,6 +2,7 @@ import { createIcon } from '../utils';
 
 // Source: https://github.com/Uniswap/interface/blob/main/apps/web/src/assets/svg/uniswap_app_logo.svg (official Uniswap Labs repository)
 // Source: https://framerusercontent.com/images/MpzvVwE5SwAOj84MJjAObfKULA.png (official wallet.uniswap.org favicon, same #F50DB4 unicorn on a pale pink tile)
+// Source: https://github.com/Uniswap/brand-assets (official brand assets: Uniswap Brand Assets/Uniswap_icon_pink.svg, the same #F50DB4 unicorn)
 // Colored: the official uniswap_app_logo.svg, the #F50DB4 unicorn on its #FEF4FF rounded tile (rx 18.75 of 100), placed full-bleed on the 64 grid. The file draws the unicorn twice, once inside a 15%-opacity pink drop-shadow filter and once plain on top; only the plain copy is used (no icon in this set uses SVG filters)
 // Mono: the tile in currentColor with the unicorn knocked out by a mask
 /** Uniswap Wallet wallet icon (colored). */

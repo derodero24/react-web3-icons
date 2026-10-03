@@ -1,12 +1,11 @@
 {
   "name": "Xverse",
   "source": [
-    "https://xverseapp.notion.site/xverse-brand-public (official brand assets, Logo page: xverse_icon_whitecolor.svg)",
-    "https://cdn.prod.website-files.com/624b08d53d7ac60ccfc11d8d/64637a0aafc684e4c2627b56_webclip.png (official app icon served by xverse.app)"
+    "https://xverseapp.notion.site/xverse-brand-public (official brand assets, Logo page: Xverse Logo – Various Formats.zip, Symbol/Dark/xverse_icon_blackcolor 1.svg)"
   ],
   "notes": [
-    "White X body and #EE7A30 accent: the same two shapes as the official xverse_icon_whitecolor.svg symbol (checked 2026-10-03), on a #181818 disc",
-    "The official app icon (webclip.png) puts the symbol on a dark rounded square, not a disc; artwork unchanged here"
+    "Default: the kit's standalone symbol for light backgrounds (Symbol/Dark/xverse_icon_blackcolor 1.svg: the #0F0F0F X body and the #EE7A30 accent), paths unchanged and placed on the 64 grid. It replaces the white X on a #181818 disc, a container no official asset uses (the kit's symbols have no background; the xverse.app webclip.png app icon is a dark rounded square)",
+    "Mono: the same two paths in currentColor; the body and the accent are already separated by the kit's own gap, so no seam is added (the kit's white symbol, xverse_icon_whitecolor.svg, has the same geometry)"
   ],
   "kind": "icon",
   "variants": {

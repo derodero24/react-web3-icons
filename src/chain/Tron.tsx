@@ -2,7 +2,8 @@ import { createIcon } from '../utils';
 
 // Source: https://tron.network/favicon.svg
 // Source: https://tron.network/static/doc/Brand-guidelines.pdf (official brand guidelines, Aug 2025)
-// Default: the official site's favicon.svg (#EA0029), which carries the redrawn, heavier icon of the Aug 2025 brand guidelines ("Before / After"); it replaces the older thin icon in #C4342B. The guidelines list the primary red as #DC062B (RGB) while their own artwork and the site use #EA0029, so the official file is kept unchanged
+// Source: https://tronbrandkit.figma.site/ (official TRON brand kit: Logo Icon SVG.zip, TRON LOGO ICON RED.svg, #EA0029)
+// Default: the official site's favicon.svg (#EA0029), which carries the redrawn, heavier icon of the Aug 2025 brand guidelines ("Before / After"); it replaces the older thin icon in #C4342B. The guidelines list the primary red as #DC062B (RGB) while their own artwork and the site use #EA0029, so the official file is kept unchanged. The official brand-kit site (tronbrandkit.figma.site) ships the same icon in #EA0029 as TRON LOGO ICON RED.svg (there on a white square)
 // Mono: the same icon path in currentColor (the triangles stay holes)
 /** Tron chain icon (colored). */
 export const Tron = /* @__PURE__ */ createIcon(

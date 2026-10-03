@@ -1,11 +1,11 @@
 {
   "name": "Wld",
   "source": [
-    "@web3icons/react (MIT) — world network SVG"
+    "https://world.org/brand (official brand assets, Logomark.zip: [World] Logomark-Black-RGB.svg)"
   ],
   "notes": [
-    "Legacy artwork: path sourced from @web3icons/react (MIT) — world network SVG",
-    "The current World favicon (https://world.org/favicon/safari-pinned-tab.svg) has a thicker ring and strokes; no mark-only official SVG was found (#836)"
+    "Default: the official World logomark ([World] Logomark-Black-RGB.svg from the Logomark.zip on world.org/brand), the same geometry as WorldChain. It replaces a @web3icons/react glyph whose ring and strokes were thinner than the official mark",
+    "Mono: the same logomark path in currentColor (the kit also ships it in white)"
   ],
   "kind": "icon",
   "variants": {

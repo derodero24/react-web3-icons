@@ -1,12 +1,13 @@
 {
   "name": "Usdt",
   "source": [
-    "https://tether.to/en/ (official site: the Tether mark of the header logo, inline SVG)"
+    "https://tether.to/en/ (official site: the Tether mark of the header logo, inline SVG)",
+    "https://tether.to/files/logos.zip (official logo kit: logoCircle.svg)"
   ],
   "notes": [
     "Colored: the mark (first path, #009393, evenodd) of the official header lockup served inline on tether.to (viewBox 0 0 184 41), path unchanged without the wordmark, placed on the 64 grid; tether.to/apple-touch-icon.png uses the same #009393",
     "Mono: the same path in currentColor",
-    "Circle / CircleMono: legacy composite (legacy #26A17B disc with the mark in white), not an official Tether asset; kept until #815 decides its fate"
+    "Circle / CircleMono: the official token icon logoCircle.svg from Tether's logo kit (tether.to/files/logos.zip; also served at tether.to/images/logoCircle.svg): the white mark on a #009393 disc, paths unchanged and filling the 64 grid. It replaces a legacy #26A17B composite. CircleMono is the disc in currentColor with the mark knocked out (one evenodd path)"
   ],
   "kind": "icon",
   "variants": {
