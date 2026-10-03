@@ -171,6 +171,11 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'The rainbow gradient of the knot inflates the colour-boundary count; the inked knot reads fully.',
   },
+  'chain/Mantle': {
+    kind: 'false-positive',
+    reason:
+      'Each bar fades from white to #00FF93, so the white tops fall outside the best threshold cut of the reference; the mono inks the 16 bars with the same paths, the geometry of the official single-colour brandmarks.',
+  },
   'chain/Scroll': {
     kind: 'false-positive',
     reason:

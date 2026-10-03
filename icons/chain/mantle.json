@@ -1,7 +1,13 @@
 {
   "name": "Mantle",
   "source": [
-    "https://mantle.xyz"
+    "https://www.mantle.xyz (Brand Assets, accessed 2026-10-03)",
+    "https://drive.google.com/drive/folders/1Dmd7-6mmpgGjKREqy-1uIi6fxFF-PZVB (Mantle brand kit: MNT_Logo_Variation/MoMNTum_BrandMark-SVG/MNT-Official-BrandMark.svg)"
+  ],
+  "notes": [
+    "Default: the official MoMNTum brandmark MNT-Official-BrandMark.svg (16 bars, each a vertical white -> #00FF93 gradient), paths and gradients unchanged (ids renamed mnt-0 … mnt-15, stop offset .819595 rounded to .82). It replaces the older black disc with white bars, which the current kit no longer ships; the kit shows the brandmark without a container (its MNT_Token_Logo, the mark on an Obsidian Green #092C24 square, is PNG-only)",
+    "Mono: the same 16 paths in currentColor, the geometry of the kit's single-colour brandmarks (MNT-Official-BrandMark-Black/-White/-ObsidianGreen/-Mint.svg); the bars do not touch, so no seams are needed",
+    "The brandmark is drawn for dark backgrounds and mostly fades on white; MantleMono with color=\"#092C24\" is the official Obsidian Green brandmark (see the exemption in test/legibility.test.ts)"
   ],
   "kind": "icon",
   "variants": {

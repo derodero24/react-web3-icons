@@ -436,6 +436,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 5000,
     slug: 'mantle',
     variants: ['', 'Mono'],
+    brandColor: '#00ff93',
   },
   { name: 'MantleMono', category: 'chain' },
   {
