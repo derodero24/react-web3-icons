@@ -126,9 +126,11 @@ export function parseColor(value: string): Color {
   return { rgb: [red, green, blue], alpha: alpha / 255 };
 }
 
+/** Every channel below {@link DARK_MAX}: vanishes on a dark background. */
 export const isNearBlack = (rgb: Rgb): boolean =>
   rgb.every(channel => channel < DARK_MAX);
 
+/** Every channel above {@link LIGHT_MIN}: vanishes on a light background. */
 export const isNearWhite = (rgb: Rgb): boolean =>
   rgb.every(channel => channel > LIGHT_MIN);
 
@@ -140,6 +142,7 @@ type Point = readonly [x: number, y: number];
 
 const IDENTITY: Matrix = [1, 0, 0, 1, 0, 0];
 
+/** `m × n`: applies `n` first, then `m` (SVG transform-list order). */
 function multiply(m: Matrix, n: Matrix): Matrix {
   return [
     m[0] * n[0] + m[2] * n[1],
@@ -151,6 +154,7 @@ function multiply(m: Matrix, n: Matrix): Matrix {
   ];
 }
 
+/** Maps a point through an affine matrix. */
 const apply = (m: Matrix, [x, y]: Point): Point => [
   m[0] * x + m[2] * y + m[4],
   m[1] * x + m[3] * y + m[5],
@@ -158,9 +162,11 @@ const apply = (m: Matrix, [x, y]: Point): Point => [
 
 const NUMBER = /[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?/g;
 
+/** Every number in a `points` list or in transform arguments. */
 const numbersIn = (text: string): number[] =>
   [...text.matchAll(NUMBER)].map(([n]) => Number(n));
 
+/** The element's own `transform` list as one matrix (identity if none). */
 function transformMatrix(node: XmlNode): Matrix {
   const value = getAttr(node, 'transform');
   if (value === undefined) {
@@ -240,6 +246,7 @@ function readAt(
   return match === undefined ? undefined : [match, pattern.lastIndex];
 }
 
+/** The error for unparsable path data, quoting it from `pos`. */
 function malformed(d: string, pos: number): Error {
   return new Error(`malformed path data at ${pos}: ${d.slice(pos, pos + 20)}`);
 }
@@ -481,6 +488,10 @@ function opacityOf(node: XmlNode, name: string, fallback = 1): number {
   return Math.min(1, Math.max(0, number));
 }
 
+/**
+ * Walks an SVG in paint order, recording each fill and stroke that paints
+ * as a {@link Layer}.
+ */
 class Painter {
   readonly ids = new Map<string, XmlNode>();
   readonly layers: Layer[] = [];
@@ -495,6 +506,7 @@ class Painter {
     this.collectIds(root);
   }
 
+  /** Indexes every `id` in the subtree, for `url(#…)` and `href`. */
   collectIds(node: XmlNode): void {
     const id = getAttr(node, 'id');
     if (id !== undefined) {
@@ -537,6 +549,7 @@ class Painter {
     return this.weighted(paint, weight).filter(color => color.weight > 0);
   }
 
+  /** `colors` before zero-weight colours are dropped. */
   weighted(paint: string, weight: number): WeightedColor[] {
     if (paint === 'none') {
       return [];
@@ -573,6 +586,10 @@ class Painter {
     return Math.min(extent(0, left, width), extent(1, top, height));
   }
 
+  /**
+   * Records the layers `node` paints, skipping definition-only subtrees.
+   * `using` holds the `<use>` targets being expanded, to reject cycles.
+   */
   walk(node: XmlNode, parent: Context, using: readonly XmlNode[] = []): void {
     if (NON_RENDERED.has(node.tag) || node.tag === 'stop') {
       return;
@@ -651,6 +668,7 @@ function inherit(node: XmlNode, parent: Context): Context {
   };
 }
 
+/** Near-black and near-white shares of the layers' combined paint weight. */
 function shares(layers: readonly Layer[]): ToneShares {
   let weight = 0;
   let dark = 0;
