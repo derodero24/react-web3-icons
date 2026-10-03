@@ -1,19 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="translate(4 10.06)scale(.1408)">
-    <linearGradient id="sln-a" x1="360.88" x2="141.21" y1="-37.45" y2="383.29" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#00ffa3"/>
-      <stop offset="1" stop-color="#dc1fff"/>
-    </linearGradient>
-    <path fill="url(#sln-a)" d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1z"/>
-    <linearGradient id="sln-b" x1="264.83" x2="45.16" y1="-87.6" y2="333.15" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#00ffa3"/>
-      <stop offset="1" stop-color="#dc1fff"/>
-    </linearGradient>
-    <path fill="url(#sln-b)" d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1z"/>
-    <linearGradient id="sln-c" x1="312.55" x2="92.88" y1="-62.69" y2="358.06" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#00ffa3"/>
-      <stop offset="1" stop-color="#dc1fff"/>
-    </linearGradient>
-    <path fill="url(#sln-c)" d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1z"/>
+  <g transform="translate(4 7.6)scale(.55446)">
+    <path fill="url(#sol-a)" d="M100.48 69.38 83.81 86.8q-.55.57-1.3.89-.73.3-1.54.31H1.94q-.58 0-1.07-.3a2 2 0 0 1-.71-.83 1.8 1.8 0 0 1 .36-2.04L17.21 67.4q.55-.57 1.28-.89.74-.3 1.54-.31h79.03q.58 0 1.07.3.47.32.71.83.23.52.13 1.08t-.49.96M83.81 34.3q-.55-.57-1.3-.88a4 4 0 0 0-1.54-.32H1.94q-.58 0-1.07.31-.48.32-.71.83a1.8 1.8 0 0 0 .36 2.04L17.21 53.7q.55.57 1.28.88.74.3 1.54.32h79.03q.58 0 1.07-.31.47-.32.71-.83a1.8 1.8 0 0 0-.36-2.04zM1.94 21.8h79.03q.81-.01 1.55-.32.73-.31 1.29-.89l16.67-17.42q.4-.41.5-.96.09-.56-.14-1.08a2 2 0 0 0-.71-.82Q99.64 0 99.06 0H20.03q-.8 0-1.54.31-.74.32-1.28.89L.52 18.62q-.38.41-.49.96-.1.56.13 1.07.23.52.72.83.48.3 1.06.31"/>
+    <defs>
+      <linearGradient id="sol-a" x1="8.53" x2="88.99" y1="90.1" y2="-3.02" gradientUnits="userSpaceOnUse">
+        <stop offset=".08" stop-color="#9945FF"/>
+        <stop offset=".3" stop-color="#8752F3"/>
+        <stop offset=".5" stop-color="#5497D5"/>
+        <stop offset=".6" stop-color="#43B4CA"/>
+        <stop offset=".72" stop-color="#28E0B9"/>
+        <stop offset=".97" stop-color="#19FB9B"/>
+      </linearGradient>
+    </defs>
   </g>
 </svg>

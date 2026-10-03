@@ -323,7 +323,8 @@ The `variant` prop selects the artwork: `'colored'` (the default), `'mono'`, or 
 | `WalletIcon` | `WalletVariant` | `'Alt'`, `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'`, `'Symbol'`, `'SymbolMono'` |
 | `ExchangeIcon` | `ExchangeVariant` | `'Circle'`, `'CircleAlt'`, `'CircleMono'`, `'Inverted'` |
 | `DexIcon` | `DexVariant` | `'Square'`, `'SquareMono'` |
-| `DefiIcon`, `BridgeIcon`, `OracleIcon` | `DefiVariant`, `BridgeVariant`, `OracleVariant` | — |
+| `BridgeIcon` | `BridgeVariant` | `'Inverted'` |
+| `DefiIcon`, `OracleIcon` | `DefiVariant`, `OracleVariant` | — |
 
 ```tsx
 <CoinIcon symbol="BTC" variant="mono" />          // BtcMono

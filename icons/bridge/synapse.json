@@ -1,8 +1,13 @@
 {
   "name": "Synapse",
+  "source": [
+    "https://github.com/synapsecns/sanguine/blob/master/docs/bridge/static/brand-assets/synapse-mark.svg",
+    "https://github.com/synapsecns/sanguine/blob/master/docs/bridge/static/brand-assets/synapse-mark-black.svg"
+  ],
   "notes": [
-    "Paths sourced from synapsecns/sanguine (docs/bridge/static/brand-assets/synapse-mark.svg)",
-    "Brand colors: linear gradient from hsl(285deg 100% 65%) to hsl(265deg 100% 75%) (#BC68FF to #9C72FF)"
+    "Geometry from the official synapse-mark.svg (synapsecns/sanguine docs/bridge/static/brand-assets): four circles and the half-opacity bevelled rhombus stroke",
+    "Gradient as in the official file: a default (objectBoundingBox, left to right) linear gradient on each element from hsl(285deg 100% 65%) = #D24DFF to hsl(265deg 100% 75%) = #B580FF; the previous artwork used mis-converted stops (#BC68FF, #9C72FF) in one user-space gradient across the whole mark",
+    "Mono: follows Synapse's own one-colour marks (synapse-mark-black.svg / synapse-mark-white.svg), which keep the connector stroke at opacity .5 under solid circles; that official opacity is kept rather than a binary redraw"
   ],
   "kind": "icon",
   "variants": {

@@ -3,7 +3,7 @@ import { flushSync } from 'react-dom';
 import ReactDOM from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it } from 'vitest';
-import { Ens, Ethereum, HardhatMono, NftStorageMono } from '../src';
+import { Alchemy, Ethereum, HardhatMono, NftStorageMono } from '../src';
 import { createIcon } from '../src/utils';
 import { toSvgId } from '../src/utils/createIcon';
 import { isIconComponent } from './helpers/units';
@@ -71,7 +71,7 @@ function maskShapesInheritingFill(svg: SVGSVGElement): Element[] {
 
 describe.each([
   ['masked', HardhatMono],
-  ['gradient', Ens],
+  ['gradient', Alchemy],
   ['masked with <use>', NftStorageMono],
 ])('two instances of a %s icon', (_kind, Icon) => {
   it('get distinct ids that resolve inside their own <svg>', () => {

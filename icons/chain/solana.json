@@ -1,12 +1,13 @@
 {
   "name": "Solana",
   "source": [
-    "https://solana.com"
+    "https://solana.com/src/img/branding/solanaLogoMark.svg",
+    "https://solana.com/branding (official brand assets)"
   ],
   "notes": [
-    "Shared Solana bar path data",
-    "Circle variant: scale 0.1, translate(12.1, 16.4)",
-    "Gradient coordinates pre-computed for 64×64 viewBox"
+    "Default: the official logomark solanaLogoMark.svg from solana.com/branding (six-stop gradient #9945FF -> #19FB9B), replacing the older #00FFA3 -> #DC1FFF mark",
+    "Mono: the logomark's three bars in currentColor",
+    "Circle and Square: no official container version exists; the repo's black disc / rx=12.8 tile is kept, with the official logomark (101x88) at translate(12.1 14.664) scale(0.394), the width of the previous mark; CircleMono and SquareMono knock the same bars out of the container (fill-rule=evenodd)"
   ],
   "kind": "icon",
   "variants": {

@@ -1,20 +1,18 @@
 import { createIcon } from '../utils';
 
-// Source: https://zksync.io
-// Circle variant: 40×40 content scaled to ~46px centered in 64×64
+// Source: https://www.zksync.io/brand/zksync-logo/zksync-logomark-dark-transparent.svg
+// Source: https://www.zksync.io/brand/zksync-logo-brand-assets.zip (official brand assets)
+// Default: the official ZKsync logomark zksync-logomark-dark-transparent.svg (#11141A arrows on transparent); the brand kit ships the logomark only without a background, so it replaces the black tile with white arrows (whose shaft offset also differed)
+// Mono: the logomark's two arrows in currentColor
+// Circle and Square: no official container exists; the repo's black disc / rx=12.8 tile is kept, with the official arrows in white (as in zksync-logomark-light-transparent.svg) at translate(17.9 23.9457) scale(0.56632), the size of the previous arrows; CircleMono and SquareMono knock the same arrows out (fill-rule=evenodd)
 /** Zk Sync chain icon (colored). */
 export const ZkSync = /* @__PURE__ */ createIcon(
   'ZkSync',
   '0 0 64 64',
   () => (
     <>
-      <path d="M0 0h64v64H0z" />
-      <path
-        fill="#fff"
-        fillRule="evenodd"
-        d="M51.6 32 40.47 20.94v8.1l-11.04 8.13h11.04v5.92zm-39.2 0 11.13 11.08v-8.05l11.04-8.2H23.53v-5.91z"
-        clipRule="evenodd"
-      />
+      <path fill="#11141A" d="m20 15.99-16 16 16 16v-12l16-12H20z" />
+      <path fill="#11141A" d="m60 31.99-16-16v12l-16 12h16v8z" />
     </>
   ),
   {},
@@ -24,23 +22,13 @@ export const ZkSync = /* @__PURE__ */ createIcon(
 export const ZkSyncMono = /* @__PURE__ */ createIcon(
   'ZkSyncMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <g transform="scale(1.6)">
-      <rect width="40" height="40" mask={`url(#${_id}-a)`} />
-      <defs>
-        <mask id={`${_id}-a`}>
-          <rect width="40" height="40" fill="#fff" />
-          <path
-            fill="#000"
-            fillRule="evenodd"
-            d="m32.25 20-6.95-6.92v5.07l-6.9 5.08h6.9v3.7zm-24.5 0 6.95 6.93v-5.04l6.9-5.12h-6.9v-3.7z"
-            clipRule="evenodd"
-          />
-        </mask>
-      </defs>
-    </g>
+  () => (
+    <>
+      <path d="m20 15.99-16 16 16 16v-12l16-12H20z" />
+      <path d="m60 31.99-16-16v12l-16 12h16v8z" />
+    </>
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );
 
 /** Zk Sync Circle chain icon (colored). */
@@ -50,14 +38,10 @@ export const ZkSyncCircle = /* @__PURE__ */ createIcon(
   () => (
     <>
       <circle cx="32" cy="32" r="32" />
-      <g>
-        <path
-          fill="#fff"
-          fillRule="evenodd"
-          d="m46.09 32-8-7.95v5.82l-7.94 5.84h7.94v4.26zM17.9 32l8 7.97v-5.8l7.94-5.88H25.9v-4.26z"
-          clipRule="evenodd"
-        />
-      </g>
+      <path
+        fill="#fff"
+        d="M25.95 23.95 17.9 32l8.05 8.05v-6.04l8.06-6.04h-8.06zM46.1 32l-8.05-8.05v6.04l-8.06 6.04h8.06v4.02z"
+      />
     </>
   ),
   {},
@@ -70,14 +54,10 @@ export const ZkSyncSquare = /* @__PURE__ */ createIcon(
   () => (
     <>
       <rect width="64" height="64" rx="12.8" />
-      <g>
-        <path
-          fill="#fff"
-          fillRule="evenodd"
-          d="m46.09 32-8-7.95v5.82l-7.94 5.84h7.94v4.26zM17.9 32l8 7.97v-5.8l7.94-5.88H25.9v-4.26z"
-          clipRule="evenodd"
-        />
-      </g>
+      <path
+        fill="#fff"
+        d="M25.95 23.95 17.9 32l8.05 8.05v-6.04l8.06-6.04h-8.06zM46.1 32l-8.05-8.05v6.04l-8.06 6.04h8.06v4.02z"
+      />
     </>
   ),
   {},
@@ -87,46 +67,24 @@ export const ZkSyncSquare = /* @__PURE__ */ createIcon(
 export const ZkSyncSquareMono = /* @__PURE__ */ createIcon(
   'ZkSyncSquareMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <>
-      <rect width="64" height="64" mask={`url(#${_id}-zkss-a)`} rx="12.8" />
-      <defs>
-        <mask id={`${_id}-zkss-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
-          <g fill="#000">
-            <path
-              fillRule="evenodd"
-              d="m46.09 32-8-7.95v5.82l-7.94 5.84h7.94v4.26zM17.9 32l8 7.97v-5.8l7.94-5.88H25.9v-4.26z"
-              clipRule="evenodd"
-            />
-          </g>
-        </mask>
-      </defs>
-    </>
+  () => (
+    <path
+      fillRule="evenodd"
+      d="M12.8 0h38.4A12.8 12.8 0 0 1 64 12.8v38.4A12.8 12.8 0 0 1 51.2 64H12.8A12.8 12.8 0 0 1 0 51.2V12.8A12.8 12.8 0 0 1 12.8 0m13.15 23.95L17.9 32l8.05 8.05v-6.04l8.06-6.04h-8.06zM46.1 32l-8.05-8.05v6.04l-8.06 6.04h8.06v4.02z"
+    />
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );
 
 /** Zk Sync Circle chain icon (monochrome). */
 export const ZkSyncCircleMono = /* @__PURE__ */ createIcon(
   'ZkSyncCircleMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <>
-      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-zksc-a)`} />
-      <defs>
-        <mask id={`${_id}-zksc-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
-          <g fill="#000">
-            <path
-              fillRule="evenodd"
-              d="m46.09 32-8-7.95v5.82l-7.94 5.84h7.94v4.26zM17.9 32l8 7.97v-5.8l7.94-5.88H25.9v-4.26z"
-              clipRule="evenodd"
-            />
-          </g>
-        </mask>
-      </defs>
-    </>
+  () => (
+    <path
+      fillRule="evenodd"
+      d="M32 0a32 32 0 1 1 0 64 32 32 0 0 1 0-64m-6.05 23.95L17.9 32l8.05 8.05v-6.04l8.06-6.04h-8.06zM46.1 32l-8.05-8.05v6.04l-8.06 6.04h8.06v4.02z"
+    />
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );

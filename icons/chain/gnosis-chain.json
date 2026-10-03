@@ -1,13 +1,16 @@
 {
   "name": "GnosisChain",
   "source": [
-    "https://gnosis.io"
+    "https://github.com/gnosischain/media-kit/blob/main/Logos/Owl_Logo%20-%20Mark.svg"
+  ],
+  "notes": [
+    "Default: the official owl mark from gnosischain/media-kit (Logos/Owl_Logo - Mark.svg, #0D0D0D), without the file's no-op clip group; the kit's Gnosis Chain lockups are wordmark-only, so this is the only official mark. It replaces a #3E6957 owl whose colour is not in the kit (palette: Moss #133629, Cream #F0EBDE)",
+    "Mono: the same four owl paths in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "gnosis-chain.svg",
-      "fill": "#3E6957"
+      "file": "gnosis-chain.svg"
     },
     "Mono": {
       "file": "gnosis-chain.mono.svg",

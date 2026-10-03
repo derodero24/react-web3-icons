@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://layerzero.network (official site header logo)
 // Paths sourced from layerzero.network header logo (the "L0" glyph)
 /** Layer Zero bridge icon (colored). */
 export const LayerZero = /* @__PURE__ */ createIcon(

@@ -1,10 +1,13 @@
 {
   "name": "Polygon",
   "source": [
-    "https://polygon.technology"
+    "https://polygon.technology/brand-guidelines (official brand guidelines; logo files in the linked Google Drive \"Polygon Logo Repository\")",
+    "https://drive.google.com/drive/folders/1DE7ujCZf6g5INteEpTmvHSfqoZ8VYlJH (Polygon Logo Repository: Icon/SVG/polygon-icon-primary-purple.svg, Round/SVG/polygon-round-primary-dark.svg, Rounded Square/SVG/polygon-rounded sq-primary-dark.svg)"
   ],
   "notes": [
-    "Square variant: original viewBox 14.85 41.75 470.3 416.51 → scale 0.09783, translate(7.55, 7.54)"
+    "Default: the official icon polygon-icon-primary-purple.svg (solid #670DE5; the guidelines forbid gradients), replacing the older rounded-corner gradient mark",
+    "Circle: the official polygon-round-primary-dark.svg (#670DE5 disc, white icon); Square: the official polygon-rounded sq-primary-dark.svg (#670DE5 tile with rx 20/320, white icon)",
+    "Mono: the icon path in currentColor; CircleMono and SquareMono: the official disc / rounded square in currentColor with the same icon path knocked out (fill-rule=evenodd), like the kit's monochrome round and rounded-square files"
   ],
   "kind": "icon",
   "variants": {

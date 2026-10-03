@@ -1,18 +1,16 @@
 import { createIcon } from '../utils';
 
-// Source: https://hedera.com
+// Source: https://hedera.com/wp-content/uploads/2026/05/hedera-logo-library-26.zip (official logo library from https://brand.hedera.com: Logomark/Hedera-Icon-Dark.svg)
+// Default: the official Hedera icon Hedera-Icon-Dark.svg (black disc with the H cut out; the 2026 H has two crossbars), replacing the older single-crossbar H; the H stays a cut-out as in the official file
+// Mono: the same disc and H in currentColor (Hedera-Icon-White.svg is this geometry in white)
 /** Hedera chain icon (colored). */
 export const Hedera = /* @__PURE__ */ createIcon(
   'Hedera',
   '0 0 64 64',
   () => (
     <>
-      <path d="M32.01.02a31.98 31.98 0 1 0 0 63.96 31.98 31.98 0 0 0 0-63.96" />
-      <path
-        fill="#fff"
-        d="M45.01 45.83h-4.06V37.2H23.07v8.63h-4.06v-28h4.06v8.43h17.88v-8.43H45z"
-      />
-      <path fill="#fff" d="M23.27 33.97h17.87V29.5H23.27z" />
+      <path d="M23 29.7h18v4.6H23Z" />
+      <path d="M32 0C14.33 0 0 14.33 0 32s14.33 32 32 32 32-14.33 32-32S49.67 0 32 0m13.22 46.37h-4.21v-9H23v9h-4.22V17.63H23v9h18v-9h4.22z" />
     </>
   ),
   {},
@@ -22,20 +20,11 @@ export const Hedera = /* @__PURE__ */ createIcon(
 export const HederaMono = /* @__PURE__ */ createIcon(
   'HederaMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <g transform="translate(-10.63 -10.64)scale(3.55337)">
-      <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18" mask={`url(#${_id}-a)`} />
-      <defs>
-        <mask id={`${_id}-a`}>
-          <rect width="24" height="24" fill="#fff" />
-          <path
-            fill="#000"
-            d="M15.66 15.9h-1.14v-2.44H9.49v2.43H8.33V8.01H9.5v2.38h5.03V8h1.14z"
-          />
-          <path fill="#000" d="M9.54 12.55h5.03V11.3H9.54z" />
-        </mask>
-      </defs>
-    </g>
+  () => (
+    <>
+      <path d="M23 29.7h18v4.6H23Z" />
+      <path d="M32 0C14.33 0 0 14.33 0 32s14.33 32 32 32 32-14.33 32-32S49.67 0 32 0m13.22 46.37h-4.21v-9H23v9h-4.22V17.63H23v9h18v-9h4.22z" />
+    </>
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );
