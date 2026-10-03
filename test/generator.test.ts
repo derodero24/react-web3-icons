@@ -1114,7 +1114,27 @@ describe('published artifacts', () => {
       width: 24,
       height: 48,
     });
-    expect(buildIconifySets().colored.info).not.toHaveProperty('height');
+    // The real sets: test/iconify.test.ts.
+  });
+
+  it('Iconify colored bodies state the black that unset fills render', () => {
+    const sets = buildIconifySets(
+      join(
+        fixture({
+          'icons/chain/a.json': iconUnit('Alpha', ['', 'a.svg']),
+          'icons/chain/a.svg': SQUARE,
+          'icons/chain/b.json': iconUnit('Beta', ['', 'b.svg']),
+          'icons/chain/b.svg': `<svg ${XMLNS} viewBox="0 0 24 24"><path fill="#f00" d="M0 0"/></svg>`,
+        }),
+        'icons',
+      ),
+    );
+    expect(sets.colored.icons['chain-alpha']?.body).toBe(
+      '<g fill="#000"><path d="M0 0h24v24H0z"/></g>',
+    );
+    expect(sets.colored.icons['chain-beta']?.body).toBe(
+      '<path fill="#f00" d="M0 0"/>',
+    );
   });
 });
 

@@ -11,10 +11,11 @@
  * collide on a page.
  */
 
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { namespaceIds } from './ids.ts';
+import { INITIAL_FILL, inheritsFill } from './isolate.ts';
 import {
   CATEGORIES,
   kebab,
@@ -45,18 +46,30 @@ export interface IconifyAlias {
 
 export interface IconifySet {
   readonly prefix: string;
+  /**
+   * IconifyJSON `info` (`IconifyInfo` in `@iconify/types`). `tags` is left
+   * out: Iconify uses it for a fixed vocabulary of grid traits ("Has
+   * Padding", "Precise Shapes", …) that brand artwork in native viewBoxes
+   * does not have. The format has no field for a trademark notice; see
+   * docs/iconify.md.
+   */
   readonly info: {
     readonly name: string;
     readonly total: number;
+    /** The npm package version the collection ships in. */
+    readonly version: string;
     readonly author: { readonly name: string; readonly url: string };
     readonly license: {
       readonly title: string;
       readonly spdx: string;
       readonly url: string;
     };
+    /** Icons shown for the set in Iconify's collection list. */
     readonly samples: readonly string[];
     /** Height shared by every icon; omitted when heights differ. */
     readonly height?: number;
+    /** Section of Iconify's collection list; brand sets are under "Logos". */
+    readonly category: string;
     readonly palette: boolean;
   };
   readonly icons: Readonly<Record<string, IconifyIcon>>;
@@ -86,7 +99,16 @@ function toIconifyIcon(
   // root <svg> (brand colour, currentColor, or none for stroke-only art) and
   // let the shapes inherit it. Re-establish that inheritance with a group.
   // Mono icons without an explicit root fill still default to currentColor.
-  const rootFill = getAttr(root, 'fill') ?? (mono ? 'currentColor' : undefined);
+  // Colored shapes that inherit no fill at all render with SVG's initial
+  // black; Iconify's tooling reports such unset colours in a palette set
+  // (and its palette detection gives up on the set), so state it explicitly.
+  const rootFill =
+    getAttr(root, 'fill') ??
+    (mono
+      ? 'currentColor'
+      : root.children.some(inheritsFill)
+        ? INITIAL_FILL
+        : undefined);
   if (rootFill !== undefined) {
     body = `<g fill="${encodeAttr(rootFill)}">${body}</g>`;
   }
@@ -117,6 +139,24 @@ function commonHeight(icons: Readonly<Record<string, IconifyIcon>>): {
   return heights.size === 1 && height !== undefined ? { height } : {};
 }
 
+/** Version of the package the collections are published in. */
+function packageVersion(): string {
+  const { version } = JSON.parse(
+    readFileSync(join(ROOT, 'package.json'), 'utf-8'),
+  ) as { readonly version: string };
+  return version;
+}
+
+/** Sample brands, as default-variant export names in kebab case. */
+const SAMPLES = [
+  'chain-ethereum',
+  'chain-bitcoin',
+  'chain-solana',
+  'wallet-meta-mask',
+  'dex-uniswap',
+  'exchange-binance',
+] as const;
+
 function iconifySet(
   { icons, aliases }: Collection,
   prefix: string,
@@ -128,7 +168,9 @@ function iconifySet(
     prefix,
     info: {
       name,
-      total: Object.keys(icons).length,
+      // As Iconify counts: hidden (deprecated) icons and aliases excluded.
+      total: Object.values(icons).filter(icon => !icon.hidden).length,
+      version: packageVersion(),
       author: {
         name: 'derodero24',
         url: 'https://github.com/derodero24/react-web3-icons',
@@ -140,6 +182,7 @@ function iconifySet(
       },
       samples,
       ...commonHeight(icons),
+      category: 'Logos',
       palette,
     },
     icons,
@@ -216,18 +259,12 @@ export function buildIconifySets(iconsDir: string = ICONS): IconifySets {
   }
 
   return {
-    colored: iconifySet(
-      colored,
-      'web3',
-      'React Web3 Icons',
-      ['chain-ethereum', 'coin-bitcoin', 'wallet-meta-mask'],
-      true,
-    ),
+    colored: iconifySet(colored, 'web3', 'React Web3 Icons', SAMPLES, true),
     mono: iconifySet(
       mono,
       'web3-mono',
       'React Web3 Icons Mono',
-      ['chain-ethereum-mono', 'coin-bitcoin-mono', 'wallet-meta-mask-mono'],
+      SAMPLES.map(sample => `${sample}-mono`),
       false,
     ),
   };
@@ -247,6 +284,6 @@ if (
     `${JSON.stringify(sets.mono)}\n`,
   );
   console.log(
-    `dist/iconify.json (${sets.colored.info.total} icons, ${Object.keys(sets.colored.aliases).length} aliases) and dist/iconify-mono.json (${sets.mono.info.total} icons, ${Object.keys(sets.mono.aliases).length} aliases) written.`,
+    `dist/iconify.json (${sets.colored.info.total} visible icons, ${Object.keys(sets.colored.aliases).length} aliases) and dist/iconify-mono.json (${sets.mono.info.total} visible icons, ${Object.keys(sets.mono.aliases).length} aliases) written.`,
   );
 }

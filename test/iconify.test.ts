@@ -1,6 +1,18 @@
 import { join } from 'node:path';
-import { quicklyValidateIconSet } from '@iconify/utils';
-import { describe, expect, it } from 'vitest';
+import {
+  analyseSVGStructure,
+  checkBadTags,
+  cleanupSVG,
+  detectIconSetPalette,
+  IconSet,
+  validateColors,
+} from '@iconify/tools';
+import {
+  convertIconSetInfo,
+  quicklyValidateIconSet,
+  validateIconSet,
+} from '@iconify/utils';
+import { describe, expect, it, vi } from 'vitest';
 import { buildIconifySets } from '../scripts/build-icons/emit-iconify.ts';
 import { CATEGORIES, kebab, loadCategory } from '../scripts/build-icons/lib.ts';
 import { ICON_MANIFEST } from '../src/manifest';
@@ -36,12 +48,100 @@ function sourceRootFills(): {
   );
 }
 
-describe('IconifyJSON collections', () => {
-  it('both sets pass Iconify validation', () => {
-    expect(quicklyValidateIconSet(sets.colored)).not.toBeNull();
-    expect(quicklyValidateIconSet(sets.mono)).not.toBeNull();
+/**
+ * Icons whose body Iconify's cleanupSVG() may change. Iconify supports no
+ * `mix-blend-mode`, so its tooling drops the blends from these official
+ * artworks (see docs/iconify.md); nothing else may change.
+ */
+const BLEND_MODE_ICONS: ReadonlySet<string> = new Set([
+  'chain-astar',
+  'domain-ens',
+]);
+const BLEND_MODE_STYLE = / style="mix-blend-mode:[a-z-]+"/g;
+
+const COLLECTIONS = [
+  ['web3', sets.colored],
+  ['web3-mono', sets.mono],
+] as const;
+
+describe.each(COLLECTIONS)('%s: Iconify tooling', (prefix, set) => {
+  // Parsed back from JSON, as Iconify reads dist/iconify*.json.
+  const json = validateIconSet(JSON.parse(JSON.stringify(set)));
+  const iconSet = new IconSet(json);
+  const iconNames = Object.keys(set.icons);
+
+  it('passes @iconify/utils validation', () => {
+    expect(json.prefix).toBe(prefix);
+    expect(quicklyValidateIconSet(set)).not.toBeNull();
+    // Without `fix`, validateIconSet throws on anything it would repair.
+    expect(json).toEqual(set);
   });
 
+  it('declares info that Iconify parses without loss', () => {
+    expect(convertIconSetInfo(set.info)).toEqual(set.info);
+    expect(set.info).toMatchObject({
+      // IconSet.count(): what Iconify's export writes as info.total.
+      total: iconSet.count(),
+      category: 'Logos',
+      license: { spdx: 'MIT' },
+    });
+  });
+
+  it('sets info.height exactly when every icon shares a height', () => {
+    const heights = new Set(Object.values(set.icons).map(i => i.height));
+    if (heights.size === 1) {
+      expect(set.info.height).toBe([...heights][0]);
+    } else {
+      expect(set.info).not.toHaveProperty('height');
+    }
+  });
+
+  it('samples visible icons, not aliases', () => {
+    expect(set.info.samples.length).toBeGreaterThan(0);
+    for (const sample of set.info.samples) {
+      expect(set.icons[sample], sample).toBeDefined();
+      expect(set.icons[sample]?.hidden, sample).toBeUndefined();
+    }
+  });
+
+  it('declares the palette that Iconify detects', () => {
+    expect(detectIconSetPalette(iconSet)).toBe(set.info.palette);
+  });
+
+  it('every body survives @iconify/tools cleanup and validation', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    try {
+      for (const name of iconNames) {
+        const svg = iconSet.toSVG(name);
+        if (svg === null) {
+          expect.fail(`${name}: IconSet.toSVG() returned null`);
+        }
+        const body = svg.getBody();
+        // Throws on unknown or unsafe elements (script, foreignObject, …).
+        expect(() => checkBadTags(svg), name).not.toThrow();
+        cleanupSVG(svg);
+        expect(svg.getBody(), name).toBe(
+          BLEND_MODE_ICONS.has(name)
+            ? body.replaceAll(BLEND_MODE_STYLE, '')
+            : body,
+        );
+        // Throws on broken references (url(#…), href) and id clashes.
+        expect(() => analyseSVGStructure(svg), name).not.toThrow();
+        // Mono: currentColor only; colored: no currentColor; both: no
+        // colour Iconify cannot parse.
+        const { hasUnsetColor } = validateColors(svg, !set.info.palette);
+        expect(hasUnsetColor, name).toBe(false);
+      }
+      for (const [message] of warn.mock.calls) {
+        expect(message).toMatch(/: mix-blend-mode$/);
+      }
+    } finally {
+      warn.mockRestore();
+    }
+  });
+});
+
+describe('IconifyJSON collections', () => {
   it('covers every icon export as an icon or alias', () => {
     const covered =
       Object.keys(sets.colored.icons).length +
