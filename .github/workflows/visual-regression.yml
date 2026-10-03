@@ -6,6 +6,7 @@ on:
     paths:
       - 'src/**'
       - 'test/visual/**'
+      - 'scripts/build-icons/mono-audit.ts'
       - 'vitest.config.visual.ts'
       - 'package.json'
       - 'pnpm-lock.yaml'
@@ -14,6 +15,7 @@ on:
     paths:
       - 'src/**'
       - 'test/visual/**'
+      - 'scripts/build-icons/mono-audit.ts'
       - 'vitest.config.visual.ts'
       - 'package.json'
       - 'pnpm-lock.yaml'
