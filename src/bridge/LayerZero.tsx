@@ -1,7 +1,9 @@
 import { createIcon } from '../utils';
 
 // Source: https://layerzero.network (official site header logo)
+// Source: https://publicdocs.notion.site (LayerZero Media Kit, Feb 2022: LayerZero_emblem.svg, LayerZero_logo.svg)
 // Paths sourced from layerzero.network header logo (the "L0" glyph)
+// The Media Kit's LayerZero_emblem.svg (Feb 2022) is an older one-piece emblem; the current site header draws the newer two-piece glyph used here, so ours is kept (checked 2026-10-03)
 /** Layer Zero bridge icon (colored). */
 export const LayerZero = /* @__PURE__ */ createIcon(
   'LayerZero',

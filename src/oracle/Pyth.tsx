@@ -1,8 +1,9 @@
 import { createIcon } from '../utils';
 
 // Source: https://legacy.pyth.network/brand (official brand assets: pyth-logomark.zip, Pyth Logomark/SVG/Pyth Logomark_Dark.svg, #110F23 Dark Purple)
+// Source: https://legacy.pyth.network/brand-assets/pyth-logomark.zip (official logomark zip)
 // Source: https://legacy.pyth.network/_next/static/media/logomark.bd2e4fac.svg
-// Default: the paths of the official Pyth Logomark_Dark.svg (#110F23) from the logomark zip linked on legacy.pyth.network/brand (the zip link at pyth.network/brand-assets returned 404 on 2026-10-03; the file was taken from a copy downloaded from it earlier that day). legacy.pyth.network's live logomark.bd2e4fac.svg has the same geometry in #E6DAFE. It replaces paths taken from @web3icons/react. The coin subpath re-exports this artwork.
+// Default: the paths of the official Pyth Logomark_Dark.svg (#110F23) from the logomark zip linked on legacy.pyth.network/brand (the zip is reachable at legacy.pyth.network/brand-assets/pyth-logomark.zip; the pyth.network/brand-assets link returned 404 on 2026-10-03). legacy.pyth.network's live logomark.bd2e4fac.svg has the same geometry in #E6DAFE. It replaces paths taken from @web3icons/react. The coin subpath re-exports this artwork.
 // brandColor: the logomark is near-black Dark Purple, so the manifest uses the palette's accent PURPLE #7142CF (legacy.pyth.network/brand).
 // Mono: the same two paths in currentColor
 /** Pyth oracle icon (colored). */
