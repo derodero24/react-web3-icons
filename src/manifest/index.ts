@@ -536,7 +536,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     slug: 'solana',
     variants: ['', 'Circle', 'Square', 'SquareMono', 'CircleMono', 'Mono'],
-    brandColor: '#00ffa3',
+    brandColor: '#9945ff',
   },
   { name: 'SolanaCircle', category: 'chain' },
   { name: 'SolanaCircleMono', category: 'chain' },
