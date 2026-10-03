@@ -1,10 +1,11 @@
 {
   "name": "Optimism",
   "source": [
-    "https://optimism.io"
+    "https://optimism.io",
+    "https://cdn.sanity.io/images/y6ka751a/production/0619395edc911805bcea3268156418134c1c5b32-2500x1875.svg"
   ],
   "notes": [
-    "Circle variant: 28×28 content scaled to ~46px centered in 64×64"
+    "Circle/Square: the OP Mainnet glyph (same geometry as the official symbol linked from https://optimism.io/brand) at about 63% of the container height, filled with fill-rule=\"evenodd\" so the centre sparkle is cut out, as in the official symbol"
   ],
   "kind": "icon",
   "variants": {
