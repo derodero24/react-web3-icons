@@ -5,35 +5,64 @@
  *
  * Usage:
  *   size-limit --json > pr.json
- *   node scripts/size-report.mjs pr.json [base.json] > report.md
+ *   node scripts/size-report.ts pr.json [base.json] > report.md
  *
  * Exits 1 if any entry exceeds its limit, so CI fails with the report
  * still written to stdout.
  */
 
 import { readFileSync } from 'node:fs';
+import { isArray } from './guards.ts';
 
 const [prPath, basePath] = process.argv.slice(2);
 if (!prPath) {
-  console.error('Usage: node scripts/size-report.mjs <pr.json> [base.json]');
+  console.error('Usage: node scripts/size-report.ts <pr.json> [base.json]');
   process.exit(2);
 }
 
-/** @typedef {{ name: string, passed: boolean, size: number, sizeLimit?: number }} Entry */
-
-/** @returns {Entry[]} */
-function load(path) {
-  return JSON.parse(readFileSync(path, 'utf-8'));
+/** One `size-limit --json` result (fields this report reads). */
+interface Entry {
+  readonly name: string;
+  readonly passed: boolean;
+  readonly size: number;
+  readonly sizeLimit?: number;
 }
 
-function formatBytes(bytes) {
+function isEntry(value: unknown): value is Entry {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'name' in value &&
+    typeof value.name === 'string' &&
+    'passed' in value &&
+    typeof value.passed === 'boolean' &&
+    'size' in value &&
+    typeof value.size === 'number' &&
+    (!('sizeLimit' in value) || typeof value.sizeLimit === 'number')
+  );
+}
+
+function load(path: string): Entry[] {
+  const data: unknown = JSON.parse(readFileSync(path, 'utf-8'));
+  if (!isArray(data)) {
+    throw new Error(`${path}: expected a size-limit --json array`);
+  }
+  return data.map((entry, i) => {
+    if (!isEntry(entry)) {
+      throw new Error(`${path}: entry ${i} is not a size-limit result`);
+    }
+    return entry;
+  });
+}
+
+function formatBytes(bytes: number): string {
   if (bytes >= 1024) {
     return `${(bytes / 1024).toFixed(2)} KB`;
   }
   return `${bytes} B`;
 }
 
-function formatDelta(delta) {
+function formatDelta(delta: number): string {
   if (delta === 0) {
     return '=';
   }
@@ -42,7 +71,9 @@ function formatDelta(delta) {
 }
 
 const pr = load(prPath);
-const base = basePath ? new Map(load(basePath).map(e => [e.name, e])) : null;
+const base = basePath
+  ? new Map(load(basePath).map(e => [e.name, e]))
+  : undefined;
 
 const rows = pr.map(entry => {
   const limit = entry.sizeLimit ? formatBytes(entry.sizeLimit) : '—';

@@ -51,9 +51,9 @@ jobs:
       - name: Render size report (fails when limits are exceeded)
         run: |
           if [ -f /tmp/size-base.json ]; then
-            node scripts/size-report.mjs /tmp/size-pr.json /tmp/size-base.json > /tmp/size-report.md
+            node scripts/size-report.ts /tmp/size-pr.json /tmp/size-base.json > /tmp/size-report.md
           else
-            node scripts/size-report.mjs /tmp/size-pr.json > /tmp/size-report.md
+            node scripts/size-report.ts /tmp/size-pr.json > /tmp/size-report.md
           fi
 
       - name: Comment size report on PR

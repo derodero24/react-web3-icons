@@ -3,63 +3,95 @@
  * Generates the icon manifest.
  *
  * Default mode — regenerate the committed source module from built dist:
- *   pnpm run build && node scripts/generate-manifest.mjs
+ *   pnpm run build && node scripts/generate-manifest.ts
  *   → writes src/manifest/index.ts (commit the result)
  *
  * JSON mode — emit the machine-readable manifest into dist (used by `build`):
- *   node scripts/generate-manifest.mjs --json
+ *   node scripts/generate-manifest.ts --json
  *   → writes dist/manifest.json from the built dist/manifest module
  *
  * test/manifest-sync.test.ts guards that the committed module stays in sync
  * with the actual category exports.
  */
 
-import * as fsSync from 'node:fs';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import {
+  CATEGORIES,
+  type Category,
+  loadCategory,
+  type SourceUnit,
+} from './build-icons/lib.ts';
+import { type ArtworkUnitMeta, isArtwork } from './build-icons/unit.ts';
+import { isArray, isRecord, isSet } from './guards.ts';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const DIST = resolve(ROOT, 'dist');
 const ICONS = resolve(ROOT, 'icons');
 
-const CATEGORIES = [
-  'bridge',
-  'chain',
-  'coin',
-  'defi',
-  'devtool',
-  'dex',
-  'domain',
-  'exchange',
-  'explorer',
-  'marketplace',
-  'node',
-  'oracle',
-  'portfolio',
-  'storage',
-  'tracker',
-  'wallet',
-];
-
 const FORWARD_REF = Symbol.for('react.forward_ref');
 
-async function importDist(subpath) {
-  return import(pathToFileURL(resolve(DIST, subpath)).href);
+/** Runtime identifier fields, keyed by export name via the meta maps. */
+const ID_FIELDS = ['chainId', 'slug', 'ticker'] as const;
+type IdField = (typeof ID_FIELDS)[number];
+type IdLookups = Partial<Record<IdField, ReadonlyMap<string, number | string>>>;
+
+type ManifestEntry = {
+  readonly name: string;
+  readonly category: Category;
+  readonly deprecated?: true;
+} & Enrichment &
+  Partial<Record<IdField, number | string>>;
+
+/** Per-unit data from icons/ that the built modules do not carry. */
+interface Enrichment {
+  readonly variants?: readonly string[];
+  readonly aliases?: readonly string[];
+  readonly brandColor?: string;
+}
+
+async function importDist(
+  subpath: string,
+): Promise<Readonly<Record<string, unknown>>> {
+  const mod: unknown = await import(pathToFileURL(resolve(DIST, subpath)).href);
+  if (!isRecord(mod)) {
+    throw new Error(`dist/${subpath} is not an ES module`);
+  }
+  return mod;
+}
+
+function isStringRecord(
+  value: unknown,
+): value is Readonly<Record<string, string>> {
+  return (
+    isRecord(value) && Object.values(value).every(v => typeof v === 'string')
+  );
+}
+
+function isForwardRef(value: unknown): boolean {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    '$$typeof' in value &&
+    value.$$typeof === FORWARD_REF
+  );
 }
 
 /**
  * Dominant brand color of a colored SVG: the most frequent fill/stroke/
  * stop-color hex value, ignoring white and non-color values.
  */
-function extractBrandColor(svgText) {
-  const counts = new Map();
-  for (const match of svgText.matchAll(
+function extractBrandColor(svgText: string): string | undefined {
+  const counts = new Map<string, number>();
+  for (const [, color = ''] of svgText.matchAll(
     /(?:fill|stroke|stop-color)="(#[0-9a-fA-F]{3,8})"/g,
   )) {
-    let hex = match[1].toLowerCase();
+    let hex = color.toLowerCase();
     if (hex.length === 4) {
-      hex = `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
+      const [, r, g, b] = hex;
+      hex = `#${r}${r}${g}${g}${b}${b}`;
     }
     hex = hex.slice(0, 7);
     if (hex === '#ffffff') {
@@ -67,7 +99,7 @@ function extractBrandColor(svgText) {
     }
     counts.set(hex, (counts.get(hex) ?? 0) + 1);
   }
-  let best;
+  let best: string | undefined;
   let bestCount = 0;
   for (const [hex, count] of counts) {
     if (count > bestCount) {
@@ -83,7 +115,9 @@ function extractBrandColor(svgText) {
  * variants, i.e. extra export suffixes of the unit (`TrustWallet` →
  * `TrustWalletSquare` yields `''`).
  */
-function localAliasVariants(meta) {
+function localAliasVariants(
+  meta: ArtworkUnitMeta,
+): { suffix: string; target: string }[] {
   return (meta.localAliases ?? []).flatMap(alias => {
     if (
       alias.deprecated ||
@@ -92,58 +126,56 @@ function localAliasVariants(meta) {
     ) {
       return [];
     }
-    const target = meta.variants[alias.target.slice(meta.name.length)];
-    if (!target) {
+    const target = alias.target.slice(meta.name.length);
+    if (!meta.variants[target]) {
       return [];
     }
     return [{ suffix: alias.name.slice(meta.name.length), target }];
   });
 }
 
+function enrichmentOf({ meta, variants }: SourceUnit): Enrichment {
+  if (!isArtwork(meta)) {
+    return {};
+  }
+  // Units may expose their default export through `localAliases`
+  // (e.g. TrustWallet → TrustWalletSquare) instead of a `""` variant;
+  // those aliases are variants of the unit as far as consumers go.
+  const aliasVariants = localAliasVariants(meta);
+  const svgBySuffix = new Map(variants.map(v => [v.suffix, v.svg]));
+  const defaultSuffix = svgBySuffix.has('')
+    ? ''
+    : aliasVariants.find(v => v.suffix === '')?.target;
+  const defaultSvg =
+    defaultSuffix === undefined ? undefined : svgBySuffix.get(defaultSuffix);
+  const brandColor =
+    defaultSvg === undefined ? undefined : extractBrandColor(defaultSvg);
+  return {
+    variants: [
+      ...aliasVariants.map(v => v.suffix),
+      ...variants.map(v => v.suffix),
+    ],
+    ...(meta.aliases?.length ? { aliases: meta.aliases } : {}),
+    ...(brandColor ? { brandColor } : {}),
+  };
+}
+
 /** Loads per-unit enrichment (aliases, variants, brandColor) from icons/. */
-function loadUnitEnrichment() {
-  const { readdirSync } = fsSync;
-  const byKey = new Map(); // `${category}/${BaseName}` → { aliases, variants, brandColor }
+function loadUnitEnrichment(): Map<string, Enrichment> {
+  const byKey = new Map<string, Enrichment>(); // `${category}/${BaseName}` → enrichment
   for (const category of CATEGORIES) {
-    const dir = resolve(ICONS, category);
-    for (const file of readdirSync(dir)) {
-      if (!file.endsWith('.json')) {
-        continue;
-      }
-      const meta = JSON.parse(readFileSync(resolve(dir, file), 'utf-8'));
-      const enrichment = {};
-      if (meta.aliases?.length) {
-        enrichment.aliases = meta.aliases;
-      }
-      if (meta.variants) {
-        // Units may expose their default export through `localAliases`
-        // (e.g. TrustWallet → TrustWalletSquare) instead of a `""` variant;
-        // those aliases are variants of the unit as far as consumers go.
-        const aliasVariants = localAliasVariants(meta);
-        enrichment.variants = [
-          ...aliasVariants.map(v => v.suffix),
-          ...Object.keys(meta.variants),
-        ];
-        const defaultVariant =
-          meta.variants[''] ??
-          aliasVariants.find(v => v.suffix === '')?.target;
-        if (defaultVariant) {
-          const svg = readFileSync(resolve(dir, defaultVariant.file), 'utf-8');
-          const brandColor = extractBrandColor(svg);
-          if (brandColor) {
-            enrichment.brandColor = brandColor;
-          }
-        }
-      }
-      byKey.set(`${category}/${meta.name}`, enrichment);
+    for (const unit of loadCategory(ICONS, category)) {
+      byKey.set(`${category}/${unit.meta.name}`, enrichmentOf(unit));
     }
   }
   return byKey;
 }
 
 /** Builds `name → identifier` reverse lookups from the meta maps. */
-function invert(map) {
-  const out = new Map();
+function invert(
+  map: Readonly<Record<string, string>>,
+): Map<string, number | string> {
+  const out = new Map<string, number | string>();
   for (const [key, name] of Object.entries(map)) {
     if (!out.has(name)) {
       out.set(name, /^\d+$/.test(key) ? Number(key) : key);
@@ -152,58 +184,64 @@ function invert(map) {
   return out;
 }
 
-async function buildEntries() {
+/** The identifier fields registered for `name` in its category's maps. */
+function idsOf(
+  lookups: IdLookups | undefined,
+  name: string,
+): Partial<Record<IdField, number | string>> {
+  const ids: { [F in IdField]?: number | string } = {};
+  for (const field of ID_FIELDS) {
+    const id = lookups?.[field]?.get(name);
+    if (id !== undefined) {
+      ids[field] = id;
+    }
+  }
+  return ids;
+}
+
+async function buildEntries(): Promise<ManifestEntry[]> {
   const meta = await importDist('meta/index.mjs');
   const { DEPRECATED_ICON_NAMES } = await importDist('deprecated.mjs');
+  if (!isSet(DEPRECATED_ICON_NAMES)) {
+    throw new Error('dist/deprecated.mjs: DEPRECATED_ICON_NAMES is not a Set');
+  }
+  const lookup = (key: string): Map<string, number | string> => {
+    const map = meta[key];
+    if (!isStringRecord(map)) {
+      throw new Error(`dist/meta: ${key} is not a map of icon names`);
+    }
+    return invert(map);
+  };
   const enrichment = loadUnitEnrichment();
 
-  const idLookups = {
+  const idLookups: Partial<Record<Category, IdLookups>> = {
     chain: {
-      chainId: invert(meta.CHAIN_ID_TO_NAME),
-      slug: invert(meta.CHAIN_SLUG_TO_NAME),
+      chainId: lookup('CHAIN_ID_TO_NAME'),
+      slug: lookup('CHAIN_SLUG_TO_NAME'),
     },
-    coin: { ticker: invert(meta.TICKER_TO_COIN) },
-    wallet: { slug: invert(meta.WALLET_SLUG_TO_NAME) },
-    exchange: { slug: invert(meta.EXCHANGE_SLUG_TO_NAME) },
-    defi: { slug: invert(meta.DEFI_SLUG_TO_NAME) },
-    dex: { slug: invert(meta.DEX_SLUG_TO_NAME) },
-    bridge: { slug: invert(meta.BRIDGE_SLUG_TO_NAME) },
-    oracle: { slug: invert(meta.ORACLE_SLUG_TO_NAME) },
+    coin: { ticker: lookup('TICKER_TO_COIN') },
+    wallet: { slug: lookup('WALLET_SLUG_TO_NAME') },
+    exchange: { slug: lookup('EXCHANGE_SLUG_TO_NAME') },
+    defi: { slug: lookup('DEFI_SLUG_TO_NAME') },
+    dex: { slug: lookup('DEX_SLUG_TO_NAME') },
+    bridge: { slug: lookup('BRIDGE_SLUG_TO_NAME') },
+    oracle: { slug: lookup('ORACLE_SLUG_TO_NAME') },
   };
 
-  const entries = [];
+  const entries: ManifestEntry[] = [];
   for (const category of CATEGORIES) {
     const mod = await importDist(`${category}/index.mjs`);
     for (const [name, value] of Object.entries(mod)) {
-      if (value?.$$typeof !== FORWARD_REF) {
+      if (!isForwardRef(value)) {
         continue;
       }
-      const entry = { name, category };
-      const lookups = idLookups[category];
-      if (lookups) {
-        for (const [field, byName] of Object.entries(lookups)) {
-          const id = byName.get(name);
-          if (id !== undefined) {
-            entry[field] = id;
-          }
-        }
-      }
-      if (DEPRECATED_ICON_NAMES.has(name)) {
-        entry.deprecated = true;
-      }
-      const extra = enrichment.get(`${category}/${name}`);
-      if (extra) {
-        if (extra.variants) {
-          entry.variants = extra.variants;
-        }
-        if (extra.aliases) {
-          entry.aliases = extra.aliases;
-        }
-        if (extra.brandColor) {
-          entry.brandColor = extra.brandColor;
-        }
-      }
-      entries.push(entry);
+      entries.push({
+        name,
+        category,
+        ...idsOf(idLookups[category], name),
+        ...(DEPRECATED_ICON_NAMES.has(name) ? { deprecated: true } : {}),
+        ...enrichment.get(`${category}/${name}`),
+      });
     }
   }
   entries.sort(
@@ -213,7 +251,7 @@ async function buildEntries() {
   return entries;
 }
 
-function renderModule(entries) {
+function renderModule(entries: readonly ManifestEntry[]): string {
   const rows = entries
     .map(e => {
       const fields = [`name: '${e.name}'`, `category: '${e.category}'`];
@@ -288,6 +326,9 @@ ${rows}
 
 if (process.argv.includes('--json')) {
   const { ICON_MANIFEST } = await importDist('manifest/index.mjs');
+  if (!isArray(ICON_MANIFEST)) {
+    throw new Error('dist/manifest: ICON_MANIFEST is not an array');
+  }
   writeFileSync(
     resolve(DIST, 'manifest.json'),
     `${JSON.stringify(ICON_MANIFEST, null, 2)}\n`,
@@ -299,7 +340,6 @@ if (process.argv.includes('--json')) {
   writeFileSync(outPath, renderModule(entries));
   // Biome owns final formatting/style (e.g. numeric separators), keeping
   // regeneration byte-stable against the committed file.
-  const { execFileSync } = await import('node:child_process');
   execFileSync('pnpm', ['exec', 'biome', 'check', '--write', outPath], {
     cwd: ROOT,
     stdio: 'inherit',

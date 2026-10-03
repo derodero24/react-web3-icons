@@ -16,13 +16,18 @@
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { CATEGORIES } from './build-icons/lib.ts';
-import { parseSvg, serializeSvg } from './build-icons/xml.ts';
+import { ROOT_ATTRS } from './build-icons/jsx.ts';
+import { CATEGORIES, isCategory } from './build-icons/lib.ts';
+import type { IconUnitMeta, Variant } from './build-icons/unit.ts';
+import { parseSvg, serializeSvg, type XmlAttr } from './build-icons/xml.ts';
 
 const ROOT = resolve(import.meta.dirname, '..');
 
+const USAGE =
+  'Usage: pnpm run new-icon --category <category> --name <PascalName> --svg <file> [--mono <file>] [--source <url>]';
+
 const args = process.argv.slice(2);
-function opt(name) {
+function opt(name: string): string | undefined {
   const idx = args.indexOf(`--${name}`);
   return idx === -1 ? undefined : args[idx + 1];
 }
@@ -33,14 +38,14 @@ const svgPath = opt('svg');
 const monoPath = opt('mono');
 const source = opt('source');
 
-if (!category || !name || !svgPath) {
-  console.error(
-    'Usage: pnpm run new-icon --category <category> --name <PascalName> --svg <file> [--mono <file>] [--source <url>]',
-  );
+if (!(category && name && svgPath)) {
+  console.error(USAGE);
   process.exit(2);
 }
-if (!CATEGORIES.includes(category)) {
-  console.error(`Unknown category '${category}'. One of: ${CATEGORIES.join(', ')}`);
+if (!isCategory(category)) {
+  console.error(
+    `Unknown category '${category}'. One of: ${CATEGORIES.join(', ')}`,
+  );
   process.exit(2);
 }
 if (!/^[A-Z][A-Za-z0-9]*$/.test(name)) {
@@ -59,14 +64,20 @@ if (existsSync(jsonPath)) {
   process.exit(1);
 }
 
-/** Optimizes with SVGO, then normalizes the root element for the pipeline. */
-function ingest(fromPath, isMono) {
-  execFileSync('pnpm', ['exec', 'svgo', '--config', 'svgo.config.js', fromPath], {
-    cwd: ROOT,
-    stdio: 'inherit',
-  });
+/**
+ * Optimizes `fromPath` with SVGO, normalizes the root element for the
+ * pipeline, and writes the result to `icons/<category>/<file>`.
+ *
+ * @returns the variant metadata for the written file
+ */
+function ingest(fromPath: string, file: string, isMono: boolean): Variant {
+  execFileSync(
+    'pnpm',
+    ['exec', 'svgo', '--config', 'svgo.config.js', fromPath],
+    { cwd: ROOT, stdio: 'inherit' },
+  );
   const root = parseSvg(readFileSync(fromPath, 'utf-8'));
-  const keep = root.attrs.filter(([k]) => ['xmlns', 'viewBox', 'fill'].includes(k));
+  const keep: XmlAttr[] = root.attrs.filter(([k]) => ROOT_ATTRS.includes(k));
   if (!keep.some(([k]) => k === 'xmlns')) {
     keep.unshift(['xmlns', 'http://www.w3.org/2000/svg']);
   }
@@ -76,38 +87,42 @@ function ingest(fromPath, isMono) {
   if (isMono && !keep.some(([k]) => k === 'fill')) {
     keep.push(['fill', 'currentColor']);
   }
-  root.attrs = keep;
-  return { text: `${serializeSvg(root)}\n`, fill: keep.find(([k]) => k === 'fill')?.[1] };
+  writeFileSync(join(dir, file), `${serializeSvg({ ...root, attrs: keep })}\n`);
+  const fill = keep.find(([k]) => k === 'fill')?.[1];
+  return fill ? { file, fill } : { file };
 }
 
-const colored = ingest(resolve(svgPath), false);
-writeFileSync(join(dir, `${slug}.svg`), colored.text);
-
-const meta = { name, kind: 'icon' };
-if (source) {
-  meta.source = [source];
-}
-meta.variants = { '': { file: `${slug}.svg` } };
-if (colored.fill) {
-  meta.variants[''].fill = colored.fill;
-}
-
+// Keyed by export-name suffix ('' → <Name>, 'Mono' → <Name>Mono).
+const variants = new Map<string, Variant>([
+  ['', ingest(resolve(svgPath), `${slug}.svg`, false)],
+]);
 if (monoPath) {
-  const mono = ingest(resolve(monoPath), true);
-  writeFileSync(join(dir, `${slug}.mono.svg`), mono.text);
-  meta.variants.Mono = { file: `${slug}.mono.svg`, fill: mono.fill };
+  variants.set('Mono', ingest(resolve(monoPath), `${slug}.mono.svg`, true));
 }
+const meta: IconUnitMeta = {
+  name,
+  kind: 'icon',
+  ...(source ? { source: [source] } : {}),
+  variants: Object.fromEntries(variants),
+};
 
 writeFileSync(jsonPath, `${JSON.stringify(meta, null, 2)}\n`);
-execFileSync('node', ['scripts/build-icons/cli.ts'], { cwd: ROOT, stdio: 'inherit' });
+execFileSync(process.execPath, ['scripts/build-icons/cli.ts'], {
+  cwd: ROOT,
+  stdio: 'inherit',
+});
 
 console.log(`
 Created icons/${category}/${slug}.{svg,json} and generated src/${category}/${name}.tsx.
 
 Next steps:
-  1.${monoPath ? '' : ` Add a Mono variant (icons/${category}/${slug}.mono.svg + "Mono" entry in the JSON),
+  1.${
+    monoPath
+      ? ''
+      : ` Add a Mono variant (icons/${category}/${slug}.mono.svg + "Mono" entry in the JSON),
      then re-run: pnpm run generate-icons — mono coverage is enforced by tests.
-  2.`} Register identifiers in src/meta/index.ts (slug/ticker/chain ID map for '${category}').
+  2.`
+  } Register identifiers in src/meta/index.ts (slug/ticker/chain ID map for '${category}').
   ${monoPath ? '2.' : '3.'} Regenerate the manifest: pnpm run build && pnpm run generate-manifest
   ${monoPath ? '3.' : '4.'} Verify: pnpm test && pnpm run check
   ${monoPath ? '4.' : '5.'} Add a changeset: pnpm changeset

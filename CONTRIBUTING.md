@@ -19,7 +19,8 @@ pnpm install
 - **pnpm** 10.x
 
 Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/activates the required Node version if missing).
-`pnpm install` fails fast on unsupported Node versions because `engine-strict=true` is enforced.
+`pnpm install` fails fast on unsupported Node versions: `engine-strict=true` enforces the package's `engines`, and the
+`prepare` script stops on a Node without built-in TypeScript type stripping, which the build scripts need.
 
 ### Useful Commands
 
@@ -53,9 +54,15 @@ src/
   wallet/       # Wallet icons (MetaMask, Phantom, etc.)
   utils/        # Shared types (IconProps)
   index.ts      # Public exports (re-exports all categories)
+scripts/        # Icon pipeline and tooling (TypeScript, run directly by Node)
 example/        # Next.js demo app
 test/           # Vitest test suite
 ```
+
+The scripts under `scripts/` are plain TypeScript executed by Node's built-in
+type stripping (`node scripts/<name>.ts`, no build step), so they may only use
+erasable syntax (no `enum`, `namespace`, or parameter properties) and import
+relative modules with an explicit `.ts` extension.
 
 ## Adding a New Icon
 
@@ -195,7 +202,7 @@ that swapping colored → mono changes only the coloring, never the impression:
 4. **Verify both polarities**: check the mono on white *and* on a dark
    background (`color` set to a light value) before submitting.
 
-`node scripts/audit-mono.mjs` rasterizes every colored/mono pair and reports
+`node scripts/audit-mono.ts` rasterizes every colored/mono pair and reports
 outliers — run it after adding or reworking mono artwork. Besides silhouette
 IoU / ink ratio / edge-detail ratio, it binarizes the colored artwork by
 luminance (best-threshold sweep) and reports the pixel disagreement with the
