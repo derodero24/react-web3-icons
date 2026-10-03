@@ -1260,7 +1260,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Privy',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#5b4fff',
+    brandColor: '#010110',
   },
   { name: 'PrivyMono', category: 'devtool' },
   {
