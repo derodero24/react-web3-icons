@@ -16,6 +16,8 @@ exports[`dark/light background legibility (issue #712) > documents how each affe
   "dark: coin/Fet → monochrome FetMono",
   "dark: coin/Hbar → monochrome HbarMono",
   "dark: coin/Looks → exempt (legible-variant)",
+  "dark: coin/Stx → monochrome StxMono",
+  "dark: coin/Tia → monochrome TiaMono",
   "dark: coin/Wld → monochrome WldMono",
   "dark: coin/Xrp → variant XrpCircle",
   "dark: defi/Frax → monochrome FraxMono",
