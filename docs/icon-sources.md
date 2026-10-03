@@ -8,12 +8,10 @@ addition or update must follow these rules; see the
 
 Every new unit records where its artwork came from in the `source` array of
 `icons/<category>/<slug>.json` (pass `--source` to `pnpm run new-icon`, or edit
-the JSON). For generated units the generator emits it as a `// Source:` comment
-right after the imports in the `.tsx`, so `grep -r "// Source:" src/` still
-works for audits — never edit that comment by hand; change the JSON and
-regenerate. For `"kind": "custom"` units, keep the `// Source:` comment in the
-hand-written TSX yourself. A few older units predate the `source` field; add it
-when you touch them.
+the JSON). The generator emits it as a `// Source:` comment right after the
+imports in the `.tsx`, so `grep -r "// Source:" src/` still works for audits —
+never edit that comment by hand; change the JSON and regenerate. A few older
+units predate the `source` field; add it when you touch them.
 
 ```json
 {
