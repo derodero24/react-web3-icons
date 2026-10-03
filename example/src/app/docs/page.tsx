@@ -1,6 +1,18 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import {
+  BRIDGE_SLUG_TO_NAME,
+  CHAIN_ID_TO_NAME,
+  CHAIN_SLUG_TO_NAME,
+  DEFI_SLUG_TO_NAME,
+  DEX_SLUG_TO_NAME,
+  EXCHANGE_SLUG_TO_NAME,
+  ORACLE_SLUG_TO_NAME,
+  TICKER_TO_COIN,
+  WALLET_SLUG_TO_NAME,
+} from 'react-web3-icons/meta';
 import CodeBlock from '../../components/elements/CodeBlock';
+import { ICON_CATEGORIES } from '../../utils/icons';
 
 export const metadata: Metadata = {
   title: 'Docs — React Web3 Icons',
@@ -24,10 +36,145 @@ function Section({
   );
 }
 
+function Code({ children }: { children: ReactNode }) {
+  return (
+    <code className="rounded bg-surface px-1 font-mono text-sm">
+      {children}
+    </code>
+  );
+}
+
+const TH_CLASS =
+  'py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-fg-muted first:pl-3';
+const TD_CLASS = 'py-2 pr-4 align-top text-sm text-fg/60 first:pl-3';
+
+/** Dynamic components and their identifier props (src/dynamic/index.ts). */
+const DYNAMIC_COMPONENTS: readonly {
+  component: string;
+  identifier: string;
+  resolvesWith: string;
+}[] = [
+  {
+    component: 'ChainIcon',
+    identifier: 'chainId?: ChainId | number; name?: ChainSlug | string',
+    resolvesWith: 'CHAIN_ID_TO_NAME, CHAIN_SLUG_TO_NAME',
+  },
+  {
+    component: 'CoinIcon',
+    identifier: 'symbol: Ticker | string',
+    resolvesWith: 'TICKER_TO_COIN',
+  },
+  {
+    component: 'WalletIcon',
+    identifier: 'name: WalletSlug | string',
+    resolvesWith: 'WALLET_SLUG_TO_NAME',
+  },
+  {
+    component: 'ExchangeIcon',
+    identifier: 'name: ExchangeSlug | string',
+    resolvesWith: 'EXCHANGE_SLUG_TO_NAME',
+  },
+  {
+    component: 'DefiIcon',
+    identifier: 'name: DefiSlug | string',
+    resolvesWith: 'DEFI_SLUG_TO_NAME',
+  },
+  {
+    component: 'DexIcon',
+    identifier: 'name: DexSlug | string',
+    resolvesWith: 'DEX_SLUG_TO_NAME',
+  },
+  {
+    component: 'BridgeIcon',
+    identifier: 'name: BridgeSlug | string',
+    resolvesWith: 'BRIDGE_SLUG_TO_NAME',
+  },
+  {
+    component: 'OracleIcon',
+    identifier: 'name: OracleSlug | string',
+    resolvesWith: 'ORACLE_SLUG_TO_NAME',
+  },
+];
+
+/** Lookup maps exported from react-web3-icons/meta; entry counts are live. */
+const META_MAPS: readonly {
+  name: string;
+  keyType: string;
+  key: string;
+  category: string;
+  map: Readonly<Record<string | number, string>>;
+}[] = [
+  {
+    name: 'CHAIN_ID_TO_NAME',
+    keyType: 'ChainId',
+    key: 'EVM chain ID (1, 8453, …)',
+    category: 'chain',
+    map: CHAIN_ID_TO_NAME,
+  },
+  {
+    name: 'CHAIN_SLUG_TO_NAME',
+    keyType: 'ChainSlug',
+    key: "Lowercase slug ('arbitrum')",
+    category: 'chain',
+    map: CHAIN_SLUG_TO_NAME,
+  },
+  {
+    name: 'TICKER_TO_COIN',
+    keyType: 'Ticker',
+    key: "Uppercase ticker ('ETH')",
+    category: 'coin',
+    map: TICKER_TO_COIN,
+  },
+  {
+    name: 'WALLET_SLUG_TO_NAME',
+    keyType: 'WalletSlug',
+    key: "Lowercase slug ('metamask')",
+    category: 'wallet',
+    map: WALLET_SLUG_TO_NAME,
+  },
+  {
+    name: 'EXCHANGE_SLUG_TO_NAME',
+    keyType: 'ExchangeSlug',
+    key: "Lowercase slug ('binance')",
+    category: 'exchange',
+    map: EXCHANGE_SLUG_TO_NAME,
+  },
+  {
+    name: 'DEFI_SLUG_TO_NAME',
+    keyType: 'DefiSlug',
+    key: "Lowercase slug ('etherfi')",
+    category: 'defi',
+    map: DEFI_SLUG_TO_NAME,
+  },
+  {
+    name: 'DEX_SLUG_TO_NAME',
+    keyType: 'DexSlug',
+    key: "Lowercase slug ('uniswap')",
+    category: 'dex',
+    map: DEX_SLUG_TO_NAME,
+  },
+  {
+    name: 'BRIDGE_SLUG_TO_NAME',
+    keyType: 'BridgeSlug',
+    key: "Lowercase slug ('layerzero')",
+    category: 'bridge',
+    map: BRIDGE_SLUG_TO_NAME,
+  },
+  {
+    name: 'ORACLE_SLUG_TO_NAME',
+    keyType: 'OracleSlug',
+    key: "Lowercase slug ('pyth')",
+    category: 'oracle',
+    map: ORACLE_SLUG_TO_NAME,
+  },
+];
+
 const TOC_ITEMS = [
   { id: 'getting-started', label: 'Getting Started' },
   { id: 'icon-props', label: 'Icon Props' },
   { id: 'import-patterns', label: 'Import Patterns' },
+  { id: 'dynamic', label: 'Dynamic Components' },
+  { id: 'meta', label: 'Metadata Maps' },
   { id: 'naming', label: 'Naming' },
   { id: 'deprecation', label: 'Deprecation' },
   { id: 'rsc', label: 'RSC' },
@@ -256,23 +403,144 @@ import { MetaMask } from 'react-web3-icons/wallet';`}</CodeBlock>
                   <p className="mb-1.5 text-sm font-medium text-fg/80">
                     Available subpath categories
                   </p>
-                  <CodeBlock>{`react-web3-icons/bridge
-react-web3-icons/chain
-react-web3-icons/coin
-react-web3-icons/defi
-react-web3-icons/devtool
-react-web3-icons/dex
-react-web3-icons/domain
-react-web3-icons/exchange
-react-web3-icons/explorer
-react-web3-icons/marketplace
-react-web3-icons/node
-react-web3-icons/portfolio
-react-web3-icons/storage
-react-web3-icons/tracker
-react-web3-icons/wallet`}</CodeBlock>
+                  <CodeBlock>
+                    {ICON_CATEGORIES.map(
+                      category => `react-web3-icons/${category}`,
+                    ).join('\n')}
+                  </CodeBlock>
                 </div>
               </div>
+            </Section>
+
+            {/* Dynamic components */}
+            <Section id="dynamic" title="Dynamic Components">
+              <p className="mb-3 text-sm text-fg/60">
+                <Code>react-web3-icons/dynamic</Code> resolves an icon from
+                runtime data (chain ID, slug, ticker) and lazy-loads only that
+                icon&apos;s chunk. These are client components (
+                <Code>&apos;use client&apos;</Code>); each wraps the lazy icon
+                in its own <Code>{'<Suspense>'}</Code>.
+              </p>
+              <CodeBlock>{`import { ChainIcon, CoinIcon } from 'react-web3-icons/dynamic';
+
+<ChainIcon chainId={chain.id} size={24} />
+<CoinIcon symbol={token.symbol} variant="mono" fallback={<Placeholder />} />`}</CodeBlock>
+              <div className="mt-4 overflow-x-auto rounded-lg border border-border">
+                <table className="w-full text-left">
+                  <caption className="sr-only">
+                    Dynamic icon components and their identifier props
+                  </caption>
+                  <thead>
+                    <tr className="border-b border-border bg-surface">
+                      <th className={TH_CLASS}>Component</th>
+                      <th className={TH_CLASS}>Identifier props</th>
+                      <th className={TH_CLASS}>Resolved via</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border">
+                    {DYNAMIC_COMPONENTS.map(row => (
+                      <tr key={row.component}>
+                        <td className={`${TD_CLASS} font-mono text-accent-fg`}>
+                          {row.component}
+                        </td>
+                        <td className={`${TD_CLASS} font-mono`}>
+                          {row.identifier}
+                        </td>
+                        <td className={`${TD_CLASS} font-mono`}>
+                          {row.resolvesWith}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-4 mb-3 text-sm text-fg/60">
+                Every dynamic component also accepts:
+              </p>
+              <ul className="mb-3 flex list-disc flex-col gap-1.5 pl-5 text-sm text-fg/60">
+                <li>
+                  <Code>variant?: &apos;colored&apos; | &apos;mono&apos;</Code>{' '}
+                  — defaults to <Code>&apos;colored&apos;</Code>;{' '}
+                  <Code>&apos;mono&apos;</Code> loads the{' '}
+                  <Code>{'<Name>Mono'}</Code> export.
+                </li>
+                <li>
+                  <Code>fallback?: ReactNode</Code> — rendered while the chunk
+                  loads and when the identifier is not recognized (default:
+                  nothing).
+                </li>
+                <li>
+                  All icon props except <Code>ref</Code> (<Code>size</Code>,{' '}
+                  <Code>className</Code>, <Code>title</Code>, …), forwarded to
+                  the resolved icon.
+                </li>
+              </ul>
+              <p className="text-sm text-fg/60">
+                Identifiers are trimmed and case-insensitive (
+                <Code>symbol=&quot;eth&quot;</Code> ={' '}
+                <Code>symbol=&quot;ETH&quot;</Code>); <Code>DefiIcon</Code> also
+                ignores dots and hyphens (<Code>&quot;ether.fi&quot;</Code>). On{' '}
+                <Code>ChainIcon</Code>, <Code>chainId</Code> takes precedence
+                over <Code>name</Code>. The prop types autocomplete known keys
+                but accept any string or number, so unknown values type-check
+                and render <Code>fallback</Code>.
+              </p>
+            </Section>
+
+            {/* Metadata maps */}
+            <Section id="meta" title="Metadata Maps">
+              <p className="mb-3 text-sm text-fg/60">
+                <Code>react-web3-icons/meta</Code> exports the plain lookup
+                tables behind the dynamic components. Each maps an identifier to
+                an icon base name (append <Code>Mono</Code> for the monochrome
+                export), has a matching key type for narrowing, and works in
+                server components:
+              </p>
+              <div className="mb-4 overflow-x-auto rounded-lg border border-border">
+                <table className="w-full text-left">
+                  <caption className="sr-only">Metadata lookup maps</caption>
+                  <thead>
+                    <tr className="border-b border-border bg-surface">
+                      <th className={TH_CLASS}>Export</th>
+                      <th className={TH_CLASS}>Key type</th>
+                      <th className={TH_CLASS}>Key</th>
+                      <th className={TH_CLASS}>Icons from</th>
+                      <th className={TH_CLASS}>Entries</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border">
+                    {META_MAPS.map(row => (
+                      <tr key={row.name}>
+                        <td className={`${TD_CLASS} font-mono text-accent-fg`}>
+                          {row.name}
+                        </td>
+                        <td className={`${TD_CLASS} font-mono`}>
+                          {row.keyType}
+                        </td>
+                        <td className={TD_CLASS}>{row.key}</td>
+                        <td className={`${TD_CLASS} font-mono`}>
+                          {row.category}
+                        </td>
+                        <td className={`${TD_CLASS} font-mono`}>
+                          {Object.keys(row.map).length}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <CodeBlock>{`import { CHAIN_ID_TO_NAME, type ChainId } from 'react-web3-icons/meta';
+import * as chains from 'react-web3-icons/chain';
+
+function isChainId(id: number): id is ChainId {
+  return Object.hasOwn(CHAIN_ID_TO_NAME, id);
+}
+
+function ChainLogo({ chainId }: { chainId: number }) {
+  if (!isChainId(chainId)) return null;
+  const Icon = chains[CHAIN_ID_TO_NAME[chainId]]; // 8453 → Base
+  return <Icon size={20} />;
+}`}</CodeBlock>
             </Section>
 
             {/* Naming Conventions */}
