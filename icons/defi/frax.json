@@ -1,10 +1,12 @@
 {
   "name": "Frax",
   "source": [
-    "https://frax.finance (official brand)"
+    "https://docs.frax.com (site icon: the inline <svg name=\"FraxIcon\">, viewBox 0 0 283.46 283.46)"
   ],
   "notes": [
-    "Frax Finance target/crosshair mark; strictly black-and-white brand"
+    "Frax Finance target/crosshair mark; strictly black-and-white brand",
+    "No downloadable brand SVG exists; the crosshair path is copied unchanged from the FraxIcon component on docs.frax.com (accessed 2026-10-03), without its black disc and white ring, and drawn in black as before",
+    "Mono: the same path in currentColor"
   ],
   "kind": "icon",
   "variants": {
