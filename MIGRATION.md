@@ -40,7 +40,7 @@ Internal `id` attributes (masks, gradients) previously used React's `useId` and 
 
 ## 3. Node.js 20 support dropped
 
-`engines.node` is now `>=22.12.0`. Node 20 reached end-of-life on 2026-04-30. This only affects the declared support matrix — the published files are plain ESM and unchanged — but package managers will warn (or fail, with `engine-strict`) when installing on Node 20. Browsers and bundlers are unaffected.
+`engines.node` is now `>=22.12.0`. Node 20 reached end-of-life on 2026-04-30. This only affects the declared support matrix — the published files are plain ESM and unchanged — but package managers will warn (or fail, with `engine-strict`) when installing on Node 20. That check ran even for apps that only use the package in a browser bundle, because it is tied to the Node version running the install. Later 4.x releases no longer publish `engines`; Node >=22.12.0 is only required to build the library from source.
 
 ## Checklist
 

@@ -124,7 +124,8 @@
     "./manifest.json": "./dist/manifest.json",
     "./iconify.json": "./dist/iconify.json",
     "./iconify-mono.json": "./dist/iconify-mono.json",
-    "./svg/*": "./dist/svg/*"
+    "./svg/*": "./dist/svg/*",
+    "./package.json": "./package.json"
   },
   "sideEffects": false,
   "files": [
@@ -181,8 +182,12 @@
     "react": ">=18"
   },
   "packageManager": "pnpm@10.32.1",
-  "engines": {
-    "node": ">=22.12.0"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=22.12.0",
+      "onFail": "error"
+    }
   },
   "size-limit": [
     {
