@@ -199,8 +199,8 @@ function brandColorProblem(
 }
 
 describe('Icon manifest sync', () => {
-  // Fails when icons, meta maps, or deprecations change without running:
-  //   pnpm run generate-manifest
+  // Fails when icons/ (artwork, lookup keys, deprecations) change without
+  // running: pnpm run generate-icons
   it('src/manifest/index.ts matches the actual category exports', () => {
     expect(ICON_MANIFEST.map(baseProjection)).toEqual(deriveExpected());
   });
