@@ -100,6 +100,8 @@ export const coinImports: Record<
   KavaCircleMono: () => import('../../coin/Kava'),
   KavaMono: () => import('../../coin/Kava'),
   Ldo: () => import('../../coin/Ldo'),
+  LdoCircle: () => import('../../coin/Ldo'),
+  LdoCircleMono: () => import('../../coin/Ldo'),
   LdoMono: () => import('../../coin/Ldo'),
   Link: () => import('../../coin/Link'),
   LinkMono: () => import('../../coin/Link'),

@@ -10,3 +10,4 @@ Add the official token discs as `Circle` / `CircleMono` variants, built from eac
 - `SonicCircle`, `SonicCircleMono` (chain and the `S` coin): the `#F5F5F5` mark on a `#141416` disc, from `S/S_token.svg` in Sonic's media kit.
 - `TaikoCircle`, `TaikoCircleMono` (chain and coin): the `#FAFAFA` mark on a `#E81899` disc, from the TKO token icon in Taiko's brand kit.
 - `JupiterCircle`, `JupiterCircleMono`, re-exported as `JupCircle`, `JupCircleMono`: the six gradient arcs on a `#0F1524` disc, from `JupiterTokens/Token-512x512.svg` in Jupiter's brand kit.
+- `LdoCircle`, `LdoCircleMono`: the white Lido mark on the LDO token's own `#FFAA7D` peach disc, from `Lido/Tokens/LDO/LDO.svg` in Lido's press kit. They belong to the `Ldo` coin only; `Ldo` and `LdoMono` still re-export the blue `Lido` mark.
