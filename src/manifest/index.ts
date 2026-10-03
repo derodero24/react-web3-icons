@@ -629,6 +629,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'zksync',
     variants: ['', 'Mono', 'Circle', 'Square', 'SquareMono', 'CircleMono'],
     aliases: ['zk'],
+    brandColor: '#11141a',
   },
   { name: 'ZkSyncCircle', category: 'chain' },
   { name: 'ZkSyncCircleMono', category: 'chain' },

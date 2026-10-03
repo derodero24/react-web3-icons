@@ -18,6 +18,7 @@ exports[`dark/light background legibility (issue #712) > documents how each affe
   "dark: chain/Stacks → monochrome StacksMono",
   "dark: chain/Stellar → monochrome StellarMono",
   "dark: chain/WorldChain → monochrome WorldChainMono",
+  "dark: chain/ZkSync → variant ZkSyncCircle",
   "dark: coin/Fet → monochrome FetMono",
   "dark: coin/Hbar → monochrome HbarMono",
   "dark: coin/Looks → exempt (legible-variant)",
