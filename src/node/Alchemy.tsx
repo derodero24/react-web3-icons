@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://alchemy.com (official brand)
+// Source: https://media.alchemy.com/1702567897-alchemy-brand-assets.zip (official brand assets from https://www.alchemy.com/brand: Mark/Blue-gradient/alchemy-mark-blue-gradient.svg)
+// Default: the brand kit's blue-gradient mark (#05D5FF -> #5533FF -> #363FF9), the colored mark the kit still ships; the site's logo lockup (https://media.alchemy.com/1701819587-logo.svg) shows the same mark in solid #363FF9
+// Mono: the mark in currentColor (the kit's mark-onecolor-neutral-alchemy.svg)
 /** Alchemy node icon (colored). */
 export const Alchemy = /* @__PURE__ */ createIcon(
   'Alchemy',
