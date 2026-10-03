@@ -5,6 +5,9 @@ on:
     branches: [develop]
     paths:
       - 'src/**'
+      - 'icons/**'
+      - 'scripts/normalize-viewbox.ts'
+      - 'scripts/build-icons/optical*.ts'
       - 'test/visual/**'
       - 'scripts/build-icons/mono-audit.ts'
       - 'vitest.config.visual.ts'
@@ -14,6 +17,9 @@ on:
     branches: [develop]
     paths:
       - 'src/**'
+      - 'icons/**'
+      - 'scripts/normalize-viewbox.ts'
+      - 'scripts/build-icons/optical*.ts'
       - 'test/visual/**'
       - 'scripts/build-icons/mono-audit.ts'
       - 'vitest.config.visual.ts'
@@ -73,6 +79,27 @@ jobs:
       - name: Install Playwright system dependencies only (cache hit)
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: pnpm exec playwright install-deps chromium
+
+      # Every icon source must sit on the 64-grid exactly as
+      # scripts/normalize-viewbox.ts writes it (optical size, #704). The full
+      # check renders every unit and takes minutes, so PRs check only the
+      # units they touch; a unit is checked when its json or any of its SVGs
+      # changed.
+      - name: Check optical-size normalization of changed icons (PR)
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          units=$(git diff --name-only --diff-filter=d "$BASE_SHA"...HEAD -- 'icons/*/*.json' 'icons/*/*.svg' \
+            | sed -E 's#^(icons/[^/]+/[^./]+)\..*$#\1.json#' | sort -u \
+            | while read -r unit; do if [ -f "$unit" ]; then echo "$unit"; fi; done)
+          if [ -z "$units" ]; then
+            echo "No icon sources changed."
+          else
+            echo "$units"
+            # shellcheck disable=SC2086 # one argument per unit
+            node scripts/normalize-viewbox.ts --check $units
+          fi
 
       # Reference screenshots live only in the Actions cache, keyed by the
       # develop commit that rendered them and the Playwright (Chromium)

@@ -259,11 +259,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'The llama is knocked out of the D and opens at its bottom edge, so the footprint flood fill enters it.',
   },
-  'wallet/MetaMaskSquare': {
-    kind: 'false-positive',
-    reason:
-      'Like the colored variant, the fox is a featureless knockout; the antialiasing seams between the colored facets inflate the colour-boundary count.',
-  },
   'wallet/RainbowWallet': {
     kind: 'false-positive',
     reason:

@@ -1,30 +1,34 @@
 {
   "name": "Op",
   "source": [
-    "re-export of Optimism — see src/chain/Optimism.tsx"
+    "https://optimism.io/brand (official brand assets, accessed 2026-10-03; the \"OP Token\" card)",
+    "https://optimism.io/files/5a7eaedf4e0c96529342e556b52cb05da12d9f23.zip (Optimism - Brand Kit.zip: Token/SVG/Token.svg)"
   ],
-  "kind": "reexport",
-  "reexport": {
-    "from": "../chain/Optimism",
-    "exports": [
-      {
-        "of": "Optimism",
-        "as": "Op"
-      },
-      {
-        "of": "OptimismCircle",
-        "as": "OpCircle"
-      },
-      {
-        "of": "OptimismCircleMono",
-        "as": "OpCircleMono"
-      },
-      {
-        "of": "OptimismMono",
-        "as": "OpMono"
-      }
-    ]
+  "notes": [
+    "Default: the official OP token mark, Token.svg from the Optimism brand kit (the same file as the brand page's \"OP Token\" download): the letters OP in #FAFAF9 on a #FF0421 (Optimism Red) disc, paths unchanged and placed full-bleed as a disc container. The brand page reserves this mark for the token and for avatars; the Optimism chain (OP Mainnet) uses its own symbol, see icons/chain/optimism.json",
+    "Mono: the disc in currentColor with the letters knocked out as one evenodd path; the counters of the O and the P stay ink",
+    "OpCircle and OpCircleMono: the mark is already a disc, so they are aliases of Op and OpMono, kept from when this unit re-exported OptimismCircle"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "op.svg"
+    },
+    "Mono": {
+      "file": "op.mono.svg",
+      "fill": "currentColor"
+    }
   },
+  "localAliases": [
+    {
+      "name": "OpCircle",
+      "target": "Op"
+    },
+    {
+      "name": "OpCircleMono",
+      "target": "OpMono"
+    }
+  ],
   "tickers": [
     "OP"
   ]

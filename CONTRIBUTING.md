@@ -332,12 +332,16 @@ rule to existing sources:
 
 ```sh
 node scripts/normalize-viewbox.ts --check   # report only; exit 1 on drift
+node scripts/normalize-viewbox.ts --check icons/<category>/<unit>.json …  # these units only
 node scripts/normalize-viewbox.ts [icons/<category>/<unit>.json …]  # rewrite
 pnpm run test:visual                         # includes the painted-box guard
 ```
 
 Both need Chromium (`pnpm exec playwright install chromium`). The painted-box
 guard is `test/visual/optical-size.test.ts` (tolerance 0.5 units).
+The visual-regression workflow runs the per-unit `--check` on every icon unit
+a pull request touches, so commit sources exactly as the script writes them
+(the full check renders every unit and is too slow for CI).
 
 ## Icon Lifecycle Policy
 
