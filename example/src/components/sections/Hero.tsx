@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import { useCopyAction } from '../../hooks/useCopyAction';
-import { groupIcons } from '../../utils/groupIcons';
-import { REACT_WEB3_ICONS } from '../../utils/icons';
+import CopyStatusMessage from '../elements/CopyStatusMessage';
 import CopyToggleIcon from '../elements/CopyToggleIcon';
 
 type PkgManager = 'npm' | 'yarn' | 'pnpm' | 'bun';
@@ -17,12 +16,14 @@ const INSTALL_CMDS: Record<PkgManager, string> = {
 
 const PKG_MANAGERS: PkgManager[] = ['npm', 'yarn', 'pnpm', 'bun'];
 
-// Unique base icon count (not variant count)
-const ICON_COUNT = groupIcons(REACT_WEB3_ICONS.all).length;
-
-export default function Hero() {
+export default function Hero({
+  iconCount,
+}: {
+  /** Number of icon groups (base icons, not variants) */
+  iconCount: number;
+}) {
   const [pkg, setPkg] = useState<PkgManager>('npm');
-  const { copied, copy, reset } = useCopyAction();
+  const { status, copy, reset } = useCopyAction();
 
   const handlePkgChange = (m: PkgManager) => {
     setPkg(m);
@@ -33,9 +34,9 @@ export default function Hero() {
     <section className="border-b border-border px-4 py-10 sm:px-6 sm:py-14">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-2xl font-bold tracking-tight text-fg sm:text-3xl">
-          {ICON_COUNT}+ Web3 icons for React
+          {iconCount}+ Web3 icons for React
         </h2>
-        <p className="mt-3 text-sm text-fg/50 sm:text-base">
+        <p className="mt-3 text-sm text-fg-muted sm:text-base">
           Open-source SVG icons for chains, coins, wallets, DEXs, and more.
         </p>
 
@@ -48,7 +49,9 @@ export default function Hero() {
                 type="button"
                 onClick={() => handlePkgChange(m)}
                 className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
-                  pkg === m ? 'bg-fg/10 text-fg' : 'text-fg/50 hover:text-fg/60'
+                  pkg === m
+                    ? 'bg-fg/10 text-fg'
+                    : 'text-fg-muted hover:text-fg/80'
                 }`}
               >
                 {m}
@@ -57,15 +60,16 @@ export default function Hero() {
           </div>
           <button
             type="button"
-            onClick={() => copy(INSTALL_CMDS[pkg])}
+            onClick={() => void copy(INSTALL_CMDS[pkg])}
             aria-label={`Copy ${INSTALL_CMDS[pkg]}`}
             className="flex items-center gap-3 rounded-lg border border-border bg-surface px-5 py-2.5 font-mono text-sm text-fg/80 transition-colors hover:bg-surface-hover"
           >
             <span className="select-all">{INSTALL_CMDS[pkg]}</span>
-            <span className="text-fg/50">
-              <CopyToggleIcon copied={copied} />
+            <span className="text-fg-muted">
+              <CopyToggleIcon status={status} />
             </span>
           </button>
+          <CopyStatusMessage status={status} />
         </div>
       </div>
     </section>

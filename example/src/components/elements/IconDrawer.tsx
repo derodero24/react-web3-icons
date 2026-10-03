@@ -3,20 +3,26 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useCopyAction } from '../../hooks/useCopyAction';
-import type { IconComponent } from '../../types/icons';
 import { bgStyle, type PreviewBg } from '../../utils/bgStyle';
+import type { IconGroup } from '../../utils/icons';
+import CopyStatusMessage from './CopyStatusMessage';
 import CopyToggleIcon from './CopyToggleIcon';
 
 interface Props {
-  base: string;
-  variants: string[];
-  components: Record<string, IconComponent>;
-  /** Current category key, or 'all' when browsing all categories */
-  category: string;
+  group: IconGroup;
   onClose: () => void;
 }
 
 type CodeTab = 'import' | 'subpath' | 'svg';
+
+const CODE_TABS: readonly { key: CodeTab; label: string }[] = [
+  { key: 'import', label: 'Import' },
+  { key: 'subpath', label: 'Subpath' },
+  { key: 'svg', label: 'SVG' },
+];
+
+/** Keep the blob URL alive long enough for the browser to start the download. */
+const REVOKE_DELAY_MS = 10_000;
 
 const SIZES = [16, 24, 32, 48, 64] as const;
 const PRESET_COLORS = [
@@ -30,59 +36,75 @@ const PRESET_COLORS = [
 ] as const;
 
 function CopyButton({ text }: { text: string }) {
-  const { copied, copy } = useCopyAction();
+  const { status, copy } = useCopyAction();
 
   return (
-    <button
-      type="button"
-      onClick={() => copy(text)}
-      aria-label="Copy to clipboard"
-      className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg/50 transition-colors hover:bg-fg/10 hover:text-fg/60"
-    >
-      <CopyToggleIcon copied={copied} />
-    </button>
+    <>
+      <button
+        type="button"
+        onClick={() => void copy(text)}
+        aria-label="Copy to clipboard"
+        className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg-muted transition-colors hover:bg-fg/10 hover:text-fg/80"
+      >
+        <CopyToggleIcon status={status} />
+      </button>
+      <CopyStatusMessage status={status} />
+    </>
   );
 }
 
 function ShareButton() {
-  const { copied, copy } = useCopyAction();
+  const { status, copied, copy } = useCopyAction();
 
   return (
-    <button
-      type="button"
-      onClick={() => copy(window.location.href)}
-      aria-label={copied ? 'Link copied' : 'Copy link to this icon'}
-      title={copied ? 'Link copied!' : 'Copy link'}
-      className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg/50 transition-colors hover:bg-fg/10 hover:text-fg/60"
-    >
-      {copied ? (
-        <svg
-          viewBox="0 0 16 16"
-          className="h-4 w-4"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M2 8 6.5 13 14 4" />
-        </svg>
-      ) : (
-        <svg
-          viewBox="0 0 16 16"
-          className="h-4 w-4"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3M10 1h5v5M15 1 7 9" />
-        </svg>
-      )}
-    </button>
+    <>
+      <button
+        type="button"
+        onClick={() => void copy(window.location.href)}
+        aria-label="Copy link to this icon"
+        title={
+          status === 'copied'
+            ? 'Link copied!'
+            : status === 'failed'
+              ? 'Copy failed'
+              : 'Copy link'
+        }
+        className="flex min-h-11 min-w-11 items-center justify-center rounded text-fg-muted transition-colors hover:bg-fg/10 hover:text-fg/80"
+      >
+        {copied ? (
+          <svg
+            viewBox="0 0 16 16"
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M2 8 6.5 13 14 4" />
+          </svg>
+        ) : (
+          <svg
+            viewBox="0 0 16 16"
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3M10 1h5v5M15 1 7 9" />
+          </svg>
+        )}
+      </button>
+      <CopyStatusMessage
+        status={status}
+        copiedMessage="Link copied to clipboard"
+        failedMessage="Copy failed. Copy the link from the browser's address bar."
+      />
+    </>
   );
 }
 
@@ -99,20 +121,21 @@ function downloadSvg(name: string, container: HTMLElement | null) {
   a.href = url;
   a.download = `${name}.svg`;
   a.click();
-  URL.revokeObjectURL(url);
+  // Revoking synchronously can cancel the download in some browsers; wait
+  // until the download triggered by click() has picked up the blob.
+  setTimeout(() => URL.revokeObjectURL(url), REVOKE_DELAY_MS);
 }
 
-export default function IconDrawer({
-  base,
-  variants,
-  components,
-  category,
-  onClose,
-}: Props) {
-  const [selected, setSelected] = useState(
-    variants.find(v => v === base) ?? variants[0] ?? '',
+export default function IconDrawer({ group, onClose }: Props) {
+  const { base, variants, category, inRootEntry } = group;
+  // variants[0] is the primary variant; groups always have at least one.
+  const [selectedName, setSelectedName] = useState(variants[0]?.name ?? '');
+  const selectedVariant =
+    variants.find(v => v.name === selectedName) ?? variants[0];
+  const selected = selectedVariant?.name ?? '';
+  const [codeTab, setCodeTab] = useState<CodeTab>(
+    inRootEntry ? 'import' : 'subpath',
   );
-  const [codeTab, setCodeTab] = useState<CodeTab>('import');
   const [previewSize, setPreviewSize] = useState(64);
   const [previewColor, setPreviewColor] = useState('');
   const [compareMode, setCompareMode] = useState(false);
@@ -127,7 +150,7 @@ export default function IconDrawer({
     requestAnimationFrame(() => setOpen(true));
   }, []);
 
-  const Icon = components[selected] as IconComponent | undefined;
+  const Icon = selectedVariant?.Component;
 
   // Serialize SVG after render so the code tab shows the current DOM.
   // Deps trigger re-serialization when the icon or its styling changes.
@@ -195,22 +218,15 @@ export default function IconDrawer({
     [onClose],
   );
 
-  // Code content
+  // Code content. The root entry is offered only when it resolves to this
+  // artwork (e.g. oracle `Pyth` is importable from its subpath only).
   const importCode = `import { ${selected} } from 'react-web3-icons';`;
-  const hasSubpath = category !== 'all';
-  const subpathCode = hasSubpath
-    ? `import { ${selected} } from 'react-web3-icons/${category}';`
-    : '';
+  const subpathCode = `import { ${selected} } from 'react-web3-icons/${category}';`;
 
-  const codeTabs: { key: CodeTab; label: string }[] = [
-    { key: 'import', label: 'Import' },
-    ...(hasSubpath ? [{ key: 'subpath' as CodeTab, label: 'Subpath' }] : []),
-    { key: 'svg', label: 'SVG' },
-  ];
+  const codeTabs = CODE_TABS.filter(tab => tab.key !== 'import' || inRootEntry);
 
-  // Reset to 'import' if subpath tab disappears
   const effectiveTab =
-    codeTab === 'subpath' && !hasSubpath ? 'import' : codeTab;
+    codeTab === 'import' && !inRootEntry ? 'subpath' : codeTab;
 
   const codeContent =
     effectiveTab === 'import'
@@ -249,7 +265,7 @@ export default function IconDrawer({
               type="button"
               onClick={onClose}
               aria-label="Close drawer"
-              className="rounded p-1 text-fg/50 transition-colors hover:bg-fg/10 hover:text-fg"
+              className="rounded p-1 text-fg-muted transition-colors hover:bg-fg/10 hover:text-fg"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -269,7 +285,7 @@ export default function IconDrawer({
 
         {/* Preview background selector */}
         <div className="flex items-center gap-2 border-b border-border px-5 py-2">
-          <span className="text-xs text-fg/50">BG</span>
+          <span className="text-xs text-fg-muted">BG</span>
           {(['dark', 'light', 'checker'] as const).map(bg => (
             <button
               key={bg}
@@ -291,8 +307,8 @@ export default function IconDrawer({
               aria-pressed={compareMode}
               className={`rounded px-2 py-0.5 text-xs font-medium transition-colors ${
                 compareMode
-                  ? 'bg-accent/20 text-accent'
-                  : 'bg-fg/5 text-fg/50 hover:text-fg/60'
+                  ? 'bg-accent/20 text-accent-fg'
+                  : 'bg-fg/5 text-fg-muted hover:text-fg/80'
               }`}
             >
               Compare
@@ -309,14 +325,13 @@ export default function IconDrawer({
                 gridTemplateColumns: `repeat(${Math.min(variants.length, 3)}, 1fr)`,
               }}
             >
-              {variants.map(v => {
-                const VIcon = components[v] as IconComponent | undefined;
+              {variants.map(({ name, Component: VIcon }) => {
                 return (
                   <button
-                    key={v}
+                    key={name}
                     type="button"
                     onClick={() => {
-                      setSelected(v);
+                      setSelectedName(name);
                       setCompareMode(false);
                     }}
                     className="flex flex-col items-center gap-2 rounded-lg p-3 transition-colors hover:bg-fg/5"
@@ -325,21 +340,19 @@ export default function IconDrawer({
                       className="flex items-center justify-center rounded-lg p-3"
                       style={bgStyle(previewBg)}
                     >
-                      {VIcon && (
-                        <span style={{ fontSize: previewSize }}>
-                          <VIcon
-                            {...(effectiveColor
-                              ? { style: { color: effectiveColor } }
-                              : {})}
-                          />
-                        </span>
-                      )}
+                      <span style={{ fontSize: previewSize }}>
+                        <VIcon
+                          {...(effectiveColor
+                            ? { style: { color: effectiveColor } }
+                            : {})}
+                        />
+                      </span>
                     </div>
                     <span
                       className="max-w-full truncate font-mono text-[10px]"
                       style={{ color: textColor }}
                     >
-                      {v}
+                      {name}
                     </span>
                   </button>
                 );
@@ -375,7 +388,7 @@ export default function IconDrawer({
 
             {/* Variant selector */}
             <div className="border-b border-border px-5 py-4">
-              <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg/50">
+              <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg-muted">
                 Variants
               </p>
               <div
@@ -383,27 +396,24 @@ export default function IconDrawer({
                 role="radiogroup"
                 aria-label="Icon variant"
               >
-                {variants.map(v => {
-                  const VariantIcon = components[v] as
-                    | IconComponent
-                    | undefined;
-                  const isSelected = selected === v;
+                {variants.map(({ name, Component: VariantIcon }) => {
+                  const isSelected = selected === name;
                   return (
                     // biome-ignore lint/a11y/useSemanticElements: button with role="radio" is intentional for custom radio group styling
                     <button
-                      key={v}
+                      key={name}
                       type="button"
                       role="radio"
                       aria-checked={isSelected}
-                      aria-label={v}
-                      onClick={() => setSelected(v)}
+                      aria-label={name}
+                      onClick={() => setSelectedName(name)}
                       className={`flex h-12 w-12 items-center justify-center rounded-lg border transition-colors ${
                         isSelected
                           ? 'border-accent bg-accent/10'
                           : 'border-border bg-surface hover:border-fg/20'
                       }`}
                     >
-                      {VariantIcon && <VariantIcon className="text-2xl" />}
+                      <VariantIcon className="text-2xl" />
                     </button>
                   );
                 })}
@@ -415,10 +425,10 @@ export default function IconDrawer({
         {/* Size control */}
         <div className="border-b border-border px-5 py-4">
           <div className="mb-3 flex items-center justify-between">
-            <p className="text-xs font-medium uppercase tracking-wide text-fg/50">
+            <p className="text-xs font-medium uppercase tracking-wide text-fg-muted">
               Size
             </p>
-            <span className="font-mono text-xs text-fg/50">
+            <span className="font-mono text-xs text-fg-muted">
               {previewSize}px
             </span>
           </div>
@@ -441,8 +451,8 @@ export default function IconDrawer({
                 onClick={() => setPreviewSize(size)}
                 className={`flex min-h-11 min-w-11 items-center justify-center rounded font-mono text-[10px] transition-colors ${
                   previewSize === size
-                    ? 'bg-accent/20 text-accent'
-                    : 'bg-fg/5 text-fg/50 hover:text-fg/60'
+                    ? 'bg-accent/20 text-accent-fg'
+                    : 'bg-fg/5 text-fg-muted hover:text-fg/80'
                 }`}
               >
                 {size}
@@ -453,7 +463,7 @@ export default function IconDrawer({
 
         {/* Color control */}
         <div className="border-b border-border px-5 py-4">
-          <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg/50">
+          <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg-muted">
             Color
           </p>
           <div className="flex flex-wrap items-center gap-2">
@@ -487,7 +497,7 @@ export default function IconDrawer({
                 className="absolute inset-0 h-11 w-11 cursor-pointer opacity-0"
                 aria-label="Custom color"
               />
-              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-dashed border-fg/20 text-fg/50 transition-colors hover:border-fg/40 hover:text-fg/60">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-dashed border-fg/20 text-fg-muted transition-colors hover:border-fg/40 hover:text-fg/80">
                 <svg
                   viewBox="0 0 16 16"
                   className="h-3.5 w-3.5"
@@ -516,7 +526,7 @@ export default function IconDrawer({
                   className={`rounded-t-md px-3 py-1.5 text-xs font-medium transition-colors ${
                     effectiveTab === tab.key
                       ? 'bg-surface text-fg'
-                      : 'text-fg/50 hover:text-fg/60'
+                      : 'text-fg-muted hover:text-fg/80'
                   }`}
                 >
                   {tab.label}

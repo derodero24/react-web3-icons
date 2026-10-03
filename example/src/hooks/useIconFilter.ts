@@ -1,51 +1,32 @@
 import { useMemo } from 'react';
 
-import * as iconModules from 'react-web3-icons';
 import { ICON_MANIFEST } from 'react-web3-icons/manifest';
 import {
   CHAIN_ID_TO_NAME,
   CHAIN_SLUG_TO_NAME,
   TICKER_TO_COIN,
 } from 'react-web3-icons/meta';
-import type { IconComponent, Variant } from '../types/icons';
-import { groupIcons } from '../utils/groupIcons';
+import type { Variant } from '../types/icons';
+import type { IconGroup, IconVariant } from '../utils/icons';
 
-const icons = Object.fromEntries(
-  Object.entries(iconModules).filter(
-    ([, v]) =>
-      typeof v === 'function' ||
-      (typeof v === 'object' && v !== null && '$$typeof' in v),
-  ),
-) as Record<string, IconComponent>;
-
-// Search aliases now live in the icon manifest (icons/<category>/<slug>.json
-// → ICON_MANIFEST[].aliases), so the demo and library share one source.
-const MANUAL_ALIASES: Record<string, string[]> = {};
-for (const entry of ICON_MANIFEST) {
-  for (const alias of entry.aliases ?? []) {
-    const existing = MANUAL_ALIASES[alias];
-    if (existing) {
-      if (!existing.includes(entry.name)) existing.push(entry.name);
-    } else {
-      MANUAL_ALIASES[alias] = [entry.name];
-    }
-  }
-}
-
-// Build search aliases by merging meta maps with manual overrides.
-// Chain IDs (e.g. "1" → Ethereum), slugs, and ticker symbols are all searchable.
-function buildSearchAliases(): Record<string, string[]> {
-  const aliases: Record<string, string[]> = { ...MANUAL_ALIASES };
+// Search aliases live in the icon manifest (icons/<category>/<slug>.json
+// → ICON_MANIFEST[].aliases), merged with the meta maps so chain IDs
+// (e.g. "1" → Ethereum), slugs, and ticker symbols are all searchable.
+function buildSearchAliases(): ReadonlyMap<string, readonly string[]> {
+  const aliases = new Map<string, string[]>();
 
   const addAlias = (key: string, value: string) => {
-    const existing = aliases[key];
-    if (existing) {
-      if (!existing.includes(value)) existing.push(value);
-    } else {
-      aliases[key] = [value];
+    const existing = aliases.get(key);
+    if (!existing) {
+      aliases.set(key, [value]);
+    } else if (!existing.includes(value)) {
+      existing.push(value);
     }
   };
 
+  for (const entry of ICON_MANIFEST) {
+    for (const alias of entry.aliases ?? []) addAlias(alias, entry.name);
+  }
   for (const [id, name] of Object.entries(CHAIN_ID_TO_NAME)) {
     addAlias(id, name);
   }
@@ -61,89 +42,62 @@ function buildSearchAliases(): Record<string, string[]> {
 
 const SEARCH_ALIASES = buildSearchAliases();
 
-export interface DisplayGroup {
-  /** Base name for this group (e.g. "Ethereum") */
-  base: string;
-  /** All variant names in display order (primary first) */
-  variants: string[];
-  /** The variant currently shown on the card given the active filter */
-  activeVariant: string;
-  /** All variant components keyed by name */
-  components: Record<string, IconComponent>;
+export interface DisplayGroup extends IconGroup {
+  /** The variant shown on the card for the active filter. */
+  activeVariant: IconVariant;
 }
 
 /**
- * Pick the best variant to display given the active filter:
- * - mono:    prefer the `*Mono` suffix variant (exact base mono first, then any)
- * - colored: prefer the non-Mono variant (base name itself, or first non-Mono)
- * - all:     prefer the base name variant (primary)
+ * Pick the variant to display for the active filter:
+ * - mono:    the plain `Mono` variant, else any mono variant
+ * - colored: the first non-mono variant (the primary when it exists)
+ * - all:     the primary variant
+ * Returns undefined when the group has no variant matching the filter.
  */
 function pickActive(
-  variants: string[],
-  base: string,
-  variant: Variant,
-): string {
-  if (variant === 'mono') {
-    // Prefer the exact base mono (e.g. `EthereumMono`), then any `*Mono`
+  variants: readonly IconVariant[],
+  filter: Variant,
+): IconVariant | undefined {
+  if (filter === 'mono') {
     return (
-      variants.find(v => v === `${base}Mono`) ??
-      variants.find(v => v.endsWith('Mono')) ??
-      variants[0] ??
-      ''
+      variants.find(v => v.suffix === 'Mono') ?? variants.find(v => v.mono)
     );
   }
-  if (variant === 'colored') {
-    const colored = variants.find(v => !v.endsWith('Mono'));
-    return colored ?? variants[0] ?? '';
-  }
-  // 'all': prefer the exact base variant, else first
-  return variants.find(v => v === base) ?? variants[0] ?? '';
+  if (filter === 'colored') return variants.find(v => !v.mono);
+  return variants[0];
 }
 
-function groupMatchesSearch(
-  base: string,
-  variants: string[],
-  normalizedKeyword: string,
-): boolean {
-  if (!normalizedKeyword) return true;
-  // Check alias match: alias → list of base names; base must start with one of them
-  const aliasTargets = SEARCH_ALIASES[normalizedKeyword];
-  if (aliasTargets?.some(target => base.startsWith(target))) return true;
-  // Fallback: substring match on base or any variant name
-  return (
-    base.toLowerCase().includes(normalizedKeyword) ||
-    variants.some(v => v.toLowerCase().includes(normalizedKeyword))
-  );
+function groupMatchesSearch(group: IconGroup, keyword: string): boolean {
+  if (!keyword) return true;
+  // Alias match: alias → export names. A target may name a variant rather
+  // than the group base (`arbitrum-nova` → `ArbitrumNova`, grouped under
+  // `Arbitrum`), so compare against every export in the group.
+  const aliasTargets = SEARCH_ALIASES.get(keyword);
+  if (
+    aliasTargets?.some(target =>
+      group.variants.some(v => v.name.startsWith(target)),
+    )
+  ) {
+    return true;
+  }
+  // Fallback: substring match on any export name in the group
+  return group.variants.some(v => v.name.toLowerCase().includes(keyword));
 }
 
 export function useIconFilter(
-  categoryIcons: string[],
+  groups: readonly IconGroup[],
   keyword: string,
-  variant: Variant,
+  filter: Variant,
 ): DisplayGroup[] {
   return useMemo(() => {
     const normalizedKeyword = keyword.toLowerCase().trim();
-
-    // Build groups from ALL category icons (before variant/keyword filtering)
-    const groups = groupIcons(categoryIcons);
-
-    return groups
-      .filter(({ variants }) => {
-        // Variant filter: group must have at least one matching variant
-        if (variant === 'mono') return variants.some(v => v.endsWith('Mono'));
-        if (variant === 'colored')
-          return variants.some(v => !v.endsWith('Mono'));
-        return true;
-      })
-      .filter(({ base, variants }) =>
-        groupMatchesSearch(base, variants, normalizedKeyword),
-      )
-      .map(({ base, variants }) => {
-        const activeVariant = pickActive(variants, base, variant);
-        const components = Object.fromEntries(
-          variants.map(v => [v, icons[v] as IconComponent]),
-        );
-        return { base, variants, activeVariant, components };
-      });
-  }, [categoryIcons, keyword, variant]);
+    const result: DisplayGroup[] = [];
+    for (const group of groups) {
+      const activeVariant = pickActive(group.variants, filter);
+      if (activeVariant && groupMatchesSearch(group, normalizedKeyword)) {
+        result.push({ ...group, activeVariant });
+      }
+    }
+    return result;
+  }, [groups, keyword, filter]);
 }

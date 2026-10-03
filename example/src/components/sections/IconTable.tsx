@@ -1,17 +1,19 @@
 'use client';
 
-import { parseAsString, useQueryState } from 'nuqs';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import * as iconModules from 'react-web3-icons';
 import { useIconFilter } from '../../hooks/useIconFilter';
-import { useTheme } from '../../hooks/useTheme';
-import type { IconComponent, Variant } from '../../types/icons';
-import { groupIcons } from '../../utils/groupIcons';
-import { REACT_WEB3_ICONS } from '../../utils/icons';
+import {
+  useCategoryParam,
+  useKeywordParam,
+  useLinkedIconParam,
+} from '../../hooks/useIconParams';
+import type { Variant } from '../../types/icons';
+import { type CategoryFilter, getIconGroups } from '../../utils/icons';
 import IconCard from '../elements/IconCard';
 import IconDrawer from '../elements/IconDrawer';
 import SearchForm from '../elements/SearchForm';
+import ThemeToggle from '../elements/ThemeToggle';
 
 const VARIANT_LABELS: Record<Variant, string> = {
   all: 'All',
@@ -23,38 +25,33 @@ const VARIANTS: Variant[] = ['all', 'colored', 'mono'];
 
 const PAGE_SIZE = 120;
 
-export default function IconTable() {
-  const [rawCategory] = useQueryState(
-    'category',
-    parseAsString.withDefault('all'),
-  );
-  const [keyword, setKeyword] = useQueryState(
-    'q',
-    parseAsString.withDefault(''),
-  );
-  const [linkedIcon, setLinkedIcon] = useQueryState(
-    'icon',
-    parseAsString.withDefault('').withOptions({ history: 'push' }),
-  );
+interface ViewProps {
+  category: CategoryFilter;
+  keyword: string;
+  onKeywordChange: (keyword: string) => void;
+  /** Base name of the icon whose drawer is open ('' when closed). */
+  linkedIcon: string;
+  onLinkedIconChange: (base: string) => void;
+}
+
+function IconTableView({
+  category,
+  keyword,
+  onKeywordChange,
+  linkedIcon,
+  onLinkedIconChange,
+}: ViewProps) {
   const [variant, setVariant] = useState<Variant>('all');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  const { theme, toggleTheme } = useTheme();
 
-  const validCategory = Object.hasOwn(REACT_WEB3_ICONS, rawCategory)
-    ? (rawCategory as keyof typeof REACT_WEB3_ICONS)
-    : 'all';
-
-  const categoryIcons = REACT_WEB3_ICONS[validCategory];
-  const displayedGroups = useIconFilter(categoryIcons, keyword, variant);
-
-  const totalGroupCount = useMemo(
-    () => groupIcons(categoryIcons).length,
-    [categoryIcons],
-  );
+  // All groups in this category (unfiltered) — also used for drawer lookup
+  // so direct links work even when the icon is filtered out.
+  const groups = getIconGroups(category);
+  const displayedGroups = useIconFilter(groups, keyword, variant);
 
   // Reset visible count when the displayed results change
   const prevResultKey = useRef('');
-  const resultKey = `${validCategory}-${keyword}-${variant}`;
+  const resultKey = `${category}-${keyword}-${variant}`;
   if (resultKey !== prevResultKey.current) {
     prevResultKey.current = resultKey;
     if (visibleCount !== PAGE_SIZE) {
@@ -85,27 +82,9 @@ export default function IconTable() {
     return () => observer.disconnect();
   }, [hasMore]);
 
-  // All groups in this category (unfiltered) — used for drawer lookup so
-  // direct links work even when the icon is filtered out by search/variant.
-  const allGroups = useMemo(() => groupIcons(categoryIcons), [categoryIcons]);
-
-  // Find the group for the opened drawer from unfiltered groups
-  const drawerData = useMemo(() => {
-    if (!linkedIcon) return null;
-    const group = allGroups.find(g => g.base === linkedIcon);
-    if (!group) return null;
-    const components: Record<string, IconComponent> = {};
-    for (const v of group.variants) {
-      const comp = iconModules[v as keyof typeof iconModules];
-      if (
-        typeof comp === 'function' ||
-        (typeof comp === 'object' && comp !== null && '$$typeof' in comp)
-      ) {
-        components[v] = comp as IconComponent;
-      }
-    }
-    return { ...group, components };
-  }, [linkedIcon, allGroups]);
+  const drawerGroup = linkedIcon
+    ? groups.find(group => group.base === linkedIcon)
+    : undefined;
 
   useEffect(() => {
     if (!linkedIcon) return;
@@ -117,27 +96,20 @@ export default function IconTable() {
     }
   }, [linkedIcon]);
 
-  const totalCount = totalGroupCount;
+  const totalCount = groups.length;
   const resultCount = displayedGroups.length;
   const resultsText = keyword
     ? `${resultCount} of ${totalCount} icons`
     : `${totalCount} icons`;
 
-  const isCategoryEmpty = categoryIcons.length === 0;
+  const isCategoryEmpty = totalCount === 0;
   const isSearchEmpty =
     !isCategoryEmpty && keyword.length > 0 && resultCount === 0;
-
-  const handleOpenDrawer = useCallback(
-    (base: string) => {
-      void setLinkedIcon(base);
-    },
-    [setLinkedIcon],
-  );
 
   const handleCloseDrawer = useCallback(() => {
     // Restore focus to the card that opened the drawer
     const iconName = linkedIcon;
-    void setLinkedIcon('');
+    onLinkedIconChange('');
     if (iconName) {
       requestAnimationFrame(() => {
         const card = document.querySelector<HTMLElement>(
@@ -146,20 +118,20 @@ export default function IconTable() {
         card?.focus();
       });
     }
-  }, [linkedIcon, setLinkedIcon]);
+  }, [linkedIcon, onLinkedIconChange]);
 
   return (
     <section
       id="icon-grid"
       tabIndex={-1}
-      aria-label={`${validCategory} icons`}
+      aria-label={`${category} icons`}
       className="relative mb-6 px-4 pt-6 outline-none sm:px-6 lg:px-8"
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-4">
         <div className="flex-1">
           <SearchForm
             keyword={keyword}
-            setKeyword={value => void setKeyword(value)}
+            setKeyword={onKeywordChange}
             resultCount={resultCount}
             totalCount={totalCount}
           />
@@ -177,7 +149,7 @@ export default function IconTable() {
                 className={`h-11 px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent ${
                   variant === v
                     ? 'bg-fg/10 text-fg'
-                    : 'text-fg/50 hover:bg-fg/5 hover:text-fg/60'
+                    : 'text-fg-muted hover:bg-fg/5 hover:text-fg/80'
                 }`}
               >
                 {VARIANT_LABELS[v]}
@@ -185,38 +157,7 @@ export default function IconTable() {
             ))}
           </fieldset>
 
-          <button
-            type="button"
-            onClick={toggleTheme}
-            aria-label={
-              theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
-            }
-            className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface text-fg/50 transition-colors hover:bg-surface-hover hover:text-fg/60"
-          >
-            {theme === 'dark' ? (
-              <svg
-                viewBox="0 0 16 16"
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={1.5}
-                strokeLinecap="round"
-                aria-hidden="true"
-              >
-                <circle cx={8} cy={8} r={3.5} />
-                <path d="M8 1.5v1M8 13.5v1M1.5 8h1M13.5 8h1M3.4 3.4l.7.7M11.9 11.9l.7.7M3.4 12.6l.7-.7M11.9 4.1l.7-.7" />
-              </svg>
-            ) : (
-              <svg
-                viewBox="0 0 16 16"
-                className="h-4 w-4"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5a5.5 5.5 0 0 1 0-11v11Z" />
-              </svg>
-            )}
-          </button>
+          <ThemeToggle />
         </div>
       </div>
 
@@ -225,7 +166,7 @@ export default function IconTable() {
       </p>
 
       {isCategoryEmpty ? (
-        <div className="mt-16 flex flex-col items-center gap-2 text-center text-fg/50">
+        <div className="mt-16 flex flex-col items-center gap-2 text-center text-fg-muted">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -239,13 +180,13 @@ export default function IconTable() {
             <circle cx={12} cy={12} r={10} />
             <path d="M8 12h8" />
           </svg>
-          <p className="text-base font-medium text-fg/50">No icons yet</p>
+          <p className="text-base font-medium text-fg-muted">No icons yet</p>
           <p className="text-sm">
-            {`${validCategory.charAt(0).toUpperCase()}${validCategory.slice(1)} icons are coming soon`}
+            {`${category.charAt(0).toUpperCase()}${category.slice(1)} icons are coming soon`}
           </p>
         </div>
       ) : isSearchEmpty ? (
-        <div className="mt-16 flex flex-col items-center gap-2 text-center text-fg/50">
+        <div className="mt-16 flex flex-col items-center gap-2 text-center text-fg-muted">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -259,7 +200,7 @@ export default function IconTable() {
             <circle cx={11} cy={11} r={8} />
             <path d="m21 21-4.35-4.35" />
           </svg>
-          <p className="text-base font-medium text-fg/50">
+          <p className="text-base font-medium text-fg-muted">
             No results for &ldquo;{keyword}&rdquo;
           </p>
           <p className="text-sm">Try a different search term</p>
@@ -267,17 +208,16 @@ export default function IconTable() {
       ) : (
         <>
           <ul
-            key={`${validCategory}-${variant}`}
+            key={`${category}-${variant}`}
             className="mt-6 grid list-none grid-cols-[repeat(auto-fill,minmax(88px,1fr))] gap-0 sm:grid-cols-[repeat(auto-fill,minmax(112px,1fr))]"
           >
             {visibleGroups.map(group => (
               <li key={group.base} data-icon-name={group.base} className="p-2">
                 <IconCard
                   base={group.base}
-                  activeVariant={group.activeVariant}
-                  components={group.components}
+                  Icon={group.activeVariant.Component}
                   highlighted={linkedIcon === group.base}
-                  onClick={() => handleOpenDrawer(group.base)}
+                  onClick={() => onLinkedIconChange(group.base)}
                 />
               </li>
             ))}
@@ -295,15 +235,59 @@ export default function IconTable() {
       )}
 
       {/* Detail drawer */}
-      {linkedIcon && drawerData && (
+      {drawerGroup && (
         <IconDrawer
-          base={drawerData.base}
-          variants={drawerData.variants}
-          components={drawerData.components}
-          category={validCategory}
+          // Reset drawer state (selected variant, tab) when another icon opens
+          key={`${drawerGroup.category}/${drawerGroup.base}`}
+          group={drawerGroup}
           onClose={handleCloseDrawer}
         />
       )}
     </section>
+  );
+}
+
+const noop = () => {};
+
+/**
+ * Default state ("all", no search, no drawer). Rendered as the <Suspense>
+ * fallback so the static export contains the initial grid; it is replaced
+ * by the URL-bound table as soon as the client hydrates.
+ */
+export function IconTableFallback() {
+  return (
+    <IconTableView
+      category="all"
+      keyword=""
+      onKeywordChange={noop}
+      linkedIcon=""
+      onLinkedIconChange={noop}
+    />
+  );
+}
+
+/** Icon grid bound to the `?category=`, `?q=` and `?icon=` query parameters. */
+export default function IconTable() {
+  const [category] = useCategoryParam();
+  const [keyword, setKeyword] = useKeywordParam();
+  const [linkedIcon, setLinkedIcon] = useLinkedIconParam();
+
+  const handleKeywordChange = useCallback(
+    (value: string) => void setKeyword(value),
+    [setKeyword],
+  );
+  const handleLinkedIconChange = useCallback(
+    (base: string) => void setLinkedIcon(base),
+    [setLinkedIcon],
+  );
+
+  return (
+    <IconTableView
+      category={category}
+      keyword={keyword}
+      onKeywordChange={handleKeywordChange}
+      linkedIcon={linkedIcon}
+      onLinkedIconChange={handleLinkedIconChange}
+    />
   );
 }
