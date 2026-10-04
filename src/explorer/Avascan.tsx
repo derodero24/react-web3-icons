@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://avascan.info (official brand)
+// Source: https://avascan.info (official site; not reachable for verification)
+// Unverified legacy artwork, added in 2023 without a source file: avascan.info sits behind a bot challenge, and no Avascan brand kit, press page or official repository with the logo was found (the Routescan brand kit at https://docs.routescan.io/routescan-brand-assets covers only Routescan)
+// Avascan / AvascanWordmark: the three slanted bars and dot in #6D6DF2; the monos are the same shapes in currentColor
 /** Avascan Wordmark explorer icon (colored). */
 export const AvascanWordmark = /* @__PURE__ */ createIcon(
   'AvascanWordmark',

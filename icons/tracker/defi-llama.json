@@ -1,7 +1,11 @@
 {
   "name": "DefiLlama",
   "source": [
-    "https://defillama.com"
+    "https://github.com/DefiLlama/og-cards-v2/blob/main/logo/llama-icon.svg"
+  ],
+  "notes": [
+    "Colored: matches the official llama-icon.svg in DefiLlama's og-cards-v2 repository (same paths, colours and gradients; silhouette IoU 0.999), accessed 2026-10-04; the 2026 media kit on defillama.com/press shows the same mark (raster only)",
+    "Mono: the D in currentColor with the llama and the rays knocked out, the llama's nose kept in ink"
   ],
   "kind": "icon",
   "variants": {

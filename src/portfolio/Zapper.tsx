@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://zapper.xyz
+// Source: https://zapper.xyz (official site; not reachable for verification)
+// Unverified legacy artwork, added in 2023 without a source file: the white bolt on a #784FFE disc. zapper.xyz and its docs sit behind a Cloudflare challenge, and the only official vectors found (logo.svg in https://github.com/Zapper-fi/Docs and Zapper-fi/zapper-safe-app, 2019 to 2021) are the earlier #4F3EFF to #A160FE rounded-square app icon, so the current mark could not be confirmed
+// Mono: the disc in currentColor with the bolt knocked out
 /** Zapper portfolio icon (colored). */
 export const Zapper = /* @__PURE__ */ createIcon(
   'Zapper',
