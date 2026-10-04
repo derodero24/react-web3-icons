@@ -140,6 +140,15 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   },
   { name: 'WormholeMono', category: 'bridge' },
   {
+    name: 'Abstract',
+    category: 'chain',
+    chainId: 2741,
+    slug: 'abstract',
+    variants: ['', 'Mono'],
+    brandColor: '#00de73',
+  },
+  { name: 'AbstractMono', category: 'chain' },
+  {
     name: 'Algorand',
     category: 'chain',
     slug: 'algorand',
@@ -477,6 +486,8 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#00ec97',
   },
   { name: 'NearMono', category: 'chain' },
+  { name: 'OpBnb', category: 'chain', chainId: 204, slug: 'opbnb' },
+  { name: 'OpBnbMono', category: 'chain' },
   {
     name: 'Optimism',
     category: 'chain',
@@ -554,6 +565,15 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'SolanaSquare', category: 'chain' },
   { name: 'SolanaSquareMono', category: 'chain' },
   {
+    name: 'Soneium',
+    category: 'chain',
+    chainId: 1868,
+    slug: 'soneium',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
+  { name: 'SoneiumMono', category: 'chain' },
+  {
     name: 'Sonic',
     category: 'chain',
     chainId: 146,
@@ -623,6 +643,15 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#ea0029',
   },
   { name: 'TronMono', category: 'chain' },
+  {
+    name: 'Unichain',
+    category: 'chain',
+    chainId: 130,
+    slug: 'unichain',
+    variants: ['', 'Mono'],
+    brandColor: '#f50db4',
+  },
+  { name: 'UnichainMono', category: 'chain' },
   {
     name: 'WorldChain',
     category: 'chain',
