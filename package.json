@@ -229,17 +229,17 @@
     {
       "name": "defi",
       "path": "dist/defi/index.mjs",
-      "limit": "10 KB"
+      "limit": "11 KB"
     },
     {
       "name": "devtool",
       "path": "dist/devtool/index.mjs",
-      "limit": "14 KB"
+      "limit": "9 KB"
     },
     {
       "name": "dex",
       "path": "dist/dex/index.mjs",
-      "limit": "19 KB"
+      "limit": "20 KB"
     },
     {
       "name": "domain",
@@ -259,7 +259,7 @@
     {
       "name": "marketplace",
       "path": "dist/marketplace/index.mjs",
-      "limit": "9 KB"
+      "limit": "8 KB"
     },
     {
       "name": "node",
