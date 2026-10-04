@@ -1,7 +1,12 @@
 {
   "name": "RocketPool",
+  "source": [
+    "https://docs.rocketpool.net/images/logo.svg",
+    "https://cdn-rocketpool.s3.us-west-2.amazonaws.com/rpl.zip"
+  ],
   "notes": [
-    "Paths sourced from @web3icons/react (MIT)"
+    "Colored: the official logo.svg (identical to RPL/SVG/RPL-logo_primary.svg in the rpl.zip brand kit linked from https://rocketpool.net/protocol/brand-kit): #F2681D→#F89863 gradient disc and inner disc with the white rocket. Its CSS classes are inlined, the gradient that referenced another by href is written out, and the rocket mask is reduced to the inner-circle path it resolves to (the rest of the mask is painted over)",
+    "Mono: as the official one-colour RPL-logo_secondary_black.svg, the disc in currentColor with the rocket knocked out, built from the colored geometry"
   ],
   "kind": "icon",
   "variants": {

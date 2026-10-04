@@ -1,7 +1,11 @@
 {
   "name": "Chainlink",
   "source": [
-    "https://chain.link"
+    "https://cdn.prod.website-files.com/5f6b7190899f41fb70882d08/6aa7fef7f56d1f1d953c589d_Chainlink-Symbol-Blue.svg"
+  ],
+  "notes": [
+    "Official Chainlink-Symbol-Blue.svg from https://chain.link/brand-assets: the hexagon in #0847F7 with a transparent inner hexagon",
+    "Mono: the same path in currentColor"
   ],
   "kind": "icon",
   "variants": {

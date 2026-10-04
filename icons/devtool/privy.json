@@ -1,13 +1,17 @@
 {
   "name": "Privy",
+  "source": [
+    "https://www.privy.io/brand-guidelines"
+  ],
   "notes": [
-    "Paths sourced from privy-io/examples (MIT) — Privy logomark (circle + shadow ellipse)"
+    "Colored: the logomark (circle and shadow ellipse) cropped from the official Privy logo on https://www.privy.io/brand-guidelines, path copied unchanged, in its rgb(1,1,16) = #010110; the old #5B4FFF appears in no official logo asset",
+    "Mono: the same path in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "privy.svg",
-      "fill": "#5B4FFF"
+      "fill": "#010110"
     },
     "Mono": {
       "file": "privy.mono.svg",
