@@ -23,7 +23,8 @@
   ],
   "slugs": [
     "gnosis",
-    "gno"
+    "gno",
+    "gnosis-chain"
   ],
   "chainIds": [
     100

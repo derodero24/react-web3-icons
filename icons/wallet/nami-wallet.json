@@ -14,8 +14,8 @@
       "fill": "currentColor"
     }
   },
-  "slugs": [
-    "namiwallet",
-    "nami"
-  ]
+  "deprecated": {
+    "NamiWallet": "Nami was folded into Lace (namiwallet.io now serves Lace).",
+    "NamiWalletMono": "Nami was folded into Lace (namiwallet.io now serves Lace)."
+  }
 }

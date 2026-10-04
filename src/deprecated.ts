@@ -26,38 +26,92 @@ import type { IconName } from './utils';
 export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   has(name: string): boolean;
 } = new Set<IconName>([
+  // icons/bridge/hop-protocol.json
+  'HopProtocol',
+  'HopProtocolMono',
+  // icons/chain/binance-smart-chain.json
+  'BinanceSmartChain',
+  'BinanceSmartChainMono',
+  'BinanceSmartChainCircle',
+  'BinanceSmartChainSquare',
+  'BinanceSmartChainSquareMono',
+  'BinanceSmartChainCircleMono',
   // icons/chain/fantom.json
   'Fantom',
   'FantomMono',
+  // icons/chain/starknet.json
+  'StarkNet',
+  'StarkNetMono',
+  'StarkNetCircle',
+  'StarkNetSquare',
+  'StarkNetSquareMono',
+  'StarkNetCircleMono',
+  // icons/coin/busd.json
+  'Busd',
+  'BusdMono',
   // icons/coin/ftm.json
   'Ftm',
   'FtmMono',
-  // icons/coin/matic.json
-  'Matic',
-  'MaticCircle',
-  'MaticMono',
-  'MaticCircleMono',
-  // icons/devtool/drizzle.json
-  'Drizzle',
-  'DrizzleMono',
-  // icons/devtool/ganache.json
-  'Ganache',
-  'GanacheMono',
-  // icons/devtool/truffle.json
-  'Truffle',
-  'TruffleMono',
-  // icons/exchange/bybit-light.json
-  'BybitLight',
-  // icons/explorer/basescan-light.json
-  'BasescanLight',
-  // icons/explorer/bscscan-light.json
-  'BscscanLight',
-  // icons/explorer/etherscan-light.json
-  'EtherscanLight',
-  // icons/marketplace/tofu-nft.json
-  'TofuNft',
-  'TofuNftMono',
-  // icons/wallet/gnosis-safe.json
-  'GnosisSafe',
-  'GnosisSafeMono',
+  // icons/coin/mkr.json
+  'Mkr',
+  'MkrMono',
+  // icons/defi/maker-dao.json
+  'MakerDao',
+  'MakerDaoMono',
+  // icons/devtool/tally.json
+  'Tally',
+  'TallyMono',
+  // icons/devtool/web3-js.json
+  'Web3Js',
+  'Web3JsMono',
+  // icons/dex/odos.json
+  'Odos',
+  'OdosMono',
+  // icons/dex/para-swap.json
+  'ParaSwap',
+  'ParaSwapMono',
+  // icons/exchange/gateio.json
+  'Gateio',
+  'GateioMono',
+  // icons/marketplace/x2-y2.json
+  'X2Y2',
+  'X2Y2Mono',
+  // icons/storage/nft-storage.json
+  'NftStorage',
+  'NftStorageMono',
+  // icons/wallet/argent.json
+  'Argent',
+  'ArgentMono',
+  // icons/wallet/backpack-wallet.json
+  'BackpackWallet',
+  'BackpackWalletMono',
+  // icons/wallet/daedalus-wallet.json
+  'DaedalusWallet',
+  'DaedalusWalletMono',
+  // icons/wallet/nami-wallet.json
+  'NamiWallet',
+  'NamiWalletMono',
+  // icons/wallet/okx-wallet.json
+  'OKXWallet',
+  'OKXWalletMono',
+  // icons/wallet/phantom-wallet.json
+  'PhantomWallet',
+  'PhantomWalletMono',
+  'PhantomWalletCircle',
+  'PhantomWalletCircleMono',
+  'PhantomWalletSquare',
+  'PhantomWalletSquareMono',
+  'PhantomWalletSymbolMono',
+  // icons/wallet/rainbow-wallet.json
+  'RainbowWallet',
+  'RainbowWalletSymbol',
+  'RainbowWalletCircle',
+  'RainbowWalletCircleMono',
+  'RainbowWalletSquare',
+  'RainbowWalletSquareMono',
+  'RainbowWalletMono',
+  'RainbowWalletSymbolMono',
+  // icons/wallet/yoroi-wallet.json
+  'YoroiWallet',
+  'YoroiWalletMono',
 ]);

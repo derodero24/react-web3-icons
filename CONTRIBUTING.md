@@ -265,7 +265,7 @@ Ticker aliases and deprecated renames are JSON-only units:
 
 Deprecated aliases use `"kind": "alias"` with an `aliasConst` block so the
 generator emits `/** @deprecated … */ export const Old = New;` (see
-`icons/coin/matic.json` for a real example).
+`icons/wallet/argent.json` for a real example).
 
 ### Regenerating
 
@@ -284,6 +284,52 @@ when `icons/` *or* the generator changed without regenerating.
 `test/manifest-sync.test.ts` checks the manifest against the actual exports,
 `test/meta.test.ts` checks that every icon is reachable through its lookup
 keys, and the snapshot/visual suites verify rendered output.
+
+## Export Names
+
+A unit's `name` is its export name and the prefix of every variant export.
+Users should be able to guess it from the project's name, so it follows four
+rules (#815), which `test/naming.test.ts` enforces over `icons/**/*.json`:
+
+1. **The project's current official name in PascalCase.** Words keep their
+   order and lose spaces and punctuation (`Crypto.com` → `CryptoCom`,
+   `ether.fi` → `EtherFi`). Acronyms are written as words (`Okx`, `Ens`,
+   `Htx`, `BnbSmartChain`), and internal capitals are kept only where the
+   brand writes the name as one word with them (`MetaMask`, `KuCoin`,
+   `DeBank`).
+2. **A category suffix (`Wallet`, `Chain`, `Protocol`, …) only when it is
+   part of the official name or avoids a clash** with another export in the
+   root namespace: `TrustWallet` and `GnosisChain` are official names,
+   `CoinbaseWallet`, `BitgetWallet`, `OkxWallet` and `UniswapWallet` would
+   otherwise clash with the exchange or DEX of the same brand, and the
+   wallets `Phantom`, `Rainbow`, `Backpack`, `Yoroi` and `Daedalus` need
+   neither.
+3. **Coins use their ticker** (`Btc`, `Eth`, `Gram`), PascalCased like any
+   acronym. A coin is named after its project instead when its ticker is
+   shorter than two letters or would clash with another export. The
+   exceptions are:
+
+   | Export | Ticker | Reason |
+   | --- | --- | --- |
+   | `Sonic` | `S` | one-letter ticker |
+   | `Monad` | `MON` | re-export of the chain, named after the project |
+   | `Ronin` | `RON` | re-export of the chain, named after the project |
+   | `Flare` | `FLR` | named after the project; `Flr` is its ticker alias |
+
+4. **Renames keep the old name.** A unit whose name breaks these rules, or
+   whose project rebrands, gets the new canonical name, and the old name
+   stays as a deprecated alias under the
+   [lifecycle policy](#icon-lifecycle-policy) (at least one minor release
+   and 90 days, removed only in a major). Deprecated exports keep the name
+   they were published with, so the rules apply to current names only.
+
+What the rules cannot derive mechanically is listed in the test with the
+reason: brand casing (`MetaMask`), spellings that are not a plain PascalCase
+of the official name (`Oneinch` for 1inch, since an identifier cannot start
+with a digit; `ZkSync` for ZKsync), the suffixed names of rule 2 and the
+coin exceptions above. Add a new name there only together with its reason.
+In the categories with lookup keys, the name must also resolve as one of
+the unit's own `slugs` (`Phantom` → `phantom`).
 
 ## Icon Variants and Mono Design
 

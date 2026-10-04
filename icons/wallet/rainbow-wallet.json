@@ -1,52 +1,59 @@
 {
   "name": "RainbowWallet",
-  "source": [
-    "https://rainbow.me"
-  ],
-  "notes": [
-    "Arc paths from viewBox 20 20 80 80 → scale 0.575, translate(-2.5, -2.5)"
-  ],
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "rainbow-wallet.svg"
-    },
-    "Symbol": {
-      "file": "rainbow-wallet.symbol.svg"
-    },
-    "Circle": {
-      "file": "rainbow-wallet.circle.svg"
-    },
-    "CircleMono": {
-      "file": "rainbow-wallet.circle-mono.svg",
-      "fill": "currentColor"
-    },
-    "Square": {
-      "file": "rainbow-wallet.square.svg"
-    },
-    "SquareMono": {
-      "file": "rainbow-wallet.square-mono.svg",
-      "fill": "currentColor"
-    },
-    "Mono": {
-      "file": "rainbow-wallet.mono.svg",
-      "fill": "currentColor"
-    },
-    "SymbolMono": {
-      "file": "rainbow-wallet.symbol-mono.svg",
-      "fill": "currentColor"
-    }
-  },
-  "slugs": [
-    "rainbowwallet",
-    "rainbow"
-  ],
-  "props": {
-    "withBackground": {
-      "type": "toggle",
-      "description": "Render the gradient tile behind the arcs.",
-      "on": "",
-      "off": "Symbol"
-    }
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "./Rainbow",
+    "imports": [
+      "Rainbow",
+      "RainbowCircle",
+      "RainbowCircleMono",
+      "RainbowMono",
+      "RainbowSquare",
+      "RainbowSquareMono",
+      "RainbowSymbol",
+      "RainbowSymbolMono"
+    ],
+    "exports": [
+      {
+        "name": "RainbowWallet",
+        "target": "Rainbow",
+        "deprecated": "RainbowWallet was renamed to the official product name — use `Rainbow` instead."
+      },
+      {
+        "name": "RainbowWalletSymbol",
+        "target": "RainbowSymbol",
+        "deprecated": "Use `RainbowSymbol` instead."
+      },
+      {
+        "name": "RainbowWalletCircle",
+        "target": "RainbowCircle",
+        "deprecated": "Use `RainbowCircle` instead."
+      },
+      {
+        "name": "RainbowWalletCircleMono",
+        "target": "RainbowCircleMono",
+        "deprecated": "Use `RainbowCircleMono` instead."
+      },
+      {
+        "name": "RainbowWalletSquare",
+        "target": "RainbowSquare",
+        "deprecated": "Use `RainbowSquare` instead."
+      },
+      {
+        "name": "RainbowWalletSquareMono",
+        "target": "RainbowSquareMono",
+        "deprecated": "Use `RainbowSquareMono` instead."
+      },
+      {
+        "name": "RainbowWalletMono",
+        "target": "RainbowMono",
+        "deprecated": "Use `RainbowMono` instead."
+      },
+      {
+        "name": "RainbowWalletSymbolMono",
+        "target": "RainbowSymbolMono",
+        "deprecated": "Use `RainbowSymbolMono` instead."
+      }
+    ]
   }
 }

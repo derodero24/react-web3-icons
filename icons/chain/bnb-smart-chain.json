@@ -1,0 +1,47 @@
+{
+  "name": "BnbSmartChain",
+  "source": [
+    "https://bnbchain.org"
+  ],
+  "notes": [
+    "BNB diamond mark scaled to fit in a 64x64 circle (~72% fill).",
+    "Original viewBox 166.6 0 2166.7 2499.9 -> scale 0.0184, translate(9, 9)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "bnb-smart-chain.svg",
+      "fill": "#f0b90b"
+    },
+    "Mono": {
+      "file": "bnb-smart-chain.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "bnb-smart-chain.circle.svg"
+    },
+    "Square": {
+      "file": "bnb-smart-chain.square.svg"
+    },
+    "SquareMono": {
+      "file": "bnb-smart-chain.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "CircleMono": {
+      "file": "bnb-smart-chain.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "aliases": [
+    "bnb",
+    "bsc"
+  ],
+  "slugs": [
+    "bsc",
+    "bnb",
+    "bnb-smart-chain"
+  ],
+  "chainIds": [
+    56
+  ]
+}

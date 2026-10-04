@@ -37,8 +37,6 @@ export const defiImports: Record<
   LidoMono: () => import('../../defi/Lido'),
   Liquity: () => import('../../defi/Liquity'),
   LiquityMono: () => import('../../defi/Liquity'),
-  MakerDao: () => import('../../defi/MakerDao'),
-  MakerDaoMono: () => import('../../defi/MakerDao'),
   Maple: () => import('../../defi/Maple'),
   MapleMono: () => import('../../defi/Maple'),
   Morpho: () => import('../../defi/Morpho'),
@@ -49,6 +47,10 @@ export const defiImports: Record<
   RocketPoolMono: () => import('../../defi/RocketPool'),
   SafeProtocol: () => import('../../defi/SafeProtocol'),
   SafeProtocolMono: () => import('../../defi/SafeProtocol'),
+  Sky: () => import('../../defi/Sky'),
+  SkyCircle: () => import('../../defi/Sky'),
+  SkyCircleMono: () => import('../../defi/Sky'),
+  SkyMono: () => import('../../defi/Sky'),
   Spark: () => import('../../defi/Spark'),
   SparkMono: () => import('../../defi/Spark'),
   Synthetix: () => import('../../defi/Synthetix'),
@@ -63,11 +65,11 @@ export const defiImports: Record<
  * Variant suffixes `<DefiIcon variant>` accepts besides `'colored'`
  * and `'mono'`: every one that some DeFi icon ships.
  */
-export const defiVariants: readonly string[] = [];
+export const defiVariants: readonly string[] = ['Circle', 'CircleMono'];
 
 /**
  * `variant` of `<DefiIcon>`: `'colored'` (the default) and `'mono'`,
  * plus every variant suffix some DeFi icon ships. An icon without
  * the requested variant renders `fallback`.
  */
-export type DefiVariant = 'colored' | 'mono';
+export type DefiVariant = 'colored' | 'mono' | 'Circle' | 'CircleMono';

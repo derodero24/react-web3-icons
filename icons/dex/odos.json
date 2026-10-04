@@ -14,7 +14,8 @@
       "fill": "currentColor"
     }
   },
-  "slugs": [
-    "odos"
-  ]
+  "deprecated": {
+    "Odos": "Odos shut down on 2026-07-30 (https://odos.xyz now serves its shutdown notice).",
+    "OdosMono": "Odos shut down on 2026-07-30 (https://odos.xyz now serves its shutdown notice)."
+  }
 }

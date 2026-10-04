@@ -17,8 +17,6 @@ export const bridgeImports: Record<
   AxelarMono: () => import('../../bridge/Axelar'),
   DeBridge: () => import('../../bridge/DeBridge'),
   DeBridgeMono: () => import('../../bridge/DeBridge'),
-  HopProtocol: () => import('../../bridge/HopProtocol'),
-  HopProtocolMono: () => import('../../bridge/HopProtocol'),
   LayerZero: () => import('../../bridge/LayerZero'),
   LayerZeroMono: () => import('../../bridge/LayerZero'),
   Orbiter: () => import('../../bridge/Orbiter'),

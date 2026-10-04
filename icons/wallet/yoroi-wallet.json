@@ -1,25 +1,23 @@
 {
   "name": "YoroiWallet",
-  "source": [
-    "https://yoroi-wallet.com/assets/logo-yoroi-blue.svg"
-  ],
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "yoroi-wallet.svg",
-      "fill": "#4B63F6"
-    },
-    "Mono": {
-      "file": "yoroi-wallet.mono.svg",
-      "fill": "currentColor"
-    }
-  },
-  "slugs": [
-    "yoroiwallet",
-    "yoroi"
-  ],
-  "notes": [
-    "Colored: the five #4B63F6 paths of the symbol, copied unchanged out of the official logo-yoroi-blue.svg lockup (the YOROI / Wallet lettering and rules are left out), placed on the 64 grid",
-    "Mono: the same five paths in currentColor"
-  ]
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "./Yoroi",
+    "imports": [
+      "Yoroi",
+      "YoroiMono"
+    ],
+    "exports": [
+      {
+        "name": "YoroiWallet",
+        "target": "Yoroi",
+        "deprecated": "YoroiWallet was renamed to the official product name — use `Yoroi` instead."
+      },
+      {
+        "name": "YoroiWalletMono",
+        "target": "YoroiMono",
+        "deprecated": "Use `YoroiMono` instead."
+      }
+    ]
+  }
 }

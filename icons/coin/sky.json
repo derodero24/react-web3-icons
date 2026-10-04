@@ -1,0 +1,32 @@
+{
+  "name": "Sky",
+  "source": [
+    "re-export of Sky — see src/defi/Sky.tsx"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Sky",
+    "exports": [
+      {
+        "of": "Sky",
+        "as": "Sky"
+      },
+      {
+        "of": "SkyCircle",
+        "as": "SkyCircle"
+      },
+      {
+        "of": "SkyCircleMono",
+        "as": "SkyCircleMono"
+      },
+      {
+        "of": "SkyMono",
+        "as": "SkyMono"
+      }
+    ]
+  },
+  "tickers": [
+    "SKY",
+    "MKR"
+  ]
+}

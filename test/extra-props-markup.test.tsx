@@ -4,7 +4,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import * as avalanche from '../src/chain/Avalanche';
 import * as bybit from '../src/exchange/Bybit';
-import * as rainbowWallet from '../src/wallet/RainbowWallet';
+import * as rainbow from '../src/wallet/Rainbow';
 
 /**
  * Pins what the icons with extra props (`withBackground`, `fill1`/`fill2`)
@@ -115,17 +115,17 @@ const cases = [
   ],
   ['Bybit', bybit, { Bybit: BYBIT, BybitInverted: BYBIT, BybitMono: BYBIT }],
   [
-    'RainbowWallet',
-    rainbowWallet,
+    'Rainbow',
+    rainbow,
     {
-      RainbowWallet: BACKGROUND,
-      RainbowWalletCircle: FILL,
-      RainbowWalletCircleMono: FILL,
-      RainbowWalletMono: FILL,
-      RainbowWalletSquare: FILL,
-      RainbowWalletSquareMono: FILL,
-      RainbowWalletSymbol: BACKGROUND,
-      RainbowWalletSymbolMono: FILL,
+      Rainbow: BACKGROUND,
+      RainbowCircle: FILL,
+      RainbowCircleMono: FILL,
+      RainbowMono: FILL,
+      RainbowSquare: FILL,
+      RainbowSquareMono: FILL,
+      RainbowSymbol: BACKGROUND,
+      RainbowSymbolMono: FILL,
     },
   ],
 ] as const;

@@ -1,0 +1,25 @@
+{
+  "name": "Ready",
+  "source": [
+    "https://argent.xyz"
+  ],
+  "notes": [
+    "Ready is Argent's new name (argent.xyz now serves Ready); the mark is unchanged, so the artwork carries over from the Argent unit"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ready.svg",
+      "fill": "#ff875b"
+    },
+    "Mono": {
+      "file": "ready.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "ready",
+    "argent",
+    "argent-x"
+  ]
+}

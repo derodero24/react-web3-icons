@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // The former source https://hop.exchange lapsed and now serves an unrelated gambling site, so it is no longer cited; the artwork is unchanged while the unit's deprecation is pending
-/** Hop Protocol bridge icon (colored). */
+/** @deprecated Hop Protocol's official domain (hop.exchange) has lapsed. */
 export const HopProtocol = /* @__PURE__ */ createIcon(
   'HopProtocol',
   '0 0 64 64',
@@ -50,7 +50,7 @@ export const HopProtocol = /* @__PURE__ */ createIcon(
   { fill: 'none', ids: true },
 );
 
-/** Hop Protocol bridge icon (monochrome). */
+/** @deprecated Hop Protocol's official domain (hop.exchange) has lapsed. */
 export const HopProtocolMono = /* @__PURE__ */ createIcon(
   'HopProtocolMono',
   '0 0 64 64',

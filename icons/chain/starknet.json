@@ -1,0 +1,70 @@
+{
+  "name": "Starknet",
+  "source": [
+    "https://www.starknet.io/assets/starknet-logos-svg.zip (official logo kit: Symbol/SN-Symbol-Gradient.svg)"
+  ],
+  "notes": [
+    "Default and Circle: the official Starknet symbol SN-Symbol-Gradient.svg (#0C0C4F disc, #FAFAFA mark, #EC796B -> #E175B1 gradients), drawn full-bleed; it replaces artwork whose gradient ended in #D672EF (not in the kit) and whose Circle/Square marks were undersized",
+    "Square: no official tile exists; a repo-convention #0C0C4F rounded square (rx 31.6/158 = 12.8/64) holding the official mark paths at the symbol's own scale",
+    "Mono, CircleMono and SquareMono: the disc / tile in currentColor with the star, the dot, the white crest and the pink underside knocked out as one evenodd path; the underside is cut back from the crest by a 1.2-unit ink seam (the pink shape minus the crest offset by 1.2), so the wave keeps its two layers"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "starknet.svg"
+    },
+    "Mono": {
+      "file": "starknet.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "starknet.circle.svg"
+    },
+    "Square": {
+      "file": "starknet.square.svg"
+    },
+    "SquareMono": {
+      "file": "starknet.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "CircleMono": {
+      "file": "starknet.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "starknet"
+  ],
+  "localAliases": [
+    {
+      "name": "StarkNet",
+      "target": "Starknet",
+      "deprecated": "StarkNet was renamed to the official casing — use `Starknet` instead."
+    },
+    {
+      "name": "StarkNetMono",
+      "target": "StarknetMono",
+      "deprecated": "Use `StarknetMono` instead."
+    },
+    {
+      "name": "StarkNetCircle",
+      "target": "StarknetCircle",
+      "deprecated": "Use `StarknetCircle` instead."
+    },
+    {
+      "name": "StarkNetSquare",
+      "target": "StarknetSquare",
+      "deprecated": "Use `StarknetSquare` instead."
+    },
+    {
+      "name": "StarkNetSquareMono",
+      "target": "StarknetSquareMono",
+      "deprecated": "Use `StarknetSquareMono` instead."
+    },
+    {
+      "name": "StarkNetCircleMono",
+      "target": "StarknetCircleMono",
+      "deprecated": "Use `StarknetCircleMono` instead."
+    }
+  ]
+}

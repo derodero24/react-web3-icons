@@ -14,7 +14,8 @@
       "fill": "currentColor"
     }
   },
-  "slugs": [
-    "makerdao"
-  ]
+  "deprecated": {
+    "MakerDao": "MakerDAO rebranded to Sky — use `Sky` instead.",
+    "MakerDaoMono": "Use `SkyMono` instead."
+  }
 }

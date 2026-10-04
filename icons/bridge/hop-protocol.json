@@ -14,7 +14,8 @@
       "fill": "currentColor"
     }
   },
-  "slugs": [
-    "hopprotocol"
-  ]
+  "deprecated": {
+    "HopProtocol": "Hop Protocol's official domain (hop.exchange) has lapsed.",
+    "HopProtocolMono": "Hop Protocol's official domain (hop.exchange) has lapsed."
+  }
 }

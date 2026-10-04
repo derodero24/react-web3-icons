@@ -14,7 +14,8 @@
       "fill": "currentColor"
     }
   },
-  "slugs": [
-    "paraswap"
-  ]
+  "deprecated": {
+    "ParaSwap": "ParaSwap rebranded to Velora — use `Velora` instead.",
+    "ParaSwapMono": "Use `VeloraMono` instead."
+  }
 }

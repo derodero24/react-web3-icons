@@ -15,5 +15,9 @@
       "file": "nft-storage.mono.svg",
       "fill": "currentColor"
     }
+  },
+  "deprecated": {
+    "NftStorage": "NFT.Storage Classic uploads were decommissioned on 2024-06-30.",
+    "NftStorageMono": "NFT.Storage Classic uploads were decommissioned on 2024-06-30."
   }
 }

@@ -2,7 +2,7 @@ import { createIcon } from '../utils';
 
 // Source: https://web3js.org
 // Mono: the three colour groups (grey W, orange 3, light-grey JS) are kept apart by 1.2-unit knockout seams.
-/** Web3 Js devtool icon (colored). */
+/** @deprecated ChainSafe sunset web3.js on 2025-03-04 (https://blog.chainsafe.io/web3-js-sunset/). */
 export const Web3Js = /* @__PURE__ */ createIcon(
   'Web3Js',
   '0 0 64 64',
@@ -25,7 +25,7 @@ export const Web3Js = /* @__PURE__ */ createIcon(
   {},
 );
 
-/** Web3 Js devtool icon (monochrome). */
+/** @deprecated ChainSafe sunset web3.js on 2025-03-04 (https://blog.chainsafe.io/web3-js-sunset/). */
 export const Web3JsMono = /* @__PURE__ */ createIcon(
   'Web3JsMono',
   '0 0 64 64',

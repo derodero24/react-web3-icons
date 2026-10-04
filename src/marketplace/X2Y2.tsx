@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://x2y2.io
-/** X2 Y2 marketplace icon (colored). */
+/** @deprecated X2Y2 shut down its marketplace on 2025-04-30. */
 export const X2Y2 = /* @__PURE__ */ createIcon(
   'X2Y2',
   '0 0 64 64',
@@ -38,7 +38,7 @@ export const X2Y2 = /* @__PURE__ */ createIcon(
   { ids: true },
 );
 
-/** X2 Y2 marketplace icon (monochrome). */
+/** @deprecated X2Y2 shut down its marketplace on 2025-04-30. */
 export const X2Y2Mono = /* @__PURE__ */ createIcon(
   'X2Y2Mono',
   '0 0 64 64',

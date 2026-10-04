@@ -1,5 +1,5 @@
 {
-  "name": "OKXWallet",
+  "name": "OkxWallet",
   "source": [
     "https://okx.com/web3"
   ],
@@ -17,5 +17,17 @@
   "slugs": [
     "okxwallet",
     "okx"
+  ],
+  "localAliases": [
+    {
+      "name": "OKXWallet",
+      "target": "OkxWallet",
+      "deprecated": "OKXWallet was renamed to word casing — use `OkxWallet` instead."
+    },
+    {
+      "name": "OKXWalletMono",
+      "target": "OkxWalletMono",
+      "deprecated": "Use `OkxWalletMono` instead."
+    }
   ]
 }

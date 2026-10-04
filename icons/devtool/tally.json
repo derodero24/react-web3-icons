@@ -12,5 +12,9 @@
       "file": "tally.mono.svg",
       "fill": "currentColor"
     }
+  },
+  "deprecated": {
+    "Tally": "Tally rebranded to Cactus — use `Cactus` instead.",
+    "TallyMono": "Use `CactusMono` instead."
   }
 }

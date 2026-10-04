@@ -1,21 +1,23 @@
 {
   "name": "BackpackWallet",
-  "source": [
-    "https://backpack.app"
-  ],
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "backpack-wallet.svg",
-      "fill": "#E33E3F"
-    },
-    "Mono": {
-      "file": "backpack-wallet.mono.svg",
-      "fill": "currentColor"
-    }
-  },
-  "slugs": [
-    "backpackwallet",
-    "backpack"
-  ]
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "./Backpack",
+    "imports": [
+      "Backpack",
+      "BackpackMono"
+    ],
+    "exports": [
+      {
+        "name": "BackpackWallet",
+        "target": "Backpack",
+        "deprecated": "BackpackWallet was renamed to the official product name — use `Backpack` instead."
+      },
+      {
+        "name": "BackpackWalletMono",
+        "target": "BackpackMono",
+        "deprecated": "Use `BackpackMono` instead."
+      }
+    ]
+  }
 }

@@ -656,6 +656,27 @@ describe('loading icons/', () => {
     ).toThrow(message);
   });
 
+  it('accepts a deprecated alias that renames its target only in case', () => {
+    const unit = (deprecated?: string): string =>
+      iconUnit('FooBar', ['', 'a.svg'], {
+        localAliases: [
+          {
+            name: 'FOOBar',
+            target: 'FooBar',
+            ...(deprecated && { deprecated }),
+          },
+        ],
+      });
+    const files = { 'icons/chain/a.svg': SQUARE };
+    expect(
+      loadChain({ ...files, 'icons/chain/a.json': unit('Use FooBar.') }),
+    ).toHaveLength(1);
+    // Not deprecated, it would be a second export of the same file name.
+    expect(() => loadChain({ ...files, 'icons/chain/a.json': unit() })).toThrow(
+      /export FOOBar is already defined by icons\/chain\/a\.json/,
+    );
+  });
+
   it.each([
     [
       'a malformed viewBox',
@@ -1245,6 +1266,28 @@ describe('published artifacts', () => {
       ...ids(icons['chain-foo']?.body),
       ...ids(icons['chain-foo-bar']?.body),
     ]).toEqual(['chain-foo_bar-a', 'chain-foo-bar_a']);
+  });
+
+  it('a case-only rename gets no dist/svg file or Iconify alias of its own', () => {
+    const iconsDir = join(
+      fixture({
+        'icons/chain/foo-bar.json': iconUnit('FooBar', ['', 'foo-bar.svg'], {
+          localAliases: [
+            { name: 'FOOBar', target: 'FooBar', deprecated: 'Use FooBar.' },
+            { name: 'Foobar', target: 'FooBar', deprecated: 'Use FooBar.' },
+          ],
+        }),
+        'icons/chain/foo-bar.svg': SQUARE,
+      }),
+      'icons',
+    );
+    expect([...buildDistSvgs(iconsDir).keys()]).toEqual(['chain/FooBar.svg']);
+    // `FOOBar` shares the icon name `chain-foo-bar`; `Foobar` does not.
+    const { icons, aliases } = buildIconifySets(iconsDir).colored;
+    expect(Object.keys(icons)).toEqual(['chain-foo-bar']);
+    expect(aliases).toEqual({
+      'chain-foobar': { parent: 'chain-foo-bar', hidden: true },
+    });
   });
 
   it('Iconify info.height is the common height, or omitted', () => {

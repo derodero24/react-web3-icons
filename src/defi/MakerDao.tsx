@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Paths sourced from @web3icons/react (MIT)
-/** Maker Dao DeFi icon (colored). */
+/** @deprecated MakerDAO rebranded to Sky — use `Sky` instead. */
 export const MakerDao = /* @__PURE__ */ createIcon(
   'MakerDao',
   '0 0 64 64',
@@ -29,7 +29,7 @@ export const MakerDao = /* @__PURE__ */ createIcon(
   { fill: 'none', ids: true },
 );
 
-/** Maker Dao DeFi icon (monochrome). */
+/** @deprecated Use `SkyMono` instead. */
 export const MakerDaoMono = /* @__PURE__ */ createIcon(
   'MakerDaoMono',
   '0 0 64 64',

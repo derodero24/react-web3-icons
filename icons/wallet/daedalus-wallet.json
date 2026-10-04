@@ -1,21 +1,23 @@
 {
   "name": "DaedalusWallet",
-  "source": [
-    "https://daedaluswallet.io"
-  ],
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "daedalus-wallet.svg",
-      "fill": "#82ff65"
-    },
-    "Mono": {
-      "file": "daedalus-wallet.mono.svg",
-      "fill": "currentColor"
-    }
-  },
-  "slugs": [
-    "daedaluswallet",
-    "daedalus"
-  ]
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "./Daedalus",
+    "imports": [
+      "Daedalus",
+      "DaedalusMono"
+    ],
+    "exports": [
+      {
+        "name": "DaedalusWallet",
+        "target": "Daedalus",
+        "deprecated": "DaedalusWallet was renamed to the official product name — use `Daedalus` instead."
+      },
+      {
+        "name": "DaedalusWalletMono",
+        "target": "DaedalusMono",
+        "deprecated": "Use `DaedalusMono` instead."
+      }
+    ]
+  }
 }

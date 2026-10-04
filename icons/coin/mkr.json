@@ -3,21 +3,24 @@
   "source": [
     "re-export of MakerDao — see src/defi/MakerDao.tsx"
   ],
-  "kind": "reexport",
-  "reexport": {
-    "from": "../defi/MakerDao",
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "../defi/MakerDao",
+    "imports": [
+      "MakerDao",
+      "MakerDaoMono"
+    ],
     "exports": [
       {
-        "of": "MakerDao",
-        "as": "Mkr"
+        "name": "Mkr",
+        "target": "MakerDao",
+        "deprecated": "MKR was upgraded to SKY — use `Sky` instead."
       },
       {
-        "of": "MakerDaoMono",
-        "as": "MkrMono"
+        "name": "MkrMono",
+        "target": "MakerDaoMono",
+        "deprecated": "Use `SkyMono` instead."
       }
     ]
-  },
-  "tickers": [
-    "MKR"
-  ]
+  }
 }

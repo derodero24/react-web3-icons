@@ -15,5 +15,9 @@
       "file": "web3-js.mono.svg",
       "fill": "currentColor"
     }
+  },
+  "deprecated": {
+    "Web3Js": "ChainSafe sunset web3.js on 2025-03-04 (https://blog.chainsafe.io/web3-js-sunset/).",
+    "Web3JsMono": "ChainSafe sunset web3.js on 2025-03-04 (https://blog.chainsafe.io/web3-js-sunset/)."
   }
 }

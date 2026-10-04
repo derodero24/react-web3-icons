@@ -68,7 +68,15 @@ expect(
   Array.isArray(manifest) && manifest.length > 0,
   'manifest.json is empty',
 );
+// A deprecated alias that differs from a current export only in letter case
+// (StarkNet → Starknet) ships no file of its own: the two paths would collide
+// on case-insensitive filesystems (MIGRATION.md, v5 renames).
+const caseKey = ({ category, name }) => `${category}/${name.toLowerCase()}`;
+const currentKeys = new Set(
+  manifest.filter(entry => !entry.deprecated).map(caseKey),
+);
 const missingSvgs = manifest
+  .filter(entry => !(entry.deprecated && currentKeys.has(caseKey(entry))))
   .map(({ category, name }) => `${pkg.name}/svg/${category}/${name}.svg`)
   .filter(
     specifier => !existsSync(fileURLToPath(import.meta.resolve(specifier))),

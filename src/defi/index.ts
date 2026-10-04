@@ -17,6 +17,7 @@ export * from './Morpho';
 export * from './Pendle';
 export * from './RocketPool';
 export * from './SafeProtocol';
+export * from './Sky';
 export * from './Spark';
 export * from './Synthetix';
 export * from './Venus';

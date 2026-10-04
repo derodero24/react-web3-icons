@@ -19,7 +19,7 @@ Icons with internal ids (masks, gradients, clip paths) now call `useId` and rend
 - With `title` and `titleId`, they now set `aria-labelledby` like every other icon.
 - They are annotated `/* @__PURE__ */`, so importing one export of `Avalanche`, `Bybit` or `RainbowWallet` no longer bundles its siblings.
 - `withBackground`, `fill1` and `fill2` render exactly as before for every combination of values.
-- **`BybitProps` now holds only the extra props** (`fill1`, `fill2`); it no longer extends `IconProps`. `AvalancheProps` and `RainbowWalletProps` are now exported the same way.
+- **`BybitProps` now holds only the extra props** (`fill1`, `fill2`); it no longer extends `IconProps`. `AvalancheProps` and `RainbowProps` (for `Rainbow`, formerly `RainbowWallet`, see section 6) are now exported the same way.
 
 ```diff
 - const props: BybitProps = { fill1: '#000', size: 24 };
@@ -69,12 +69,159 @@ Seven marks overflowed their old viewBox and were cut off at its edge; they are 
 - **Re-check custom sizing that relied on the old viewBox**, e.g. CSS that set only `width` or `height` and let the other follow the aspect ratio, `preserveAspectRatio` overrides, padding added to even out letterboxed icons, or code reading the `viewBox` attribute. The square viewBox makes such tweaks unnecessary.
 - `react-web3-icons/svg/*` files and the Iconify sets (`width`/`height` now 64 for every icon) changed the same way.
 
+## 6. Export names follow one naming rule
+
+Export names now follow the rules in [CONTRIBUTING.md](./CONTRIBUTING.md#export-names) (#815): the project's current official name in PascalCase, acronyms written as words, a category suffix such as `Wallet` only where it is part of the name or avoids a clash, and tickers for coins. The exports below are renamed, or follow a rebrand that kept its artwork.
+
+**The old names keep working through v5.** They are deprecated aliases of the new exports (`@deprecated` JSDoc, listed in `DEPRECATED_ICON_NAMES`), render the same icon, and will be removed in a later major release under the [icon lifecycle policy](./docs/icon-lifecycle.md).
+
+### Rename table
+
+| v4 name (deprecated) | v5 name | Category |
+| --- | --- | --- |
+| `BinanceSmartChain` | `BnbSmartChain` | chain |
+| `BinanceSmartChainMono` | `BnbSmartChainMono` | chain |
+| `BinanceSmartChainCircle` | `BnbSmartChainCircle` | chain |
+| `BinanceSmartChainSquare` | `BnbSmartChainSquare` | chain |
+| `BinanceSmartChainSquareMono` | `BnbSmartChainSquareMono` | chain |
+| `BinanceSmartChainCircleMono` | `BnbSmartChainCircleMono` | chain |
+| `StarkNet` | `Starknet` | chain |
+| `StarkNetMono` | `StarknetMono` | chain |
+| `StarkNetCircle` | `StarknetCircle` | chain |
+| `StarkNetSquare` | `StarknetSquare` | chain |
+| `StarkNetSquareMono` | `StarknetSquareMono` | chain |
+| `StarkNetCircleMono` | `StarknetCircleMono` | chain |
+| `Gateio` | `Gate` | exchange |
+| `GateioMono` | `GateMono` | exchange |
+| `Argent` | `Ready` | wallet |
+| `ArgentMono` | `ReadyMono` | wallet |
+| `BackpackWallet` | `Backpack` | wallet |
+| `BackpackWalletMono` | `BackpackMono` | wallet |
+| `DaedalusWallet` | `Daedalus` | wallet |
+| `DaedalusWalletMono` | `DaedalusMono` | wallet |
+| `OKXWallet` | `OkxWallet` | wallet |
+| `OKXWalletMono` | `OkxWalletMono` | wallet |
+| `PhantomWallet` | `Phantom` | wallet |
+| `PhantomWalletMono` | `PhantomMono` | wallet |
+| `PhantomWalletCircle` | `PhantomCircle` | wallet |
+| `PhantomWalletCircleMono` | `PhantomCircleMono` | wallet |
+| `PhantomWalletSquare` | `PhantomSquare` | wallet |
+| `PhantomWalletSquareMono` | `PhantomSquareMono` | wallet |
+| `PhantomWalletSymbolMono` | `PhantomSymbolMono` | wallet |
+| `RainbowWallet` | `Rainbow` | wallet |
+| `RainbowWalletSymbol` | `RainbowSymbol` | wallet |
+| `RainbowWalletCircle` | `RainbowCircle` | wallet |
+| `RainbowWalletCircleMono` | `RainbowCircleMono` | wallet |
+| `RainbowWalletSquare` | `RainbowSquare` | wallet |
+| `RainbowWalletSquareMono` | `RainbowSquareMono` | wallet |
+| `RainbowWalletMono` | `RainbowMono` | wallet |
+| `RainbowWalletSymbolMono` | `RainbowSymbolMono` | wallet |
+| `YoroiWallet` | `Yoroi` | wallet |
+| `YoroiWalletMono` | `YoroiMono` | wallet |
+
+`Argent` follows the Argent → Ready rebrand, `Gateio` the Gate.io → Gate rebrand and `BinanceSmartChain` the BNB Smart Chain rename; their artwork is unchanged. `CoinbaseWallet`, `BitgetWallet`, `OkxWallet` and `UniswapWallet` keep `Wallet` because `Coinbase`, `Bitget`, `Okx` and `Uniswap` are other icons.
+
+- The extra-props type of `Rainbow` is `RainbowProps` (`RainbowWalletProps`, new in v5, is gone).
+- Renamed icons render their internal ids with the new name (`w3i-phantomsquaremono-…` instead of `w3i-phantomwalletsquaremono-…`), also through the old names. Regenerate markup snapshots that contain them.
+- Static files and Iconify icons follow the new names (`react-web3-icons/svg/wallet/Phantom.svg`, `web3:wallet-phantom`). The old names stay available as files and Iconify aliases, except `OKXWallet*` and `StarkNet*`, whose files would differ from the new ones only in letter case: use `OkxWallet*.svg` and `Starknet*.svg`.
+- Lookup keys still resolve, now to the new names: `<WalletIcon name="phantom" />` renders `Phantom`, and `CHAIN_SLUG_TO_NAME.bsc` is `'BnbSmartChain'`. `gate`, `ready`, `bnb-smart-chain`, `gnosis-chain` and `manta-pacific` are new slugs, and the primary slug (the manifest's `slug`) of a renamed wallet or exchange is its new name (`phantom`, `gate`).
+
+### Quick find-and-replace
+
+Every rename keeps the variant suffix, so one replacement per name covers all variants (`PhantomWalletSquareMono` → `PhantomSquareMono`):
+
+```
+s/\bPhantomWallet/Phantom/g
+s/\bRainbowWallet/Rainbow/g
+s/\bBackpackWallet/Backpack/g
+s/\bYoroiWallet/Yoroi/g
+s/\bDaedalusWallet/Daedalus/g
+s/\bOKXWallet/OkxWallet/g
+s/\bArgent/Ready/g
+s/\bGateio/Gate/g
+s/\bStarkNet/Starknet/g
+s/\bBinanceSmartChain/BnbSmartChain/g
+```
+
+Save these lines as `v5-renames.sed` and run, for example with GNU sed:
+
+```sh
+grep -rlE '\b(PhantomWallet|RainbowWallet|BackpackWallet|YoroiWallet|DaedalusWallet|OKXWallet|Argent|Gateio|StarkNet|BinanceSmartChain)' src \
+  | xargs sed -i -f v5-renames.sed
+```
+
+## 7. Rebrands with new artwork
+
+These projects rebranded with a new logo. The new export carries the new artwork from the official source; the old export keeps the old artwork and is deprecated:
+
+| Deprecated | Replacement | Category | New artwork |
+| --- | --- | --- | --- |
+| `Tally`, `TallyMono` | `Cactus`, `CactusMono` | devtool | the Cactus logo served by tally.xyz (Tally became Cactus on 2026-06-17) |
+| `MakerDao`, `MakerDaoMono` | `Sky`, `SkyMono`, `SkyCircle`, `SkyCircleMono` | defi | the SKY token file, app.sky.money/tokens/sky.svg |
+| `Mkr`, `MkrMono` | `Sky`, `SkyMono`, `SkyCircle`, `SkyCircleMono` | coin | the same, re-exported from defi (MKR upgrades to SKY) |
+| `ParaSwap`, `ParaSwapMono` | `Velora`, `VeloraMono` | dex | the Velora brand kit, velora.xyz/brand |
+
+`Gram`, `GramMono`, `GramCircle` and `GramCircleMono` (coin, ticker `GRAM`) are new: Gram is the token formerly known as Toncoin (TON), with its own mark from ton.org/media. The `Ton` exports, the logo of The Open Network, are unchanged in `react-web3-icons/chain` and `react-web3-icons/coin`, and the ticker `TON` still resolves to them.
+
+- The lookup keys moved with the brands: `makerdao` resolves to `Sky` (`DefiIcon`), `paraswap` to `Velora` (`DexIcon`) and `MKR` to `Sky` (`CoinIcon`, `TICKER_TO_COIN`), so they render the new artwork. `sky`, `velora`, `SKY` and `GRAM` are new keys.
+- `DefiIcon` gains the `'Circle'` and `'CircleMono'` variants (`DefiVariant`) through `SkyCircle`.
+
+```diff
+- import { MakerDao, Mkr, ParaSwap, Tally } from 'react-web3-icons';
++ import { Cactus, Sky, Velora } from 'react-web3-icons';
+```
+
+## 8. Icons of defunct projects are deprecated
+
+These projects shut down or were discontinued. Their exports still work and render the same artwork, but they are deprecated with no replacement and will be removed in a later major release:
+
+| Deprecated | Category | Reason |
+| --- | --- | --- |
+| `Busd`, `BusdMono` | coin | Paxos stopped minting BUSD in February 2023, and Binance ended support in December 2023 |
+| `NamiWallet`, `NamiWalletMono` | wallet | Nami was folded into Lace |
+| `Web3Js`, `Web3JsMono` | devtool | ChainSafe sunset web3.js on 2025-03-04 |
+| `X2Y2`, `X2Y2Mono` | marketplace | X2Y2 closed its marketplace on 2025-04-30 |
+| `NftStorage`, `NftStorageMono` | storage | NFT.Storage Classic uploads were decommissioned on 2024-06-30 |
+| `HopProtocol`, `HopProtocolMono` | bridge | Hop's official domain has lapsed |
+| `Odos`, `OdosMono` | dex | Odos shut down on 2026-07-30 (odos.xyz shows the shutdown notice) |
+
+Lookup keys may not point at deprecated icons, so the ticker `BUSD` and the slugs `namiwallet`, `nami`, `hopprotocol` and `odos` no longer resolve: the dynamic components render `fallback` for them, and the `react-web3-icons/meta` maps no longer list them.
+
+## 9. Removed exports
+
+These exports were deprecated in v2 or v3 and have met the lifecycle policy (at least one minor release and 90 days), so v5 removes them. Importing them is now an error:
+
+| Removed | Use instead | Deprecated since |
+| --- | --- | --- |
+| `GnosisSafe`, `GnosisSafeMono` | `Safe`, `SafeMono` | 2.0.0 (2026-03-01) |
+| `Matic`, `MaticMono`, `MaticCircle`, `MaticCircleMono` | `Pol`, `PolMono`, `PolCircle`, `PolCircleMono` | 2.0.0 (2026-03-01) |
+| `EtherscanLight` | `EtherscanInverted` | 3.0.0 (2026-03-10) |
+| `BasescanLight` | `BasescanInverted` | 3.0.0 (2026-03-10) |
+| `BscscanLight` | `BscscanInverted` | 3.0.0 (2026-03-10) |
+| `BybitLight` | `BybitInverted` | 3.0.0 (2026-03-10) |
+| `Truffle`, `TruffleMono` | — (ConsenSys sunset Truffle Suite) | 3.1.0 (2026-03-16) |
+| `Ganache`, `GanacheMono` | — (ConsenSys sunset Truffle Suite) | 3.1.0 (2026-03-16) |
+| `Drizzle`, `DrizzleMono` | — (ConsenSys sunset Truffle Suite) | 3.1.0 (2026-03-16) |
+| `TofuNft`, `TofuNftMono` | — (tofunft.com shut down) | 3.1.0 (2026-03-16) |
+
+Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases are gone too. `Fantom`, `FantomMono`, `Ftm` and `FtmMono` were deprecated in 4.0.0 (2026-09-14), have not met the 90-day window yet, and stay deprecated.
+
+```diff
+- import { EtherscanLight, GnosisSafe, Matic } from 'react-web3-icons';
++ import { EtherscanInverted, Pol, Safe } from 'react-web3-icons';
+```
+
 ## Checklist
 
 - [ ] Regenerate markup snapshots containing icon defs ids or icon markup (viewBox, path data)
 - [ ] Type full `Bybit` props as `IconProps & BybitProps` (or `ComponentProps<typeof Bybit>`)
 - [ ] Pass dynamic components only `variant` values of their category (`ChainVariant`, …); others render `fallback`
 - [ ] Re-check custom CSS or layout that compensated for the old per-icon viewBoxes
+- [ ] Replace the removed exports (`GnosisSafe*`, `Matic*`, `*Light`, `Truffle*`, `Ganache*`, `Drizzle*`, `TofuNft*`) with their replacements (section 9)
+- [ ] Optionally rename the deprecated names with the find-and-replace in section 6 (they keep working through v5)
+- [ ] Optionally move from `Tally`, `MakerDao`, `Mkr` and `ParaSwap` to `Cactus`, `Sky` and `Velora` (new artwork, section 7)
+- [ ] Expect `fallback` for the lookup keys of defunct projects (`BUSD`, `nami`, `odos`, …) and the new Sky and Velora artwork for `MKR`, `makerdao` and `paraswap` (sections 7 and 8)
+- [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg` and `Starknet*.svg` instead of the `OKXWallet*` and `StarkNet*` files
 
 ---
 

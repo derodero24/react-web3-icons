@@ -216,10 +216,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       "The official FraxIcon draws its black disc on a white keyline disc; in one colour the keyline is paper, so the mono is the black disc alone (refMiss 0.35%) and the footprint overlap only counts the keyline's extra rim.",
   },
-  'devtool/Drizzle': {
-    kind: 'false-positive',
-    reason: 'Threshold-faithful (refMiss 2.0%); kept as-is.',
-  },
   'dex/Aerodrome': {
     kind: 'false-positive',
     reason:
@@ -274,22 +270,22 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'The llama is knocked out of the D and opens at its bottom edge, so the footprint flood fill enters it.',
   },
-  'wallet/RainbowWallet': {
+  'wallet/Rainbow': {
     kind: 'false-positive',
     reason:
       'The band gradients inflate the colour-boundary count; the bands stay apart through knockout seams.',
   },
-  'wallet/RainbowWalletCircle': {
+  'wallet/RainbowCircle': {
     kind: 'false-positive',
     reason:
       'The band and disc gradients inflate the colour-boundary count; the bands stay apart through seams.',
   },
-  'wallet/RainbowWalletSquare': {
+  'wallet/RainbowSquare': {
     kind: 'false-positive',
     reason:
       'The band and tile gradients inflate the colour-boundary count; the bands stay apart through seams.',
   },
-  'wallet/RainbowWalletSymbol': {
+  'wallet/RainbowSymbol': {
     kind: 'false-positive',
     reason:
       'The band gradients inflate the colour-boundary count, and the seams between the bands open the footprint at their ends.',
