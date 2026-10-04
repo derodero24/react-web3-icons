@@ -1,7 +1,11 @@
 {
   "name": "SubWallet",
   "source": [
-    "https://subwallet.app"
+    "https://github.com/Koniverse/Koni-Branding-Kit/blob/main/02.SubWallet/04.Icon/01.SVG/Style%3DGradient.svg (official brand kit, linked as \"Download now\" from https://www.subwallet.app/brandingkit.html)"
+  ],
+  "notes": [
+    "Colored: the kit Icon Style=Gradient.svg unchanged (#61FEC0 to #0425FE diagonal gradient), placed on the 64 grid; it replaces a horizontal #004BFF to #4CEAAC gradient on a slightly different S",
+    "Mono: the same path in currentColor, the shape of the kit Style=Black.svg one-colour icon"
   ],
   "kind": "icon",
   "variants": {

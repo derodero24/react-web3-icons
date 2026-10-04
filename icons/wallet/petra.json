@@ -1,7 +1,13 @@
 {
   "name": "Petra",
+  "source": [
+    "https://petra.app (official site; header logo: the Petra mark as an inline SVG in white on the \"petra-blue\" hero)",
+    "https://petra.app (stylesheet token .bg-petra-blue = rgb(90 63 255), #5A3FFF)",
+    "https://petra.app/favicon.ico (app icon: the white mark on a #5A3FFF rounded tile)"
+  ],
   "notes": [
-    "Petra \"P\" symbol — two white paths from the 3000×3000 source SVG"
+    "Colored: the official mark path unchanged, white, scale 1.22 centred on a #5A3FFF rounded tile (rx 20%), as in the favicon (a raster: the tile radius and the mark size follow it approximately, nothing is traced). It replaces the old coral #FF5F5F \"P\"",
+    "Mono: the tile in currentColor with the mark knocked out"
   ],
   "kind": "icon",
   "variants": {

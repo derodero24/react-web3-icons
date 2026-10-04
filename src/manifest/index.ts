@@ -2250,7 +2250,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'petra',
     variants: ['', 'Mono'],
-    brandColor: '#ff5f5f',
+    brandColor: '#5a3fff',
   },
   { name: 'PetraMono', category: 'wallet' },
   {
@@ -2358,7 +2358,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'subwallet',
     variants: ['', 'Mono'],
-    brandColor: '#004bff',
+    brandColor: '#61fec0',
   },
   { name: 'SubWalletMono', category: 'wallet' },
   {
@@ -2403,7 +2403,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'walletconnect',
     variants: ['Circle', 'CircleMono', 'Square', 'SquareMono', '', 'Mono'],
     aliases: ['wc'],
-    brandColor: '#3396ff',
+    brandColor: '#0988f0',
   },
   { name: 'WalletConnectCircle', category: 'wallet' },
   { name: 'WalletConnectCircleMono', category: 'wallet' },
