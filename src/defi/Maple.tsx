@@ -1,7 +1,8 @@
 import { createIcon } from '../utils';
 
-// Maple Finance — orange circle with white maple leaf details
-// Paths sourced from CoinSpace/crypto-db: logo/maple-finance.svg
+// Source: https://maple.finance/favicon.svg
+// Maple Finance: orange #FC784A circle with the white maple-leaf strokes
+// The artwork matches the official favicon.svg (same circle and three paths, rounded to the 64 grid); it was first taken from CoinSpace/crypto-db, now re-sourced to Maple's own file
 /** Maple DeFi icon (colored). */
 export const Maple = /* @__PURE__ */ createIcon(
   'Maple',

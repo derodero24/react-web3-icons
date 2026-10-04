@@ -1,6 +1,6 @@
 import { createIcon } from '../utils';
 
-// Source: https://ipfs.tech
+// Source: https://docs.ipfs.tech/images/ipfs-logo.svg
 // Mono: the solid cube in ink with a 1.2-unit knock-out seam inside each of the three lighter faces of the coloured mark, so it reads as the filled cube rather than a wireframe
 /** Ipfs storage icon (colored). */
 export const Ipfs = /* @__PURE__ */ createIcon(

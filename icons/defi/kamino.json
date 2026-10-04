@@ -1,5 +1,8 @@
 {
   "name": "Kamino",
+  "source": [
+    "https://cdn.kamino.finance/kamino.svg"
+  ],
   "notes": [
     "Kamino Finance — dark navy background with stylized \"K\" mark in cyan",
     "Paths sourced from cdn.kamino.finance/kamino.svg"
