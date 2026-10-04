@@ -3,7 +3,7 @@ import { createIcon } from '../utils';
 // Source: https://github.com/dogecoin/dogecoin/blob/master/share/pixmaps/dogecoin256.svg (official Dogecoin Core repository)
 // Doge: matches the official dogecoin256.svg of Dogecoin Core within rendering noise (mean pixel difference 0.1/255 at 256 px; audited in #836), so the artwork is kept; dogecoin.com serves the same coin only as a PNG (/doge-logo.png)
 // DogeMono: ink coin with a rim seam and the D of doge.svg knocked out; the illustrated face does not survive one ink colour
-// DogeCircle / DogeCircleMono: legacy artwork of unidentified origin (a slab D in white on a #C2A633 disc), not an official Dogecoin asset; neither the Dogecoin Core pixmaps nor dogecoin.com publish a D-on-disc composition, and #C2A633 is not in the official coin's palette. Kept until #815 decides its fate
+// DogeCircle / DogeCircleMono: aliases of Doge / DogeMono. The official Dogecoin coin is already round, so the Circle variants render it instead of the legacy slab D on a #C2A633 disc of unidentified origin they used to (#815)
 /** Doge coin icon (colored). */
 export const Doge = /* @__PURE__ */ createIcon(
   'Doge',
@@ -610,42 +610,7 @@ export const DogeMono = /* @__PURE__ */ createIcon(
 );
 
 /** Doge Circle coin icon (colored). */
-export const DogeCircle = /* @__PURE__ */ createIcon(
-  'DogeCircle',
-  '0 0 64 64',
-  () => (
-    <>
-      <circle cx="32" cy="32" r="32" fill="#C2A633" />
-      <g>
-        <path
-          fill="#fff"
-          d="M21.06 18.96v6.95h3.31v13.03h-3.3v6.95h13.32q.26 0 .52-.03a12 12 0 0 0 4.97-1.64c3-1.8 5.59-5.35 5.59-11.36C45.47 26.55 43 22.8 40 20.8a11.3 11.3 0 0 0-5.6-1.84zm13.22 19.98h-2.45V25.9h2.52l.5.08a5 5 0 0 1 1.62.68c.93.62 2.4 2.07 2.4 6.2 0 3.53-1.35 4.77-2.29 5.35a5 5 0 0 1-2.3.72"
-        />
-      </g>
-    </>
-  ),
-  {},
-);
+export const DogeCircle = Doge;
 
 /** Doge Circle coin icon (monochrome). */
-export const DogeCircleMono = /* @__PURE__ */ createIcon(
-  'DogeCircleMono',
-  '0 0 64 64',
-  (_props, _id) => (
-    <>
-      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-dogec-a)`} />
-      <defs>
-        <mask id={`${_id}-dogec-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
-          <g>
-            <path
-              fill="#000"
-              d="M21.06 18.96v6.95h3.31v13.03h-3.3v6.95h13.32q.26 0 .52-.03a12 12 0 0 0 4.97-1.64c3-1.8 5.59-5.35 5.59-11.36C45.47 26.55 43 22.8 40 20.8a11.3 11.3 0 0 0-5.6-1.84zm13.22 19.98h-2.45V25.9h2.52l.5.08a5 5 0 0 1 1.62.68c.93.62 2.4 2.07 2.4 6.2 0 3.53-1.35 4.77-2.29 5.35a5 5 0 0 1-2.3.72"
-            />
-          </g>
-        </mask>
-      </defs>
-    </>
-  ),
-  { fill: 'currentColor', ids: true },
-);
+export const DogeCircleMono = DogeMono;

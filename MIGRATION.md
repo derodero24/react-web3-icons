@@ -91,6 +91,14 @@ Export names now follow the rules in [CONTRIBUTING.md](./CONTRIBUTING.md#export-
 | `StarkNetSquare` | `StarknetSquare` | chain |
 | `StarkNetSquareMono` | `StarknetSquareMono` | chain |
 | `StarkNetCircleMono` | `StarknetCircleMono` | chain |
+| `ImmutableX` | `Immutable` | chain |
+| `ImmutableXMono` | `ImmutableMono` | chain |
+| `ZkSync` | `Zksync` | chain |
+| `ZkSyncMono` | `ZksyncMono` | chain |
+| `ZkSyncCircle` | `ZksyncCircle` | chain |
+| `ZkSyncSquare` | `ZksyncSquare` | chain |
+| `ZkSyncSquareMono` | `ZksyncSquareMono` | chain |
+| `ZkSyncCircleMono` | `ZksyncCircleMono` | chain |
 | `Gateio` | `Gate` | exchange |
 | `GateioMono` | `GateMono` | exchange |
 | `Argent` | `Ready` | wallet |
@@ -119,12 +127,12 @@ Export names now follow the rules in [CONTRIBUTING.md](./CONTRIBUTING.md#export-
 | `YoroiWallet` | `Yoroi` | wallet |
 | `YoroiWalletMono` | `YoroiMono` | wallet |
 
-`Argent` follows the Argent → Ready rebrand, `Gateio` the Gate.io → Gate rebrand and `BinanceSmartChain` the BNB Smart Chain rename; their artwork is unchanged. `CoinbaseWallet`, `BitgetWallet`, `OkxWallet` and `UniswapWallet` keep `Wallet` because `Coinbase`, `Bitget`, `Okx` and `Uniswap` are other icons.
+`Argent` follows the Argent → Ready rebrand, `Gateio` the Gate.io → Gate rebrand, `BinanceSmartChain` the BNB Smart Chain rename and `ImmutableX` the Immutable X → Immutable rebrand (chain 13371 is Immutable zkEVM); their artwork is the same as the new name's. `ZkSync` follows the acronym rule for the official name ZKsync. `CoinbaseWallet`, `BitgetWallet`, `OkxWallet` and `UniswapWallet` keep `Wallet` because `Coinbase`, `Bitget`, `Okx` and `Uniswap` are other icons.
 
 - The extra-props type of `Rainbow` is `RainbowProps` (`RainbowWalletProps`, new in v5, is gone).
 - Renamed icons render their internal ids with the new name (`w3i-phantomsquaremono-…` instead of `w3i-phantomwalletsquaremono-…`), also through the old names. Regenerate markup snapshots that contain them.
-- Static files and Iconify icons follow the new names (`react-web3-icons/svg/wallet/Phantom.svg`, `web3:wallet-phantom`). The old names stay available as files and Iconify aliases, except `OKXWallet*` and `StarkNet*`, whose files would differ from the new ones only in letter case: use `OkxWallet*.svg` and `Starknet*.svg`.
-- Lookup keys still resolve, now to the new names: `<WalletIcon name="phantom" />` renders `Phantom`, and `CHAIN_SLUG_TO_NAME.bsc` is `'BnbSmartChain'`. `gate`, `ready`, `bnb-smart-chain`, `gnosis-chain` and `manta-pacific` are new slugs, and the primary slug (the manifest's `slug`) of a renamed wallet or exchange is its new name (`phantom`, `gate`).
+- Static files and Iconify icons follow the new names (`react-web3-icons/svg/wallet/Phantom.svg`, `web3:wallet-phantom`). The old names stay available as files and Iconify aliases, except `OKXWallet*`, `StarkNet*` and `ZkSync*`, whose files would differ from the new ones only in letter case: use `OkxWallet*.svg`, `Starknet*.svg` and `Zksync*.svg` (Iconify: `chain-zksync`).
+- Lookup keys still resolve, now to the new names: `<WalletIcon name="phantom" />` renders `Phantom`, and `CHAIN_SLUG_TO_NAME.bsc` is `'BnbSmartChain'`. `gate`, `ready`, `bnb-smart-chain`, `gnosis-chain`, `manta-pacific`, `immutable`, `immutable-zkevm` and `eigencloud` (→ `EigenLayer`) are new slugs, and the primary slug (the manifest's `slug`) of a renamed wallet or exchange is its new name (`phantom`, `gate`).
 
 ### Quick find-and-replace
 
@@ -141,14 +149,28 @@ s/\bArgent/Ready/g
 s/\bGateio/Gate/g
 s/\bStarkNet/Starknet/g
 s/\bBinanceSmartChain/BnbSmartChain/g
+s/\bImmutableX/Immutable/g
+s/\bZkSync/Zksync/g
 ```
 
 Save these lines as `v5-renames.sed` and run, for example with GNU sed:
 
 ```sh
-grep -rlE '\b(PhantomWallet|RainbowWallet|BackpackWallet|YoroiWallet|DaedalusWallet|OKXWallet|Argent|Gateio|StarkNet|BinanceSmartChain)' src \
+grep -rlE '\b(PhantomWallet|RainbowWallet|BackpackWallet|YoroiWallet|DaedalusWallet|OKXWallet|Argent|Gateio|StarkNet|BinanceSmartChain|ImmutableX|ZkSync)' src \
   | xargs sed -i -f v5-renames.sed
 ```
+
+### Duplicate variants are deprecated
+
+These variants render the same artwork as another export, or legacy artwork with no current official counterpart. They keep working through v5 as deprecated exports:
+
+| Deprecated | Use instead | Category | Why |
+| --- | --- | --- | --- |
+| `MetaMaskAlt` | `MetaMask` | wallet | MetaMask has a single fox design since its 2024 refresh, so `Alt` rendered the default |
+| `MagicEdenFlat` | `MagicEden` | marketplace | the current Magic Eden mark is single-colour, so `Flat` rendered the default |
+| `MagicEdenWordmarkFlat` | `MagicEdenWordmark`, `MagicEdenWordmarkMono` | marketplace | legacy stacked lockup; Magic Eden has no single-colour wordmark |
+
+Deprecated exports are not variants of the dynamic components, so `'Alt'` leaves `WalletVariant`: `<WalletIcon name="metamask" variant="Alt" />` is a type error and renders `fallback`. Omit `variant` instead.
 
 ## 7. Rebrands with new artwork
 
@@ -219,9 +241,10 @@ Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases ar
 - [ ] Re-check custom CSS or layout that compensated for the old per-icon viewBoxes
 - [ ] Replace the removed exports (`GnosisSafe*`, `Matic*`, `*Light`, `Truffle*`, `Ganache*`, `Drizzle*`, `TofuNft*`) with their replacements (section 9)
 - [ ] Optionally rename the deprecated names with the find-and-replace in section 6 (they keep working through v5)
+- [ ] Drop `variant="Alt"` from `WalletIcon` (section 6, duplicate variants)
 - [ ] Optionally move from `Tally`, `MakerDao`, `Mkr` and `ParaSwap` to `Cactus`, `Sky` and `Velora` (new artwork, section 7)
 - [ ] Expect `fallback` for the lookup keys of defunct projects (`BUSD`, `nami`, `odos`, …) and the new Sky and Velora artwork for `MKR`, `makerdao` and `paraswap` (sections 7 and 8)
-- [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg` and `Starknet*.svg` instead of the `OKXWallet*` and `StarkNet*` files
+- [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg`, `Starknet*.svg` and `Zksync*.svg` instead of the `OKXWallet*`, `StarkNet*` and `ZkSync*` files
 
 ---
 

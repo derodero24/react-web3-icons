@@ -294,7 +294,7 @@ rules (#815), which `test/naming.test.ts` enforces over `icons/**/*.json`:
 1. **The project's current official name in PascalCase.** Words keep their
    order and lose spaces and punctuation (`Crypto.com` → `CryptoCom`,
    `ether.fi` → `EtherFi`). Acronyms are written as words (`Okx`, `Ens`,
-   `Htx`, `BnbSmartChain`), and internal capitals are kept only where the
+   `Htx`, `BnbSmartChain`, `Zksync`), and internal capitals are kept only where the
    brand writes the name as one word with them (`MetaMask`, `KuCoin`,
    `DeBank`).
 2. **A category suffix (`Wallet`, `Chain`, `Protocol`, …) only when it is
@@ -326,7 +326,7 @@ rules (#815), which `test/naming.test.ts` enforces over `icons/**/*.json`:
 What the rules cannot derive mechanically is listed in the test with the
 reason: brand casing (`MetaMask`), spellings that are not a plain PascalCase
 of the official name (`Oneinch` for 1inch, since an identifier cannot start
-with a digit; `ZkSync` for ZKsync), the suffixed names of rule 2 and the
+with a digit and 1inch is one word), the suffixed names of rule 2 and the
 coin exceptions above. Add a new name there only together with its reason.
 In the categories with lookup keys, the name must also resolve as one of
 the unit's own `slugs` (`Phantom` → `phantom`).

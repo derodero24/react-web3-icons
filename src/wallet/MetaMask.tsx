@@ -2,10 +2,10 @@ import { createIcon } from '../utils';
 
 // Source: https://metamask.io/assets (official brand kit, Logo Pack: https://assets.ctfassets.net/clixtyxoaeas/1d7h0Cnm1RaQ0TspxaTS0H/57418d60d3a13fbee748be1ca560235a/MetaMask-Logo-Pack__4_.zip → MetaMask/MetaMask-icon-fox.svg, MetaMask-icon-fox-with-margins.svg)
 // Default: the 2024 flat fox from the kit's MetaMask-icon-fox.svg (#FF5C16 / #E34807 / #FF8D5D / #661800 / #C0C4CD / #E7EBF6), paths unchanged (style fills written as fill attributes) and placed on the 64 grid. It replaces the pre-2024 faceted fox
-// Alt: the same 2024 fox from the kit's MetaMask-icon-fox-with-margins.svg (Figma export, one path per facet; the no-op 1024×1024 clip dropped), placed on the 64 grid. The kit has no second fox design, so Alt now renders like the default
 // Circle / Square: the kit has no app-icon or containered fox, so these follow the repository convention (brand colour container + white mark at 72%): a #FF5C16 disc / 12.8-radius tile under the white Mono glyph scaled by 0.8229 about the fox centre, with its seams recomputed at 1.2/0.8229 so they stay 1.2 units wide
 // Mono: derived from the default paths with paper.js booleans — one currentColor ink, 1.2-unit knock-out seams along every edge between differently coloured facets (each colour region minus a mitred, limit-2 offset of its neighbours; kit slivers under 0.08 units ignored), the two #661800 eyes knocked out and the #661800 mouth kept as ink
 // CircleMono / SquareMono: the currentColor disc / tile with the Circle / Square glyph knocked out (single even-odd path)
+// MetaMaskAlt: deprecated alias of MetaMask. The 2024 kit has a single fox design, so Alt rendered the same artwork as the default (#815)
 /** Meta Mask wallet icon (colored). */
 export const MetaMask = /* @__PURE__ */ createIcon(
   'MetaMask',
@@ -115,65 +115,5 @@ export const MetaMaskSquareMono = /* @__PURE__ */ createIcon(
   { fill: 'currentColor' },
 );
 
-/** Meta Mask Alt wallet icon (colored). */
-export const MetaMaskAlt = /* @__PURE__ */ createIcon(
-  'MetaMaskAlt',
-  '0 0 64 64',
-  () => (
-    <>
-      <path
-        fill="#FF5C16"
-        d="m56.31 57.14-12.06-3.6-9.09 5.44h-6.34l-9.1-5.43-12.05 3.59L4 44.76l3.67-13.73L4 19.4 7.67 5.02 26.5 16.27h10.98L56.3 5.02l3.67 14.4-3.67 11.6 3.67 13.74z"
-      />
-      <path fill="#FF5C16" d="M7.67 5.02 26.5 16.28l-.75 7.73z" />
-      <path fill="#FF5C16" d="m19.72 44.77 8.29 6.3-8.29 2.48z" />
-      <path
-        fill="#FF5C16"
-        d="m27.35 34.33-1.6-10.32-10.19 7.02.03 7.22 4.13-3.92z"
-      />
-      <path fill="#FF5C16" d="M56.31 5.02 37.48 16.28l.75 7.73z" />
-      <path fill="#FF5C16" d="m44.26 44.77-8.29 6.3 8.29 2.48z" />
-      <path
-        fill="#FF5C16"
-        d="M48.42 31.03 38.22 24l-1.58 10.32h7.62l4.14 3.92z"
-      />
-      <path fill="#E34807" d="m19.72 53.54-12.05 3.6L4 44.76h15.72z" />
-      <path
-        fill="#E34807"
-        d="m27.34 34.33 2.3 14.92-3.18-8.3-10.88-2.7 4.14-3.92z"
-      />
-      <path fill="#E34807" d="m44.26 53.54 12.05 3.6 3.67-12.37H44.26z" />
-      <path
-        fill="#E34807"
-        d="m36.64 34.33-2.3 14.92 3.18-8.3 10.88-2.7-4.14-3.92z"
-      />
-      <path
-        fill="#FF8D5D"
-        d="m4 44.76 3.67-13.73h7.88l.03 7.22 10.88 2.7 3.19 8.3L28 51.06l-8.29-6.31z"
-      />
-      <path
-        fill="#FF8D5D"
-        d="M59.98 44.76 56.3 31.03h-7.88l-.03 7.22-10.88 2.7-3.19 8.3 1.64 1.82 8.29-6.31z"
-      />
-      <path
-        fill="#FF8D5D"
-        d="M37.48 16.27H26.5L25.75 24l3.9 25.23h4.68L38.23 24z"
-      />
-      <path fill="#661800" d="M7.67 5.02 4 19.42l3.67 11.6h7.88l10.2-7.01z" />
-      <path fill="#661800" d="M25.07 37.32h-3.58l-1.94 1.91 6.9 1.71z" />
-      <path
-        fill="#661800"
-        d="m56.31 5.02 3.67 14.4-3.67 11.6h-7.88l-10.2-7.01z"
-      />
-      <path fill="#661800" d="M38.92 37.32h3.58l1.94 1.91-6.92 1.72z" />
-      <path
-        fill="#661800"
-        d="m35.16 54.06.81-2.99-1.64-1.82h-4.69L28 51.07l.82 2.99"
-      />
-      <path fill="#C0C4CD" d="M35.16 54.06v4.92h-6.34v-4.92z" />
-      <path fill="#E7EBF6" d="m19.72 53.54 9.1 5.44v-4.93l-.81-2.98z" />
-      <path fill="#E7EBF6" d="m44.26 53.54-9.1 5.44v-4.93l.81-2.98z" />
-    </>
-  ),
-  {},
-);
+/** @deprecated MetaMask has one fox design since its 2024 brand refresh, so Alt is the same artwork — use `MetaMask` instead. */
+export const MetaMaskAlt = MetaMask;

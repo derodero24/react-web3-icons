@@ -3,11 +3,12 @@ import { createIcon } from '../utils';
 // Source: https://magiceden.us (Magic Eden's site; magiceden.io redirects there from the US): site header logo, the inline <svg viewBox="0 0 27 16"> mark and the <svg viewBox="0 0 176 20"> wordmark
 // Source: https://next.cdn.magiceden.dev/_next/static/css/c2df4121ffab1dda.css (theme tokens --brand and --textColor-primary)
 // No downloadable brand kit was found (magiceden.io/brand and the docs/help sites sit behind a Cloudflare challenge); the artwork is Magic Eden's own site asset, accessed 2026-10-04
-// MagicEden / MagicEdenFlat: the header mark, path unchanged, in rgb(var(--brand)) = rgb(236 19 109) (#EC136D), the value of --brand in both the light and the dark theme. The current brand mark is single-colour, so the default and Flat are now the same artwork; the old #7A00CC to #F72C87 gradient default and the #E93A88 Flat are retired
+// MagicEden: the header mark, path unchanged, in rgb(var(--brand)) = rgb(236 19 109) (#EC136D), the value of --brand in both the light and the dark theme. The current brand mark is single-colour; the old #7A00CC to #F72C87 gradient default is retired
 // MagicEdenMono: the header mark in currentColor (the site itself draws it in currentColor)
 // MagicEdenWordmark: the horizontal header wordmark, paths unchanged, in the light-theme colours (.theme-light): the mark in --brand #EC136D and the letters in --textColor-primary rgb(36 38 47) (#24262F); MagicEdenWordmarkMono is the same paths in currentColor. It replaces the older stacked lockup with the retired gradient
-// MagicEdenWordmarkFlat is still the older stacked lockup in #E93A88: the site has no single-colour wordmark, so there is no official artwork to replace it with (unverified legacy artwork)
+// MagicEdenWordmarkFlat: deprecated, artwork unchanged. It is the older stacked lockup in #E93A88, unverified legacy artwork: the site has no single-colour wordmark to replace it with
 // The favicon (img/favicon/android-chrome-192x192.png) is a #E42575 rounded tile with the mark knocked out in #F5F3F7; it is raster-only and not used
+// MagicEdenFlat: deprecated alias of MagicEden, since the current single-colour mark makes Flat the same artwork as the default (#815)
 /** Magic Eden Wordmark marketplace icon (colored). */
 export const MagicEdenWordmark = /* @__PURE__ */ createIcon(
   'MagicEdenWordmark',
@@ -59,7 +60,7 @@ export const MagicEdenWordmark = /* @__PURE__ */ createIcon(
   {},
 );
 
-/** Magic Eden Wordmark Flat marketplace icon (colored). */
+/** @deprecated Legacy stacked lockup with no current official counterpart — use `MagicEdenWordmark` or `MagicEdenWordmarkMono` instead. */
 export const MagicEdenWordmarkFlat = /* @__PURE__ */ createIcon(
   'MagicEdenWordmarkFlat',
   '0 0 64 64',
@@ -111,16 +112,6 @@ export const MagicEden = /* @__PURE__ */ createIcon(
   { fill: '#EC136D' },
 );
 
-/** Magic Eden Flat marketplace icon (colored). */
-export const MagicEdenFlat = /* @__PURE__ */ createIcon(
-  'MagicEdenFlat',
-  '0 0 64 64',
-  () => (
-    <path d="m43.7 23.74 3.28 3.87.84.98c.97.97 1.54 2.3 1.54 3.66-.1 1.62-1.16 2.74-2.15 3.91l-2.29 2.7-1.2 1.4a.32.32 0 0 0 .09.49q.08.06.18.04h11.97c1.83 0 4.12 1.53 4 3.87 0 1.05-.43 2.1-1.2 2.84s-1.8 1.18-2.86 1.18H37.16c-1.26 0-4.56.12-5.49-2.7q-.3-.92-.08-1.85.42-1.34 1.26-2.48 1.45-2.1 2.99-4.14l3.93-5.3a.4.4 0 0 0 0-.42l-4.78-5.57a.4.4 0 0 0-.42-.1l-.1.1c-1.26 1.68-6.86 9.2-8.05 10.72-1.18 1.52-4.13 1.6-5.75 0l-7.44-7.36a.31.31 0 0 0-.59.23V44q.02 1.55-.84 2.81-.92 1.29-2.4 1.8a4.2 4.2 0 0 1-3.68-.51q-.82-.57-1.26-1.43A4 4 0 0 1 4 44.8V19.34q.08-1.43.97-2.52t2.27-1.47a4.6 4.6 0 0 1 4.37 1.15l11.46 11.3a.4.4 0 0 0 .4.06l.1-.1 8.14-11.09q.57-.71 1.37-1.07.84-.38 1.73-.4h21.13a4.2 4.2 0 0 1 3.05 1.37 4.2 4.2 0 0 1 .96 3.17c-.14.99-.63 1.9-1.4 2.52a4.2 4.2 0 0 1-2.76.97H43.95a.4.4 0 0 0-.27.2.4.4 0 0 0 0 .3" />
-  ),
-  { fill: '#EC136D' },
-);
-
 /** Magic Eden marketplace icon (monochrome). */
 export const MagicEdenMono = /* @__PURE__ */ createIcon(
   'MagicEdenMono',
@@ -130,3 +121,6 @@ export const MagicEdenMono = /* @__PURE__ */ createIcon(
   ),
   { fill: 'currentColor' },
 );
+
+/** @deprecated The current Magic Eden mark is single-colour, so Flat is the same artwork as the default — use `MagicEden` instead. */
+export const MagicEdenFlat = MagicEden;

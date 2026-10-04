@@ -3,7 +3,7 @@ import { createIcon } from '../utils';
 // Source: https://6778953.fs1.hubspotusercontent-na1.net/hubfs/6778953/Pressroom/brandkit/logo-downloads/usdc.zip (Circle's official USDC brand kit, file Token Logo/USDC Token.svg)
 // Colored: the official USDC Token.svg unchanged (#0B53BF disc, white $ and side arcs), placed on the 64 grid as a container
 // Mono: the disc in currentColor with the $ and the two arcs of the same paths knocked out (evenodd)
-// Circle / CircleMono: legacy artwork (the cryptologos-derived #2775CA mark shrunk into a disc), not an official composition: the USDC brand kit holds only Token Logo/USDC Token.svg (used for Usdc) and the lockups; kept until #815 decides its fate
+// UsdcCircle / UsdcCircleMono: aliases of Usdc / UsdcMono. The official USDC token mark is already round (the brand kit has no other disc composition), so the Circle variants render it instead of the legacy cryptologos-derived disc they used to (#815)
 /** Usdc coin icon (colored). */
 export const Usdc = /* @__PURE__ */ createIcon(
   'Usdc',
@@ -45,38 +45,7 @@ export const UsdcMono = /* @__PURE__ */ createIcon(
 );
 
 /** Usdc Circle coin icon (colored). */
-export const UsdcCircle = /* @__PURE__ */ createIcon(
-  'UsdcCircle',
-  '0 0 64 64',
-  () => (
-    <>
-      <circle cx="32" cy="32" r="32" fill="#2775ca" />
-      <path
-        fill="#fff"
-        d="M38.71 35.86c0-3.55-2.14-4.77-6.4-5.28-3.06-.41-3.67-1.22-3.67-2.65s1.02-2.33 3.05-2.33c1.83 0 2.85.6 3.36 2.13.1.3.4.5.71.5h1.63c.4 0 .71-.3.71-.7v-.1a5.1 5.1 0 0 0-4.58-4.17v-2.44c0-.41-.3-.71-.8-.82h-1.53c-.41 0-.72.3-.82.82v2.34c-3.05.4-4.98 2.44-4.98 4.98 0 3.35 2.03 4.67 6.3 5.18 2.85.51 3.77 1.12 3.77 2.75s-1.43 2.74-3.36 2.74c-2.64 0-3.56-1.12-3.86-2.64-.1-.4-.4-.61-.71-.61H25.8a.7.7 0 0 0-.71.71v.1c.4 2.54 2.03 4.37 5.38 4.88v2.44c0 .4.31.71.82.81h1.52c.41 0 .71-.3.82-.8v-2.45c3.05-.5 5.08-2.64 5.08-5.39m-11.9 10.68c-7.93-2.85-12-11.7-9.04-19.52 1.52-4.27 4.88-7.52 9.05-9.05.4-.2.6-.5.6-1.02v-1.42c0-.4-.2-.71-.6-.81-.1 0-.31 0-.41.1-9.66 3.05-14.95 13.32-11.9 22.98 1.83 5.69 6.2 10.06 11.9 11.89.4.2.81 0 .91-.4.1-.1.1-.21.1-.41v-1.43c0-.3-.3-.7-.6-.91M37.6 14.82c-.4-.2-.81 0-.91.4-.1.1-.1.2-.1.41v1.42c0 .41.3.82.6 1.02 7.93 2.85 12 11.7 9.05 19.52-1.52 4.27-4.88 7.52-9.05 9.05-.4.2-.6.5-.6 1.02v1.42c0 .4.2.71.6.81.1 0 .31 0 .41-.1 9.66-3.05 14.95-13.32 11.9-22.97-1.83-5.8-6.3-10.17-11.9-12"
-      />
-    </>
-  ),
-  {},
-);
+export const UsdcCircle = Usdc;
 
 /** Usdc Circle coin icon (monochrome). */
-export const UsdcCircleMono = /* @__PURE__ */ createIcon(
-  'UsdcCircleMono',
-  '0 0 64 64',
-  (_props, _id) => (
-    <>
-      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-usdcc-a)`} />
-      <defs>
-        <mask id={`${_id}-usdcc-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
-          <path
-            fill="#000"
-            d="M38.71 35.86c0-3.55-2.14-4.77-6.4-5.28-3.06-.41-3.67-1.22-3.67-2.65s1.02-2.33 3.05-2.33c1.83 0 2.85.6 3.36 2.13.1.3.4.5.71.5h1.63c.4 0 .71-.3.71-.7v-.1a5.1 5.1 0 0 0-4.58-4.17v-2.44c0-.41-.3-.71-.8-.82h-1.53c-.41 0-.72.3-.82.82v2.34c-3.05.4-4.98 2.44-4.98 4.98 0 3.35 2.03 4.67 6.3 5.18 2.85.51 3.77 1.12 3.77 2.75s-1.43 2.74-3.36 2.74c-2.64 0-3.56-1.12-3.86-2.64-.1-.4-.4-.61-.71-.61H25.8a.7.7 0 0 0-.71.71v.1c.4 2.54 2.03 4.37 5.38 4.88v2.44c0 .4.31.71.82.81h1.52c.41 0 .71-.3.82-.8v-2.45c3.05-.5 5.08-2.64 5.08-5.39m-11.9 10.68c-7.93-2.85-12-11.7-9.04-19.52 1.52-4.27 4.88-7.52 9.05-9.05.4-.2.6-.5.6-1.02v-1.42c0-.4-.2-.71-.6-.81-.1 0-.31 0-.41.1-9.66 3.05-14.95 13.32-11.9 22.98 1.83 5.69 6.2 10.06 11.9 11.89.4.2.81 0 .91-.4.1-.1.1-.21.1-.41v-1.43c0-.3-.3-.7-.6-.91M37.6 14.82c-.4-.2-.81 0-.91.4-.1.1-.1.2-.1.41v1.42c0 .41.3.82.6 1.02 7.93 2.85 12 11.7 9.05 19.52-1.52 4.27-4.88 7.52-9.05 9.05-.4.2-.6.5-.6 1.02v1.42c0 .4.2.71.6.81.1 0 .31 0 .41-.1 9.66-3.05 14.95-13.32 11.9-22.97-1.83-5.8-6.3-10.17-11.9-12"
-          />
-        </mask>
-      </defs>
-    </>
-  ),
-  { fill: 'currentColor', ids: true },
-);
+export const UsdcCircleMono = UsdcMono;

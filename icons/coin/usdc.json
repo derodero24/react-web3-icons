@@ -6,7 +6,7 @@
   "notes": [
     "Colored: the official USDC Token.svg unchanged (#0B53BF disc, white $ and side arcs), placed on the 64 grid as a container",
     "Mono: the disc in currentColor with the $ and the two arcs of the same paths knocked out (evenodd)",
-    "Circle / CircleMono: legacy artwork (the cryptologos-derived #2775CA mark shrunk into a disc), not an official composition: the USDC brand kit holds only Token Logo/USDC Token.svg (used for Usdc) and the lockups; kept until #815 decides its fate"
+    "UsdcCircle / UsdcCircleMono: aliases of Usdc / UsdcMono. The official USDC token mark is already round (the brand kit has no other disc composition), so the Circle variants render it instead of the legacy cryptologos-derived disc they used to (#815)"
   ],
   "kind": "icon",
   "variants": {
@@ -16,16 +16,19 @@
     "Mono": {
       "file": "usdc.mono.svg",
       "fill": "currentColor"
-    },
-    "Circle": {
-      "file": "usdc.circle.svg"
-    },
-    "CircleMono": {
-      "file": "usdc.circle-mono.svg",
-      "fill": "currentColor"
     }
   },
   "tickers": [
     "USDC"
+  ],
+  "localAliases": [
+    {
+      "name": "UsdcCircle",
+      "target": "Usdc"
+    },
+    {
+      "name": "UsdcCircleMono",
+      "target": "UsdcMono"
+    }
   ]
 }

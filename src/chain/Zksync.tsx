@@ -5,9 +5,9 @@ import { createIcon } from '../utils';
 // Default: the official ZKsync logomark zksync-logomark-dark-transparent.svg (#11141A arrows on transparent); the brand kit ships the logomark only without a background, so it replaces the black tile with white arrows (whose shaft offset also differed)
 // Mono: the logomark's two arrows in currentColor
 // Circle and Square: no official container exists; the repo's black disc / rx=12.8 tile is kept, with the official arrows in white (as in zksync-logomark-light-transparent.svg) at translate(17.9 23.9457) scale(0.56632), the size of the previous arrows; CircleMono and SquareMono knock the same arrows out (fill-rule=evenodd)
-/** Zk Sync chain icon (colored). */
-export const ZkSync = /* @__PURE__ */ createIcon(
-  'ZkSync',
+/** Zksync chain icon (colored). */
+export const Zksync = /* @__PURE__ */ createIcon(
+  'Zksync',
   '0 0 64 64',
   () => (
     <>
@@ -18,9 +18,9 @@ export const ZkSync = /* @__PURE__ */ createIcon(
   {},
 );
 
-/** Zk Sync chain icon (monochrome). */
-export const ZkSyncMono = /* @__PURE__ */ createIcon(
-  'ZkSyncMono',
+/** Zksync chain icon (monochrome). */
+export const ZksyncMono = /* @__PURE__ */ createIcon(
+  'ZksyncMono',
   '0 0 64 64',
   () => (
     <>
@@ -31,9 +31,9 @@ export const ZkSyncMono = /* @__PURE__ */ createIcon(
   { fill: 'currentColor' },
 );
 
-/** Zk Sync Circle chain icon (colored). */
-export const ZkSyncCircle = /* @__PURE__ */ createIcon(
-  'ZkSyncCircle',
+/** Zksync Circle chain icon (colored). */
+export const ZksyncCircle = /* @__PURE__ */ createIcon(
+  'ZksyncCircle',
   '0 0 64 64',
   () => (
     <>
@@ -47,9 +47,9 @@ export const ZkSyncCircle = /* @__PURE__ */ createIcon(
   {},
 );
 
-/** Zk Sync Square chain icon (colored). */
-export const ZkSyncSquare = /* @__PURE__ */ createIcon(
-  'ZkSyncSquare',
+/** Zksync Square chain icon (colored). */
+export const ZksyncSquare = /* @__PURE__ */ createIcon(
+  'ZksyncSquare',
   '0 0 64 64',
   () => (
     <>
@@ -63,9 +63,9 @@ export const ZkSyncSquare = /* @__PURE__ */ createIcon(
   {},
 );
 
-/** Zk Sync Square chain icon (monochrome). */
-export const ZkSyncSquareMono = /* @__PURE__ */ createIcon(
-  'ZkSyncSquareMono',
+/** Zksync Square chain icon (monochrome). */
+export const ZksyncSquareMono = /* @__PURE__ */ createIcon(
+  'ZksyncSquareMono',
   '0 0 64 64',
   () => (
     <path
@@ -76,9 +76,9 @@ export const ZkSyncSquareMono = /* @__PURE__ */ createIcon(
   { fill: 'currentColor' },
 );
 
-/** Zk Sync Circle chain icon (monochrome). */
-export const ZkSyncCircleMono = /* @__PURE__ */ createIcon(
-  'ZkSyncCircleMono',
+/** Zksync Circle chain icon (monochrome). */
+export const ZksyncCircleMono = /* @__PURE__ */ createIcon(
+  'ZksyncCircleMono',
   '0 0 64 64',
   () => (
     <path
@@ -88,3 +88,21 @@ export const ZkSyncCircleMono = /* @__PURE__ */ createIcon(
   ),
   { fill: 'currentColor' },
 );
+
+/** @deprecated ZkSync was renamed to follow the naming rules (ZKsync, acronyms written as words) — use `Zksync` instead. */
+export const ZkSync = Zksync;
+
+/** @deprecated Use `ZksyncMono` instead. */
+export const ZkSyncMono = ZksyncMono;
+
+/** @deprecated Use `ZksyncCircle` instead. */
+export const ZkSyncCircle = ZksyncCircle;
+
+/** @deprecated Use `ZksyncSquare` instead. */
+export const ZkSyncSquare = ZksyncSquare;
+
+/** @deprecated Use `ZksyncSquareMono` instead. */
+export const ZkSyncSquareMono = ZksyncSquareMono;
+
+/** @deprecated Use `ZksyncCircleMono` instead. */
+export const ZkSyncCircleMono = ZksyncCircleMono;

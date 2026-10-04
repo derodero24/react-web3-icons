@@ -39,6 +39,9 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   // icons/chain/fantom.json
   'Fantom',
   'FantomMono',
+  // icons/chain/immutable-x.json
+  'ImmutableX',
+  'ImmutableXMono',
   // icons/chain/starknet.json
   'StarkNet',
   'StarkNetMono',
@@ -46,6 +49,13 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   'StarkNetSquare',
   'StarkNetSquareMono',
   'StarkNetCircleMono',
+  // icons/chain/zksync.json
+  'ZkSync',
+  'ZkSyncMono',
+  'ZkSyncCircle',
+  'ZkSyncSquare',
+  'ZkSyncSquareMono',
+  'ZkSyncCircleMono',
   // icons/coin/busd.json
   'Busd',
   'BusdMono',
@@ -73,6 +83,9 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   // icons/exchange/gateio.json
   'Gateio',
   'GateioMono',
+  // icons/marketplace/magic-eden.json
+  'MagicEdenFlat',
+  'MagicEdenWordmarkFlat',
   // icons/marketplace/x2-y2.json
   'X2Y2',
   'X2Y2Mono',
@@ -88,6 +101,8 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   // icons/wallet/daedalus-wallet.json
   'DaedalusWallet',
   'DaedalusWalletMono',
+  // icons/wallet/meta-mask.json
+  'MetaMaskAlt',
   // icons/wallet/nami-wallet.json
   'NamiWallet',
   'NamiWalletMono',
