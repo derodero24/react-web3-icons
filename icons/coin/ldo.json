@@ -1,9 +1,24 @@
 {
   "name": "Ldo",
   "source": [
-    "re-export of Lido — see src/defi/Lido.tsx"
+    "https://lido.fi/static/LIDO_press_kit.zip (official 2026 press kit: Lido/Tokens/LDO/LDO.svg)"
   ],
-  "kind": "reexport",
+  "notes": [
+    "Ldo / LdoMono re-export the Lido logomark and its mono (artwork owned by icons/defi/lido.json)",
+    "Circle: the official LDO token (Lido/Tokens/LDO/LDO.svg in the press kit: the white Lido mark on a #FFAA7D disc, the token's own peach colourway, drawn as an 80x80 rect with rx 40), paths unchanged and full-bleed on the 64 grid; its clip-path is the same disc and clips nothing of the mark, so it is left out",
+    "CircleMono: the token's disc in currentColor with the mark knocked out (fill-rule=evenodd)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "Circle": {
+      "file": "ldo.circle.svg",
+      "fill": "#FFAA7D"
+    },
+    "CircleMono": {
+      "file": "ldo.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  },
   "reexport": {
     "from": "../defi/Lido",
     "exports": [

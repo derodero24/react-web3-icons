@@ -12,6 +12,14 @@
         "as": "Taiko"
       },
       {
+        "of": "TaikoCircle",
+        "as": "TaikoCircle"
+      },
+      {
+        "of": "TaikoCircleMono",
+        "as": "TaikoCircleMono"
+      },
+      {
         "of": "TaikoMono",
         "as": "TaikoMono"
       }

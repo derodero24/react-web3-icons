@@ -100,6 +100,11 @@ function localAliasVariants(
   });
 }
 
+/** Orders the colored default and its mono first; the rest keep their order. */
+function variantRank(suffix: string): number {
+  return suffix === '' ? 0 : suffix === 'Mono' ? 1 : 2;
+}
+
 function enrichmentOf({ meta: unitMeta, variants }: SourceUnit): Enrichment {
   if (!isArtwork(unitMeta)) {
     return {};
@@ -117,11 +122,23 @@ function enrichmentOf({ meta: unitMeta, variants }: SourceUnit): Enrichment {
   const brandColor =
     unitMeta.brandColor ??
     (defaultSvg === undefined ? undefined : extractBrandColor(defaultSvg));
+  const own = [
+    ...aliasVariants.map(v => v.suffix),
+    ...variants.map(v => v.suffix),
+  ];
+  // An artwork unit may also re-export some of its variants from another
+  // unit (Bnb draws Bnb/BnbMono and re-exports BnbCircle/BnbCircleMono);
+  // those suffixes are variants of the unit too.
+  const reexported = (unitMeta.reexport?.exports ?? []).flatMap(({ as }) =>
+    as.startsWith(unitMeta.name) ? [as.slice(unitMeta.name.length)] : [],
+  );
   return {
-    variants: [
-      ...aliasVariants.map(v => v.suffix),
-      ...variants.map(v => v.suffix),
-    ],
+    variants:
+      reexported.length > 0
+        ? [...new Set([...own, ...reexported])].sort(
+            (a, b) => variantRank(a) - variantRank(b),
+          )
+        : own,
     ...(unitMeta.aliases?.length ? { aliases: unitMeta.aliases } : {}),
     ...(brandColor ? { brandColor } : {}),
   };

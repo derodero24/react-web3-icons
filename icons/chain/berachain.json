@@ -1,11 +1,14 @@
 {
   "name": "Berachain",
   "source": [
-    "https://mintcdn.com/berachain-422fce37/sVHHuWrozTnTMuyP/logo/light.svg (official logo served by docs.berachain.com)"
+    "https://mintcdn.com/berachain-422fce37/sVHHuWrozTnTMuyP/logo/light.svg (official logo served by docs.berachain.com)",
+    "https://github.com/berachain/guides/blob/1d5e3896d2071290076d45c466f32fb319b4f5fe/apps/particle-auth-core-vite/public/favicon.svg (the BERA token SVG in Berachain's own guides repo; berachain.com/brand lists the token as /brand/tokens/BERA.svg, which is behind a checkpoint)"
   ],
   "notes": [
     "Default: the Berachain symbol (bear head and two chain links, #2C1A16) cropped from the official logo light.svg with its three symbol paths unchanged and the wordmark left out; it replaces a white symbol on a #814625 tile, a colour no official asset uses. berachain.com/brand was rate-limited (HTTP 429) when checked",
-    "Mono: the same three paths in currentColor"
+    "Mono: the same three paths in currentColor",
+    "Circle: the official BERA token (a white outlined bear face on a #78350F disc) from Berachain's own berachain/guides repo, paths unchanged on its 64 grid. berachain.com/brand/tokens/BERA.svg sits behind a Vercel checkpoint that rejects automated browsers (code 705), so it could not be fetched; this file matches the native BERA token PNG in berachain/metadata (src/assets/tokens/0x0000000000000000000000000000000000000000.png) pixel for pixel",
+    "CircleMono: the token's disc in currentColor with the face knocked out (fill-rule=evenodd)"
   ],
   "kind": "icon",
   "variants": {
@@ -14,6 +17,14 @@
     },
     "Mono": {
       "file": "berachain.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "berachain.circle.svg",
+      "fill": "#78350F"
+    },
+    "CircleMono": {
+      "file": "berachain.circle-mono.svg",
       "fill": "currentColor"
     }
   },

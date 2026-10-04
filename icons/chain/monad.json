@@ -2,7 +2,12 @@
   "name": "Monad",
   "kind": "icon",
   "source": [
-    "https://www.monad.xyz/brand-page-assets/Logomark.svg (official brand & media kit, monad.xyz/brand-and-media-kit)"
+    "https://www.monad.xyz/brand-page-assets/Logomark.svg (official brand & media kit, monad.xyz/brand-and-media-kit)",
+    "https://www.monad.xyz/brand-page-assets/Token.svg (official MON token, brand & media kit)"
+  ],
+  "notes": [
+    "Circle: the official MON Token.svg (the white mark on a #6E54FF disc), paths unchanged and full-bleed on the 64 grid. Its drop shadow (dy 15, blur 7.5, 12.5% black, at the token's 480 scale) is kept: it is visible under the mark at 128 and 48 px. The no-op full-viewBox clip-path is left out",
+    "CircleMono: the token's disc in currentColor with the mark knocked out (fill-rule=evenodd), without the shadow"
   ],
   "variants": {
     "": {
@@ -11,6 +16,14 @@
     },
     "Mono": {
       "file": "monad.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "monad.circle.svg",
+      "fill": "#6E54FF"
+    },
+    "CircleMono": {
+      "file": "monad.circle-mono.svg",
       "fill": "currentColor"
     }
   },
