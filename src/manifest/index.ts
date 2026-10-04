@@ -1880,7 +1880,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'MagicEden',
     category: 'marketplace',
     variants: ['Wordmark', 'WordmarkFlat', 'WordmarkMono', '', 'Flat', 'Mono'],
-    brandColor: '#7a00cc',
+    brandColor: '#ec136d',
   },
   { name: 'MagicEdenFlat', category: 'marketplace' },
   { name: 'MagicEdenMono', category: 'marketplace' },
