@@ -5,10 +5,10 @@
   ],
   "notes": [
     "Default: the 2024 flat fox from the kit's MetaMask-icon-fox.svg (#FF5C16 / #E34807 / #FF8D5D / #661800 / #C0C4CD / #E7EBF6), paths unchanged (style fills written as fill attributes) and placed on the 64 grid. It replaces the pre-2024 faceted fox",
-    "Alt: the same 2024 fox from the kit's MetaMask-icon-fox-with-margins.svg (Figma export, one path per facet; the no-op 1024×1024 clip dropped), placed on the 64 grid. The kit has no second fox design, so Alt now renders like the default",
     "Circle / Square: the kit has no app-icon or containered fox, so these follow the repository convention (brand colour container + white mark at 72%): a #FF5C16 disc / 12.8-radius tile under the white Mono glyph scaled by 0.8229 about the fox centre, with its seams recomputed at 1.2/0.8229 so they stay 1.2 units wide",
     "Mono: derived from the default paths with paper.js booleans — one currentColor ink, 1.2-unit knock-out seams along every edge between differently coloured facets (each colour region minus a mitred, limit-2 offset of its neighbours; kit slivers under 0.08 units ignored), the two #661800 eyes knocked out and the #661800 mouth kept as ink",
-    "CircleMono / SquareMono: the currentColor disc / tile with the Circle / Square glyph knocked out (single even-odd path)"
+    "CircleMono / SquareMono: the currentColor disc / tile with the Circle / Square glyph knocked out (single even-odd path)",
+    "MetaMaskAlt: deprecated alias of MetaMask. The 2024 kit has a single fox design, so Alt rendered the same artwork as the default (#815)"
   ],
   "kind": "icon",
   "variants": {
@@ -32,9 +32,6 @@
     "SquareMono": {
       "file": "meta-mask.square-mono.svg",
       "fill": "currentColor"
-    },
-    "Alt": {
-      "file": "meta-mask.alt.svg"
     }
   },
   "aliases": [
@@ -43,5 +40,12 @@
   "slugs": [
     "metamask",
     "metamask-sdk"
+  ],
+  "localAliases": [
+    {
+      "name": "MetaMaskAlt",
+      "target": "MetaMask",
+      "deprecated": "MetaMask has one fox design since its 2024 brand refresh, so Alt is the same artwork — use `MetaMask` instead."
+    }
   ]
 }

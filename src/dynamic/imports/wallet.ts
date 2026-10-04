@@ -38,7 +38,6 @@ export const walletImports: Record<
   Ledger: () => import('../../wallet/Ledger'),
   LedgerMono: () => import('../../wallet/Ledger'),
   MetaMask: () => import('../../wallet/MetaMask'),
-  MetaMaskAlt: () => import('../../wallet/MetaMask'),
   MetaMaskCircle: () => import('../../wallet/MetaMask'),
   MetaMaskCircleMono: () => import('../../wallet/MetaMask'),
   MetaMaskMono: () => import('../../wallet/MetaMask'),
@@ -110,7 +109,6 @@ export const walletImports: Record<
  * and `'mono'`: every one that some wallet icon ships.
  */
 export const walletVariants: readonly string[] = [
-  'Alt',
   'Circle',
   'CircleMono',
   'Square',
@@ -127,7 +125,6 @@ export const walletVariants: readonly string[] = [
 export type WalletVariant =
   | 'colored'
   | 'mono'
-  | 'Alt'
   | 'Circle'
   | 'CircleMono'
   | 'Square'

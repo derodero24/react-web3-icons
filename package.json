@@ -29,7 +29,10 @@
     "l2"
   ],
   "type": "module",
-  "repository": "github:derodero24/react-web3-icons",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derodero24/react-web3-icons.git"
+  },
   "homepage": "https://react-web3-icons.vercel.app/",
   "bugs": "https://github.com/derodero24/react-web3-icons/issues",
   "funding": "https://github.com/sponsors/derodero24",

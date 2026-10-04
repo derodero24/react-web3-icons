@@ -1,25 +1,7 @@
-import { createIcon } from '../utils';
+import { Immutable, ImmutableMono } from './Immutable';
 
-// Source: https://www.immutable.com/images/logo.svg (the Immutable logo served by immutable.com: site header and schema.org Organization logo)
-// Default: the Immutable symbol (a #2B3038 disc with the hexagonal knot knocked out) cropped from the official logo.svg: its symbol subpath unchanged, the wordmark subpath left out. It replaces the retired Immutable X 'X' on a black disc; Immutable publishes no brand kit (immutable.com/brand redirects to the home page) and chain 13371 is Immutable zkEVM
-// Mono: the same symbol path in currentColor (the disc in ink with the knot knocked out), the geometry of the official single-colour logo-black.svg / footer-logo.svg
-// Export name: kept as ImmutableX; the rename to Immutable is an open owner decision (#815)
-/** Immutable X chain icon (colored). */
-export const ImmutableX = /* @__PURE__ */ createIcon(
-  'ImmutableX',
-  '0 0 64 64',
-  () => (
-    <path d="M32.01 0C14.58 0 .45 14.32.45 32s14.13 32 31.56 32 31.54-14.32 31.54-32S49.42 0 31.99 0m-1.4 12.95q1.33-.68 2.66.1l8.82 5.13q1.4.89 1.4 2.59v11.58q0 .27-.2.44l-3.53 2.08V22.33q.02-1.1-.9-1.63l-10.25-5.96-.53-.33a33 33 0 0 1 2.54-1.48m-.62 39.53-.46-.22q-6.78-4-13.57-7.93-1.88-1.05-1.81-3.24v-9.4q-.05-2.1 1.78-3.11 4.77-2.76 9.5-5.56.37-.22.77 0l3.35 1.98-.55.31-10.26 6q-.86.47-.84 1.4.06 3.7 0 7.4 0 .98.84 1.42l10.83 6.34c.31.17.44.35.44.75zm0-7.04-.77-.44-8.6-5.04c-.34-.17-.45-.35-.43-.75v-5.67q-.04-.4.31-.55 1.61-.9 3.14-1.85l.3-.16v5.59q-.04.97.8 1.43l4.85 2.83q.45.24.4.75zm-3.3-24.87c-.65-.36-1.13-.36-1.77 0l-10.24 6.02-.58.31c.09-1.32-.17-2.56.27-3.75a3 3 0 0 1 1.32-1.5l8.56-5.01q1.57-.88 3.16.02l9.7 5.7c.16.08.34.28.34.4q.04 1.98 0 4.18-1.72-1.06-3.35-1.98-3.71-2.16-7.44-4.4m22.84 21.3c-.09 1.08-.7 1.83-1.63 2.36l-10.44 6.12-3.27 1.92-.44.22v-3.97q-.04-.36.27-.56l15.22-8.89.27-.13q.09 1.54 0 2.93m0-7.32c0 1.21-.62 2.05-1.66 2.64l-11.83 6.98-2.25 1.28v-3.93q-.04-.46.36-.66l10.81-6.3q.93-.5.88-1.58v-12.6q1.41.77 2.65 1.63 1.08.84 1.1 2.23z" />
-  ),
-  { fill: '#2B3038' },
-);
+/** @deprecated Immutable X is now Immutable (chain 13371 is Immutable zkEVM) — use `Immutable` instead. */
+export const ImmutableX = Immutable;
 
-/** Immutable X chain icon (monochrome). */
-export const ImmutableXMono = /* @__PURE__ */ createIcon(
-  'ImmutableXMono',
-  '0 0 64 64',
-  () => (
-    <path d="M32.01 0C14.58 0 .45 14.32.45 32s14.13 32 31.56 32 31.54-14.32 31.54-32S49.42 0 31.99 0m-1.4 12.95q1.33-.68 2.66.1l8.82 5.13q1.4.89 1.4 2.59v11.58q0 .27-.2.44l-3.53 2.08V22.33q.02-1.1-.9-1.63l-10.25-5.96-.53-.33a33 33 0 0 1 2.54-1.48m-.62 39.53-.46-.22q-6.78-4-13.57-7.93-1.88-1.05-1.81-3.24v-9.4q-.05-2.1 1.78-3.11 4.77-2.76 9.5-5.56.37-.22.77 0l3.35 1.98-.55.31-10.26 6q-.86.47-.84 1.4.06 3.7 0 7.4 0 .98.84 1.42l10.83 6.34c.31.17.44.35.44.75zm0-7.04-.77-.44-8.6-5.04c-.34-.17-.45-.35-.43-.75v-5.67q-.04-.4.31-.55 1.61-.9 3.14-1.85l.3-.16v5.59q-.04.97.8 1.43l4.85 2.83q.45.24.4.75zm-3.3-24.87c-.65-.36-1.13-.36-1.77 0l-10.24 6.02-.58.31c.09-1.32-.17-2.56.27-3.75a3 3 0 0 1 1.32-1.5l8.56-5.01q1.57-.88 3.16.02l9.7 5.7c.16.08.34.28.34.4q.04 1.98 0 4.18-1.72-1.06-3.35-1.98-3.71-2.16-7.44-4.4m22.84 21.3c-.09 1.08-.7 1.83-1.63 2.36l-10.44 6.12-3.27 1.92-.44.22v-3.97q-.04-.36.27-.56l15.22-8.89.27-.13q.09 1.54 0 2.93m0-7.32c0 1.21-.62 2.05-1.66 2.64l-11.83 6.98-2.25 1.28v-3.93q-.04-.46.36-.66l10.81-6.3q.93-.5.88-1.58v-12.6q1.41.77 2.65 1.63 1.08.84 1.1 2.23z" />
-  ),
-  { fill: 'currentColor' },
-);
+/** @deprecated Use `ImmutableMono` instead. */
+export const ImmutableXMono = ImmutableMono;
