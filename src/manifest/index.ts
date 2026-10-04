@@ -1473,7 +1473,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'dex',
     slug: 'cowprotocol',
     variants: ['', 'Mono'],
-    brandColor: '#004293',
+    brandColor: '#490072',
   },
   { name: 'CowProtocolMono', category: 'dex' },
   {
