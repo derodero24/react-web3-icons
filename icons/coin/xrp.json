@@ -6,7 +6,7 @@
   "notes": [
     "Colored: the official xrp-symbol-black.svg unchanged (one evenodd path in #141414), placed on the 64 grid",
     "Mono: the same path in currentColor",
-    "Circle / CircleMono: legacy artwork of unidentified origin (the mark in a disc), not an official XRP asset; kept until #815 decides its fate"
+    "Circle / CircleMono: legacy artwork of unidentified origin (the mark in white on a #23292F disc, the colour of the earlier cryptologos mark), not an official XRP asset: the XRPL Brand Kit (https://xrpl.org/XRPL_Brand_Kit.zip) has only the black and white symbol and logotypes, with #141414 as its black; kept until #815 decides its fate"
   ],
   "kind": "icon",
   "variants": {

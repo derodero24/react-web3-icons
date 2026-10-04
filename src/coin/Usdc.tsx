@@ -3,7 +3,7 @@ import { createIcon } from '../utils';
 // Source: https://6778953.fs1.hubspotusercontent-na1.net/hubfs/6778953/Pressroom/brandkit/logo-downloads/usdc.zip (Circle's official USDC brand kit, file Token Logo/USDC Token.svg)
 // Colored: the official USDC Token.svg unchanged (#0B53BF disc, white $ and side arcs), placed on the 64 grid as a container
 // Mono: the disc in currentColor with the $ and the two arcs of the same paths knocked out (evenodd)
-// Circle / CircleMono: legacy artwork (cryptologos-derived #2775CA mark shrunk into a disc), not an official composition; kept until #815 decides its fate
+// Circle / CircleMono: legacy artwork (the cryptologos-derived #2775CA mark shrunk into a disc), not an official composition: the USDC brand kit holds only Token Logo/USDC Token.svg (used for Usdc) and the lockups; kept until #815 decides its fate
 /** Usdc coin icon (colored). */
 export const Usdc = /* @__PURE__ */ createIcon(
   'Usdc',

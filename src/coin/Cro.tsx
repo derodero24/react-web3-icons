@@ -2,7 +2,7 @@ import { createIcon } from '../utils';
 
 // Source: @web3icons/react (MIT) — CRO token SVG (legacy third-party artwork)
 // Legacy artwork: paths sourced from @web3icons/react (MIT), the old Crypto.com lion shield in #2E4B9F
-// Legacy mark: neither this shield nor the Cronos hexagon-C in #002D74 that crypto.com/us/price/cronos still shows (as a PNG) is in the current identity. cronos.com/brand now publishes a vector kit (cronos-wordmark-light/-dark.svg, cronos-app-icon.svg: the black wordmark on a #4CDBFF tile) whose identity is wordmark-only, with no hexagon-C or other symbol (checked 2026-10-03). Kept, not deprecated: whether to deprecate or replace it is the maintainer's call (#836)
+// Legacy mark: neither this shield nor the Cronos hexagon-C in #002D74 that crypto.com/us/price/cronos still shows (as a PNG) is in the current identity. The official kit (https://cronos.com/brand, cronos-brand-kit.zip) holds the Cronos wordmarks and app icon, the Cronos Launch / Network lockups and the Ult logos, but no CRO token mark; cronos.com/about-cro shows the CRO coin only as a raster render (rechecked 2026-10-04). Kept, not deprecated: whether to deprecate or replace it is the maintainer's call (#836)
 /** Cro coin icon (colored). */
 export const Cro = /* @__PURE__ */ createIcon(
   'Cro',

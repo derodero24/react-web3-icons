@@ -5,7 +5,7 @@
   ],
   "notes": [
     "DaiCircle matches the official dai.svg of app.sky.money (#F5AC37 disc, #FEFEFD mark) within rendering noise (audited in #836)",
-    "Dai / DaiMono (the bare symbol): legacy artwork of unidentified origin; Sky publishes DAI only as the disc, and no official stand-alone symbol was found"
+    "Dai / DaiMono (the bare symbol): legacy artwork, not an official composition: the mark of the official dai.svg (the same path as DaiCircle's, scaled by 1.338) drawn alone in the disc colour #F5AC37; Sky publishes DAI only as the disc, and no official stand-alone symbol was found (rechecked 2026-10-04, #836)"
   ],
   "kind": "icon",
   "variants": {

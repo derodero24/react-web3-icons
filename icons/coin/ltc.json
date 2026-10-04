@@ -4,7 +4,8 @@
     "cryptologos.cc — LTC logo SVG (legacy third-party artwork)"
   ],
   "notes": [
-    "Legacy artwork: the paths come from cryptologos.cc, not from an official Litecoin file; the geometry matches the symbol litecoin.org serves (https://litecoin.org/assets/ltc-DIEMRQHk.svg, drawn there in black), but the #345D9D colour is not confirmed by an official source (litecoin.com/en/brand was not reachable)"
+    "Legacy artwork: the paths come from cryptologos.cc, not from an official Litecoin file; the geometry matches the symbol litecoin.org serves (https://litecoin.org/assets/ltc-DIEMRQHk.svg, drawn there in black), but the #345D9D colour is not confirmed by an official source",
+    "No official coloured vector found (rechecked 2026-10-04, #836): litecoin.org has only the black symbol and a raster coin, the litecoin-project/litecoin repository has no Litecoin logo SVG, and litecoin.com/en/brand sits behind a bot challenge that could not be passed"
   ],
   "kind": "icon",
   "variants": {
