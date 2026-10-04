@@ -1355,7 +1355,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'EthersJs',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#24339b',
+    brandColor: '#1d4c7c',
   },
   { name: 'EthersJsMono', category: 'devtool' },
   {
@@ -1390,7 +1390,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Remix',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#000000',
+    brandColor: '#007aa6',
   },
   { name: 'RemixMono', category: 'devtool' },
   {

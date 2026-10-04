@@ -1,17 +1,25 @@
 {
   "name": "EthersJs",
   "source": [
-    "https://docs.ethers.org"
+    "https://github.com/ethers-io/ethers.js/blob/main/docs.wrm/logo.svg",
+    "https://docs.ethers.org/v6/static/logo.svg"
+  ],
+  "notes": [
+    "Colored: the official logo.svg from the ethers.js repository (identical to the file docs.ethers.org serves), copied unchanged: the cloud in white (#FFFFFF), evenodd. Ethers publishes its vector logo only in white (logo.ai in the same folder has the same single white path); the docs draw it on the dark #334 sidebar",
+    "Mono: the same path in currentColor; on light backgrounds use EthersJsMono with a dark color (the legibility audit's monochrome rule)",
+    "brandColor: #1D4C7C, the colour of ethers.org (html color in https://ethers.org/static/style.css and its homepage logo.png); that homepage logo is a raster with a thinner, different drawing of the cloud, so it is not used as artwork",
+    "The previous colour #24339B matched no official asset"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "ethers-js.svg",
-      "fill": "#24339b"
+      "fill": "#FFFFFF"
     },
     "Mono": {
       "file": "ethers-js.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "brandColor": "#1d4c7c"
 }
