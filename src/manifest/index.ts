@@ -1120,7 +1120,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'coin',
     ticker: 'ZEC',
     variants: ['', 'Mono'],
-    brandColor: '#ecb244',
+    brandColor: '#f4b728',
   },
   { name: 'ZecMono', category: 'coin' },
   {
