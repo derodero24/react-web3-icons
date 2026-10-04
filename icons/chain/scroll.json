@@ -1,12 +1,17 @@
 {
   "name": "Scroll",
   "source": [
-    "https://scroll.io"
+    "https://scroll.io (the inline mark-scroll SVG of the site header and footer; docs.scroll.io serves the same mark)"
+  ],
+  "notes": [
+    "Default: the current Scroll mark from scroll.io, its five paths unchanged, in the site's --ink colour #0A0A0A (the paths use currentColor and the header sets color:var(--ink)); it replaces the earlier beige tile with the coloured scroll, which scroll.io and docs.scroll.io no longer use (scroll.io/brand-kit returns 404)",
+    "Mono: the same five paths in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "scroll.svg"
+      "file": "scroll.svg",
+      "fill": "#0A0A0A"
     },
     "Mono": {
       "file": "scroll.mono.svg",

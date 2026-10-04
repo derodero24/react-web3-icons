@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Source: https://cosmos.network
+// Source: https://cosmos.network (legacy artwork predating the source policy: the Cosmos Hub hexagon of the former hub.cosmos.network site, which now redirects to docs.cosmos.network/hub)
+// Not replaced: no current official vector of the hexagon mark was found (cosmos.network and docs.cosmos.network show only the Cosmos wordmark). The official chain registry lists the ATOM token art as the cosmoshub logo (https://raw.githubusercontent.com/cosmos/chain-registry/master/cosmoshub/images/atom.svg), which ships as the coin Atom; whether CosmosHub should switch to that art is an owner decision (#835)
 /** Cosmos Hub chain icon (colored). */
 export const CosmosHub = /* @__PURE__ */ createIcon(
   'CosmosHub',
