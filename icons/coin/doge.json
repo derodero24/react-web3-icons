@@ -1,11 +1,12 @@
 {
   "name": "Doge",
   "source": [
-    "https://dogecoin.com"
+    "https://github.com/dogecoin/dogecoin/blob/master/share/pixmaps/dogecoin256.svg (official Dogecoin Core repository)"
   ],
   "notes": [
-    "Simplified Doge \"D\" mark scaled to fit in a 64x64 circle (~72% fill).",
-    "DogeMono: ink coin with a rim seam and the coloured D (doge.svg) knocked out; the illustrated face does not survive one ink colour."
+    "Doge: matches the official dogecoin256.svg of Dogecoin Core within rendering noise (mean pixel difference 0.1/255 at 256 px; audited in #836), so the artwork is kept; dogecoin.com serves the same coin only as a PNG (/doge-logo.png)",
+    "DogeMono: ink coin with a rim seam and the D of doge.svg knocked out; the illustrated face does not survive one ink colour",
+    "DogeCircle / DogeCircleMono: legacy artwork of unidentified origin (a slab D in white on a #C2A633 disc), not an official Dogecoin asset; neither the Dogecoin Core pixmaps nor dogecoin.com publish a D-on-disc composition, and #C2A633 is not in the official coin's palette. Kept until #815 decides its fate"
   ],
   "kind": "icon",
   "variants": {
