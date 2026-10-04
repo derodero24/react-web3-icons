@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "OpBnb",
+  "source": [
+    "re-export of BnbSmartChain \u2014 see src/chain/BnbSmartChain.tsx (opBNB uses the BNB Chain symbol: opbnb.bnbchain.org and docs.bnbchain.org/bnb-opbnb show the BNB Chain logo, and the bnbchain.org/en/brand-guidelines kit, BNBChain-Logo.zip, has no separate opBNB mark)"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "./BnbSmartChain",
+    "exports": [
+      {
+        "of": "BnbSmartChain",
+        "as": "OpBnb"
+      },
+      {
+        "of": "BnbSmartChainMono",
+        "as": "OpBnbMono"
+      }
+    ]
+  },
+  "slugs": [
+    "opbnb"
+  ],
+  "chainIds": [
+    204
+  ]
+}

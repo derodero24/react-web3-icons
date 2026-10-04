@@ -12,6 +12,14 @@
         "as": "Ronin"
       },
       {
+        "of": "RoninCircle",
+        "as": "RoninCircle"
+      },
+      {
+        "of": "RoninCircleMono",
+        "as": "RoninCircleMono"
+      },
+      {
         "of": "RoninMono",
         "as": "RoninMono"
       }

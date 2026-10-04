@@ -322,7 +322,7 @@ The `variant` prop selects the artwork: `'colored'` (the default), `'mono'`, or 
 | `CoinIcon` | `CoinVariant` | `'Alt'`, `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'` |
 | `WalletIcon` | `WalletVariant` | `'Alt'`, `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'`, `'Symbol'`, `'SymbolMono'` |
 | `ExchangeIcon` | `ExchangeVariant` | `'Circle'`, `'CircleAlt'`, `'CircleMono'`, `'Inverted'` |
-| `DexIcon` | `DexVariant` | `'Square'`, `'SquareMono'` |
+| `DexIcon` | `DexVariant` | `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'` |
 | `BridgeIcon` | `BridgeVariant` | `'Inverted'` |
 | `DefiIcon` | `DefiVariant` | `'Circle'`, `'CircleMono'` |
 | `OracleIcon` | `OracleVariant` | — |

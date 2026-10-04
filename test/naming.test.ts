@@ -84,6 +84,7 @@ const BRAND_CASING = new Map<string, string>([
   ['LayerZero', 'LayerZero'],
   ['LooksRare', 'LooksRare'],
   ['MetaMask', 'MetaMask'],
+  ['OpBnb', 'opBNB'],
   ['OpenSea', 'OpenSea'],
   ['OpenZeppelin', 'OpenZeppelin'],
   ['PancakeSwap', 'PancakeSwap'],
