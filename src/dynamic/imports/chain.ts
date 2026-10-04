@@ -105,6 +105,8 @@ export const chainImports: Record<
   MantaPacificMono: () => import('../../chain/MantaPacific'),
   Mantle: () => import('../../chain/Mantle'),
   MantleMono: () => import('../../chain/Mantle'),
+  MantleSquare: () => import('../../chain/Mantle'),
+  MantleSquareMono: () => import('../../chain/Mantle'),
   Metis: () => import('../../chain/Metis'),
   MetisMono: () => import('../../chain/Metis'),
   Mode: () => import('../../chain/Mode'),
