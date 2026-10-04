@@ -190,6 +190,8 @@ export const coinImports: Record<
   UsdcMono: () => import('../../coin/Usdc'),
   Usde: () => import('../../coin/Usde'),
   UsdeMono: () => import('../../coin/Usde'),
+  Usds: () => import('../../coin/Usds'),
+  UsdsMono: () => import('../../coin/Usds'),
   Usdt: () => import('../../coin/Usdt'),
   UsdtCircle: () => import('../../coin/Usdt'),
   UsdtCircleMono: () => import('../../coin/Usdt'),

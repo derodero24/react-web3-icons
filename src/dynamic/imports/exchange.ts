@@ -39,6 +39,8 @@ export const exchangeImports: Record<
   GateMono: () => import('../../exchange/Gate'),
   Gemini: () => import('../../exchange/Gemini'),
   GeminiMono: () => import('../../exchange/Gemini'),
+  GeminiSquare: () => import('../../exchange/Gemini'),
+  GeminiSquareMono: () => import('../../exchange/Gemini'),
   Htx: () => import('../../exchange/Htx'),
   HtxMono: () => import('../../exchange/Htx'),
   Kraken: () => import('../../exchange/Kraken'),
@@ -64,6 +66,8 @@ export const exchangeVariants: readonly string[] = [
   'CircleAlt',
   'CircleMono',
   'Inverted',
+  'Square',
+  'SquareMono',
 ];
 
 /**
@@ -77,4 +81,6 @@ export type ExchangeVariant =
   | 'Circle'
   | 'CircleAlt'
   | 'CircleMono'
-  | 'Inverted';
+  | 'Inverted'
+  | 'Square'
+  | 'SquareMono';

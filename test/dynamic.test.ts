@@ -182,6 +182,7 @@ describe('wallet connector ids', () => {
     ['polkadot-js', 'PolkadotJs'],
     // Nami was folded into Lace; its deprecated icon has no lookup keys.
     ['nami', undefined],
+    ['lace', 'Lace'],
     ['yoroi', 'Yoroi'],
     ['daedalus', 'Daedalus'],
   ])('%j → %j', (id, expected) => {

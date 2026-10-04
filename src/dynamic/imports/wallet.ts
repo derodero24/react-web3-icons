@@ -33,6 +33,8 @@ export const walletImports: Record<
   ImTokenMono: () => import('../../wallet/ImToken'),
   Keplr: () => import('../../wallet/Keplr'),
   KeplrMono: () => import('../../wallet/Keplr'),
+  Lace: () => import('../../wallet/Lace'),
+  LaceMono: () => import('../../wallet/Lace'),
   Ledger: () => import('../../wallet/Ledger'),
   LedgerMono: () => import('../../wallet/Ledger'),
   MetaMask: () => import('../../wallet/MetaMask'),

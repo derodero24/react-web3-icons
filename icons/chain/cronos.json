@@ -1,21 +1,24 @@
 {
+  "$schema": "../schema.json",
   "name": "Cronos",
   "source": [
-    "re-export of Cro \u2014 see src/coin/Cro.tsx (Cronos chain uses the CRO mark)"
+    "https://cronos.com/favicon.svg (official site icon: the black Cronos C on a #4CDBFF square)",
+    "https://cronos.com/brand (official brand kit, cronos-brand-kit.zip: cronos/cronos-app-icon.svg and cronos/cronos-wordmark-dark.svg)"
   ],
-  "kind": "reexport",
-  "reexport": {
-    "from": "../coin/Cro",
-    "exports": [
-      {
-        "of": "Cro",
-        "as": "Cronos"
-      },
-      {
-        "of": "CroMono",
-        "as": "CronosMono"
-      }
-    ]
+  "notes": [
+    "Colored: the official cronos.com/favicon.svg, paths unchanged (the 512-unit #4CDBFF square and the #000 C with its translate(94.330 65.587) scale(4.071244) baked in), scaled by 0.125 to fill the 64 grid as a container. The C is the first letter of the brand kit's Cronos wordmark (the same path) and the square is the kit's app-icon tile (cronos-app-icon.svg: the full black wordmark on #4CDBFF); the kit's app icon itself is not used because its wordmark is illegible at icon sizes",
+    "Mono: the square in currentColor with the C knocked out (one evenodd path)",
+    "It replaces the re-export of the legacy Cro artwork (the old Crypto.com lion shield from @web3icons); the coin Cro now re-exports this unit"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "cronos.svg"
+    },
+    "Mono": {
+      "file": "cronos.mono.svg",
+      "fill": "currentColor"
+    }
   },
   "chainIds": [
     25
