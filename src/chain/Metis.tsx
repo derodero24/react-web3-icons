@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://metis.io
+// Source: https://www.metis.io (legacy artwork predating the source policy; the exact origin file was not recorded)
+// Source: https://www.metis.io/brandassets (official brand assets: PNG files only)
+// Not replaced: the official brand assets page offers the Metis symbol only as PNG (Symbol.png: a black head with a laurel sprig on a #00CFFF disc, Metis Primary Colors #00CFFF / #000000), and no official vector of it was found on metis.io, docs.metis.io or the MetisProtocol GitHub org. The shipped #00D8C1 disc with a knocked-out head is the earlier symbol; it stays until an official SVG is published (#835)
 /** Metis chain icon (colored). */
 export const Metis = /* @__PURE__ */ createIcon(
   'Metis',
