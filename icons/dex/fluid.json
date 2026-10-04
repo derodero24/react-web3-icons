@@ -1,0 +1,28 @@
+{
+  "$schema": "../schema.json",
+  "name": "Fluid",
+  "source": [
+    "https://docs.fluid.io/fluid-logo-light.svg",
+    "https://fluid.io (site sign: /assets/fluid-sign-*.js, same paths)"
+  ],
+  "notes": [
+    "Default: the Sign group of the official docs.fluid.io/fluid-logo-light.svg (fill #000000); its two paths are identical to the standalone sign fluid.io serves (white, for its dark UI)",
+    "Fluid publishes its sign as a one-colour mark only (black on light, white on dark); the blue #366FFF app tile and the FLUID token disc exist only as rasters (fluid.io/icons/apple-touch-icon.png, github.com/Instadapp/assets icons/tokens/fluid.png), so no coloured variant is added",
+    "Mono: the same two paths in currentColor",
+    "Fluid is Instadapp's rebrand (fluid.instadapp.io redirects to fluid.io); the older Instadapp-era Fluid mark in github.com/Instadapp/assets icons/protocols/fluid.svg is superseded by this sign"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "fluid.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "fluid.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "fluid"
+  ]
+}

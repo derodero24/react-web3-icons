@@ -1,0 +1,25 @@
+{
+  "$schema": "../schema.json",
+  "name": "Orca",
+  "source": [
+    "https://docs.orca.so/reference/brand (official brand assets folder: Orca Logo/logomark.svg)"
+  ],
+  "notes": [
+    "Default: the official logomark.svg from the Orca Logo folder of the brand-assets Google Drive linked from docs.orca.so/reference/brand (yellow #FFD15C disc, black orca, white belly), SVGO and grid placement only",
+    "Mono: the brand kit has no one-colour logomark; derived mechanically from logomark.svg with boolean ops: the visible black orca stays ink, the white belly and eye are knocked out, and the yellow disc is ink separated from the orca by a 1.2-unit seam (on the 64 grid)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "orca.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "orca.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "orca"
+  ]
+}
