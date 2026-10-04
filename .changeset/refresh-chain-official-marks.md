@@ -11,4 +11,3 @@ Replace outdated or off-brand chain marks with the brands' current official artw
 - `Near` (and the `Near` coin): the black (`#000`) NEAR symbol from near.org, instead of a `#00EC97` green N.
 - `Stacks`: the exact symbol from the stacks.co navbar, which corrects a slight horizontal stretch.
 - `Fraxtal`: the official Fraxtal chain icon from frax.com, a white chain link on a black disc, instead of the generic Frax currency sign. `FraxtalMono` is the disc with the chain link knocked out.
-- `SynapseMono`: now solid ink only (#746). The connectors are solid instead of half-transparent and are separated from the four dots by thin knockout gaps.
