@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://pepe.vip
+// Source: @web3icons/core (MIT) — PEPE token SVG (legacy third-party artwork)
+// Legacy artwork: the paths come from @web3icons (PEPE, background variant), not from an official file, and differ from the official drawing (pepe.vip shows a frog with red lips and the pepe wordmark)
+// No official vector exists: pepe.vip (a Wix site) serves its logo only as raster images (the favicon is a JPEG), and the project has no brand kit or GitHub org (checked 2026-10-04, #836); per the sourcing policy the raster is not traced
+// PepeMono: derived mechanically from pepe.svg (#840): the tile in ink, Pepe's silhouette knocked out, and the line art and lips drawn back in ink
 /** Pepe coin icon (colored). */
 export const Pepe = /* @__PURE__ */ createIcon(
   'Pepe',
