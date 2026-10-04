@@ -7,7 +7,7 @@
   "notes": [
     "Geometry from the official synapse-mark.svg (synapsecns/sanguine docs/bridge/static/brand-assets): four circles and the half-opacity bevelled rhombus stroke",
     "Gradient as in the official file: a default (objectBoundingBox, left to right) linear gradient on each element from hsl(285deg 100% 65%) = #D24DFF to hsl(265deg 100% 75%) = #B580FF; the previous artwork used mis-converted stops (#BC68FF, #9C72FF) in one user-space gradient across the whole mark",
-    "Mono: follows Synapse's own one-colour marks (synapse-mark-black.svg / synapse-mark-white.svg), which keep the connector stroke at opacity .5 under solid circles; that official opacity is kept rather than a binary redraw"
+    "Mono: binary ink, built from the official geometry (#746): the four circles solid, and the 5.5-wide bevelled connector stroke outlined and solid too, cut back from each circle by a 1.2-unit knockout seam so the dots stay distinct. Synapse's own one-colour marks (synapse-mark-black.svg / synapse-mark-white.svg) draw the connector at opacity .5 instead"
   ],
   "kind": "icon",
   "variants": {
