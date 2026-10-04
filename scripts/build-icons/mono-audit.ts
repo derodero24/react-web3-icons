@@ -176,11 +176,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'Each bar fades from white to #00FF93, so the white tops fall outside the best threshold cut of the reference; the mono inks the 16 bars with the same paths, the geometry of the official single-colour brandmarks.',
   },
-  'chain/Scroll': {
-    kind: 'false-positive',
-    reason:
-      'Container polarity: the beige tile becomes ink with the scroll knocked out, so the threshold reference is inverted.',
-  },
   'chain/Zora': {
     kind: 'false-positive',
     reason:

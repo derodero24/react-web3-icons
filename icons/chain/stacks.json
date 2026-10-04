@@ -1,7 +1,12 @@
 {
   "name": "Stacks",
   "source": [
-    "https://stacks.co"
+    "https://cdn.prod.website-files.com/618b0aafa4afde65f2fe38fe/65dbdd6c87cf20baca9ac049_stacks-logo-navbar.svg (the symbol in the stacks.co navbar)",
+    "https://www.stacks.co/brand (redirects to the Stacks Brand 2024 Figma file)"
+  ],
+  "notes": [
+    "Default: the official stacks.co navbar symbol (#141414, fill-rule=evenodd), path unchanged; it replaces a near-identical redraw stretched to a square box",
+    "Mono: the same path in currentColor"
   ],
   "kind": "icon",
   "variants": {

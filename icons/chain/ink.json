@@ -1,12 +1,18 @@
 {
   "name": "Ink",
   "source": [
-    "https://inkonchain.com"
+    "https://github.com/inkonchain/ink-kit/blob/767f5a2f03c9055803bb47a3701e046ee1efc131/src/icons/InkLogo.svg (Ink's official UI kit, linked from inkonchain.com)",
+    "https://github.com/inkonchain/ink-kit/blob/767f5a2f03c9055803bb47a3701e046ee1efc131/src/icons/Logo/Ink.svg"
+  ],
+  "notes": [
+    "Default: the official InkLogo.svg (the #7132F5 mark on a #F0EFFF disc), paths unchanged and full-bleed on the 64 grid; it replaces the same mark in #7757E2 without the light disc",
+    "Mono: the official one-colour Logo/Ink.svg (the purple mark alone, fill-rule=evenodd) in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "ink.svg"
+      "file": "ink.svg",
+      "fill": "none"
     },
     "Mono": {
       "file": "ink.mono.svg",
