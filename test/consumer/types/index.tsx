@@ -41,7 +41,7 @@ import { Api3 } from 'react-web3-icons/oracle';
 import { CoinLedger } from 'react-web3-icons/portfolio';
 import { Arweave } from 'react-web3-icons/storage';
 import { CoinGecko } from 'react-web3-icons/tracker';
-import { Argent } from 'react-web3-icons/wallet';
+import { Ready } from 'react-web3-icons/wallet';
 
 const ref = createRef<SVGSVGElement>();
 const props: IconProps = { size: 24, title: 'Ethereum', titleId: 'eth-title' };
@@ -71,7 +71,7 @@ export const elements: ReactElement[] = [
   <CoinLedger key="portfolio" />,
   <Arweave key="storage" />,
   <CoinGecko key="tracker" />,
-  <Argent key="wallet" onClick={event => event.currentTarget.getBBox()} />,
+  <Ready key="wallet" onClick={event => event.currentTarget.getBBox()} />,
   <ChainIcon key="dynamic-chain" {...chainProps} fallback={null} />,
   <CoinIcon key="dynamic-coin" symbol="ETH" size={20} />,
   <WalletIcon key="dynamic-wallet" name="metamask" ref={ref} />,

@@ -72,6 +72,10 @@ describe('Coin aliases re-export correctly', () => {
     'Matic',
     'Mkr',
     'MkrMono',
+    'Sky',
+    'SkyMono',
+    'Gram',
+    'GramMono',
     'OpCircle',
     'OpCircleMono',
   ];
@@ -106,6 +110,9 @@ describe('DEPRECATED_ICON_NAMES', () => {
   it('includes known deprecated aliases', () => {
     expect(icons.DEPRECATED_ICON_NAMES.has('Matic')).toBe(true);
     expect(icons.DEPRECATED_ICON_NAMES.has('GnosisSafe')).toBe(true);
+    expect(icons.DEPRECATED_ICON_NAMES.has('PhantomWallet')).toBe(true);
+    expect(icons.DEPRECATED_ICON_NAMES.has('OKXWallet')).toBe(true);
+    expect(icons.DEPRECATED_ICON_NAMES.has('OkxWallet')).toBe(false);
   });
 });
 

@@ -1,0 +1,23 @@
+{
+  "name": "Gate",
+  "source": [
+    "https://gate.io (official brand)"
+  ],
+  "notes": [
+    "Gate.io rebranded to Gate (gate.com) in 2025 with the same mark, so the artwork carries over from the Gateio unit"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "gate.svg"
+    },
+    "Mono": {
+      "file": "gate.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "gate",
+    "gateio"
+  ]
+}

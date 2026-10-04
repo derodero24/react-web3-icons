@@ -33,10 +33,10 @@ import { Binance, BinanceMono, BybitInverted } from '../src/exchange';
 import { Pyth, PythMono } from '../src/oracle';
 import type { IconProps } from '../src/utils';
 import {
-  BackpackWallet,
+  Backpack,
   MetaMask,
   MetaMaskMono,
-  PhantomWalletSymbolMono,
+  PhantomSymbolMono,
 } from '../src/wallet';
 
 /**
@@ -338,9 +338,9 @@ describe('variants', () => {
     [
       'WalletIcon variant="SymbolMono"',
       () => <dynamic.WalletIcon name="phantom" variant="SymbolMono" />,
-      PhantomWalletSymbolMono,
+      PhantomSymbolMono,
       walletImports,
-      'PhantomWalletSymbolMono',
+      'PhantomSymbolMono',
     ],
     [
       'ExchangeIcon variant="Inverted"',
@@ -380,13 +380,13 @@ describe('variants', () => {
     const { container, root } = mount();
     act(() => {
       root.render(
-        // @ts-expect-error DefiIcon has no Circle variant
-        <dynamic.DefiIcon name="aave" variant="Circle" fallback={FALLBACK} />,
+        // @ts-expect-error DefiIcon has no Square variant
+        <dynamic.DefiIcon name="aave" variant="Square" fallback={FALLBACK} />,
       );
     });
     expect(container.innerHTML).toBe(FALLBACK_HTML);
     expect(warn).toHaveBeenCalledWith(
-      '[react-web3-icons] DefiIcon: unknown variant "Circle" (expected one of "colored", "mono"); rendering the fallback.',
+      '[react-web3-icons] DefiIcon: unknown variant "Square" (expected one of "colored", "mono", "Circle", "CircleMono"); rendering the fallback.',
     );
     warn.mockRestore();
   });
@@ -394,12 +394,12 @@ describe('variants', () => {
 
 describe('connector ids and aliases', () => {
   it('resolves a wallet connector id', async () => {
-    await preload(walletImports, 'BackpackWallet');
+    await preload(walletImports, 'Backpack');
     const { container, root } = mount();
     await act(() => {
       root.render(<dynamic.WalletIcon name="backpack" />);
     });
-    expect(container.innerHTML).toBe(renderToStaticMarkup(<BackpackWallet />));
+    expect(container.innerHTML).toBe(renderToStaticMarkup(<Backpack />));
   });
 
   it('resolves a manifest alias', async () => {

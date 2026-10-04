@@ -18,6 +18,7 @@ import { namespaceIds } from './ids.ts';
 import { INITIAL_FILL, inheritsFill } from './isolate.ts';
 import {
   CATEGORIES,
+  isCaseOnlyRename,
   kebab,
   loadCategory,
   parseViewBox,
@@ -245,16 +246,25 @@ export function buildIconifySets(iconsDir: string = ICONS): IconifySets {
   }
 
   // Second pass: alias/re-export names → Iconify aliases.
+  // A case-only rename (`OKXWallet` → `OkxWallet`) may share its target's
+  // kebab-case icon name; it is the same icon, so it needs no alias.
   const pendingLinks = units.flatMap(unit =>
-    unitLinks(unit).map(link => ({
-      category: unit.category,
-      name: link.name,
-      target: `${link.targetCategory}/${link.targetName}`,
-      hidden: link.deprecated,
-    })),
+    unitLinks(unit)
+      .filter(
+        link =>
+          !isCaseOnlyRename(unit.category, link) ||
+          kebab(link.name) !== kebab(link.targetName),
+      )
+      .map(link => ({
+        category: unit.category,
+        name: link.name,
+        target: `${link.targetCategory}/${link.targetName}`,
+        hidden: link.deprecated,
+      })),
   );
 
-  // Resolve alias chains (e.g. Matic → Pol → Polygon) over multiple rounds.
+  // Resolve alias chains (an alias of a re-export resolves once the
+  // re-export does) over multiple rounds.
   let progressed = true;
   while (progressed && pendingLinks.length > 0) {
     progressed = false;

@@ -269,22 +269,22 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'The llama is knocked out of the D and opens at its bottom edge, so the footprint flood fill enters it.',
   },
-  'wallet/RainbowWallet': {
+  'wallet/Rainbow': {
     kind: 'false-positive',
     reason:
       'The band gradients inflate the colour-boundary count; the bands stay apart through knockout seams.',
   },
-  'wallet/RainbowWalletCircle': {
+  'wallet/RainbowCircle': {
     kind: 'false-positive',
     reason:
       'The band and disc gradients inflate the colour-boundary count; the bands stay apart through seams.',
   },
-  'wallet/RainbowWalletSquare': {
+  'wallet/RainbowSquare': {
     kind: 'false-positive',
     reason:
       'The band and tile gradients inflate the colour-boundary count; the bands stay apart through seams.',
   },
-  'wallet/RainbowWalletSymbol': {
+  'wallet/RainbowSymbol': {
     kind: 'false-positive',
     reason:
       'The band gradients inflate the colour-boundary count, and the seams between the bands open the footprint at their ends.',

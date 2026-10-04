@@ -8,6 +8,7 @@ export * from './BybitLight';
 export * from './Coinbase';
 export * from './CryptoCom';
 export * from './Deribit';
+export * from './Gate';
 export * from './Gateio';
 export * from './Gemini';
 export * from './Htx';

@@ -1,0 +1,36 @@
+{
+  "$schema": "../schema.json",
+  "name": "Sky",
+  "source": [
+    "https://app.sky.money/tokens/sky.svg",
+    "https://sky.money (Sky-Logo-Monochrome.svg: the same pinwheel symbol without a background)"
+  ],
+  "notes": [
+    "MakerDAO rebranded to Sky (Sky Ecosystem) and MKR upgrades to SKY. Circle: the official SKY token file unchanged (a white disc with eleven radial-gradient rays)",
+    "Default: the same file without its white disc, i.e. the pinwheel symbol the sky.money logo shows standalone",
+    "Mono / CircleMono: the eleven ray paths of the token file as one currentColor path; CircleMono knocks them out of the disc"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "sky.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "sky.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "sky.circle.svg",
+      "fill": "none"
+    },
+    "CircleMono": {
+      "file": "sky.circle-mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "sky",
+    "makerdao"
+  ]
+}

@@ -1,19 +1,23 @@
 {
   "name": "Gateio",
-  "source": [
-    "https://gate.io (official brand)"
-  ],
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "gateio.svg"
-    },
-    "Mono": {
-      "file": "gateio.mono.svg",
-      "fill": "currentColor"
-    }
-  },
-  "slugs": [
-    "gateio"
-  ]
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "./Gate",
+    "imports": [
+      "Gate",
+      "GateMono"
+    ],
+    "exports": [
+      {
+        "name": "Gateio",
+        "target": "Gate",
+        "deprecated": "Gate.io rebranded to Gate — use `Gate` instead."
+      },
+      {
+        "name": "GateioMono",
+        "target": "GateMono",
+        "deprecated": "Use `GateMono` instead."
+      }
+    ]
+  }
 }

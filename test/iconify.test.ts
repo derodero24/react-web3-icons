@@ -148,7 +148,12 @@ describe('IconifyJSON collections', () => {
       Object.keys(sets.colored.aliases).length +
       Object.keys(sets.mono.icons).length +
       Object.keys(sets.mono.aliases).length;
-    expect(covered).toBe(ICON_MANIFEST.length);
+    // A case-only rename (OKXWallet → OkxWallet) shares its target's
+    // kebab-case icon name, so it needs no alias of its own.
+    const names = new Set(
+      ICON_MANIFEST.map(entry => `${entry.category}-${kebab(entry.name)}`),
+    );
+    expect(covered).toBe(names.size);
   });
 
   it('every alias points at an existing icon in its set', () => {

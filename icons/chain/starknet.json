@@ -1,5 +1,5 @@
 {
-  "name": "StarkNet",
+  "name": "Starknet",
   "source": [
     "https://www.starknet.io/assets/starknet-logos-svg.zip (official logo kit: Symbol/SN-Symbol-Gradient.svg)"
   ],
@@ -11,28 +11,60 @@
   "kind": "icon",
   "variants": {
     "": {
-      "file": "stark-net.svg"
+      "file": "starknet.svg"
     },
     "Mono": {
-      "file": "stark-net.mono.svg",
+      "file": "starknet.mono.svg",
       "fill": "currentColor"
     },
     "Circle": {
-      "file": "stark-net.circle.svg"
+      "file": "starknet.circle.svg"
     },
     "Square": {
-      "file": "stark-net.square.svg"
+      "file": "starknet.square.svg"
     },
     "SquareMono": {
-      "file": "stark-net.square-mono.svg",
+      "file": "starknet.square-mono.svg",
       "fill": "currentColor"
     },
     "CircleMono": {
-      "file": "stark-net.circle-mono.svg",
+      "file": "starknet.circle-mono.svg",
       "fill": "currentColor"
     }
   },
   "slugs": [
     "starknet"
+  ],
+  "localAliases": [
+    {
+      "name": "StarkNet",
+      "target": "Starknet",
+      "deprecated": "StarkNet was renamed to the official casing — use `Starknet` instead."
+    },
+    {
+      "name": "StarkNetMono",
+      "target": "StarknetMono",
+      "deprecated": "Use `StarknetMono` instead."
+    },
+    {
+      "name": "StarkNetCircle",
+      "target": "StarknetCircle",
+      "deprecated": "Use `StarknetCircle` instead."
+    },
+    {
+      "name": "StarkNetSquare",
+      "target": "StarknetSquare",
+      "deprecated": "Use `StarknetSquare` instead."
+    },
+    {
+      "name": "StarkNetSquareMono",
+      "target": "StarknetSquareMono",
+      "deprecated": "Use `StarknetSquareMono` instead."
+    },
+    {
+      "name": "StarkNetCircleMono",
+      "target": "StarknetCircleMono",
+      "deprecated": "Use `StarknetCircleMono` instead."
+    }
   ]
 }

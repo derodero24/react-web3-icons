@@ -1,4 +1,5 @@
 export * from './Aragon';
+export * from './Cactus';
 export * from './Chainlink';
 export * from './CollabLand';
 export * from './Drizzle';

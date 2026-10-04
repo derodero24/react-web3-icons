@@ -18,6 +18,8 @@ import { pathToFileURL } from 'node:url';
 import { namespaceIds } from './ids.ts';
 import {
   CATEGORIES,
+  type Category,
+  isCaseOnlyRename,
   kebab,
   loadCategory,
   unitLinks,
@@ -36,6 +38,30 @@ type Entry =
 export const distSvgIdPrefix = (category: string, name: string): string =>
   `w3i-${category}-${kebab(name)}`;
 
+/** The exports of one category that get a file: export name → entry. */
+function categoryEntries(
+  iconsDir: string,
+  category: Category,
+): Map<string, Entry> {
+  const map = new Map<string, Entry>();
+  for (const unit of loadCategory(iconsDir, category)) {
+    for (const variant of unit.variants) {
+      map.set(variant.exportName, { variant });
+    }
+    for (const link of unitLinks(unit)) {
+      // Same component as its target, whose file a case-insensitive file
+      // system could not tell apart from this one.
+      if (isCaseOnlyRename(category, link)) {
+        continue;
+      }
+      map.set(link.name, {
+        ref: { category: link.targetCategory, name: link.targetName },
+      });
+    }
+  }
+  return map;
+}
+
 /**
  * Every dist/svg file: `<category>/<ExportName>.svg` → content.
  *
@@ -43,21 +69,9 @@ export const distSvgIdPrefix = (category: string, name: string): string =>
  */
 export function buildDistSvgs(iconsDir: string): Map<string, string> {
   /** category → export name → entry */
-  const index = new Map<string, Map<string, Entry>>();
-  for (const category of CATEGORIES) {
-    const map = new Map<string, Entry>();
-    index.set(category, map);
-    for (const unit of loadCategory(iconsDir, category)) {
-      for (const variant of unit.variants) {
-        map.set(variant.exportName, { variant });
-      }
-      for (const link of unitLinks(unit)) {
-        map.set(link.name, {
-          ref: { category: link.targetCategory, name: link.targetName },
-        });
-      }
-    }
-  }
+  const index = new Map<string, Map<string, Entry>>(
+    CATEGORIES.map(category => [category, categoryEntries(iconsDir, category)]),
+  );
 
   const resolveVariant = (
     category: string,

@@ -1,0 +1,26 @@
+{
+  "$schema": "../schema.json",
+  "name": "Velora",
+  "source": [
+    "https://www.velora.xyz/brand (official Velora Brand Kit, linked from velora.xyz)"
+  ],
+  "notes": [
+    "ParaSwap rebranded to Velora in 2025. Colored: `Velora Colored Icon (Use on light background).svg` from the brand kit's ICONS TRANSPARENT BACKGROUND section, unchanged",
+    "Mono: `Velora Black Icon.svg` from the same section in currentColor"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "velora.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "velora.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "velora",
+    "paraswap"
+  ]
+}

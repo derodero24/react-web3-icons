@@ -8,10 +8,7 @@ import {
 } from '../src/chain/Avalanche';
 import { Bybit, BybitInverted, BybitMono } from '../src/exchange/Bybit';
 import { createIcon } from '../src/utils';
-import {
-  RainbowWallet,
-  RainbowWalletSymbol,
-} from '../src/wallet/RainbowWallet';
+import { Rainbow, RainbowSymbol } from '../src/wallet/Rainbow';
 
 /**
  * Behaviour of the extra props some units declare (`props` in their unit
@@ -104,28 +101,28 @@ describe('Bybit fill1 / fill2', () => {
   });
 });
 
-describe('RainbowWallet withBackground', () => {
+describe('Rainbow withBackground', () => {
   // The gradient tile, in the 120-unit artwork scaled onto the 64×64 grid.
   const tile = 'M0 0h120v120H0z';
   // Both artworks share the grid; the toggle switches the artwork only.
 
-  it('RainbowWallet includes the gradient tile by default', () => {
-    const svg = renderSvg(<RainbowWallet />);
+  it('Rainbow includes the gradient tile by default', () => {
+    const svg = renderSvg(<Rainbow />);
     expect(svg.getAttribute('viewBox')).toBe('0 0 64 64');
     expect(svg.querySelector(`path[d="${tile}"]`)).not.toBeNull();
   });
 
-  it('RainbowWalletSymbol crops to the arcs by default', () => {
-    const svg = renderSvg(<RainbowWalletSymbol />);
+  it('RainbowSymbol crops to the arcs by default', () => {
+    const svg = renderSvg(<RainbowSymbol />);
     expect(svg.getAttribute('viewBox')).toBe('0 0 64 64');
     expect(svg.querySelector(`path[d="${tile}"]`)).toBeNull();
   });
 
   it('withBackground overrides each default', () => {
-    const symbol = renderSvg(<RainbowWallet withBackground={false} />);
+    const symbol = renderSvg(<Rainbow withBackground={false} />);
     expect(symbol.getAttribute('viewBox')).toBe('0 0 64 64');
     expect(symbol.querySelector(`path[d="${tile}"]`)).toBeNull();
-    const tiled = renderSvg(<RainbowWalletSymbol withBackground />);
+    const tiled = renderSvg(<RainbowSymbol withBackground />);
     expect(tiled.getAttribute('viewBox')).toBe('0 0 64 64');
     expect(tiled.querySelector(`path[d="${tile}"]`)).not.toBeNull();
   });

@@ -1,9 +1,9 @@
 import { createIcon } from '../utils';
 
 // Source: https://okx.com/web3
-/** OKXWallet wallet icon (colored). */
-export const OKXWallet = /* @__PURE__ */ createIcon(
-  'OKXWallet',
+/** Okx Wallet wallet icon (colored). */
+export const OkxWallet = /* @__PURE__ */ createIcon(
+  'OkxWallet',
   '0 0 64 64',
   () => (
     <path
@@ -15,9 +15,9 @@ export const OKXWallet = /* @__PURE__ */ createIcon(
   { fill: '#000000' },
 );
 
-/** OKXWallet wallet icon (monochrome). */
-export const OKXWalletMono = /* @__PURE__ */ createIcon(
-  'OKXWalletMono',
+/** Okx Wallet wallet icon (monochrome). */
+export const OkxWalletMono = /* @__PURE__ */ createIcon(
+  'OkxWalletMono',
   '0 0 64 64',
   () => (
     <path
@@ -28,3 +28,9 @@ export const OKXWalletMono = /* @__PURE__ */ createIcon(
   ),
   { fill: 'currentColor' },
 );
+
+/** @deprecated OKXWallet was renamed to word casing — use `OkxWallet` instead. */
+export const OKXWallet = OkxWallet;
+
+/** @deprecated Use `OkxWalletMono` instead. */
+export const OKXWalletMono = OkxWalletMono;

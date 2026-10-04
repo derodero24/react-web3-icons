@@ -324,12 +324,13 @@ The `variant` prop selects the artwork: `'colored'` (the default), `'mono'`, or 
 | `ExchangeIcon` | `ExchangeVariant` | `'Circle'`, `'CircleAlt'`, `'CircleMono'`, `'Inverted'` |
 | `DexIcon` | `DexVariant` | `'Square'`, `'SquareMono'` |
 | `BridgeIcon` | `BridgeVariant` | `'Inverted'` |
-| `DefiIcon`, `OracleIcon` | `DefiVariant`, `OracleVariant` | — |
+| `DefiIcon` | `DefiVariant` | `'Circle'`, `'CircleMono'` |
+| `OracleIcon` | `OracleVariant` | — |
 
 ```tsx
 <CoinIcon symbol="BTC" variant="mono" />          // BtcMono
 <ChainIcon name="ethereum" variant="Circle" />     // EthereumCircle
-<WalletIcon name="phantom" variant="SquareMono" /> // PhantomWalletSquareMono
+<WalletIcon name="phantom" variant="SquareMono" /> // PhantomSquareMono
 ```
 
 Not every icon ships every variant of its category (see the manifest's `variants`); an icon without the requested variant renders `fallback`, and so does a variant the category does not know. Every icon of these categories has a `mono` variant.
@@ -451,7 +452,7 @@ Sizes are minified and brotli-compressed with React excluded, as reported by `pn
 | `portfolio` | Portfolio trackers | DeBank, Zapper, CoinLedger |
 | `storage` | Decentralized storage | Ipfs, Arweave, NftStorage |
 | `tracker` | Analytics & tracking | DefiLlama, CoinGecko, CoinMarketCap |
-| `wallet` | Wallet apps | MetaMask, PhantomWallet, RainbowWallet |
+| `wallet` | Wallet apps | MetaMask, Phantom, Rainbow |
 
 Browse the full list at the **[demo site](https://react-web3-icons.vercel.app/)**.
 
@@ -477,7 +478,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ## Icon Lifecycle Policy
 
-When icon brands are renamed (for example, `GnosisSafe` -> `Safe`, `Matic` -> `Pol`), this project keeps backward compatibility by shipping deprecated aliases.
+When icon brands are renamed (for example, `Argent` -> `Ready`, `PhantomWallet` -> `Phantom`), this project keeps backward compatibility by shipping deprecated aliases.
 
 - Canonical exports follow the current official brand name.
 - Deprecated exports (aliases of renamed icons, and artwork of retired brands) stay available for at least one minor release and at least 90 days.
@@ -490,8 +491,8 @@ The `DEPRECATED_ICON_NAMES` set lists every deprecated export. Import it from th
 ```ts
 import { DEPRECATED_ICON_NAMES } from 'react-web3-icons/deprecated';
 
-const iconNames = ['Ethereum', 'Matic', 'Pol'];
-const current = iconNames.filter(name => !DEPRECATED_ICON_NAMES.has(name)); // ['Ethereum', 'Pol']
+const iconNames = ['Ethereum', 'Argent', 'Ready'];
+const current = iconNames.filter(name => !DEPRECATED_ICON_NAMES.has(name)); // ['Ethereum', 'Ready']
 ```
 
 To enumerate the current icons, use the [manifest](#icon-manifest), which flags deprecated entries itself. `Object.keys()` on `import * as icons from 'react-web3-icons'` also works, but it bundles the whole library.

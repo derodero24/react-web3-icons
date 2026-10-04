@@ -1,0 +1,52 @@
+{
+  "name": "Rainbow",
+  "source": [
+    "https://rainbow.me"
+  ],
+  "notes": [
+    "Arc paths from viewBox 20 20 80 80 → scale 0.575, translate(-2.5, -2.5)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "rainbow.svg"
+    },
+    "Symbol": {
+      "file": "rainbow.symbol.svg"
+    },
+    "Circle": {
+      "file": "rainbow.circle.svg"
+    },
+    "CircleMono": {
+      "file": "rainbow.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "rainbow.square.svg"
+    },
+    "SquareMono": {
+      "file": "rainbow.square-mono.svg",
+      "fill": "currentColor"
+    },
+    "Mono": {
+      "file": "rainbow.mono.svg",
+      "fill": "currentColor"
+    },
+    "SymbolMono": {
+      "file": "rainbow.symbol-mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "rainbow",
+    "rainbowwallet"
+  ],
+  "props": {
+    "withBackground": {
+      "type": "toggle",
+      "description": "Render the gradient tile behind the arcs.",
+      "on": "",
+      "off": "Symbol"
+    }
+  }
+}

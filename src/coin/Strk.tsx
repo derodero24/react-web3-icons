@@ -1,9 +1,9 @@
-// Source: re-export of StarkNet — see src/chain/StarkNet.tsx
+// Source: re-export of Starknet — see src/chain/Starknet.tsx
 export {
-  StarkNet as Strk,
-  StarkNetCircle as StrkCircle,
-  StarkNetCircleMono as StrkCircleMono,
-  StarkNetMono as StrkMono,
-  StarkNetSquare as StrkSquare,
-  StarkNetSquareMono as StrkSquareMono,
-} from '../chain/StarkNet';
+  Starknet as Strk,
+  StarknetCircle as StrkCircle,
+  StarknetCircleMono as StrkCircleMono,
+  StarknetMono as StrkMono,
+  StarknetSquare as StrkSquare,
+  StarknetSquareMono as StrkSquareMono,
+} from '../chain/Starknet';

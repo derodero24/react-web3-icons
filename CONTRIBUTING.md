@@ -265,7 +265,7 @@ Ticker aliases and deprecated renames are JSON-only units:
 
 Deprecated aliases use `"kind": "alias"` with an `aliasConst` block so the
 generator emits `/** @deprecated … */ export const Old = New;` (see
-`icons/coin/matic.json` for a real example).
+`icons/wallet/argent.json` for a real example).
 
 ### Regenerating
 

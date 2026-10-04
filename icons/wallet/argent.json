@@ -1,21 +1,23 @@
 {
   "name": "Argent",
-  "source": [
-    "https://argent.xyz"
-  ],
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "argent.svg",
-      "fill": "#ff875b"
-    },
-    "Mono": {
-      "file": "argent.mono.svg",
-      "fill": "currentColor"
-    }
-  },
-  "slugs": [
-    "argent",
-    "argent-x"
-  ]
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "./Ready",
+    "imports": [
+      "Ready",
+      "ReadyMono"
+    ],
+    "exports": [
+      {
+        "name": "Argent",
+        "target": "Ready",
+        "deprecated": "Argent rebranded to Ready — use `Ready` instead."
+      },
+      {
+        "name": "ArgentMono",
+        "target": "ReadyMono",
+        "deprecated": "Use `ReadyMono` instead."
+      }
+    ]
+  }
 }

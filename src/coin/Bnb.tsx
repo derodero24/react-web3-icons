@@ -3,11 +3,11 @@ import { createIcon } from '../utils';
 // Source: https://static.bnbchain.org/home-ui/static/images/brand-guidelines/BNBChain-Logo.zip (official BNB Chain brand kit at https://www.bnbchain.org/en/brand-guidelines, file BNB Chain - Logo/SVG/BNB Chain_Symbol_Yellow.svg)
 // Colored: the official BNB Chain_Symbol_Yellow.svg unchanged (one #F0B90B path), placed on the 64 grid; the brand guidelines name the logomark as 'an expression for the BNB Token' and ask for the yellow logo wherever possible
 // Mono: the same path in currentColor
-// BnbCircle / BnbCircleMono re-export the BinanceSmartChain circle variants (artwork owned by icons/chain/binance-smart-chain.json)
+// BnbCircle / BnbCircleMono re-export the BnbSmartChain circle variants (artwork owned by icons/chain/bnb-smart-chain.json)
 export {
-  BinanceSmartChainCircle as BnbCircle,
-  BinanceSmartChainCircleMono as BnbCircleMono,
-} from '../chain/BinanceSmartChain';
+  BnbSmartChainCircle as BnbCircle,
+  BnbSmartChainCircleMono as BnbCircleMono,
+} from '../chain/BnbSmartChain';
 
 /** Bnb coin icon (colored). */
 export const Bnb = /* @__PURE__ */ createIcon(

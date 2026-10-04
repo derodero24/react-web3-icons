@@ -1,5 +1,8 @@
+import { MakerDao, MakerDaoMono } from '../defi/MakerDao';
+
 // Source: re-export of MakerDao — see src/defi/MakerDao.tsx
-export {
-  MakerDao as Mkr,
-  MakerDaoMono as MkrMono,
-} from '../defi/MakerDao';
+/** @deprecated MKR was upgraded to SKY — use `Sky` instead. */
+export const Mkr = MakerDao;
+
+/** @deprecated Use `SkyMono` instead. */
+export const MkrMono = MakerDaoMono;

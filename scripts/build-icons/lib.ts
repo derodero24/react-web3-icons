@@ -230,6 +230,12 @@ function loadVariant(
  * conflicting names). Compared case-insensitively, since macOS and Windows
  * file systems are; that also keeps kebab-case names (Iconify icon names,
  * dist/svg id prefixes) unique, as `kebab` only inserts hyphens.
+ *
+ * The one exception is a case-only rename: a deprecated alias that differs
+ * from its own target only in letter case (`OKXWallet` → `OkxWallet`). It is
+ * the same component, so it gets no dist/svg file or Iconify alias of its
+ * own (see {@link isCaseOnlyRename}); the barrel, which compares names
+ * exactly, keeps both.
  */
 function assertUniqueOutputs(units: readonly SourceUnit[]): void {
   const modules = new Map<string, string>();
@@ -250,10 +256,30 @@ function assertUniqueOutputs(units: readonly SourceUnit[]): void {
   };
   for (const unit of units) {
     claim(modules, unit.meta.name, 'module', unit.path);
+    const caseOnly = new Set(
+      unitLinks(unit)
+        .filter(link => isCaseOnlyRename(unit.category, link))
+        .map(link => link.name),
+    );
     for (const name of unitAllExportNames(unit)) {
-      claim(exports, name, 'export', unit.path);
+      if (!caseOnly.has(name)) {
+        claim(exports, name, 'export', unit.path);
+      }
     }
   }
+}
+
+/**
+ * Whether a link is a deprecated alias of an export of its own category
+ * whose name differs from it only in letter case (`StarkNet` → `Starknet`).
+ */
+export function isCaseOnlyRename(category: string, link: ExportLink): boolean {
+  return (
+    link.deprecated &&
+    link.targetCategory === category &&
+    link.name !== link.targetName &&
+    link.name.toLowerCase() === link.targetName.toLowerCase()
+  );
 }
 
 /** Loads and validates every unit definition in a category directory. */

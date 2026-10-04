@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://paraswap.io
-/** Para Swap DEX icon (colored). */
+/** @deprecated ParaSwap rebranded to Velora — use `Velora` instead. */
 export const ParaSwap = /* @__PURE__ */ createIcon(
   'ParaSwap',
   '0 0 64 64',
@@ -15,7 +15,7 @@ export const ParaSwap = /* @__PURE__ */ createIcon(
   { fill: '#2669F5' },
 );
 
-/** Para Swap DEX icon (monochrome). */
+/** @deprecated Use `VeloraMono` instead. */
 export const ParaSwapMono = /* @__PURE__ */ createIcon(
   'ParaSwapMono',
   '0 0 64 64',

@@ -35,8 +35,6 @@ export const dexImports: Record<
   OsmosisMono: () => import('../../dex/Osmosis'),
   PancakeSwap: () => import('../../dex/PancakeSwap'),
   PancakeSwapMono: () => import('../../dex/PancakeSwap'),
-  ParaSwap: () => import('../../dex/ParaSwap'),
-  ParaSwapMono: () => import('../../dex/ParaSwap'),
   Raydium: () => import('../../dex/Raydium'),
   RaydiumMono: () => import('../../dex/Raydium'),
   SushiSwap: () => import('../../dex/SushiSwap'),
@@ -45,6 +43,8 @@ export const dexImports: Record<
   UniswapMono: () => import('../../dex/Uniswap'),
   Velodrome: () => import('../../dex/Velodrome'),
   VelodromeMono: () => import('../../dex/Velodrome'),
+  Velora: () => import('../../dex/Velora'),
+  VeloraMono: () => import('../../dex/Velora'),
 };
 
 /**

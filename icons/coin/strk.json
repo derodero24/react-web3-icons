@@ -1,34 +1,34 @@
 {
   "name": "Strk",
   "source": [
-    "re-export of StarkNet \u2014 see src/chain/StarkNet.tsx"
+    "re-export of Starknet \u2014 see src/chain/Starknet.tsx"
   ],
   "kind": "reexport",
   "reexport": {
-    "from": "../chain/StarkNet",
+    "from": "../chain/Starknet",
     "exports": [
       {
-        "of": "StarkNet",
+        "of": "Starknet",
         "as": "Strk"
       },
       {
-        "of": "StarkNetCircle",
+        "of": "StarknetCircle",
         "as": "StrkCircle"
       },
       {
-        "of": "StarkNetCircleMono",
+        "of": "StarknetCircleMono",
         "as": "StrkCircleMono"
       },
       {
-        "of": "StarkNetMono",
+        "of": "StarknetMono",
         "as": "StrkMono"
       },
       {
-        "of": "StarkNetSquare",
+        "of": "StarknetSquare",
         "as": "StrkSquare"
       },
       {
-        "of": "StarkNetSquareMono",
+        "of": "StarknetSquareMono",
         "as": "StrkSquareMono"
       }
     ]

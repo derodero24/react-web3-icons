@@ -1,0 +1,22 @@
+{
+  "$schema": "../schema.json",
+  "name": "Cactus",
+  "source": [
+    "https://www.tally.xyz/brand/CACTUS-black.svg (the logo of the Cactus organization record on tally.xyz, which forwards to cactushq.xyz)",
+    "https://docs.tally.xyz/tally-is-now-cactus/"
+  ],
+  "notes": [
+    "Tally rebranded to Cactus on 2026-06-17. Colored: the symbol of the official CACTUS-black.svg lockup (its five #0F1712 symbol paths, without the CACTUS wordmark), unchanged; the brand ships only this near-black logo",
+    "Mono: the same paths in currentColor"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "cactus.svg"
+    },
+    "Mono": {
+      "file": "cactus.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://tally.xyz
-/** Tally devtool icon (colored). */
+/** @deprecated Tally rebranded to Cactus — use `Cactus` instead. */
 export const Tally = /* @__PURE__ */ createIcon(
   'Tally',
   '0 0 64 64',
@@ -24,7 +24,7 @@ export const Tally = /* @__PURE__ */ createIcon(
   {},
 );
 
-/** Tally devtool icon (monochrome). */
+/** @deprecated Use `CactusMono` instead. */
 export const TallyMono = /* @__PURE__ */ createIcon(
   'TallyMono',
   '0 0 64 64',

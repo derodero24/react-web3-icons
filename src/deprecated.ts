@@ -26,9 +26,23 @@ import type { IconName } from './utils';
 export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   has(name: string): boolean;
 } = new Set<IconName>([
+  // icons/chain/binance-smart-chain.json
+  'BinanceSmartChain',
+  'BinanceSmartChainMono',
+  'BinanceSmartChainCircle',
+  'BinanceSmartChainSquare',
+  'BinanceSmartChainSquareMono',
+  'BinanceSmartChainCircleMono',
   // icons/chain/fantom.json
   'Fantom',
   'FantomMono',
+  // icons/chain/starknet.json
+  'StarkNet',
+  'StarkNetMono',
+  'StarkNetCircle',
+  'StarkNetSquare',
+  'StarkNetSquareMono',
+  'StarkNetCircleMono',
   // icons/coin/ftm.json
   'Ftm',
   'FtmMono',
@@ -37,17 +51,32 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   'MaticCircle',
   'MaticMono',
   'MaticCircleMono',
+  // icons/coin/mkr.json
+  'Mkr',
+  'MkrMono',
+  // icons/defi/maker-dao.json
+  'MakerDao',
+  'MakerDaoMono',
   // icons/devtool/drizzle.json
   'Drizzle',
   'DrizzleMono',
   // icons/devtool/ganache.json
   'Ganache',
   'GanacheMono',
+  // icons/devtool/tally.json
+  'Tally',
+  'TallyMono',
   // icons/devtool/truffle.json
   'Truffle',
   'TruffleMono',
+  // icons/dex/para-swap.json
+  'ParaSwap',
+  'ParaSwapMono',
   // icons/exchange/bybit-light.json
   'BybitLight',
+  // icons/exchange/gateio.json
+  'Gateio',
+  'GateioMono',
   // icons/explorer/basescan-light.json
   'BasescanLight',
   // icons/explorer/bscscan-light.json
@@ -57,7 +86,39 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   // icons/marketplace/tofu-nft.json
   'TofuNft',
   'TofuNftMono',
+  // icons/wallet/argent.json
+  'Argent',
+  'ArgentMono',
+  // icons/wallet/backpack-wallet.json
+  'BackpackWallet',
+  'BackpackWalletMono',
+  // icons/wallet/daedalus-wallet.json
+  'DaedalusWallet',
+  'DaedalusWalletMono',
   // icons/wallet/gnosis-safe.json
   'GnosisSafe',
   'GnosisSafeMono',
+  // icons/wallet/okx-wallet.json
+  'OKXWallet',
+  'OKXWalletMono',
+  // icons/wallet/phantom-wallet.json
+  'PhantomWallet',
+  'PhantomWalletMono',
+  'PhantomWalletCircle',
+  'PhantomWalletCircleMono',
+  'PhantomWalletSquare',
+  'PhantomWalletSquareMono',
+  'PhantomWalletSymbolMono',
+  // icons/wallet/rainbow-wallet.json
+  'RainbowWallet',
+  'RainbowWalletSymbol',
+  'RainbowWalletCircle',
+  'RainbowWalletCircleMono',
+  'RainbowWalletSquare',
+  'RainbowWalletSquareMono',
+  'RainbowWalletMono',
+  'RainbowWalletSymbolMono',
+  // icons/wallet/yoroi-wallet.json
+  'YoroiWallet',
+  'YoroiWalletMono',
 ]);

@@ -14,3 +14,4 @@ export * from './Raydium';
 export * from './SushiSwap';
 export * from './Uniswap';
 export * from './Velodrome';
+export * from './Velora';

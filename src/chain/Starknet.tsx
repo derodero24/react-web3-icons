@@ -4,9 +4,9 @@ import { createIcon } from '../utils';
 // Default and Circle: the official Starknet symbol SN-Symbol-Gradient.svg (#0C0C4F disc, #FAFAFA mark, #EC796B -> #E175B1 gradients), drawn full-bleed; it replaces artwork whose gradient ended in #D672EF (not in the kit) and whose Circle/Square marks were undersized
 // Square: no official tile exists; a repo-convention #0C0C4F rounded square (rx 31.6/158 = 12.8/64) holding the official mark paths at the symbol's own scale
 // Mono, CircleMono and SquareMono: the disc / tile in currentColor with the star, the dot, the white crest and the pink underside knocked out as one evenodd path; the underside is cut back from the crest by a 1.2-unit ink seam (the pink shape minus the crest offset by 1.2), so the wave keeps its two layers
-/** Stark Net chain icon (colored). */
-export const StarkNet = /* @__PURE__ */ createIcon(
-  'StarkNet',
+/** Starknet chain icon (colored). */
+export const Starknet = /* @__PURE__ */ createIcon(
+  'Starknet',
   '0 0 64 64',
   (_props, _id) => (
     <g transform="translate(0 -.4)scale(.40506)">
@@ -64,9 +64,9 @@ export const StarkNet = /* @__PURE__ */ createIcon(
   { ids: true },
 );
 
-/** Stark Net chain icon (monochrome). */
-export const StarkNetMono = /* @__PURE__ */ createIcon(
-  'StarkNetMono',
+/** Starknet chain icon (monochrome). */
+export const StarknetMono = /* @__PURE__ */ createIcon(
+  'StarknetMono',
   '0 0 64 64',
   () => (
     <path
@@ -77,9 +77,9 @@ export const StarkNetMono = /* @__PURE__ */ createIcon(
   { fill: 'currentColor' },
 );
 
-/** Stark Net Circle chain icon (colored). */
-export const StarkNetCircle = /* @__PURE__ */ createIcon(
-  'StarkNetCircle',
+/** Starknet Circle chain icon (colored). */
+export const StarknetCircle = /* @__PURE__ */ createIcon(
+  'StarknetCircle',
   '0 0 64 64',
   (_props, _id) => (
     <g transform="translate(0 -.4)scale(.40506)">
@@ -137,9 +137,9 @@ export const StarkNetCircle = /* @__PURE__ */ createIcon(
   { ids: true },
 );
 
-/** Stark Net Square chain icon (colored). */
-export const StarkNetSquare = /* @__PURE__ */ createIcon(
-  'StarkNetSquare',
+/** Starknet Square chain icon (colored). */
+export const StarknetSquare = /* @__PURE__ */ createIcon(
+  'StarknetSquare',
   '0 0 64 64',
   (_props, _id) => (
     <g transform="translate(0 -.4)scale(.40506)">
@@ -196,9 +196,9 @@ export const StarkNetSquare = /* @__PURE__ */ createIcon(
   { ids: true },
 );
 
-/** Stark Net Square chain icon (monochrome). */
-export const StarkNetSquareMono = /* @__PURE__ */ createIcon(
-  'StarkNetSquareMono',
+/** Starknet Square chain icon (monochrome). */
+export const StarknetSquareMono = /* @__PURE__ */ createIcon(
+  'StarknetSquareMono',
   '0 0 64 64',
   () => (
     <path
@@ -209,9 +209,9 @@ export const StarkNetSquareMono = /* @__PURE__ */ createIcon(
   { fill: 'currentColor' },
 );
 
-/** Stark Net Circle chain icon (monochrome). */
-export const StarkNetCircleMono = /* @__PURE__ */ createIcon(
-  'StarkNetCircleMono',
+/** Starknet Circle chain icon (monochrome). */
+export const StarknetCircleMono = /* @__PURE__ */ createIcon(
+  'StarknetCircleMono',
   '0 0 64 64',
   () => (
     <path
@@ -221,3 +221,21 @@ export const StarkNetCircleMono = /* @__PURE__ */ createIcon(
   ),
   { fill: 'currentColor' },
 );
+
+/** @deprecated StarkNet was renamed to the official casing — use `Starknet` instead. */
+export const StarkNet = Starknet;
+
+/** @deprecated Use `StarknetMono` instead. */
+export const StarkNetMono = StarknetMono;
+
+/** @deprecated Use `StarknetCircle` instead. */
+export const StarkNetCircle = StarknetCircle;
+
+/** @deprecated Use `StarknetSquare` instead. */
+export const StarkNetSquare = StarknetSquare;
+
+/** @deprecated Use `StarknetSquareMono` instead. */
+export const StarkNetSquareMono = StarknetSquareMono;
+
+/** @deprecated Use `StarknetCircleMono` instead. */
+export const StarkNetCircleMono = StarknetCircleMono;

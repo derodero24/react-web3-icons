@@ -122,8 +122,8 @@ describe('Category module exports', () => {
   });
 
   it('exports wallet category icons', () => {
-    expect(Object.keys(wallet)).toContain('Argent');
-    expect(Object.keys(wallet)).toContain('ArgentMono');
+    expect(Object.keys(wallet)).toContain('Ready');
+    expect(Object.keys(wallet)).toContain('ReadyMono');
     expect(Object.keys(wallet)).toContain('MetaMask');
     expect(Object.keys(wallet)).toContain('CoinbaseWallet');
     expect(Object.keys(wallet)).toContain('CoinbaseWalletMono');
