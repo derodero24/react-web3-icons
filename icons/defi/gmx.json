@@ -1,8 +1,12 @@
 {
   "name": "Gmx",
+  "source": [
+    "https://raw.githubusercontent.com/gmx-io/gmx-interface/master/src/img/logo_GMX_small.svg"
+  ],
   "notes": [
-    "GMX perpetuals DEX — triangular \"G\" mark",
-    "Gradient: cyan #03D1CF (top) → indigo #4E09F8 (bottom), from official brand assets"
+    "GMX perpetuals DEX: triangular \"G\" mark",
+    "Colored: the official logo_GMX_small.svg from gmx-io/gmx-interface, copied unchanged (diagonal #03D1CF → #4E09F8 gradient)",
+    "Mono: the same path in currentColor"
   ],
   "kind": "icon",
   "variants": {

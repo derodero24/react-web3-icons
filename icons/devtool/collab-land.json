@@ -1,7 +1,12 @@
 {
   "name": "CollabLand",
   "source": [
-    "https://collab.land"
+    "https://www.collab.land/LogoIcon.svg",
+    "https://www.collab.land/Logo-Color.png"
+  ],
+  "notes": [
+    "Colored: the robot head in the official palette of the colour logo Logo-Color.png (face #1A1A40, head #F6C349, eyes and mouth #F5F1E6; used as a colour reference only, nothing traced); the old face was #1F0061 and the eyes pure white. The official vector LogoIcon.svg is the one-colour #1A1A40 version of the same head",
+    "Mono: the head in currentColor"
   ],
   "kind": "icon",
   "variants": {

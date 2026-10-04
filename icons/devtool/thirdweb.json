@@ -1,7 +1,13 @@
 {
   "name": "Thirdweb",
   "source": [
-    "https://thirdweb.com"
+    "https://framerusercontent.com/assets/MjjaHZTK3Udfa5H8cBJbYTKZM.svg",
+    "https://framerusercontent.com/assets/3qSEeM9nhDU62bGUDDaURfML8.svg"
+  ],
+  "notes": [
+    "Both files are the icon downloads of the official brand kit at https://thirdweb.com/brand-kit",
+    "Colored: the gradient icon (three bars, each #FF00A8 → #6200C6), copied unchanged",
+    "Mono: the same three paths in currentColor, as in the kit's one-colour (white) icon"
   ],
   "kind": "icon",
   "variants": {

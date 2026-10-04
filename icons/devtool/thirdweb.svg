@@ -1,29 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="translate(4 14.58)scale(.10853)">
-    <path fill="url(#thw-a)" d="M1.4 27C-3.73 14.02 5.85 0 19.88 0h87.05c8.18 0 15.42 4.87 18.46 12.4l69.3 172.9c1.86 4.63 1.86 9.85 0 14.6l-43.6 108.58c-6.65 16.58-30.26 16.58-36.92 0z"/>
-    <path fill="url(#thw-b)" d="M169.55 26.42C164.87 13.56 174.45 0 188.25 0h75.83c8.41 0 15.89 5.22 18.7 12.98l62.97 172.9c1.52 4.29 1.52 9.04 0 13.44L307.9 303.27c-6.3 17.38-31.08 17.38-37.39 0z"/>
-    <path fill="url(#thw-c)" d="M321.33 27c-5.14-12.98 4.44-27 18.46-27h87.06c8.17 0 15.42 4.87 18.46 12.4l69.29 172.9c1.87 4.63 1.87 9.85 0 14.6L471 308.48c-6.66 16.58-30.26 16.58-36.92 0z"/>
+  <g transform="translate(3.35 15)scale(1.48875)">
+    <path fill="url(#thw-a)" d="M20.22 0q.35.08.64.3.33.24.47.64l1.81 4.52 2.01 5.03 1.06 2.63a1.5 1.5 0 0 1 0 1.14l-3.07 7.64q-.3.77-1.1.9c-.68.1-1.28-.22-1.52-.81l-1.7-4.26-2.9-7.2-2.56-6.43-.85-2.13A1.42 1.42 0 0 1 13.5.03l.07-.02z"/>
+    <path fill="url(#thw-b)" d="m8.28 0 .22.07a1.3 1.3 0 0 1 .85.8l1.97 4.9 2.95 7.38a1.4 1.4 0 0 1 0 1.1l-1.09 2.72-2 4.98a1.4 1.4 0 0 1-1.3.88 1.4 1.4 0 0 1-1.36-.93l-1.87-4.69-2.53-6.34L1.54 4.4.56 1.97A1.4 1.4 0 0 1 1.27.13q.19-.08.37-.12z"/>
+    <path fill="url(#thw-c)" d="M38.04 13.91c-.19.62-.46 1.2-.7 1.8l-2.02 5.06-.46 1.16a1.4 1.4 0 0 1-1.33.9 1.4 1.4 0 0 1-1.32-.91l-2.95-7.37-2.55-6.37-2.49-6.23a1.4 1.4 0 0 1 1-1.91l.07-.03h6.65l.07.02a1.4 1.4 0 0 1 1.03.89l4.21 10.53c.27.67.56 1.32.78 2.01z"/>
     <defs>
-      <linearGradient id="thw-a" x1="7.41" x2="260.49" y1="55.24" y2="164.44" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#f213a4"/>
-        <stop offset=".15" stop-color="#e011a7"/>
-        <stop offset=".46" stop-color="#b20daf"/>
-        <stop offset=".88" stop-color="#6806bb"/>
-        <stop offset="1" stop-color="#5204bf"/>
+      <linearGradient id="thw-a" x1="11.36" x2="27.38" y1="1.86" y2="17.85" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#FF00A8"/>
+        <stop offset="1" stop-color="#6200C6"/>
       </linearGradient>
-      <linearGradient id="thw-b" x1="175.09" x2="410.97" y1="54.45" y2="148.47" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#f213a4"/>
-        <stop offset=".15" stop-color="#e011a7"/>
-        <stop offset=".46" stop-color="#b20daf"/>
-        <stop offset=".88" stop-color="#6806bb"/>
-        <stop offset="1" stop-color="#5204bf"/>
+      <linearGradient id="thw-b" x1="-.57" x2="15.44" y1="1.85" y2="17.84" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#FF00A8"/>
+        <stop offset="1" stop-color="#6200C6"/>
       </linearGradient>
-      <linearGradient id="thw-c" x1="327.33" x2="580.41" y1="55.24" y2="164.44" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#f213a4"/>
-        <stop offset=".15" stop-color="#e011a7"/>
-        <stop offset=".46" stop-color="#b20daf"/>
-        <stop offset=".88" stop-color="#6806bb"/>
-        <stop offset="1" stop-color="#5204bf"/>
+      <linearGradient id="thw-c" x1="23.08" x2="39.1" y1="1.85" y2="17.84" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#FF00A8"/>
+        <stop offset="1" stop-color="#6200C6"/>
       </linearGradient>
     </defs>
   </g>

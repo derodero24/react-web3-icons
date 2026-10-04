@@ -1,5 +1,6 @@
 import { createIcon } from '../utils';
 
+// Source: https://cdn.kamino.finance/kamino.svg
 // Kamino Finance — dark navy background with stylized "K" mark in cyan
 // Paths sourced from cdn.kamino.finance/kamino.svg
 /** Kamino DeFi icon (colored). */

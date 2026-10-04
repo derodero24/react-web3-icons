@@ -1,7 +1,8 @@
 {
   "name": "Blastscan",
   "source": [
-    "https://blastscan.io (official brand)"
+    "https://blastscan.io/assets/blast/images/svg/logos/chain-dark.svg",
+    "https://blastscan.io/assets/blast/images/svg/logos/chain-light.svg (BlastscanLight)"
   ],
   "notes": [
     "Blastscan uses the Blast L2 geometric \"BLAST\" wordmark as its brandmark"

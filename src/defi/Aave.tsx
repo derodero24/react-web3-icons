@@ -1,6 +1,6 @@
 import { createIcon } from '../utils';
 
-// Source: https://aave.com (official brand)
+// Source: https://aave.com/aave-brand-assets.zip (official brand kit: Logomark Purple.svg)
 /** Aave DeFi icon (colored). */
 export const Aave = /* @__PURE__ */ createIcon(
   'Aave',
