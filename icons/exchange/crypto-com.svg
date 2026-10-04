@@ -1,4 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64">
-  <path fill="#03316C" d="M32 4.01 7.74 18.02v27.99L32 59.99l24.26-13.98V18z"/>
-  <path fill="white" d="M41.57 49.07h-3.46l-4.1-3.8v-1.95l4.26-4.06v-6.48l5.58-3.64 6.37 4.8zm-14.3-10.22.66-6.07-2.1-5.45h12.35l-2.06 5.45.59 6.07zm2.82 6.41L26 49.11h-3.51l-8.7-15.17 6.42-4.76 5.63 3.6v6.48l4.26 4.06zm-7.66-29.14h19.1l2.28 9.71H20.2z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="scale(1.6)">
+    <rect width="40" height="40" fill="url(#cdc-a)" rx="10"/>
+    <path fill="white" d="M14.86 11.25h10.27l1.24 5.23h-12.7z"/>
+    <path fill="white" d="m22.25 20.2 1.1-2.93H16.7l1.12 2.93-.34 3.28H20l2.56-.01z"/>
+    <path fill="white" d="m26.4 18.25-3.02 1.96v3.48l-2.3 2.2v1.04l2.22 2.04h1.85l4.67-8.14z"/>
+    <path fill="white" d="m16.69 20.21-3.05-1.93-3.44 2.55L14.9 29h1.87l2.21-2.07V25.9l-2.3-2.21z"/>
+    <path fill="white" fill-rule="evenodd" d="M6.4 12.11 20 4.26l13.63 7.87v15.74L20 35.74l-.03-.02-13.6-7.85V12.13zM20 5.87 7.76 12.94v14.13L20 34.13l12.24-7.06V12.94z" clip-rule="evenodd"/>
+    <defs>
+      <radialGradient id="cdc-a" cx="0" cy="0" r="1" gradientTransform="rotate(90)scale(40 87.2467)" gradientUnits="userSpaceOnUse">
+        <stop offset=".02" stop-color="#3C62D1"/>
+        <stop offset=".29" stop-color="#1E379D"/>
+        <stop offset=".55" stop-color="#041C73"/>
+        <stop offset=".99" stop-color="#010348"/>
+      </radialGradient>
+    </defs>
+  </g>
 </svg>

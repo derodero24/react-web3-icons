@@ -1,14 +1,17 @@
 {
   "name": "Mexc",
+  "source": [
+    "https://www.mexc.com (official site; the header logo is an inline data:image/svg+xml in <img class=\"remote-header-placeholder-logo\">)"
+  ],
   "notes": [
-    "Paths sourced from @web3icons/react (MIT) — MX token SVG (MEXC exchange)",
-    "Mono: the dark front peak stays whole and the back peak is cut back from it by a 1.2-unit seam."
+    "Colored: the M symbol path of the official header logo unchanged, #0057FF (the MEXC lettering is left out), placed on the 64 grid; it replaces two-tone MX-token paths taken from @web3icons/react",
+    "Mono: the same path in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "mexc.svg",
-      "fill": "none"
+      "fill": "#0057FF"
     },
     "Mono": {
       "file": "mexc.mono.svg",

@@ -1674,7 +1674,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'bitstamp',
     variants: ['', 'Circle', 'Mono', 'CircleMono'],
-    brandColor: '#149f49',
+    brandColor: '#003b2f',
   },
   { name: 'BitstampCircle', category: 'exchange' },
   { name: 'BitstampCircleMono', category: 'exchange' },
@@ -1704,7 +1704,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'cryptocom',
     variants: ['', 'Mono'],
-    brandColor: '#03316c',
+    brandColor: '#3c62d1',
   },
   { name: 'CryptoComMono', category: 'exchange' },
   {
@@ -1712,7 +1712,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'deribit',
     variants: ['', 'Mono'],
-    brandColor: '#2dae9a',
+    brandColor: '#0052ff',
   },
   { name: 'DeribitMono', category: 'exchange' },
   {
@@ -1730,7 +1730,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'gemini',
     variants: ['', 'Mono'],
-    brandColor: '#26ddf9',
+    brandColor: '#ff4809',
   },
   { name: 'GeminiMono', category: 'exchange' },
   {
@@ -1738,7 +1738,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'htx',
     variants: ['', 'Mono'],
-    brandColor: '#2ea7df',
+    brandColor: '#00003e',
   },
   { name: 'HtxMono', category: 'exchange' },
   {
@@ -1746,7 +1746,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'kraken',
     variants: ['', 'Mono'],
-    brandColor: '#5841d8',
+    brandColor: '#7132f5',
   },
   { name: 'KrakenMono', category: 'exchange' },
   {
@@ -1762,7 +1762,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'mexc',
     variants: ['', 'Mono'],
-    brandColor: '#1c6ad9',
+    brandColor: '#0057ff',
   },
   { name: 'MexcMono', category: 'exchange' },
   {

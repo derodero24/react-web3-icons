@@ -1,13 +1,17 @@
 {
   "name": "CryptoCom",
   "source": [
-    "https://crypto.com (official brand)"
+    "https://mkt-site-asset.crypto.com/assets/logo/main-app-default.svg (Crypto.com App icon served by crypto.com, product menu of the header)",
+    "https://mkt-site-asset.crypto.com/assets/logo/crypto-com.svg (crypto.com header lockup: the same hexagon and lion in white)"
+  ],
+  "notes": [
+    "Colored: main-app-default.svg unchanged (radial #3C62D1 to #010348 rounded tile, white hexagon outline and lion), placed on the 64 grid. It replaces a flat #03316C filled hexagon that matched no official vector (crypto.com/favicon.ico is a two-tone raster of a filled hexagon)",
+    "Mono: the tile in currentColor with the hexagon outline and the lion knocked out"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "crypto-com.svg",
-      "fill": "none"
+      "file": "crypto-com.svg"
     },
     "Mono": {
       "file": "crypto-com.mono.svg",
