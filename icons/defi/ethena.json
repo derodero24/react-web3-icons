@@ -1,10 +1,12 @@
 {
   "name": "Ethena",
   "source": [
-    "https://ethena.fi (official brand)"
+    "https://ethena.fi/shared/ethena-logo.svg"
   ],
   "notes": [
-    "Ethena — dark circle with white \"E\" lettermark; background is integral to the brand"
+    "Ethena: dark disc with the white \"E\" lettermark; the background is integral to the brand",
+    "Colored: the official ethena-logo.svg (#040404→#3D475A disc, white lettermark, white radial rim), without its two clip paths, which clip nothing (the rim already ends at the disc edge)",
+    "Mono: the disc in currentColor with the lettermark knocked out (the decorative rim is dropped)"
   ],
   "kind": "icon",
   "variants": {

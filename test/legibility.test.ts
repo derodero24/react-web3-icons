@@ -73,6 +73,12 @@ const EXEMPTIONS: Readonly<Record<UnitKey, Exemption>> = {
     variant: 'Alt',
     note: 'LooksAlt is the green-disc LOOKS mark, legible on dark.',
   },
+  'defi/Frax': {
+    tone: 'light',
+    kind: 'no-official-alternative',
+    searched: ['https://docs.frax.com', 'https://frax.com'],
+    note: "A static misreading: the official FraxIcon's white disc is only a keyline ring under the black disc, so on light backgrounds the icon reads as the black disc with the white crosshair, but counting paints treats the white disc as a light container and the black disc and white crosshair as half light. FraxMono with a dark color is the same black disc.",
+  },
   'exchange/Htx': {
     tone: 'light',
     kind: 'no-official-alternative',

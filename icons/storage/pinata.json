@@ -1,7 +1,11 @@
 {
   "name": "Pinata",
   "source": [
-    "https://pinata.cloud"
+    "https://framerusercontent.com/images/ijqXtdeIMcKXZhS8CTvgpbUB9UU.svg"
+  ],
+  "notes": [
+    "Colored: the standalone llama served on https://pinata.cloud (the same llama as the site header logo framerusercontent.com/images/dbbtJZcxgIAbQvh9mzsEZ7OZng.svg), copied unchanged: #CE3F8F / #6D3AC6 / #FFDD00 / #1DB9D2 / #008599 with black and white details",
+    "Mono: the llama in currentColor (a mask of the colored body paths), with a thin seam knocked out along the edge of each band (a mask stroke under each path, as the colours separate them), the zigzag, the eye white and the mouth knocked out and the pupil kept"
   ],
   "kind": "icon",
   "variants": {

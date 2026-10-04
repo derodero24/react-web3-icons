@@ -1,14 +1,17 @@
 {
   "name": "Celoscan",
+  "source": [
+    "https://celoscan.io/assets/celo/images/svg/logos/chain-light.svg"
+  ],
   "notes": [
-    "Celoscan uses the Celo \"C\" mark — a square path forming an open C shape.",
-    "viewBox is trimmed to the 180×180 mark area (offset 70,70 in the source 320×320 SVG)."
+    "Celoscan uses the Celo \"C\" mark, a square path forming an open C shape",
+    "Default and Square: the official chain-light.svg as is (#FCFF52 tile with the black C), without its no-op clip path; the old default was the C alone in the pre-2023 Celo green #35D07F",
+    "Mono and SquareMono: the tile in currentColor with the C knocked out"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "celoscan.svg",
-      "fill": "#35D07F"
+      "file": "celoscan.svg"
     },
     "Square": {
       "file": "celoscan.square.svg"
