@@ -1,12 +1,20 @@
 import { createIcon } from '../utils';
 
-// Source: https://algorand.com
+// Source: https://algorand.co/brand-hub (AlgoBrand Kit, accessed 2026-10-03)
+// Source: https://drive.google.com/drive/folders/1X8IAs8hJZTDdvib4YvFVEte3DnOh_GYn (the hub's Logomark download: Blue/algorand-logomark-blue-RGB.svg, White/algorand-logomark-white-RGB.svg)
+// Source: https://drive.google.com/drive/folders/16KHGZK5nsAbXN9AyKF0U2IP5LRr2XZJ8 (AlgoBrand Kit: Brand Guide/Algorand-Brand Guidelines-External-v1.pdf, Logomark p. 21, primary palette p. 37)
+// Default: the official logomark algorand-logomark-blue-RGB.svg (#2D2DF1, Algorand Blue), the variant the brand hub's Logomark card shows; paths unchanged. It replaces a pure-black redraw of the same A (silhouette IoU 0.99 with the kit path), a colour the kit does not ship (its black logomark is #001324). The guide lets the logomark take any primary colour (#2D2DF1, #17CAC6, #001324, #FFFFFF)
+// Mono: the same path in currentColor (the kit ships it in black and white)
+// Circle: no official circular logomark exists; a repo-convention #2D2DF1 disc (r=32) holding the official white logomark (algorand-logomark-white-RGB.svg) at the size and centre of the previous circle's glyph (41 of 64 units tall); CircleMono is the disc in currentColor with the same glyph masked out
 /** Algorand chain icon (colored). */
 export const Algorand = /* @__PURE__ */ createIcon(
   'Algorand',
   '0 0 64 64',
   () => (
-    <path d="m13.78 60 8.1-14.02L29.98 32l8.04-14.02 1.34-2.23.6 2.23 2.46 9.23L39.65 32l-8.1 13.98L23.52 60h9.68l8.1-14.02 4.2-7.26 1.97 7.26L51.2 60h8.7l-3.76-14.02L52.4 32l-1-3.6 6.03-10.42h-8.79l-.3-1.04-3.06-11.46-.4-1.48h-8.44l-.2.3-7.9 13.68L20.25 32 12.2 45.98 4.1 60z" />
+    <path
+      fill="#2D2DF1"
+      d="M59.92 60H51.2l-5.7-21.13L33.27 60h-9.78l18.9-32.72-3.06-11.42L13.83 60H4.06L36.38 4.02h8.58l3.72 13.94h8.83l-6 10.48z"
+    />
   ),
   {},
 );
@@ -16,7 +24,7 @@ export const AlgorandMono = /* @__PURE__ */ createIcon(
   'AlgorandMono',
   '0 0 64 64',
   () => (
-    <path d="m13.78 60 8.1-14.02L29.98 32l8.04-14.02 1.34-2.23.6 2.23 2.46 9.23L39.65 32l-8.1 13.98L23.52 60h9.68l8.1-14.02 4.2-7.26 1.97 7.26L51.2 60h8.7l-3.76-14.02L52.4 32l-1-3.6 6.03-10.42h-8.79l-.3-1.04-3.06-11.46-.4-1.48h-8.44l-.2.3-7.9 13.68L20.25 32 12.2 45.98 4.1 60z" />
+    <path d="M59.92 60H51.2l-5.7-21.13L33.27 60h-9.78l18.9-32.72-3.06-11.42L13.83 60H4.06L36.38 4.02h8.58l3.72 13.94h8.83l-6 10.48z" />
   ),
   { fill: 'currentColor' },
 );
@@ -26,13 +34,13 @@ export const AlgorandCircle = /* @__PURE__ */ createIcon(
   'AlgorandCircle',
   '0 0 64 64',
   () => (
-    <g transform="scale(.0256)">
-      <circle cx="1250" cy="1250" r="1250" />
+    <>
+      <circle cx="32" cy="32" r="32" fill="#2D2DF1" />
       <path
         fill="#fff"
-        d="M2051.7 2052.5h-252l-162.6-607.1-350.5 607.1h-280.5l541.5-939.7-86.5-326.7-732.4 1266.4H448.3l927.7-1605h244.7l108.8 398.3h253.6l-174.5 301.3z"
+        d="M52.5 52.54h-6.4l-4.18-15.5-8.98 15.5h-7.18l13.87-24.01-2.24-8.38-18.72 32.4H11.5l23.72-41.1h6.3l2.73 10.24h6.48l-4.4 7.69z"
       />
-    </g>
+    </>
   ),
   {},
 );
@@ -42,18 +50,18 @@ export const AlgorandCircleMono = /* @__PURE__ */ createIcon(
   'AlgorandCircleMono',
   '0 0 64 64',
   (_props, _id) => (
-    <g transform="scale(.0256)">
-      <circle cx="1250" cy="1250" r="1250" mask={`url(#${_id}-algo-cm-a)`} />
+    <>
+      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-algo-cm-a)`} />
       <defs>
         <mask id={`${_id}-algo-cm-a`}>
-          <rect width="2500" height="2500" fill="#fff" />
+          <rect width="64" height="64" fill="#fff" />
           <path
             fill="#000"
-            d="M2051.7 2052.5h-252l-162.6-607.1-350.5 607.1h-280.5l541.5-939.7-86.5-326.7-732.4 1266.4H448.3l927.7-1605h244.7l108.8 398.3h253.6l-174.5 301.3z"
+            d="M52.5 52.54h-6.4l-4.18-15.5-8.98 15.5h-7.18l13.87-24.01-2.24-8.38-18.72 32.4H11.5l23.72-41.1h6.3l2.73 10.24h6.48l-4.4 7.69z"
           />
         </mask>
       </defs>
-    </g>
+    </>
   ),
   { fill: 'currentColor', ids: true },
 );

@@ -1,12 +1,30 @@
 import { createIcon } from '../utils';
 
-// Source: https://aptoslabs.com
+// Source: https://aptosnetwork.com/media-kit (official media kit, accessed 2026-10-03)
+// Source: https://drive.google.com/drive/folders/16eFSRTkuPZckYNuu-lofz03IcLRW9_-1 (the media kit's logo download: Aptos Symbol/RGB [Digital]/SVG/Aptos-Network-Symbol-Black-RGB.svg)
+// Default: the official Aptos Network symbol, Aptos-Network-Symbol-Black-RGB.svg from the media kit (five shapes in #0F0E0B with sharp diagonal cuts), paths unchanged. It replaces the earlier Aptos mark with rounded notches, which the current kit no longer ships
+// Mono: the same five paths in currentColor (the kit's white symbol is this geometry in #F9F9F0); the shapes do not touch, so no seams are needed
 /** Aptos chain icon (colored). */
 export const Aptos = /* @__PURE__ */ createIcon(
   'Aptos',
   '0 0 64 64',
   () => (
-    <path d="M42.38 22.73a2 2 0 0 1-1.5-.67l-2-2.26a1.6 1.6 0 0 0-2.36 0l-1.72 1.94a3 3 0 0 1-2.22 1h-27a28 28 0 0 0-1.46 6.9H29.6a1.7 1.7 0 0 0 1.18-.5l2.38-2.48a1.6 1.6 0 0 1 1.13-.48h.1c.45 0 .88.2 1.18.53l2 2.26a2 2 0 0 0 1.5.68h20.8a28 28 0 0 0-1.47-6.91zM19.54 44.17a1.7 1.7 0 0 0 1.19-.5l2.37-2.48a1.6 1.6 0 0 1 1.14-.48h.1c.44 0 .87.19 1.17.52l2 2.27a2 2 0 0 0 1.5.67h28.2a28 28 0 0 0 2.29-6.98H32.44a2 2 0 0 1-1.5-.67l-2-2.26a1.6 1.6 0 0 0-2.36 0l-1.71 1.94a3 3 0 0 1-2.22 1H4.5q.7 3.7 2.3 6.97zm20-28.98a1.7 1.7 0 0 0 1.2-.51l2.37-2.48a1.6 1.6 0 0 1 1.13-.48h.1c.45 0 .88.2 1.17.53l2 2.26a2 2 0 0 0 1.5.68h5.37A28 28 0 0 0 32 4 28 28 0 0 0 9.63 15.19zm-18.1 35.9a2 2 0 0 1-1.5-.68l-2-2.26a1.6 1.6 0 0 0-2.35 0l-1.72 1.94a3 3 0 0 1-2.22 1h-.11A28 28 0 0 0 32 59.99a28 28 0 0 0 20.46-8.9z" />
+    <>
+      <path fill="#0F0E0B" d="M6.73 20q-1.78 3.73-2.41 7.98H27.8L32.94 20z" />
+      <path
+        fill="#0F0E0B"
+        d="M59.68 27.98c-.4-2.82-1.23-5.5-2.4-7.99h-14.1L38.07 12h13.5A28 28 0 0 0 32 4.01a27.8 27.8 0 0 0-19.57 8h25.64l-5.13 7.98 5.13 8z"
+      />
+      <path
+        fill="#0F0E0B"
+        d="m17.55 43.97-5.13 7.99c5.05 4.94 11.94 8.03 19.56 8.03s14.63-2.93 19.7-8.03h-29z"
+      />
+      <path fill="#0F0E0B" d="M22.68 35.97H4.32a28 28 0 0 0 2.4 8h10.83z" />
+      <path
+        fill="#0F0E0B"
+        d="M27.8 43.97h29.47q1.78-3.75 2.41-8H32.94L27.8 28l-5.13 7.99"
+      />
+    </>
   ),
   {},
 );
@@ -16,7 +34,13 @@ export const AptosMono = /* @__PURE__ */ createIcon(
   'AptosMono',
   '0 0 64 64',
   () => (
-    <path d="M42.38 22.73a2 2 0 0 1-1.5-.67l-2-2.26a1.6 1.6 0 0 0-2.36 0l-1.72 1.94a3 3 0 0 1-2.22 1h-27a28 28 0 0 0-1.46 6.9H29.6a1.7 1.7 0 0 0 1.18-.5l2.38-2.48a1.6 1.6 0 0 1 1.13-.48h.1c.45 0 .88.2 1.18.53l2 2.26a2 2 0 0 0 1.5.68h20.8a28 28 0 0 0-1.47-6.91zM19.54 44.17a1.7 1.7 0 0 0 1.19-.5l2.37-2.48a1.6 1.6 0 0 1 1.14-.48h.1c.44 0 .87.19 1.17.52l2 2.27a2 2 0 0 0 1.5.67h28.2a28 28 0 0 0 2.29-6.98H32.44a2 2 0 0 1-1.5-.67l-2-2.26a1.6 1.6 0 0 0-2.36 0l-1.71 1.94a3 3 0 0 1-2.22 1H4.5q.7 3.7 2.3 6.97zm20-28.98a1.7 1.7 0 0 0 1.2-.51l2.37-2.48a1.6 1.6 0 0 1 1.13-.48h.1c.45 0 .88.2 1.17.53l2 2.26a2 2 0 0 0 1.5.68h5.37A28 28 0 0 0 32 4 28 28 0 0 0 9.63 15.19zm-18.1 35.9a2 2 0 0 1-1.5-.68l-2-2.26a1.6 1.6 0 0 0-2.35 0l-1.72 1.94a3 3 0 0 1-2.22 1h-.11A28 28 0 0 0 32 59.99a28 28 0 0 0 20.46-8.9z" />
+    <>
+      <path d="M6.73 20q-1.78 3.73-2.41 7.98H27.8L32.94 20z" />
+      <path d="M59.68 27.98c-.4-2.82-1.23-5.5-2.4-7.99h-14.1L38.07 12h13.5A28 28 0 0 0 32 4.01a27.8 27.8 0 0 0-19.57 8h25.64l-5.13 7.98 5.13 8z" />
+      <path d="m17.55 43.97-5.13 7.99c5.05 4.94 11.94 8.03 19.56 8.03s14.63-2.93 19.7-8.03h-29z" />
+      <path d="M22.68 35.97H4.32a28 28 0 0 0 2.4 8h10.83z" />
+      <path d="M27.8 43.97h29.47q1.78-3.75 2.41-8H32.94L27.8 28l-5.13 7.99" />
+    </>
   ),
   { fill: 'currentColor' },
 );

@@ -116,6 +116,8 @@ export const coinImports: Record<
   MkrMono: () => import('../../coin/Mkr'),
   Mnt: () => import('../../coin/Mnt'),
   MntMono: () => import('../../coin/Mnt'),
+  MntSquare: () => import('../../coin/Mnt'),
+  MntSquareMono: () => import('../../coin/Mnt'),
   Monad: () => import('../../coin/Monad'),
   MonadCircle: () => import('../../coin/Monad'),
   MonadCircleMono: () => import('../../coin/Monad'),
