@@ -1,3 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 64 64">
-  <path d="M18.8 60V4h-8.79v56zM43 60 23.2 32 43 4.01h11L34.2 32 54 60z"/>
+  <path d="M7.64 4h9.77v56H7.64z"/>
+  <path d="m44.13 60-21.4-28 21.4-28H56.4L35.26 32 56.4 60z"/>
 </svg>

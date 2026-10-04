@@ -1,12 +1,18 @@
 {
   "name": "Near",
   "source": [
-    "https://near.org"
+    "https://www.near.org (the NEAR symbol inlined in the site header, fill #000000)",
+    "https://docs.near.org (logo.svg of the docs, the same black symbol with the wordmark)"
+  ],
+  "notes": [
+    "Default: the NEAR symbol from the near.org header, path unchanged, in its #000000; it replaces a #00EC97 N whose colour and geometry match no current official asset (near.org/brand returns 404)",
+    "Mono: the same path in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "near.svg"
+      "file": "near.svg",
+      "fill": "#000"
     },
     "Mono": {
       "file": "near.mono.svg",

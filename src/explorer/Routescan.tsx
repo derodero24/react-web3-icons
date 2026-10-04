@@ -1,7 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://routescan.io (official brand)
-// Routescan uses a 6-facet isometric cube logo
+// Source: https://docs.routescan.io/routescan-brand-assets (official brand kit: Routescan-symbol.svg, also in Routescan_brand_asset.zip)
+// Colored: matches the official Routescan-symbol.svg (six facets in the brand palette #00FF7F, #FBEC0D, #4A9DFF, #FFB100, #FF4500, #A46BFF; silhouette IoU 0.991), accessed 2026-10-04
+// Mono: the six facets in currentColor, separated by thin knocked-out seams so the cube stays readable
 /** Routescan explorer icon (colored). */
 export const Routescan = /* @__PURE__ */ createIcon(
   'Routescan',

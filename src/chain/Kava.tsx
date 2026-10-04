@@ -1,16 +1,22 @@
 import { createIcon } from '../utils';
 
-// Source: https://kava.io
+// Source: https://www.kava.io/branding
+// Source: https://cdn.prod.website-files.com/61e9c71623b1f0311abcbbbc/6226336a8447b54da43b4423_Kava-Logomark.svg (Primary Logomark SVG, linked from https://www.kava.io/branding)
 // Source: https://cdn.prod.website-files.com/61e9c71623b1f0311abcbbbc/622b68fc6c920e4466196240_Kava-Coin.svg (official KAVA coin, linked from https://www.kava.io/branding)
+// Default: the official Primary Logomark (Kava-Logomark.svg: one rect and one polygon in Kava Red #FF433E, the primary colour on kava.io/branding), shapes unchanged; it replaces a narrower K in #FF564F that matched no official asset
+// Mono: the same two shapes in currentColor
 // Circle: the official Kava-Coin.svg (a white K, one rect and one polygon, on a #FF433E disc), shapes unchanged and full-bleed on the 64 grid; CircleMono is that disc in currentColor with the K knocked out (fill-rule=evenodd)
 /** Kava chain icon (colored). */
 export const Kava = /* @__PURE__ */ createIcon(
   'Kava',
   '0 0 64 64',
   () => (
-    <path d="M18.8 60V4h-8.79v56zM43 60 23.2 32 43 4.01h11L34.2 32 54 60z" />
+    <>
+      <path d="M7.64 4h9.77v56H7.64z" />
+      <path d="m44.13 60-21.4-28 21.4-28H56.4L35.26 32 56.4 60z" />
+    </>
   ),
-  { fill: '#FF564F' },
+  { fill: '#FF433E' },
 );
 
 /** Kava chain icon (monochrome). */
@@ -18,7 +24,10 @@ export const KavaMono = /* @__PURE__ */ createIcon(
   'KavaMono',
   '0 0 64 64',
   () => (
-    <path d="M18.8 60V4h-8.79v56zM43 60 23.2 32 43 4.01h11L34.2 32 54 60z" />
+    <>
+      <path d="M7.64 4h9.77v56H7.64z" />
+      <path d="m44.13 60-21.4-28 21.4-28H56.4L35.26 32 56.4 60z" />
+    </>
   ),
   { fill: 'currentColor' },
 );

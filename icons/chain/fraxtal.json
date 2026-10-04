@@ -1,7 +1,11 @@
 {
   "name": "Fraxtal",
   "source": [
-    "https://frax.finance"
+    "https://static.frax.com/images/chains/fraxtal.svg (the Fraxtal chain icon of the frax.com app)"
+  ],
+  "notes": [
+    "Default: the official Fraxtal chain icon served by frax.com (a white chain-link glyph on a black disc with a thin white rim), paths unchanged and full-bleed on the 64 grid; it replaces the generic Frax currency sign. frax.com/brand offers PNG files only",
+    "Mono: the black disc in currentColor with the chain-link glyph knocked out (fill-rule=evenodd), built from the coloured paths; the white rim is dropped, so the pair is fitted to the coloured box"
   ],
   "kind": "icon",
   "variants": {

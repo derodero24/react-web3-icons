@@ -1,13 +1,20 @@
 {
   "name": "Remix",
   "source": [
-    "https://github.com/ethereum/remix-project"
+    "https://github.com/remix-project-org/remix-project/blob/master/libs/remix-ui/top-bar/src/components/BasicLogo.tsx",
+    "https://github.com/remix-project-org/remix-project/blob/master/apps/remix-ide/src/assets/css/themes/remix-light_powaqg.css"
+  ],
+  "notes": [
+    "Artwork: the three paths of the official BasicLogo component (viewBox 0 0 105 100), the inline SVG logo remix.ethereum.org draws in its top bar and home icon; checked against the live bundle on 2026-10-04",
+    "Colored: BasicLogo has no fill of its own; Remix paints it with var(--bs-primary) (topbar.css, remix-ui-vertical-icons-panel.css), which both official themes (remix-light_powaqg.css, remix-dark_tvx1s2.css) set to #007AA6, the same blue as the official raster remix-logo-blue.png",
+    "Mono: the same three paths in currentColor",
+    "The previous artwork (a black disc with a figure) was the unrelated apps/remix-ide/src/assets/img/logoicon.svg, which the IDE no longer uses as its logo"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "remix.svg",
-      "fill": "#000000"
+      "fill": "#007AA6"
     },
     "Mono": {
       "file": "remix.mono.svg",

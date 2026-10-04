@@ -1,20 +1,20 @@
 import { createIcon } from '../utils';
 
-// Source: spothq/cryptocurrency-icons (CC0) — zec SVG (legacy third-party artwork)
-// Legacy artwork: the paths come from spothq/cryptocurrency-icons (zec), not from an official Zcash file, in #ECB244
-// The Zcash brandmark is #F4B728 in the ZecHub mirror of the brand kit (https://zechub.wiki/downloads/brand/Zcash.zip, Primary Brandmark/Brandmark Yellow.svg); not replaced because the official https://z.cash/brand-guidelines/ could not be reached to confirm it (#836)
+// Source: https://z.cash/wp-content/uploads/2023/11/Brandmark-Yellow.svg (official Zcash Media Kit, https://z.cash/press/, Icons > Yellow SVG)
+// Source: https://z.cash/wp-content/uploads/2023/11/Brandmark-Black.svg (same kit, Icons > Black SVG, for ZecMono)
+// Colored: the official Brandmark-Yellow.svg unchanged (one evenodd path: the #F4B728 disc with the Z knocked out), placed on the 64 grid as a container
+// Mono: the kit's one-colour Brandmark-Black.svg (the same path) in currentColor
+// Replaces the legacy spothq/cryptocurrency-icons artwork (#ECB244 disc with a white rounded Z) (#836); the z.cash site header logo (wp-content/uploads/2023/03/zcash-logo.svg, #F3B724 with a white Z) predates the 2023 media kit
 /** Zec coin icon (colored). */
 export const Zec = /* @__PURE__ */ createIcon(
   'Zec',
   '0 0 64 64',
   () => (
-    <g transform="scale(2)">
-      <circle cx="16" cy="16" r="16" fill="#ECB244" />
-      <path
-        fill="#FFF"
-        d="M15.1 19.85h6.3v3.35h-3.88l.16 2.8h-3.26v-2.77h-3.88c0-1.1-.13-2.19.07-3.21.1-.55.68-1.03 1.03-1.5l3.71-4.59 1.52-1.78h-6.04V8.8h3.59V6h3.13v2.74h3.9c0 1.12.14 2.22-.06 3.24-.1.55-.67 1.03-1.06 1.5l-3.72 4.59a37 37 0 0 1-1.51 1.78"
-      />
-    </g>
+    <path
+      fill="#f4b728"
+      fillRule="evenodd"
+      d="M.03 32C.03 14.37 14.37.03 32 .03S63.97 14.37 63.97 32 49.63 63.97 32 63.97.03 49.63.03 32M43.4 17.16v4.87L29.87 40.38H43.4v6.46h-8.72v5.34h-5.36v-5.34h-8.73v-4.87l13.52-18.35H20.6v-6.46h8.73V11.8h5.36v5.36z"
+    />
   ),
   {},
 );
@@ -26,7 +26,7 @@ export const ZecMono = /* @__PURE__ */ createIcon(
   () => (
     <path
       fillRule="evenodd"
-      d="M0 32a32 32 0 1 0 64 0 32 32 0 1 0-64 0m30.2 7.7h12.59v6.7h-7.75c.12 1.9.19 3.69.32 5.6h-6.52v-5.54h-7.76c0-2.19-.25-4.37.13-6.43.2-1.09 1.36-2.05 2.07-3a924 924 0 0 1 7.43-9.17c.97-1.16 1.94-2.25 3.03-3.55H21.66v-6.7h7.18V12h6.26v5.47h7.82c0 2.26.25 4.44-.13 6.5-.2 1.09-1.36 2.05-2.13 3a924 924 0 0 1-7.43 9.17 74 74 0 0 1-3.04 3.55"
+      d="M.03 32C.03 14.37 14.37.03 32 .03S63.97 14.37 63.97 32 49.63 63.97 32 63.97.03 49.63.03 32M43.4 17.16v4.87L29.87 40.38H43.4v6.46h-8.72v5.34h-5.36v-5.34h-8.73v-4.87l13.52-18.35H20.6v-6.46h8.73V11.8h5.36v5.36z"
     />
   ),
   { fill: 'currentColor' },

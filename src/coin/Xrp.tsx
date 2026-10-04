@@ -3,7 +3,7 @@ import { createIcon } from '../utils';
 // Source: https://xrpl.org/assets/xrp-symbol-black.8ecaf7670b5ebd82b8283c9eae4388cff60ec37c3a57351436b36eeeee131dd8.c92cfbea.svg (official XRP Ledger site, xrpl.org)
 // Colored: the official xrp-symbol-black.svg unchanged (one evenodd path in #141414), placed on the 64 grid
 // Mono: the same path in currentColor
-// Circle / CircleMono: legacy artwork of unidentified origin (the mark in a disc), not an official XRP asset; kept until #815 decides its fate
+// Circle / CircleMono: legacy artwork of unidentified origin (the mark in white on a #23292F disc, the colour of the earlier cryptologos mark), not an official XRP asset: the XRPL Brand Kit (https://xrpl.org/XRPL_Brand_Kit.zip) has only the black and white symbol and logotypes, with #141414 as its black; kept until #815 decides its fate
 /** Xrp coin icon (colored). */
 export const Xrp = /* @__PURE__ */ createIcon(
   'Xrp',

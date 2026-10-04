@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://defillama.com
+// Source: https://github.com/DefiLlama/og-cards-v2/blob/main/logo/llama-icon.svg
+// Colored: matches the official llama-icon.svg in DefiLlama's og-cards-v2 repository (same paths, colours and gradients; silhouette IoU 0.999), accessed 2026-10-04; the 2026 media kit on defillama.com/press shows the same mark (raster only)
+// Mono: the D in currentColor with the llama and the rays knocked out, the llama's nose kept in ink
 /** Defi Llama tracker icon (colored). */
 export const DefiLlama = /* @__PURE__ */ createIcon(
   'DefiLlama',
