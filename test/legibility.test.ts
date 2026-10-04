@@ -67,15 +67,6 @@ type Exemption = {
 
 /** Keep this list short: prefer adding official variants. */
 const EXEMPTIONS: Readonly<Record<UnitKey, Exemption>> = {
-  'chain/Mantle': {
-    tone: 'light',
-    kind: 'no-official-alternative',
-    searched: [
-      'https://www.mantle.xyz',
-      'https://drive.google.com/drive/folders/1Dmd7-6mmpgGjKREqy-1uIi6fxFF-PZVB',
-    ],
-    note: 'The official brandmark fades from white to #00FF93 for dark backgrounds; the kit has no containered vector (MNT_Token_Logo is PNG-only), and its light-background brandmarks (ObsidianGreen #092C24, Black) are MantleMono geometry in one colour. Use MantleMono with color="#092C24".',
-  },
   'coin/Looks': {
     tone: 'dark',
     kind: 'legible-variant',

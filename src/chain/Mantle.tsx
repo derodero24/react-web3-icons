@@ -2,9 +2,10 @@ import { createIcon } from '../utils';
 
 // Source: https://www.mantle.xyz (Brand Assets, accessed 2026-10-03)
 // Source: https://drive.google.com/drive/folders/1Dmd7-6mmpgGjKREqy-1uIi6fxFF-PZVB (Mantle brand kit: MNT_Logo_Variation/MoMNTum_BrandMark-SVG/MNT-Official-BrandMark.svg)
-// Default: the official MoMNTum brandmark MNT-Official-BrandMark.svg (16 bars, each a vertical white -> #00FF93 gradient), paths and gradients unchanged (ids renamed mnt-0 … mnt-15, stop offset .819595 rounded to .82). It replaces the older black disc with white bars, which the current kit no longer ships; the kit shows the brandmark without a container (its MNT_Token_Logo, the mark on an Obsidian Green #092C24 square, is PNG-only)
+// Default: the official MoMNTum brandmark MNT-Official-BrandMark.svg (16 bars, each a vertical white -> #00FF93 gradient), paths and gradients unchanged (ids renamed mnt-0 … mnt-15, stop offset .819595 rounded to .82). It replaces the older black disc with white bars, which the current kit no longer ships; the kit shows the brandmark without a container
 // Mono: the same 16 paths in currentColor, the geometry of the kit's single-colour brandmarks (MNT-Official-BrandMark-Black/-White/-ObsidianGreen/-Mint.svg); the bars do not touch, so no seams are needed
-// The brandmark is drawn for dark backgrounds and mostly fades on white; MantleMono with color="#092C24" is the official Obsidian Green brandmark (see the exemption in test/legibility.test.ts)
+// The brandmark is drawn for dark backgrounds and mostly fades on white; use MantleSquare there, or MantleMono with color="#092C24" (the official Obsidian Green brandmark)
+// Square: the composition of the kit's MNT_Token_Logo.png (MNT token icon) built from the vector brandmark, nothing traced: the default's paths and gradients at 75% of the side, centred on a full-bleed #092C24 (Obsidian Green) square, with colour and placement measured from the PNG. SquareMono: the square in currentColor with the 16 bars knocked out (evenodd)
 /** Mantle chain icon (colored). */
 export const Mantle = /* @__PURE__ */ createIcon(
   'Mantle',
@@ -281,6 +282,275 @@ export const MantleMono = /* @__PURE__ */ createIcon(
       <path d="M29.66 40.8 27.2 50q.94.25 1.9.4l-1.44 9.27Q29.82 60 32 60h.02V41.1H32q-1.2 0-2.34-.3" />
       <path d="M41.1 32q0 1.2-.3 2.35L50 36.8q.25-.94.4-1.9l9.26 1.44Q60 34.2 60 32z" />
     </>
+  ),
+  { fill: 'currentColor' },
+);
+
+/** Mantle Square chain icon (colored). */
+export const MantleSquare = /* @__PURE__ */ createIcon(
+  'MantleSquare',
+  '0 0 64 64',
+  (_props, _id) => (
+    <>
+      <path d="M0 0h64v64H0z" />
+      <g transform="matrix(.06 0 0 .06 8 8)">
+        <path
+          fill={`url(#${_id}-mnts-0)`}
+          d="m164.65 280.52-121.3-61.76a399 399 0 0 0-24 58.1l129.52 41.88a262 262 0 0 1 15.79-38.2z"
+        />
+        <path
+          fill={`url(#${_id}-mnts-1)`}
+          d="m267.7 171.68 67.19 115.76a129 129 0 0 1 31.24-13l-34.78-129.27c8.85-2.37 17.85-4.34 26.89-5.77L336.87 4.95a400 400 0 0 0-61.05 14.7L317.37 147a266 266 0 0 0-38.48 16L217.8 43.8a401 401 0 0 0-53.41 32.9l80.25 109.95c7.4-5.39 15.12-10.38 23.04-14.99z"
+        />
+        <path
+          fill={`url(#${_id}-mnts-2)`}
+          d="m628.24 267.57-115.72 67.26a129 129 0 0 1 13.02 31.22L654.8 331.2c2.38 8.85 4.34 17.83 5.78 26.87L795 336.67a399 399 0 0 0-14.75-61.07l-127.32 41.63a265 265 0 0 0-16.03-38.47l119.17-61.15a402 402 0 0 0-32.92-53.39l-109.92 80.3c5.4 7.4 10.39 15.11 15 23.04z"
+        />
+        <path
+          fill={`url(#${_id}-mnts-3)`}
+          d="M581.05 43.24a400 400 0 0 0-58.1-23.97l-41.8 129.55a263 263 0 0 1 38.22 15.77z"
+        />
+        <path
+          fill={`url(#${_id}-mnts-4)`}
+          d="m532.72 169.3-67.96 117.94a131 131 0 0 1 26.99 20.66l190.6-191.25a403 403 0 0 0-47.74-40.67l-78.6 108.42a268 268 0 0 0-23.28-15.11z"
+        />
+        <path
+          fill={`url(#${_id}-mnts-5)`}
+          d="m169.38 267.15 117.91 68.03a131 131 0 0 1 20.69-27L116.8 117.52a403 403 0 0 0-40.69 47.72l108.38 78.66a267 267 0 0 0-15.12 23.26"
+        />
+        <path
+          fill={`url(#${_id}-mnts-6)`}
+          d="M441.27 137.1 461.83 4.76A404 404 0 0 0 400 0h-.31v270.02h.3c11.4 0 22.65 1.45 33.49 4.33l34.91-131.58q-13.4-3.54-27.12-5.67"
+        />
+        <path
+          fill={`url(#${_id}-mnts-7)`}
+          d="m274.36 366.47-131.55-35.01a263 263 0 0 0-5.7 27.13L4.8 337.96A404 404 0 0 0 0 400.01h270.02c0-11.4 1.46-22.7 4.35-33.54z"
+        />
+        <path
+          fill={`url(#${_id}-mnts-8)`}
+          d="m635.35 519.48 121.3 61.76a399 399 0 0 0 24-58.1l-129.52-41.87a262 262 0 0 1-15.79 38.2z"
+        />
+        <path
+          fill={`url(#${_id}-mnts-9)`}
+          d="m532.3 628.32-67.18-115.77a129 129 0 0 1-31.24 13l34.77 129.27c-8.86 2.38-17.84 4.34-26.88 5.77l21.35 134.44a400 400 0 0 0 61.05-14.7l-41.54-127.35a265 265 0 0 0 38.48-16l61.07 119.2a401 401 0 0 0 53.42-32.9l-80.26-109.95c-7.39 5.38-15.12 10.38-23.03 14.99"
+        />
+        <path
+          fill={`url(#${_id}-mnts-10)`}
+          d="m171.76 532.43 115.74-67.25a129 129 0 0 1-13.03-31.22L145.22 468.8c-2.38-8.86-4.35-17.84-5.78-26.87L4.99 463.33a400 400 0 0 0 14.75 61.07l127.32-41.63a265 265 0 0 0 16.03 38.47L43.92 582.39a402 402 0 0 0 32.92 53.4l109.93-80.31c-5.4-7.4-10.4-15.11-15-23.04z"
+        />
+        <path
+          fill={`url(#${_id}-mnts-11)`}
+          d="M218.95 756.76a400 400 0 0 0 58.1 23.97l41.8-129.55a263 263 0 0 1-38.22-15.76l-61.68 121.35"
+        />
+        <path
+          fill={`url(#${_id}-mnts-12)`}
+          d="m267.28 630.7 67.96-117.94a131 131 0 0 1-26.99-20.65l-190.6 191.25a403 403 0 0 0 47.74 40.66L244 615.61a268 268 0 0 0 23.27 15.1z"
+        />
+        <path
+          fill={`url(#${_id}-mnts-13)`}
+          d="m630.62 532.85-117.91-68.03a131 131 0 0 1-20.69 27L683.18 682.5a403 403 0 0 0 40.69-47.72l-108.38-78.66a267 267 0 0 0 15.12-23.26z"
+        />
+        <path
+          fill={`url(#${_id}-mnts-14)`}
+          d="m366.52 525.65-34.91 131.58q13.4 3.54 27.13 5.67l-20.56 132.34A404 404 0 0 0 400 800h.31V530h-.3c-11.4 0-22.65-1.46-33.49-4.34"
+        />
+        <path
+          fill={`url(#${_id}-mnts-15)`}
+          d="M529.99 400c0 11.4-1.47 22.69-4.36 33.54l131.56 35.01a263 263 0 0 0 5.69-27.13l132.33 20.64a404 404 0 0 0 4.8-62.05z"
+        />
+        <defs>
+          <linearGradient
+            id={`${_id}-mnts-0`}
+            x1="92"
+            x2="92"
+            y1="195.97"
+            y2="449.3"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-1`}
+            x1="265.26"
+            x2="265.26"
+            y1="-59.44"
+            y2="656.34"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-2`}
+            x1="653.76"
+            x2="653.76"
+            y1="118.22"
+            y2="629.6"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-3`}
+            x1="531.1"
+            x2="531.1"
+            y1="-13.85"
+            y2="354.36"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-4`}
+            x1="573.56"
+            x2="573.56"
+            y1="23.12"
+            y2="610.76"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-5`}
+            x1="192.05"
+            x2="192.05"
+            y1="67.9"
+            y2="619.43"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-6`}
+            x1="434.04"
+            x2="434.04"
+            y1="-62.54"
+            y2="632.62"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-7`}
+            x1="137.19"
+            x2="137.19"
+            y1="315.84"
+            y2="489.52"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-8`}
+            x1="708"
+            x2="708"
+            y1="458.48"
+            y2="711.81"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-9`}
+            x1="534.74"
+            x2="534.74"
+            y1="448.16"
+            y2="1163.92"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-10`}
+            x1="146.25"
+            x2="146.25"
+            y1="387.96"
+            y2="899.34"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-11`}
+            x1="268.9"
+            x2="268.9"
+            y1="602.29"
+            y2="970.5"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-12`}
+            x1="226.45"
+            x2="226.45"
+            y1="439.24"
+            y2="1026.88"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-13`}
+            x1="607.94"
+            x2="607.94"
+            y1="415.2"
+            y2="966.76"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-14`}
+            x1="365.96"
+            x2="365.96"
+            y1="463.12"
+            y2="1158.27"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+          <linearGradient
+            id={`${_id}-mnts-15`}
+            x1="662.82"
+            x2="662.82"
+            y1="384.38"
+            y2="558.07"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".1" stopColor="#fff" />
+            <stop offset=".82" stopColor="#00FF93" />
+          </linearGradient>
+        </defs>
+      </g>
+    </>
+  ),
+  { fill: '#092C24', ids: true },
+);
+
+/** Mantle Square chain icon (monochrome). */
+export const MantleSquareMono = /* @__PURE__ */ createIcon(
+  'MantleSquareMono',
+  '0 0 64 64',
+  () => (
+    <path
+      fillRule="evenodd"
+      d="M0 0h64v64H0zm17.88 24.83-7.28-3.7a24 24 0 0 0-1.44 3.48l7.77 2.51q.39-1.17.94-2.29m6.19-6.53 4.03 6.95q.9-.52 1.88-.78l-2.1-7.76q.8-.22 1.63-.34L28.2 8.3q-1.87.3-3.66.88l2.49 7.64q-1.19.4-2.3.96l-3.67-7.15q-1.68.86-3.2 1.97l4.81 6.6q.66-.49 1.37-.9m21.66 5.75-6.95 4.03q.52.9.78 1.89l7.76-2.1q.2.8.34 1.62l8.07-1.29a24 24 0 0 0-.88-3.67l-7.64 2.5q-.39-1.2-.97-2.3l7.16-3.68a24 24 0 0 0-1.97-3.2l-6.6 4.82q.47.66.9 1.38M42.86 10.6a24 24 0 0 0-3.48-1.44l-2.51 7.77q1.18.39 2.3.94zm-2.9 7.56-4.08 7.08q.9.51 1.63 1.23L48.94 15a24 24 0 0 0-2.87-2.44l-4.71 6.5q-.68-.48-1.4-.9m-21.79 5.87 7.07 4.08q.51-.9 1.24-1.62L15.01 15.05a24 24 0 0 0-2.44 2.87l6.5 4.71q-.5.69-.9 1.4m16.31-7.8 1.23-7.95A24 24 0 0 0 32 8h-.02v16.2H32q1.03 0 2 .26l2.11-7.89q-.8-.21-1.62-.34M24.46 29.99l-7.89-2.1q-.21.8-.34 1.62l-7.94-1.23A24 24 0 0 0 8 32h16.2q0-1.03.26-2.01m21.66 9.18 7.28 3.7a24 24 0 0 0 1.44-3.48l-7.77-2.51q-.39 1.18-.94 2.29m-6.19 6.53-4.03-6.95q-.88.52-1.88.78l2.1 7.76q-.8.2-1.63.34l1.29 8.07q1.87-.3 3.66-.88l-2.49-7.64q1.19-.39 2.3-.96l3.67 7.15q1.68-.86 3.2-1.97l-4.81-6.6q-.66.49-1.37.9M18.3 39.95l6.95-4.03q-.52-.9-.78-1.89l-7.75 2.1q-.22-.8-.35-1.61L8.3 35.81q.3 1.86.88 3.66l7.64-2.5q.39 1.2.97 2.3l-7.16 3.68q.88 1.67 1.97 3.2l6.6-4.82a16 16 0 0 1-.9-1.38m2.84 13.45q1.68.86 3.48 1.44l2.51-7.77q-1.19-.38-2.3-.94zm2.9-7.56 4.08-7.08a8 8 0 0 1-1.63-1.23L15.07 49a24 24 0 0 0 2.86 2.44l4.72-6.5q.68.5 1.4.9m21.78-5.87-7.07-4.08q-.51.9-1.24 1.62l11.47 11.44q1.34-1.33 2.44-2.87l-6.5-4.71q.5-.69.9-1.4M30 39.54l-2.11 7.89q.8.21 1.62.34l-1.23 7.95Q30.13 56 32 56h.02V39.8H32q-1.03 0-2-.26M39.8 32q0 1.03-.26 2.01l7.89 2.1q.21-.8.34-1.62l7.94 1.23Q56 33.89 56 32z"
+    />
   ),
   { fill: 'currentColor' },
 );
