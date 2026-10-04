@@ -1,12 +1,18 @@
 {
   "name": "ImmutableX",
   "source": [
-    "https://immutable.com"
+    "https://www.immutable.com/images/logo.svg (the Immutable logo served by immutable.com: site header and schema.org Organization logo)"
+  ],
+  "notes": [
+    "Default: the Immutable symbol (a #2B3038 disc with the hexagonal knot knocked out) cropped from the official logo.svg: its symbol subpath unchanged, the wordmark subpath left out. It replaces the retired Immutable X 'X' on a black disc; Immutable publishes no brand kit (immutable.com/brand redirects to the home page) and chain 13371 is Immutable zkEVM",
+    "Mono: the same symbol path in currentColor (the disc in ink with the knot knocked out), the geometry of the official single-colour logo-black.svg / footer-logo.svg",
+    "Export name: kept as ImmutableX; the rename to Immutable is an open owner decision (#815)"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "immutable-x.svg"
+      "file": "immutable-x.svg",
+      "fill": "#2B3038"
     },
     "Mono": {
       "file": "immutable-x.mono.svg",

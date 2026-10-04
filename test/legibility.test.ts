@@ -67,6 +67,12 @@ type Exemption = {
 
 /** Keep this list short: prefer adding official variants. */
 const EXEMPTIONS: Readonly<Record<UnitKey, Exemption>> = {
+  'chain/Fraxtal': {
+    tone: 'light',
+    kind: 'no-official-alternative',
+    searched: ['https://frax.com', 'https://static.frax.com/images/chains'],
+    note: "The same static misreading as defi/Frax: the official Fraxtal chain icon's white disc is only a keyline ring under the black disc, so on light backgrounds it reads as the black disc with the white chain link, but counting paints treats the white disc as a light container. FraxtalMono with a dark color is the same black disc.",
+  },
   'coin/Looks': {
     tone: 'dark',
     kind: 'legible-variant',

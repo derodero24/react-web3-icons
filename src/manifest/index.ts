@@ -391,6 +391,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 13_371,
     slug: 'immutablex',
     variants: ['', 'Mono'],
+    brandColor: '#2b3038',
   },
   { name: 'ImmutableXMono', category: 'chain' },
   {
@@ -407,7 +408,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 57_073,
     slug: 'ink',
     variants: ['', 'Mono'],
-    brandColor: '#7757e2',
+    brandColor: '#7132f5',
   },
   { name: 'InkMono', category: 'chain' },
   {
@@ -426,7 +427,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 2222,
     slug: 'kava',
     variants: ['', 'Mono', 'Circle', 'CircleMono'],
-    brandColor: '#ff564f',
+    brandColor: '#ff433e',
   },
   { name: 'KavaCircle', category: 'chain' },
   { name: 'KavaCircleMono', category: 'chain' },
@@ -495,7 +496,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     slug: 'near',
     variants: ['', 'Mono'],
-    brandColor: '#00ec97',
+    brandColor: '#000000',
   },
   { name: 'NearMono', category: 'chain' },
   { name: 'OpBnb', category: 'chain', chainId: 204, slug: 'opbnb' },
@@ -554,7 +555,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 534_352,
     slug: 'scroll',
     variants: ['', 'Mono'],
-    brandColor: '#ffeeda',
+    brandColor: '#0a0a0a',
   },
   { name: 'ScrollMono', category: 'chain' },
   {
