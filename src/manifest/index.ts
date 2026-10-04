@@ -937,6 +937,8 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'MonadMono', category: 'coin' },
   { name: 'Near', category: 'coin', ticker: 'NEAR' },
   { name: 'NearMono', category: 'coin' },
+  { name: 'Ondo', category: 'coin', ticker: 'ONDO', variants: ['', 'Mono'] },
+  { name: 'OndoMono', category: 'coin' },
   {
     name: 'Op',
     category: 'coin',
@@ -961,6 +963,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'PolMono', category: 'coin' },
   { name: 'Pyth', category: 'coin', ticker: 'PYTH' },
   { name: 'PythMono', category: 'coin' },
+  {
+    name: 'Render',
+    category: 'coin',
+    ticker: 'RENDER',
+    variants: ['', 'Mono'],
+    brandColor: '#242532',
+  },
+  { name: 'RenderMono', category: 'coin' },
   { name: 'Ronin', category: 'coin', ticker: 'RON' },
   { name: 'RoninCircle', category: 'coin' },
   { name: 'RoninCircleMono', category: 'coin' },
@@ -1003,6 +1013,8 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'TaikoCircle', category: 'coin' },
   { name: 'TaikoCircleMono', category: 'coin' },
   { name: 'TaikoMono', category: 'coin' },
+  { name: 'Tao', category: 'coin', ticker: 'TAO', variants: ['', 'Mono'] },
+  { name: 'TaoMono', category: 'coin' },
   {
     name: 'Tia',
     category: 'coin',
@@ -1027,6 +1039,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'UsdcCircle', category: 'coin' },
   { name: 'UsdcCircleMono', category: 'coin' },
   { name: 'UsdcMono', category: 'coin' },
+  {
+    name: 'Usde',
+    category: 'coin',
+    ticker: 'USDE',
+    variants: ['', 'Mono'],
+    brandColor: '#111111',
+  },
+  { name: 'UsdeMono', category: 'coin' },
   {
     name: 'Usdt',
     category: 'coin',

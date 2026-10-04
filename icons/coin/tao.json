@@ -1,0 +1,23 @@
+{
+  "name": "Tao",
+  "source": [
+    "https://github.com/opentensor/developer-docs/blob/f6dd8e948952a7bb7ceab6f67d07d7c6d992e995/static/bittensor-media-assets/Bittensor-mediaassets-2024Dec02.zip (official Bittensor media assets of the Opentensor Foundation, the kit the Bittensor docs' Media Assets page linked)"
+  ],
+  "notes": [
+    "Colored: the kit's TAO symbol, Bittensor community assets/Symbol/Black/RGB/Bittensor_symbol_black_AF_RGB.svg, its two paths unchanged (black, the kit's only colours are black, white and greys), placed on the 64 grid; the kit has no token disc",
+    "Mono: the same two paths in currentColor"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "tao.svg"
+    },
+    "Mono": {
+      "file": "tao.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "tickers": [
+    "TAO"
+  ]
+}

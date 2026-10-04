@@ -1,0 +1,24 @@
+{
+  "name": "Usde",
+  "source": [
+    "https://ethena.fi/shared/usde.svg (official site; media assets: https://docs.ethena.fi/resources/media-assets)"
+  ],
+  "notes": [
+    "Colored: the official usde.svg unchanged (#111111 disc under a #3A3A3A to #1C1C1C radial highlight at 0.7 opacity, white side arcs and $, white to #111111 rim stroke), with its gradient ids renamed; placed on the 64 grid as a container",
+    "Mono: the disc (out to the rim stroke) in currentColor with the two arcs and the $ of the same paths knocked out (evenodd); the radial highlight and the rim gradient are shading and are dropped"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "usde.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "usde.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "tickers": [
+    "USDE"
+  ]
+}
