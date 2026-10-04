@@ -69,7 +69,6 @@ describe('Coin aliases re-export correctly', () => {
     'SolCircle',
     'SolCircleMono',
     'SolMono',
-    'Matic',
     'Mkr',
     'MkrMono',
     'Sky',
@@ -108,8 +107,7 @@ describe('DEPRECATED_ICON_NAMES', () => {
   });
 
   it('includes known deprecated aliases', () => {
-    expect(icons.DEPRECATED_ICON_NAMES.has('Matic')).toBe(true);
-    expect(icons.DEPRECATED_ICON_NAMES.has('GnosisSafe')).toBe(true);
+    expect(icons.DEPRECATED_ICON_NAMES.has('Fantom')).toBe(true);
     expect(icons.DEPRECATED_ICON_NAMES.has('PhantomWallet')).toBe(true);
     expect(icons.DEPRECATED_ICON_NAMES.has('OKXWallet')).toBe(true);
     expect(icons.DEPRECATED_ICON_NAMES.has('OkxWallet')).toBe(false);
@@ -136,11 +134,6 @@ describe('Every colored icon has a Mono variant', () => {
     // Standalone coin icons with no monochrome mark
     'Doge',
     'Shib',
-    // Deprecated Light aliases (re-exports of Inverted variants)
-    'BasescanLight',
-    'BscscanLight',
-    'BybitLight',
-    'EtherscanLight',
     // BlastscanLight uses black fill for light/white backgrounds — distinct from typical Light variants;
     // treated as a single-fill design variant with no corresponding Mono
     'BlastscanLight',

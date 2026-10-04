@@ -2,7 +2,7 @@ import { createIcon } from '../utils';
 
 // Source: https://nft.storage (official brand, service sunset)
 // Mono: one currentColor path. The front card keeps its outline, eyes and smile, as in the coloured line art. The stack of back cards behind it (yellow in the coloured art) is solid ink, and the black outlines between the cards become 1.2-unit knock-out seams. The seams stop inside a 0.5-unit rim, so the stack keeps its closed outline.
-/** Nft Storage storage icon (colored). */
+/** @deprecated NFT.Storage Classic uploads were decommissioned on 2024-06-30. */
 export const NftStorage = /* @__PURE__ */ createIcon(
   'NftStorage',
   '0 0 64 64',
@@ -132,7 +132,7 @@ export const NftStorage = /* @__PURE__ */ createIcon(
   { ids: true },
 );
 
-/** Nft Storage storage icon (monochrome). */
+/** @deprecated NFT.Storage Classic uploads were decommissioned on 2024-06-30. */
 export const NftStorageMono = /* @__PURE__ */ createIcon(
   'NftStorageMono',
   '0 0 64 64',

@@ -441,7 +441,7 @@ Sizes are minified and brotli-compressed with React excluded, as reported by `pn
 | `chain` | L1/L2 blockchains | Ethereum, Arbitrum, Polygon, Solana |
 | `coin` | Cryptocurrencies & tokens | Bitcoin, Doge, Usdt, Usdc |
 | `defi` | DeFi protocols | Aave, EigenLayer, Lido |
-| `devtool` | Developer tools | Hardhat, Truffle, Web3Js |
+| `devtool` | Developer tools | Hardhat, Viem, Wagmi |
 | `dex` | Decentralized exchanges | Uniswap, PancakeSwap, Dydx |
 | `domain` | Domain services | Ens, UnstoppableDomains |
 | `exchange` | Centralized exchanges | Binance, Coinbase, Kraken |
@@ -450,7 +450,7 @@ Sizes are minified and brotli-compressed with React excluded, as reported by `pn
 | `node` | Node providers | Alchemy, Infura, QuickNode |
 | `oracle` | Oracle networks | Pyth, Band, API3, RedStone |
 | `portfolio` | Portfolio trackers | DeBank, Zapper, CoinLedger |
-| `storage` | Decentralized storage | Ipfs, Arweave, NftStorage |
+| `storage` | Decentralized storage | Ipfs, Arweave, Pinata |
 | `tracker` | Analytics & tracking | DefiLlama, CoinGecko, CoinMarketCap |
 | `wallet` | Wallet apps | MetaMask, Phantom, Rainbow |
 

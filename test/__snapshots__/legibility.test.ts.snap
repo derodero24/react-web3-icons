@@ -44,7 +44,6 @@ exports[`dark/light background legibility (issue #712) > documents how each affe
   "dark: exchange/Okx → monochrome OkxMono",
   "dark: oracle/Pyth → monochrome PythMono",
   "dark: storage/Arweave → monochrome ArweaveMono",
-  "dark: storage/NftStorage → exempt (no-official-alternative)",
   "dark: wallet/Ledger → monochrome LedgerMono",
   "dark: wallet/OkxWallet → monochrome OkxWalletMono",
   "dark: wallet/Safe → monochrome SafeMono",

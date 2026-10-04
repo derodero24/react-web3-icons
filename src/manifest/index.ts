@@ -83,11 +83,11 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'HopProtocol',
     category: 'bridge',
-    slug: 'hopprotocol',
+    deprecated: true,
     variants: ['', 'Mono'],
     brandColor: '#b32eff',
   },
-  { name: 'HopProtocolMono', category: 'bridge' },
+  { name: 'HopProtocolMono', category: 'bridge', deprecated: true },
   {
     name: 'LayerZero',
     category: 'bridge',
@@ -714,11 +714,11 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Busd',
     category: 'coin',
-    ticker: 'BUSD',
+    deprecated: true,
     variants: ['', 'Mono'],
     brandColor: '#f0b90b',
   },
-  { name: 'BusdMono', category: 'coin' },
+  { name: 'BusdMono', category: 'coin', deprecated: true },
   {
     name: 'Cake',
     category: 'coin',
@@ -879,10 +879,6 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#345d9d',
   },
   { name: 'LtcMono', category: 'coin' },
-  { name: 'Matic', category: 'coin', deprecated: true },
-  { name: 'MaticCircle', category: 'coin', deprecated: true },
-  { name: 'MaticCircleMono', category: 'coin', deprecated: true },
-  { name: 'MaticMono', category: 'coin', deprecated: true },
   { name: 'Mkr', category: 'coin', deprecated: true },
   { name: 'MkrMono', category: 'coin', deprecated: true },
   { name: 'Mnt', category: 'coin', ticker: 'MNT' },
@@ -1262,28 +1258,12 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   },
   { name: 'CollabLandMono', category: 'devtool' },
   {
-    name: 'Drizzle',
-    category: 'devtool',
-    deprecated: true,
-    variants: ['', 'Mono'],
-    brandColor: '#e911bd',
-  },
-  { name: 'DrizzleMono', category: 'devtool', deprecated: true },
-  {
     name: 'EthersJs',
     category: 'devtool',
     variants: ['', 'Mono'],
     brandColor: '#24339b',
   },
   { name: 'EthersJsMono', category: 'devtool' },
-  {
-    name: 'Ganache',
-    category: 'devtool',
-    deprecated: true,
-    variants: ['', 'Mono'],
-    brandColor: '#e4a663',
-  },
-  { name: 'GanacheMono', category: 'devtool', deprecated: true },
   {
     name: 'Hardhat',
     category: 'devtool',
@@ -1357,14 +1337,6 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   },
   { name: 'ThirdwebMono', category: 'devtool' },
   {
-    name: 'Truffle',
-    category: 'devtool',
-    deprecated: true,
-    variants: ['', 'Mono'],
-    brandColor: '#3fe0c5',
-  },
-  { name: 'TruffleMono', category: 'devtool', deprecated: true },
-  {
     name: 'Viem',
     category: 'devtool',
     variants: ['', 'Mono'],
@@ -1381,10 +1353,11 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Web3Js',
     category: 'devtool',
+    deprecated: true,
     variants: ['', 'Mono'],
     brandColor: '#f16822',
   },
-  { name: 'Web3JsMono', category: 'devtool' },
+  { name: 'Web3JsMono', category: 'devtool', deprecated: true },
   {
     name: 'Aerodrome',
     category: 'dex',
@@ -1446,11 +1419,11 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Odos',
     category: 'dex',
-    slug: 'odos',
+    deprecated: true,
     variants: ['', 'Mono'],
     brandColor: '#ff5100',
   },
-  { name: 'OdosMono', category: 'dex' },
+  { name: 'OdosMono', category: 'dex', deprecated: true },
   {
     name: 'Oneinch',
     category: 'dex',
@@ -1594,7 +1567,6 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#f7a600',
   },
   { name: 'BybitInverted', category: 'exchange' },
-  { name: 'BybitLight', category: 'exchange', deprecated: true },
   { name: 'BybitMono', category: 'exchange' },
   {
     name: 'Coinbase',
@@ -1721,7 +1693,6 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#0052ff',
   },
   { name: 'BasescanInverted', category: 'explorer' },
-  { name: 'BasescanLight', category: 'explorer', deprecated: true },
   { name: 'BasescanMono', category: 'explorer' },
   {
     name: 'Blastscan',
@@ -1745,7 +1716,6 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#f0b90b',
   },
   { name: 'BscscanInverted', category: 'explorer' },
-  { name: 'BscscanLight', category: 'explorer', deprecated: true },
   { name: 'BscscanMono', category: 'explorer' },
   {
     name: 'Celoscan',
@@ -1763,7 +1733,6 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#21325b',
   },
   { name: 'EtherscanInverted', category: 'explorer' },
-  { name: 'EtherscanLight', category: 'explorer', deprecated: true },
   { name: 'EtherscanMono', category: 'explorer' },
   {
     name: 'Routescan',
@@ -1809,20 +1778,13 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'OpenSeaSymbol', category: 'marketplace' },
   { name: 'OpenSeaSymbolMono', category: 'marketplace' },
   {
-    name: 'TofuNft',
+    name: 'X2Y2',
     category: 'marketplace',
     deprecated: true,
     variants: ['', 'Mono'],
-    brandColor: '#141416',
-  },
-  { name: 'TofuNftMono', category: 'marketplace', deprecated: true },
-  {
-    name: 'X2Y2',
-    category: 'marketplace',
-    variants: ['', 'Mono'],
     brandColor: '#00e0ff',
   },
-  { name: 'X2Y2Mono', category: 'marketplace' },
+  { name: 'X2Y2Mono', category: 'marketplace', deprecated: true },
   {
     name: 'Alchemy',
     category: 'node',
@@ -1954,10 +1916,11 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'NftStorage',
     category: 'storage',
+    deprecated: true,
     variants: ['', 'Mono'],
     brandColor: '#f5c32c',
   },
-  { name: 'NftStorageMono', category: 'storage' },
+  { name: 'NftStorageMono', category: 'storage', deprecated: true },
   {
     name: 'Pinata',
     category: 'storage',
@@ -2052,8 +2015,6 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#0b46f9',
   },
   { name: 'ExodusMono', category: 'wallet' },
-  { name: 'GnosisSafe', category: 'wallet', deprecated: true },
-  { name: 'GnosisSafeMono', category: 'wallet', deprecated: true },
   {
     name: 'ImToken',
     category: 'wallet',
@@ -2103,11 +2064,11 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'NamiWallet',
     category: 'wallet',
-    slug: 'namiwallet',
+    deprecated: true,
     variants: ['', 'Mono'],
     brandColor: '#349ea3',
   },
-  { name: 'NamiWalletMono', category: 'wallet' },
+  { name: 'NamiWalletMono', category: 'wallet', deprecated: true },
   { name: 'OKXWallet', category: 'wallet', deprecated: true },
   { name: 'OKXWalletMono', category: 'wallet', deprecated: true },
   {

@@ -18,7 +18,8 @@
       "fill": "currentColor"
     }
   },
-  "tickers": [
-    "BUSD"
-  ]
+  "deprecated": {
+    "Busd": "Paxos stopped minting BUSD in February 2023 and Binance ended support in December 2023.",
+    "BusdMono": "Paxos stopped minting BUSD in February 2023 and Binance ended support in December 2023."
+  }
 }

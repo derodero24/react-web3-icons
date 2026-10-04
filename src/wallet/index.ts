@@ -8,7 +8,6 @@ export * from './Daedalus';
 export * from './DaedalusWallet';
 export * from './Enkrypt';
 export * from './Exodus';
-export * from './GnosisSafe';
 export * from './ImToken';
 export * from './Keplr';
 export * from './Ledger';

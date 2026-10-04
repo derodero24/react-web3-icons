@@ -26,6 +26,9 @@ import type { IconName } from './utils';
 export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   has(name: string): boolean;
 } = new Set<IconName>([
+  // icons/bridge/hop-protocol.json
+  'HopProtocol',
+  'HopProtocolMono',
   // icons/chain/binance-smart-chain.json
   'BinanceSmartChain',
   'BinanceSmartChainMono',
@@ -43,49 +46,39 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   'StarkNetSquare',
   'StarkNetSquareMono',
   'StarkNetCircleMono',
+  // icons/coin/busd.json
+  'Busd',
+  'BusdMono',
   // icons/coin/ftm.json
   'Ftm',
   'FtmMono',
-  // icons/coin/matic.json
-  'Matic',
-  'MaticCircle',
-  'MaticMono',
-  'MaticCircleMono',
   // icons/coin/mkr.json
   'Mkr',
   'MkrMono',
   // icons/defi/maker-dao.json
   'MakerDao',
   'MakerDaoMono',
-  // icons/devtool/drizzle.json
-  'Drizzle',
-  'DrizzleMono',
-  // icons/devtool/ganache.json
-  'Ganache',
-  'GanacheMono',
   // icons/devtool/tally.json
   'Tally',
   'TallyMono',
-  // icons/devtool/truffle.json
-  'Truffle',
-  'TruffleMono',
+  // icons/devtool/web3-js.json
+  'Web3Js',
+  'Web3JsMono',
+  // icons/dex/odos.json
+  'Odos',
+  'OdosMono',
   // icons/dex/para-swap.json
   'ParaSwap',
   'ParaSwapMono',
-  // icons/exchange/bybit-light.json
-  'BybitLight',
   // icons/exchange/gateio.json
   'Gateio',
   'GateioMono',
-  // icons/explorer/basescan-light.json
-  'BasescanLight',
-  // icons/explorer/bscscan-light.json
-  'BscscanLight',
-  // icons/explorer/etherscan-light.json
-  'EtherscanLight',
-  // icons/marketplace/tofu-nft.json
-  'TofuNft',
-  'TofuNftMono',
+  // icons/marketplace/x2-y2.json
+  'X2Y2',
+  'X2Y2Mono',
+  // icons/storage/nft-storage.json
+  'NftStorage',
+  'NftStorageMono',
   // icons/wallet/argent.json
   'Argent',
   'ArgentMono',
@@ -95,9 +88,9 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   // icons/wallet/daedalus-wallet.json
   'DaedalusWallet',
   'DaedalusWalletMono',
-  // icons/wallet/gnosis-safe.json
-  'GnosisSafe',
-  'GnosisSafeMono',
+  // icons/wallet/nami-wallet.json
+  'NamiWallet',
+  'NamiWalletMono',
   // icons/wallet/okx-wallet.json
   'OKXWallet',
   'OKXWalletMono',

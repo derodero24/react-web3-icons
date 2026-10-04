@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://odos.xyz
-/** Odos DEX icon (colored). */
+/** @deprecated Odos shut down on 2026-07-30 (https://odos.xyz now serves its shutdown notice). */
 export const Odos = /* @__PURE__ */ createIcon(
   'Odos',
   '0 0 64 64',
@@ -15,7 +15,7 @@ export const Odos = /* @__PURE__ */ createIcon(
   { fill: '#FF5100' },
 );
 
-/** Odos DEX icon (monochrome). */
+/** @deprecated Odos shut down on 2026-07-30 (https://odos.xyz now serves its shutdown notice). */
 export const OdosMono = /* @__PURE__ */ createIcon(
   'OdosMono',
   '0 0 64 64',

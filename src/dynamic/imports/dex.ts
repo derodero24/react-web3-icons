@@ -27,8 +27,6 @@ export const dexImports: Record<
   HyperliquidMono: () => import('../../dex/Hyperliquid'),
   Jupiter: () => import('../../dex/Jupiter'),
   JupiterMono: () => import('../../dex/Jupiter'),
-  Odos: () => import('../../dex/Odos'),
-  OdosMono: () => import('../../dex/Odos'),
   Oneinch: () => import('../../dex/Oneinch'),
   OneinchMono: () => import('../../dex/Oneinch'),
   Osmosis: () => import('../../dex/Osmosis'),

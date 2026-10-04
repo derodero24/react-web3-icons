@@ -42,8 +42,6 @@ export const walletImports: Record<
   MetaMaskMono: () => import('../../wallet/MetaMask'),
   MetaMaskSquare: () => import('../../wallet/MetaMask'),
   MetaMaskSquareMono: () => import('../../wallet/MetaMask'),
-  NamiWallet: () => import('../../wallet/NamiWallet'),
-  NamiWalletMono: () => import('../../wallet/NamiWallet'),
   OkxWallet: () => import('../../wallet/OkxWallet'),
   OkxWalletMono: () => import('../../wallet/OkxWallet'),
   Petra: () => import('../../wallet/Petra'),

@@ -12,5 +12,9 @@
       "file": "x2-y2.mono.svg",
       "fill": "currentColor"
     }
+  },
+  "deprecated": {
+    "X2Y2": "X2Y2 shut down its marketplace on 2025-04-30.",
+    "X2Y2Mono": "X2Y2 shut down its marketplace on 2025-04-30."
   }
 }

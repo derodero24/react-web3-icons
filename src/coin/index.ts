@@ -38,7 +38,6 @@ export * from './Ldo';
 export * from './Link';
 export * from './Looks';
 export * from './Ltc';
-export * from './Matic';
 export * from './Mkr';
 export * from './Mnt';
 export * from './Monad';

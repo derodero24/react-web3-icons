@@ -1,7 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://namiwallet.io
-/** Nami Wallet wallet icon (colored). */
+/** @deprecated Nami was folded into Lace (namiwallet.io now serves Lace). */
 export const NamiWallet = /* @__PURE__ */ createIcon(
   'NamiWallet',
   '0 0 64 64',
@@ -14,7 +14,7 @@ export const NamiWallet = /* @__PURE__ */ createIcon(
   { fill: '#349ea3' },
 );
 
-/** Nami Wallet wallet icon (monochrome). */
+/** @deprecated Nami was folded into Lace (namiwallet.io now serves Lace). */
 export const NamiWalletMono = /* @__PURE__ */ createIcon(
   'NamiWalletMono',
   '0 0 64 64',

@@ -45,8 +45,6 @@ export const coinImports: Record<
   BtcCircle: () => import('../../coin/Btc'),
   BtcCircleMono: () => import('../../coin/Btc'),
   BtcMono: () => import('../../coin/Btc'),
-  Busd: () => import('../../coin/Busd'),
-  BusdMono: () => import('../../coin/Busd'),
   Cake: () => import('../../coin/Cake'),
   CakeMono: () => import('../../coin/Cake'),
   Celo: () => import('../../coin/Celo'),

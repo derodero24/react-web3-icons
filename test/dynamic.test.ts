@@ -142,7 +142,6 @@ describe('category lookups', () => {
     [resolveDexSlug, 'cow_protocol', 'CowProtocol'],
     // Before #813 only the DeFi lookup stripped "." and "-".
     [resolveBridgeSlug, 'layer-zero', 'LayerZero'],
-    [resolveBridgeSlug, 'hop-protocol', 'HopProtocol'],
     [resolveOracleSlug, 'RedStone', 'RedStone'],
     [resolveChainSlug, 'Cosmos Hub', 'CosmosHub'],
   ] as const)('%o(%j) → %j', (lookup: Lookup, input, expected) => {
@@ -181,7 +180,8 @@ describe('wallet connector ids', () => {
     ['subWallet', 'SubWallet'],
     ['argentX', 'Ready'],
     ['polkadot-js', 'PolkadotJs'],
-    ['nami', 'NamiWallet'],
+    // Nami was folded into Lace; its deprecated icon has no lookup keys.
+    ['nami', undefined],
     ['yoroi', 'Yoroi'],
     ['daedalus', 'Daedalus'],
   ])('%j → %j', (id, expected) => {

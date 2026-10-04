@@ -4,7 +4,6 @@ export * from './Bitget';
 export * from './Bithumb';
 export * from './Bitstamp';
 export * from './Bybit';
-export * from './BybitLight';
 export * from './Coinbase';
 export * from './CryptoCom';
 export * from './Deribit';
