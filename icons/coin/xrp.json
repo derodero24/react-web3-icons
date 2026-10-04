@@ -1,12 +1,14 @@
 {
   "name": "Xrp",
   "source": [
-    "https://xrpl.org/assets/xrp-symbol-black.8ecaf7670b5ebd82b8283c9eae4388cff60ec37c3a57351436b36eeeee131dd8.c92cfbea.svg (official XRP Ledger site, xrpl.org)"
+    "https://xrpl.org/assets/xrp-symbol-black.8ecaf7670b5ebd82b8283c9eae4388cff60ec37c3a57351436b36eeeee131dd8.c92cfbea.svg (official XRP Ledger site, xrpl.org)",
+    "https://xrpl.org/XRPL_Brand_Kit.zip (official XRPL Brand Kit: the white symbol and #141414, the kit's black, for the Circle)"
   ],
   "notes": [
     "Colored: the official xrp-symbol-black.svg unchanged (one evenodd path in #141414), placed on the 64 grid",
     "Mono: the same path in currentColor",
-    "Circle / CircleMono: legacy artwork of unidentified origin (the mark in white on a #23292F disc, the colour of the earlier cryptologos mark), not an official XRP asset: the XRPL Brand Kit (https://xrpl.org/XRPL_Brand_Kit.zip) has only the black and white symbol and logotypes, with #141414 as its black; kept until #815 decides its fate"
+    "Circle: the repository's container convention, since the XRPL Brand Kit has only the black and white symbol and logotypes and no token disc: a #141414 disc (the kit's black) under the same symbol path in white (the white symbol of xrpl.org and the kit), scaled by 0.822857 (46.08/56, the convention's 72% mark width) about the centre, i.e. translate(5.668571 5.668571) scale(0.822857). It replaces legacy artwork of unidentified origin (a smaller white mark on a #23292F disc, a colour not in the kit)",
+    "CircleMono: the disc in currentColor with the Circle's symbol knocked out (one evenodd path)"
   ],
   "kind": "icon",
   "variants": {

@@ -1,21 +1,24 @@
 {
   "name": "Cro",
   "source": [
-    "@web3icons/react (MIT) — CRO token SVG (legacy third-party artwork)"
+    "re-export of Cronos — see src/chain/Cronos.tsx"
   ],
   "notes": [
-    "Legacy artwork: paths sourced from @web3icons/react (MIT), the old Crypto.com lion shield in #2E4B9F",
-    "Legacy mark: neither this shield nor the Cronos hexagon-C in #002D74 that crypto.com/us/price/cronos still shows (as a PNG) is in the current identity. The official kit (https://cronos.com/brand, cronos-brand-kit.zip) holds the Cronos wordmarks and app icon, the Cronos Launch / Network lockups and the Ult logos, but no CRO token mark; cronos.com/about-cro shows the CRO coin only as a raster render (rechecked 2026-10-04). Kept, not deprecated: whether to deprecate or replace it is the maintainer's call (#836)"
+    "The official Cronos brand kit (https://cronos.com/brand, cronos-brand-kit.zip) has no CRO token mark and cronos.com/about-cro shows the CRO coin only as a raster render (checked 2026-10-04), so CRO uses the official Cronos mark of the chain unit, as Mnt re-exports Mantle. It replaces the legacy @web3icons lion-shield artwork"
   ],
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "cro.svg"
-    },
-    "Mono": {
-      "file": "cro.mono.svg",
-      "fill": "currentColor"
-    }
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Cronos",
+    "exports": [
+      {
+        "of": "Cronos",
+        "as": "Cro"
+      },
+      {
+        "of": "CronosMono",
+        "as": "CroMono"
+      }
+    ]
   },
   "tickers": [
     "CRO"

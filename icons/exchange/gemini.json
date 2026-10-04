@@ -7,7 +7,9 @@
   "notes": [
     "Colored: the symbol path of the official gemini.com header logo unchanged, in its black, placed on the 64 grid (the lettering is left out); it replaces the old cyan #26DDF9 mark, which gemini.com no longer uses",
     "brandColor: the symbol is black, so the manifest uses the orange #FF4809 of the official app icon on gemini.com",
-    "Mono: the same path in currentColor"
+    "Mono: the same path in currentColor",
+    "Square: the official Gemini app icon served as inline SVG in the gemini.com homepage app-download QR code (rechecked 2026-10-04): a 16.9056-unit tile with rx 5.07168 (30%) filled with a vertical #FE630C (bottom) to #FF4809 (top) linear gradient under the white evenodd symbol path, unchanged; the tile is scaled by 64/16.9056 to fill the 64 grid (rx 19.2) and the gradient written in grid coordinates (x 32, y 64 to 0) instead of the source's rotate(180) transform",
+    "SquareMono: the same tile in currentColor with the Square symbol knocked out (single evenodd path)"
   ],
   "kind": "icon",
   "variants": {
@@ -17,6 +19,13 @@
     },
     "Mono": {
       "file": "gemini.mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "gemini.square.svg"
+    },
+    "SquareMono": {
+      "file": "gemini.square-mono.svg",
       "fill": "currentColor"
     }
   },

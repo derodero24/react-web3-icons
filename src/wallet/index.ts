@@ -10,6 +10,7 @@ export * from './Enkrypt';
 export * from './Exodus';
 export * from './ImToken';
 export * from './Keplr';
+export * from './Lace';
 export * from './Ledger';
 export * from './MetaMask';
 export * from './NamiWallet';

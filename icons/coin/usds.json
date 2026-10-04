@@ -1,0 +1,25 @@
+{
+  "$schema": "../schema.json",
+  "name": "Usds",
+  "source": [
+    "https://app.sky.money/tokens/usds.svg (official Sky app token icon; the same file family as icons/defi/sky.json's https://app.sky.money/tokens/sky.svg)"
+  ],
+  "notes": [
+    "Colored: the official usds.svg unchanged (a #FFD232 to #FF6D6D radial-gradient disc under the white S), with its gradient id renamed; placed on the 64 grid as a container. Sky publishes USDS only as this disc (no stand-alone S was found on sky.money or app.sky.money, checked 2026-10-04), so the disc is the base icon and there is no separate Circle variant",
+    "Mono: the disc in currentColor with the S of the same path knocked out (one evenodd path; the S renders identically under evenodd and nonzero)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "usds.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "usds.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "tickers": [
+    "USDS"
+  ]
+}

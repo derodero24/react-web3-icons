@@ -65,6 +65,7 @@ export * from './Trx';
 export * from './Uni';
 export * from './Usdc';
 export * from './Usde';
+export * from './Usds';
 export * from './Usdt';
 export * from './Vet';
 export * from './Wld';
