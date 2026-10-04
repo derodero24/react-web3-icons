@@ -16,3 +16,5 @@ Add the official token discs as `Circle` / `CircleMono` variants, built from eac
 Also, `DexIcon` now accepts the `'Circle'` and `'CircleMono'` variants (Jupiter is the first dex icon with them).
 
 **Visual change: `Hyperliquid` (and `Hype`) is now the official `#97FCE4` blob.** It is `Hyperliquid_Blob_Green.svg` from Hyperliquid's brand kit unchanged, the same blob the app uses for the HYPE token. It was a third-party redraw in `#50D2C1`, slightly wider. `HyperliquidMono` and `HypeMono` follow the new shape, and the manifest brand colour changes from `#50d2c1` to `#97fce4`.
+
+The manifest (`react-web3-icons/manifest`, `dist/manifest.json`) now lists the variants a unit re-exports alongside the ones it draws: `Bnb` and `Ldo` report `['', 'Mono', 'Circle', 'CircleMono']`.
