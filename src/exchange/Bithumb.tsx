@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Source: https://bithumb.com (official brand)
+// Source: https://www.bithumb.com (official site; raster logos only, see notes)
+// Origin of the artwork unknown (it predates the source policy). Checked 2026-10-04: bithumb.com serves its logo only as rasters (WebP header/footer backgrounds in its stylesheets, https://content.bithumb.com/resources/img/comm/seo/apple-icon-180x180.png in orange #FE8100 / #E2530B); no official vector was found, so the red-to-orange artwork here is left unchanged
 // Mono: the red flag behind the stem is cut back from the b by a 1.2-unit seam.
 /** Bithumb exchange icon (colored). */
 export const Bithumb = /* @__PURE__ */ createIcon(

@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://okx.com/web3
+// Source: https://web3.okx.com/cdn/assets/imgs/258/4C0F53E9427468A2.svg (OKX Wallet header lockup served by web3.okx.com: the black checker + "Wallet")
+// Checked 2026-10-04: the checker matches the symbol of the official header lockup (IoU 0.96 at 256 px, both with the same small corner radius), so the artwork is unchanged
+// The OKX Wallet app icon (the checker on a lime #9AED2C tile, https://web3.okx.com/cdn/assets/imgs/254/43DEFFE88CCA0D7C.png) exists only as a raster, so no tile variant is drawn
 /** Okx Wallet wallet icon (colored). */
 export const OkxWallet = /* @__PURE__ */ createIcon(
   'OkxWallet',
