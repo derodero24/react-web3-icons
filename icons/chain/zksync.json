@@ -1,5 +1,5 @@
 {
-  "name": "ZkSync",
+  "name": "Zksync",
   "source": [
     "https://www.zksync.io/brand/zksync-logo/zksync-logomark-dark-transparent.svg",
     "https://www.zksync.io/brand/zksync-logo-brand-assets.zip (official brand assets)"
@@ -12,24 +12,24 @@
   "kind": "icon",
   "variants": {
     "": {
-      "file": "zk-sync.svg"
+      "file": "zksync.svg"
     },
     "Mono": {
-      "file": "zk-sync.mono.svg",
+      "file": "zksync.mono.svg",
       "fill": "currentColor"
     },
     "Circle": {
-      "file": "zk-sync.circle.svg"
+      "file": "zksync.circle.svg"
     },
     "Square": {
-      "file": "zk-sync.square.svg"
+      "file": "zksync.square.svg"
     },
     "SquareMono": {
-      "file": "zk-sync.square-mono.svg",
+      "file": "zksync.square-mono.svg",
       "fill": "currentColor"
     },
     "CircleMono": {
-      "file": "zk-sync.circle-mono.svg",
+      "file": "zksync.circle-mono.svg",
       "fill": "currentColor"
     }
   },
@@ -42,5 +42,37 @@
   ],
   "chainIds": [
     324
+  ],
+  "localAliases": [
+    {
+      "name": "ZkSync",
+      "target": "Zksync",
+      "deprecated": "ZkSync was renamed to follow the naming rules (ZKsync, acronyms written as words) — use `Zksync` instead."
+    },
+    {
+      "name": "ZkSyncMono",
+      "target": "ZksyncMono",
+      "deprecated": "Use `ZksyncMono` instead."
+    },
+    {
+      "name": "ZkSyncCircle",
+      "target": "ZksyncCircle",
+      "deprecated": "Use `ZksyncCircle` instead."
+    },
+    {
+      "name": "ZkSyncSquare",
+      "target": "ZksyncSquare",
+      "deprecated": "Use `ZksyncSquare` instead."
+    },
+    {
+      "name": "ZkSyncSquareMono",
+      "target": "ZksyncSquareMono",
+      "deprecated": "Use `ZksyncSquareMono` instead."
+    },
+    {
+      "name": "ZkSyncCircleMono",
+      "target": "ZksyncCircleMono",
+      "deprecated": "Use `ZksyncCircleMono` instead."
+    }
   ]
 }

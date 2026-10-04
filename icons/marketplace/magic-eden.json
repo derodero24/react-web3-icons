@@ -6,11 +6,12 @@
   ],
   "notes": [
     "No downloadable brand kit was found (magiceden.io/brand and the docs/help sites sit behind a Cloudflare challenge); the artwork is Magic Eden's own site asset, accessed 2026-10-04",
-    "MagicEden / MagicEdenFlat: the header mark, path unchanged, in rgb(var(--brand)) = rgb(236 19 109) (#EC136D), the value of --brand in both the light and the dark theme. The current brand mark is single-colour, so the default and Flat are now the same artwork; the old #7A00CC to #F72C87 gradient default and the #E93A88 Flat are retired",
+    "MagicEden: the header mark, path unchanged, in rgb(var(--brand)) = rgb(236 19 109) (#EC136D), the value of --brand in both the light and the dark theme. The current brand mark is single-colour; the old #7A00CC to #F72C87 gradient default is retired",
     "MagicEdenMono: the header mark in currentColor (the site itself draws it in currentColor)",
     "MagicEdenWordmark: the horizontal header wordmark, paths unchanged, in the light-theme colours (.theme-light): the mark in --brand #EC136D and the letters in --textColor-primary rgb(36 38 47) (#24262F); MagicEdenWordmarkMono is the same paths in currentColor. It replaces the older stacked lockup with the retired gradient",
-    "MagicEdenWordmarkFlat is still the older stacked lockup in #E93A88: the site has no single-colour wordmark, so there is no official artwork to replace it with (unverified legacy artwork)",
-    "The favicon (img/favicon/android-chrome-192x192.png) is a #E42575 rounded tile with the mark knocked out in #F5F3F7; it is raster-only and not used"
+    "MagicEdenWordmarkFlat: deprecated, artwork unchanged. It is the older stacked lockup in #E93A88, unverified legacy artwork: the site has no single-colour wordmark to replace it with",
+    "The favicon (img/favicon/android-chrome-192x192.png) is a #E42575 rounded tile with the mark knocked out in #F5F3F7; it is raster-only and not used",
+    "MagicEdenFlat: deprecated alias of MagicEden, since the current single-colour mark makes Flat the same artwork as the default (#815)"
   ],
   "kind": "icon",
   "variants": {
@@ -29,13 +30,19 @@
       "file": "magic-eden.svg",
       "fill": "#EC136D"
     },
-    "Flat": {
-      "file": "magic-eden.flat.svg",
-      "fill": "#EC136D"
-    },
     "Mono": {
       "file": "magic-eden.mono.svg",
       "fill": "currentColor"
     }
+  },
+  "localAliases": [
+    {
+      "name": "MagicEdenFlat",
+      "target": "MagicEden",
+      "deprecated": "The current Magic Eden mark is single-colour, so Flat is the same artwork as the default — use `MagicEden` instead."
+    }
+  ],
+  "deprecated": {
+    "MagicEdenWordmarkFlat": "Legacy stacked lockup with no current official counterpart — use `MagicEdenWordmark` or `MagicEdenWordmarkMono` instead."
   }
 }

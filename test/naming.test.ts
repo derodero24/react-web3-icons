@@ -56,15 +56,10 @@ const isTickerNamed = (unit: SourceUnit): boolean =>
 const words = (name: string): string[] => name.match(/[A-Z][a-z0-9]*/g) ?? [];
 
 /**
- * Names the acronym rule does not cover yet, by unit. Their variants
- * (`ImmutableXMono`) are covered by the same entry.
+ * Names the acronym rule does not cover, by unit. Their variants are
+ * covered by the same entry. Empty since `ImmutableX` became `Immutable`.
  */
-const ACRONYM_EXCEPTIONS = new Map<string, string>([
-  // "Immutable X": the single-letter word runs into the variant suffix.
-  // The brand is now "Immutable" (chain 13371 is Immutable zkEVM); the
-  // rename is an open owner decision in #815.
-  ['ImmutableX', 'Immutable X'],
-]);
+const ACRONYM_EXCEPTIONS = new Map<string, string>([]);
 
 /**
  * One-word official names written with internal capitals. The capitals
@@ -104,13 +99,9 @@ const SPELLING_EXCEPTIONS = new Map<string, string>([
   ['EtherFi', 'ether.fi'],
   ['EthersJs', 'ethers.js'],
   ['PolkadotJs', 'polkadot{.js}'],
-  // An identifier cannot start with a digit.
+  // An identifier cannot start with a digit, and "1inch" is one word, so
+  // the digit is spelled out without a new word boundary (#815).
   ['Oneinch', '1inch'],
-  // Official casing "ZKsync"; whether it or the acronym rule wins is an
-  // open owner decision in #815.
-  ['ZkSync', 'ZKsync'],
-  // See ACRONYM_EXCEPTIONS.
-  ['ImmutableX', 'Immutable X'],
 ]);
 
 /** Category words that may end an export name only as listed below. */

@@ -19,10 +19,12 @@
     }
   },
   "aliases": [
-    "eigen"
+    "eigen",
+    "eigencloud"
   ],
   "slugs": [
     "eigenlayer",
-    "eigen"
+    "eigen",
+    "eigencloud"
   ]
 }

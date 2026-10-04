@@ -11,7 +11,7 @@ Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The bas
 
 | Suffix | Meaning | Example |
 | --- | --- | --- |
-| _(none)_ | Primary brand mark — standalone symbol without background in most cases; includes background when integral to the official brand mark (see [Base icon background rule](#base-icon-background-rule)) | `Bitcoin`, `ZkSync` |
+| _(none)_ | Primary brand mark — standalone symbol without background in most cases; includes background when integral to the official brand mark (see [Base icon background rule](#base-icon-background-rule)) | `Bitcoin`, `Zksync` |
 | `Mono` | Monochrome (`currentColor`) matching the base shape | `BitcoinMono` |
 | `Circle` | Symbol on a circular background | `BitcoinCircle` |
 | `CircleMono` | Monochrome circular | `BitcoinCircleMono` |
@@ -19,7 +19,7 @@ Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The bas
 | `SquareMono` | Monochrome square | `TrustWalletSquareMono` |
 | `Wordmark` | Symbol with text (logotype) | `MagicEdenWordmark` |
 | `WordmarkMono` | Monochrome wordmark | `MagicEdenWordmarkMono` |
-| `Alt` | Alternative color scheme or design | `MetaMaskAlt` |
+| `Alt` | Alternative color scheme or design | `OpenSeaAlt` |
 | `Inverted` | Inverted color scheme for contrast on dark backgrounds | `EtherscanInverted` |
 | `Light` | _(deprecated)_ Legacy lighter variant; only `BlastscanLight` remains active. Prefer `Inverted` for new icons. | `BlastscanLight` |
 | `Flat` | Single brand color, no internal color variation | `ArbitrumOneFlat` |

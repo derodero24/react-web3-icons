@@ -1,25 +1,22 @@
 {
   "name": "CosmosHub",
   "source": [
-    "https://cosmos.network (legacy artwork predating the source policy: the Cosmos Hub hexagon of the former hub.cosmos.network site, which now redirects to docs.cosmos.network/hub)"
+    "re-export of Atom — see src/coin/Atom.tsx. The official Cosmos chain registry uses the ATOM token art (https://raw.githubusercontent.com/cosmos/chain-registry/master/cosmoshub/images/atom.svg) as the cosmoshub logo; it replaces the legacy hexagon of the retired hub.cosmos.network site, which had no current official vector (#835)"
   ],
-  "notes": [
-    "Not replaced: no current official vector of the hexagon mark was found (cosmos.network and docs.cosmos.network show only the Cosmos wordmark). The official chain registry lists the ATOM token art as the cosmoshub logo (https://raw.githubusercontent.com/cosmos/chain-registry/master/cosmoshub/images/atom.svg), which ships as the coin Atom; whether CosmosHub should switch to that art is an owner decision (#835)"
-  ],
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "cosmos-hub.svg",
-      "fill": "#BA3FD9"
-    },
-    "Mono": {
-      "file": "cosmos-hub.mono.svg",
-      "fill": "currentColor"
-    }
+  "kind": "reexport",
+  "reexport": {
+    "from": "../coin/Atom",
+    "exports": [
+      {
+        "of": "Atom",
+        "as": "CosmosHub"
+      },
+      {
+        "of": "AtomMono",
+        "as": "CosmosHubMono"
+      }
+    ]
   },
-  "aliases": [
-    "atom"
-  ],
   "slugs": [
     "cosmos-hub",
     "atom"

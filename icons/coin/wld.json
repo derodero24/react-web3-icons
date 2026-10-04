@@ -1,22 +1,21 @@
 {
   "name": "Wld",
   "source": [
-    "https://world.org/brand (official brand assets, Logomark.zip: [World] Logomark-Black-RGB.svg)"
+    "re-export of WorldChain — see src/chain/WorldChain.tsx (WLD uses the official World logomark, the same artwork)"
   ],
-  "notes": [
-    "Default: the official World logomark ([World] Logomark-Black-RGB.svg from the Logomark.zip on world.org/brand), the same geometry as WorldChain. It replaces a @web3icons/react glyph whose ring and strokes were thinner than the official mark",
-    "Mono: the same logomark path in currentColor (the kit also ships it in white)"
-  ],
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "wld.svg",
-      "fill": "#000"
-    },
-    "Mono": {
-      "file": "wld.mono.svg",
-      "fill": "currentColor"
-    }
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/WorldChain",
+    "exports": [
+      {
+        "of": "WorldChain",
+        "as": "Wld"
+      },
+      {
+        "of": "WorldChainMono",
+        "as": "WldMono"
+      }
+    ]
   },
   "tickers": [
     "WLD"
