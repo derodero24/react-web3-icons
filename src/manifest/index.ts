@@ -1954,8 +1954,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#b3d2ff',
   },
   { name: 'DefiLlamaMono', category: 'tracker' },
-  { name: 'DexScreener', category: 'tracker', variants: ['', 'Mono'] },
+  {
+    name: 'DexScreener',
+    category: 'tracker',
+    variants: ['', 'Mono', 'SymbolMono'],
+    brandColor: '#09090b',
+  },
   { name: 'DexScreenerMono', category: 'tracker' },
+  { name: 'DexScreenerSymbolMono', category: 'tracker' },
   {
     name: 'Dune',
     category: 'tracker',

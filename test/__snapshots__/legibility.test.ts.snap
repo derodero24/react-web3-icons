@@ -45,7 +45,6 @@ exports[`dark/light background legibility (issue #712) > documents how each affe
   "dark: storage/NftStorage → exempt (no-official-alternative)",
   "dark: storage/Walrus → monochrome WalrusMono",
   "dark: tracker/Arkham → monochrome ArkhamMono",
-  "light: tracker/DexScreener → monochrome DexScreenerMono",
   "dark: tracker/Dune → variant DuneSquare",
   "dark: wallet/Ledger → monochrome LedgerMono",
   "dark: wallet/OKXWallet → monochrome OKXWalletMono",

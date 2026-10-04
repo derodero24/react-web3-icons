@@ -4,20 +4,24 @@
   "kind": "icon",
   "source": [
     "https://marketplace.dexscreener.com (official DEX Screener Marketplace site, header logo inline SVG)",
-    "https://dexscreener.com/icon-512x512.png (official app icon, same falcon mark, white on black)"
+    "https://dexscreener.com/icon-512x512.png (official app icon: the same falcon in white on a full-bleed #09090B square, the only way the brand presents the mark)"
   ],
   "notes": [
-    "Default: the single evenodd path of the white (#fff) falcon logo served inline in the header of marketplace.dexscreener.com (viewBox 0 0 210 240). No DEX Screener brand kit was found; dexscreener.com is behind a bot challenge, its app icons are raster only.",
-    "The official mark is white and only shown on black; use DexScreenerMono with a dark color on light backgrounds.",
-    "Mono: the same path in currentColor."
+    "Falcon: the single evenodd path of the white (#fff) logo served inline in the header of marketplace.dexscreener.com (viewBox 0 0 210 240). No DEX Screener brand kit was found; dexscreener.com is behind a bot challenge and its app icons are raster only.",
+    "Default: the official app icon's composition, built from that vector: the falcon at 80% of the height, centred on a full-bleed #09090B square (colour and placement measured from icon-512x512.png; nothing traced). The mark is only ever presented on black, so the base keeps the container (docs/icon-variants.md, base icon background rule).",
+    "Mono: the square with the falcon knocked out (evenodd). SymbolMono: the falcon alone in currentColor."
   ],
   "variants": {
     "": {
       "file": "dex-screener.svg",
-      "fill": "#fff"
+      "fill": "#09090B"
     },
     "Mono": {
       "file": "dex-screener.mono.svg",
+      "fill": "currentColor"
+    },
+    "SymbolMono": {
+      "file": "dex-screener.symbol-mono.svg",
       "fill": "currentColor"
     }
   }
