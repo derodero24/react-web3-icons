@@ -1,13 +1,17 @@
 {
   "name": "Deribit",
   "source": [
-    "https://deribit.com (official brand)"
+    "https://www.deribit.com/favicon/prod/favicon.svg (official favicon served by deribit.com)"
+  ],
+  "notes": [
+    "Colored: the official favicon.svg unchanged, #0052FF (the apple-touch-icon.png in the same folder shows the same blue), placed on the 64 grid; it replaces the earlier #2DAE9A artwork",
+    "Mono: the same path in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "deribit.svg",
-      "fill": "#2DAE9A"
+      "fill": "#0052FF"
     },
     "Mono": {
       "file": "deribit.mono.svg",

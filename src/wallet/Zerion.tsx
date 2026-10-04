@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
 // Source: https://zerion.io
+// Source: https://zerion.io/_next/static/media/zerion-logo.85fd1b5e.svg (current header lockup: a white rounded tile with the Z knocked out)
+// Checked 2026-10-04: blocked on a colour vector. Zerion's current Z (rounder, 2025) is published only as the white one-colour tile of the zerion.io header lockup, and the app icon only as a raster (https://zerion.io/favicon-wallet.png, blue-to-cyan checker gradient). This artwork is the earlier sharp Z on #2962EF / #16161A and stays unchanged until a colour vector exists, rather than mixing the new Z with old colours
 /** Zerion Circle wallet icon (colored). */
 export const ZerionCircle = /* @__PURE__ */ createIcon(
   'ZerionCircle',

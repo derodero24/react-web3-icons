@@ -1,18 +1,16 @@
 import { createIcon } from '../utils';
 
-// Source: https://deribit.com (official brand)
+// Source: https://www.deribit.com/favicon/prod/favicon.svg (official favicon served by deribit.com)
+// Colored: the official favicon.svg unchanged, #0052FF (the apple-touch-icon.png in the same folder shows the same blue), placed on the 64 grid; it replaces the earlier #2DAE9A artwork
+// Mono: the same path in currentColor
 /** Deribit exchange icon (colored). */
 export const Deribit = /* @__PURE__ */ createIcon(
   'Deribit',
   '0 0 64 64',
   () => (
-    <path
-      fillRule="evenodd"
-      d="M60 32.2c-.2-8.28-4.16-12.91-8.07-15.47a19 19 0 0 0-10.52-3.05h-.94V4.7h-8.82v8.98h-9.6V4.7h-8.83v8.98H4l.04 9.22h9.14v18.16H4V50h9.22v9.3h8.82V50h9.6v9.3h8.83V50h1.57a18.5 18.5 0 0 0 8.82-2.18C60.23 42.72 60 32.2 60 32.2m-10.06 4.19a9 9 0 0 1-2.36 2.88 9 9 0 0 1-5.5 1.83h-20V22.93l20.07-.05a10 10 0 0 1 2.79.38 8.3 8.3 0 0 1 4.93 3.99 9.7 9.7 0 0 1 .08 9.14"
-      clipRule="evenodd"
-    />
+    <path d="M13.34 50.6H4.03v-9.3h9.31V22.7H4.03v-9.28h9.31v-9.3h9.34v9.3H32v-9.3h9.32v9.3c10.31 0 18.65 8.3 18.65 18.59 0 10.26-8.34 18.58-18.65 18.58v9.29H32v-9.29h-9.32v9.29h-9.34zm9.34-9.3h18.64c5.16 0 9.34-4.17 9.34-9.3s-4.18-9.3-9.34-9.3H22.68z" />
   ),
-  { fill: '#2DAE9A' },
+  { fill: '#0052FF' },
 );
 
 /** Deribit exchange icon (monochrome). */
@@ -20,11 +18,7 @@ export const DeribitMono = /* @__PURE__ */ createIcon(
   'DeribitMono',
   '0 0 64 64',
   () => (
-    <path
-      fillRule="evenodd"
-      d="M60 32.2c-.2-8.28-4.16-12.91-8.07-15.47a19 19 0 0 0-10.52-3.05h-.94V4.7h-8.82v8.98h-9.6V4.7h-8.83v8.98H4l.04 9.22h9.14v18.16H4V50h9.22v9.3h8.82V50h9.6v9.3h8.83V50h1.57a18.5 18.5 0 0 0 8.82-2.18C60.23 42.72 60 32.2 60 32.2m-10.06 4.19a9 9 0 0 1-2.36 2.88 9 9 0 0 1-5.5 1.83h-20V22.93l20.07-.05a10 10 0 0 1 2.79.38 8.3 8.3 0 0 1 4.93 3.99 9.7 9.7 0 0 1 .08 9.14"
-      clipRule="evenodd"
-    />
+    <path d="M13.34 50.6H4.03v-9.3h9.31V22.7H4.03v-9.28h9.31v-9.3h9.34v9.3H32v-9.3h9.32v9.3c10.31 0 18.65 8.3 18.65 18.59 0 10.26-8.34 18.58-18.65 18.58v9.29H32v-9.29h-9.32v9.29h-9.34zm9.34-9.3h18.64c5.16 0 9.34-4.17 9.34-9.3s-4.18-9.3-9.34-9.3H22.68z" />
   ),
   { fill: 'currentColor' },
 );

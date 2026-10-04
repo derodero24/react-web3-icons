@@ -1,13 +1,19 @@
 {
   "name": "Gemini",
   "source": [
-    "https://gemini.com (official brand)"
+    "https://www.gemini.com (official site; header logo inline SVG, symbol + GEMINI lettering in black)",
+    "https://www.gemini.com (app icon inline SVG in the homepage app-download QR code: the white symbol on a #FE630C to #FF4809 rounded tile)"
+  ],
+  "notes": [
+    "Colored: the symbol path of the official gemini.com header logo unchanged, in its black, placed on the 64 grid (the lettering is left out); it replaces the old cyan #26DDF9 mark, which gemini.com no longer uses",
+    "brandColor: the symbol is black, so the manifest uses the orange #FF4809 of the official app icon on gemini.com",
+    "Mono: the same path in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "gemini.svg",
-      "fill": "#26DDF9"
+      "fill": "#000"
     },
     "Mono": {
       "file": "gemini.mono.svg",
@@ -16,5 +22,6 @@
   },
   "slugs": [
     "gemini"
-  ]
+  ],
+  "brandColor": "#ff4809"
 }

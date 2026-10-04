@@ -85,12 +85,6 @@ const EXEMPTIONS: Readonly<Record<UnitKey, Exemption>> = {
     searched: ['https://docs.frax.com', 'https://frax.com'],
     note: "A static misreading: the official FraxIcon's white disc is only a keyline ring under the black disc, so on light backgrounds the icon reads as the black disc with the white crosshair, but counting paints treats the white disc as a light container and the black disc and white crosshair as half light. FraxMono with a dark color is the same black disc.",
   },
-  'exchange/Htx': {
-    tone: 'light',
-    kind: 'no-official-alternative',
-    searched: ['https://www.htx.com'],
-    note: 'The light/blue flame comes from @web3icons/react (HT token); no official HTX brand kit or dark-on-light flame was found. Use HtxMono with a dark color.',
-  },
 };
 
 const LEGIBLE_SUFFIX = /^(?:Circle|Square|Inverted)/;

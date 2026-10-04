@@ -1,12 +1,19 @@
 {
   "name": "Bitstamp",
   "source": [
-    "https://bitstamp.net (official brand)"
+    "https://blog.bitstamp.net (official Bitstamp by Robinhood site: the B of the app badge, inline SVG .app-qr__icon, painted with --brand-color-dark = --dark-forest-green-900 #003B2F; the header wordmark uses the same #003B2F)",
+    "https://assets.bitstamp.net/static/webapp/images/favicons/apple-touch-icon.98ff879260d2ab4dc269f402e7f6166c74c73200.png (app icon: the white B on a #003B2F tile)"
+  ],
+  "notes": [
+    "Colored: the official B path unchanged, #003B2F, placed on the 64 grid; it replaces the 2020 mark (dark B over a #149F49 bar), which the current identity no longer uses",
+    "Circle: no official circular asset exists; the same B in white, scale 0.7 centred (translate 4 4), on a #003B2F disc, following the app icon",
+    "Mono: the B in currentColor; CircleMono knocks the B out of the disc"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "bitstamp.svg"
+      "file": "bitstamp.svg",
+      "fill": "#003B2F"
     },
     "Circle": {
       "file": "bitstamp.circle.svg"

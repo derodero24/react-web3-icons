@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://bybit.com (official brand)
+// Source: https://www.bybit.com (official site; stylesheet palette --by-orange-normal #f7a600, --by-color-black #121214)
+// Checked 2026-10-04: no official vector of the BYBIT wordmark was reachable (bybit.com renders its header client-side behind bot protection and has no public press kit), so the artwork, which predates the source policy, is unchanged
+// The #F7A600 bar matches the site palette; the #15192A lettering and the letter geometry are unverified (the palette black is #121214)
 /** Extra props of the Bybit icons (on top of `IconProps`). */
 export interface BybitProps {
   /** Fill of the bar of the logo. */

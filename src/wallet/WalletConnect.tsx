@@ -1,20 +1,24 @@
 import { createIcon } from '../utils';
 
-// Source: https://github.com/WalletConnect/walletconnect-assets/blob/master/Logo/Blue%20(Default)/Logo.svg (official WalletConnect assets repository)
-// Source: https://github.com/WalletConnect/walletconnect-assets/blob/master/Icon/Blue%20(Default)/Icon.svg
-// Original viewBox 45.52 99.74 387.64 237.59 → scale 0.119, translate(3.6, 6.1)
-// Checked 2026-10-03: the default and Circle match the official Logo.svg and Icon.svg (#3396FF); walletconnect.network's raster icon.png uses #0888F0, but no official vector in that blue was found, so the artwork is unchanged
+// Source: https://profiles-assets.walletconnect.network/wc-icon.svg (current WalletConnect brandmark, served by https://walletguide.walletconnect.network/)
+// Source: https://assets.walletconnect.com/images/wct.svg (official WCT token icon served by https://app.walletconnect.com/: the brandmark in white on a #0988F0 disc)
+// Checked 2026-10-04: walletconnect.network uses the current sharp-cornered brandmark in #0888F0 (raster icon.png). The older rounded Logo.svg / Icon.svg in #3396FF from the walletconnect-assets repository (last updated 2024-02) are replaced; the Reown media kit (https://reown.com, Media Kit) has no WalletConnect files
+// Colored: the two paths of wc-icon.svg unchanged, filled #0988F0, the blue of the official wct.svg, placed on the 64 grid
+// Circle: wct.svg unchanged (scale 4 from its 0.5..16.5 box onto the 64 grid)
+// Square: no official square asset exists; the Circle artwork (same mark, same scale) on a #0988F0 rounded square (rx 20%)
+// Mono: the brandmark in currentColor; CircleMono and SquareMono knock the brandmark out of the container
 /** Wallet Connect Circle wallet icon (colored). */
 export const WalletConnectCircle = /* @__PURE__ */ createIcon(
   'WalletConnectCircle',
   '0 0 64 64',
   () => (
-    <>
-      <circle cx="32" cy="32" r="32" fill="#3396FF" />
+    <g transform="matrix(4 0 0 4 -2 -2)">
+      <circle cx="8.5" cy="8.5" r="8" fill="#0988F0" />
       <g fill="#fff">
-        <path d="M18.46 23.5c7.52-7.37 19.72-7.37 27.24 0l.9.88c.38.37.38.97 0 1.33l-3.09 3.04a.5.5 0 0 1-.68 0l-1.25-1.22c-5.24-5.14-13.75-5.14-19 0l-1.34 1.3a.5.5 0 0 1-.68 0l-3.1-3.03a.93.93 0 0 1 0-1.33zm33.65 6.26 2.75 2.7c.38.37.38.97 0 1.34L42.43 45.97a1 1 0 0 1-1.36 0l-8.82-8.64a.24.24 0 0 0-.34 0l-8.82 8.64a1 1 0 0 1-1.36 0L9.3 33.8a.93.93 0 0 1 0-1.34l2.75-2.7a1 1 0 0 1 1.37 0l8.82 8.64q.17.15.34 0l8.82-8.64a1 1 0 0 1 1.36 0l8.82 8.64c.1.1.25.1.34 0l8.83-8.64a1 1 0 0 1 1.36 0" />
+        <path d="m11.32 7.54 1.06-1.07c-2.4-2.41-5.4-2.41-7.81 0l1.07 1.07c1.83-1.84 3.85-1.84 5.68 0" />
+        <path d="M10.96 10.02 8.48 7.53l-2.5 2.49L3.5 7.53 2.44 8.6l3.55 3.55 2.49-2.49 2.48 2.5 3.55-3.56-1.06-1.07z" />
       </g>
-    </>
+    </g>
   ),
   {},
 );
@@ -24,17 +28,18 @@ export const WalletConnectCircleMono = /* @__PURE__ */ createIcon(
   'WalletConnectCircleMono',
   '0 0 64 64',
   (_props, _id) => (
-    <>
-      <circle cx="32" cy="32" r="32" mask={`url(#${_id}-wccm-a)`} />
+    <g transform="matrix(4 0 0 4 -2 -2)">
+      <circle cx="8.5" cy="8.5" r="8" mask={`url(#${_id}-wccm-a)`} />
       <defs>
         <mask id={`${_id}-wccm-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
+          <rect width="16" height="16" x=".5" y=".5" fill="#fff" />
           <g fill="#000">
-            <path d="M18.46 23.5c7.52-7.37 19.72-7.37 27.24 0l.9.88c.38.37.38.97 0 1.33l-3.09 3.04a.5.5 0 0 1-.68 0l-1.25-1.22c-5.24-5.14-13.75-5.14-19 0l-1.34 1.3a.5.5 0 0 1-.68 0l-3.1-3.03a.93.93 0 0 1 0-1.33zm33.65 6.26 2.75 2.7c.38.37.38.97 0 1.34L42.43 45.97a1 1 0 0 1-1.36 0l-8.82-8.64a.24.24 0 0 0-.34 0l-8.82 8.64a1 1 0 0 1-1.36 0L9.3 33.8a.93.93 0 0 1 0-1.34l2.75-2.7a1 1 0 0 1 1.37 0l8.82 8.64q.17.15.34 0l8.82-8.64a1 1 0 0 1 1.36 0l8.82 8.64c.1.1.25.1.34 0l8.83-8.64a1 1 0 0 1 1.36 0" />
+            <path d="m11.32 7.54 1.06-1.07c-2.4-2.41-5.4-2.41-7.81 0l1.07 1.07c1.83-1.84 3.85-1.84 5.68 0" />
+            <path d="M10.96 10.02 8.48 7.53l-2.5 2.49L3.5 7.53 2.44 8.6l3.55 3.55 2.49-2.49 2.48 2.5 3.55-3.56-1.06-1.07z" />
           </g>
         </mask>
       </defs>
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );
@@ -44,12 +49,13 @@ export const WalletConnectSquare = /* @__PURE__ */ createIcon(
   'WalletConnectSquare',
   '0 0 64 64',
   () => (
-    <>
-      <rect width="64" height="64" fill="#3396FF" rx="12.8" />
+    <g transform="matrix(4 0 0 4 -2 -2)">
+      <rect width="16" height="16" x=".5" y=".5" fill="#0988F0" rx="3.2" />
       <g fill="#fff">
-        <path d="M18.46 23.5c7.52-7.37 19.72-7.37 27.24 0l.9.88c.38.37.38.97 0 1.33l-3.09 3.04a.5.5 0 0 1-.68 0l-1.25-1.22c-5.24-5.14-13.75-5.14-19 0l-1.34 1.3a.5.5 0 0 1-.68 0l-3.1-3.03a.93.93 0 0 1 0-1.33zm33.65 6.26 2.75 2.7c.38.37.38.97 0 1.34L42.43 45.97a1 1 0 0 1-1.36 0l-8.82-8.64a.24.24 0 0 0-.34 0l-8.82 8.64a1 1 0 0 1-1.36 0L9.3 33.8a.93.93 0 0 1 0-1.34l2.75-2.7a1 1 0 0 1 1.37 0l8.82 8.64q.17.15.34 0l8.82-8.64a1 1 0 0 1 1.36 0l8.82 8.64c.1.1.25.1.34 0l8.83-8.64a1 1 0 0 1 1.36 0" />
+        <path d="m11.32 7.54 1.06-1.07c-2.4-2.41-5.4-2.41-7.81 0l1.07 1.07c1.83-1.84 3.85-1.84 5.68 0" />
+        <path d="M10.96 10.02 8.48 7.53l-2.5 2.49L3.5 7.53 2.44 8.6l3.55 3.55 2.49-2.49 2.48 2.5 3.55-3.56-1.06-1.07z" />
       </g>
-    </>
+    </g>
   ),
   {},
 );
@@ -59,17 +65,25 @@ export const WalletConnectSquareMono = /* @__PURE__ */ createIcon(
   'WalletConnectSquareMono',
   '0 0 64 64',
   (_props, _id) => (
-    <>
-      <rect width="64" height="64" mask={`url(#${_id}-wcsqm-a)`} rx="12.8" />
+    <g transform="matrix(4 0 0 4 -2 -2)">
+      <rect
+        width="16"
+        height="16"
+        x=".5"
+        y=".5"
+        mask={`url(#${_id}-wcsqm-a)`}
+        rx="3.2"
+      />
       <defs>
         <mask id={`${_id}-wcsqm-a`}>
-          <rect width="100%" height="100%" fill="#fff" />
+          <rect width="16" height="16" x=".5" y=".5" fill="#fff" />
           <g fill="#000">
-            <path d="M18.46 23.5c7.52-7.37 19.72-7.37 27.24 0l.9.88c.38.37.38.97 0 1.33l-3.09 3.04a.5.5 0 0 1-.68 0l-1.25-1.22c-5.24-5.14-13.75-5.14-19 0l-1.34 1.3a.5.5 0 0 1-.68 0l-3.1-3.03a.93.93 0 0 1 0-1.33zm33.65 6.26 2.75 2.7c.38.37.38.97 0 1.34L42.43 45.97a1 1 0 0 1-1.36 0l-8.82-8.64a.24.24 0 0 0-.34 0l-8.82 8.64a1 1 0 0 1-1.36 0L9.3 33.8a.93.93 0 0 1 0-1.34l2.75-2.7a1 1 0 0 1 1.37 0l8.82 8.64q.17.15.34 0l8.82-8.64a1 1 0 0 1 1.36 0l8.82 8.64c.1.1.25.1.34 0l8.83-8.64a1 1 0 0 1 1.36 0" />
+            <path d="m11.32 7.54 1.06-1.07c-2.4-2.41-5.4-2.41-7.81 0l1.07 1.07c1.83-1.84 3.85-1.84 5.68 0" />
+            <path d="M10.96 10.02 8.48 7.53l-2.5 2.49L3.5 7.53 2.44 8.6l3.55 3.55 2.49-2.49 2.48 2.5 3.55-3.56-1.06-1.07z" />
           </g>
         </mask>
       </defs>
-    </>
+    </g>
   ),
   { fill: 'currentColor', ids: true },
 );
@@ -79,9 +93,12 @@ export const WalletConnect = /* @__PURE__ */ createIcon(
   'WalletConnect',
   '0 0 64 64',
   () => (
-    <path d="M15.46 21.55c9.14-8.95 23.94-8.95 33.08 0l1.1 1.07c.45.45.45 1.17 0 1.62l-3.77 3.68a.6.6 0 0 1-.82 0l-1.51-1.48c-6.38-6.24-16.7-6.24-23.08 0l-1.62 1.59a.6.6 0 0 1-.82 0l-3.76-3.68a1.13 1.13 0 0 1 0-1.62zm40.85 7.6 3.35 3.28c.45.45.45 1.18 0 1.62l-15.1 14.78a1.2 1.2 0 0 1-1.65 0l-10.7-10.49a.3.3 0 0 0-.42 0L21.1 48.83a1.2 1.2 0 0 1-1.66 0L4.34 34.05a1.13 1.13 0 0 1 0-1.62l3.35-3.27a1.2 1.2 0 0 1 1.65 0l10.71 10.48c.11.11.3.11.41 0l10.71-10.48a1.2 1.2 0 0 1 1.66 0l10.7 10.48c.12.11.3.11.42 0l10.7-10.48a1.2 1.2 0 0 1 1.66 0" />
+    <>
+      <path d="m45.18 28.03 4.95-4.86c-11.19-11-25.07-11-36.25 0l4.95 4.86c8.5-8.36 17.85-8.36 26.35 0" />
+      <path d="M43.53 39.37 32 28.03 20.47 39.37 8.94 28.03 4 32.9l16.47 16.2L32 37.73 43.53 49.1 60 32.89l-4.95-4.86z" />
+    </>
   ),
-  { fill: '#3396FF' },
+  { fill: '#0988F0' },
 );
 
 /** Wallet Connect wallet icon (monochrome). */
@@ -89,7 +106,10 @@ export const WalletConnectMono = /* @__PURE__ */ createIcon(
   'WalletConnectMono',
   '0 0 64 64',
   () => (
-    <path d="M15.46 21.55c9.14-8.95 23.94-8.95 33.08 0l1.1 1.07c.45.45.45 1.17 0 1.62l-3.77 3.68a.6.6 0 0 1-.82 0l-1.51-1.48c-6.38-6.24-16.7-6.24-23.08 0l-1.62 1.59a.6.6 0 0 1-.82 0l-3.76-3.68a1.13 1.13 0 0 1 0-1.62zm40.85 7.6 3.35 3.28c.45.45.45 1.18 0 1.62l-15.1 14.78a1.2 1.2 0 0 1-1.65 0l-10.7-10.49a.3.3 0 0 0-.42 0L21.1 48.83a1.2 1.2 0 0 1-1.66 0L4.34 34.05a1.13 1.13 0 0 1 0-1.62l3.35-3.27a1.2 1.2 0 0 1 1.65 0l10.71 10.48c.11.11.3.11.41 0l10.71-10.48a1.2 1.2 0 0 1 1.66 0l10.7 10.48c.12.11.3.11.42 0l10.7-10.48a1.2 1.2 0 0 1 1.66 0" />
+    <>
+      <path d="m45.18 28.03 4.95-4.86c-11.19-11-25.07-11-36.25 0l4.95 4.86c8.5-8.36 17.85-8.36 26.35 0" />
+      <path d="M43.53 39.37 32 28.03 20.47 39.37 8.94 28.03 4 32.9l16.47 16.2L32 37.73 43.53 49.1 60 32.89l-4.95-4.86z" />
+    </>
   ),
   { fill: 'currentColor' },
 );
