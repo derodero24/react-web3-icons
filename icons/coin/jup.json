@@ -12,6 +12,14 @@
         "as": "Jup"
       },
       {
+        "of": "JupiterCircle",
+        "as": "JupCircle"
+      },
+      {
+        "of": "JupiterCircleMono",
+        "as": "JupCircleMono"
+      },
+      {
         "of": "JupiterMono",
         "as": "JupMono"
       }

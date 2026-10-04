@@ -152,7 +152,20 @@ function expectedVariants(unit: SourceUnit | undefined): string[] {
         a.target.slice(meta.name.length) in meta.variants,
     )
     .map(a => a.name.slice(meta.name.length));
-  return [...aliasSuffixes, ...Object.keys(meta.variants)];
+  const own = [...aliasSuffixes, ...Object.keys(meta.variants)];
+  // Variants the unit re-exports from another unit (Bnb → BnbCircle).
+  const reexported = (meta.reexport?.exports ?? [])
+    .map(e => e.as)
+    .filter(name => name.startsWith(meta.name))
+    .map(name => name.slice(meta.name.length));
+  if (reexported.length === 0) {
+    return own;
+  }
+  const rank = (suffix: string): number =>
+    suffix === '' ? 0 : suffix === 'Mono' ? 1 : 2;
+  return [...new Set([...own, ...reexported])].sort(
+    (a, b) => rank(a) - rank(b),
+  );
 }
 
 function artworkOf(unit: SourceUnit | undefined): ArtworkUnitMeta | undefined {

@@ -12,6 +12,14 @@
         "as": "Kava"
       },
       {
+        "of": "KavaCircle",
+        "as": "KavaCircle"
+      },
+      {
+        "of": "KavaCircleMono",
+        "as": "KavaCircleMono"
+      },
+      {
         "of": "KavaMono",
         "as": "KavaMono"
       }

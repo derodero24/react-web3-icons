@@ -2,10 +2,13 @@
   "name": "Jupiter",
   "source": [
     "https://jup.ag/favicon.svg",
-    "https://developers.jup.ag (official brand kit: JupiterLogo/logo-dark.svg)"
+    "https://developers.jup.ag (official brand kit: JupiterLogo/logo-dark.svg)",
+    "https://github.com/jup-ag/docs/blob/main/static/files/brand-kit/jupiter-brand-kit.zip (official brand kit: JupiterTokens/Token-512x512.svg, the JUP token)"
   ],
   "notes": [
-    "Paths sourced from the official jup.ag favicon.svg (six arc segments, #00BEF0 to #C7F284); matches the current file (checked 2026-10-03); the developers.jup.ag brand kit's JupiterLogo/logo-dark.svg has the same six arcs and #00BEF0 to #C7F284 gradients"
+    "Paths sourced from the official jup.ag favicon.svg (six arc segments, #00BEF0 to #C7F284); matches the current file (checked 2026-10-03); the developers.jup.ag brand kit's JupiterLogo/logo-dark.svg has the same six arcs and #00BEF0 to #C7F284 gradients",
+    "Circle: the official JUP token (JupiterTokens/Token-512x512.svg in the brand kit: the six arcs in their #C7F284 to #00BEF0 gradients on a #0F1524 disc), paths and gradients unchanged and full-bleed on the 64 grid; its full-viewBox clip-path is a no-op and is left out",
+    "CircleMono: the token's disc in currentColor with the six arcs knocked out (fill-rule=evenodd)"
   ],
   "kind": "icon",
   "variants": {
@@ -15,6 +18,14 @@
     },
     "Mono": {
       "file": "jupiter.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "jupiter.circle.svg",
+      "fill": "#0F1524"
+    },
+    "CircleMono": {
+      "file": "jupiter.circle-mono.svg",
       "fill": "currentColor"
     }
   },

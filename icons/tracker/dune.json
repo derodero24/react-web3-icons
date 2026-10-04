@@ -1,0 +1,33 @@
+{
+  "$schema": "../schema.json",
+  "name": "Dune",
+  "kind": "icon",
+  "source": [
+    "https://dune.com/brand (official Dune Brand Hub, updated Dec 2025: Icon download, Dune_Icon_Square.zip)",
+    "https://drive.google.com/uc?export=download&id=1WL6VkGHYKuzkiLOQOPDkZg6GDewBdTvz (Icon zip linked from dune.com/brand)"
+  ],
+  "notes": [
+    "Default: the two mark paths of the kit's Dune_Icon_Square/Dune_Icon_1x1_Light.svg (#0F0F15 Off-Black) without its white square; the mark also stands alone in the kit's Dune_Logo_Rectangle logos.",
+    "Square: Dune_Icon_Square/Dune_Icon_1x1_Dark.svg as-is (white mark on a full-bleed #0F0F15 square).",
+    "Mono: the Default paths in currentColor. SquareMono: the Square's square with the Dark icon's two mark paths knocked out (evenodd).",
+    "brandColor: the mark is Off-Black, so the manifest uses the palette's Dune Orange #F4603E (dune.com/brand colour palette)."
+  ],
+  "variants": {
+    "": {
+      "file": "dune.svg",
+      "fill": "#0F0F15"
+    },
+    "Mono": {
+      "file": "dune.mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "dune.square.svg"
+    },
+    "SquareMono": {
+      "file": "dune.square-mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "brandColor": "#f4603e"
+}

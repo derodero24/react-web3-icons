@@ -1,0 +1,23 @@
+{
+  "$schema": "../schema.json",
+  "name": "Walrus",
+  "kind": "icon",
+  "source": [
+    "https://github.com/MystenLabs/walrus/blob/28728a5c6a326c860b108441ee094d65b867cb4d/docs/site/static/img/logo.svg (official Walrus docs logo, Mysten Labs repo)",
+    "https://www.walrus.xyz (official site: the same W opens the header wordmark)"
+  ],
+  "notes": [
+    "Default: the single path of MystenLabs/walrus docs/site/static/img/logo.svg (the Walrus W symbol, no fill, i.e. black). walrus.xyz serves the walrus wordmark in currentColor and has no brand kit page; its favicons are raster only. The docs favicon (docs/site/static/img/favicon.png, raster) shows the same W, white on black.",
+    "Mono: the same path in currentColor."
+  ],
+  "variants": {
+    "": {
+      "file": "walrus.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "walrus.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}
