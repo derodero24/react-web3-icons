@@ -1,0 +1,24 @@
+{
+  "$schema": "../schema.json",
+  "name": "Nansen",
+  "kind": "icon",
+  "source": [
+    "https://www.nansen.ai/brand (official Nansen brand page: Logo Icon SVG downloads)",
+    "https://drive.google.com/file/d/1Ho7WG-9alXgRiIbnCEf1tLPpIyPmhSqd/view (Nansen_Logo_Icon_Green.svg)",
+    "https://drive.google.com/file/d/1ZFtWBv_Bek2qEJg7glaGUf9DA3iiLSGO/view (Nansen_Logo_Icon_White.svg)"
+  ],
+  "notes": [
+    "Default: the path of the kit's Nansen_Logo_Icon_Green.svg (#00FFA7), its .cls-1 style written as the root fill.",
+    "Mono: the kit's one-colour Nansen_Logo_Icon_White.svg has the same path; it is used in currentColor. (Nansen_Logo_Icon_Black.svg is an older, slightly different drawing and is not used.)"
+  ],
+  "variants": {
+    "": {
+      "file": "nansen.svg",
+      "fill": "#00FFA7"
+    },
+    "Mono": {
+      "file": "nansen.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}
