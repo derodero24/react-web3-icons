@@ -1,7 +1,8 @@
 {
   "name": "Basescan",
   "source": [
-    "https://basescan.org (official brand)"
+    "https://basescan.org/assets/base/images/svg/logos/logo-light.svg",
+    "https://basescan.org/assets/base/images/svg/logos/logo-dark.svg (BasescanInverted)"
   ],
   "kind": "icon",
   "variants": {

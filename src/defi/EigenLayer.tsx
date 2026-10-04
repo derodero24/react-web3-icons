@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://app.eigenlayer.xyz/logo/markLightA.svg (now 403; path data preserved from original retrieval)
+// Source: https://www.eigencloud.xyz (site header logo: the inline <svg aria-label="Eigen Cloud">, whose three symbol paths are this mark)
+// Source: https://app.eigenlayer.xyz/logo/markLightA.svg (original source, now 403)
+// The mark is unchanged: it is the symbol of the current EigenCloud logo on eigencloud.xyz (eigenlayer.xyz redirects there), which the site draws in white; #1A0C6D is the colour of the original markLightA.svg
 /** Eigen Layer DeFi icon (colored). */
 export const EigenLayer = /* @__PURE__ */ createIcon(
   'EigenLayer',

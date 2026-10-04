@@ -1,13 +1,18 @@
 {
   "name": "Synthetix",
+  "source": [
+    "https://synthetix.io/brand/brand-kit/icon/snx-icon-primary.svg",
+    "https://synthetix.io/brand/brand-kit/icon/snx-icon-black.svg"
+  ],
   "notes": [
-    "Paths sourced from @web3icons/react (MIT)"
+    "Colored: the official brand-kit icon snx-icon-primary.svg (#00D1FF), without its no-op clip path",
+    "Mono: the official one-colour snx-icon-black.svg (same path) in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "synthetix.svg",
-      "fill": "#1B1230"
+      "fill": "#00D1FF"
     },
     "Mono": {
       "file": "synthetix.mono.svg",

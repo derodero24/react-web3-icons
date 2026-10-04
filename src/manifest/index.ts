@@ -1032,7 +1032,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'defi',
     slug: 'babylon',
     variants: ['', 'Mono'],
-    brandColor: '#ff7c2b',
+    brandColor: '#ce6533',
   },
   { name: 'BabylonMono', category: 'defi' },
   {
@@ -1040,7 +1040,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'defi',
     slug: 'balancer',
     variants: ['', 'Mono'],
-    brandColor: '#68acff',
+    brandColor: '#000000',
   },
   { name: 'BalancerMono', category: 'defi' },
   {
@@ -1057,7 +1057,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'defi',
     slug: 'convex',
     variants: ['', 'Mono'],
-    brandColor: '#ff5c29',
+    brandColor: '#1682fe',
   },
   { name: 'ConvexMono', category: 'defi' },
   {
@@ -1074,7 +1074,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'defi',
     slug: 'ethena',
     variants: ['', 'Mono'],
-    brandColor: '#111111',
+    brandColor: '#040404',
   },
   { name: 'EthenaMono', category: 'defi' },
   {
@@ -1163,7 +1163,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'defi',
     slug: 'rocketpool',
     variants: ['', 'Mono'],
-    brandColor: '#fb9533',
+    brandColor: '#f2681d',
   },
   { name: 'RocketPoolMono', category: 'defi' },
   {
@@ -1188,7 +1188,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'synthetix',
     variants: ['', 'Mono'],
     aliases: ['snx'],
-    brandColor: '#1b1230',
+    brandColor: '#00d1ff',
   },
   { name: 'SynthetixMono', category: 'defi' },
   {
@@ -1220,14 +1220,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Chainlink',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#2a5ada',
+    brandColor: '#0847f7',
   },
   { name: 'ChainlinkMono', category: 'devtool' },
   {
     name: 'CollabLand',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#1f0061',
+    brandColor: '#1a1a40',
   },
   { name: 'CollabLandMono', category: 'devtool' },
   {
@@ -1264,7 +1264,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Moralis',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#33ffcc',
+    brandColor: '#3a7aff',
   },
   { name: 'MoralisMono', category: 'devtool' },
   {
@@ -1278,7 +1278,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Privy',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#5b4fff',
+    brandColor: '#010110',
   },
   { name: 'PrivyMono', category: 'devtool' },
   {
@@ -1321,7 +1321,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Thirdweb',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#f213a4',
+    brandColor: '#ff00a8',
   },
   { name: 'ThirdwebMono', category: 'devtool' },
   {
@@ -1693,7 +1693,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Blockscout',
     category: 'explorer',
     variants: ['', 'Mono'],
-    brandColor: '#1258f6',
+    brandColor: '#5353d3',
   },
   { name: 'BlockscoutMono', category: 'explorer' },
   {
@@ -1709,7 +1709,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Celoscan',
     category: 'explorer',
     variants: ['', 'Square', 'Mono', 'SquareMono'],
-    brandColor: '#35d07f',
+    brandColor: '#fcff52',
   },
   { name: 'CeloscanMono', category: 'explorer' },
   { name: 'CeloscanSquare', category: 'explorer' },
@@ -1760,7 +1760,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'OpenSea',
     category: 'marketplace',
     variants: ['', 'Alt', 'Mono', 'Symbol', 'SymbolMono'],
-    brandColor: '#2081e2',
+    brandColor: '#0086ff',
   },
   { name: 'OpenSeaAlt', category: 'marketplace' },
   { name: 'OpenSeaMono', category: 'marketplace' },
@@ -1920,14 +1920,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Pinata',
     category: 'storage',
     variants: ['', 'Mono'],
-    brandColor: '#8000db',
+    brandColor: '#ce3f8f',
   },
   { name: 'PinataMono', category: 'storage' },
   {
     name: 'CoinGecko',
     category: 'tracker',
     variants: ['', 'Mono'],
-    brandColor: '#8bc53f',
+    brandColor: '#4bcc00',
   },
   { name: 'CoinGeckoMono', category: 'tracker' },
   {

@@ -201,10 +201,20 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'The white of the official symbol (the M and the band above the grey base) is open in the mono and reaches the disc edge, as in the transparent monero-symbol-1280.png, so the footprint flood fill enters it (refMiss 0.33%).',
   },
-  'defi/RocketPool': {
+  'defi/Convex': {
     kind: 'false-positive',
     reason:
-      'The gradient disc and rim inflate the colour-boundary count; the rocket knockout reads at every size.',
+      'The mono is the C alone, as in the official one-colour lockup convex-white.svg; the colored accent pixels that fill the steps are left out, which lowers the footprint overlap.',
+  },
+  'defi/Ethena': {
+    kind: 'false-positive',
+    reason:
+      'The gradient disc and the fading radial rim inflate the colour-boundary count; the lettermark knockout reads at every size.',
+  },
+  'defi/Frax': {
+    kind: 'false-positive',
+    reason:
+      "The official FraxIcon draws its black disc on a white keyline disc; in one colour the keyline is paper, so the mono is the black disc alone (refMiss 0.35%) and the footprint overlap only counts the keyline's extra rim.",
   },
   'devtool/Drizzle': {
     kind: 'false-positive',
@@ -234,6 +244,11 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'The white strokes cut through the ring as in the colored mark, so the footprint flood fill enters the strokes and the ring gap.',
   },
+  'explorer/Celoscan': {
+    kind: 'false-positive',
+    reason:
+      'Container polarity: the yellow tile becomes ink with the C knocked out, so the threshold reference is inverted (the same artwork as CeloscanSquare).',
+  },
   'explorer/CeloscanSquare': {
     kind: 'false-positive',
     reason:
@@ -248,6 +263,11 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     kind: 'false-positive',
     reason:
       'Knockout seams keep the prism faces apart and open the enclosed play triangle to the background, so the footprint flood fill enters it.',
+  },
+  'tracker/CoinGecko': {
+    kind: 'false-positive',
+    reason:
+      "The mono is CoinGecko's official one-colour symbol (CG-Symbol-2.svg): a ring with the gecko drawn apart from it, which a luminance threshold of the yellow coin and green gecko does not reproduce.",
   },
   'tracker/DefiLlama': {
     kind: 'false-positive',
