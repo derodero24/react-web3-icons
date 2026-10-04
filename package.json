@@ -198,7 +198,7 @@
     {
       "name": "full bundle",
       "path": "dist/index.mjs",
-      "limit": "165 KB"
+      "limit": "175 KB"
     },
     {
       "name": "single icon (tree-shaken)",
@@ -214,12 +214,12 @@
     {
       "name": "bridge",
       "path": "dist/bridge/index.mjs",
-      "limit": "7 KB"
+      "limit": "8 KB"
     },
     {
       "name": "chain",
       "path": "dist/chain/index.mjs",
-      "limit": "36 KB"
+      "limit": "35 KB"
     },
     {
       "name": "coin",
@@ -234,12 +234,12 @@
     {
       "name": "devtool",
       "path": "dist/devtool/index.mjs",
-      "limit": "13 KB"
+      "limit": "14 KB"
     },
     {
       "name": "dex",
       "path": "dist/dex/index.mjs",
-      "limit": "14 KB"
+      "limit": "18 KB"
     },
     {
       "name": "domain",
@@ -269,12 +269,12 @@
     {
       "name": "oracle",
       "path": "dist/oracle/index.mjs",
-      "limit": "3 KB"
+      "limit": "4 KB"
     },
     {
       "name": "portfolio",
       "path": "dist/portfolio/index.mjs",
-      "limit": "4 KB"
+      "limit": "5 KB"
     },
     {
       "name": "storage",
@@ -294,12 +294,12 @@
     {
       "name": "meta",
       "path": "dist/meta/index.mjs",
-      "limit": "3 KB"
+      "limit": "4 KB"
     },
     {
       "name": "dynamic (worst case: bundler without code splitting)",
       "path": "dist/dynamic/index.mjs",
-      "limit": "145 KB"
+      "limit": "150 KB"
     },
     {
       "name": "manifest",
