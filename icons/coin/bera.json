@@ -12,6 +12,14 @@
         "as": "Bera"
       },
       {
+        "of": "BerachainCircle",
+        "as": "BeraCircle"
+      },
+      {
+        "of": "BerachainCircleMono",
+        "as": "BeraCircleMono"
+      },
+      {
         "of": "BerachainMono",
         "as": "BeraMono"
       }

@@ -26,6 +26,8 @@ export const dexImports: Record<
   Hyperliquid: () => import('../../dex/Hyperliquid'),
   HyperliquidMono: () => import('../../dex/Hyperliquid'),
   Jupiter: () => import('../../dex/Jupiter'),
+  JupiterCircle: () => import('../../dex/Jupiter'),
+  JupiterCircleMono: () => import('../../dex/Jupiter'),
   JupiterMono: () => import('../../dex/Jupiter'),
   Odos: () => import('../../dex/Odos'),
   OdosMono: () => import('../../dex/Odos'),
@@ -51,11 +53,22 @@ export const dexImports: Record<
  * Variant suffixes `<DexIcon variant>` accepts besides `'colored'`
  * and `'mono'`: every one that some DEX icon ships.
  */
-export const dexVariants: readonly string[] = ['Square', 'SquareMono'];
+export const dexVariants: readonly string[] = [
+  'Circle',
+  'CircleMono',
+  'Square',
+  'SquareMono',
+];
 
 /**
  * `variant` of `<DexIcon>`: `'colored'` (the default) and `'mono'`,
  * plus every variant suffix some DEX icon ships. An icon without
  * the requested variant renders `fallback`.
  */
-export type DexVariant = 'colored' | 'mono' | 'Square' | 'SquareMono';
+export type DexVariant =
+  | 'colored'
+  | 'mono'
+  | 'Circle'
+  | 'CircleMono'
+  | 'Square'
+  | 'SquareMono';

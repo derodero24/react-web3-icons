@@ -15,6 +15,14 @@
         "as": "Sonic"
       },
       {
+        "of": "SonicCircle",
+        "as": "SonicCircle"
+      },
+      {
+        "of": "SonicCircleMono",
+        "as": "SonicCircleMono"
+      },
+      {
         "of": "SonicMono",
         "as": "SonicMono"
       }

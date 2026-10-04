@@ -1,14 +1,17 @@
 import { createIcon } from '../utils';
 
-// Paths sourced from @web3icons/react (MIT) — ExchangeHyperliquid SVG
+// Source: https://hyperliquid.gitbook.io/hyperliquid-docs/brand-kit (official brand kit: Hyperliquid SVG format.zip, Hyperliquid_Blob_Green.svg and Hyperliquid_Blob_Dark.svg)
+// Source: https://app.hyperliquid.xyz/coins/HYPE.svg
+// Default: the brand kit's Hyperliquid_Blob_Green.svg unchanged (one #97FCE4 path), placed on the 64 grid. The app's HYPE token icon (app.hyperliquid.xyz/coins/HYPE.svg) is the same blob in the same #97FCE4 (shapes overlap 99.4%). It replaces a third-party redraw from @web3icons/react in #50D2C1, slightly wider than the official blob
+// Mono: the same path in currentColor (the kit's Hyperliquid_Blob_Dark.svg has the same geometry)
 /** Hyperliquid DEX icon (colored). */
 export const Hyperliquid = /* @__PURE__ */ createIcon(
   'Hyperliquid',
   '0 0 64 64',
   () => (
-    <path d="M60 31.8a29 29 0 0 1-2.8 12.79c-2.7 5.8-9.17 10.53-15.08 5.49-4.82-4.11-5.7-12.46-12.92-13.68-9.55-1.12-9.78 9.62-16.01 10.83-6.96 1.37-9.26-9.97-9.16-15.12s1.51-12.38 7.56-12.38c6.95 0 7.41 10.2 16.24 9.65 8.73-.58 8.89-11.2 14.6-15.75 4.93-3.93 10.72-1.04 13.62 3.69 2.69 4.37 3.87 9.5 3.93 14.48z" />
+    <path d="M59.99 31.73c0 18.42-11.31 24.34-17.3 19.1-4.9-4.28-6.35-13.36-13.72-14.3-9.34-1.11-10.2 11.31-16.36 11.31-7.2 0-8.57-10.37-8.57-15.77 0-5.48 1.54-12.93 7.62-12.93 7.12 0 7.54 10.7 16.46 10.1 8.82-.6 9-11.73 14.82-16.44 5.05-4.2 17.05.25 17.05 18.93" />
   ),
-  { fill: '#50D2C1' },
+  { fill: '#97FCE4' },
 );
 
 /** Hyperliquid DEX icon (monochrome). */
@@ -16,7 +19,7 @@ export const HyperliquidMono = /* @__PURE__ */ createIcon(
   'HyperliquidMono',
   '0 0 64 64',
   () => (
-    <path d="M60 31.8a29 29 0 0 1-2.8 12.79c-2.7 5.8-9.17 10.53-15.08 5.49-4.82-4.11-5.7-12.46-12.92-13.68-9.55-1.12-9.78 9.62-16.01 10.83-6.96 1.37-9.26-9.97-9.16-15.12s1.51-12.38 7.56-12.38c6.95 0 7.41 10.2 16.24 9.65 8.73-.58 8.89-11.2 14.6-15.75 4.93-3.93 10.72-1.04 13.62 3.69 2.69 4.37 3.87 9.5 3.93 14.48z" />
+    <path d="M59.99 31.73c0 18.42-11.31 24.34-17.3 19.1-4.9-4.28-6.35-13.36-13.72-14.3-9.34-1.11-10.2 11.31-16.36 11.31-7.2 0-8.57-10.37-8.57-15.77 0-5.48 1.54-12.93 7.62-12.93 7.12 0 7.54 10.7 16.46 10.1 8.82-.6 9-11.73 14.82-16.44 5.05-4.2 17.05.25 17.05 18.93" />
   ),
   { fill: 'currentColor' },
 );

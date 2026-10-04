@@ -1,13 +1,18 @@
 {
   "name": "Hyperliquid",
+  "source": [
+    "https://hyperliquid.gitbook.io/hyperliquid-docs/brand-kit (official brand kit: Hyperliquid SVG format.zip, Hyperliquid_Blob_Green.svg and Hyperliquid_Blob_Dark.svg)",
+    "https://app.hyperliquid.xyz/coins/HYPE.svg"
+  ],
   "notes": [
-    "Paths sourced from @web3icons/react (MIT) — ExchangeHyperliquid SVG"
+    "Default: the brand kit's Hyperliquid_Blob_Green.svg unchanged (one #97FCE4 path), placed on the 64 grid. The app's HYPE token icon (app.hyperliquid.xyz/coins/HYPE.svg) is the same blob in the same #97FCE4 (shapes overlap 99.4%). It replaces a third-party redraw from @web3icons/react in #50D2C1, slightly wider than the official blob",
+    "Mono: the same path in currentColor (the kit's Hyperliquid_Blob_Dark.svg has the same geometry)"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "hyperliquid.svg",
-      "fill": "#50D2C1"
+      "fill": "#97FCE4"
     },
     "Mono": {
       "file": "hyperliquid.mono.svg",
