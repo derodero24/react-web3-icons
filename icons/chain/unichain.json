@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Unichain",
+  "kind": "icon",
+  "source": [
+    "https://www.unichain.org/brand-kit (official brand kit, https://www.unichain.org/assets/zip/unichain-brand-kit.zip)"
+  ],
+  "notes": [
+    "Default: \"Unichain Logo Assets/Unichain Icon - Vibrant.svg\" (#F50DB4); Mono: \"Unichain Icon - Dark.svg\" with fill set to currentColor (same geometry)."
+  ],
+  "variants": {
+    "": {
+      "file": "unichain.svg",
+      "fill": "#f50db4"
+    },
+    "Mono": {
+      "file": "unichain.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "unichain"
+  ],
+  "chainIds": [
+    130
+  ]
+}

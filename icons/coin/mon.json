@@ -12,6 +12,14 @@
         "as": "Monad"
       },
       {
+        "of": "MonadCircle",
+        "as": "MonadCircle"
+      },
+      {
+        "of": "MonadCircleMono",
+        "as": "MonadCircleMono"
+      },
+      {
         "of": "MonadMono",
         "as": "MonadMono"
       }

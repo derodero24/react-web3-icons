@@ -198,7 +198,7 @@
     {
       "name": "full bundle",
       "path": "dist/index.mjs",
-      "limit": "175 KB"
+      "limit": "180 KB"
     },
     {
       "name": "single icon (tree-shaken)",
@@ -219,12 +219,12 @@
     {
       "name": "chain",
       "path": "dist/chain/index.mjs",
-      "limit": "35 KB"
+      "limit": "40 KB"
     },
     {
       "name": "coin",
       "path": "dist/coin/index.mjs",
-      "limit": "70 KB"
+      "limit": "80 KB"
     },
     {
       "name": "defi",
@@ -239,7 +239,7 @@
     {
       "name": "dex",
       "path": "dist/dex/index.mjs",
-      "limit": "18 KB"
+      "limit": "15 KB"
     },
     {
       "name": "domain",
@@ -279,12 +279,12 @@
     {
       "name": "storage",
       "path": "dist/storage/index.mjs",
-      "limit": "8 KB"
+      "limit": "7 KB"
     },
     {
       "name": "tracker",
       "path": "dist/tracker/index.mjs",
-      "limit": "6 KB"
+      "limit": "9 KB"
     },
     {
       "name": "wallet",

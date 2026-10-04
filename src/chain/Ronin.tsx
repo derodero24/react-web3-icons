@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
 // Source: https://wiki.roninchain.com/brand-kit (official brand kit, Ronin_Mark_Blue.svg from the linked asset drive)
+// Source: https://drive.usercontent.google.com/download?id=1xD7j1MAfS9mFxWLG7rOkvw6VXDhDjOXL&export=download (official RON token, Ronin Token/SVG/Ronin-Token.svg in the brand-kit drive)
+// Circle: the official Ronin-Token.svg (the #F5F8FC mark on a #004DE5 disc), paths unchanged and full-bleed on the 64 grid; the token's clip-path is left out, since it clips nothing of the mark
+// CircleMono: the token's disc in currentColor with the mark knocked out (fill-rule=evenodd)
 /** Ronin chain icon (colored). */
 export const Ronin = /* @__PURE__ */ createIcon(
   'Ronin',
@@ -29,6 +32,36 @@ export const RoninMono = /* @__PURE__ */ createIcon(
     <path
       fillRule="evenodd"
       d="M12.03 8.3v34.56q0 .98.42 1.86a4 4 0 0 0 1.2 1.5l16.33 13.07a3.24 3.24 0 0 0 4.04 0l16.33-13.07a4 4 0 0 0 1.2-1.5 4 4 0 0 0 .42-1.86V8.3a4.3 4.3 0 0 0-1.26-3.05A4.3 4.3 0 0 0 47.66 4H16.35a4.3 4.3 0 0 0-3.06 1.26 4.3 4.3 0 0 0-1.26 3.05m31.54 15.6v-7.55c0-1-.4-1.96-1.09-2.67a3.7 3.7 0 0 0-2.62-1.1H24.13c-.98 0-1.92.4-2.62 1.1s-1.08 1.67-1.08 2.67v21.9a4 4 0 0 0 .36 1.63 4 4 0 0 0 1.03 1.32l5.72 4.68a.5.5 0 0 0 .5.06.5.5 0 0 0 .26-.42V30.04q0-.19.13-.33a.5.5 0 0 1 .33-.14h4.17c.73 0 1.44.3 1.96.83s.81 1.25.81 2v13.13q0 .13.08.25l.19.17a.5.5 0 0 0 .49-.06l5.73-4.68a4 4 0 0 0 1.02-1.32 4 4 0 0 0 .36-1.63v-6.8c0-1-.39-1.96-1.08-2.67s-1.64-1.1-2.62-1.1c.98 0 1.92-.4 2.61-1.12s1.09-1.66 1.09-2.66M32.92 25.8h-4.16a.5.5 0 0 1-.33-.14.5.5 0 0 1-.14-.34v-8.49q0-.19.14-.33a.5.5 0 0 1 .33-.14h6.48q.19 0 .32.14c.13.14.14.2.14.33v6.14c0 .75-.3 1.47-.81 2-.52.53-1.23.83-1.97.83"
+    />
+  ),
+  { fill: 'currentColor' },
+);
+
+/** Ronin Circle chain icon (colored). */
+export const RoninCircle = /* @__PURE__ */ createIcon(
+  'RoninCircle',
+  '0 0 64 64',
+  () => (
+    <>
+      <circle cx="32" cy="32" r="32" />
+      <path
+        fill="#F5F8FC"
+        fillRule="evenodd"
+        d="M16.6 41.98V15.32A3.3 3.3 0 0 1 19.91 12H44a3.3 3.3 0 0 1 3.32 3.32v26.66a3.3 3.3 0 0 1-1.24 2.59L33.52 54.65a2.5 2.5 0 0 1-3.12 0L17.84 44.57a3.3 3.3 0 0 1-1.25-2.6m25.76-21.66v6.64a3.3 3.3 0 0 1-.98 2.35 3.3 3.3 0 0 1-2.34.98 3.3 3.3 0 0 1 3.32 3.32v6a3.3 3.3 0 0 1-1.24 2.58l-5.15 4.13a.4.4 0 0 1-.44.05.4.4 0 0 1-.23-.37V34.43a2.5 2.5 0 0 0-2.5-2.5h-3.73a.4.4 0 0 0-.42.42V46a.42.42 0 0 1-.46.41q-.12-.01-.22-.09l-5.14-4.13a3.3 3.3 0 0 1-1.24-2.59V20.31a3.3 3.3 0 0 1 3.32-3.33h14.12a3.3 3.3 0 0 1 3.33 3.33m-13.3 8.3h3.74a2.5 2.5 0 0 0 2.5-2.49v-5.4a.4.4 0 0 0-.42-.42h-5.82a.4.4 0 0 0-.29.13.4.4 0 0 0-.12.29v7.48a.4.4 0 0 0 .41.41"
+      />
+    </>
+  ),
+  { fill: '#004DE5' },
+);
+
+/** Ronin Circle chain icon (monochrome). */
+export const RoninCircleMono = /* @__PURE__ */ createIcon(
+  'RoninCircleMono',
+  '0 0 64 64',
+  () => (
+    <path
+      fillRule="evenodd"
+      d="M0 32a32 32 0 1 0 64 0 32 32 0 1 0-64 0m16.6 9.98V15.32A3.3 3.3 0 0 1 19.91 12H44a3.3 3.3 0 0 1 3.32 3.32v26.66a3.3 3.3 0 0 1-1.24 2.59L33.52 54.65a2.5 2.5 0 0 1-3.12 0L17.84 44.57a3.3 3.3 0 0 1-1.25-2.6M42.34 20.3v6.64a3.3 3.3 0 0 1-3.32 3.33 3.3 3.3 0 0 1 3.32 3.32v6a3.3 3.3 0 0 1-1.24 2.58l-5.15 4.13a.41.41 0 0 1-.67-.32V34.43a2.5 2.5 0 0 0-2.5-2.5h-3.73a.4.4 0 0 0-.42.42V46a.42.42 0 0 1-.68.32l-5.14-4.13a3.3 3.3 0 0 1-1.24-2.59V20.31a3.3 3.3 0 0 1 3.32-3.33h14.12a3.3 3.3 0 0 1 3.33 3.33m-13.3 8.3h3.74a2.5 2.5 0 0 0 2.5-2.49v-5.4a.4.4 0 0 0-.42-.41h-5.82a.4.4 0 0 0-.41.41v7.48a.4.4 0 0 0 .41.41"
     />
   ),
   { fill: 'currentColor' },

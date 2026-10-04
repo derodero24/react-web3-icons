@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Abstract",
+  "kind": "icon",
+  "source": [
+    "https://www.abs.xyz (footer \"Brand Kit\" link to the official Air board, Logos / Icon / SVG)"
+  ],
+  "notes": [
+    "Default: Abstract_Icon_LightGreen.svg (#00DE73); Mono: Abstract_Icon_Black.svg with fill set to currentColor (same geometry)."
+  ],
+  "variants": {
+    "": {
+      "file": "abstract.svg",
+      "fill": "#00de73"
+    },
+    "Mono": {
+      "file": "abstract.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "abstract"
+  ],
+  "chainIds": [
+    2741
+  ]
+}

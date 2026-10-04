@@ -1,0 +1,24 @@
+{
+  "$schema": "../schema.json",
+  "name": "Tensor",
+  "kind": "icon",
+  "source": [
+    "https://tensor.foundation (official Tensor Foundation site, header logo inline SVG, #000)",
+    "https://www.tensor.trade (official marketplace header logo, same path in white)",
+    "https://files.readme.io/7855997-white-on-transparent.svg (Tensor Developer Hub dev.tensor.trade logo, same geometry)"
+  ],
+  "notes": [
+    "Default: the two-part arrow path served inline on tensor.foundation in #000 (viewBox 0 0 1263 1280). tensor.trade and dev.tensor.trade serve the same geometry in white; no Tensor brand kit was found.",
+    "Mono: the same path in currentColor."
+  ],
+  "variants": {
+    "": {
+      "file": "tensor.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "tensor.mono.svg",
+      "fill": "currentColor"
+    }
+  }
+}

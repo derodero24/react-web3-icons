@@ -1,7 +1,11 @@
 {
   "name": "Kava",
   "source": [
-    "https://kava.io"
+    "https://kava.io",
+    "https://cdn.prod.website-files.com/61e9c71623b1f0311abcbbbc/622b68fc6c920e4466196240_Kava-Coin.svg (official KAVA coin, linked from https://www.kava.io/branding)"
+  ],
+  "notes": [
+    "Circle: the official Kava-Coin.svg (a white K, one rect and one polygon, on a #FF433E disc), shapes unchanged and full-bleed on the 64 grid; CircleMono is that disc in currentColor with the K knocked out (fill-rule=evenodd)"
   ],
   "kind": "icon",
   "variants": {
@@ -11,6 +15,14 @@
     },
     "Mono": {
       "file": "kava.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "kava.circle.svg",
+      "fill": "#FF433E"
+    },
+    "CircleMono": {
+      "file": "kava.circle-mono.svg",
       "fill": "currentColor"
     }
   },
