@@ -1,6 +1,11 @@
 import { createIcon } from '../utils';
 
-// Source: https://bscscan.com (official brand)
+// Source: https://info.etherscan.com/explorer/bscscan/icon.svg
+// Source: https://info.etherscan.com/explorer/bscscan/logo.svg
+// bscscan.com (and its /brandassets page) sits behind a Cloudflare challenge; Etherscan, which runs BscScan, serves the BscScan files on info.etherscan.com (accessed 2026-10-04)
+// Bscscan: matches the official icon.svg (#12161C mark, #F0B90B arc; silhouette IoU 0.995)
+// BscscanInverted: matches the symbol of the official dark-background lockup logo.svg (group bscscan-logo-light-circle: #FFF mark, #F0B90B arc; IoU 0.996)
+// BscscanMono: the same two paths in currentColor
 /** Bscscan explorer icon (colored). */
 export const Bscscan = /* @__PURE__ */ createIcon(
   'Bscscan',

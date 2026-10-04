@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://aragon.org
+// Source: https://github.com/aragon/app/blob/main/apps/app/src/shared/components/aragonLogo/aragonLogoIcon.tsx
+// Source: https://github.com/aragon/app/blob/main/apps/app/public/icon-512.png
+// Aragon / AragonMono: match the official AragonLogoIcon component of the Aragon app (viewBox 0 0 32 32, silhouette IoU 0.994); the colour #3164FA is the app icon icon-512.png and primary-400 in Aragon's gov-ui-kit palette, accessed 2026-10-04
+// AragonCircle / AragonCircleMono: not an official asset. They are a composition made for this library (the official head mark in white on a #3164FA disc, and its knock-out mono); Aragon publishes the head only without a container (app icon, logo component) and no circular version was found
 /** Aragon devtool icon (colored). */
 export const Aragon = /* @__PURE__ */ createIcon(
   'Aragon',
