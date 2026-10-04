@@ -1,4 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <path fill="#111111" d="M32 .02C49.66.02 63.98 14.34 63.98 32S49.66 63.97 32 63.97.02 49.66.02 32 14.34.02 32 .02"/>
-  <path fill="#fff" fill-rule="evenodd" d="M24.87 16.85h-.69l-.45.53-11.61 13.64-.83.98.83.97 11.61 13.64.45.53h23.1V36.97h-3v7.17H28.16l9.65-11.16.85-.98-.85-.99-9.65-11.15h16.12v7.17h3V16.85h-22.4m.01 3.81L15.23 32l9.65 11.33L34.68 32z" clip-rule="evenodd"/>
+  <g transform="scale(.1641)">
+    <defs>
+      <radialGradient id="eth-b" cx="0" cy="0" r="1" gradientTransform="rotate(135 161.63 93.74)scale(409.152)" gradientUnits="userSpaceOnUse">
+        <stop stop-color="white" stop-opacity="0"/>
+        <stop offset=".5" stop-color="white"/>
+        <stop offset="1" stop-color="white" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="eth-a" x1="195" x2="195" y1="-75.43" y2="476.73" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#040404"/>
+        <stop offset="1" stop-color="#3D475A"/>
+      </linearGradient>
+    </defs>
+    <rect width="390" height="390" fill="url(#eth-a)" rx="195"/>
+    <path fill="white" d="M281.07 109.92v58.77h-19.14v-39.6h-84.89l56.84 65.76-56.84 65.77h84.9v-39.6h19.13v58.76H151.7l-72.23-84.93 72.23-84.93zM104.6 194.85l51.58 60.64 52.4-60.64-52.4-60.64z"/>
+    <rect width="382.2" height="382.2" x="3.71" y="3.71" fill="none" stroke="url(#eth-b)" stroke-width="7.8" rx="191.1"/>
+  </g>
 </svg>

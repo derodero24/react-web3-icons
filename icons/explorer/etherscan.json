@@ -1,7 +1,11 @@
 {
   "name": "Etherscan",
   "source": [
-    "https://etherscan.io (official brand)"
+    "https://etherscan.io (official brand)",
+    "https://etherscan.io/images/brandassets/etherscan-logo-light-circle.svg"
+  ],
+  "notes": [
+    "Inverted (and the deprecated EtherscanLight alias): the official brand asset etherscan-logo-light-circle.svg (white mark, #BFCFDA arc), copied unchanged; the arc was #8B8B8B before"
   ],
   "kind": "icon",
   "variants": {

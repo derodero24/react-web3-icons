@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Source: https://blastscan.io (official brand)
+// Source: https://blastscan.io/assets/blast/images/svg/logos/chain-dark.svg
+// Source: https://blastscan.io/assets/blast/images/svg/logos/chain-light.svg (BlastscanLight)
 // Blastscan uses the Blast L2 geometric "BLAST" wordmark as its brandmark
 /** Blastscan explorer icon (colored). */
 export const Blastscan = /* @__PURE__ */ createIcon(
