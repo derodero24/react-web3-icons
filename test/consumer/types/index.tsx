@@ -80,8 +80,8 @@ export const elements: ReactElement[] = [
   <ChainIcon key="dynamic-id-name" chainId={999_999} name="base" />,
   <CoinIcon key="dynamic-coin-variant" symbol="btc" variant="Circle" />,
   <DefiIcon key="dynamic-defi" name="ether.fi" variant={defiVariant} />,
-  // @ts-expect-error DeFi icons ship no Circle variant
-  <DefiIcon key="dynamic-bad-variant" name="aave" variant="Circle" />,
+  // @ts-expect-error DeFi icons ship no Square variant
+  <DefiIcon key="dynamic-bad-variant" name="aave" variant="Square" />,
   // @ts-expect-error variants are case-sensitive suffixes
   <ChainIcon key="dynamic-variant-case" name="base" variant="circle" />,
   <AvalancheCircle key="extra-toggle" withBackground={false} ref={ref} />,
