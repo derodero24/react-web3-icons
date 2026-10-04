@@ -1,0 +1,23 @@
+{
+  "name": "Ondo",
+  "source": [
+    "https://www.notion.so/Ondo-Media-Kit-3bc0a5aced014cc4b0ef62f1638bbf8e (official Ondo Media Kit, linked from https://docs.ondo.finance/ondo-stocks/partners-and-media)"
+  ],
+  "notes": [
+    "Colored: the kit's Ondo Icon.svg (Ondo Icon section), its three black paths unchanged, placed on the 64 grid",
+    "Mono: the same three paths in currentColor"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "ondo.svg"
+    },
+    "Mono": {
+      "file": "ondo.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "tickers": [
+    "ONDO"
+  ]
+}
