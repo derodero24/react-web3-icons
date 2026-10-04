@@ -1,49 +1,58 @@
 import { createIcon } from '../utils';
 
-// Paths sourced from @web3icons/react (MIT)
+// Source: https://docs.rocketpool.net/images/logo.svg
+// Source: https://cdn-rocketpool.s3.us-west-2.amazonaws.com/rpl.zip
+// Colored: the official logo.svg (identical to RPL/SVG/RPL-logo_primary.svg in the rpl.zip brand kit linked from https://rocketpool.net/protocol/brand-kit): #F2681D→#F89863 gradient disc and inner disc with the white rocket. Its CSS classes are inlined, the gradient that referenced another by href is written out, and the rocket mask is reduced to the inner-circle path it resolves to (the rest of the mask is painted over)
+// Mono: as the official one-colour RPL-logo_secondary_black.svg, the disc in currentColor with the rocket knocked out, built from the colored geometry
 /** Rocket Pool DeFi icon (colored). */
 export const RocketPool = /* @__PURE__ */ createIcon(
   'RocketPool',
   '0 0 64 64',
   (_props, _id) => (
-    <g transform="translate(-10.64 -10.63)scale(3.55227)">
+    <g transform="translate(-.64 -.64)scale(.40794)">
       <defs>
         <linearGradient
           id={`${_id}-rpl-a`}
-          x1="4.45"
-          x2="21"
-          y1="18.03"
-          y2="5.85"
+          x1="1023.49"
+          x2="1134.36"
+          y1="-10427.81"
+          y2="-10538.68"
+          gradientTransform="matrix(-1 0 0 -1 1158.93 -10403.25)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#FB9533" />
-          <stop offset=".26" stopColor="#FEBA67" />
-          <stop offset=".75" stopColor="#FF9976" />
-          <stop offset="1" stopColor="#FF6350" />
+          <stop offset="0" stopColor="#f2681d" />
+          <stop offset="1" stopColor="#f89863" />
         </linearGradient>
+        <linearGradient
+          id={`${_id}-rpl-b`}
+          x1="-1320.91"
+          x2="-1180.26"
+          y1="-116.53"
+          y2="-116.53"
+          gradientTransform="rotate(-45 -348.06 -1624.43)"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" stopColor="#f2681d" />
+          <stop offset="1" stopColor="#f89863" />
+        </linearGradient>
+        <mask id={`${_id}-rpl-c`}>
+          <path
+            fill="#fff"
+            d="M80 9.69c38.83 0 70.31 31.48 70.31 70.31S118.83 150.31 80 150.31 9.69 118.83 9.69 80 41.17 9.69 80 9.69"
+          />
+        </mask>
       </defs>
+      <circle cx="80" cy="80" r="78.4" fill={`url(#${_id}-rpl-a)`} />
       <path
-        fill={`url(#${_id}-rpl-a)`}
-        d="M12 20.34a8.4 8.4 0 1 0 0-16.8 8.4 8.4 0 0 0 0 16.8"
+        fill={`url(#${_id}-rpl-b)`}
+        d="M80 9.67C41.16 9.67 9.67 41.15 9.67 80c0 35.42 26.19 64.73 60.28 69.6q1.98.3 4.02.46 2 .18 4.02.23l2.01.03q1 0 2.01-.03a59 59 0 0 0 4.02-.23q2.02-.17 4.02-.45c34.08-4.87 60.28-34.18 60.28-69.61 0-38.85-31.49-70.33-70.33-70.33"
       />
-      <path
-        fill="#FF7534"
-        fillRule="evenodd"
-        d="M12 20.46A8.46 8.46 0 0 0 20.46 12 8.46 8.46 0 1 0 12 20.46m0-.52a7.94 7.94 0 1 0 0-15.88 7.94 7.94 0 0 0 0 15.88"
-        clipRule="evenodd"
-      />
-      <path
-        fill="#FFD58D"
-        fillRule="evenodd"
-        d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18m0-.53A8.47 8.47 0 0 0 20.47 12 8.47 8.47 0 0 0 12 3.53 8.47 8.47 0 0 0 3.53 12 8.47 8.47 0 0 0 12 20.47"
-        clipRule="evenodd"
-      />
-      <path
-        fill="#fff"
-        fillRule="evenodd"
-        d="m9.66 11.17-.87 1.03 1.22.46c.01.46.12.65.18.69l-.47.42.47.48.45-.48q.38.15.8.1l.42 1.24 1.07-.97.27-1.2c2.47-2.24 2.75-4.04 2.58-4.65-2.2-.16-4.15 1.64-4.86 2.56zm.05 3.51-3.67 3.39-.39-.42 3.67-3.39zm-1.18.08-3 2.75-.4-.42 3.02-2.75zm1.1 1.05-3.05 2.8-.38-.43 3.03-2.79zm3.27-4.07a.7.7 0 1 0 0-1.42.7.7 0 0 0 0 1.42"
-        clipRule="evenodd"
-      />
+      <g mask={`url(#${_id}-rpl-c)`}>
+        <path
+          fill="#fff"
+          d="m59.68 108.85-24.96 24.96q1.55 1.32 3.16 2.52l24.64-24.64zM48.31 97.48l-24.63 24.63a61 61 0 0 0 2.52 3.17l24.96-24.95-2.84-2.84Zm11.28.09-30.72 30.72q.7.74 1.4 1.44c.7.7.96.94 1.44 1.4l30.72-30.72zm55.64-52.79c-4.53-1.24-10.26-.38-16.2 2.3-5.25 2.36-10.66 6.14-15.54 11.15a57 57 0 0 0-5.83 7l-9.59 1.17-10.69 13.83 10.05 2.6q-.86 3.45-.8 6.55l-2.53 3.29 3.25 3.25 3.28-2.52q3.1.06 6.55-.8l2.6 10.05 13.81-10.68 1.16-9.6a57 57 0 0 0 7.03-5.85c5.01-4.89 8.8-10.31 11.16-15.57 2.67-5.93 3.52-11.66 2.29-16.18Zm-19.14 28c-3.02 3.02-7.45 3.49-9.9 1.04-2.44-2.44-1.98-6.88 1.04-9.9 3.01-3.01 7.45-3.48 9.89-1.03 2.44 2.44 1.98 6.88-1.03 9.89"
+        />
+      </g>
     </g>
   ),
   { fill: 'none', ids: true },
@@ -53,11 +62,19 @@ export const RocketPool = /* @__PURE__ */ createIcon(
 export const RocketPoolMono = /* @__PURE__ */ createIcon(
   'RocketPoolMono',
   '0 0 64 64',
-  () => (
-    <path
-      fillRule="evenodd"
-      d="M.02 32a31.97 31.97 0 1 0 63.94 0A31.97 31.97 0 1 0 .02 32m23.65-2.95-3.07 3.67 4.31 1.62c.06 1.63.46 2.3.64 2.45l-1.64 1.51 1.64 1.68 1.62-1.68q1.37.5 2.8.34l1.52 4.41 3.8-3.46.96-4.23C45.03 27.36 46 21 45.4 18.8c-7.78-.55-14.74 5.85-17.25 9.12zm.19 12.47L10.82 53.55l-1.37-1.5 13.03-12.02zm-4.18.28-10.7 9.78-1.37-1.5 10.7-9.78zm3.86 3.75-10.79 9.91-1.37-1.5 10.79-9.9zm11.64-14.48a2.51 2.51 0 1 0 0-5.02 2.51 2.51 0 0 0 0 5.02"
-    />
+  (_props, _id) => (
+    <g transform="translate(-.64 -.64)scale(.40794)">
+      <defs>
+        <mask id={`${_id}-rpl-m`}>
+          <circle cx="80" cy="80" r="78.4" fill="#fff" />
+          <path
+            fill="#000"
+            d="m59.68 108.85-24.96 24.96q1.55 1.32 3.16 2.52l24.64-24.64zM48.31 97.48l-24.63 24.63a61 61 0 0 0 2.52 3.17l24.96-24.95-2.84-2.84Zm11.28.09-30.72 30.72q.7.74 1.4 1.44c.7.7.96.94 1.44 1.4l30.72-30.72zm55.64-52.79c-4.53-1.24-10.26-.38-16.2 2.3-5.25 2.36-10.66 6.14-15.54 11.15a57 57 0 0 0-5.83 7l-9.59 1.17-10.69 13.83 10.05 2.6q-.86 3.45-.8 6.55l-2.53 3.29 3.25 3.25 3.28-2.52q3.1.06 6.55-.8l2.6 10.05 13.81-10.68 1.16-9.6a57 57 0 0 0 7.03-5.85c5.01-4.89 8.8-10.31 11.16-15.57 2.67-5.93 3.52-11.66 2.29-16.18Zm-19.14 28c-3.02 3.02-7.45 3.49-9.9 1.04-2.44-2.44-1.98-6.88 1.04-9.9 3.01-3.01 7.45-3.48 9.89-1.03 2.44 2.44 1.98 6.88-1.03 9.89"
+          />
+        </mask>
+      </defs>
+      <circle cx="80" cy="80" r="78.4" mask={`url(#${_id}-rpl-m)`} />
+    </g>
   ),
-  { fill: 'currentColor' },
+  { fill: 'currentColor', ids: true },
 );
