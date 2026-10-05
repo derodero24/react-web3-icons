@@ -13,10 +13,10 @@ importers:
         version: 2.5.15
       '@biomejs/js-api':
         specifier: 6.0.0
-        version: 6.0.0(@biomejs/wasm-nodejs@2.5.14)
+        version: 6.0.0(@biomejs/wasm-nodejs@2.5.15)
       '@biomejs/wasm-nodejs':
-        specifier: 2.5.14
-        version: 2.5.14
+        specifier: 2.5.15
+        version: 2.5.15
       '@changesets/changelog-github':
         specifier: ^1.0.1
         version: 1.0.1
@@ -322,8 +322,8 @@ packages:
       '@biomejs/wasm-web':
         optional: true
 
-  '@biomejs/wasm-nodejs@2.5.14':
-    resolution: {integrity: sha512-Iq/p5C8C/vl/cglAWYeSb3HZX9pKJAYQE8hgj3WJd25Ez3AFEiAHZtJMUJ5uKsZzRM9xnQllcOoHMjrPEHxYZg==}
+  '@biomejs/wasm-nodejs@2.5.15':
+    resolution: {integrity: sha512-ZoGV6LQzBW7CbsZJWjlnTL6t4LgBOKuoTb18RsMyEpkd5IwoesWIimjw/EE7NatQJus5CPq4HgxlGheMHY6EEw==}
 
   '@blazediff/core@1.9.1':
     resolution: {integrity: sha512-ehg3jIkYKulZh+8om/O25vkvSsXXwC+skXmyA87FFx6A/45eqOkZsBltMw/TVteb0mloiGT8oGRTcjRAz66zaA==}
@@ -3057,11 +3057,11 @@ snapshots:
   '@biomejs/cli-win32-x64@2.5.15':
     optional: true
 
-  '@biomejs/js-api@6.0.0(@biomejs/wasm-nodejs@2.5.14)':
+  '@biomejs/js-api@6.0.0(@biomejs/wasm-nodejs@2.5.15)':
     optionalDependencies:
-      '@biomejs/wasm-nodejs': 2.5.14
+      '@biomejs/wasm-nodejs': 2.5.15
 
-  '@biomejs/wasm-nodejs@2.5.14': {}
+  '@biomejs/wasm-nodejs@2.5.15': {}
 
   '@blazediff/core@1.9.1': {}
 
