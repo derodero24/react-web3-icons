@@ -156,7 +156,7 @@
     "generate-icons": "node scripts/build-icons/cli.ts"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.14",
+    "@biomejs/biome": "2.5.15",
     "@biomejs/js-api": "6.0.0",
     "@biomejs/wasm-nodejs": "2.5.14",
     "@changesets/changelog-github": "^1.0.1",
