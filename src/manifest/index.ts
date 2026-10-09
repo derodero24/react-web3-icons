@@ -629,6 +629,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     slug: 'stellar',
     variants: ['', 'Mono'],
+    brandColor: '#000000',
   },
   { name: 'StellarMono', category: 'chain' },
   {
