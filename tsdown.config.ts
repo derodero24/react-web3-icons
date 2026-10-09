@@ -30,10 +30,13 @@ export default defineConfig({
   // language level declared in tsconfig.json.
   target: 'es2022',
   unbundle: true,
-  // rolldown warns that the 'use client' directive of src/dynamic/ "may not
-  // be preserved when bundling". With `unbundle` every module is emitted on
-  // its own, so the directive stays at the top of dist/dynamic/*.mjs;
-  // test/consumer/node/check.mjs asserts that on the packed tarball.
+  // rolldown warns that the 'use client' directive of src/dynamic/index.ts
+  // and src/dynamic/DynamicIcon.tsx "may not be preserved when bundling".
+  // With `unbundle` every module is emitted on its own, so the directive stays
+  // at the top of dist/dynamic/index.mjs and dist/dynamic/DynamicIcon.mjs.
+  // This turns the check off for every module: test/consumer/node/check.mjs
+  // asserts on the packed tarball that each 'use client' module of src/ keeps
+  // the directive in dist/.
   checks: { moduleLevelDirective: false },
   // Sourcemaps are not published: the `.d.mts.map` files would point at
   // `src/`, which is not in the tarball, and the JS is already unminified.
