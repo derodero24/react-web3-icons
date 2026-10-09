@@ -1,7 +1,11 @@
 {
   "name": "Daedalus",
   "source": [
-    "https://daedaluswallet.io"
+    "https://daedaluswallet.io/images/daedalus-logo-netlify.svg (official site logo)"
+  ],
+  "notes": [
+    "Default: matches the site's daedalus-logo-netlify.svg (the #82FF65 line-art bull; checked 2026-10-09), so the paths are unchanged",
+    "Mono: the same paths in currentColor"
   ],
   "kind": "icon",
   "variants": {

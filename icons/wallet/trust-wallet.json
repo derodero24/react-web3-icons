@@ -1,16 +1,24 @@
 {
   "name": "TrustWallet",
   "source": [
-    "https://trustwallet.com/icon.svg",
+    "https://trustwallet.com/icon.svg (official site icon: the standalone two-part shield)",
     "https://trustwallet.com/press (official press kit, logos.zip: Trust Core Logo, the same two-part shield)"
   ],
   "notes": [
-    "Shield: the two paths of the official icon.svg (#0500FF left half, right half in the official #0000FF/#0094FF/#48FF91/#0038FF/#0500FF gradient), unchanged, scaled 0.95238 and translated (13.33 11.71) so the shield is 40 units tall and centred",
-    "No official Circle or Square asset is published; both are plain container compositions: a white circle r=32 / white 64x64 square with rx=12.8 (the repository's Square convention) behind the unchanged coloured shield",
+    "Default: the two paths of the official icon.svg (#0500FF left half, right half in the official #0000FF/#0094FF/#48FF91/#0038FF/#0500FF gradient), unchanged, placed on the 64 grid (the shield's 42-unit height scaled to 56, centred); the press kit's Trust Core Logo is the same standalone shield, and neither shows a container",
+    "Mono: derived from the default, as the press kit has no one-colour shield (its White/Black options are wordmarks): the shield silhouette in currentColor, each half cut back 0.6 units from the centre line, which leaves a 1.2-unit seam where the two coloured halves meet",
+    "Square and Circle: the shield of icon.svg, unchanged, scaled 0.95238 and translated (13.33 11.71) so it is 40 units tall and centred. No official Circle or Square asset is published; both are plain container compositions: a white circle r=32 / white 64x64 square with rx=12.8 (the repository's Square convention) behind the unchanged coloured shield",
     "CircleMono / SquareMono: the container in currentColor with the shield silhouette knocked out by a mask, and a 1-unit ink seam on the centre line where the two halves of the colored shield meet"
   ],
   "kind": "icon",
   "variants": {
+    "": {
+      "file": "trust-wallet.svg"
+    },
+    "Mono": {
+      "file": "trust-wallet.mono.svg",
+      "fill": "currentColor"
+    },
     "Square": {
       "file": "trust-wallet.square.svg"
     },
@@ -26,16 +34,6 @@
       "fill": "currentColor"
     }
   },
-  "localAliases": [
-    {
-      "name": "TrustWallet",
-      "target": "TrustWalletSquare"
-    },
-    {
-      "name": "TrustWalletMono",
-      "target": "TrustWalletSquareMono"
-    }
-  ],
   "slugs": [
     "trustwallet",
     "trust"

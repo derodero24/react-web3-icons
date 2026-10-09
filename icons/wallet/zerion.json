@@ -1,14 +1,27 @@
 {
   "name": "Zerion",
   "source": [
-    "https://zerion.io",
-    "https://zerion.io/_next/static/media/zerion-logo.85fd1b5e.svg (current header lockup: a white rounded tile with the Z knocked out)"
+    "https://design.zerion.io/assets/zerion_symbol_main.87a4f570.svg (official brand guidelines, Symbol .svg pack)",
+    "https://design.zerion.io/assets/zerion_icon-square_main.9c1ae08b.svg (official brand guidelines, Icon .svg pack)",
+    "https://design.zerion.io/assets/zerion_icon-circle_main.7309aeca.svg (official brand guidelines, Icon .svg pack)",
+    "https://design.zerion.io/logo (official brand guidelines, linked as Brand Assets from the zerion.io footer)",
+    "https://design.zerion.io/color (core colour Zerion Digital #2461ED)"
   ],
   "notes": [
-    "Checked 2026-10-04: blocked on a colour vector. Zerion's current Z (rounder, 2025) is published only as the white one-colour tile of the zerion.io header lockup, and the app icon only as a raster (https://zerion.io/favicon-wallet.png, blue-to-cyan checker gradient). This artwork is the earlier sharp Z on #2962EF / #16161A and stays unchanged until a colour vector exists, rather than mixing the new Z with old colours"
+    "Default: the brand guidelines' Symbol, zerion_symbol_main.svg (the #2461ED Z, Zerion Digital), path unchanged, placed on the 64 grid; its no-op clipPath (the whole 400x400 canvas) is dropped",
+    "Mono: the same Z path in currentColor; the guidelines' Symbol pack shows the same path in single colours (white, #06003C)",
+    "Square and Circle: the guidelines' Icon, zerion_icon-square_main.svg (176 grid, rounded square) and zerion_icon-circle_main.svg (191 grid, disc): one #2461ED evenodd path with the Z knocked out, unchanged, scaled full-bleed to 64; the guidelines recommend the Icon for small sizes and monochrome use",
+    "SquareMono and CircleMono: the same Icon paths in currentColor (the Z stays a hole)"
   ],
   "kind": "icon",
   "variants": {
+    "": {
+      "file": "zerion.svg"
+    },
+    "Mono": {
+      "file": "zerion.mono.svg",
+      "fill": "currentColor"
+    },
     "Circle": {
       "file": "zerion.circle.svg"
     },
@@ -24,16 +37,6 @@
       "fill": "currentColor"
     }
   },
-  "localAliases": [
-    {
-      "name": "Zerion",
-      "target": "ZerionCircle"
-    },
-    {
-      "name": "ZerionMono",
-      "target": "ZerionCircleMono"
-    }
-  ],
   "slugs": [
     "zerion"
   ]

@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://bitfinex.com (official brand)
+// Source: https://www.bitfinex.com/images/press-v2/downloads/brands/leaf.svg (official press kit, Downloads > Brands)
+// Source: https://www.bitfinex.com/press/ (official press page, which links the file)
+// Default: matches the press kit's leaf.svg (the two #03CA9B leaf paths; alpha IoU 0.999, checked 2026-10-09), so the paths are unchanged
+// Mono: the same paths in currentColor
 /** Bitfinex exchange icon (colored). */
 export const Bitfinex = /* @__PURE__ */ createIcon(
   'Bitfinex',

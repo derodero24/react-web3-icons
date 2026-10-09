@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Source: https://binance.com (official brand)
+// Source: https://www.binance.com (official site; walled, see notes)
+// Not verified (checked 2026-10-09): binance.com and its /en/brand page answer automated requests with a 202 bot challenge, and developers.binance.com serves the logo only as PNG (https://bin.bnbstatic.com/static/images/bnb-for/brand.png). The #F0B90B diamond artwork predates the source policy and is unchanged. It is not the BNB Chain kit's symbol (icons/coin/bnb.json), which is now a cube
 /** Binance exchange icon (colored). */
 export const Binance = /* @__PURE__ */ createIcon(
   'Binance',

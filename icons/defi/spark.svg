@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="translate(2.37 .4)scale(2.11127)">
+  <g transform="translate(4 4)scale(.11268)">
     <defs>
-      <linearGradient id="spark-a" x1="20.82" x2="4.89" y1="9.45" y2="21.24" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#FA43BD"/>
+      <linearGradient id="spark-a" x1="400.58" x2="80.11" y1="661.97" y2="907.77" gradientTransform="translate(0 -530.11)" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#FA43BD"/>
         <stop offset="1" stop-color="#FFA930"/>
       </linearGradient>
     </defs>
-    <path fill="url(#spark-a)" d="M17.32 16.61h9.19c.36 0 .46-.5.14-.65L17.3 11.6V2.05c0-.35-.46-.47-.62-.15L12.8 9.5l-4.3-2c-.3-.13-.58.18-.44.47l2.7 5.38H1.57c-.36 0-.46.5-.14.65l9.34 4.36v9.54c0 .36.46.48.62.16l3.88-7.6 4.32 2.01c.28.14.58-.17.43-.46z"/>
+    <path fill="url(#spark-a)" d="M313.04 279.2h177.98c6.84 0 8.22-9.32 2-12.17l-179.97-81.97V6.38c0-6.67-8.92-8.86-12-2.94L227.06 145.9l-81.99-37.66c-7.84-3.16-12.66 3.22-10 8.71l48.9 100.85h-178c-6.84 0-8.22 9.32-2 12.17l179.97 81.97v178.68c0 6.67 8.92 8.85 12 2.94l73.99-142.46 81.99 37.66c7.84 3.16 12.66-3.22 10-8.71z"/>
   </g>
 </svg>

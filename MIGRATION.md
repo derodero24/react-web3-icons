@@ -169,8 +169,13 @@ These variants render the same artwork as another export, or legacy artwork with
 | `MetaMaskAlt` | `MetaMask` | wallet | MetaMask has a single fox design since its 2024 refresh, so `Alt` rendered the default |
 | `MagicEdenFlat` | `MagicEden` | marketplace | the current Magic Eden mark is single-colour, so `Flat` rendered the default |
 | `MagicEdenWordmarkFlat` | `MagicEdenWordmark`, `MagicEdenWordmarkMono` | marketplace | legacy stacked lockup; Magic Eden has no single-colour wordmark |
+| `OpenSeaAlt` | `OpenSea`, `OpenSeaSymbol` | marketplace | pre-2025 white-disc logomark (`#2081E2` ship); the current OpenSea brand has no white-disc asset |
+| `ArbitrumOneFlat` | `ArbitrumOne` | chain | the current Arbitrum One logomark is single-colour, so `Flat` now renders the default |
+| `ArbitrumOneFlatMono` | `ArbitrumOneMono` | chain | the same, for the mono |
+| `ArbitrumNovaFlat` | `ArbitrumNova` | chain | the current Arbitrum Nova logomark is single-colour, so `Flat` now renders the default |
+| `ArbitrumNovaFlatMono` | `ArbitrumNovaMono` | chain | the same, for the mono |
 
-Deprecated exports are not variants of the dynamic components, so `'Alt'` leaves `WalletVariant`: `<WalletIcon name="metamask" variant="Alt" />` is a type error and renders `fallback`. Omit `variant` instead.
+Deprecated exports are not variants of the dynamic components, so `'Alt'` is not a `WalletVariant` value and `'Flat'` and `'FlatMono'` are not `ChainVariant` values: `<WalletIcon name="metamask" variant="Alt" />` and `<ChainIcon name="arbitrum-nova" variant="Flat" />` are type errors and render `fallback`. Omit `variant` (or use `'mono'`) instead.
 
 ## 7. Rebrands with new artwork
 
@@ -233,7 +238,24 @@ Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases ar
 + import { EtherscanInverted, Pol, Safe } from 'react-web3-icons';
 ```
 
-## 10. Base coin icons that now render the official token disc
+## 10. `Zerion` and `TrustWallet` render the standalone mark
+
+The base names of these units were aliases of a container variant. Following the base-name rule (the unsuffixed name is the brand's standalone symbol), they are now the standalone marks from the official sources:
+
+| Export | 4.x | v5 | Container variant |
+| --- | --- | --- | --- |
+| `Zerion`, `ZerionMono` | aliases of `ZerionCircle`, `ZerionCircleMono` | the standalone Z of Zerion's brand guidelines | `ZerionCircle`, `ZerionCircleMono` |
+| `TrustWallet`, `TrustWalletMono` | aliases of `TrustWalletSquare`, `TrustWalletSquareMono` | the standalone shield of trustwallet.com/icon.svg | `TrustWalletSquare`, `TrustWalletSquareMono` |
+
+- `<WalletIcon name="zerion" />` and `<WalletIcon name="trust" />` (and their `variant="mono"`) render the standalone marks too; `variant="Circle"` and `variant="Square"` select the containers.
+- The base names are their own components now, so `Zerion !== ZerionCircle` and `TrustWallet !== TrustWalletSquare`.
+
+```diff
+- import { TrustWallet, Zerion } from 'react-web3-icons';
++ import { TrustWalletSquare, ZerionCircle } from 'react-web3-icons'; // to keep a container
+```
+
+## 11. Base coin icons that now render the official token disc
 
 When a brand publishes its token only as a disc, the base export now renders that disc (the [base icon background rule](./docs/icon-variants.md#base-icon-background-rule)), and the `Circle` exports are aliases of the base, so `variant="Circle"` keeps working. Review screenshots or visual baselines that include these icons:
 
@@ -255,11 +277,12 @@ There is no export for the bare DAI symbol any more: Sky publishes no stand-alon
 - [ ] Re-check custom CSS or layout that compensated for the old per-icon viewBoxes
 - [ ] Replace the removed exports (`GnosisSafe*`, `Matic*`, `*Light`, `Truffle*`, `Ganache*`, `Drizzle*`, `TofuNft*`) with their replacements (section 9)
 - [ ] Optionally rename the deprecated names with the find-and-replace in section 6 (they keep working through v5)
-- [ ] Drop `variant="Alt"` from `WalletIcon` (section 6, duplicate variants)
+- [ ] Drop `variant="Alt"` from `WalletIcon` and `variant="Flat"` / `"FlatMono"` from `ChainIcon`; optionally replace `ArbitrumOneFlat*` and `ArbitrumNovaFlat*` with `ArbitrumOne*` and `ArbitrumNova*` (section 6, duplicate variants)
 - [ ] Optionally move from `Tally`, `MakerDao`, `Mkr` and `ParaSwap` to `Cactus`, `Sky` and `Velora` (new artwork, section 7)
 - [ ] Expect `fallback` for the lookup keys of defunct projects (`BUSD`, `nami`, `odos`, …) and the new Sky and Velora artwork for `MKR`, `makerdao` and `paraswap` (sections 7 and 8)
 - [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg`, `Starknet*.svg` and `Zksync*.svg` instead of the `OKXWallet*`, `StarkNet*` and `ZkSync*` files
-- [ ] Expect the DAI disc from `Dai` / `DaiMono`, and review visual baselines of the icons in section 10
+- [ ] Use `ZerionCircle` / `TrustWalletSquare` (and their `Mono` variants) where you relied on `Zerion` / `TrustWallet` rendering a container (section 10)
+- [ ] Expect the DAI disc from `Dai` / `DaiMono`, and review visual baselines of the icons in section 11
 
 ---
 
