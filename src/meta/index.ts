@@ -204,6 +204,7 @@ export const TICKER_TO_COIN = {
   EIGEN: 'Eigen',
   ENA: 'Ena',
   ETH: 'Eth',
+  FDUSD: 'Fdusd',
   FET: 'Fet',
   FIL: 'Fil',
   FLR: 'Flr',

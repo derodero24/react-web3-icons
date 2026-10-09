@@ -77,6 +77,8 @@ export const coinImports: Record<
   EthCircle: () => import('../../coin/Eth'),
   EthCircleMono: () => import('../../coin/Eth'),
   EthMono: () => import('../../coin/Eth'),
+  Fdusd: () => import('../../coin/Fdusd'),
+  FdusdMono: () => import('../../coin/Fdusd'),
   Fet: () => import('../../coin/Fet'),
   FetMono: () => import('../../coin/Fet'),
   Fil: () => import('../../coin/Fil'),

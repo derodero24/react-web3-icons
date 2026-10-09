@@ -854,6 +854,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'EthCircleMono', category: 'coin' },
   { name: 'EthMono', category: 'coin' },
   {
+    name: 'Fdusd',
+    category: 'coin',
+    ticker: 'FDUSD',
+    variants: ['', 'Mono'],
+    brandColor: '#02ec81',
+  },
+  { name: 'FdusdMono', category: 'coin' },
+  {
     name: 'Fet',
     category: 'coin',
     ticker: 'FET',

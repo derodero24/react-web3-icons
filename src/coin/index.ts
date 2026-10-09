@@ -21,6 +21,7 @@ export * from './Dot';
 export * from './Eigen';
 export * from './Ena';
 export * from './Eth';
+export * from './Fdusd';
 export * from './Fet';
 export * from './Fil';
 export * from './Flare';
