@@ -79,11 +79,17 @@ Only the repository owner submits the collections. Iconify's
 open-source license (MIT), an automatically updatable source (the npm
 package), and icons that are broadly useful at small sizes.
 
-1. Check that the prefixes are still free:
+1. Check that `npm view react-web3-icons version` prints 5.0.0 or later.
+   Iconify imports the sets from the published package, and 4.0.0's JSON
+   predates the [validation](#validation) above: 7 colored icons have unset
+   colours, so the palette cannot be detected; the sample `coin-bitcoin` is
+   not an icon; `total` counts hidden icons; and `height` is 24, from before
+   the 64×64 grid.
+2. Check that the prefixes are still free:
    `https://api.iconify.design/collections?hidden=true` must have no `web3`
-   or `web3-mono` key (both were free on 2026-10-03; the closest existing
+   or `web3-mono` key (both were free on 2026-10-09; the closest existing
    sets are `token` and `token-branded`, "Web3 Icons" by 0xa3k5).
-2. Open an issue at
+3. Open an issue at
    [iconify/icon-sets](https://github.com/iconify/icon-sets/issues/new)
    with:
    - the source: npm package `react-web3-icons`, files
@@ -94,7 +100,7 @@ package), and icons that are broadly useful at small sizes.
      `@iconify/tools` on every release;
    - license MIT, repository and homepage links, and the trademark note
      above.
-3. Once the sets are listed, update the README's Iconify section (API
+4. Once the sets are listed, update the README's Iconify section (API
    loading, `@iconify/json` / `@iconify-json/web3`) and close
    [#702](https://github.com/derodero24/react-web3-icons/issues/702).
 
