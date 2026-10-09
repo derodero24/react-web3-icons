@@ -1,19 +1,19 @@
 {
   "name": "Zora",
   "source": [
-    "https://zora.co (the Zora orb inlined as the logo at the start of the site navigation, a 1001-unit vector)",
-    "https://zora.co/assets/favicon/safari-pinned-tab.svg (the site's one-colour pinned-tab icon, a solid disc)"
+    "https://bridge.zora.energy/img/zorb.svg (the Zorb on Zora Network's bridge, the MAINNET link on https://zora.energy)",
+    "https://zora.co/assets/favicon/safari-pinned-tab.svg (the zora.co one-colour pinned-tab icon, a solid disc)"
   ],
   "notes": [
-    "Default: the zora.co navigation orb, its paths, blurs and gradients unchanged, full-bleed on the 64 grid: a #A1723A field under blurred #531002, #2B5DF0, #FCB8D4 and white circles, a #387AFA glow and a translucent black band, clipped to the disc by an alpha mask (its no-op clip path, and the no-op flood and blend steps ahead of each blur, are left out). It replaces a single radial gradient from #F2CEFE to #8F6B40, taken from @web3icons, that matched no Zora asset",
-    "Mono: the orb's disc (the mask path) in currentColor, the same solid disc as safari-pinned-tab.svg",
+    "Default: the classic Zorb from bridge.zora.energy's zorb.svg, a disc filled by one radial gradient from #F2CEFE through #AFBAF1, #4281D3, #2E427D and #230101 to #8F6B40, the disc and the gradient's centre, radius and stops unchanged (offsets rounded to two decimals), full-bleed on the 64 grid (IoU 0.998 against the file)",
+    "Mono: the disc in currentColor, the same solid disc as safari-pinned-tab.svg (IoU 0.997)",
+    "zora.co's site navigation and zora.energy's favicon.png now show a newer orb, a deeper blue with a tighter pink and white highlight drawn from blurred circles. It is not used here: the Zorb above is still served as an official vector and is what this artwork already matched (checked 2026-10-09)",
     "zora.co/brand is a user profile, not a brand page; no Zora brand kit was found (checked 2026-10-09)"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "zora.svg",
-      "fill": "none"
+      "file": "zora.svg"
     },
     "Mono": {
       "file": "zora.mono.svg",

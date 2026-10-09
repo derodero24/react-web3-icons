@@ -714,7 +714,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 7_777_777,
     slug: 'zora',
     variants: ['', 'Mono'],
-    brandColor: '#387afa',
+    brandColor: '#f2cefe',
   },
   { name: 'ZoraMono', category: 'chain' },
   { name: 'Ada', category: 'coin', ticker: 'ADA' },
