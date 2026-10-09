@@ -1767,9 +1767,10 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Htx',
     category: 'exchange',
     slug: 'htx',
-    variants: ['', 'Mono'],
+    variants: ['', 'Inverted', 'Mono'],
     brandColor: '#00003e',
   },
+  { name: 'HtxInverted', category: 'exchange' },
   { name: 'HtxMono', category: 'exchange' },
   {
     name: 'Kraken',

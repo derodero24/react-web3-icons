@@ -39,8 +39,7 @@ import {
  *     brand colour to give up; a pale single-colour mark (Hyperliquid's mint,
  *     QuickNode's green) keeps its whole shape, though not its colour, in a
  *     dark `color`; or
- *  3. an entry in {@link EXEMPTIONS}, whose reason is verified below, or in
- *     {@link PENDING} while an official variant is on its way.
+ *  3. an entry in {@link EXEMPTIONS}, whose reason is verified below.
  *
  * Variants are only added from official artwork (CONTRIBUTING.md,
  * "Icon Authenticity Policy"); when none exists, add an exemption instead.
@@ -107,9 +106,10 @@ const EXEMPTIONS: Readonly<Record<UnitKey, Exemption>> = {
 
 /**
  * Official legible variants that exist but are not in the set yet, with the
- * file to take them from. The report names them, an icon with no other
- * option counts as covered by its entry, and the entry fails as stale once
- * the unit ships the variant: remove it then.
+ * file to take them from. The report names them next to the icon's current
+ * option, and the entry fails as stale once the unit ships the variant:
+ * remove it then. A pending variant is not an option of its own: until it
+ * lands, the icon needs one of the options above.
  */
 const PENDING: Readonly<Record<UnitKey, Pending>> = {
   'chain/Blast': {
@@ -124,13 +124,6 @@ const PENDING: Readonly<Record<UnitKey, Pending>> = {
     source:
       'https://raw.githubusercontent.com/mode-network/brandkit/main/Assets/Logo/Token.svg',
     note: 'the black M on a #DFFE00 disc',
-  },
-  'exchange/Htx': {
-    tone: 'dark',
-    variant: 'HtxInverted',
-    source:
-      'https://www.htx.com/v4/fed-hbg-enhome/_next/static/media/logo.48ff6a75.svg',
-    note: "htx.com's dark-theme header logo draws the two flames in white and #008CD6; the default's #00003E flame vanishes on dark",
   },
 };
 
@@ -164,7 +157,6 @@ type Coverage =
   | { readonly kind: 'variant'; readonly exportName: string }
   | { readonly kind: 'monochrome'; readonly exportName: string }
   | { readonly kind: 'exempt'; readonly exemption: Exemption }
-  | { readonly kind: 'pending'; readonly pending: Pending }
   | { readonly kind: 'missing' };
 
 interface Audited {
@@ -231,15 +223,10 @@ function coverage(entry: Audited, tone: Tone): Coverage {
 
 function withExemption(entry: Audited, tone: Tone): Coverage {
   const found = coverage(entry, tone);
-  if (found.kind !== 'missing') {
-    return found;
-  }
   const exemption = EXEMPTIONS[entry.key];
-  if (exemption?.tone === tone) {
-    return { kind: 'exempt', exemption };
-  }
-  const pending = PENDING[entry.key];
-  return pending?.tone === tone ? { kind: 'pending', pending } : found;
+  return found.kind === 'missing' && exemption?.tone === tone
+    ? { kind: 'exempt', exemption }
+    : found;
 }
 
 /** ` (pending FooCircle)` when an official variant for `tone` is pending. */
@@ -287,9 +274,9 @@ describe('dark/light background legibility (issue #712)', () => {
               `${tone}: ${entry.key} → ${found.kind} ${found.exportName}${pendingNote(entry, tone)}`,
             ];
           case 'exempt':
-            return [`${tone}: ${entry.key} → exempt (${found.exemption.kind})`];
-          case 'pending':
-            return [`${tone}: ${entry.key} → pending ${found.pending.variant}`];
+            return [
+              `${tone}: ${entry.key} → exempt (${found.exemption.kind})${pendingNote(entry, tone)}`,
+            ];
           default:
             return found satisfies never;
         }

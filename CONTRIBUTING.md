@@ -539,11 +539,14 @@ their ramp. A flagged icon needs one of:
   or one pale or deep colour) and its `Mono` variant has the same geometry:
   `Mono` in a contrasting `color` then shows the whole mark, and for a black
   mark it is the brand's reversed mark;
-- an entry in that test's `PENDING` while an official variant, with the file
-  it comes from, is still to be added (the entry fails once it lands);
 - otherwise an entry in that test's `EXEMPTIONS`, with the reason checked by
   the test (another legible colored variant, or the official sources that
   were searched without finding an alternative).
+
+When an official legible variant exists but is still to be added, record it,
+with the file it comes from, in that test's `PENDING`: the report names it
+and the entry fails once it lands. A pending entry is a note, not one of the
+options above.
 
 Never recolour a brand mark to pass the audit unless the brand's guidelines
 show that version; cite them in `source`. The audit's measure (per-paint
