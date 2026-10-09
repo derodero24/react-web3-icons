@@ -1275,13 +1275,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#f2681d',
   },
   { name: 'RocketPoolMono', category: 'defi' },
-  {
-    name: 'SafeProtocol',
-    category: 'defi',
-    slug: 'safeprotocol',
-    variants: ['', 'Mono'],
-    brandColor: '#000000',
-  },
+  { name: 'SafeProtocol', category: 'defi', slug: 'safeprotocol' },
   { name: 'SafeProtocolMono', category: 'defi' },
   {
     name: 'Sky',
@@ -2349,7 +2343,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'safe',
     variants: ['', 'Mono'],
     aliases: ['gnosis'],
-    brandColor: '#000000',
+    brandColor: '#1a1a1a',
   },
   { name: 'SafeMono', category: 'wallet' },
   {

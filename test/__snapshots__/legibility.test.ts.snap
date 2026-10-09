@@ -35,7 +35,6 @@ exports[`dark/light background legibility (issue #712) > documents how each affe
   "dark: coin/Xrp → variant XrpCircle",
   "dark: defi/Balancer → monochrome BalancerMono",
   "light: defi/Frax → exempt (no-official-alternative)",
-  "dark: defi/SafeProtocol → monochrome SafeProtocolMono",
   "dark: devtool/Cactus → monochrome CactusMono",
   "dark: devtool/Privy → monochrome PrivyMono",
   "dark: devtool/TheGraph → monochrome TheGraphMono",
