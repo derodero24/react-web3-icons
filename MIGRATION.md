@@ -174,7 +174,7 @@ Deprecated exports are not variants of the dynamic components, so `'Alt'` leaves
 
 ## 7. Rebrands with new artwork
 
-These projects rebranded with a new logo. The new export carries the new artwork from the official source; the old export keeps the old artwork and is deprecated:
+These projects rebranded with a new logo or were folded into a successor. The new export carries the new artwork from the official source; the old export keeps the old artwork and is deprecated:
 
 | Deprecated | Replacement | Category | New artwork |
 | --- | --- | --- | --- |
@@ -182,15 +182,16 @@ These projects rebranded with a new logo. The new export carries the new artwork
 | `MakerDao`, `MakerDaoMono` | `Sky`, `SkyMono`, `SkyCircle`, `SkyCircleMono` | defi | the SKY token file, app.sky.money/tokens/sky.svg |
 | `Mkr`, `MkrMono` | `Sky`, `SkyMono`, `SkyCircle`, `SkyCircleMono` | coin | the same, re-exported from defi (MKR upgrades to SKY) |
 | `ParaSwap`, `ParaSwapMono` | `Velora`, `VeloraMono` | dex | the Velora brand kit, velora.xyz/brand |
+| `NamiWallet`, `NamiWalletMono` | `Lace`, `LaceMono` | wallet | the Lace symbol from lace.io (Nami was folded into Lace) |
 
 `Gram`, `GramMono`, `GramCircle` and `GramCircleMono` (coin, ticker `GRAM`) are new: Gram is the token formerly known as Toncoin (TON), with its own mark from ton.org/media. The `Ton` exports, the logo of The Open Network, are unchanged in `react-web3-icons/chain` and `react-web3-icons/coin`, and the ticker `TON` still resolves to them.
 
-- The lookup keys moved with the brands: `makerdao` resolves to `Sky` (`DefiIcon`), `paraswap` to `Velora` (`DexIcon`) and `MKR` to `Sky` (`CoinIcon`, `TICKER_TO_COIN`), so they render the new artwork. `sky`, `velora`, `SKY` and `GRAM` are new keys.
+- The lookup keys moved with the brands: `makerdao` resolves to `Sky` (`DefiIcon`), `paraswap` to `Velora` (`DexIcon`), `nami` and `namiwallet` to `Lace` (`WalletIcon`) and `MKR` to `Sky` (`CoinIcon`, `TICKER_TO_COIN`), so they render the new artwork. `sky`, `velora`, `lace`, `SKY` and `GRAM` are new keys.
 - `DefiIcon` gains the `'Circle'` and `'CircleMono'` variants (`DefiVariant`) through `SkyCircle`.
 
 ```diff
-- import { MakerDao, Mkr, ParaSwap, Tally } from 'react-web3-icons';
-+ import { Cactus, Sky, Velora } from 'react-web3-icons';
+- import { MakerDao, Mkr, NamiWallet, ParaSwap, Tally } from 'react-web3-icons';
++ import { Cactus, Lace, Sky, Velora } from 'react-web3-icons';
 ```
 
 ## 8. Icons of defunct projects are deprecated
@@ -200,14 +201,13 @@ These projects shut down or were discontinued. Their exports still work and rend
 | Deprecated | Category | Reason |
 | --- | --- | --- |
 | `Busd`, `BusdMono` | coin | Paxos stopped minting BUSD in February 2023, and Binance ended support in December 2023 |
-| `NamiWallet`, `NamiWalletMono` | wallet | Nami was folded into Lace |
 | `Web3Js`, `Web3JsMono` | devtool | ChainSafe sunset web3.js on 2025-03-04 |
 | `X2Y2`, `X2Y2Mono` | marketplace | X2Y2 closed its marketplace on 2025-04-30 |
 | `NftStorage`, `NftStorageMono` | storage | NFT.Storage Classic uploads were decommissioned on 2024-06-30 |
 | `HopProtocol`, `HopProtocolMono` | bridge | Hop's official domain has lapsed |
 | `Odos`, `OdosMono` | dex | Odos shut down on 2026-07-30 (odos.xyz shows the shutdown notice) |
 
-Lookup keys may not point at deprecated icons, so the ticker `BUSD` and the slugs `namiwallet`, `nami`, `hopprotocol` and `odos` no longer resolve: the dynamic components render `fallback` for them, and the `react-web3-icons/meta` maps no longer list them.
+Lookup keys may not point at deprecated icons, so the ticker `BUSD` and the slugs `hopprotocol` and `odos` no longer resolve: the dynamic components render `fallback` for them, and the `react-web3-icons/meta` maps no longer list them.
 
 ## 9. Removed exports
 
@@ -242,8 +242,8 @@ Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases ar
 - [ ] Replace the removed exports (`GnosisSafe*`, `Matic*`, `*Light`, `Truffle*`, `Ganache*`, `Drizzle*`, `TofuNft*`) with their replacements (section 9)
 - [ ] Optionally rename the deprecated names with the find-and-replace in section 6 (they keep working through v5)
 - [ ] Drop `variant="Alt"` from `WalletIcon` (section 6, duplicate variants)
-- [ ] Optionally move from `Tally`, `MakerDao`, `Mkr` and `ParaSwap` to `Cactus`, `Sky` and `Velora` (new artwork, section 7)
-- [ ] Expect `fallback` for the lookup keys of defunct projects (`BUSD`, `nami`, `odos`, …) and the new Sky and Velora artwork for `MKR`, `makerdao` and `paraswap` (sections 7 and 8)
+- [ ] Optionally move from `Tally`, `MakerDao`, `Mkr`, `ParaSwap` and `NamiWallet` to `Cactus`, `Sky`, `Velora` and `Lace` (new artwork, section 7)
+- [ ] Expect `fallback` for the lookup keys of defunct projects (`BUSD`, `hopprotocol`, `odos`) and the new Sky, Velora and Lace artwork for `MKR`, `makerdao`, `paraswap`, `nami` and `namiwallet` (sections 7 and 8)
 - [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg`, `Starknet*.svg` and `Zksync*.svg` instead of the `OKXWallet*`, `StarkNet*` and `ZkSync*` files
 
 ---

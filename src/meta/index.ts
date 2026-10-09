@@ -294,6 +294,8 @@ export const WALLET_SLUG_TO_NAME = {
   ledger: 'Ledger',
   metamask: 'MetaMask',
   'metamask-sdk': 'MetaMask',
+  nami: 'Lace',
+  namiwallet: 'Lace',
   okx: 'OkxWallet',
   okxwallet: 'OkxWallet',
   petra: 'Petra',
