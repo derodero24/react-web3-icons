@@ -1,6 +1,10 @@
 import { createIcon } from '../utils';
 
-// Source: https://helius.dev (official brand)
+// Source: https://www.helius.dev/brand (Helius Brand Kit: Helius/Helius-Icon.svg, Helius/Helius-Icon-Black.svg, Helius/Helius-Icon-White.svg)
+// Source: https://www.helius.dev/Helius-Brandkit/Helius/Helius-Icon.svg
+// Source: https://www.helius.dev/favicon.svg (the site icon, the same symbol)
+// Default: the Helius symbol in flat Helius Orange #E84125, the orange of the brand kit. Its shapes match favicon.svg (the same 1.006 aspect); the kit's Helius-Icon.svg draws them about 0.7% narrower and shades each piece from #E35930 to #E84125, a gradient this flat artwork leaves out
+// Mono: the same shapes in currentColor, as in the kit's one-colour Helius-Icon-Black.svg and Helius-Icon-White.svg
 /** Helius node icon (colored). */
 export const Helius = /* @__PURE__ */ createIcon(
   'Helius',
