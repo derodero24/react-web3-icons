@@ -18,10 +18,7 @@ import { ICONS } from './helpers/units';
  * Units that ship the same artwork on purpose, keyed by the two units
  * (`category/Name`, sorted, joined by ` + `), with the reason.
  */
-const ALLOWED_DUPLICATES: Readonly<Record<string, string>> = {
-  'defi/SafeProtocol + wallet/Safe':
-    'pending: the Safe protocol (defi) and Safe{Wallet} (wallet) draw the same Safe mark; one should re-export the other once #837 settles the official Safe source and colour',
-};
+const ALLOWED_DUPLICATES: Readonly<Record<string, string>> = {};
 
 /** Whitespace-collapsed attribute value with its `url(#…)` targets renamed. */
 function canonicalValue(
