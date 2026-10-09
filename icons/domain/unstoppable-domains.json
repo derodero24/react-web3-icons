@@ -4,8 +4,8 @@
     "https://storage.googleapis.com/unstoppable-client-assets/images/favicon/icon.svg (the site icon linked from https://unstoppabledomains.com; the site header logo draws the same mark beside the wordmark)"
   ],
   "notes": [
-    "Default: the Unstoppable Domains mark, a #00C9FF stripe and a #0D67FE U, the colours of icon.svg. The paths are not the file's own: they are a redraw about 1.4% wider than icon.svg (aspect 1.115 against 1.100, IoU 0.991), kept as the difference does not show at icon sizes",
-    "Mono: the stripe passes behind the U, cut back from it by a 1.2-unit seam.",
+    "Default: icon.svg's two paths unchanged, a #00C9FF stripe behind a #0D67FE U, placed on the 64 grid (the file's dark-scheme style, which turns the U #FFFCF0, is left out). It replaces a redraw of the mark about 1.4% wider than the file",
+    "Mono: derived mechanically from icon.svg, as no one-colour version is published: the U in currentColor, and the stripe, which passes behind it, cut back from the U by a 1.2-unit seam",
     "unstoppabledomains.com/brand and /press return 404; no brand kit was found"
   ],
   "kind": "icon",

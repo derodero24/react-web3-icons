@@ -1,8 +1,8 @@
 import { createIcon } from '../utils';
 
 // Source: https://storage.googleapis.com/unstoppable-client-assets/images/favicon/icon.svg (the site icon linked from https://unstoppabledomains.com; the site header logo draws the same mark beside the wordmark)
-// Default: the Unstoppable Domains mark, a #00C9FF stripe and a #0D67FE U, the colours of icon.svg. The paths are not the file's own: they are a redraw about 1.4% wider than icon.svg (aspect 1.115 against 1.100, IoU 0.991), kept as the difference does not show at icon sizes
-// Mono: the stripe passes behind the U, cut back from it by a 1.2-unit seam.
+// Default: icon.svg's two paths unchanged, a #00C9FF stripe behind a #0D67FE U, placed on the 64 grid (the file's dark-scheme style, which turns the U #FFFCF0, is left out). It replaces a redraw of the mark about 1.4% wider than the file
+// Mono: derived mechanically from icon.svg, as no one-colour version is published: the U in currentColor, and the stripe, which passes behind it, cut back from the U by a 1.2-unit seam
 // unstoppabledomains.com/brand and /press return 404; no brand kit was found
 /** Unstoppable Domains domain icon (colored). */
 export const UnstoppableDomains = /* @__PURE__ */ createIcon(
@@ -10,10 +10,10 @@ export const UnstoppableDomains = /* @__PURE__ */ createIcon(
   '0 0 64 64',
   () => (
     <>
-      <path fill="#00c9ff" d="M60 7.72v19.06L4 49.31z" />
+      <path fill="#00C9FF" d="M59.98 7.43v19.3L3.99 49.55z" />
       <path
-        fill="#0d67fe"
-        d="M49.5 6.89v32.89a17.2 17.2 0 0 1-5.12 12.25 17.6 17.6 0 0 1-24.75 0 17.2 17.2 0 0 1-5.13-12.25V25.92L25 20.2v19.58a6 6 0 0 0 .25 2.54 6 6 0 0 0 1.28 2.21 6 6 0 0 0 2.08 1.51 6.2 6.2 0 0 0 5.04 0q1.2-.53 2.08-1.5A6 6 0 0 0 37 42.31q.39-1.25.25-2.54V13.53z"
+        fill="#0D67FE"
+        d="M49.48 6.55V39.9c0 9.7-7.83 17.55-17.5 17.55s-17.5-7.86-17.5-17.55V25.86l10.5-5.8V39.9a6 6 0 0 0 1.8 4.34 6 6 0 0 0 4.33 1.8c1.62 0 3.18-.65 4.33-1.8a6.2 6.2 0 0 0 1.8-4.34V13.3z"
       />
     </>
   ),
@@ -25,10 +25,7 @@ export const UnstoppableDomainsMono = /* @__PURE__ */ createIcon(
   'UnstoppableDomainsMono',
   '0 0 64 64',
   () => (
-    <path
-      fillRule="evenodd"
-      d="M49.5 6.89v32.89c0 4.6-1.84 9.02-5.12 12.25-6.86 6.78-17.9 6.78-24.75 0a17.2 17.2 0 0 1-5.13-12.25V25.92L25 20.2v19.58a6 6 0 0 0 .25 2.54 6 6 0 0 0 1.28 2.21 6 6 0 0 0 2.08 1.51 6.2 6.2 0 0 0 5.04 0q1.2-.52 2.08-1.5A6 6 0 0 0 37 42.31a6 6 0 0 0 .25-2.54V13.53zm10.5.83v19.06l-9.3 3.74v-15.9zM4 49.31l9.5-7.05q.21 1.5.68 2.96zm22.2-9.4v-7.09l9.85-7.31v10.9l-9.9 3.99q0-.24.04-.48"
-    />
+    <path d="M49.48 6.55V39.9c0 9.7-7.83 17.55-17.5 17.55s-17.5-7.86-17.5-17.55V25.86l10.5-5.8V39.9a6 6 0 0 0 1.8 4.34 6 6 0 0 0 4.33 1.8c1.62 0 3.18-.65 4.33-1.8a6.2 6.2 0 0 0 1.8-4.34V13.3zm10.5.88v19.3l-9.3 3.79v-16.1zM3.99 49.55l9.48-7.13q.23 1.53.68 2.99zm22.19-9.64v-7.05l9.86-7.42v11.05l-9.85 4.01q-.03-.29-.01-.59" />
   ),
   { fill: 'currentColor' },
 );
