@@ -4,7 +4,7 @@ import { createIcon } from '../utils';
 // Source: https://cdn.prod.website-files.com/6507242ad3e4e6ff563301e4/65de58e66e6def01f33bc342_Symbol%201.svg (Symbol 1.svg, the Logo Library's "Symbol Metis" file)
 // Default: the official Symbol 1.svg (1500x1500, two paths), paths unchanged and scaled 1500 -> 64 as a full-bleed container: a #00D2FF disc with the head in black (#000), the laurel sprig cut into the head as notches the disc shows through. Every official symbol variant on the page includes the disc, so the base keeps it. It replaces the retired symbol (a #00D8C1 disc with the head knocked out), which had no official vector
 // Colours are the symbol file's own #00D2FF and black, kept unchanged; the page's "Metis Primary Colors" swatches list #00CFFF and #000000
-// Mono: the disc in currentColor with the head knocked out (the two official subpaths as one evenodd path, the head closed with Z); the sprig notches stay ink. This is how the brand's own one-colour symbols are built (Symbol white.png and Symbol black version.png on the same page, PNG only, used as a reference and not traced)
+// Mono: the disc in currentColor with the head knocked out (the two official subpaths as one evenodd path, the head subpath closed implicitly, as in the official file); the sprig notches stay ink. This is how the brand's own one-colour symbols are built (Symbol white.png and Symbol black version.png on the same page, PNG only, used as a reference and not traced)
 /** Metis chain icon (colored). */
 export const Metis = /* @__PURE__ */ createIcon(
   'Metis',
