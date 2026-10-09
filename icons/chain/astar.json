@@ -5,7 +5,7 @@
     "https://astar.network/brand-asset-kit/ (official brand asset kit; its astar-brand-asset-kit.zip has the symbol only as PNG: Astar/Symbol_Color.png, Astar/Symbol_White.png)"
   ],
   "notes": [
-    "Default: the Astar symbol, a ring and knot in the #E6007A, #703AC2, #0070EB, #0297FB and #0AE2FF gradient. It renders the same as favicon.svg (IoU 0.997, the same colours) but is an earlier export of the mark whose origin is not recorded: its highlights use overlay blending, and its ring is about 1.3% narrower than tall (63.2 x 64 on the grid) where the favicon's ring is a true circle. Kept, as the difference does not show at icon sizes",
+    "Default: the Astar symbol, a ring and knot in the #E6007A, #703AC2, #0070EB, #0297FB and #0AE2FF gradient. It renders the same as favicon.svg (IoU 0.997, the same colours, and the same 12 overlay and 15 multiply highlight layers) but is a different export of the mark, in its own coordinate system, whose origin is not recorded: its ring is about 1.3% narrower than tall (63.2 x 64 on the grid) where the favicon's ring is a true circle. Kept, as the difference does not show at icon sizes",
     "Mono: a one-colour silhouette derived from the default, the ring and the knot in currentColor with the knot's crossings merged; the kit has no one-colour vector (Symbol_White.png is a shaded raster)"
   ],
   "kind": "icon",
