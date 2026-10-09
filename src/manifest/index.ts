@@ -1275,13 +1275,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#f2681d',
   },
   { name: 'RocketPoolMono', category: 'defi' },
-  {
-    name: 'SafeProtocol',
-    category: 'defi',
-    slug: 'safeprotocol',
-    variants: ['', 'Mono'],
-    brandColor: '#000000',
-  },
+  { name: 'SafeProtocol', category: 'defi', slug: 'safeprotocol' },
   { name: 'SafeProtocolMono', category: 'defi' },
   {
     name: 'Sky',
@@ -1381,7 +1375,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'OpenZeppelin',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#63d2f9',
+    brandColor: '#2e99ff',
   },
   { name: 'OpenZeppelinMono', category: 'devtool' },
   {
@@ -1901,7 +1895,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     variants: ['', 'Alt', 'Mono', 'Symbol', 'SymbolMono'],
     brandColor: '#0086ff',
   },
-  { name: 'OpenSeaAlt', category: 'marketplace' },
+  { name: 'OpenSeaAlt', category: 'marketplace', deprecated: true },
   { name: 'OpenSeaMono', category: 'marketplace' },
   { name: 'OpenSeaSymbol', category: 'marketplace' },
   { name: 'OpenSeaSymbolMono', category: 'marketplace' },
@@ -2088,9 +2082,11 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'CoinMarketCap',
     category: 'tracker',
-    variants: ['', 'Mono'],
+    variants: ['', 'Mono', 'Circle', 'CircleMono'],
     brandColor: '#3861fb',
   },
+  { name: 'CoinMarketCapCircle', category: 'tracker' },
+  { name: 'CoinMarketCapCircleMono', category: 'tracker' },
   { name: 'CoinMarketCapMono', category: 'tracker' },
   {
     name: 'DefiLlama',

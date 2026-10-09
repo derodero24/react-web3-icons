@@ -1,7 +1,12 @@
 {
   "name": "OpenZeppelin",
   "source": [
-    "https://openzeppelin.com"
+    "https://cdn.sanity.io/files/7gbik6p1/production/93a4bce6e91c627d1c1c3995fbb5c5ce6115540c.zip (official brand kit, the Download Brand Kit link of https://www.openzeppelin.com/brand-kit)"
+  ],
+  "notes": [
+    "OpenZeppelin: OpenZeppelin-Logo Kit/Favicon/OZ-Logo-FavIconColor.svg, the three paths copied unchanged (#2E99FF/#4F56FA/#09C2FF) and placed on the 64 grid; the kit's main logos (Main/SVG) draw the same Z mark. It replaces the retired #63D2F9/#4E5EE4/#63B0F9 mark of the old openzeppelin-contracts logo.svg",
+    "OpenZeppelinMono: the same three paths in currentColor, matching the one-colour mark of the kit's Main/SVG/OZ-Logo-Black.svg",
+    "Accessed 2026-10-09"
   ],
   "kind": "icon",
   "variants": {
