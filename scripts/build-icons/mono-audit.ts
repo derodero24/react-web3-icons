@@ -230,11 +230,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     kind: 'false-positive',
     reason: 'The wavy liquid surface narrows the flood-filled footprint.',
   },
-  'explorer/Arbiscan': {
-    kind: 'false-positive',
-    reason:
-      'The white strokes cut through the ring as in the colored mark, so the footprint flood fill enters the strokes and the ring gap.',
-  },
   'explorer/Celoscan': {
     kind: 'false-positive',
     reason:

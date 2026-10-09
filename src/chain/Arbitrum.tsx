@@ -1,11 +1,14 @@
 import { createIcon } from '../utils';
 
-// Source: https://arbitrum.io
-// Arbitrum (original) shared paths
-// ArbitrumCircle variant shared paths
-// ArbitrumOne shared paths
-// ArbitrumNova shared paths
-// Square variant: original viewBox 262.47 200 975.06 1099.98 → scale 0.04182, translate(0.64, 0.64)
+// Source: https://arbitrum.foundation (links the Arbitrum Brand Kit)
+// Source: https://arbitrumfoundation.notion.site/Arbitrum-Brand-Kit-48751dc5e03240a5872496283f088f79 (Arbitrum Foundation brand kit, accessed 2026-10-09)
+// Source: https://arbitrumfoundation.notion.site/Arbitrum-brand-guidelines-6014e69d7b574f378a50f5ee678495d3 (Primary_Logomark_RGB.svg, AllWhite_Logos_Logomark_RGB.svg)
+// Source: https://docs.arbitrum.io/img/logo.svg (the same logomark on the Arbitrum docs site)
+// The kit pages serve their files through signed, expiring links, so the pages are cited and the files are named here
+// Default: the Arbitrum logomark, Primary_Logomark_RGB.svg from the kit page "Arbitrum brand guidelines": the #213147 hexagon with the #9DCCED ring, the #12AAFF and white strokes and the #213147 notch, placed on the 64 grid; docs.arbitrum.io/img/logo.svg is the same artwork
+// Mono: the kit's one-colour "Secondary" logomark, AllWhite_Logos_Logomark_RGB.svg, in currentColor: the ring and the four strokes in ink, the navy body left open (fill none in the file) and no notch. It is an outline rather than a filled hexagon because the brand's own one-colour mark is drawn that way (docs/icon-variants.md, mono rule 5)
+// Circle and Square: the kit has no containered logomark (its "1:1 Logomarks" are the same marks on a transparent square), so these follow the repository container convention: the logomark on a #213147 disc (Circle) or on a #213147 square with rounded corners, rx 12.8 (Square). CircleMono and SquareMono are the container in currentColor with the AllWhite shape (ring and strokes) knocked out
+// One, OneFlat, Nova and NovaFlat and their monos: pre-2023 circle marks of unrecorded origin, not in the current kit
 /** Arbitrum chain icon (colored). */
 export const Arbitrum = /* @__PURE__ */ createIcon(
   'Arbitrum',
