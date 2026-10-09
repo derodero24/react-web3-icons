@@ -5,6 +5,14 @@ import { describe, expect, it } from 'vitest';
 import {
   Aptos,
   AptosMono,
+  ArbitrumNova,
+  ArbitrumNovaFlat,
+  ArbitrumNovaFlatMono,
+  ArbitrumNovaMono,
+  ArbitrumOne,
+  ArbitrumOneFlat,
+  ArbitrumOneFlatMono,
+  ArbitrumOneMono,
   Argent,
   ArgentMono,
   Backpack,
@@ -240,6 +248,19 @@ const aliasPairs = [
   ],
   ['Mkr → MakerDao', Mkr, MakerDao],
   ['MkrMono → MakerDaoMono', MkrMono, MakerDaoMono],
+  // Single-colour current marks: Flat is the default artwork (#835)
+  ['ArbitrumOneFlat → ArbitrumOne', ArbitrumOneFlat, ArbitrumOne],
+  [
+    'ArbitrumOneFlatMono → ArbitrumOneMono',
+    ArbitrumOneFlatMono,
+    ArbitrumOneMono,
+  ],
+  ['ArbitrumNovaFlat → ArbitrumNova', ArbitrumNovaFlat, ArbitrumNova],
+  [
+    'ArbitrumNovaFlatMono → ArbitrumNovaMono',
+    ArbitrumNovaFlatMono,
+    ArbitrumNovaMono,
+  ],
 ] as const;
 
 describe('Icon aliases', () => {

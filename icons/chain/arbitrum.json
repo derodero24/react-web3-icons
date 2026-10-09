@@ -4,14 +4,19 @@
     "https://arbitrum.foundation (links the Arbitrum Brand Kit)",
     "https://arbitrumfoundation.notion.site/Arbitrum-Brand-Kit-48751dc5e03240a5872496283f088f79 (Arbitrum Foundation brand kit, accessed 2026-10-09)",
     "https://arbitrumfoundation.notion.site/Arbitrum-brand-guidelines-6014e69d7b574f378a50f5ee678495d3 (Primary_Logomark_RGB.svg, AllWhite_Logos_Logomark_RGB.svg)",
-    "https://docs.arbitrum.io/img/logo.svg (the same logomark on the Arbitrum docs site)"
+    "https://docs.arbitrum.io/img/logo.svg (the same logomark on the Arbitrum docs site)",
+    "https://arbitrumfoundation.notion.site/Arbitrum-One-brand-guidelines-20d0980a7bed43148e7de559ee90aa87 (0923_One_Logos_Logomark_RGB.svg, 0923_One-logomark_AllWhite_RGB.svg)",
+    "https://arbitrumfoundation.notion.site/Arbitrum-Nova-brand-guidelines-42f91337e0c541a28b2b0fcce7e60b0b (0923_Nova_Logos_Logomark_RGB.svg, 1223_Nova-logomark_AllWhite_RGB.svg)"
   ],
   "notes": [
     "The kit pages serve their files through signed, expiring links, so the pages are cited and the files are named here",
     "Default: the Arbitrum logomark, Primary_Logomark_RGB.svg from the kit page \"Arbitrum brand guidelines\": the #213147 hexagon with the #9DCCED ring, the #12AAFF and white strokes and the #213147 notch, placed on the 64 grid; docs.arbitrum.io/img/logo.svg is the same artwork",
     "Mono: the kit's one-colour \"Secondary\" logomark, AllWhite_Logos_Logomark_RGB.svg, in currentColor: the ring and the four strokes in ink, the navy body left open (fill none in the file) and no notch. It is an outline rather than a filled hexagon because the brand's own one-colour mark is drawn that way (docs/icon-variants.md, mono rule 5)",
     "Circle and Square: the kit has no containered logomark (its \"1:1 Logomarks\" are the same marks on a transparent square), so these follow the repository container convention: the logomark on a #213147 disc (Circle) or on a #213147 square with rounded corners, rx 12.8 (Square). CircleMono and SquareMono are the container in currentColor with the AllWhite shape (ring and strokes) knocked out",
-    "One, OneFlat, Nova and NovaFlat and their monos: pre-2023 circle marks of unrecorded origin, not in the current kit"
+    "One: the kit's Arbitrum One logomark (0923_One_Logos_Logomark_RGB.svg on \"Arbitrum One brand guidelines\"): a hexagon outline around the A in Blue Shift #1B4ADD, paths unchanged and placed on the 64 grid. OneMono is the same paths in currentColor, which is the kit's 0923_One-logomark_AllWhite_RGB.svg (path data identical to the colour file)",
+    "Nova: the kit's Arbitrum Nova logomark (0923_Nova_Logos_Logomark_RGB.svg on \"Arbitrum Nova brand guidelines\"): a hexagon outline around the N in Nova Orange #FF7700 (#f70 in the file), paths unchanged and placed on the 64 grid. NovaMono is the same paths in currentColor, which is the kit's 1223_Nova-logomark_AllWhite_RGB.svg (path data identical to the colour file)",
+    "One and Nova replace pre-2023 circle marks of unrecorded origin (a #1B4ADD or #E57310 disc with the white letter, and their ring-shaped Flat versions); the current kit ships only the hexagon logomarks",
+    "ArbitrumOneFlat, ArbitrumOneFlatMono, ArbitrumNovaFlat and ArbitrumNovaFlatMono: deprecated aliases of ArbitrumOne, ArbitrumOneMono, ArbitrumNova and ArbitrumNovaMono, since the current One and Nova logomarks are single-colour, so Flat is the same artwork as the default (#835)"
   ],
   "kind": "icon",
   "variants": {
@@ -37,36 +42,44 @@
       "fill": "currentColor"
     },
     "One": {
-      "file": "arbitrum.one.svg"
+      "file": "arbitrum.one.svg",
+      "fill": "#1B4ADD"
     },
     "OneMono": {
       "file": "arbitrum.one-mono.svg",
       "fill": "currentColor"
     },
-    "OneFlat": {
-      "file": "arbitrum.one-flat.svg",
-      "fill": "#1b4add"
-    },
-    "OneFlatMono": {
-      "file": "arbitrum.one-flat-mono.svg",
-      "fill": "currentColor"
-    },
     "Nova": {
-      "file": "arbitrum.nova.svg"
+      "file": "arbitrum.nova.svg",
+      "fill": "#FF7700"
     },
     "NovaMono": {
       "file": "arbitrum.nova-mono.svg",
       "fill": "currentColor"
-    },
-    "NovaFlat": {
-      "file": "arbitrum.nova-flat.svg",
-      "fill": "#e57310"
-    },
-    "NovaFlatMono": {
-      "file": "arbitrum.nova-flat-mono.svg",
-      "fill": "currentColor"
     }
   },
+  "localAliases": [
+    {
+      "name": "ArbitrumOneFlat",
+      "target": "ArbitrumOne",
+      "deprecated": "The current Arbitrum One logomark is single-colour, so Flat is the same artwork as the default — use `ArbitrumOne` instead."
+    },
+    {
+      "name": "ArbitrumOneFlatMono",
+      "target": "ArbitrumOneMono",
+      "deprecated": "The current Arbitrum One logomark is single-colour, so FlatMono is the same artwork as the mono — use `ArbitrumOneMono` instead."
+    },
+    {
+      "name": "ArbitrumNovaFlat",
+      "target": "ArbitrumNova",
+      "deprecated": "The current Arbitrum Nova logomark is single-colour, so Flat is the same artwork as the default — use `ArbitrumNova` instead."
+    },
+    {
+      "name": "ArbitrumNovaFlatMono",
+      "target": "ArbitrumNovaMono",
+      "deprecated": "The current Arbitrum Nova logomark is single-colour, so FlatMono is the same artwork as the mono — use `ArbitrumNovaMono` instead."
+    }
+  ],
   "aliases": [
     "arb1"
   ],

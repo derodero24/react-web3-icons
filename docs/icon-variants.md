@@ -22,7 +22,7 @@ Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The bas
 | `Alt` | Alternative color scheme or design | `OpenSeaAlt` |
 | `Inverted` | Inverted color scheme for contrast on dark backgrounds | `EtherscanInverted` |
 | `Light` | _(deprecated)_ Legacy lighter variant; only `BlastscanLight` remains active. Prefer `Inverted` for new icons. | `BlastscanLight` |
-| `Flat` | Single brand color, no internal color variation | `ArbitrumOneFlat` |
+| `Flat` | Single brand color, no internal color variation | `LooksRareFlat` |
 | `Symbol` | Standalone symbol without container (when base has one) | `RainbowSymbol` |
 | `SymbolMono` | Monochrome standalone symbol without container | `OpenSeaSymbolMono` |
 

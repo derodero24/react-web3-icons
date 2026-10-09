@@ -24,12 +24,8 @@ export const chainImports: Record<
   ArbitrumCircleMono: () => import('../../chain/Arbitrum'),
   ArbitrumMono: () => import('../../chain/Arbitrum'),
   ArbitrumNova: () => import('../../chain/Arbitrum'),
-  ArbitrumNovaFlat: () => import('../../chain/Arbitrum'),
-  ArbitrumNovaFlatMono: () => import('../../chain/Arbitrum'),
   ArbitrumNovaMono: () => import('../../chain/Arbitrum'),
   ArbitrumOne: () => import('../../chain/Arbitrum'),
-  ArbitrumOneFlat: () => import('../../chain/Arbitrum'),
-  ArbitrumOneFlatMono: () => import('../../chain/Arbitrum'),
   ArbitrumOneMono: () => import('../../chain/Arbitrum'),
   ArbitrumSquare: () => import('../../chain/Arbitrum'),
   ArbitrumSquareMono: () => import('../../chain/Arbitrum'),
@@ -198,8 +194,6 @@ export const chainImports: Record<
 export const chainVariants: readonly string[] = [
   'Circle',
   'CircleMono',
-  'Flat',
-  'FlatMono',
   'Square',
   'SquareMono',
 ];
@@ -214,7 +208,5 @@ export type ChainVariant =
   | 'mono'
   | 'Circle'
   | 'CircleMono'
-  | 'Flat'
-  | 'FlatMono'
   | 'Square'
   | 'SquareMono';

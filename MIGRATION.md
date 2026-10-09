@@ -169,8 +169,12 @@ These variants render the same artwork as another export, or legacy artwork with
 | `MetaMaskAlt` | `MetaMask` | wallet | MetaMask has a single fox design since its 2024 refresh, so `Alt` rendered the default |
 | `MagicEdenFlat` | `MagicEden` | marketplace | the current Magic Eden mark is single-colour, so `Flat` rendered the default |
 | `MagicEdenWordmarkFlat` | `MagicEdenWordmark`, `MagicEdenWordmarkMono` | marketplace | legacy stacked lockup; Magic Eden has no single-colour wordmark |
+| `ArbitrumOneFlat` | `ArbitrumOne` | chain | the current Arbitrum One logomark is single-colour, so `Flat` now renders the default |
+| `ArbitrumOneFlatMono` | `ArbitrumOneMono` | chain | the same, for the mono |
+| `ArbitrumNovaFlat` | `ArbitrumNova` | chain | the current Arbitrum Nova logomark is single-colour, so `Flat` now renders the default |
+| `ArbitrumNovaFlatMono` | `ArbitrumNovaMono` | chain | the same, for the mono |
 
-Deprecated exports are not variants of the dynamic components, so `'Alt'` leaves `WalletVariant`: `<WalletIcon name="metamask" variant="Alt" />` is a type error and renders `fallback`. Omit `variant` instead.
+Deprecated exports are not variants of the dynamic components, so `'Alt'` leaves `WalletVariant` and `'Flat'` and `'FlatMono'` leave `ChainVariant`: `<WalletIcon name="metamask" variant="Alt" />` and `<ChainIcon name="arbitrum-nova" variant="Flat" />` are type errors and render `fallback`. Omit `variant` (or use `'mono'`) instead.
 
 ## 7. Rebrands with new artwork
 
