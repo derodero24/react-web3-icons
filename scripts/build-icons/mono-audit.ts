@@ -295,11 +295,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'Container polarity: the white tile becomes ink with the shield knocked out, so the threshold reference is inverted.',
   },
-  'wallet/ZerionCircle': {
-    kind: 'false-positive',
-    reason:
-      'The gradient disc inflates the colour-boundary count; the Z knockout reads at every size.',
-  },
 };
 
 /**
