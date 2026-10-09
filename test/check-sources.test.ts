@@ -6,6 +6,7 @@ import { afterAll, describe, expect, it } from 'vitest';
 import {
   type Checked,
   checkSources,
+  citesFile,
   classify,
   collectSources,
   extractUrls,
@@ -89,10 +90,46 @@ describe('siteOf', () => {
   });
 });
 
+describe('citesFile', () => {
+  it.each([
+    ['https://brand.example.com/logo.svg', true],
+    ['https://brand.example.com/kit/Press%20Kit.ZIP', true],
+    ['https://brand.example.com/brand.pdf?download=1', true],
+    ['https://brand.example.com/brand', false],
+    ['https://brand.example.com/brand.html', false],
+    ['https://brand.example.com/v1.2', false],
+    ['https://raw.githubusercontent.com/org/repo/main/logo.svg', true],
+    ['https://github.com/org/repo/blob/main/logo.svg', false],
+    ['https://github.com/org/repo/tree/main/logos/x.png', false],
+    ['https://github.com/org/repo/raw/main/logo.svg', true],
+  ])('%s → %s', (url, file) => {
+    expect(citesFile(url)).toBe(file);
+  });
+});
+
 describe('classify', () => {
   const url = 'https://brand.example.com/logo.svg';
   it.each([
     [{ status: 200, finalUrl: url }, 'ok'],
+    [{ status: 200, finalUrl: url, contentType: 'image/svg+xml' }, 'ok'],
+    // A file URL answered with a web page: catch-all, soft 404 or parking.
+    [{ status: 200, finalUrl: url, contentType: 'text/html' }, 'webpage'],
+    [
+      {
+        status: 200,
+        finalUrl: 'https://www.example.com/',
+        contentType: 'text/html',
+      },
+      'webpage',
+    ],
+    [
+      {
+        status: 200,
+        finalUrl: 'https://parked.example.net/',
+        contentType: 'text/html',
+      },
+      'moved',
+    ],
     [{ status: 200, finalUrl: 'https://www.example.com/logo.svg' }, 'ok'],
     [{ status: 200, finalUrl: 'https://www.figma.com/file/x' }, 'ok'],
     [{ status: 200, finalUrl: 'https://casino.example.net/' }, 'moved'],
@@ -106,6 +143,16 @@ describe('classify', () => {
     [{ finalUrl: url, error: 'fetch failed (ENOTFOUND)' }, 'failing'],
   ] as const)('%j → %s', (result, verdict) => {
     expect(classify(url, result)).toBe(verdict);
+  });
+
+  it('expects web pages from page URLs', () => {
+    const html = { status: 200, contentType: 'text/html' } as const;
+    for (const page of [
+      'https://brand.example.com/brand',
+      'https://github.com/org/repo/blob/main/logo.svg',
+    ]) {
+      expect(classify(page, { ...html, finalUrl: page })).toBe('ok');
+    }
   });
 });
 
@@ -126,6 +173,55 @@ describe('probe', () => {
       challenge: false,
     });
     expect(classify('https://namiwallet.io/', result)).toBe('moved');
+  });
+
+  it('records the media type of the final response', async () => {
+    const fetchImpl = fakeFetch({
+      'https://brand.example.com/logo.svg': {
+        status: 301,
+        location: 'https://brand.example.com/',
+        headers: { 'content-type': 'text/plain' },
+      },
+      'https://brand.example.com/': {
+        status: 200,
+        headers: { 'content-type': 'Text/HTML; charset=utf-8' },
+      },
+    });
+    const result = await probe('https://brand.example.com/logo.svg', fetchImpl);
+    expect(result).toEqual({
+      status: 200,
+      finalUrl: 'https://brand.example.com/',
+      challenge: false,
+      contentType: 'text/html',
+    });
+    expect(classify('https://brand.example.com/logo.svg', result)).toBe(
+      'webpage',
+    );
+  });
+
+  it('reports a malformed redirect target instead of throwing', async () => {
+    const fetchImpl = fakeFetch({
+      'https://a.example/': { status: 302, location: 'http://bad host/' },
+    });
+    expect(await probe('https://a.example/', fetchImpl)).toEqual({
+      finalUrl: 'https://a.example/',
+      error: 'invalid redirect target "http://bad host/"',
+    });
+  });
+
+  it('ignores a body that fails to cancel', async () => {
+    const body = new ReadableStream({
+      pull: controller => controller.error(new Error('reset')),
+    });
+    const response = new Response(body, { status: 200 });
+    await response.body
+      ?.getReader()
+      .read()
+      .catch(() => undefined);
+    const fetchImpl: typeof fetch = () => Promise.resolve(response);
+    expect(await probe('https://reset.example/', fetchImpl)).toMatchObject({
+      status: 200,
+    });
   });
 
   it('retries with GET when HEAD fails', async () => {
@@ -208,12 +304,28 @@ describe('collecting and reporting', () => {
     ]);
     const markdown = report(checked);
     expect(markdown).toContain(
-      '2 URLs cited in `icons/**/*.json` `source`: 1 OK, 1 gone, 0 moved to another site, 0 failing, 0 blocked by the site.',
+      '2 URLs cited in `icons/**/*.json` `source`: 1 OK, 1 gone, 0 moved to another site, 0 serving a web page, 0 failing, 0 blocked by the site.',
     );
     expect(markdown).toContain(
       '| https://gone.example/a.svg | HTTP 404 | `icons/chain/a.json` |',
     );
     expect(markdown).not.toContain('ok.example');
+  });
+
+  it('reports a URL whose check throws as failing and goes on', async () => {
+    const fetchImpl: typeof fetch = input =>
+      String(input) === 'https://gone.example/a.svg'
+        ? // Not a Response: reading its headers throws.
+          Promise.resolve({ status: 200 } as Response)
+        : fakeFetch({ 'https://ok.example/a.svg': { status: 200 } })(input, {
+            redirect: 'manual',
+          });
+    const checked = await checkSources(root, fetchImpl);
+    expect(checked.map(c => [c.url, c.verdict])).toEqual([
+      ['https://ok.example/a.svg', 'ok'],
+      ['https://gone.example/a.svg', 'failing'],
+    ]);
+    expect(checked[1]?.probe.error).toMatch(/reading 'get'/);
   });
 
   it('lists moves with their target and folds the blocked URLs away', () => {
@@ -234,11 +346,20 @@ describe('collecting and reporting', () => {
       row('https://down.example/', 'failing', {
         finalUrl: 'https://down.example/',
       }),
+      row('https://soft.example/logo.svg', 'webpage', {
+        status: 200,
+        finalUrl: 'https://soft.example/',
+        contentType: 'text/html',
+      }),
     ]);
     expect(markdown).toContain(
       '| https://old.example/ | → https://new.example/a\\|b (HTTP 200) | `icons/x/y.json` |',
     );
     expect(markdown).toMatch(/<details><summary>URLs<\/summary>[\s\S]*walled/);
     expect(markdown).toContain('| https://down.example/ | no response |');
+    expect(markdown).toContain(
+      '| https://soft.example/logo.svg | → https://soft.example/ (HTTP 200, text/html) |',
+    );
+    expect(markdown).toContain('1 serving a web page');
   });
 });

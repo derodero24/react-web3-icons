@@ -3,10 +3,12 @@
  * Reports `source` URLs in icons/<category>/<unit>.json that no longer serve
  * what they cite: gone (404 / 410), moved to another site (a redirect chain
  * that ends on a different domain, as when a domain lapses or a project
- * moves; a redirect to a kit host such as Notion or Figma does not count), or
- * failing (other error statuses, DNS and connection errors, timeouts). Sites
- * that wall off bots (401, 403, 429, challenge pages) are only counted: they
- * say nothing about the URL.
+ * moves; a redirect to a kit host such as Notion or Figma does not count),
+ * serving a web page in place of the cited file (a link to an `.svg`, `.zip`,
+ * `.png`, `.pdf`, … that answers with HTML: a site's catch-all page, a soft
+ * 404 or a parked domain), or failing (other error statuses, DNS and
+ * connection errors, timeouts). Sites that wall off bots (401, 403, 429,
+ * challenge pages) are only counted: they say nothing about the URL.
  *
  *   node scripts/check-sources.ts
  *
@@ -128,9 +130,49 @@ export interface Probe {
   readonly error?: string;
   /** The response was a bot challenge (Cloudflare `cf-mitigated`). */
   readonly challenge?: boolean;
+  /** The final response's media type (`content-type` without parameters). */
+  readonly contentType?: string;
 }
 
-export type Verdict = 'ok' | 'broken' | 'moved' | 'failing' | 'blocked';
+export type Verdict =
+  | 'ok'
+  | 'broken'
+  | 'moved'
+  | 'webpage'
+  | 'failing'
+  | 'blocked';
+
+/** Extensions of the files a source cites (artwork, documents, kit archives). */
+const FILE_EXTENSIONS = new Set([
+  'ai',
+  'avif',
+  'eps',
+  'gif',
+  'ico',
+  'jpeg',
+  'jpg',
+  'pdf',
+  'png',
+  'svg',
+  'webp',
+  'zip',
+]);
+
+/**
+ * Whether `url` names a file (`…/logo.svg`, `…/press-kit.zip`) rather than a
+ * page. GitHub's `blob` and `tree` views are pages about a file.
+ */
+export function citesFile(url: string): boolean {
+  const { hostname, pathname } = new URL(url);
+  if (
+    siteOf(hostname) === 'github.com' &&
+    /^\/[^/]+\/[^/]+\/(?:blob|tree)\//.test(pathname)
+  ) {
+    return false;
+  }
+  const extension = /\.([a-z0-9]+)$/i.exec(pathname)?.[1]?.toLowerCase();
+  return extension !== undefined && FILE_EXTENSIONS.has(extension);
+}
 
 /** How a probe of `url` reads. */
 export function classify(url: string, probe: Probe): Verdict {
@@ -152,9 +194,10 @@ export function classify(url: string, probe: Probe): Verdict {
     return 'failing';
   }
   const site = siteOf(new URL(probe.finalUrl).hostname);
-  return site === siteOf(new URL(url).hostname) || KIT_HOSTS.has(site)
-    ? 'ok'
-    : 'moved';
+  if (site !== siteOf(new URL(url).hostname) && !KIT_HOSTS.has(site)) {
+    return 'moved';
+  }
+  return probe.contentType === 'text/html' && citesFile(url) ? 'webpage' : 'ok';
 }
 
 type Fetch = typeof fetch;
@@ -192,16 +235,29 @@ async function request(
       return { finalUrl: current, error: describeError(error) };
     }
     // Only the headers matter; never download the file.
-    await response.body?.cancel();
+    await response.body?.cancel().catch(() => undefined);
     const location = response.headers.get('location');
     if (response.status >= 300 && response.status < 400 && location) {
-      current = new URL(location, current).href;
+      try {
+        current = new URL(location, current).href;
+      } catch {
+        return {
+          finalUrl: current,
+          error: `invalid redirect target ${JSON.stringify(location)}`,
+        };
+      }
       continue;
     }
+    const contentType = response.headers
+      .get('content-type')
+      ?.split(';')[0]
+      ?.trim()
+      .toLowerCase();
     return {
       status: response.status,
       finalUrl: current,
       challenge: response.headers.get('cf-mitigated') === 'challenge',
+      ...(contentType ? { contentType } : {}),
     };
   }
   return { finalUrl: current, error: `more than ${MAX_REDIRECTS} redirects` };
@@ -250,13 +306,18 @@ export interface Checked {
 const HEADINGS: Readonly<Record<Exclude<Verdict, 'ok'>, string>> = {
   broken: 'Gone (404 / 410)',
   moved: 'Moved to another site',
+  webpage:
+    'A web page instead of the cited file (catch-all page, soft 404 or parked domain?)',
   failing: 'Failing (other errors)',
   blocked: 'Blocked by the site (401 / 403 / 429 / challenge; not a finding)',
 };
 
-function outcome({ probe: p }: Checked): string {
-  return p.status === undefined
-    ? (p.error ?? 'no response')
+function outcome({ probe: p, verdict }: Checked): string {
+  if (p.status === undefined) {
+    return p.error ?? 'no response';
+  }
+  return verdict === 'webpage'
+    ? `HTTP ${p.status}, ${p.contentType}`
     : `HTTP ${p.status}`;
 }
 
@@ -271,9 +332,15 @@ export function report(checked: readonly Checked[]): string {
   const lines = [
     '## Icon source URLs',
     '',
-    `${checked.length} URLs cited in \`icons/**/*.json\` \`source\`: ${count('ok')} OK, ${count('broken')} gone, ${count('moved')} moved to another site, ${count('failing')} failing, ${count('blocked')} blocked by the site.`,
+    `${checked.length} URLs cited in \`icons/**/*.json\` \`source\`: ${count('ok')} OK, ${count('broken')} gone, ${count('moved')} moved to another site, ${count('webpage')} serving a web page, ${count('failing')} failing, ${count('blocked')} blocked by the site.`,
   ];
-  for (const verdict of ['broken', 'moved', 'failing', 'blocked'] as const) {
+  for (const verdict of [
+    'broken',
+    'moved',
+    'webpage',
+    'failing',
+    'blocked',
+  ] as const) {
     const rows = checked.filter(c => c.verdict === verdict);
     if (rows.length === 0) {
       continue;
@@ -285,9 +352,9 @@ export function report(checked: readonly Checked[]): string {
     lines.push('| URL | Result | Cited by |', '| --- | --- | --- |');
     for (const row of rows) {
       const result =
-        verdict === 'moved'
-          ? `→ ${row.probe.finalUrl} (${outcome(row)})`
-          : outcome(row);
+        row.probe.finalUrl === row.url
+          ? outcome(row)
+          : `→ ${row.probe.finalUrl} (${outcome(row)})`;
       const cell = (text: string): string => text.replaceAll('|', '\\|');
       lines.push(
         `| ${cell(row.url)} | ${cell(result)} | ${row.units.map(u => `\`${u}\``).join(', ')} |`,
@@ -300,15 +367,26 @@ export function report(checked: readonly Checked[]): string {
   return `${lines.join('\n')}\n`;
 }
 
-/** Probes every source URL under `iconsDir`. */
+/**
+ * Probes every source URL under `iconsDir`. A URL whose check throws is
+ * reported as failing, so one bad URL never aborts the run.
+ */
 export function checkSources(
   iconsDir: string,
   fetchImpl: Fetch = fetch,
 ): Promise<Checked[]> {
   const sources = [...collectSources(iconsDir)];
   return mapLimit(sources, CONCURRENCY, async ([url, units]) => {
-    const result = await probe(url, fetchImpl);
-    return { url, units, probe: result, verdict: classify(url, result) };
+    let result: Probe;
+    let verdict: Verdict;
+    try {
+      result = await probe(url, fetchImpl);
+      verdict = classify(url, result);
+    } catch (error) {
+      result = { finalUrl: url, error: describeError(error) };
+      verdict = 'failing';
+    }
+    return { url, units, probe: result, verdict };
   });
 }
 
@@ -322,14 +400,17 @@ if (
   const { GITHUB_STEP_SUMMARY: summary } = process.env;
   if (summary) {
     appendFileSync(summary, markdown);
+    const what: Partial<Record<Verdict, (row: Checked) => string>> = {
+      broken: row => `HTTP ${row.probe.status}`,
+      moved: row => `moved to ${row.probe.finalUrl}`,
+      webpage: row =>
+        `serves ${row.probe.contentType} at ${row.probe.finalUrl}`,
+    };
     for (const row of checked) {
-      if (row.verdict === 'broken' || row.verdict === 'moved') {
-        const what =
-          row.verdict === 'moved'
-            ? `moved to ${row.probe.finalUrl}`
-            : `HTTP ${row.probe.status}`;
+      const describe = what[row.verdict];
+      if (describe) {
         console.log(
-          `::warning title=Icon source ${row.verdict}::${escapeCommand(`${row.url} (${what}), cited by ${row.units.join(', ')}`)}`,
+          `::warning title=Icon source ${row.verdict}::${escapeCommand(`${row.url} (${describe(row)}), cited by ${row.units.join(', ')}`)}`,
         );
       }
     }

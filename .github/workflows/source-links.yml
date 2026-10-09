@@ -1,9 +1,10 @@
 name: Source links
 
 # Monthly report of icon `source` URLs that are gone (404 / 410), moved to
-# another site or failing (scripts/check-sources.ts). Report only: the job
-# summary lists the findings and the job stays green, because brand sites
-# change on their own schedule and many wall off bots (403 / 429).
+# another site, serving a web page in place of the cited file, or failing
+# (scripts/check-sources.ts). Report only: the job summary lists the findings
+# and the job stays green, because brand sites change on their own schedule
+# and many wall off bots (403 / 429).
 on:
   schedule:
     - cron: '23 5 1 * *'

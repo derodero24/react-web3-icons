@@ -34,9 +34,11 @@ workflow (`.github/workflows/source-links.yml`, monthly and on demand) runs
 `node scripts/check-sources.ts`, which requests every URL in a `source`
 array and lists in the job summary those that are gone (404 / 410), moved to
 another site (a redirect chain ending on a different domain; a brand page
-redirecting to Notion, Figma or Google Drive does not count) or failing. It
-never fails the run, and sites that block bots (401 / 403 / 429) are only
-counted. For each finding, cite the file's new official location, or record
+redirecting to Notion, Figma or Google Drive does not count), serving a web
+page where the URL names a file (an `.svg`, `.zip`, `.png`, `.pdf`, … link
+answered with HTML: a catch-all page, a soft 404 or a parked domain) or
+failing. It never fails the run, and sites that block bots (401 / 403 / 429)
+are only counted. For each finding, cite the file's new official location, or record
 in `notes` that the cited source is gone.
 
 Some existing icons predate the authenticity policy below and record a
