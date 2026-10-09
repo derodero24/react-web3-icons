@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
-// Paths sourced from compound-finance/compound-components compound-mark.svg
+// Source: https://framerusercontent.com/images/MHkmyvXQcMf4GVNNuCKEJulrPw.svg (header logo of the official site https://www.compound.xyz: the #00D395 mark of the lockup)
+// Source: https://www.compound.xyz/redirect (compound.finance now redirects here: the same mark as an inline <svg viewBox="0 0 25 31">)
+// Compound: the #00D395 mark of three stacked bars, uniformly scaled onto the 64 grid. It matches the mark of the official compound.xyz header logo (silhouette IoU 0.996, same #00D395) and the inline mark on the compound.finance move notice (IoU 0.995); checked 2026-10-09. The old note cited compound-mark.svg in compound-finance/compound-components, which can no longer be found
+// Mono: the same path in currentColor
 /** Compound DeFi icon (colored). */
 export const Compound = /* @__PURE__ */ createIcon(
   'Compound',
