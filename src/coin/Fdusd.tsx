@@ -2,7 +2,7 @@ import { createIcon } from '../utils';
 
 // Source: https://cdn.1stdigital.com/icon/fdusd.svg (the image of First Digital's FDUSD token metadata https://cdn.1stdigital.com/mainnet/metadata.json)
 // Provenance: the metadata JSON is the json_uri of the FDUSD Solana mint 9zNQRsGLjNKwCUU5Gq5LR8beUCPzQMVMqKAi3SSZh54u, and the FDUSD coin metadata on Sui (0xf16e6b723f242ec745dfd7634ad072c42d5c1d9ac9d62a39c381303eaa57693a::fdusd::FDUSD) has the same SVG as its iconUrl. cdn.1stdigital.com is First Digital's own domain: 1stdigital.com shares its Cloudflare nameservers and Atlassian domain-verification record with firstdigitallabs.com. firstdigitallabs.com and 1stdigital.com return a Cloudflare 403, and fdusd.io is parked (checked 2026-10-09)
-// Colored: the official fdusd.svg unchanged (a black disc, the F in #ECEFF3 and the bar in #02EC81), placed on the 64 grid as a container. First Digital publishes FDUSD only as this disc, so the disc is the base icon and there is no separate Circle variant
+// Colored: the official fdusd.svg unchanged (a black disc, the F in #ECEFF3 and the bar in #02EC81), placed on the 64 grid as a container. First Digital's reachable token metadata (Solana, Sui) publishes FDUSD only as this disc, and no stand-alone F was found (firstdigitallabs.com, 1stdigital.com and guessed sibling files on cdn.1stdigital.com all return 403, checked 2026-10-09), so the disc is the base icon and there is no separate Circle variant
 // Mono: the disc in currentColor with the F and the bar knocked out (one evenodd path; the shapes do not overlap)
 /** Fdusd coin icon (colored). */
 export const Fdusd = /* @__PURE__ */ createIcon(
