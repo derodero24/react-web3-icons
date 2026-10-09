@@ -10,7 +10,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { LayerZero, LayerZeroMono } from '../src/bridge';
 import {
-  ArbitrumNovaFlat,
+  ArbitrumNovaMono,
   Base,
   Ethereum,
   EthereumCircle,
@@ -322,11 +322,11 @@ describe('variants', () => {
       'EthereumCircle',
     ],
     [
-      'ChainIcon of a variant lookup, variant="Flat"',
-      () => <dynamic.ChainIcon name="Arbitrum Nova" variant="Flat" />,
-      ArbitrumNovaFlat,
+      'ChainIcon of a variant lookup, variant="mono"',
+      () => <dynamic.ChainIcon name="Arbitrum Nova" variant="mono" />,
+      ArbitrumNovaMono,
       chainImports,
-      'ArbitrumNovaFlat',
+      'ArbitrumNovaMono',
     ],
     [
       'CoinIcon variant="CircleMono"',

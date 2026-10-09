@@ -1,7 +1,15 @@
 {
   "name": "Arbiscan",
   "source": [
-    "https://arbiscan.io (official brand)"
+    "https://arbiscan.io/brandassets (Arbiscan brand assets, accessed 2026-10-09: logos.zip, logos/logo-symbol.svg)",
+    "https://arbiscan.io/assets/arbitrum/images/svg/brandassets/logo-symbol.svg",
+    "https://arbiscan.io/assets/arbitrum/images/svg/logos/chain-light.svg (the same file in the site header)",
+    "https://arbitrumfoundation.notion.site/Arbitrum-brand-guidelines-6014e69d7b574f378a50f5ee678495d3 (Arbitrum Foundation brand kit: AllWhite_Logos_Logomark_RGB.svg, the Mono)"
+  ],
+  "notes": [
+    "Arbiscan has no mark of its own: its brand assets page (headed \"Arbitrum One Brand Assets & Guidelines\") ships the Arbitrum logomark as logo-symbol.svg, and the header logo (logos/logo-light.svg) is that logomark beside an ARBISCAN wordmark",
+    "Default: logo-symbol.svg from logos.zip (byte-identical to the site's chain-light.svg and chain-dark.svg), paths unchanged and placed on the 64 grid without the file's near-no-op clip path; it matches the Arbitrum default to about 0.02 units",
+    "Mono: Arbiscan publishes no one-colour symbol, so it is the Arbitrum brand kit's one-colour logomark (AllWhite_Logos_Logomark_RGB.svg) in currentColor, the same artwork as ArbitrumMono: the ring and the four strokes in ink, the navy body left open (docs/icon-variants.md, mono rule 5). It replaces a hand-built filled hexagon with the strokes knocked out"
   ],
   "kind": "icon",
   "variants": {
