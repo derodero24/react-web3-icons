@@ -270,6 +270,14 @@ Deprecated aliases use `"kind": "alias"` with an `aliasConst` block so the
 generator emits `/** @deprecated … */ export const Old = New;` (see
 `icons/wallet/argent.json` for a real example).
 
+A variant whose official artwork is another variant's (a token mark that is
+already a disc, an app icon that is already the default) is a
+`localAliases` entry of its unit, not a second SVG file:
+`{ "name": "UsdcCircle", "target": "Usdc" }` (add `"deprecated"` when the
+name should go). `test/duplicate-artwork.test.ts` fails when two SVG files
+under `icons/` draw the same artwork (ignoring id names, attribute order and
+where `<defs>` sit), unless the pair is listed there with its reason.
+
 ### Regenerating
 
 ```sh
