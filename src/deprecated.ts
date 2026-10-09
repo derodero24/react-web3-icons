@@ -91,6 +91,8 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   // icons/marketplace/magic-eden.json
   'MagicEdenFlat',
   'MagicEdenWordmarkFlat',
+  // icons/marketplace/open-sea.json
+  'OpenSeaAlt',
   // icons/marketplace/x2-y2.json
   'X2Y2',
   'X2Y2Mono',

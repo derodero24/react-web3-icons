@@ -128,6 +128,8 @@ import {
   Uni,
   UniMono,
 } from '../src/coin';
+import { SafeProtocol, SafeProtocolMono } from '../src/defi';
+import { Safe, SafeMono } from '../src/wallet';
 
 function renderToHtml(component: ReactElement): string {
   const container = document.createElement('div');
@@ -208,6 +210,8 @@ const aliasPairs = [
   ['TrxMono → TronMono', TrxMono, TronMono],
   ['Link → Chainlink', Link, Chainlink],
   ['LinkMono → ChainlinkMono', LinkMono, ChainlinkMono],
+  ['SafeProtocol → Safe', SafeProtocol, Safe],
+  ['SafeProtocolMono → SafeMono', SafeProtocolMono, SafeMono],
   ['Uni → Uniswap', Uni, Uniswap],
   ['UniMono → UniswapMono', UniMono, UniswapMono],
   ['Ldo → Lido', Ldo, Lido],
