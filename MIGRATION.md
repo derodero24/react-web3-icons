@@ -240,11 +240,12 @@ When a brand publishes its token only as a disc, the base export now renders tha
 | Exports | v4 rendered | v5 renders |
 | --- | --- | --- |
 | `Dai`, `DaiMono` | the bare DAI symbol in `#F5AC37` | Sky's official DAI disc (`#F5AC37` disc, white mark) |
-| `DaiCircle`, `DaiCircleMono` | a DAI disc with a slightly narrower, off-centre mark | aliases of `Dai`, `DaiMono` |
+| `DaiCircle`, `DaiCircleMono` | a DAI disc with a slightly narrower, shifted mark | aliases of `Dai`, `DaiMono` |
 | `UsdcCircle`, `UsdcCircleMono` | a legacy USDC disc in `#2775CA` | aliases of `Usdc`, `UsdcMono` (Circle's official `#0B53BF` USDC token) |
 | `DogeCircle`, `DogeCircleMono` | a slab D on a `#C2A633` disc | aliases of `Doge`, `DogeMono` (the Dogecoin coin of Dogecoin Core) |
+| `Op`, `OpMono`, `OpCircle`, `OpCircleMono` | the Optimism chain symbol on a `#FF0420` disc (re-exported from `Optimism`) | the official OP token (`#FAFAF9` letters OP on a `#FF0421` disc); `OpCircle`, `OpCircleMono` are aliases of `Op`, `OpMono` |
 
-There is no export for the bare DAI symbol any more: Sky publishes no stand-alone version of it.
+There is no export for the bare DAI symbol any more: Sky publishes no stand-alone version of it. A `fill` prop no longer recolours `Dai` (its disc and mark carry their own colours); use `DaiMono` with `color` or `fill` for a single-colour icon.
 
 ## Checklist
 

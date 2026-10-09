@@ -3,7 +3,7 @@ import { createIcon } from '../utils';
 // Source: https://app.sky.money/tokens/dai.svg (official Sky app token icon)
 // Colored: the official dai.svg of app.sky.money unchanged (#F5AC37 disc, #FEFEFD mark), without its no-op clip path (a full-canvas rect), placed on the 64 grid as a container
 // Mono: the disc in currentColor with the mark of the same paths knocked out (one evenodd path)
-// DaiCircle / DaiCircleMono: aliases of Dai / DaiMono. Sky publishes DAI only as this disc (no stand-alone symbol or brand kit on sky.money, skyeco.com or makerdao.com, rechecked 2026-10-09, #836), so the base renders it. They replace the bare symbol that Dai / DaiMono used to render (the disc's mark alone in #F5AC37, not an official composition) and a DaiCircle copied from an older 444.44-unit artboard, whose mark was about 1.5% narrower than the official one and sat about 0.5 units left of centre on the 64 grid
+// DaiCircle / DaiCircleMono: aliases of Dai / DaiMono. Sky publishes DAI only as this disc (no stand-alone symbol or brand kit on sky.money, skyeco.com or makerdao.com, rechecked 2026-10-09, #836), so the base renders it. Dai / DaiMono used to render the bare symbol (the disc's mark alone in #F5AC37, not an official composition), and DaiCircle was copied from an older 444.44-unit artboard whose mark was about 1.5% narrower than the official mark and about 0.5 units left of its official position on the 64 grid
 /** Dai coin icon (colored). */
 export const Dai = /* @__PURE__ */ createIcon(
   'Dai',
