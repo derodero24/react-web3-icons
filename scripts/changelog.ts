@@ -31,7 +31,10 @@ const ORDERED_MARKER = /^[ \t]*(\d{1,9})[.)]/;
 /** A code fence: a run of at least three backticks or three tildes. */
 const FENCE = /^([ \t]*)(`{3,}|~{3,})(.*)$/;
 
-/** A line that is a block on its own: a heading or a horizontal rule. */
+/**
+ * A line that no paragraph runs across: an ATX heading, a horizontal rule,
+ * or a setext heading underline (`===`, `---`).
+ */
 const SINGLE_LINE_BLOCK =
   /^[ \t]*(?:#{1,6}(?:[ \t]|$)|([-*_])(?:[ \t]*\1){2,}[ \t]*$|(?:-+|=+)[ \t]*$)/;
 
@@ -141,7 +144,7 @@ interface LineStart {
    * the list item holding the paragraph.
    */
   readonly weakListItem: boolean;
-  /** A heading or a rule, which no later line continues. */
+  /** A heading, a rule or a setext underline, which no line continues. */
   readonly singleLine: boolean;
 }
 
