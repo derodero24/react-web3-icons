@@ -34,13 +34,18 @@ release flow works without them.
 6. `changesets/action` creates the lightweight tag `react-web3-icons@<version>`
    on that commit and a GitHub release with the version's changelog, both
    through the GitHub API.
-7. `main` is fast-forwarded to `develop`. If `main` has diverged, the step
-   fails and needs a manual fix.
+7. `main` is fast-forwarded to that same commit, the one the run was
+   triggered by. If `main` has diverged, the step fails and needs a manual
+   fix.
 
 After a release, check that
 `npm view react-web3-icons@<version> dist.attestations` prints a
 `provenance` entry, that the tag and GitHub release exist, and that `main`
-matches `develop`.
+points at the release commit: after `git fetch origin --tags`,
+`git rev-parse origin/main` and
+`git rev-parse 'react-web3-icons@<version>^{commit}'` print the same commit.
+`develop` may already be ahead of `main` if another PR was merged after the
+version PR; that is expected.
 
 ## The version PR
 
@@ -62,7 +67,7 @@ every case Verify checks the merge commit before anything is published.
 The Publish step authenticates with the `NPM_TOKEN` repository secret
 (`NODE_AUTH_TOKEN`). Once a trusted publisher is configured, npm
 authenticates the workflow through OIDC instead; the npm CLI tries OIDC
-before a token.
+before a token and falls back to the token when the OIDC exchange fails.
 
 On npmjs.com, in the package's settings under **Trusted Publisher**, choose
 GitHub Actions
@@ -85,16 +90,42 @@ GitHub Actions
   ([npm docs](https://docs.npmjs.com/trusted-publishers#trusted-publisher-configuration-expiry)).
 - **Already in place**: `repository.url` in `package.json` matches the
   repository exactly, the release job has `id-token: write`, and it runs on a
-  GitHub-hosted runner with the latest Node 24.x (trusted publishing needs
-  npm 11.5.1 and Node 22.14.0 or later; Node 24.5.0 and later bundle a new
-  enough npm).
+  GitHub-hosted runner with Node 24.x (trusted publishing needs npm 11.5.1
+  and Node 22.14.0 or later; Node 24.5.0 and later bundle npm 11.5.1 or
+  newer).
 
-Once a release has been published through the trusted publisher:
+### Check that the trusted publisher was used
+
+While `NODE_AUTH_TOKEN` is set, a failed OIDC exchange (for example,
+`npm publish` not ticked under Allowed actions, or a typo in a field) falls
+back to the token without any message at the default log level, and the
+version still gets a provenance attestation. The provenance check in
+[Release flow](#release-flow) therefore passes either way and does not show
+which credential published. After the first release with a trusted
+publisher, run
+
+```sh
+npm view react-web3-icons@<version> _npmUser
+```
+
+- `name: 'GitHub Actions'` with a `trustedPublisher` entry: the publish went
+  through the trusted publisher. Continue with the token removal below.
+- The owner's npm account (`derodero24`): the publish fell back to the token,
+  and the configuration is still unvalidated. Fix it (if it has expired,
+  delete it and create it again just before the next version PR is merged),
+  check again after the next release, and keep the token until then.
+
+### Remove the token
+
+Only once `_npmUser` shows the trusted publisher:
 
 1. Remove `NODE_AUTH_TOKEN` from the Publish step in `release.yml`, together
    with the comments that mention it.
 2. Delete the `NPM_TOKEN` repository secret.
-3. Optional: in the package's settings under **Publishing access**, select
+3. On npmjs.com, revoke the access token that `NPM_TOKEN` held (**Access
+   Tokens** in the account menu). Deleting the secret alone leaves the token
+   valid on npm.
+4. Optional: in the package's settings under **Publishing access**, select
    "Require two-factor authentication and disallow tokens". Trusted
    publishing keeps working.
 
@@ -148,6 +179,11 @@ Not required:
 - `Check for missing changeset`: it only warns and comments, and passes
   whether or not a changeset is present.
 - `label`: it only applies labels.
+- Checks that apps report next to the workflow jobs: `CodeQL` (the
+  code-scanning result from GitHub Advanced Security, not the `Analyze (...)`
+  jobs of `codeql.yml`), `GitGuardian Security Checks` and
+  `Vercel Preview Comments`. The required list above names `github-actions`
+  checks only.
 
 Most of these names are built from matrix values. A change to a matrix or a
 job name renames its checks, and a required name that is no longer reported
@@ -158,7 +194,10 @@ change.
 
 - Approve the version PR's runs and wait for them to pass before merging.
 - First release with a trusted publisher: create the configuration just
-  before merging the version PR, then do the token-removal follow-up above.
+  before merging the version PR. After the publish, confirm with `_npmUser`
+  that the trusted publisher was used
+  ([Check that the trusted publisher was used](#check-that-the-trusted-publisher-was-used)),
+  and only then [remove the token](#remove-the-token).
 - After publishing: check provenance, the tag, the GitHub release and
   `main` as described in [Release flow](#release-flow).
 - Major release: once the new major is on npm, update the supported-versions
