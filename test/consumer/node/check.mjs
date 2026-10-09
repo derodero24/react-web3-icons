@@ -1,7 +1,7 @@
 // Loads every entry of the installed package's `exports` map the way a Node
 // consumer would: `import` for all of them, and `require` too where Node
 // supports require(esm). Run after installing the packed tarball here.
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import pkg from 'react-web3-icons/package.json' with { type: 'json' };
@@ -86,6 +86,18 @@ expect(
   `missing SVG files: ${missingSvgs.join(', ')}`,
 );
 process.stdout.write(`ok ${manifest.length} SVG subpaths\n`);
+
+// The dynamic components are the package's only client boundary. tsdown emits
+// each module on its own, which keeps their 'use client' directive; the build
+// silences rolldown's warning about it (tsdown.config.ts), so check it here.
+for (const file of ['index.mjs', 'DynamicIcon.mjs']) {
+  const url = new URL(file, import.meta.resolve(`${pkg.name}/dynamic`));
+  expect(
+    readFileSync(url, 'utf8').startsWith('"use client";'),
+    `dynamic/${file} does not start with the "use client" directive`,
+  );
+}
+process.stdout.write('ok "use client" in the dynamic modules\n');
 
 const { Ethereum } = await import(pkg.name);
 expect(
