@@ -6,33 +6,255 @@
  *
  * It is @changesets/changelog-github with one fix. Upstream links every
  * `#<digits>` in a summary to an issue (`\B#([1-9]\d*)\b`), including inside
- * code spans. A digit-only hex colour such as `#141414`, or a character
- * reference such as `&#10;`, then turns into a link to an issue that does
- * not exist. The wrapper keeps the upstream entry and turns the issue links
- * inside code spans (and fenced code blocks) back into the text the
- * changeset wrote. Issue links in prose stay linked.
+ * code. A digit-only hex colour such as `#141414`, or a character reference
+ * such as `&#10;`, then turns into a link to an issue that does not exist.
+ * The wrapper keeps the upstream entry and turns the issue links inside code
+ * back into the text the changeset wrote. Issue links in prose stay linked.
  */
 
 import changelogGithub from '@changesets/changelog-github';
 
 type ChangelogFunctions = typeof changelogGithub;
 
-/**
- * A code span as CommonMark delimits it: a whole run of N backticks, then
- * the content, then the next run of exactly N backticks. Runs with no
- * matching closer are skipped. A fenced code block (```) matches too.
- */
-const CODE_SPAN = /(?<!`)(`+)(?!`)([\s\S]*?[^`])\1(?!`)/g;
-
 /** An issue link as upstream writes it: `[#N](<server>/<repo>/issues/N)`. */
 const ISSUE_LINK = /\[#(\d+)\]\(https?:\/\/[^\s)]+\/issues\/\1\)/g;
 
+/** A leading block quote marker; each one is a level of nesting. */
+const QUOTE_MARKER = /^[ \t]*>[ \t]?/;
+
+/** Leading list item markers (`-`, `+`, `*`, `1.`, `1)`), nested or not. */
+const LIST_MARKERS = /^(?:[ \t]*(?:[-+*]|\d{1,9}[.)])(?:[ \t]+|$))*/;
+
+/** A code fence: a run of at least three backticks or three tildes. */
+const FENCE = /^([ \t]*)(`{3,}|~{3,})(.*)$/;
+
+/** A line that is a block on its own: a heading or a horizontal rule. */
+const SINGLE_LINE_BLOCK =
+  /^[ \t]*(?:#{1,6}(?:[ \t]|$)|([-*_])(?:[ \t]*\1){2,}[ \t]*$|(?:-+|=+)[ \t]*$)/;
+
+const BLANK = /^[ \t]*$/;
+
+const unlink = (code: string): string => code.replace(ISSUE_LINK, '#$1');
+
+/** The start of the next run of exactly `length` backticks, or -1. */
+function findBacktickRun(text: string, length: number, from: number): number {
+  for (let start = text.indexOf('`', from); start !== -1; ) {
+    let end = start;
+    while (text[end] === '`') {
+      end++;
+    }
+    if (end - start === length) {
+      return start;
+    }
+    start = text.indexOf('`', end);
+  }
+  return -1;
+}
+
 /**
- * Turns every issue link upstream added inside a code span back into the
- * plain `#N` it replaced. Text outside code spans is returned unchanged.
+ * Unlinks the issue links inside the code spans of one paragraph, with
+ * CommonMark's rules: a span opens at a whole run of backticks that is not
+ * backslash-escaped and closes at the next run of the same length. A run
+ * without such a closer is literal text, and the scan goes on after it.
  */
-export function unlinkIssueRefsInCodeSpans(markdown: string): string {
-  return markdown.replace(CODE_SPAN, span => span.replace(ISSUE_LINK, '#$1'));
+function unlinkCodeSpans(paragraph: string): string {
+  let result = '';
+  let copied = 0;
+  let index = 0;
+  while (index < paragraph.length) {
+    const char = paragraph[index];
+    if (char === '`') {
+      const open = index;
+      while (paragraph[index] === '`') {
+        index++;
+      }
+      const close = findBacktickRun(paragraph, index - open, index);
+      if (close !== -1) {
+        result += paragraph.slice(copied, index);
+        result += unlink(paragraph.slice(index, close));
+        copied = close;
+        index = close + (index - open);
+      }
+    } else {
+      // A backslash escapes the next character: `\`` opens nothing, and
+      // `\\`` is an escaped backslash followed by an opening backtick.
+      index += char === '\\' ? 2 : 1;
+    }
+  }
+  return result + paragraph.slice(copied);
+}
+
+/**
+ * Splits off a line's leading block quote markers, at most `limit` of them,
+ * and returns how many there were and the text after them.
+ */
+function splitQuote(
+  line: string,
+  limit = Number.POSITIVE_INFINITY,
+): { depth: number; text: string } {
+  let depth = 0;
+  let text = line;
+  for (
+    let marker = QUOTE_MARKER.exec(text);
+    marker && depth < limit;
+    marker = QUOTE_MARKER.exec(text)
+  ) {
+    text = text.slice(marker[0].length);
+    depth++;
+  }
+  return { depth, text };
+}
+
+interface Fence {
+  readonly char: string;
+  readonly length: number;
+  /** How far the fence is indented, after block quote and list markers. */
+  readonly column: number;
+  readonly quoteDepth: number;
+}
+
+/** What the start of a line means for the blocks around it. */
+interface LineStart {
+  /** The code fence the line opens, if it opens one. */
+  readonly fence: Fence | undefined;
+  /** Blank apart from block quote and list markers, so it ends a paragraph. */
+  readonly blank: boolean;
+  readonly quoteDepth: number;
+  /** Opens a list item, a heading or a rule, so it starts a new paragraph. */
+  readonly opensBlock: boolean;
+  /** A heading or a rule, which no later line continues. */
+  readonly singleLine: boolean;
+}
+
+function readLineStart(line: string): LineStart {
+  const { depth, text } = splitQuote(line);
+  const marker = LIST_MARKERS.exec(text)?.[0] ?? '';
+  const content = text.slice(marker.length);
+  const [, indent = '', run = '', info = ''] = FENCE.exec(content) ?? [];
+  // A backtick fence's info string cannot hold a backtick (```a``` on its
+  // own line is a code span); a tilde fence's can.
+  const opensFence = run !== '' && !(run.startsWith('`') && info.includes('`'));
+  const singleLine = SINGLE_LINE_BLOCK.test(content);
+  return {
+    fence: opensFence
+      ? {
+          char: run.charAt(0),
+          length: run.length,
+          column: marker.length + indent.length,
+          quoteDepth: depth,
+        }
+      : undefined,
+    blank: BLANK.test(content),
+    quoteDepth: depth,
+    opensBlock: marker !== '' || singleLine,
+    singleLine,
+  };
+}
+
+/**
+ * Where a line after the opening fence belongs: to the code, as the closing
+ * fence, or after the block. A closing fence uses the same character, is at
+ * least as long, and is indented at most 3 columns more than the opening
+ * fence. A line quoted less deeply ends the block quote the fence is in, and
+ * the fence with it.
+ */
+function placeInFence(line: string, fence: Fence): 'code' | 'close' | 'after' {
+  const { depth, text } = splitQuote(line, fence.quoteDepth);
+  if (depth < fence.quoteDepth) {
+    return 'after';
+  }
+  const [, indent = '', run = '', rest = ''] = FENCE.exec(text) ?? [];
+  const closes =
+    run.startsWith(fence.char) &&
+    run.length >= fence.length &&
+    indent.length <= fence.column + 3 &&
+    BLANK.test(rest);
+  return closes ? 'close' : 'code';
+}
+
+/**
+ * Appends the fenced code block that `lines[open]` opens to `output`, with
+ * its issue links unlinked, and returns the index of its last line.
+ */
+function unlinkFencedBlock(
+  lines: readonly string[],
+  open: number,
+  fence: Fence,
+  output: string[],
+): number {
+  output.push(unlink(lines[open] ?? ''));
+  for (let index = open + 1; index < lines.length; index++) {
+    const line = lines[index] ?? '';
+    const place = placeInFence(line, fence);
+    if (place === 'after') {
+      return index - 1;
+    }
+    output.push(place === 'code' ? unlink(line) : line);
+    if (place === 'close') {
+      return index;
+    }
+  }
+  return lines.length - 1;
+}
+
+/**
+ * Turns every issue link upstream added inside code back into the plain `#N`
+ * it replaced. Code means:
+ *
+ * - fenced code blocks, from a fence of three or more backticks or tildes to
+ *   a closing fence of the same character that is at least as long, or else
+ *   to the end of the block quote holding the fence, or of the entry;
+ * - code spans, paired within one paragraph as `unlinkCodeSpans` describes.
+ *
+ * Paragraphs end at blank lines and fences, and before lines that open a
+ * list item, a heading, a rule or a deeper block quote. That approximates
+ * CommonMark's block structure: it ignores how far such a line is indented,
+ * it does not end a fence where the list item holding it ends, and it does
+ * not model indented code blocks, raw HTML, autolinks or table cells, where
+ * issue links stay as upstream wrote them. Text outside code is returned
+ * unchanged.
+ */
+export function unlinkIssueRefsInCode(markdown: string): string {
+  const lines = markdown.split('\n');
+  const output: string[] = [];
+  let paragraph: string[] = [];
+  let paragraphQuoteDepth = 0;
+
+  const endParagraph = (): void => {
+    if (paragraph.length > 0) {
+      output.push(unlinkCodeSpans(paragraph.join('\n')));
+    }
+    paragraph = [];
+  };
+
+  for (let index = 0; index < lines.length; index++) {
+    const line = lines[index] ?? '';
+    const start = readLineStart(line);
+    if (start.fence) {
+      endParagraph();
+      index = unlinkFencedBlock(lines, index, start.fence, output);
+      continue;
+    }
+    if (start.blank) {
+      endParagraph();
+      output.push(line);
+      continue;
+    }
+    // A deeper block quote interrupts a paragraph; a shallower line is a
+    // lazy continuation of it.
+    if (start.opensBlock || start.quoteDepth > paragraphQuoteDepth) {
+      endParagraph();
+    }
+    if (paragraph.length === 0) {
+      paragraphQuoteDepth = start.quoteDepth;
+    }
+    paragraph.push(line);
+    if (start.singleLine) {
+      endParagraph();
+    }
+  }
+  endParagraph();
+  return output.join('\n');
 }
 
 export const getReleaseLine: ChangelogFunctions['getReleaseLine'] = async (
@@ -40,7 +262,7 @@ export const getReleaseLine: ChangelogFunctions['getReleaseLine'] = async (
   type,
   options,
 ) =>
-  unlinkIssueRefsInCodeSpans(
+  unlinkIssueRefsInCode(
     await changelogGithub.getReleaseLine(changeset, type, options),
   );
 

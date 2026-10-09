@@ -5,7 +5,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   getDependencyReleaseLine,
   getReleaseLine,
-  unlinkIssueRefsInCodeSpans,
+  unlinkIssueRefsInCode,
 } from '../scripts/changelog.ts';
 import { isArray } from '../scripts/guards.ts';
 
@@ -15,7 +15,7 @@ const SERVER = 'https://github.com';
 /** An issue link as @changesets/changelog-github writes it. */
 const issue = (n: string): string => `[#${n}](${SERVER}/${REPO}/issues/${n})`;
 
-describe('unlinkIssueRefsInCodeSpans', () => {
+describe('unlinkIssueRefsInCode', () => {
   it.each([
     {
       name: 'a digit-only hex colour in a code span',
@@ -39,17 +39,87 @@ describe('unlinkIssueRefsInCodeSpans', () => {
       expected: `\`\` a\`b #141414 \`\` and ${issue('836')}`,
     },
     {
-      name: 'a fenced code block in a continuation line',
+      name: 'a code span that continues on the next line',
+      input: `- \`a\n  ${issue('141414')}\` and ${issue('836')}`,
+      expected: `- \`a\n  #141414\` and ${issue('836')}`,
+    },
+    {
+      name: 'a code span after a backslash-escaped backtick',
+      input: `- Use \\\` for x ${issue('5')} then \`${issue('141414')}\``,
+      expected: `- Use \\\` for x ${issue('5')} then \`#141414\``,
+    },
+    {
+      name: 'a code span after an escaped backslash',
+      input: `- Use \\\\\`${issue('141414')}\` and ${issue('5')}`,
+      expected: `- Use \\\\\`#141414\` and ${issue('5')}`,
+    },
+    {
+      name: 'a code span closed right after a backslash',
+      input: `\`a\\\` ${issue('5')} \`${issue('141414')}\``,
+      expected: `\`a\\\` ${issue('5')} \`#141414\``,
+    },
+    {
+      name: 'a code span after a stray backtick in an earlier paragraph',
+      input: `- Use a \` here (${issue('836')})\n  \n  Then \`${issue('141414')}\` and (${issue('835')})`,
+      expected: `- Use a \` here (${issue('836')})\n  \n  Then \`#141414\` and (${issue('835')})`,
+    },
+    {
+      name: 'a code span after a stray backtick in an earlier list item',
+      input: `  - a \` here (${issue('836')})\n  - b \`${issue('141414')}\` (${issue('835')})`,
+      expected: `  - a \` here (${issue('836')})\n  - b \`#141414\` (${issue('835')})`,
+    },
+    {
+      name: 'a code span after a stray backtick in a heading',
+      input: `  ## a \` (${issue('836')})\n  b \`${issue('141414')}\``,
+      expected: `  ## a \` (${issue('836')})\n  b \`#141414\``,
+    },
+    {
+      name: 'a code span in a block quote that interrupts a paragraph',
+      input: `- a \` (${issue('836')})\n  > b \`${issue('141414')}\` (${issue('835')})`,
+      expected: `- a \` (${issue('836')})\n  > b \`#141414\` (${issue('835')})`,
+    },
+    {
+      name: 'a backtick-fenced code block',
       input: `Example:\n\n  \`\`\`tsx\n  <Xrp color="${issue('141414')}" />\n  \`\`\`\n\n  See ${issue('836')}`,
       expected: `Example:\n\n  \`\`\`tsx\n  <Xrp color="#141414" />\n  \`\`\`\n\n  See ${issue('836')}`,
     },
+    {
+      name: 'a tilde-fenced code block',
+      input: `Example:\n\n  ~~~tsx\n  <Xrp color="${issue('141414')}" />\n  ~~~\n\n  See ${issue('836')}`,
+      expected: `Example:\n\n  ~~~tsx\n  <Xrp color="#141414" />\n  ~~~\n\n  See ${issue('836')}`,
+    },
+    {
+      name: 'a fenced code block closed by a longer fence',
+      input: `x\n  \`\`\`\n  ${issue('141414')}\n  \`\`\`\`\n  See ${issue('836')}`,
+      expected: `x\n  \`\`\`\n  #141414\n  \`\`\`\`\n  See ${issue('836')}`,
+    },
+    {
+      name: 'a fenced code block holding a shorter or over-indented fence',
+      input: `x\n  ~~~~\n  ${issue('1')}\n  ~~~\n      ~~~~\n  ${issue('2')}\n  ~~~~\n  See ${issue('836')}`,
+      expected: `x\n  ~~~~\n  #1\n  ~~~\n      ~~~~\n  #2\n  ~~~~\n  See ${issue('836')}`,
+    },
+    {
+      name: 'a fenced code block that is never closed',
+      input: `x\n  \`\`\`\n  ${issue('141414')}\n  \n  ${issue('5')}`,
+      expected: 'x\n  ```\n  #141414\n  \n  #5',
+    },
+    {
+      name: 'a fenced code block in a block quote, up to the end of the quote',
+      input: `x\n  > \`\`\`\n  > ${issue('141414')}\n  ${issue('836')}`,
+      expected: `x\n  > \`\`\`\n  > #141414\n  ${issue('836')}`,
+    },
+    {
+      name: 'a code span in a line that looks like a fence with a backtick after it',
+      input: `x\n  \`\`\`js \`${issue('5')}\`\n  ${issue('836')}`,
+      expected: `x\n  \`\`\`js \`#5\`\n  ${issue('836')}`,
+    },
   ])('unlinks $name', ({ input, expected }) => {
-    expect(unlinkIssueRefsInCodeSpans(input)).toBe(expected);
+    expect(unlinkIssueRefsInCode(input)).toBe(expected);
   });
 
   it('keeps issue links outside code spans', () => {
     const line = `Replace the \`Zec\` artwork (${issue('836')}); see also ${issue('835')}.`;
-    expect(unlinkIssueRefsInCodeSpans(line)).toBe(line);
+    expect(unlinkIssueRefsInCode(line)).toBe(line);
   });
 
   it('leaves commit and pull request links alone', () => {
@@ -58,7 +128,7 @@ describe('unlinkIssueRefsInCodeSpans', () => {
     const commit = `[\`abc1234\`](${SERVER}/${REPO}/commit/abc1234def5678)`;
     const pull = `[#867](${SERVER}/${REPO}/pull/867)`;
     expect(
-      unlinkIssueRefsInCodeSpans(
+      unlinkIssueRefsInCode(
         `- ${pull} ${commit} - \`Ekubo\`: the official \`${issue('101010')}\` symbol (${issue('836')})`,
       ),
     ).toBe(
@@ -68,12 +138,12 @@ describe('unlinkIssueRefsInCodeSpans', () => {
 
   it('only unlinks links that upstream generated from `#N`', () => {
     const span = `\`[#7](${SERVER}/${REPO}/issues/8) [#7](${SERVER}/${REPO}/pull/7)\``;
-    expect(unlinkIssueRefsInCodeSpans(span)).toBe(span);
+    expect(unlinkIssueRefsInCode(span)).toBe(span);
   });
 
   it('does not treat a backtick run without a closing run as a span', () => {
     const line = `a \`\` b ${issue('5')} \` c ${issue('6')}`;
-    expect(unlinkIssueRefsInCodeSpans(line)).toBe(line);
+    expect(unlinkIssueRefsInCode(line)).toBe(line);
   });
 });
 
@@ -84,7 +154,7 @@ describe('getReleaseLine', () => {
 
   it('wraps @changesets/changelog-github and unlinks every code span', async () => {
     vi.stubEnv('GITHUB_SERVER_URL', SERVER);
-    // The 11 code spans that @changesets/changelog-github 1.0.1 turned into
+    // The 12 code spans that @changesets/changelog-github 1.0.1 turned into
     // issue links in the v5 version PR (#823). Without a commit or `pr:`
     // line in the changeset, no GitHub API request is made.
     const summary = [
@@ -95,6 +165,7 @@ describe('getReleaseLine', () => {
       '- `Bitstamp` `#282828` → `#149f49`; `Xverse` `#181818` → `#ee7a30`.',
       '- `Polkadot`: near-black `#171717`; `SonicCircleMono`: a `#141416` disc.',
       '- `CowProtocol`: in `#490072` purple (#835).',
+      '- `Arweave`: the `#222326` colour is unchanged.',
       '- Line breaks written as character references (`&#10;`) are kept.',
     ].join('\n');
 
@@ -105,7 +176,7 @@ describe('getReleaseLine', () => {
     );
 
     expect(line).not.toMatch(
-      /issues\/(?:141414|101010|282828|181818|171717|141416|490072|10)\)/,
+      /issues\/(?:141414|101010|282828|181818|171717|141416|490072|222326|10)\)/,
     );
     expect(line.match(/`#141414`/g)).toHaveLength(3);
     expect(line.match(/`#101010`/g)).toHaveLength(2);
@@ -115,12 +186,32 @@ describe('getReleaseLine', () => {
       '`#171717`',
       '`#141416`',
       '`#490072`',
+      '`#222326`',
       '`&#10;`',
     ]) {
       expect(line).toContain(span);
     }
     expect(line).toContain(`Artwork refresh (${issue('836')}).`);
     expect(line).toContain(`purple (${issue('835')}).`);
+  });
+
+  it('pairs code spans within a paragraph of the summary', async () => {
+    vi.stubEnv('GITHUB_SERVER_URL', SERVER);
+    const summary = [
+      'Use a ` here (#836).',
+      '',
+      'Then `#141414` and (#835).',
+    ].join('\n');
+
+    const line = await getReleaseLine(
+      { id: 'stray-backtick', summary, releases: [] },
+      'patch',
+      { repo: REPO },
+    );
+
+    expect(line).toBe(
+      `\n\n- Use a \` here (${issue('836')}).\n  \n  Then \`#141414\` and (${issue('835')}).`,
+    );
   });
 
   it('passes dependency release lines through unchanged', () => {
