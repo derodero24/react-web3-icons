@@ -1671,7 +1671,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'exchange',
     slug: 'bithumb',
     variants: ['', 'Mono'],
-    brandColor: '#d53127',
+    brandColor: '#ff6c00',
   },
   { name: 'BithumbMono', category: 'exchange' },
   {
