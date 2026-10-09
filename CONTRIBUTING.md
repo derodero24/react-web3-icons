@@ -26,6 +26,9 @@ Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/ac
 `scripts/` run through Node's built-in TypeScript type stripping), and `engine-strict=true` in `.npmrc` enforces the
 toolchain dependencies' own `engines`.
 
+`@types/node` stays on the lowest supported Node major (22), so `pnpm run typecheck` rejects Node APIs that the oldest
+supported runtime lacks. A rule in `renovate.json` keeps it there; raise both together with the `devEngines` floor.
+
 ### Useful Commands
 
 | Command | Description |
