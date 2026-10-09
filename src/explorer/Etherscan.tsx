@@ -5,7 +5,7 @@ import { createIcon } from '../utils';
 // Source: https://etherscan.io/brandassets (official brand assets page: both files are among its downloads and in its Download Brand Package, https://etherscan.io/images/brandassets/logos.zip, under logos/)
 // Etherscan: the brand asset etherscan-logo-circle.svg (#21325B mark, #979695 arc), placed on the 64 grid unchanged
 // EtherscanMono: both paths of that file in currentColor; the brand package has no one-colour SVG
-// EtherscanInverted: the brand asset etherscan-logo-circle-light.svg (white mark, #8B8B8B arc), placed on the 64 grid unchanged; it has the same geometry as the default. etherscan-logo-light-circle.svg (#BFCFDA arc), which the Inverted variant copied before, is served from the same folder but linked from neither the brand page nor the brand package, so it is not used (accessed 2026-10-09)
+// EtherscanInverted: the brand asset etherscan-logo-circle-light.svg (white mark, #8B8B8B arc), placed on the 64 grid unchanged; it has the same geometry as the default. etherscan-logo-light-circle.svg (#BFCFDA arc), which an unreleased change (#853) briefly used for the Inverted variant, is served from the same folder but linked from neither the brand page nor the brand package, so it is not used (accessed 2026-10-09)
 /** Etherscan explorer icon (colored). */
 export const Etherscan = /* @__PURE__ */ createIcon(
   'Etherscan',
