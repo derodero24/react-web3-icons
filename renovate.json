@@ -15,7 +15,7 @@
     "enabled": true,
     "automerge": true,
     "schedule": [
-      "before 4am on tuesday"
+      "before 4am on thursday"
     ],
     "recreateWhen": "always",
     "rebaseWhen": "never"
