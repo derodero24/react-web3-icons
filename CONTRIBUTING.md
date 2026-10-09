@@ -639,6 +639,7 @@ than nudging one limit inside an icon PR.
 5. Open a pull request against `develop`
 
 Maintainers: releases, the version PR and the branch rulesets are described in
-[docs/releasing.md](docs/releasing.md). Once the rulesets are enabled, `develop`
-accepts changes only through pull requests with passing checks, and force pushes
-to `develop` and `main` are blocked.
+[docs/releasing.md](docs/releasing.md). Once the rulesets are enabled, changes
+reach `develop` only through pull requests, which need the required checks to
+pass (see docs/releasing.md for the version PR), and force pushes to `develop`
+and `main` are blocked.
