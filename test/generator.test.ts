@@ -32,6 +32,7 @@ import {
   parseViewBox,
 } from '../scripts/build-icons/lib.ts';
 import {
+  buildManifest,
   extractBrandColor,
   isNeutralColor,
 } from '../scripts/build-icons/manifest.ts';
@@ -1041,8 +1042,77 @@ describe('manifest brandColor', () => {
       '#000000',
     ],
     ['nothing for white-only artwork', svg('#FFF', '#ffffffcc'), undefined],
+    ['the keyword black', svg('black', 'black', 'White'), '#000000'],
+    ['an accent over the keyword black', svg('black', '#FF8A00'), '#ff8a00'],
+    [
+      'black for shapes in the initial fill',
+      `<svg ${XMLNS} viewBox="0 0 24 24"><path d="M0 0h24v24H0z"/></svg>`,
+      '#000000',
+    ],
+    [
+      'black for an unfilled container behind a white glyph',
+      `<svg ${XMLNS} viewBox="0 0 24 24"><rect width="24" height="24"/><path fill="#fff" d="M4 4h4v4H4z"/></svg>`,
+      '#000000',
+    ],
+    [
+      'nothing when the only unfilled shapes are not painted',
+      `<svg ${XMLNS} viewBox="0 0 24 24"><defs><clipPath id="a"><path d="M0 0h1v1H0z"/></clipPath><mask id="b"><rect width="24" height="24"/></mask></defs><path fill="#fff" d="M0 0h24v24H0z"/></svg>`,
+      undefined,
+    ],
+    [
+      'nothing when a group sets the fill of its shapes',
+      `<svg ${XMLNS} viewBox="0 0 24 24"><g fill="white"><path d="M0 0h24v24H0z"/></g></svg>`,
+      undefined,
+    ],
+    [
+      'nothing when the root sets the fill',
+      `<svg ${XMLNS} viewBox="0 0 24 24" fill="#FFF"><path d="M0 0h24v24H0z"/></svg>`,
+      undefined,
+    ],
   ])('picks %s', (_, artwork, expected) => {
     expect(extractBrandColor(artwork)).toBe(expected);
+  });
+
+  it("takes the re-exported base icon's colour when a unit has no default artwork", () => {
+    const colored = `<svg ${XMLNS} viewBox="0 0 24 24"><path fill="#0085FF" d="M0 0h24v24H0z"/></svg>`;
+    const units = loadChain({
+      'icons/chain/lido.json': iconUnit('Lido', ['', 'lido.svg']),
+      'icons/chain/lido.svg': colored,
+      'icons/chain/curated.json': iconUnit('Curated', ['', 'lido.svg'], {
+        brandColor: '#ffaa7d',
+      }),
+      'icons/chain/ldo.json': iconUnit('Ldo', ['Circle', 'circle.svg'], {
+        reexport: { from: './Lido', exports: [{ of: 'Lido', as: 'Ldo' }] },
+      }),
+      'icons/chain/cur.json': iconUnit('Cur', ['Circle', 'circle.svg'], {
+        reexport: {
+          from: './Curated',
+          exports: [{ of: 'Curated', as: 'Cur' }],
+        },
+      }),
+      // Only a re-exported base export carries a unit's colour.
+      'icons/chain/variant.json': iconUnit(
+        'Variant',
+        ['Circle', 'circle.svg'],
+        {
+          reexport: {
+            from: './Lido',
+            exports: [{ of: 'LidoMono', as: 'Variant' }],
+          },
+        },
+      ),
+      'icons/chain/circle.svg': SQUARE,
+    });
+    expect(buildManifest(units).map(e => [e.name, e.brandColor])).toEqual([
+      ['Cur', '#ffaa7d'],
+      ['CurCircle', undefined],
+      ['Curated', '#ffaa7d'],
+      ['Ldo', '#0085ff'],
+      ['LdoCircle', undefined],
+      ['Lido', '#0085ff'],
+      ['Variant', undefined],
+      ['VariantCircle', undefined],
+    ]);
   });
 
   it('classifies neutrals by channel spread and lightness', () => {

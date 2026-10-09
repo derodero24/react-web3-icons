@@ -44,7 +44,9 @@ export interface IconManifestEntry {
   /**
    * Brand color as a `#rrggbb` hex: the most frequent non-neutral color of
    * the colored artwork (a heuristic; greys, near-black and near-white count
-   * only when the artwork has nothing else), or a curated override. Base
+   * only when the artwork has nothing else, and artwork painted only in
+   * SVG's default fill is `'#000000'`), or a curated override. An icon
+   * that re-exports another icon's artwork has that icon's color. Base
    * entries only.
    */
   readonly brandColor?: string;
@@ -381,7 +383,13 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#0d0d0d',
   },
   { name: 'GnosisChainMono', category: 'chain' },
-  { name: 'Hedera', category: 'chain', slug: 'hedera', variants: ['', 'Mono'] },
+  {
+    name: 'Hedera',
+    category: 'chain',
+    slug: 'hedera',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
   { name: 'HederaMono', category: 'chain' },
   { name: 'Hyperliquid', category: 'chain', chainId: 999, slug: 'hyperliquid' },
   { name: 'HyperliquidMono', category: 'chain' },
@@ -440,6 +448,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 59_144,
     slug: 'linea',
     variants: ['', 'Mono'],
+    brandColor: '#000000',
   },
   { name: 'LineaMono', category: 'chain' },
   {
@@ -633,6 +642,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     slug: 'stellar',
     variants: ['', 'Mono'],
+    brandColor: '#000000',
   },
   { name: 'StellarMono', category: 'chain' },
   {
@@ -923,6 +933,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'coin',
     ticker: 'LDO',
     variants: ['', 'Mono', 'Circle', 'CircleMono'],
+    brandColor: '#0085ff',
   },
   { name: 'LdoCircle', category: 'coin' },
   { name: 'LdoCircleMono', category: 'coin' },
@@ -958,7 +969,13 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'MonadMono', category: 'coin' },
   { name: 'Near', category: 'coin', ticker: 'NEAR' },
   { name: 'NearMono', category: 'coin' },
-  { name: 'Ondo', category: 'coin', ticker: 'ONDO', variants: ['', 'Mono'] },
+  {
+    name: 'Ondo',
+    category: 'coin',
+    ticker: 'ONDO',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
   { name: 'OndoMono', category: 'coin' },
   {
     name: 'Op',
@@ -1038,7 +1055,13 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'TaikoCircle', category: 'coin' },
   { name: 'TaikoCircleMono', category: 'coin' },
   { name: 'TaikoMono', category: 'coin' },
-  { name: 'Tao', category: 'coin', ticker: 'TAO', variants: ['', 'Mono'] },
+  {
+    name: 'Tao',
+    category: 'coin',
+    ticker: 'TAO',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
   { name: 'TaoMono', category: 'coin' },
   {
     name: 'Tia',

@@ -156,7 +156,10 @@ icons/chain/ethereum.json         # metadata:
 - The manifest's `brandColor` is derived from the colored default artwork:
   the most frequent fill/stroke/stop-color that is not neutral (greys,
   near-black, near-white); a neutral is used only when the artwork has no
-  other colour. When that still misses the brand (e.g. a near-black logomark
+  other colour, and artwork whose shapes have no `fill` at all renders, and
+  counts, as SVG's default black. A unit whose default export re-exports
+  another icon (`Ldo` → `Lido`) takes that icon's colour. Every base entry
+  of the manifest has one. When that still misses the brand (e.g. a near-black logomark
   whose brand accent is a colour), set `"brandColor": "#rrggbb"` from the
   official palette and cite it in `notes` (see `icons/oracle/pyth.json`).
   Genuinely black-and-white marks (Aptos, Hedera) keep their neutral colour.
