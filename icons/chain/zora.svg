@@ -1,14 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="translate(-10.63 -10.64)scale(3.55337)">
-    <path fill="url(#a)" d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18"/>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64">
+  <g transform="translate(-.03 -.03)scale(.06403)">
+    <mask id="zora-m" width="1000" height="1000" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha">
+      <path fill="#D9D9D9" d="M500.19 999.88c275.97 0 499.69-223.72 499.69-499.7C999.88 224.23 776.16.5 500.18.5 224.23.5.5 224.22.5 500.19s223.72 499.69 499.69 499.69"/>
+    </mask>
+    <g mask="url(#zora-m)">
+      <path fill="#A1723A" d="M1169.22-216.74H-153.7v1322.92h1322.92z"/>
+      <g filter="url(#zora-f0)">
+        <path fill="#531002" d="M538.35 978.87c294.5 0 533.22-238.66 533.22-533.06S832.84-87.26 538.35-87.26 5.14 151.4 5.14 445.81c0 294.4 238.73 533.06 533.21 533.06"/>
+      </g>
+      <g filter="url(#zora-f1)">
+        <path fill="#2B5DF0" d="M595.83 810.14c238.85 0 432.48-193.7 432.48-432.63S834.68-55.12 595.83-55.12 163.35 138.58 163.35 377.5s193.63 432.63 432.48 432.63"/>
+      </g>
+      <g filter="url(#zora-f2)">
+        <path fill="url(#zora-g0)" d="M587.95 834.86c249 0 450.86-201.93 450.86-451.02S836.96-67.17 587.95-67.17c-249 0-450.86 201.92-450.86 451.01s201.86 451.02 450.86 451.02"/>
+      </g>
+      <g filter="url(#zora-f3)">
+        <path fill="#FCB8D4" d="M662.73 497.41c125.45 0 227.13-101.69 227.13-227.13S788.18 43.15 662.73 43.15 435.6 144.84 435.6 270.28s101.7 227.13 227.13 227.13"/>
+      </g>
+      <g filter="url(#zora-f4)">
+        <path fill="white" d="M662.58 360.83c50.1 0 90.7-40.61 90.7-90.7s-40.6-90.7-90.7-90.7-90.7 40.6-90.7 90.7 40.6 90.7 90.7 90.7"/>
+      </g>
+      <g filter="url(#zora-f5)">
+        <path fill="url(#zora-g1)" fill-opacity=".9" d="M602.32 1175.71c450.14 0 815.05-364.9 815.05-815.04s-364.91-815.05-815.05-815.05-815.04 364.91-815.04 815.05 364.9 815.04 815.04 815.04"/>
+      </g>
+    </g>
     <defs>
-      <radialGradient id="a" cx="0" cy="0" r="1" gradientTransform="translate(16.09 7.84)scale(-15.2029)" gradientUnits="userSpaceOnUse">
-        <stop offset=".01" stop-color="#F2CEFE"/>
-        <stop offset=".19" stop-color="#AFBAF1"/>
-        <stop offset=".5" stop-color="#4281D3"/>
-        <stop offset=".67" stop-color="#2E427D"/>
-        <stop offset=".82" stop-color="#230101"/>
-        <stop offset="1" stop-color="#8F6B40"/>
+      <filter id="zora-f0" width="1313.65" height="1313.34" x="-118.47" y="-210.87" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+        <feGaussianBlur stdDeviation="61.8"/>
+      </filter>
+      <filter id="zora-f1" width="1359.39" height="1359.7" x="-83.87" y="-302.34" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+        <feGaussianBlur stdDeviation="123.61"/>
+      </filter>
+      <filter id="zora-f2" width="1087.14" height="1087.45" x="44.38" y="-159.88" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+        <feGaussianBlur stdDeviation="46.35"/>
+      </filter>
+      <filter id="zora-f3" width="825.09" height="825.09" x="250.19" y="-142.26" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+        <feGaussianBlur stdDeviation="92.71"/>
+      </filter>
+      <filter id="zora-f4" width="428.61" height="428.61" x="448.27" y="55.82" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+        <feGaussianBlur stdDeviation="61.8"/>
+      </filter>
+      <filter id="zora-f5" width="1815.51" height="1815.51" x="-305.43" y="-547.09" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+        <feGaussianBlur stdDeviation="46.35"/>
+      </filter>
+      <radialGradient id="zora-g0" cx="0" cy="0" r="1" gradientTransform="rotate(128.23 269.74 289.41)scale(851.508 851.439)" gradientUnits="userSpaceOnUse">
+        <stop offset=".29" stop-color="#387AFA"/>
+        <stop offset=".65" stop-color="#387AFA" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="zora-g1" cx="0" cy="0" r="1" gradientTransform="rotate(90 120.83 481.5)scale(815.046)" gradientUnits="userSpaceOnUse">
+        <stop offset=".6" stop-opacity="0"/>
+        <stop offset=".67"/>
+        <stop offset=".73" stop-opacity="0"/>
       </radialGradient>
     </defs>
   </g>
