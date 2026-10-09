@@ -1375,7 +1375,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'OpenZeppelin',
     category: 'devtool',
     variants: ['', 'Mono'],
-    brandColor: '#63d2f9',
+    brandColor: '#2e99ff',
   },
   { name: 'OpenZeppelinMono', category: 'devtool' },
   {
