@@ -1,6 +1,10 @@
 import { createIcon } from '../utils';
 
-// Source: https://solscan.io (official brand)
+// Source: https://solscan.io/_next/static/media/solscan-logo-light.1410e164.svg (the symbol on the official Branding page https://solscan.io/branding: ring #00E8B5, dot #C74AE3)
+// Source: https://solscan.io (home-page header logo: the inline <svg viewBox="0 0 99 16">, whose "o" is this mark)
+// Default: the mark of the solscan.io home-page header logo, both paths unchanged (dot #C74AE3, ring #00E8B5, the colours of the Branding page's solscan-logo-light.svg), uniformly scaled onto the 64 grid (silhouette IoU 0.996). The Branding-page symbol is the same design as a coarser trace (IoU 0.968), so the cleaner header geometry is kept
+// The header on the other pages (viewBox 0 0 100 24) draws the ring in #00E8B4. solscan.io pages and the Branding page zip return a Cloudflare challenge to scripts, so both header logos were read from the site's _app bundle (checked 2026-10-09)
+// Mono: the same two paths in currentColor
 /** Solscan explorer icon (colored). */
 export const Solscan = /* @__PURE__ */ createIcon(
   'Solscan',
