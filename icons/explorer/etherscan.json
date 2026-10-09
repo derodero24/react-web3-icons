@@ -1,11 +1,14 @@
 {
   "name": "Etherscan",
   "source": [
-    "https://etherscan.io (official brand)",
-    "https://etherscan.io/images/brandassets/etherscan-logo-light-circle.svg"
+    "https://etherscan.io/images/brandassets/etherscan-logo-circle.svg",
+    "https://etherscan.io/images/brandassets/etherscan-logo-circle-light.svg",
+    "https://etherscan.io/brandassets (official brand assets page: both files are among its downloads and in its Download Brand Package, https://etherscan.io/images/brandassets/logos.zip, under logos/)"
   ],
   "notes": [
-    "Inverted (and the deprecated EtherscanLight alias): the official brand asset etherscan-logo-light-circle.svg (white mark, #BFCFDA arc), copied unchanged; the arc was #8B8B8B before"
+    "Etherscan: the brand asset etherscan-logo-circle.svg (#21325B mark, #979695 arc), placed on the 64 grid unchanged",
+    "EtherscanMono: both paths of that file in currentColor; the brand package has no one-colour SVG",
+    "EtherscanInverted: the brand asset etherscan-logo-circle-light.svg (white mark, #8B8B8B arc), placed on the 64 grid unchanged; it has the same geometry as the default. etherscan-logo-light-circle.svg (#BFCFDA arc), which the Inverted variant copied before, is served from the same folder but linked from neither the brand page nor the brand package, so it is not used (accessed 2026-10-09)"
   ],
   "kind": "icon",
   "variants": {
