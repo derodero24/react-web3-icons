@@ -1,7 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://unstoppabledomains.com
+// Source: https://storage.googleapis.com/unstoppable-client-assets/images/favicon/icon.svg (the site icon linked from https://unstoppabledomains.com; the site header logo draws the same mark beside the wordmark)
+// Default: the Unstoppable Domains mark, a #00C9FF stripe and a #0D67FE U, the colours of icon.svg. The paths are not the file's own: they are a redraw about 1.4% wider than icon.svg (aspect 1.115 against 1.100, IoU 0.991), kept as the difference does not show at icon sizes
 // Mono: the stripe passes behind the U, cut back from it by a 1.2-unit seam.
+// unstoppabledomains.com/brand and /press return 404; no brand kit was found
 /** Unstoppable Domains domain icon (colored). */
 export const UnstoppableDomains = /* @__PURE__ */ createIcon(
   'UnstoppableDomains',
