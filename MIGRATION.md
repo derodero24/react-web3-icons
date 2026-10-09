@@ -172,6 +172,7 @@ These variants render the same artwork as another export, or legacy artwork with
 | `PhantomSymbolMono`, `PhantomWalletSymbolMono` | `PhantomMono` | wallet | Phantom's default is the standalone ghost since the 2024 press kit, so `SymbolMono` rendered the same artwork as `Mono` |
 | `MagicEdenFlat` | `MagicEden` | marketplace | the current Magic Eden mark is single-colour, so `Flat` rendered the default |
 | `MagicEdenWordmarkFlat` | `MagicEdenWordmark`, `MagicEdenWordmarkMono` | marketplace | legacy stacked lockup; Magic Eden has no single-colour wordmark |
+| `OpenSeaAlt` | `OpenSea`, `OpenSeaSymbol` | marketplace | pre-2025 white-disc logomark (`#2081E2` ship); the current OpenSea brand has no white-disc asset |
 
 Deprecated exports are not variants of the dynamic components, so `'Alt'` leaves `WalletVariant`: `<WalletIcon name="metamask" variant="Alt" />` is a type error and renders `fallback`. Omit `variant` instead. Likewise `<WalletIcon name="phantom" variant="SymbolMono" />` renders `fallback` (`'SymbolMono'` stays a `WalletVariant` for `Rainbow`); use `variant="mono"`.
 

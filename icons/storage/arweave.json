@@ -1,7 +1,13 @@
 {
   "name": "Arweave",
   "source": [
-    "https://arweave.org"
+    "https://arweave.org/_astro/glyph.BQkrfr-b_Z18YQcN.svg (the Glyph drawing of the official brand kit page https://arweave.org/brand-kit)"
+  ],
+  "notes": [
+    "Arweave: the two #222326 glyph paths (the ring and the 'a') of the kit's Glyph drawing, copied unchanged and placed on the 64 grid; its grey guide lines, dimension labels and the stand-alone 'a' are left out. The kit's logotype drawing (/_astro/logotype.CcaqzKFe_ZlzTfe.svg) has the same glyph",
+    "ArweaveMono: the same two paths in currentColor",
+    "The kit's download zips (GlyphSVG.zip, ArweaveSealSVG.zip, ArweaveALL.zip and the rest) return 404, and its seal SVGs only wrap PNGs (accessed 2026-10-09)",
+    "The arweave.org header (inline <svg viewBox=\"0 0 184 32\">) strokes a slightly heavier ring; the previous artwork approximated that header symbol, which differs from the kit glyph"
   ],
   "kind": "icon",
   "variants": {
