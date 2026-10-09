@@ -1,7 +1,12 @@
 {
   "name": "Bitcoin",
   "source": [
-    "https://bitcoin.org"
+    "https://bitcoin.org/img/icons/logotop.svg (the bitcoin.org header logo; the footer's https://bitcoin.org/img/icons/logo-footer.svg draws the same mark)"
+  ],
+  "notes": [
+    "Circle: the symbol of logotop.svg, its #F7931A disc and white ₿ paths unchanged, full-bleed on the 64 grid",
+    "Default: the same ₿ path alone in the disc's #F7931A. bitcoin.org shows the ₿ only on the disc, so the bare glyph is this repository's composition; it stays the base because docs/icon-variants.md uses Bitcoin / BitcoinCircle as its example of a standalone base with a Circle variant",
+    "Mono: the bare ₿ in currentColor; CircleMono: the disc in currentColor with the ₿ knocked out (fill-rule=evenodd)"
   ],
   "kind": "icon",
   "variants": {
