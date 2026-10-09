@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://cardano.org
+// Source: https://cardano.org/img/brand-assets/cardano-starburst-blue.svg (official Cardano brand assets, https://cardano.org/brand-assets/)
+// Colored: renders identically to the official cardano-starburst-blue.svg (#0033AD) of the cardano.org brand assets (audited in #836)
+// Mono: the same starburst paths in currentColor (cardano-starburst-black.svg on the same page is the one-colour version with the same path data)
+// Circle / CircleMono: the brand assets have no disc version, so these follow the repository container convention. The Circle puts the official starburst in white (cardano-starburst-white.svg has the same path data) on a #0033AD disc; the CircleMono knocks the starburst out of a currentColor disc
 /** Cardano chain icon (colored). */
 export const Cardano = /* @__PURE__ */ createIcon(
   'Cardano',
