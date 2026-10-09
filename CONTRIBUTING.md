@@ -526,14 +526,20 @@ Key points:
 #### Dark / light background legibility
 
 `test/legibility.test.ts` flags colored default artwork that mostly vanishes
-on a dark background (near-black paint, every channel below 60) or a light
-one (near-white, every channel above 195). A flagged icon needs one of:
+on a dark background (near-black paint: every channel below 60, or less than
+1.5:1 WCAG contrast against black, like a deep navy) or a light one
+(near-white: every channel above 195, or less than 1.5:1 against white, like
+Blast's pale yellow `#FCFC03`). Gradients count by the colours sampled along
+their ramp. A flagged icon needs one of:
 
-- an official colored `Circle*` / `Square*` / `Inverted*` variant that is
-  not itself flagged;
-- nothing more when the mark has no colour besides black (or white) and its
-  `Mono` variant has the same geometry, since `Mono` in a contrasting `color`
-  is then the brand's reversed mark;
+- an official colored `Circle*` / `Square*` / `Inverted*` variant (or the
+  legacy `BlastscanLight`) that is not itself flagged;
+- nothing more when the mark is painted in that one tone only (black, white,
+  or one pale or deep colour) and its `Mono` variant has the same geometry:
+  `Mono` in a contrasting `color` then shows the whole mark, and for a black
+  mark it is the brand's reversed mark;
+- an entry in that test's `PENDING` while an official variant, with the file
+  it comes from, is still to be added (the entry fails once it lands);
 - otherwise an entry in that test's `EXEMPTIONS`, with the reason checked by
   the test (another legible colored variant, or the official sources that
   were searched without finding an alternative).
