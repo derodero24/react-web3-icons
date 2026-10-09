@@ -1,7 +1,10 @@
 {
   "name": "Binance",
   "source": [
-    "https://binance.com (official brand)"
+    "https://www.binance.com (official site; walled, see notes)"
+  ],
+  "notes": [
+    "Not verified (checked 2026-10-09): binance.com and its /en/brand page answer automated requests with a 202 bot challenge, and developers.binance.com serves the logo only as PNG (https://bin.bnbstatic.com/static/images/bnb-for/brand.png). The #F0B90B diamond artwork predates the source policy and is unchanged. It is not the BNB Chain kit's symbol (icons/coin/bnb.json), which is now a cube"
   ],
   "kind": "icon",
   "variants": {

@@ -18,6 +18,7 @@ export const dexImports: Record<
   CowProtocol: () => import('../../dex/CowProtocol'),
   CowProtocolMono: () => import('../../dex/CowProtocol'),
   Dydx: () => import('../../dex/Dydx'),
+  DydxInverted: () => import('../../dex/Dydx'),
   DydxMono: () => import('../../dex/Dydx'),
   DydxSquare: () => import('../../dex/Dydx'),
   DydxSquareMono: () => import('../../dex/Dydx'),
@@ -60,6 +61,7 @@ export const dexImports: Record<
 export const dexVariants: readonly string[] = [
   'Circle',
   'CircleMono',
+  'Inverted',
   'Square',
   'SquareMono',
 ];
@@ -74,5 +76,6 @@ export type DexVariant =
   | 'mono'
   | 'Circle'
   | 'CircleMono'
+  | 'Inverted'
   | 'Square'
   | 'SquareMono';

@@ -238,6 +238,23 @@ Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases ar
 + import { EtherscanInverted, Pol, Safe } from 'react-web3-icons';
 ```
 
+## 10. `Zerion` and `TrustWallet` render the standalone mark
+
+The base names of these units were aliases of a container variant. Following the base-name rule (the unsuffixed name is the brand's standalone symbol), they are now the standalone marks from the official sources:
+
+| Export | 4.x | v5 | Container variant |
+| --- | --- | --- | --- |
+| `Zerion`, `ZerionMono` | aliases of `ZerionCircle`, `ZerionCircleMono` | the standalone Z of Zerion's brand guidelines | `ZerionCircle`, `ZerionCircleMono` |
+| `TrustWallet`, `TrustWalletMono` | aliases of `TrustWalletSquare`, `TrustWalletSquareMono` | the standalone shield of trustwallet.com/icon.svg | `TrustWalletSquare`, `TrustWalletSquareMono` |
+
+- `<WalletIcon name="zerion" />` and `<WalletIcon name="trust" />` (and their `variant="mono"`) render the standalone marks too; `variant="Circle"` and `variant="Square"` select the containers.
+- The base names are their own components now, so `Zerion !== ZerionCircle` and `TrustWallet !== TrustWalletSquare`.
+
+```diff
+- import { TrustWallet, Zerion } from 'react-web3-icons';
++ import { TrustWalletSquare, ZerionCircle } from 'react-web3-icons'; // to keep a container
+```
+
 ## Checklist
 
 - [ ] Regenerate markup snapshots containing icon defs ids or icon markup (viewBox, path data)
@@ -250,6 +267,7 @@ Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases ar
 - [ ] Optionally move from `Tally`, `MakerDao`, `Mkr` and `ParaSwap` to `Cactus`, `Sky` and `Velora` (new artwork, section 7)
 - [ ] Expect `fallback` for the lookup keys of defunct projects (`BUSD`, `nami`, `odos`, …) and the new Sky and Velora artwork for `MKR`, `makerdao` and `paraswap` (sections 7 and 8)
 - [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg`, `Starknet*.svg` and `Zksync*.svg` instead of the `OKXWallet*`, `StarkNet*` and `ZkSync*` files
+- [ ] Use `ZerionCircle` / `TrustWalletSquare` (and their `Mono` variants) where you relied on `Zerion` / `TrustWallet` rendering a container (section 10)
 
 ---
 

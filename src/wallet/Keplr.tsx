@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://keplr.app
+// Source: https://cdn.prod.website-files.com/667dc891bc7b863b5397495b/68a4ca95f93a9ab64dc67ab4_keplr-symbol.svg (official symbol served by www.keplr.app)
+// Source: https://www.keplr.app/brand (official brand page)
+// Default: matches the site's keplr-symbol.svg (the #14AFEB rounded tile with the white mark; alpha IoU 0.9995, checked 2026-10-09), so the paths are unchanged
+// Mono: the tile in currentColor with the mark knocked out
 /** Keplr wallet icon (colored). */
 export const Keplr = /* @__PURE__ */ createIcon(
   'Keplr',

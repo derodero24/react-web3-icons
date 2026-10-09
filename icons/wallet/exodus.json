@@ -1,7 +1,11 @@
 {
   "name": "Exodus",
   "source": [
-    "https://exodus.com"
+    "https://www.exodus.com/icon.svg (official favicon, rel=icon)"
+  ],
+  "notes": [
+    "Default: the official icon.svg unchanged (two halves in the #0B46F9 -> #BBFBE0 gradient under a #8952FF -> #DABDFF overlay clipped by an alpha mask), placed on the 64 grid. It replaces a copy that was stretched 1.8% horizontally",
+    "Mono: the two halves of icon.svg in currentColor. exodus.com/brand answers automated requests with 403 (checked 2026-10-09)"
   ],
   "kind": "icon",
   "variants": {
