@@ -24,7 +24,8 @@ requirement (see the README's install section).
 Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/activates the required Node version if missing).
 `pnpm install` fails fast on unsupported Node versions: `engine-strict=true` in `.npmrc` enforces the toolchain
 dependencies' own `engines`, and the `prepare` script checks the range above. The range is the intersection of those
-`engines`: when a dependency raises its floor, raise it in `devEngines`, the `prepare` check and this section together.
+`engines`: when a dependency raises its floor, raise it in `devEngines`, the `prepare` check, this section and the
+`node-floor` job in `.github/workflows/main.yml` together (that job installs on the exact lower bounds).
 
 `@types/node` stays on the lowest supported Node major (22), so `pnpm run typecheck` rejects Node APIs that the oldest
 supported runtime lacks. A rule in `renovate.json` keeps it there; raise both together with the `devEngines` floor.
