@@ -29,6 +29,16 @@ units predate the `source` field; add it when you touch them.
 | App/favicon asset | `https://app.eigenlayer.xyz/logo/markLightA.svg` |
 | Re-export / alias unit (no own artwork) | `re-export of Bitcoin — see src/chain/Bitcoin.tsx` |
 
+Sources rot: domains lapse, kits move, files are deleted. The Source links
+workflow (`.github/workflows/source-links.yml`, monthly and on demand) runs
+`node scripts/check-sources.ts`, which requests every URL in a `source`
+array and lists in the job summary those that are gone (404 / 410), moved to
+another site (a redirect chain ending on a different domain; a brand page
+redirecting to Notion, Figma or Google Drive does not count) or failing. It
+never fails the run, and sites that block bots (401 / 403 / 429) are only
+counted. For each finding, cite the file's new official location, or record
+in `notes` that the cited source is gone.
+
 Some existing icons predate the authenticity policy below and record a
 **legacy** source instead: a third-party package (`@web3icons/react (MIT) —
 OSMO token SVG`) or a hand-traced mark (`hand-crafted — no public SVG; traced

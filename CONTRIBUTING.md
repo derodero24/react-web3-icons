@@ -67,6 +67,7 @@ scripts/
   new-icon.ts     # Scaffolds a unit (pnpm run new-icon)
   audit-mono.ts   # Mono-vs-colored quality audit
   check-svgo.ts   # Lists SVGs SVGO would still change
+  check-sources.ts  # Reports dead or moved `source` URLs (monthly workflow)
   render-showcase.ts  # Renders image/icons.png (pnpm run showcase)
   size-report.ts  # Renders the size-limit PR comment
 test/             # Vitest suites; visual/ (Playwright screenshots), consumer/ (packed-tarball fixtures for CI)
