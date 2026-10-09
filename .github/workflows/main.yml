@@ -79,18 +79,18 @@ jobs:
 
   # The contributor Node range (devEngines.runtime and the `prepare` check in
   # package.json) is the intersection of the toolchain's own `engines`, which
-  # engine-strict enforces. The build job only runs the latest 22.x and 24.x,
-  # so installing on the exact lower bounds catches a dependency update
-  # (Renovate automerges minors) that raises its floor above ours. Keep these
-  # versions equal to the lower bounds of that range.
+  # engine-strict enforces. The build job only runs the latest release of the
+  # Node lines it covers, so installing on the exact lower bound of each line
+  # of that range catches a dependency update (Renovate automerges minors)
+  # that raises its floor above ours. Keep one entry per lower bound.
   node-floor:
-    name: Install on Node ${{ matrix.node }} (lowest supported)
+    name: Install on Node ${{ matrix.node }} (lower bound)
     runs-on: ubuntu-latest
     timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
-        node: ['22.22.2', '24.15.0']
+        node: ['22.22.2', '24.15.0', '26.0.0']
 
     steps:
       - name: Checkout repo
