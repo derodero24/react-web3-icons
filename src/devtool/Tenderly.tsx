@@ -1,8 +1,10 @@
 import { createIcon } from '../utils';
 
-// Source: https://tenderly.co
-// Source: https://tenderly.co/brand-assets
-// Mono: the three wings of the coloured mark in one ink, parted by 1.2-unit knock-out seams so the faceted structure reads; Tenderly's own black symbol (symbol-black.svg on the brand-assets page) is the same silhouette in solid ink, without opacity
+// Source: https://docs.tenderly.co/logo/tenderly-symbol.svg
+// Source: https://tenderly.co/brand-assets (official brand kit)
+// Colored: the three paths of the official docs.tenderly.co/logo/tenderly-symbol.svg (#9573F5, #6837F1, #D2C3FB), copied unchanged and only scaled (0.2) and shifted onto the 64 grid (silhouette IoU 0.996); the docs header lockups tenderly-logo-light-background.svg and tenderly-logo-dark-background.svg use the same mark
+// The brand-assets page now lists a refreshed palette (#9273FF, #6837EE, #CFC0FF) and its own symbol-color.svg, but its files cannot be downloaded verbatim (Vercel Security Checkpoint, HTTP 429; checked 2026-10-09), so the artwork is unchanged
+// Mono: the three wings of the coloured docs symbol in one ink, parted by 1.2-unit knock-out seams so the faceted structure reads
 /** Tenderly devtool icon (colored). */
 export const Tenderly = /* @__PURE__ */ createIcon(
   'Tenderly',
