@@ -1,6 +1,11 @@
 import { createIcon } from '../utils';
 
-// Source: https://coinmarketcap.com
+// Source: https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_1.svg (the official logo file the coinmarketcap.com theme loads; mark and wordmark in #17181B)
+// Source: https://coinmarketcap.com (site header logo: inline <svg class="cmc-logo-img" fill="var(--text-color)">, #000 by day and #fff at night; site palette --theme-color #3861fb and --c-color-blue #3861FB)
+// CoinMarketCap: the mark of coinmarketcap_1.svg (path unchanged, placed on the 64 grid) in that file's #17181B. The previous #3861FB default appeared in no official vector of the bare mark
+// CoinMarketCapMono: the same path in currentColor
+// brandColor: the bare mark is only ever drawn in #17181B, #000 or white, so the manifest uses the site's brand blue #3861FB (--theme-color, --c-color-blue and --c-color-official in the coinmarketcap.com stylesheets; also the app-icon background)
+// CoinMarketCap has no press or brand kit (/press/, /brand/, /brand-assets/, /media-kit/ and /press-kit/ return 404, accessed 2026-10-09)
 /** Coin Market Cap tracker icon (colored). */
 export const CoinMarketCap = /* @__PURE__ */ createIcon(
   'CoinMarketCap',
@@ -8,7 +13,7 @@ export const CoinMarketCap = /* @__PURE__ */ createIcon(
   () => (
     <path d="M52.4 37.47c-.98.61-2.13.69-3 .2-1.11-.63-1.72-2.1-1.72-4.14v-6.1c0-2.96-1.17-5.06-3.12-5.63-3.3-.96-5.8 3.09-6.73 4.6L32 35.86V24.3q-.1-3.99-2.56-4.72c-1.09-.32-2.71-.2-4.29 2.22L12.1 42.77A23 23 0 0 1 9.44 32C9.44 19.37 19.56 9.1 32 9.1S54.57 19.36 54.57 32v.13c.12 2.44-.67 4.39-2.17 5.34M59.58 32v-.12C59.51 16.49 47.17 4 32 4 16.8 4 4.42 16.56 4.42 32S16.8 60 32 60c6.98 0 13.64-2.65 18.75-7.46a2.57 2.57 0 0 0 .14-3.6 2.5 2.5 0 0 0-3.54-.14A22.3 22.3 0 0 1 32 54.91c-6.66 0-12.65-2.95-16.79-7.62L27 28.38v8.71c0 4.2 1.62 5.54 2.99 5.94s3.44.13 5.63-3.42l6.48-10.5.57-.89v5.31c0 3.91 1.57 7.05 4.3 8.59 2.47 1.39 5.56 1.26 8.09-.33 3.06-1.93 4.7-5.5 4.53-9.79" />
   ),
-  { fill: '#3861FB' },
+  { fill: '#17181B' },
 );
 
 /** Coin Market Cap tracker icon (monochrome). */

@@ -1,17 +1,25 @@
 {
   "name": "CoinMarketCap",
   "source": [
-    "https://coinmarketcap.com"
+    "https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_1.svg (the official logo file the coinmarketcap.com theme loads; mark and wordmark in #17181B)",
+    "https://coinmarketcap.com (site header logo: inline <svg class=\"cmc-logo-img\" fill=\"var(--text-color)\">, #000 by day and #fff at night; site palette --theme-color #3861fb and --c-color-blue #3861FB)"
+  ],
+  "notes": [
+    "CoinMarketCap: the mark of coinmarketcap_1.svg (path unchanged, placed on the 64 grid) in that file's #17181B. The previous #3861FB default appeared in no official vector of the bare mark",
+    "CoinMarketCapMono: the same path in currentColor",
+    "brandColor: the bare mark is only ever drawn in #17181B, #000 or white, so the manifest uses the site's brand blue #3861FB (--theme-color, --c-color-blue and --c-color-official in the coinmarketcap.com stylesheets; also the app-icon background)",
+    "CoinMarketCap has no press or brand kit (/press/, /brand/, /brand-assets/, /media-kit/ and /press-kit/ return 404, accessed 2026-10-09)"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "coin-market-cap.svg",
-      "fill": "#3861FB"
+      "fill": "#17181B"
     },
     "Mono": {
       "file": "coin-market-cap.mono.svg",
       "fill": "currentColor"
     }
-  }
+  },
+  "brandColor": "#3861fb"
 }
