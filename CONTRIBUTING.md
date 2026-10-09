@@ -73,7 +73,7 @@ test/             # Vitest suites; visual/ (Playwright screenshots), consumer/ (
 example/          # Next.js demo site (react-web3-icons.vercel.app), builds from src/
 examples/
   stackblitz/     # Minimal Vite app behind the README's StackBlitz link; installs the published package
-docs/             # Icon variant, source, and lifecycle policies
+docs/             # Icon policies, Iconify collections, release process
 ```
 
 `dist/` is the only project directory published (`files` in package.json); npm
@@ -637,3 +637,8 @@ than nudging one limit inside an icon PR.
 
 4. Write a clear commit message (e.g., `feat(coin): add MyToken icon`)
 5. Open a pull request against `develop`
+
+Maintainers: releases, the version PR and the branch rulesets are described in
+[docs/releasing.md](docs/releasing.md). Once the rulesets are enabled, `develop`
+accepts changes only through pull requests with passing checks, and force pushes
+to `develop` and `main` are blocked.
