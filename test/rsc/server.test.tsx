@@ -137,6 +137,13 @@ const components = Object.entries(icons).flatMap(([name, value]) =>
   isIconComponent(value) ? [[name, value] as const] : [],
 );
 
+/**
+ * Rendering the whole catalogue takes about a second on an idle machine, but
+ * the pre-push hook runs it next to the build, lint and typecheck, where the
+ * default 5 s timeout has been hit.
+ */
+const CATALOGUE_TIMEOUT = 60_000;
+
 describe('React Server Components', () => {
   it('runs under the react-server build of React', () => {
     // The server build leaves out client-only hooks; useId stays.
@@ -155,15 +162,19 @@ describe('React Server Components', () => {
     );
   });
 
-  it('renders every icon export', async () => {
-    expect(components.length).toBeGreaterThan(100);
-    const payload = await renderFlight(
-      components.map(([name, Icon]) =>
-        React.createElement(Icon, { key: name, title: name }),
-      ),
-    );
-    expect(svgElements(payload)).toHaveLength(components.length);
-  });
+  it(
+    'renders every icon export',
+    async () => {
+      expect(components.length).toBeGreaterThan(100);
+      const payload = await renderFlight(
+        components.map(([name, Icon]) =>
+          React.createElement(Icon, { key: name, title: name }),
+        ),
+      );
+      expect(svgElements(payload)).toHaveLength(components.length);
+    },
+    CATALOGUE_TIMEOUT,
+  );
 
   it('gives each instance its own internal ids', async () => {
     const payload = await renderFlight(

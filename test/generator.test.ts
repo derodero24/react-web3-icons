@@ -1202,6 +1202,8 @@ describe('output sync', () => {
     },
   );
 
+  // Two Node processes that load the whole generator: about 2 s on an idle
+  // machine, more next to the parallel pre-push build.
   it('the CLI parses its flags instead of regenerating on --help', () => {
     const cli = join(ROOT, 'scripts/build-icons/cli.ts');
     expect(
@@ -1212,7 +1214,7 @@ describe('output sync', () => {
     });
     expect(bogus.status).toBe(2);
     expect(bogus.stderr).toContain("Unknown option '--bogus'");
-  });
+  }, 60_000);
 });
 
 describe('published artifacts', () => {
