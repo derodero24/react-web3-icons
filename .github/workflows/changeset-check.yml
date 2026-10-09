@@ -43,6 +43,7 @@ jobs:
             ];
             const DEV_ONLY_FIELDS = [
               'devDependencies',
+              'devEngines', // checked for this repo's own installs, never for consumers
               'packageManager',
               'size-limit',
               'version', // bumped by `changeset version` itself

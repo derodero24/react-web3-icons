@@ -15,16 +15,16 @@ pnpm install
 
 ### Prerequisites
 
-- **Node.js** `^22.18.0 || >=24.11.0`, as declared in `devEngines.runtime` in package.json. `.nvmrc` selects Node 24.
+- **Node.js** `^22.22.2 || ^24.15.0 || >=26.0.0`, as declared in `devEngines.runtime` in package.json. `.nvmrc` selects Node 24.
 - **pnpm** 10.x (`packageManager` in package.json pins the exact version)
 
 This is a contributor requirement only: the published package has no Node.js
 requirement (see the README's install section).
 
 Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/activates the required Node version if missing).
-`pnpm install` fails fast on unsupported Node versions: the `prepare` script checks the range above (the scripts under
-`scripts/` run through Node's built-in TypeScript type stripping), and `engine-strict=true` in `.npmrc` enforces the
-toolchain dependencies' own `engines`.
+`pnpm install` fails fast on unsupported Node versions: `engine-strict=true` in `.npmrc` enforces the toolchain
+dependencies' own `engines`, and the `prepare` script checks the range above. The range is the intersection of those
+`engines`: when a dependency raises its floor, raise it in `devEngines`, the `prepare` check and this section together.
 
 `@types/node` stays on the lowest supported Node major (22), so `pnpm run typecheck` rejects Node APIs that the oldest
 supported runtime lacks. A rule in `renovate.json` keeps it there; raise both together with the `devEngines` floor.
