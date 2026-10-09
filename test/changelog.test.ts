@@ -74,6 +74,21 @@ describe('unlinkIssueRefsInCode', () => {
       expected: `  ## a \` (${issue('836')})\n  b \`#141414\``,
     },
     {
+      name: 'a code span across an item numbered 2, which cannot interrupt a paragraph',
+      input: `- Use \`${issue('141414')}\n  2. more\` and ${issue('836')}`,
+      expected: `- Use \`#141414\n  2. more\` and ${issue('836')}`,
+    },
+    {
+      name: 'a code span across an empty item, which cannot interrupt a paragraph',
+      input: `- a \` (${issue('836')})\n  *\n  b\` ${issue('835')}`,
+      expected: `- a \` (#836)\n  *\n  b\` ${issue('835')}`,
+    },
+    {
+      name: 'a code span after a stray backtick in a list item that an item numbered 2 ends',
+      input: `  - a \` (${issue('836')})\n  2. b \`${issue('141414')}\``,
+      expected: `  - a \` (${issue('836')})\n  2. b \`#141414\``,
+    },
+    {
       name: 'a code span in a block quote that interrupts a paragraph',
       input: `- a \` (${issue('836')})\n  > b \`${issue('141414')}\` (${issue('835')})`,
       expected: `- a \` (${issue('836')})\n  > b \`#141414\` (${issue('835')})`,

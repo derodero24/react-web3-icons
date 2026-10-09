@@ -25,6 +25,9 @@ const QUOTE_MARKER = /^[ \t]*>[ \t]?/;
 /** Leading list item markers (`-`, `+`, `*`, `1.`, `1)`), nested or not. */
 const LIST_MARKERS = /^(?:[ \t]*(?:[-+*]|\d{1,9}[.)])(?:[ \t]+|$))*/;
 
+/** The number that an ordered list marker starts its list at. */
+const ORDERED_MARKER = /^[ \t]*(\d{1,9})[.)]/;
+
 /** A code fence: a run of at least three backticks or three tildes. */
 const FENCE = /^([ \t]*)(`{3,}|~{3,})(.*)$/;
 
@@ -33,6 +36,8 @@ const SINGLE_LINE_BLOCK =
   /^[ \t]*(?:#{1,6}(?:[ \t]|$)|([-*_])(?:[ \t]*\1){2,}[ \t]*$|(?:-+|=+)[ \t]*$)/;
 
 const BLANK = /^[ \t]*$/;
+
+const INDENT = /^[ \t]*/;
 
 const unlink = (code: string): string => code.replace(ISSUE_LINK, '#$1');
 
@@ -108,7 +113,7 @@ function splitQuote(
 interface Fence {
   readonly char: string;
   readonly length: number;
-  /** How far the fence is indented, after block quote and list markers. */
+  /** The column the fence starts at, counted after block quote markers. */
   readonly column: number;
   readonly quoteDepth: number;
 }
@@ -117,11 +122,25 @@ interface Fence {
 interface LineStart {
   /** The code fence the line opens, if it opens one. */
   readonly fence: Fence | undefined;
-  /** Blank apart from block quote and list markers, so it ends a paragraph. */
+  /** Blank after its block quote markers, so it ends a paragraph. */
   readonly blank: boolean;
   readonly quoteDepth: number;
-  /** Opens a list item, a heading or a rule, so it starts a new paragraph. */
-  readonly opensBlock: boolean;
+  /** How far the line is indented, after block quote markers. */
+  readonly indent: number;
+  /** Where the line's text starts, after block quote and list markers. */
+  readonly textColumn: number;
+  /**
+   * Opens a heading, a rule, or a list item that can interrupt a paragraph:
+   * one that has text and is a bullet or numbered 1.
+   */
+  readonly interrupts: boolean;
+  /**
+   * Opens a list item that cannot interrupt a paragraph: an empty one, or one
+   * numbered other than 1. Inside a paragraph it is paragraph text, unless it
+   * is indented less than the paragraph's first line, which puts it outside
+   * the list item holding the paragraph.
+   */
+  readonly weakListItem: boolean;
   /** A heading or a rule, which no later line continues. */
   readonly singleLine: boolean;
 }
@@ -134,7 +153,11 @@ function readLineStart(line: string): LineStart {
   // A backtick fence's info string cannot hold a backtick (```a``` on its
   // own line is a code span); a tilde fence's can.
   const opensFence = run !== '' && !(run.startsWith('`') && info.includes('`'));
-  const singleLine = SINGLE_LINE_BLOCK.test(content);
+  const singleLine =
+    SINGLE_LINE_BLOCK.test(text) || SINGLE_LINE_BLOCK.test(content);
+  const [, start = '1'] = ORDERED_MARKER.exec(marker) ?? [];
+  const strongListItem =
+    marker !== '' && !BLANK.test(content) && Number(start) === 1;
   return {
     fence: opensFence
       ? {
@@ -144,11 +167,27 @@ function readLineStart(line: string): LineStart {
           quoteDepth: depth,
         }
       : undefined,
-    blank: BLANK.test(content),
+    blank: BLANK.test(text),
     quoteDepth: depth,
-    opensBlock: marker !== '' || singleLine,
+    indent: INDENT.exec(text)?.[0].length ?? 0,
+    textColumn: marker.length + (INDENT.exec(content)?.[0].length ?? 0),
+    interrupts: singleLine || strongListItem,
+    weakListItem: marker !== '' && !strongListItem,
     singleLine,
   };
+}
+
+/**
+ * Whether a line ends the paragraph that `paragraph`, its first line, opened.
+ * A deeper block quote interrupts the paragraph; a shallower line is a lazy
+ * continuation of it.
+ */
+function endsParagraph(start: LineStart, paragraph: LineStart): boolean {
+  return (
+    start.interrupts ||
+    start.quoteDepth > paragraph.quoteDepth ||
+    (start.weakListItem && start.indent < paragraph.textColumn)
+  );
 }
 
 /**
@@ -207,24 +246,26 @@ function unlinkFencedBlock(
  * - code spans, paired within one paragraph as `unlinkCodeSpans` describes.
  *
  * Paragraphs end at blank lines and fences, and before lines that open a
- * list item, a heading, a rule or a deeper block quote. That approximates
- * CommonMark's block structure: it ignores how far such a line is indented,
- * it does not end a fence where the list item holding it ends, and it does
- * not model indented code blocks, raw HTML, autolinks or table cells, where
- * issue links stay as upstream wrote them. Text outside code is returned
- * unchanged.
+ * heading, a rule, a deeper block quote or a list item (as `LineStart`
+ * describes). That approximates CommonMark's block structure: it does not
+ * check that a block-opening line is indented at most 3 columns past the
+ * list item holding it, it does not end a fence where that list item ends,
+ * and it does not model indented code blocks, raw HTML, autolinks or table
+ * cells, where issue links stay as upstream wrote them. Text outside code is
+ * returned unchanged.
  */
 export function unlinkIssueRefsInCode(markdown: string): string {
   const lines = markdown.split('\n');
   const output: string[] = [];
   let paragraph: string[] = [];
-  let paragraphQuoteDepth = 0;
+  let paragraphStart: LineStart | undefined;
 
   const endParagraph = (): void => {
     if (paragraph.length > 0) {
       output.push(unlinkCodeSpans(paragraph.join('\n')));
     }
     paragraph = [];
+    paragraphStart = undefined;
   };
 
   for (let index = 0; index < lines.length; index++) {
@@ -240,14 +281,10 @@ export function unlinkIssueRefsInCode(markdown: string): string {
       output.push(line);
       continue;
     }
-    // A deeper block quote interrupts a paragraph; a shallower line is a
-    // lazy continuation of it.
-    if (start.opensBlock || start.quoteDepth > paragraphQuoteDepth) {
+    if (paragraphStart && endsParagraph(start, paragraphStart)) {
       endParagraph();
     }
-    if (paragraph.length === 0) {
-      paragraphQuoteDepth = start.quoteDepth;
-    }
+    paragraphStart ??= start;
     paragraph.push(line);
     if (start.singleLine) {
       endParagraph();
