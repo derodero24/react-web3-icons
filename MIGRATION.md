@@ -115,7 +115,7 @@ Export names now follow the rules in [CONTRIBUTING.md](./CONTRIBUTING.md#export-
 | `PhantomWalletCircleMono` | `PhantomCircleMono` | wallet |
 | `PhantomWalletSquare` | `PhantomSquare` | wallet |
 | `PhantomWalletSquareMono` | `PhantomSquareMono` | wallet |
-| `PhantomWalletSymbolMono` | `PhantomSymbolMono` | wallet |
+| `PhantomWalletSymbolMono` | `PhantomMono` (see [duplicate variants](#duplicate-variants-are-deprecated)) | wallet |
 | `RainbowWallet` | `Rainbow` | wallet |
 | `RainbowWalletSymbol` | `RainbowSymbol` | wallet |
 | `RainbowWalletCircle` | `RainbowCircle` | wallet |
@@ -136,9 +136,11 @@ Export names now follow the rules in [CONTRIBUTING.md](./CONTRIBUTING.md#export-
 
 ### Quick find-and-replace
 
-Every rename keeps the variant suffix, so one replacement per name covers all variants (`PhantomWalletSquareMono` → `PhantomSquareMono`):
+Every rename keeps the variant suffix, so one replacement per name covers all variants (`PhantomWalletSquareMono` → `PhantomSquareMono`). The first two lines replace Phantom's duplicate `SymbolMono` (see below) instead:
 
 ```
+s/\bPhantomWalletSymbolMono\b/PhantomMono/g
+s/\bPhantomSymbolMono\b/PhantomMono/g
 s/\bPhantomWallet/Phantom/g
 s/\bRainbowWallet/Rainbow/g
 s/\bBackpackWallet/Backpack/g
@@ -156,7 +158,7 @@ s/\bZkSync/Zksync/g
 Save these lines as `v5-renames.sed` and run, for example with GNU sed:
 
 ```sh
-grep -rlE '\b(PhantomWallet|RainbowWallet|BackpackWallet|YoroiWallet|DaedalusWallet|OKXWallet|Argent|Gateio|StarkNet|BinanceSmartChain|ImmutableX|ZkSync)' src \
+grep -rlE '\b(PhantomWallet|PhantomSymbolMono|RainbowWallet|BackpackWallet|YoroiWallet|DaedalusWallet|OKXWallet|Argent|Gateio|StarkNet|BinanceSmartChain|ImmutableX|ZkSync)' src \
   | xargs sed -i -f v5-renames.sed
 ```
 
@@ -167,10 +169,13 @@ These variants render the same artwork as another export, or legacy artwork with
 | Deprecated | Use instead | Category | Why |
 | --- | --- | --- | --- |
 | `MetaMaskAlt` | `MetaMask` | wallet | MetaMask has a single fox design since its 2024 refresh, so `Alt` rendered the default |
+| `PhantomSymbolMono`, `PhantomWalletSymbolMono` | `PhantomMono` | wallet | Phantom's default is the standalone ghost since the 2024 press kit, so `SymbolMono` rendered the same artwork as `Mono` |
 | `MagicEdenFlat` | `MagicEden` | marketplace | the current Magic Eden mark is single-colour, so `Flat` rendered the default |
 | `MagicEdenWordmarkFlat` | `MagicEdenWordmark`, `MagicEdenWordmarkMono` | marketplace | legacy stacked lockup; Magic Eden has no single-colour wordmark |
 
-Deprecated exports are not variants of the dynamic components, so `'Alt'` leaves `WalletVariant`: `<WalletIcon name="metamask" variant="Alt" />` is a type error and renders `fallback`. Omit `variant` instead.
+Deprecated exports are not variants of the dynamic components, so `'Alt'` leaves `WalletVariant`: `<WalletIcon name="metamask" variant="Alt" />` is a type error and renders `fallback`. Omit `variant` instead. Likewise `<WalletIcon name="phantom" variant="SymbolMono" />` renders `fallback` (`'SymbolMono'` stays a `WalletVariant` for `Rainbow`); use `variant="mono"`.
+
+`StarknetCircle`, `StarknetCircleMono`, `CeloscanSquare` and `CeloscanSquareMono` are not deprecated: the official Starknet symbol is already a disc and the Celoscan mark already a square tile, so they are now the same components as `Starknet`, `StarknetMono`, `Celoscan` and `CeloscanMono` and render the same artwork as before. Their markup carries the default's ids (`w3i-starknet-…`), and their Iconify names are aliases of the default icons.
 
 ## 7. Rebrands with new artwork
 
@@ -241,7 +246,7 @@ Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases ar
 - [ ] Re-check custom CSS or layout that compensated for the old per-icon viewBoxes
 - [ ] Replace the removed exports (`GnosisSafe*`, `Matic*`, `*Light`, `Truffle*`, `Ganache*`, `Drizzle*`, `TofuNft*`) with their replacements (section 9)
 - [ ] Optionally rename the deprecated names with the find-and-replace in section 6 (they keep working through v5)
-- [ ] Drop `variant="Alt"` from `WalletIcon` (section 6, duplicate variants)
+- [ ] Drop `variant="Alt"` from `WalletIcon`, and use `variant="mono"` instead of `variant="SymbolMono"` for Phantom (section 6, duplicate variants)
 - [ ] Optionally move from `Tally`, `MakerDao`, `Mkr`, `ParaSwap` and `NamiWallet` to `Cactus`, `Sky`, `Velora` and `Lace` (new artwork, section 7)
 - [ ] Expect `fallback` for the lookup keys of defunct projects (`BUSD`, `hopprotocol`, `odos`) and the new Sky, Velora and Lace artwork for `MKR`, `makerdao`, `paraswap`, `nami` and `namiwallet` (sections 7 and 8)
 - [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg`, `Starknet*.svg` and `Zksync*.svg` instead of the `OKXWallet*`, `StarkNet*` and `ZkSync*` files

@@ -36,7 +36,7 @@ import {
   Backpack,
   MetaMask,
   MetaMaskMono,
-  PhantomSymbolMono,
+  RainbowSymbolMono,
 } from '../src/wallet';
 
 /**
@@ -337,10 +337,10 @@ describe('variants', () => {
     ],
     [
       'WalletIcon variant="SymbolMono"',
-      () => <dynamic.WalletIcon name="phantom" variant="SymbolMono" />,
-      PhantomSymbolMono,
+      () => <dynamic.WalletIcon name="rainbow" variant="SymbolMono" />,
+      RainbowSymbolMono,
       walletImports,
-      'PhantomSymbolMono',
+      'RainbowSymbolMono',
     ],
     [
       'ExchangeIcon variant="Inverted"',

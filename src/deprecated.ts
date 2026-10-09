@@ -117,6 +117,8 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   'PhantomWalletSquare',
   'PhantomWalletSquareMono',
   'PhantomWalletSymbolMono',
+  // icons/wallet/phantom.json
+  'PhantomSymbolMono',
   // icons/wallet/rainbow-wallet.json
   'RainbowWallet',
   'RainbowWalletSymbol',

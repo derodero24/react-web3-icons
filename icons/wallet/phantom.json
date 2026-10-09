@@ -6,10 +6,11 @@
   ],
   "notes": [
     "Default: the press kit's Phantom-Icon-Purple.svg ghost (#AB9FF2, the colour phantom.com's favicon.svg uses), placed on the 64 grid",
-    "Mono and SymbolMono: the press kit's single-colour Phantom-Icon-Black.svg ghost in currentColor (the eyes are holes); the default is now the standalone ghost, so SymbolMono has the same artwork as Mono and is kept for compatibility",
+    "Mono: the press kit's single-colour Phantom-Icon-Black.svg ghost in currentColor (the eyes are holes)",
     "Square: the press kit's phantom-app-icon-drkprpl.svg (rounded square #9886E5, rx 74.39 of 309, with the #FFFDF8 ghost), scaled 64/309",
     "Circle: no official circular asset; plain container composition of the app icon: the same #9886E5 background as a circle r=32 with the app icon's #FFFDF8 ghost at the same scale and position",
-    "CircleMono / SquareMono: the container in currentColor with the app icon's ghost knocked out by a mask (the eyes stay ink, as in the app icon)"
+    "CircleMono / SquareMono: the container in currentColor with the app icon's ghost knocked out by a mask (the eyes stay ink, as in the app icon)",
+    "PhantomSymbolMono: deprecated alias of PhantomMono. Since the default became the standalone ghost, SymbolMono rendered the same artwork as Mono"
   ],
   "kind": "icon",
   "variants": {
@@ -33,12 +34,15 @@
     "SquareMono": {
       "file": "phantom.square-mono.svg",
       "fill": "currentColor"
-    },
-    "SymbolMono": {
-      "file": "phantom.symbol-mono.svg",
-      "fill": "currentColor"
     }
   },
+  "localAliases": [
+    {
+      "name": "PhantomSymbolMono",
+      "target": "PhantomMono",
+      "deprecated": "Phantom's default is the standalone ghost, so SymbolMono is the same artwork as Mono — use `PhantomMono` instead."
+    }
+  ],
   "slugs": [
     "phantom",
     "phantomwallet"
