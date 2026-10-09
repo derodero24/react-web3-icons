@@ -15,6 +15,7 @@ export * from './Celo';
 export * from './Cro';
 export * from './Crv';
 export * from './Dai';
+export * from './Data';
 export * from './Doge';
 export * from './Dot';
 export * from './Eigen';
