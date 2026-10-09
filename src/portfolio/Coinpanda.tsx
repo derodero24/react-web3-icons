@@ -1,7 +1,14 @@
 import { createIcon } from '../utils';
 
-// Source: https://coinpanda.io
-// Scaled version used in the 86×86 background variants
+// Source: https://coinpanda.io/branding/ (official Branding page: Brand icon and Alternative brand icon)
+// Source: https://coinpanda.io/wp-content/uploads/2024/06/icon-blue-svg.svg
+// Source: https://coinpanda.io/wp-content/uploads/2024/06/icon-white-svg.svg
+// Source: https://coinpanda.io/wp-content/uploads/2024/06/icon-blue-bg-circular-svg.svg
+// Source: https://coinpanda.io/wp-content/uploads/2024/06/icon-blue-bg-square-svg.svg
+// Default: icon-blue-svg.svg (#246AFF), path unchanged, uniformly scaled onto the 64 grid (silhouette IoU 0.995)
+// Mono: the same path in currentColor, matching the official one-colour icon-white-svg.svg
+// Circle and Square: icon-blue-bg-circular-svg.svg and icon-blue-bg-square-svg.svg (86×86 artboard, a #246AFF disc or square with the #FFFFFF panda), paths unchanged (rounded to 2 decimals) under scale(.74419) = 64/86
+// CircleMono and SquareMono: the same disc or square with the panda knocked out
 /** Coinpanda portfolio icon (colored). */
 export const Coinpanda = /* @__PURE__ */ createIcon(
   'Coinpanda',
