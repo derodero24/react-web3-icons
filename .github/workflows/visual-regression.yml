@@ -187,9 +187,12 @@ jobs:
       # toMatchScreenshot writes the -actual and -diff images of a mismatch
       # to the attachments directory, not next to the references:
       # .vitest-attachments/ under vitest 4, .vitest/attachments/ under
-      # vitest 5. Both are dot-directories, which upload-artifact skips
-      # unless include-hidden-files is set. The directory the installed
-      # vitest does not use is simply absent from the artifact.
+      # vitest 5. upload-artifact skips any path whose own name starts with
+      # a dot unless include-hidden-files is set. Only .vitest-attachments
+      # needs the flag: .vitest/attachments is searched from `attachments`
+      # down, so it is not filtered. Once vitest 5 is in, drop the flag and
+      # the .vitest-attachments line. Whichever directory the installed
+      # vitest does not use is simply absent.
       - name: Upload screenshot diffs on failure
         if: failure()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
