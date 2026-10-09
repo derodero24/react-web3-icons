@@ -1,8 +1,10 @@
 import { createIcon } from '../utils';
 
-// Source: https://ethereum.org
-// Ethereum diamond paths scaled to fit in a 64×64 circle (≈72% fill).
-// Original viewBox 0 0 784.37 1277.39 → scale 0.036, translate(17.9, 9)
+// Source: https://ethereum.org/assets/ (ethereum.org brand assets, accessed 2026-10-09: "ETH diamond (gray)")
+// Source: https://ethereum.org/images/assets/svgs/eth-diamond-black.svg (the "ETH diamond (gray)" SVG download)
+// Default: the Ethereum diamond as six opaque grey faces (upper left #8C8C8C, upper right #343434, middle band #393939 / #141414, lower left #8C8C8C, lower right #3C3C3B), placed on the 64 grid; artwork predating the source policy whose origin file was not recorded. Its geometry is that of eth-diamond-black.svg, and its greys are that file's black opacity tiers (.45, .6, .8 and their overlaps) composited over white, within a few levels (the lower right face is #3C3C3B where .8 gives #333333), so the two render alike on white
+// Mono: eth-diamond-black.svg itself, its five paths unchanged in currentColor with the file's own opacity tiers (.6 for the middle band, .45 for the left faces, .8 for the right faces), placed on the 64 grid like the default (docs/icon-variants.md, mono rule 5). It replaces a mono whose near-opaque tiers (.85 to 1) hid the facets
+// Circle and Square: repository containers, as ethereum.org ships no containered diamond: the diamond in white on a #343434 disc or square (rx 12.8), with the left faces at opacity .6
 // CircleMono / SquareMono: the diamond is knocked out with 1.2-unit ink seams on the facet edges that the colored art shows (the left/right split and the inner edge of the translucent left facet), derived from the colored facet paths.
 /** Ethereum chain icon (colored). */
 export const Ethereum = /* @__PURE__ */ createIcon(
@@ -93,12 +95,11 @@ export const EthereumMono = /* @__PURE__ */ createIcon(
   '0 0 64 64',
   () => (
     <>
-      <path d="m32 4-.38 1.28V42.3l.38.38 17.18-10.16z" opacity=".98" />
-      <path d="M32 4 14.8 32.52 32 42.68V24.7z" opacity=".85" />
-      <path d="m32 45.93-.22.26v13.2l.22.6 17.2-24.21z" opacity=".94" />
-      <path d="M32 60V45.93L14.8 35.78z" opacity=".85" />
-      <path d="m32 42.68 17.18-10.16L32 24.7z" />
-      <path d="M14.8 32.52 32 42.68V24.7z" opacity=".96" />
+      <path d="m32 24.7-17.2 7.83L32 42.68l17.19-10.16z" opacity=".6" />
+      <path d="M14.82 32.52 32 42.68V4z" opacity=".45" />
+      <path d="M32 4v38.68l17.18-10.16z" opacity=".8" />
+      <path d="M14.81 35.78 32 59.99V45.93z" opacity=".45" />
+      <path d="M32 45.93v14.06l17.19-24.21z" opacity=".8" />
     </>
   ),
   { fill: 'currentColor' },
