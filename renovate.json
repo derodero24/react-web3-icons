@@ -7,13 +7,14 @@
   "schedule": [
     "before 4am on monday"
   ],
+  "prHourlyLimit": 0,
   "prConcurrentLimit": 10,
   "minimumReleaseAge": "3 days",
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true,
     "schedule": [
-      "before 4am on monday"
+      "before 4am on tuesday"
     ],
     "recreateWhen": "always",
     "rebaseWhen": "never"
