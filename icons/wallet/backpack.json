@@ -1,7 +1,11 @@
 {
   "name": "Backpack",
   "source": [
-    "https://backpack.app"
+    "https://backpack.app/media-kit (official media kit page; its inline header lockup draws the #E33E3F backpack symbol, and its Download button links the brand icons on Google Drive)"
+  ],
+  "notes": [
+    "Default: the three #E33E3F symbol paths of the media-kit page's inline header lockup (viewBox 0 0 1075 219, the BACKPACK lettering left out), unchanged, placed on the 64 grid. They replace an older drawing of the same backpack with sharper corners, including the tips of the handle (alpha IoU 0.97)",
+    "Mono: the same three paths in currentColor (the round window stays a hole)"
   ],
   "kind": "icon",
   "variants": {

@@ -1607,7 +1607,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'dex',
     slug: 'uniswap',
     variants: ['', 'Mono'],
-    brandColor: '#ff007a',
+    brandColor: '#f50db4',
   },
   { name: 'UniswapMono', category: 'dex' },
   {
@@ -2350,7 +2350,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     slug: 'safe',
     variants: ['', 'Mono'],
     aliases: ['gnosis'],
-    brandColor: '#000000',
+    brandColor: '#1a1a1a',
   },
   { name: 'SafeMono', category: 'wallet' },
   {

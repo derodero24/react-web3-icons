@@ -1,13 +1,18 @@
 {
   "name": "Safe",
   "source": [
-    "https://safe.global"
+    "https://safe.global/images/common/safe-icon.svg (official site icon)",
+    "https://github.com/safe-global/safe-wallet-monorepo/blob/b22a58cae13802bc4f77a42562718b9dae58aa0b/apps/web/public/images/logo-no-text.svg (official Safe{Wallet} repository, the same mark in currentColor)"
+  ],
+  "notes": [
+    "Default: the three paths of the official safe-icon.svg in its #1A1A1A, unchanged, placed on the 64 grid; it replaces the same mark in #000",
+    "Mono: the same paths in currentColor, as the Safe{Wallet} app's own logo-no-text.svg"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "safe.svg",
-      "fill": "#000"
+      "fill": "#1A1A1A"
     },
     "Mono": {
       "file": "safe.mono.svg",
