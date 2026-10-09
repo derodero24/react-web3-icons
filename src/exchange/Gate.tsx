@@ -1,6 +1,6 @@
 import { createIcon } from '../utils';
 
-// Source: https://gate.io (official brand)
+// Source: https://www.gate.com (official site; walled, see notes)
 // Gate.io rebranded to Gate (gate.com) in 2025 with the same mark, so the artwork carries over from the Gateio unit
 /** Gate exchange icon (colored). */
 export const Gate = /* @__PURE__ */ createIcon(

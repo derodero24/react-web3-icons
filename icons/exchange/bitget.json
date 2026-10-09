@@ -1,7 +1,11 @@
 {
   "name": "Bitget",
   "source": [
-    "https://bitget.com (official brand)"
+    "https://www.bitget.com/micro-runtime/images/logo-light.svg (official header lockup: the symbol and the Bitget wordmark in currentColor)",
+    "https://www.bitget.com (official site; its header also draws the app icon inline: the symbol in #00040C on a #00F0FF rounded tile, rx 8 of 36)"
+  ],
+  "notes": [
+    "Not verified (checked 2026-10-09): the shipped cyan symbol predates the source policy and differs from the symbol of the official header lockup and app-icon tile (the official chevrons are wider: aspect 0.93 against 0.89 here, alpha IoU 0.92). bitget.com publishes the symbol only in currentColor or dark on the #00F0FF tile, not as a standalone cyan mark, and has no brand kit page (/brand, /media-kit and /press return 404), so the artwork is unchanged; replacing it needs a decision on the default (standalone symbol in which colour, or the tile)"
   ],
   "kind": "icon",
   "variants": {

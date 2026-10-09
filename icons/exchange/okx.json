@@ -1,7 +1,12 @@
 {
   "name": "Okx",
   "source": [
-    "https://okx.com (official brand)"
+    "https://web3.okx.com/cdn/assets/imgs/258/4C0F53E9427468A2.svg (official OKX header lockup served on OKX's own domain: the black checker + \"Wallet\")",
+    "https://www.okx.com (official site; its own header logos are PNG only)"
+  ],
+  "notes": [
+    "Default: the checker matches the checker of the official header lockup (alpha IoU 0.96 at 256 px, the same small corner radius; checked 2026-10-09), so the paths are unchanged. okx.com serves its header logos only as PNG (logoMap block/text images), so the OKX lockup on web3.okx.com is the vector reference",
+    "Mono: the same paths in currentColor"
   ],
   "kind": "icon",
   "variants": {

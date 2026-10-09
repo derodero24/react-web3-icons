@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Source: https://rabby.io
+// Source: https://github.com/RabbyHub/Rabby/blob/7794bfb54e9cf26a72738d3bd8c2058961663d0c/src/ui/assets/dashboard/rabby.svg (official Rabby extension repository, the rabbit symbol)
+// Source: https://rabby.io (official site)
 // Mono: 1.2-unit knockout seams keep the haunch and the back ear apart from the body, following the colored shapes.
 /** Rabby wallet icon (colored). */
 export const Rabby = /* @__PURE__ */ createIcon(
