@@ -1,10 +1,11 @@
 {
   "name": "Rabby",
   "source": [
-    "https://github.com/RabbyHub/Rabby/blob/7794bfb54e9cf26a72738d3bd8c2058961663d0c/src/ui/assets/dashboard/rabby.svg (official Rabby extension repository, the rabbit symbol)",
-    "https://rabby.io (official site)"
+    "https://rabby.io/assets/logos/symbol-new.svg (official rabbit symbol served by rabby.io, in a #4C65FE to #8F9FFF gradient; a different drawing from this artwork, see notes)",
+    "https://github.com/RabbyHub/Rabby/blob/7794bfb54e9cf26a72738d3bd8c2058961663d0c/src/ui/assets/dashboard/rabby.svg (official Rabby extension repository: the same rabbit as the site symbol in a lilac palette; a different drawing from this artwork, see notes)"
   ],
   "notes": [
+    "Not verified (checked 2026-10-09): the shipped rabbit predates the source policy and does not match the official vectors. rabby.io's symbol-new.svg and the extension's dashboard/rabby.svg share one outline (alpha IoU 0.99 to each other) that is wider for its height than the one here (bbox aspect 1.15 against 1.11; alpha IoU about 0.9 against this artwork). The site symbol is also a darker blue (#4C65FE to #8F9FFF) than the lilac here (#8697FF to #ABB7FF); the extension file keeps a lilac palette close to this one. The artwork is unchanged; adopting the official symbol needs a new seamed Mono",
     "Mono: 1.2-unit knockout seams keep the haunch and the back ear apart from the body, following the colored shapes."
   ],
   "kind": "icon",

@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://www.gate.com (official site; walled, see notes)
+// Not verified (checked 2026-10-09): gate.com, gate.com/brand, gate.io and gate.io/brand answer automated requests with 403, so no official logo file could be read (only the raster favicon.ico loads). The artwork predates the source policy and is unchanged
 // Gate.io rebranded to Gate (gate.com) in 2025 with the same mark, so the artwork carries over from the Gateio unit
 /** Gate exchange icon (colored). */
 export const Gate = /* @__PURE__ */ createIcon(
