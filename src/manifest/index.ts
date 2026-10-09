@@ -1900,7 +1900,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     variants: ['', 'Alt', 'Mono', 'Symbol', 'SymbolMono'],
     brandColor: '#0086ff',
   },
-  { name: 'OpenSeaAlt', category: 'marketplace' },
+  { name: 'OpenSeaAlt', category: 'marketplace', deprecated: true },
   { name: 'OpenSeaMono', category: 'marketplace' },
   { name: 'OpenSeaSymbol', category: 'marketplace' },
   { name: 'OpenSeaSymbolMono', category: 'marketplace' },
