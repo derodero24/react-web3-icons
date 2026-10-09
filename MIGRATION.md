@@ -233,6 +233,19 @@ Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases ar
 + import { EtherscanInverted, Pol, Safe } from 'react-web3-icons';
 ```
 
+## 10. Base coin icons that now render the official token disc
+
+When a brand publishes its token only as a disc, the base export now renders that disc (the [base icon background rule](./docs/icon-variants.md#base-icon-background-rule)), and the `Circle` exports are aliases of the base, so `variant="Circle"` keeps working. Review screenshots or visual baselines that include these icons:
+
+| Exports | v4 rendered | v5 renders |
+| --- | --- | --- |
+| `Dai`, `DaiMono` | the bare DAI symbol in `#F5AC37` | Sky's official DAI disc (`#F5AC37` disc, white mark) |
+| `DaiCircle`, `DaiCircleMono` | a DAI disc with a slightly narrower, off-centre mark | aliases of `Dai`, `DaiMono` |
+| `UsdcCircle`, `UsdcCircleMono` | a legacy USDC disc in `#2775CA` | aliases of `Usdc`, `UsdcMono` (Circle's official `#0B53BF` USDC token) |
+| `DogeCircle`, `DogeCircleMono` | a slab D on a `#C2A633` disc | aliases of `Doge`, `DogeMono` (the Dogecoin coin of Dogecoin Core) |
+
+There is no export for the bare DAI symbol any more: Sky publishes no stand-alone version of it.
+
 ## Checklist
 
 - [ ] Regenerate markup snapshots containing icon defs ids or icon markup (viewBox, path data)
@@ -245,6 +258,7 @@ Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases ar
 - [ ] Optionally move from `Tally`, `MakerDao`, `Mkr` and `ParaSwap` to `Cactus`, `Sky` and `Velora` (new artwork, section 7)
 - [ ] Expect `fallback` for the lookup keys of defunct projects (`BUSD`, `nami`, `odos`, …) and the new Sky and Velora artwork for `MKR`, `makerdao` and `paraswap` (sections 7 and 8)
 - [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg`, `Starknet*.svg` and `Zksync*.svg` instead of the `OKXWallet*`, `StarkNet*` and `ZkSync*` files
+- [ ] Expect the DAI disc from `Dai` / `DaiMono`, and review visual baselines of the icons in section 10
 
 ---
 
