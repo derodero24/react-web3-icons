@@ -2440,7 +2440,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'wallet',
     slug: 'zerion',
     variants: ['', 'Mono', 'Circle', 'Square', 'CircleMono', 'SquareMono'],
-    brandColor: '#2962ef',
+    brandColor: '#2461ed',
   },
   { name: 'ZerionCircle', category: 'wallet' },
   { name: 'ZerionCircleMono', category: 'wallet' },
