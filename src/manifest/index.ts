@@ -2081,9 +2081,11 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'CoinMarketCap',
     category: 'tracker',
-    variants: ['', 'Mono'],
+    variants: ['', 'Mono', 'Circle', 'CircleMono'],
     brandColor: '#3861fb',
   },
+  { name: 'CoinMarketCapCircle', category: 'tracker' },
+  { name: 'CoinMarketCapCircleMono', category: 'tracker' },
   { name: 'CoinMarketCapMono', category: 'tracker' },
   {
     name: 'DefiLlama',
