@@ -15,3 +15,5 @@ test/visual/__screenshots__/
 CLAUDE.md
 .claude/
 .vitest/
+# `pnpm run analyze` (size-limit --why) writes one report per entry to the repo root
+esbuild-why*.html

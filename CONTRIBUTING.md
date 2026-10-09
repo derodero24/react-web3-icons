@@ -44,7 +44,7 @@ supported runtime lacks. A rule in `renovate.json` keeps it there; raise both to
 | `pnpm run build` | Build `dist/` (JS, types, static SVGs, Iconify JSON, `manifest.json`) |
 | `pnpm run start` | Rebuild the library on change (`tsdown --watch`) |
 | `pnpm run size` | Check the bundle-size budgets (needs a fresh `pnpm run build`) |
-| `pnpm run analyze` | Show what makes up each size-limit entry |
+| `pnpm run analyze` | Show what makes up each size-limit entry (writes `esbuild-why-*.html` to the repo root and opens them; needs a fresh build) |
 | `pnpm run new-icon` | Scaffold a new icon unit from an SVG |
 | `pnpm run generate-icons` | Regenerate `src/` (icons, dynamic import maps, meta, deprecated set, manifest) and `icons/schema.json` from `icons/` (`--check`: verify only) |
 | `pnpm run showcase` | Re-render `image/icons.png`, the README's icon overview, from `icons/` |
