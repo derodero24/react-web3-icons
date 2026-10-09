@@ -469,7 +469,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 1088,
     slug: 'metis',
     variants: ['', 'Mono'],
-    brandColor: '#00d8c1',
+    brandColor: '#00d2ff',
   },
   { name: 'MetisMono', category: 'chain' },
   {
