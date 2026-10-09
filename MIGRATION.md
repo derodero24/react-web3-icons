@@ -169,6 +169,7 @@ These variants render the same artwork as another export, or legacy artwork with
 | `MetaMaskAlt` | `MetaMask` | wallet | MetaMask has a single fox design since its 2024 refresh, so `Alt` rendered the default |
 | `MagicEdenFlat` | `MagicEden` | marketplace | the current Magic Eden mark is single-colour, so `Flat` rendered the default |
 | `MagicEdenWordmarkFlat` | `MagicEdenWordmark`, `MagicEdenWordmarkMono` | marketplace | legacy stacked lockup; Magic Eden has no single-colour wordmark |
+| `OpenSeaAlt` | `OpenSea`, `OpenSeaSymbol` | marketplace | pre-2025 white-disc logomark (`#2081E2` ship); the current OpenSea brand has no white-disc asset |
 
 Deprecated exports are not variants of the dynamic components, so `'Alt'` leaves `WalletVariant`: `<WalletIcon name="metamask" variant="Alt" />` is a type error and renders `fallback`. Omit `variant` instead.
 

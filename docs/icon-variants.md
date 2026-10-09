@@ -19,7 +19,7 @@ Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The bas
 | `SquareMono` | Monochrome square | `TrustWalletSquareMono` |
 | `Wordmark` | Symbol with text (logotype) | `MagicEdenWordmark` |
 | `WordmarkMono` | Monochrome wordmark | `MagicEdenWordmarkMono` |
-| `Alt` | Alternative color scheme or design | `OpenSeaAlt` |
+| `Alt` | Alternative color scheme or design | `LooksAlt` |
 | `Inverted` | Inverted color scheme for contrast on dark backgrounds | `EtherscanInverted` |
 | `Light` | _(deprecated)_ Legacy lighter variant; only `BlastscanLight` remains active. Prefer `Inverted` for new icons. | `BlastscanLight` |
 | `Flat` | Single brand color, no internal color variation | `ArbitrumOneFlat` |
