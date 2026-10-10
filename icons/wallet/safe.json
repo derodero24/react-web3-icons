@@ -1,13 +1,19 @@
 {
   "name": "Safe",
   "source": [
-    "https://safe.global"
+    "https://safe.global/images/common/safe-icon.svg (the mark the safe.global homepage serves)"
+  ],
+  "notes": [
+    "Safe: the three paths of safe-icon.svg, placed on the 64 grid unchanged, in that file's #1A1A1A (also the fill of every path in https://safe.global/images/common/safe-logo-wallet.svg and of https://safefoundation.org/images/common/safe-logo.svg); the previous #000 appeared in no official file",
+    "SafeMono: the same paths in currentColor",
+    "safe.global has no downloadable brand kit (/press, /brand, /brand-kit and /media-kit return 404, accessed 2026-10-09). The safe-wallet-monorepo logo-no-text.svg (currentColor) and the safefoundation.org logo are drawn about 7% squashed (aspect 1.04 against 0.97), so neither is used for the geometry",
+    "SafeProtocol and SafeProtocolMono (defi) re-export these components"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "safe.svg",
-      "fill": "#000"
+      "fill": "#1A1A1A"
     },
     "Mono": {
       "file": "safe.mono.svg",

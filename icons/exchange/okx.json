@@ -1,7 +1,12 @@
 {
   "name": "Okx",
   "source": [
-    "https://okx.com (official brand)"
+    "https://web3.okx.com/cdn/assets/imgs/258/4C0F53E9427468A2.svg (official OKX header lockup served on OKX's own domain: the black checker + \"Wallet\")",
+    "https://www.okx.com (official site; its own header logos are PNG only)"
+  ],
+  "notes": [
+    "Default: checked 2026-10-09 against the checker of the official header lockup, which has the same five-cell layout and the same small corner radius, but whose cells are 1 to 2% taller than wide (checker aspect 0.987 against 1.00 here; alpha IoU about 0.96). The square-cell artwork, which predates the source policy, is kept. okx.com serves its header logos only as PNG (logoMap block/text images), so the OKX lockup on web3.okx.com is the vector reference",
+    "Mono: the same paths in currentColor"
   ],
   "kind": "icon",
   "variants": {
