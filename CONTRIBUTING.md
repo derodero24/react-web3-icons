@@ -119,7 +119,8 @@ and `<slug>.json`, and regenerates `src/` (the input SVGs are only read,
 never modified). An icon of a category with a dynamic component (`bridge`,
 `chain`, `coin`, `defi`, `dex`, `exchange`, `oracle`, `wallet`) needs
 `--mono` and at least one [lookup key](#lookup-keys-vs-search-aliases):
-`--slug`, `--chain-id` (chain) or `--ticker` (coin), each repeatable.
+`--ticker` for coin, `--slug` (or `--chain-id`) for chain, `--slug` for the
+rest, each repeatable.
 Follow the printed next steps (Mono variant, changeset).
 
 ### Anatomy of an icon unit
@@ -166,8 +167,9 @@ icons/chain/ethereum.json         # metadata:
   file, and ids must be unique within it; the generator fails otherwise.
 - `icons/<category>/` holds only unit JSON files and the SVGs their variants
   reference. The generator fails on an SVG that no variant references, on
-  any other file, and on a directory under `icons/` that is not a category,
-  so no artwork is silently left out of the package.
+  any other file (except macOS Finder's `.DS_Store`), and on a directory
+  under `icons/` that is not a category, so no artwork is silently left out
+  of the package.
 - `deprecated` (map of export name → message) marks deprecated artwork exports.
   Together with the deprecated `aliasConst` / `localAliases` entries it is the
   source of `DEPRECATED_ICON_NAMES` (`src/deprecated.ts`, generated).

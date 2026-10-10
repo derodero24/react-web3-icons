@@ -8,8 +8,9 @@
  *     --slug taiko --chain-id 167000
  *
  * An icon of a dynamic category (bridge, chain, coin, defi, dex, exchange,
- * oracle, wallet) needs --mono and at least one lookup key its category
- * accepts: --slug, --chain-id (chain) or --ticker (coin), each repeatable.
+ * oracle, wallet) needs --mono and at least one lookup key: --ticker for
+ * coin, --slug (or --chain-id) for chain, --slug for the rest, each
+ * repeatable.
  *
  * What it does:
  *   1. Optimizes the SVG(s) with SVGO and normalizes the root element
