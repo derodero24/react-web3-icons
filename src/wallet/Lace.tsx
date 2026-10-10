@@ -4,6 +4,7 @@ import { createIcon } from '../utils';
 // Lace is the Cardano light wallet by Input Output that succeeded Nami (namiwallet.io now serves Lace). No public brand kit was found on lace.io (checked 2026-10-04); the header logo the site serves inline is the official vector
 // Colored: the six paths of the lace.io header symbol unchanged (#892BEA, #4B1CD6, #F3759C, #F0B80B, #FD9A7A), placed on the 64 grid
 // Mono: the same six paths as one currentColor path (the ribbons do not overlap, so the gaps between them stay as knock-outs). The site's footer one-colour lockup shades the ribbons with 20-80% opacity tiers; those are not used, since the ribbons read without them
+// Lookup keys: `nami` and `namiwallet` are Nami's former slugs (and `nami` its CIP-30 wallet key). Lace ships Nami mode (input-output-hk/lace, packages/nami) and namiwallet.io redirects to lace.io, so they resolve to Lace
 /** Lace wallet icon (colored). */
 export const Lace = /* @__PURE__ */ createIcon(
   'Lace',

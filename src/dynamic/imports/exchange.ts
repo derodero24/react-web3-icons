@@ -42,6 +42,7 @@ export const exchangeImports: Record<
   GeminiSquare: () => import('../../exchange/Gemini'),
   GeminiSquareMono: () => import('../../exchange/Gemini'),
   Htx: () => import('../../exchange/Htx'),
+  HtxInverted: () => import('../../exchange/Htx'),
   HtxMono: () => import('../../exchange/Htx'),
   Kraken: () => import('../../exchange/Kraken'),
   KrakenMono: () => import('../../exchange/Kraken'),

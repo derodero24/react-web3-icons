@@ -71,6 +71,7 @@ scripts/
   new-icon.ts     # Scaffolds a unit (pnpm run new-icon)
   audit-mono.ts   # Mono-vs-colored quality audit
   check-svgo.ts   # Lists SVGs SVGO would still change
+  check-sources.ts  # Reports dead or moved `source` URLs (monthly workflow)
   render-showcase.ts  # Renders image/icons.png (pnpm run showcase)
   size-report.ts  # Renders the size-limit PR comment
   changelog.ts    # Changelog generator for `changeset version` (.changeset/config.json)
@@ -161,7 +162,10 @@ icons/chain/ethereum.json         # metadata:
 - The manifest's `brandColor` is derived from the colored default artwork:
   the most frequent fill/stroke/stop-color that is not neutral (greys,
   near-black, near-white); a neutral is used only when the artwork has no
-  other colour. When that still misses the brand (e.g. a near-black logomark
+  other colour, and artwork whose shapes have no `fill` at all renders, and
+  counts, as SVG's default black. A unit whose default export re-exports
+  another icon (`Ldo` → `Lido`) takes that icon's colour. Every base entry
+  of the manifest has one. When that still misses the brand (e.g. a near-black logomark
   whose brand accent is a colour), set `"brandColor": "#rrggbb"` from the
   official palette and cite it in `notes` (see `icons/oracle/pyth.json`).
   Genuinely black-and-white marks (Aptos, Hedera) keep their neutral colour.
@@ -271,6 +275,14 @@ Ticker aliases and deprecated renames are JSON-only units:
 Deprecated aliases use `"kind": "alias"` with an `aliasConst` block so the
 generator emits `/** @deprecated … */ export const Old = New;` (see
 `icons/wallet/argent.json` for a real example).
+
+A variant whose official artwork is another variant's (a token mark that is
+already a disc, an app icon that is already the default) is a
+`localAliases` entry of its unit, not a second SVG file:
+`{ "name": "UsdcCircle", "target": "Usdc" }` (add `"deprecated"` when the
+name should go). `test/duplicate-artwork.test.ts` fails when two SVG files
+under `icons/` draw the same artwork (ignoring id names, attribute order and
+where `<defs>` sit), unless the pair is listed there with its reason.
 
 ### Regenerating
 
@@ -436,8 +448,9 @@ unit without the required attribution (and the generated TSX without its
 regenerating.
 
 This runs SVGO with the bundled configuration (removes metadata, strips fixed
-dimensions, keeps brand colors, ids, and multi-colored paths), normalizes the
-root element, puts the artwork on the 64×64 grid following the
+dimensions, moves `fill`, `stroke` and other presentation properties out of
+`style` into attributes, keeps brand colors, ids, and multi-colored paths),
+normalizes the root element, puts the artwork on the 64×64 grid following the
 [optical-size rule](#optical-size) (this step launches Chromium through
 Playwright), writes `icons/<category>/<slug>.svg` (+ `.mono.svg`) and
 `<slug>.json`, and regenerates `src/`. Follow the printed next steps
@@ -520,17 +533,26 @@ Key points:
 #### Dark / light background legibility
 
 `test/legibility.test.ts` flags colored default artwork that mostly vanishes
-on a dark background (near-black paint, every channel below 60) or a light
-one (near-white, every channel above 195). A flagged icon needs one of:
+on a dark background (near-black paint: every channel below 60, or less than
+1.5:1 WCAG contrast against black, like a deep navy) or a light one
+(near-white: every channel above 195, or less than 1.5:1 against white, like
+Blast's pale yellow `#FCFC03`). Gradients count by the colours sampled along
+their ramp. A flagged icon needs one of:
 
-- an official colored `Circle*` / `Square*` / `Inverted*` variant that is
-  not itself flagged;
-- nothing more when the mark has no colour besides black (or white) and its
-  `Mono` variant has the same geometry, since `Mono` in a contrasting `color`
-  is then the brand's reversed mark;
+- an official colored `Circle*` / `Square*` / `Inverted*` variant (or the
+  legacy `BlastscanLight`) that is not itself flagged;
+- nothing more when the mark is painted in that one tone only (black, white,
+  or one pale or deep colour) and its `Mono` variant has the same geometry:
+  `Mono` in a contrasting `color` then shows the whole mark, and for a black
+  mark it is the brand's reversed mark;
 - otherwise an entry in that test's `EXEMPTIONS`, with the reason checked by
   the test (another legible colored variant, or the official sources that
   were searched without finding an alternative).
+
+When an official legible variant exists but is still to be added, record it,
+with the file it comes from, in that test's `PENDING`: the report names it
+and the entry fails once it lands. A pending entry is a note, not one of the
+options above.
 
 Never recolour a brand mark to pass the audit unless the brand's guidelines
 show that version; cite them in `source`. The audit's measure (per-paint

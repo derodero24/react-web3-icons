@@ -2,16 +2,20 @@
   "name": "Htx",
   "source": [
     "https://www.htx.com/v4/fed-hbg-enhome/_next/static/media/avatar.2fce523a.svg (HTX flame mark served by htx.com)",
-    "https://www.htx.com/v4/fed-hbg-enhome/_next/static/media/logo.48ff6a75.svg (htx.com dark-theme header logo: the same two flames in white and #008CD6)"
+    "https://www.htx.com/v4/fed-hbg-enhome/_next/static/media/logo.48ff6a75.svg (HtxInverted: htx.com's dark-theme header logo, the same two flames in white and #008CD6)"
   ],
   "notes": [
     "Colored: the two flame paths of the official avatar.2fce523a.svg unchanged (#00003E and #008CD6); the pale #F7F9FB avatar disc is left out. The colours match htx.com/pwa/icon-pwa-180.png. It replaces the pale HT-token flame taken from @web3icons/react",
+    "Inverted: the two flame paths of the official dark-theme header logo logo.48ff6a75.svg unchanged (white and #008CD6), without the HTX lettering, for dark backgrounds where the default's #00003E flame vanishes. They are the avatar's flame mark, drawn in slightly more detail (IoU 0.98 when scaled to the same box)",
     "Mono: both flames in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "htx.svg"
+    },
+    "Inverted": {
+      "file": "htx.inverted.svg"
     },
     "Mono": {
       "file": "htx.mono.svg",

@@ -188,8 +188,9 @@ describe('wallet connector ids', () => {
     ['subWallet', 'SubWallet'],
     ['argentX', 'Ready'],
     ['polkadot-js', 'PolkadotJs'],
-    // Nami was folded into Lace; its deprecated icon has no lookup keys.
-    ['nami', undefined],
+    // Nami was folded into Lace (Nami mode); its keys moved to Lace.
+    ['nami', 'Lace'],
+    ['namiwallet', 'Lace'],
     ['lace', 'Lace'],
     ['yoroi', 'Yoroi'],
     ['daedalus', 'Daedalus'],

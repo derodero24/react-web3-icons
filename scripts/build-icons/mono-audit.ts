@@ -233,11 +233,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
   'explorer/Celoscan': {
     kind: 'false-positive',
     reason:
-      'Container polarity: the yellow tile becomes ink with the C knocked out, so the threshold reference is inverted (the same artwork as CeloscanSquare).',
-  },
-  'explorer/CeloscanSquare': {
-    kind: 'false-positive',
-    reason:
       'Container polarity: the yellow tile becomes ink with the C knocked out, so the threshold reference is inverted.',
   },
   'marketplace/LooksRare': {
