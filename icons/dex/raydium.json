@@ -1,14 +1,14 @@
 {
   "name": "Raydium",
   "source": [
-    "https://raydium.io/favicon.ico (official favicon)",
-    "https://docs.raydium.io/resources/brand-kit (official brand kit)",
-    "https://github.com/raydium-io/raydium-docs-v1/blob/master/logo/raydium-r.png (official symbol raster, the brand kit's master folder)"
+    "https://github.com/raydium-io/raydium-ui-v3-public/blob/045a2a942711440b85e091ac313378a1e534f102/src/icons/RaydiumLogo.tsx (official Raydium UI repository, inline SVG symbol)",
+    "https://raydium.io/favicon.ico (official favicon, byte-identical to the repository's public/favicon.ico)",
+    "https://docs.raydium.io/resources/brand-kit (official brand kit, links the github.com/raydium-io organisation)"
   ],
   "notes": [
-    "Paths sourced from an earlier official raydium.io logo SVG, with its #C200FB / #3772FF / #5AC4BE stops",
-    "Gradient vector: the old file ran the gradient horizontally (purple left, teal right), which matches neither official raster. The official raydium-r.png and favicon.ico run teal at bottom-left through blue to purple at top-right, with the corner dot purple; the axis (x1/y1/x2/y2) was fitted to raydium-r.png's pixels with the same three stops (mean colour error 4/255 against the PNG; checked 2026-10-03)",
-    "No official symbol SVG is reachable today: the brand kit names mark-dark.svg / mark-light.svg, but its master folder (github.com/raydium-io/raydium-docs-v1, /logo/) holds only PNGs"
+    "Default: the four paths and the gradient of RaydiumLogo.tsx (40x40 viewBox) copied unchanged: x1 35.9717 y1 11.2489 -> x2 2.04291 y2 24.817, stops #C200FB / 0.489658 #3772FF / #5AC4BE (teal at the bottom-left to purple at the top-right); its four identical gradients share one id here. Placed on the 64 grid. The repository is the source of the live site: its public/favicon.ico is byte-identical to raydium.io/favicon.ico",
+    "Mono: the same four paths in currentColor",
+    "The brand kit's raydium-r.png is raster only and its gradient differs slightly; RaydiumLogoOutline.tsx in the same folder uses the older #7748FC -> #39D0D8 palette and is not used"
   ],
   "kind": "icon",
   "variants": {

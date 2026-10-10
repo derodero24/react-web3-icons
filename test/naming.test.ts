@@ -119,6 +119,7 @@ const SUFFIXED = new Map<string, SuffixReason>([
   ['BnbSmartChain', { official: 'BNB Smart Chain' }],
   ['CoinbaseWallet', { clash: 'Coinbase' }],
   ['CowProtocol', { official: 'CoW Protocol' }],
+  ['DataNetwork', { official: 'DATA Network' }],
   ['GnosisChain', { official: 'Gnosis Chain' }],
   ['OkxWallet', { clash: 'Okx' }],
   ['SafeProtocol', { clash: 'Safe' }],

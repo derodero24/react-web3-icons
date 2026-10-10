@@ -1,10 +1,12 @@
 {
   "name": "Cake",
   "source": [
-    "https://docs.pancakeswap.finance/welcome-to-pancakeswap/about-us/brand (official brand page; PancakeSwap Logos.zip, file CAKE Token/cake-token.svg)"
+    "https://docs.pancakeswap.finance/welcome-to-pancakeswap/about-us/brand (official brand page; PancakeSwap Logos.zip, file CAKE Token/cake-token.svg)",
+    "https://tokens.pancakeswap.finance/images/symbol/cake.svg (PancakeSwap's own token-list icon for CAKE, the same artwork as the kit's cake-token.svg)"
   ],
   "notes": [
-    "Colored: renders identically to the official cake-token.svg of the PancakeSwap brand kit (audited in #836)",
+    "Colored: renders identically to the official cake-token.svg of the PancakeSwap brand kit (audited in #836) and to the token-list cake.svg",
+    "Links (checked 2026-10-09): the brand page's Markdown export (brand.md) links the logo download as https://docs.pancakeswap.finance/files/xxCuNI0a584PmDOZ4nee, which returns 404. The Download button of the rendered page still serves PancakeSwap Logos.zip, but through a token-signed GitBook URL, so it is not cited; tokens.pancakeswap.finance/images/symbol/cake.svg is the reachable unsigned copy of the artwork",
     "Mono: the bunny silhouette (outline included) is knocked out of the disc; the eyes and the pancake crescent stay ink, matching PancakeSwapMono in the opposite polarity."
   ],
   "kind": "icon",

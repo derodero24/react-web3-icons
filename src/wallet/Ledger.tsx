@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://ledger.com
+// Source: https://www.ledger.com/wp-content/themes/ledger-v2/public/images/ledger-logo-short.svg (official short logo served by ledger.com)
+// Default: matches the site's ledger-logo-short.svg (black; alpha IoU 0.9998, checked 2026-10-09), so the path is unchanged
+// Mono: the same path in currentColor
 /** Ledger wallet icon (colored). */
 export const Ledger = /* @__PURE__ */ createIcon(
   'Ledger',

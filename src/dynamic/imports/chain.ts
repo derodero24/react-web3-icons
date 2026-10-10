@@ -24,12 +24,8 @@ export const chainImports: Record<
   ArbitrumCircleMono: () => import('../../chain/Arbitrum'),
   ArbitrumMono: () => import('../../chain/Arbitrum'),
   ArbitrumNova: () => import('../../chain/Arbitrum'),
-  ArbitrumNovaFlat: () => import('../../chain/Arbitrum'),
-  ArbitrumNovaFlatMono: () => import('../../chain/Arbitrum'),
   ArbitrumNovaMono: () => import('../../chain/Arbitrum'),
   ArbitrumOne: () => import('../../chain/Arbitrum'),
-  ArbitrumOneFlat: () => import('../../chain/Arbitrum'),
-  ArbitrumOneFlatMono: () => import('../../chain/Arbitrum'),
   ArbitrumOneMono: () => import('../../chain/Arbitrum'),
   ArbitrumSquare: () => import('../../chain/Arbitrum'),
   ArbitrumSquareMono: () => import('../../chain/Arbitrum'),
@@ -56,6 +52,8 @@ export const chainImports: Record<
   BitcoinCircleMono: () => import('../../chain/Bitcoin'),
   BitcoinMono: () => import('../../chain/Bitcoin'),
   Blast: () => import('../../chain/Blast'),
+  BlastCircle: () => import('../../chain/Blast'),
+  BlastCircleMono: () => import('../../chain/Blast'),
   BlastMono: () => import('../../chain/Blast'),
   BnbSmartChain: () => import('../../chain/BnbSmartChain'),
   BnbSmartChainCircle: () => import('../../chain/BnbSmartChain'),
@@ -75,6 +73,10 @@ export const chainImports: Record<
   CosmosHubMono: () => import('../../chain/CosmosHub'),
   Cronos: () => import('../../chain/Cronos'),
   CronosMono: () => import('../../chain/Cronos'),
+  DataNetwork: () => import('../../chain/DataNetwork'),
+  DataNetworkMono: () => import('../../chain/DataNetwork'),
+  DataNetworkSquare: () => import('../../chain/DataNetwork'),
+  DataNetworkSquareMono: () => import('../../chain/DataNetwork'),
   Eclipse: () => import('../../chain/Eclipse'),
   EclipseMono: () => import('../../chain/Eclipse'),
   Ethereum: () => import('../../chain/Ethereum'),
@@ -114,6 +116,8 @@ export const chainImports: Record<
   Metis: () => import('../../chain/Metis'),
   MetisMono: () => import('../../chain/Metis'),
   Mode: () => import('../../chain/Mode'),
+  ModeCircle: () => import('../../chain/Mode'),
+  ModeCircleMono: () => import('../../chain/Mode'),
   ModeMono: () => import('../../chain/Mode'),
   Monad: () => import('../../chain/Monad'),
   MonadCircle: () => import('../../chain/Monad'),
@@ -198,8 +202,6 @@ export const chainImports: Record<
 export const chainVariants: readonly string[] = [
   'Circle',
   'CircleMono',
-  'Flat',
-  'FlatMono',
   'Square',
   'SquareMono',
 ];
@@ -214,7 +216,5 @@ export type ChainVariant =
   | 'mono'
   | 'Circle'
   | 'CircleMono'
-  | 'Flat'
-  | 'FlatMono'
   | 'Square'
   | 'SquareMono';

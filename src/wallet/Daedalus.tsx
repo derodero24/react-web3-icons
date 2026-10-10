@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://daedaluswallet.io
+// Source: https://daedaluswallet.io/images/daedalus-logo-netlify.svg (official site logo)
+// Default: matches the site's daedalus-logo-netlify.svg (the #82FF65 line-art bull; checked 2026-10-09), so the paths are unchanged
+// Mono: the same paths in currentColor
 /** Daedalus wallet icon (colored). */
 export const Daedalus = /* @__PURE__ */ createIcon(
   'Daedalus',

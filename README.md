@@ -318,11 +318,11 @@ The `variant` prop selects the artwork: `'colored'` (the default), `'mono'`, or 
 
 | Component | Variant type | Values besides `'colored'` and `'mono'` |
 | --- | --- | --- |
-| `ChainIcon` | `ChainVariant` | `'Circle'`, `'CircleMono'`, `'Flat'`, `'FlatMono'`, `'Square'`, `'SquareMono'` |
+| `ChainIcon` | `ChainVariant` | `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'` |
 | `CoinIcon` | `CoinVariant` | `'Alt'`, `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'` |
 | `WalletIcon` | `WalletVariant` | `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'`, `'Symbol'`, `'SymbolMono'` |
 | `ExchangeIcon` | `ExchangeVariant` | `'Circle'`, `'CircleAlt'`, `'CircleMono'`, `'Inverted'`, `'Square'`, `'SquareMono'` |
-| `DexIcon` | `DexVariant` | `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'` |
+| `DexIcon` | `DexVariant` | `'Circle'`, `'CircleMono'`, `'Inverted'`, `'Square'`, `'SquareMono'` |
 | `BridgeIcon` | `BridgeVariant` | `'Inverted'` |
 | `DefiIcon` | `DefiVariant` | `'Circle'`, `'CircleMono'` |
 | `OracleIcon` | `OracleVariant` | — |

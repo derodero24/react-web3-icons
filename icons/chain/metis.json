@@ -1,17 +1,19 @@
 {
   "name": "Metis",
   "source": [
-    "https://www.metis.io (legacy artwork predating the source policy; the exact origin file was not recorded)",
-    "https://www.metis.io/brandassets (official brand assets: PNG files only)"
+    "https://www.metis.io/brandassets (official brand assets, accessed 2026-10-09: Logo Library, \"Symbol Metis\")",
+    "https://cdn.prod.website-files.com/6507242ad3e4e6ff563301e4/65de58e66e6def01f33bc342_Symbol%201.svg (Symbol 1.svg, the Logo Library's \"Symbol Metis\" file)"
   ],
   "notes": [
-    "Not replaced: the official brand assets page offers the Metis symbol only as PNG (Symbol.png: a black head with a laurel sprig on a #00CFFF disc, Metis Primary Colors #00CFFF / #000000), and no official vector of it was found on metis.io, docs.metis.io or the MetisProtocol GitHub org. The shipped #00D8C1 disc with a knocked-out head is the earlier symbol; it stays until an official SVG is published (#835)"
+    "Default: the official Symbol 1.svg (1500x1500, two paths), paths unchanged and scaled 1500 -> 64 as a full-bleed container: a #00D2FF disc with the head in black (#000), the laurel sprig cut into the head as notches the disc shows through. Every official symbol variant on the page includes the disc, so the base keeps it. It replaces the retired symbol (a #00D8C1 disc with the head knocked out), which had no official vector",
+    "Colours are the symbol file's own #00D2FF and black, kept unchanged; the page's \"Metis Primary Colors\" swatches list #00CFFF and #000000",
+    "Mono: the disc in currentColor with the head knocked out (the two official subpaths as one evenodd path, the head subpath closed implicitly, as in the official file); the sprig notches stay ink. This is how the brand's own one-colour symbols are built (Symbol white.png and Symbol black version.png on the same page, PNG only, used as a reference and not traced)"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "metis.svg",
-      "fill": "#00D8C1"
+      "fill": "#00D2FF"
     },
     "Mono": {
       "file": "metis.mono.svg",

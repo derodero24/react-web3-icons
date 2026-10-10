@@ -230,11 +230,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     kind: 'false-positive',
     reason: 'The wavy liquid surface narrows the flood-filled footprint.',
   },
-  'explorer/Arbiscan': {
-    kind: 'false-positive',
-    reason:
-      'The white strokes cut through the ring as in the colored mark, so the footprint flood fill enters the strokes and the ring gap.',
-  },
   'explorer/Celoscan': {
     kind: 'false-positive',
     reason:
@@ -289,11 +284,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     kind: 'false-positive',
     reason:
       'Container polarity: the white tile becomes ink with the shield knocked out, so the threshold reference is inverted.',
-  },
-  'wallet/ZerionCircle': {
-    kind: 'false-positive',
-    reason:
-      'The gradient disc inflates the colour-boundary count; the Z knockout reads at every size.',
   },
 };
 

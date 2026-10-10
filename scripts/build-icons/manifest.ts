@@ -137,8 +137,8 @@ export function extractBrandColor(svgText: string): string | undefined {
 
 /**
  * Non-deprecated `localAliases` entries that point at one of the unit's own
- * variants, i.e. extra export suffixes of the unit (`TrustWallet` →
- * `TrustWalletSquare` yields `''`).
+ * variants, i.e. extra export suffixes of the unit (`DogeCircle` → `Doge`
+ * yields `'Circle'`).
  */
 function localAliasVariants(
   unitMeta: ArtworkUnitMeta,
@@ -227,9 +227,9 @@ function enrichmentOf(
   if (!isArtwork(unitMeta)) {
     return {};
   }
-  // Units may expose their default export through `localAliases`
-  // (e.g. TrustWallet → TrustWalletSquare) instead of a `""` variant;
-  // those aliases are variants of the unit as far as consumers go.
+  // Units may expose variants through `localAliases` (e.g. DogeCircle →
+  // Doge), even their default export (Foo → FooSquare) instead of a `""`
+  // variant; those aliases are variants of the unit as far as consumers go.
   const aliasVariants = localAliasVariants(unitMeta);
   const brandColor = brandColorOf(unit);
   const own = [
