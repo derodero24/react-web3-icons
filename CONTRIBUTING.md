@@ -107,7 +107,8 @@ their unit JSON too (see [Extra props](#extra-props)).
 
 ```sh
 pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.svg \
-  [--mono path/to/icon.mono.svg] [--source <official URL>]
+  [--mono path/to/icon.mono.svg] [--source <official URL>] \
+  [--slug <slug>]... [--chain-id <id>]... [--ticker <TICKER>]...
 ```
 
 This optimizes the SVG with SVGO, normalizes the root element (sizing and
@@ -115,7 +116,11 @@ metadata attributes are dropped; inherited presentation attributes such as a
 root `stroke` move onto a wrapping `<g>`), puts the artwork on the 64×64 grid
 (see [Optical size](#optical-size)), writes `icons/<category>/<slug>.svg`
 and `<slug>.json`, and regenerates `src/` (the input SVGs are only read,
-never modified). Follow the printed next steps (lookup keys, changeset).
+never modified). An icon of a category with a dynamic component (`bridge`,
+`chain`, `coin`, `defi`, `dex`, `exchange`, `oracle`, `wallet`) needs
+`--mono` and at least one [lookup key](#lookup-keys-vs-search-aliases):
+`--slug`, `--chain-id` (chain) or `--ticker` (coin), each repeatable.
+Follow the printed next steps (Mono variant, changeset).
 
 ### Anatomy of an icon unit
 
@@ -449,8 +454,12 @@ reshaped geometry, no altered brand colors in the default variant. The full
 
 ```sh
 pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.svg \
-  --source <official URL> [--mono path/to/icon.mono.svg]
+  --source <official URL> [--mono path/to/icon.mono.svg] \
+  [--slug <slug>]... [--chain-id <id>]... [--ticker <TICKER>]...
 ```
+
+For example, a chain: `--category chain --name Taiko --svg taiko.svg --mono
+taiko.mono.svg --source <official URL> --slug taiko --chain-id 167000`.
 
 `--source` is technically optional for the script, but omitting it leaves the
 unit without the required attribution (and the generated TSX without its
@@ -463,8 +472,9 @@ dimensions, moves `fill`, `stroke` and other presentation properties out of
 normalizes the root element, puts the artwork on the 64×64 grid following the
 [optical-size rule](#optical-size) (this step launches Chromium through
 Playwright), writes `icons/<category>/<slug>.svg` (+ `.mono.svg`) and
-`<slug>.json`, and regenerates `src/`. Follow the printed next steps
-(lookup keys, changeset).
+`<slug>.json` with the lookup keys, and regenerates `src/`. A category with
+a dynamic component needs `--mono` and at least one lookup key, as above.
+Follow the printed next steps (Mono variant, changeset).
 
 To optimize an SVG without scaffolding a unit:
 
