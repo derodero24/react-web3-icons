@@ -624,6 +624,16 @@ describe('unit definitions', () => {
       properties: { kind: { const: 'icon' } },
     });
   });
+
+  it('requires $schema in every kind of unit', () => {
+    const kinds = UNIT_JSON_SCHEMA.oneOf;
+    expect(kinds).toHaveLength(3);
+    for (const kind of kinds) {
+      expect(kind).toMatchObject({
+        required: expect.arrayContaining(['$schema']),
+      });
+    }
+  });
 });
 
 describe('loading icons/', () => {

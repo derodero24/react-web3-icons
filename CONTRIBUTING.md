@@ -173,9 +173,9 @@ icons/chain/ethereum.json         # metadata:
 - Unit files are validated strictly (unknown keys are errors, names must be
   PascalCase identifiers, comments single-line). `icons/schema.json` is the
   matching JSON Schema, generated from `scripts/build-icons/unit.ts`. Every
-  unit starts with `"$schema": "../schema.json"` (`new-icon` writes it), so
-  editors complete and validate the file; the generator rejects a unit
-  without it.
+  unit declares `"$schema": "../schema.json"`, so editors complete and
+  validate the file; the generator rejects a unit without it. By convention
+  it is the first key, and `new-icon` writes it there.
 
 ### Lookup keys vs. search aliases
 
