@@ -8,7 +8,8 @@
   "notes": [
     "Default: the kit's icon_Injective-Ocean.svg (#4D3DFF), path unchanged and placed on the 64 grid; its clip path (the 48-unit viewBox square, which cuts nothing) is dropped. It replaces a copy of the same mark squashed about 2% horizontally (aspect 1.00 against the file's 1.02)",
     "Mono: the same path in currentColor, as in the kit's one-colour icon_Injective-Black.svg and icon_Injective-White.svg (same geometry)",
-    "The kit's round token mark (Injective Token.svg) is the Inj coin unit, see icons/coin/inj.json"
+    "The kit's round token mark (Injective Token.svg) is the Inj coin unit, see icons/coin/inj.json",
+    "Lookup keys: chain ID 1776 is the numeric EVM chain ID of Injective mainnet (https://docs.injective.network/developers-evm/network-information; chainid.network lists 1776 as Injective, checked 2026-10-10)."
   ],
   "kind": "icon",
   "variants": {
@@ -23,5 +24,8 @@
   },
   "slugs": [
     "injective"
+  ],
+  "chainIds": [
+    1776
   ]
 }

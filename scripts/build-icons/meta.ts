@@ -323,8 +323,8 @@ export function targetOf(
  * Manifest `aliases` are search terms, but the dynamic components resolve
  * lookup keys only. So that every alias of a dynamic category still
  * resolves, and resolves to its own icon, each one must normalize to a
- * string key of the unit. A unit without lookup targets (all its exports
- * are deprecated) may point its aliases at its replacement instead.
+ * string key of the unit. Like the keys, the aliases of a deprecated icon
+ * belong on its replacement (`ftm` is an alias of `Sonic`, not `Fantom`).
  */
 function assertAliases(
   units: readonly SourceUnit[],
@@ -364,7 +364,7 @@ function assertAlias(
       `${unit.path}: alias ${JSON.stringify(alias)} is not a lookup key; add it to slugs/tickers (the dynamic components resolve lookup keys only)`,
     );
   }
-  if (own.size > 0 && !own.has(claim.exportName)) {
+  if (!own.has(claim.exportName)) {
     throw new Error(
       `${unit.path}: alias ${JSON.stringify(alias)} resolves to ${claim.exportName} (key ${JSON.stringify(claim.key)} of ${claim.path}), not to this icon`,
     );

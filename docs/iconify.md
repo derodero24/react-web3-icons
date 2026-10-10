@@ -15,8 +15,8 @@ Icon names are `<category>-<kebab-name>` (`chain-ethereum`,
 aliases (`coin-btc` → `chain-bitcoin`); deprecated exports stay as hidden
 icons or hidden aliases, so existing references keep resolving without
 showing up in search. Internal SVG ids are prefixed per icon
-(`chain-ethereum-circle-mono_ethc-a`), and colours declared on a source's
-root `<svg>` are kept on a wrapping `<g>`. See the
+(`chain-arbitrum-circle-mono_arb-circle-a`), and colours declared on a
+source's root `<svg>` are kept on a wrapping `<g>`. See the
 [README](../README.md#other-frameworks-iconify) for usage.
 
 ## Metadata

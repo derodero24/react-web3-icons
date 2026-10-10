@@ -3,6 +3,7 @@ import { createIcon } from '../utils';
 // Source: https://hedera.com/wp-content/uploads/2026/05/hedera-logo-library-26.zip (official logo library from https://brand.hedera.com: Logomark/Hedera-Icon-Dark.svg)
 // Default: the official Hedera icon Hedera-Icon-Dark.svg (black disc with the H cut out; the 2026 H has two crossbars), replacing the older single-crossbar H; the H stays a cut-out as in the official file
 // Mono: the same disc and H in currentColor (Hedera-Icon-White.svg is this geometry in white)
+// Lookup keys: chain ID 295 is the EVM chain ID of Hedera Mainnet (https://docs.hedera.com/evm/development/json-rpc; chainid.network lists 295 as Hedera Mainnet, checked 2026-10-10).
 /** Hedera chain icon (colored). */
 export const Hedera = /* @__PURE__ */ createIcon(
   'Hedera',

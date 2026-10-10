@@ -134,8 +134,8 @@ describe('Every colored icon has a Mono variant', () => {
     // Standalone coin icons with no monochrome mark
     'Doge',
     'Shib',
-    // BlastscanLight uses black fill for light/white backgrounds — distinct from typical Light variants;
-    // treated as a single-fill design variant with no corresponding Mono
+    // BlastscanLight is Blastscan's official black mark for light backgrounds
+    // (the default is pale): BlastscanMono in black, so it needs no Mono of its own
     'BlastscanLight',
     // Alt/Flat variants where a Mono adds no practical value
     'CoinbaseCircleAlt',

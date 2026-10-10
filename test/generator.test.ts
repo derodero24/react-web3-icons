@@ -991,6 +991,20 @@ describe('lookup keys', () => {
       },
       /icons\/chain\/a\.json: alias "beta" resolves to Beta \(key "beta" of icons\/chain\/b\.json\), not to this icon/,
     ],
+    [
+      'an alias of a deprecated icon, which belongs on its replacement',
+      {
+        ...chainUnit('a', 'Alpha', { slugs: ['alpha-one'] }),
+        ...chainUnit('o', 'Old', {
+          aliases: ['alpha-one'],
+          deprecated: Object.fromEntries([
+            ['Old', 'Use Alpha.'],
+            ['OldMono', 'Use AlphaMono.'],
+          ]),
+        }),
+      },
+      /icons\/chain\/o\.json: alias "alpha-one" resolves to Alpha \(key "alpha-one" of icons\/chain\/a\.json\), not to this icon/,
+    ],
   ])('rejects %s', (_, files, message) => {
     expect(() => collectLookups(loadChain(files))).toThrow(message);
   });
@@ -1000,14 +1014,6 @@ describe('lookup keys', () => {
       ...chainUnit('a', 'Alpha', {
         slugs: ['alpha-one'],
         aliases: ['alpha one', 'alpha.one'],
-      }),
-      // A fully deprecated icon may point its aliases at its replacement.
-      ...chainUnit('o', 'Old', {
-        aliases: ['alpha-one'],
-        deprecated: Object.fromEntries([
-          ['Old', 'Use Alpha.'],
-          ['OldMono', 'Use AlphaMono.'],
-        ]),
       }),
     });
     expect(tableOf('CHAIN_SLUG_TO_NAME', units)).toEqual([
@@ -1553,6 +1559,38 @@ describe('published artifacts', () => {
     expect(Object.keys(icons)).toEqual(['chain-foo-bar']);
     expect(aliases).toEqual({
       'chain-foobar': { parent: 'chain-foo-bar', hidden: true },
+    });
+  });
+
+  it("an alias unit's case-only rename of its own export gets no file of its own", () => {
+    const iconsDir = join(
+      fixture({
+        'icons/exchange/bar.json': iconUnit('Bar', ['', 'bar.svg']),
+        'icons/exchange/bar.svg': SQUARE,
+        // `FooBar` is `Bar` from another category; `FOOBar` renames
+        // `FooBar` (this module's own export) only in case.
+        'icons/wallet/foo-bar.json': JSON.stringify({
+          $schema: SCHEMA_REF,
+          name: 'FooBar',
+          kind: 'alias',
+          aliasConst: {
+            importFrom: '../exchange/Bar',
+            imports: ['Bar'],
+            exports: [
+              { name: 'FooBar', target: 'Bar' },
+              { name: 'FOOBar', target: 'FooBar', deprecated: 'Use FooBar.' },
+            ],
+          },
+        }),
+      }),
+      'icons',
+    );
+    expect([...buildDistSvgs(iconsDir).keys()]).toEqual([
+      'exchange/Bar.svg',
+      'wallet/FooBar.svg',
+    ]);
+    expect(buildIconifySets(iconsDir).colored.aliases).toEqual({
+      'wallet-foo-bar': { parent: 'exchange-bar' },
     });
   });
 

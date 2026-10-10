@@ -2,37 +2,42 @@
   "$schema": "../schema.json",
   "name": "OkxWallet",
   "source": [
-    "https://web3.okx.com/cdn/assets/imgs/258/4C0F53E9427468A2.svg (OKX Wallet header lockup served by web3.okx.com: the black checker + \"Wallet\")"
+    "re-export of Okx — see src/exchange/Okx.tsx. OKX Wallet uses the OKX checker: its header lockup on web3.okx.com (https://web3.okx.com/cdn/assets/imgs/258/4C0F53E9427468A2.svg, the black checker + \"Wallet\") is the file exchange/Okx is checked against, so the artwork now lives in one place"
   ],
   "notes": [
-    "Checked 2026-10-04: the checker matches the symbol of the official header lockup (IoU 0.96 at 256 px, both with the same small corner radius), so the artwork is unchanged",
+    "The two units' files drew the same five-cell checker and differed by less than 0.05 units",
     "The OKX Wallet app icon (the checker on a lime #9AED2C tile, https://web3.okx.com/cdn/assets/imgs/254/43DEFFE88CCA0D7C.png) exists only as a raster, so no tile variant is drawn"
   ],
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "okx-wallet.svg",
-      "fill": "#000000"
-    },
-    "Mono": {
-      "file": "okx-wallet.mono.svg",
-      "fill": "currentColor"
-    }
+  "kind": "alias",
+  "aliasConst": {
+    "importFrom": "../exchange/Okx",
+    "imports": [
+      "Okx",
+      "OkxMono"
+    ],
+    "exports": [
+      {
+        "name": "OkxWallet",
+        "target": "Okx"
+      },
+      {
+        "name": "OkxWalletMono",
+        "target": "OkxMono"
+      },
+      {
+        "name": "OKXWallet",
+        "target": "OkxWallet",
+        "deprecated": "OKXWallet was renamed to word casing — use `OkxWallet` instead."
+      },
+      {
+        "name": "OKXWalletMono",
+        "target": "OkxWalletMono",
+        "deprecated": "Use `OkxWalletMono` instead."
+      }
+    ]
   },
   "slugs": [
     "okxwallet",
     "okx"
-  ],
-  "localAliases": [
-    {
-      "name": "OKXWallet",
-      "target": "OkxWallet",
-      "deprecated": "OKXWallet was renamed to word casing — use `OkxWallet` instead."
-    },
-    {
-      "name": "OKXWalletMono",
-      "target": "OkxWalletMono",
-      "deprecated": "Use `OkxWalletMono` instead."
-    }
   ]
 }

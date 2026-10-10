@@ -256,8 +256,8 @@ describe('every chain ID in the meta map resolves', () => {
 /**
  * Manifest aliases are search terms; the generator requires each one of a
  * dynamic category to be a lookup key of its own icon too, so it resolves
- * to it. Aliases of a fully deprecated icon resolve to its replacement
- * (chain `Fantom`'s `ftm` → `Sonic`).
+ * to it. Like the keys, the aliases of a deprecated icon belong on its
+ * replacement, so no deprecated entry carries any.
  */
 describe('every manifest alias of a dynamic category resolves', () => {
   const entries = ICON_MANIFEST.flatMap(entry => {
@@ -275,12 +275,8 @@ describe('every manifest alias of a dynamic category resolves', () => {
     '$category alias $alias → $entry.name',
     ({ entry, alias, category }) => {
       const [, lookup] = DYNAMIC_LOOKUPS[category];
-      const resolved = lookup(alias);
-      if (entry.deprecated) {
-        expect(resolved).toBeDefined();
-      } else {
-        expect(resolved).toBe(entry.name);
-      }
+      expect(entry.deprecated).toBeUndefined();
+      expect(lookup(alias)).toBe(entry.name);
     },
   );
 });

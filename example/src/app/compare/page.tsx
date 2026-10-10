@@ -201,7 +201,7 @@ const COMPARISON_ROWS: {
       'cryptocurrency-icons': <CrossIcon />,
       ledger: <CrossIcon />,
     },
-    note: 'Static icons are hook-free; Ledger renders through a runtime hook',
+    note: 'Icons call no hook other than useId, which Server Components support; Ledger renders through a runtime hook',
   },
   {
     feature: 'Iconify collection',
@@ -407,7 +407,7 @@ export default function ComparePage() {
               </h3>
               <CodeBlock>{`// Named import — fully tree-shakeable
 import { Ethereum, BitcoinCircle } from 'react-web3-icons';
-// or from a category subpath (smaller bundle entry):
+// or from a category subpath (tree-shakes the same):
 import { Ethereum } from 'react-web3-icons/chain';
 
 <Ethereum size={32} />

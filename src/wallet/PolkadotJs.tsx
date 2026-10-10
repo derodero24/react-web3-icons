@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
 // Source: https://polkadot.js.org
+// Source: https://polkadot.js.org/favicon.ico (raster)
+// Not verified (checked 2026-10-10): polkadot.js.org serves the #FF8C00 disc with the white P only as its raster favicon.ico (48, 32 and 16 px), which this artwork matches; its header now shows the assets/header_logo.svg lockup in #FF2670. The vector, which predates the source policy, is unchanged
 /** Polkadot Js wallet icon (colored). */
 export const PolkadotJs = /* @__PURE__ */ createIcon(
   'PolkadotJs',

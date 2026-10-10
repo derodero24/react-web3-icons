@@ -559,11 +559,14 @@ export function unitLinks(unit: SourceUnit): ExportLink[] {
     }
   }
   if (meta.kind === 'alias') {
-    const targetCategory = categoryOf(meta.aliasConst.importFrom, category);
+    const importCategory = categoryOf(meta.aliasConst.importFrom, category);
+    const imported = new Set(meta.aliasConst.imports);
     for (const e of meta.aliasConst.exports) {
       links.push({
         name: e.name,
-        targetCategory,
+        // A target that is not imported is an earlier export of this module
+        // (`OKXWallet` → `OkxWallet`, itself `Okx` from ../exchange/Okx).
+        targetCategory: imported.has(e.target) ? importCategory : category,
         targetName: e.target,
         deprecated: Boolean(e.deprecated),
       });

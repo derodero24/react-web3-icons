@@ -148,12 +148,12 @@ icons/chain/ethereum.json         # metadata:
 - `name` is the canonical PascalCase export name; each variant key is an export
   suffix (`""` → `Ethereum`, `"Mono"` → `EthereumMono`, `"CircleMono"` → `EthereumCircleMono`).
 - Internal `id` attributes (masks, gradients, clip paths) can stay as plain
-  static IDs in the SVG (`id="ethc-a"`). The generator rewrites them to
-  `${_id}-ethc-a` in the TSX, where `_id` is the per-instance prefix
+  static IDs in the SVG (`id="arb-circle-a"`). The generator rewrites them
+  to `${_id}-arb-circle-a` in the TSX, where `_id` is the per-instance prefix
   `w3i-<lowercased name>-<instance>` that `createIcon` passes to the render
   function (the instance part comes from `useId`) — so the DOM ends up with
-  e.g. `w3i-ethereumcirclemono-r1-ethc-a`, unique for every rendered icon.
-  Only artwork with internal ids makes the component call `useId`; the
+  e.g. `w3i-arbitrumcirclemono-r1-arb-circle-a`, unique for every rendered
+  icon. Only artwork with internal ids makes the component call `useId`; the
   generator emits `{ ids: true }` for it, and every other icon stays
   hook-free.
 - Mask (and pattern) content inherits `fill` from the mask's ancestors,
@@ -227,9 +227,9 @@ A unit declares two different kinds of names:
   pickers, fuzzy search) and need not be unique. The dynamic components
   resolve lookup keys only, so in the categories above every alias must also
   normalize to a lookup key of its own unit (the generator fails otherwise;
-  add it to `slugs` / `tickers`). A unit whose exports are all deprecated
-  may point its aliases at the replacement's keys (`Fantom`'s `ftm` →
-  `Sonic`). In the other categories aliases are search terms only.
+  add it to `slugs` / `tickers`). Like the keys, the aliases of a rebrand
+  move to the new unit (`ftm` is an alias of `Sonic`, not of the deprecated
+  `Fantom`). In the other categories aliases are search terms only.
 
 ```json
 {
@@ -305,6 +305,8 @@ already a disc, an app icon that is already the default) is a
 name should go). `test/duplicate-artwork.test.ts` fails when two SVG files
 under `icons/` draw the same artwork (ignoring id names, attribute order and
 where `<defs>` sit), unless the pair is listed there with its reason.
+`test/visual/near-duplicate-artwork.test.ts` (`pnpm run test:visual`) does
+the same for two files that render the same from different markup.
 
 ### Regenerating
 
@@ -569,8 +571,8 @@ on a dark background (near-black paint: every channel below 60, or less than
 Blast's pale yellow `#FCFC03`). Gradients count by the colours sampled along
 their ramp. A flagged icon needs one of:
 
-- an official colored `Circle*` / `Square*` / `Inverted*` variant (or the
-  legacy `BlastscanLight`) that is not itself flagged;
+- an official colored `Circle*` / `Square*` / `Inverted*` variant that is
+  not itself flagged;
 - nothing more when the mark is painted in that one tone only (black, white,
   or one pale or deep colour) and its `Mono` variant has the same geometry:
   `Mono` in a contrasting `color` then shows the whole mark, and for a black
