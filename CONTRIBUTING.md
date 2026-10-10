@@ -141,12 +141,12 @@ icons/chain/ethereum.json         # metadata:
 - `name` is the canonical PascalCase export name; each variant key is an export
   suffix (`""` → `Ethereum`, `"Mono"` → `EthereumMono`, `"CircleMono"` → `EthereumCircleMono`).
 - Internal `id` attributes (masks, gradients, clip paths) can stay as plain
-  static IDs in the SVG (`id="ethc-a"`). The generator rewrites them to
-  `${_id}-ethc-a` in the TSX, where `_id` is the per-instance prefix
+  static IDs in the SVG (`id="arb-circle-a"`). The generator rewrites them
+  to `${_id}-arb-circle-a` in the TSX, where `_id` is the per-instance prefix
   `w3i-<lowercased name>-<instance>` that `createIcon` passes to the render
   function (the instance part comes from `useId`) — so the DOM ends up with
-  e.g. `w3i-ethereumcirclemono-r1-ethc-a`, unique for every rendered icon.
-  Only artwork with internal ids makes the component call `useId`; the
+  e.g. `w3i-arbitrumcirclemono-r1-arb-circle-a`, unique for every rendered
+  icon. Only artwork with internal ids makes the component call `useId`; the
   generator emits `{ ids: true }` for it, and every other icon stays
   hook-free.
 - Mask (and pattern) content inherits `fill` from the mask's ancestors,
