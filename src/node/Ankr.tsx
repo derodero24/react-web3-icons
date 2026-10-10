@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://ankr.com (official brand)
+// Source: https://www.ankr.com/assets/ (Ankr brand assets: the "Blue Symbol" SVG download; the page serves its SVG downloads as data: URIs, so there is no separate file URL)
+// Default: the brand assets' Blue Symbol, its two #356DF3 paths unchanged, placed on the 64 grid
+// Mono: the same paths in currentColor, as in the page's one-colour Black Symbol and White Symbol downloads
 /** Ankr node icon (colored). */
 export const Ankr = /* @__PURE__ */ createIcon(
   'Ankr',

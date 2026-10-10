@@ -1,7 +1,12 @@
 {
   "name": "MantaPacific",
   "source": [
-    "https://manta.network"
+    "https://mantanetwork.notion.site/Logo-Assets-Update-July-2024-fa251dfac771481a888fc1c8f15daae7 (Manta Network \"Logo Assets (Update July 2024)\", linked from https://manta.network: Manta Icon Only - Manta Gradient 1.svg, Manta Icon Only - Black.svg, Manta Icon Only - White 1.svg)"
+  ],
+  "notes": [
+    "Default: the kit's Manta Icon Only - Manta Gradient 1.svg, its single path and linear gradient (#29CCB9, #009AFF, #FF66B7) unchanged, placed on the 64 grid (the no-op full-viewBox clip path is left out). It replaces a thinner drawing of the mark with a horizontal #29CCB9, #0091FF, #FF66B7 gradient, taken from @web3icons. That drawing matches no file in the kit; its shape is the one manta.network's footer still shows in its 24-unit social icon, https://manta.network/assets/img/socials/manta-white-icon.svg (black on a white disc, linking to the kit page), but its gradient is not the kit's. The kit is used as the brand's current logo assets",
+    "Mono: the same path in currentColor, as in the kit's Manta Icon Only - Black.svg and Manta Icon Only - White 1.svg",
+    "The kit's files are Notion attachments served through signed URLs, so the kit page is cited instead"
   ],
   "kind": "icon",
   "variants": {
