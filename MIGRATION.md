@@ -255,6 +255,20 @@ The base names of these units were aliases of a container variant. Following the
 + import { TrustWalletSquare, ZerionCircle } from 'react-web3-icons'; // to keep a container
 ```
 
+## 11. Base coin icons that now render the official token disc
+
+When a brand publishes its token only as a disc, the base export now renders that disc (the [base icon background rule](./docs/icon-variants.md#base-icon-background-rule)), and the `Circle` exports are aliases of the base, so `variant="Circle"` keeps working. Review screenshots or visual baselines that include these icons:
+
+| Exports | v4 rendered | v5 renders |
+| --- | --- | --- |
+| `Dai`, `DaiMono` | the bare DAI symbol in `#F5AC37` | Sky's official DAI disc (`#F5AC37` disc, white mark) |
+| `DaiCircle`, `DaiCircleMono` | a DAI disc with a slightly narrower, shifted mark | aliases of `Dai`, `DaiMono` |
+| `UsdcCircle`, `UsdcCircleMono` | a legacy USDC disc in `#2775CA` | aliases of `Usdc`, `UsdcMono` (Circle's official `#0B53BF` USDC token) |
+| `DogeCircle`, `DogeCircleMono` | a slab D on a `#C2A633` disc | aliases of `Doge`, `DogeMono` (the Dogecoin coin of Dogecoin Core) |
+| `Op`, `OpMono`, `OpCircle`, `OpCircleMono` | the Optimism chain symbol on a `#FF0420` disc (re-exported from `Optimism`) | the official OP token (`#FAFAF9` letters OP on a `#FF0421` disc); `OpCircle`, `OpCircleMono` are aliases of `Op`, `OpMono` |
+
+There is no export for the bare DAI symbol any more: Sky publishes no stand-alone version of it. A `fill` prop no longer recolours `Dai` (its disc and mark carry their own colours); use `DaiMono` with `color` or `fill` for a single-colour icon.
+
 ## Checklist
 
 - [ ] Regenerate markup snapshots containing icon defs ids or icon markup (viewBox, path data)
@@ -268,6 +282,7 @@ The base names of these units were aliases of a container variant. Following the
 - [ ] Expect `fallback` for the lookup keys of defunct projects (`BUSD`, `nami`, `odos`, …) and the new Sky and Velora artwork for `MKR`, `makerdao` and `paraswap` (sections 7 and 8)
 - [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg`, `Starknet*.svg` and `Zksync*.svg` instead of the `OKXWallet*`, `StarkNet*` and `ZkSync*` files
 - [ ] Use `ZerionCircle` / `TrustWalletSquare` (and their `Mono` variants) where you relied on `Zerion` / `TrustWallet` rendering a container (section 10)
+- [ ] Expect the DAI disc from `Dai` / `DaiMono`, and review visual baselines of the icons in section 11
 
 ---
 
