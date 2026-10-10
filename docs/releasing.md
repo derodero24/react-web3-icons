@@ -113,7 +113,8 @@ and once a trusted publisher exists, the OIDC token alone is enough to
 publish `react-web3-icons`. The frozen lockfile, the 3-day
 `minimum-release-age` in `.npmrc` and the short `onlyBuiltDependencies` list
 in `pnpm-workspace.yaml` reduce this risk; the split below removes that
-exposure. Schedule it before the trusted publisher is configured:
+exposure. Schedule it before the trusted publisher is configured
+([#887](https://github.com/derodero24/react-web3-icons/issues/887)):
 
 - A build job with only `contents: read` installs, builds and runs
   `pnpm pack`, then uploads the tarball and the pending-changesets result as
