@@ -53,7 +53,6 @@ export const walletImports: Record<
   PhantomMono: () => import('../../wallet/Phantom'),
   PhantomSquare: () => import('../../wallet/Phantom'),
   PhantomSquareMono: () => import('../../wallet/Phantom'),
-  PhantomSymbolMono: () => import('../../wallet/Phantom'),
   PolkadotJs: () => import('../../wallet/PolkadotJs'),
   PolkadotJsMono: () => import('../../wallet/PolkadotJs'),
   Rabby: () => import('../../wallet/Rabby'),

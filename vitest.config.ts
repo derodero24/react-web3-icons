@@ -18,7 +18,6 @@ const { version: reactVersion } = createRequire(import.meta.url)(
  * react-server-dom-parcel produces the Flight payload.
  */
 const rsc: TestProjectInlineConfiguration = {
-  extends: true,
   resolve: { conditions: SERVER_CONDITIONS },
   ssr: {
     resolve: {
@@ -40,7 +39,6 @@ export default defineConfig({
   test: {
     projects: [
       {
-        extends: true,
         test: {
           name: 'unit',
           environment: 'jsdom',

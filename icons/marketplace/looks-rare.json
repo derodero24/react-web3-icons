@@ -1,7 +1,11 @@
 {
   "name": "LooksRare",
   "source": [
-    "https://looksrare.org"
+    "https://docs.looksrare.org/assets/files/LooksRare_Brand_Assets-58613b3d791f31eeedf46caf2c2d428c.zip (official LooksRare brand assets, files LooksRare Logo/icon-darkbg.svg, icon-lightbg.svg and icon-mono-black.svg)"
+  ],
+  "notes": [
+    "LooksRare renders identically to the official icon-darkbg.svg (#0CE466 with black and white; silhouette IoU 0.999), LooksRareFlat to icon-lightbg.svg (#04CD58; IoU 0.996) and LooksRareMono to icon-mono-black.svg in currentColor (IoU 0.996); each is a uniform scale (56/96) of the kit's 96-unit artboard onto the 64 grid",
+    "looksrare.org now returns a bot challenge to scripts, so it is no longer cited (checked 2026-10-09)"
   ],
   "kind": "icon",
   "variants": {

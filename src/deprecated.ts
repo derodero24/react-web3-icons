@@ -29,6 +29,11 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   // icons/bridge/hop-protocol.json
   'HopProtocol',
   'HopProtocolMono',
+  // icons/chain/arbitrum.json
+  'ArbitrumOneFlat',
+  'ArbitrumOneFlatMono',
+  'ArbitrumNovaFlat',
+  'ArbitrumNovaFlatMono',
   // icons/chain/binance-smart-chain.json
   'BinanceSmartChain',
   'BinanceSmartChainMono',
@@ -119,6 +124,8 @@ export const DEPRECATED_ICON_NAMES: ReadonlySet<IconName> & {
   'PhantomWalletSquare',
   'PhantomWalletSquareMono',
   'PhantomWalletSymbolMono',
+  // icons/wallet/phantom.json
+  'PhantomSymbolMono',
   // icons/wallet/rainbow-wallet.json
   'RainbowWallet',
   'RainbowWalletSymbol',

@@ -1,6 +1,14 @@
 import { createIcon } from '../utils';
 
-// Source: https://arbiscan.io (official brand)
+// Source: https://arbiscan.io/brandassets (Arbiscan brand assets, accessed 2026-10-09: logos.zip, logos/logo-symbol.svg)
+// Source: https://arbiscan.io/assets/arbitrum/images/svg/brandassets/logo-symbol.svg
+// Source: https://arbiscan.io/assets/arbitrum/images/svg/logos/chain-light.svg (the same file in the site header)
+// Source: https://arbitrumfoundation.notion.site/Arbitrum-brand-guidelines-6014e69d7b574f378a50f5ee678495d3 (Arbitrum Foundation brand kit: AllWhite_Logos_Logomark_RGB.svg, the Mono)
+// Arbiscan has no mark of its own: its brand assets page (headed "Arbitrum One Brand Assets & Guidelines") ships the Arbitrum logomark as logo-symbol.svg, and the header logo (logos/logo-light.svg) is that logomark beside an ARBISCAN wordmark
+// Default: logo-symbol.svg from logos.zip (byte-identical to the site's chain-light.svg and chain-dark.svg), paths unchanged and placed on the 64 grid without the file's near-no-op clip path; it matches the Arbitrum default to about 0.02 units
+// ArbiscanMono re-exports ArbitrumMono: Arbiscan publishes no one-colour symbol, so its mono is the Arbitrum brand kit's one-colour logomark (AllWhite_Logos_Logomark_RGB.svg), the artwork of ArbitrumMono (the ring and the four strokes in ink, the navy body left open; docs/icon-variants.md, mono rule 5)
+export { ArbitrumMono as ArbiscanMono } from '../chain/Arbitrum';
+
 /** Arbiscan explorer icon (colored). */
 export const Arbiscan = /* @__PURE__ */ createIcon(
   'Arbiscan',
@@ -36,17 +44,4 @@ export const Arbiscan = /* @__PURE__ */ createIcon(
     </>
   ),
   {},
-);
-
-/** Arbiscan explorer icon (monochrome). */
-export const ArbiscanMono = /* @__PURE__ */ createIcon(
-  'ArbiscanMono',
-  '0 0 64 64',
-  () => (
-    <path
-      fillRule="evenodd"
-      d="M31.99 8.57q.2 0 .36.1L52 20q.36.23.37.64v22.69a.8.8 0 0 1-.37.64l-2.5 1.45-7.92-21.68a.46.46 0 0 0-.88 0L38 31.2a1 1 0 0 0 0 .64l6.08 16.7-2.14 1.24L37 36.26a.46.46 0 0 0-.88 0h.01l-2.7 7.43a1 1 0 0 0 0 .64l3.12 8.56-4.2 2.42a1 1 0 0 1-.36.1 1 1 0 0 1-.37-.1l-4.15-2.4L39.8 19.04a.47.47 0 0 0-.43-.62h-5.22a.9.9 0 0 0-.87.62L20.53 54.03l5.4 3.11 1.2-3.31 4.47 2.57a1 1 0 0 0 .39.1 1 1 0 0 0 .38-.1l20.56-11.86a.8.8 0 0 0 .39-.67V20.12a.8.8 0 0 0-.39-.67L32.37 7.57a1 1 0 0 0-.38-.1v.01a1 1 0 0 0-.39.1L11.04 19.46a.8.8 0 0 0-.39.66v23.76q.02.44.39.67l3.16 1.82-1.2 3.3-3.69-2.12a4.2 4.2 0 0 1-2.13-3.67V20.12c0-1.52.8-2.92 2.13-3.67L29.86 4.59c.66-.39 1.4-.57 2.13-.57V4a4 4 0 0 1 2.12.58l20.56 11.87a4.2 4.2 0 0 1 2.13 3.67v23.76a4.2 4.2 0 0 1-2.13 3.67L34.11 59.43c-.65.38-1.39.57-2.12.57q-1.12 0-2.12-.57l-10.37-6-1.11-.63 1.2-3.32h.01l.33-.9v-.01L30.7 19.05a.46.46 0 0 0-.44-.63h-5.2a.9.9 0 0 0-.88.62l-9.64 26.42-2.55-1.47a.8.8 0 0 1-.37-.64v-22.7c0-.26.14-.5.37-.63L31.62 8.68q.17-.1.37-.1z"
-    />
-  ),
-  { fill: 'currentColor' },
 );

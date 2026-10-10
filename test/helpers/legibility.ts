@@ -15,10 +15,12 @@ import {
  *  - **Paints.** Every fill and stroke a rendered shape actually paints
  *    counts once: inherited fills, the initial black fill of shapes that set
  *    none, `<use>` references (a `<symbol>` in its own paint context), and
- *    gradient stops reached through `url(#…)` (following `href` templates).
+ *    gradients reached through `url(#…)` (following `href` templates).
  *    The weight is the paint's effective opacity times its colour's alpha,
- *    and a gradient splits it evenly across its stops; paints that end up
- *    fully transparent are dropped. Lines and outlines without area are
+ *    and a gradient splits it evenly across {@link GRADIENT_SAMPLES} colours
+ *    sampled along its ramp (interpolated between the stop offsets), so a
+ *    ramp from a pale stop to a dark one counts as partly of each tone, not
+ *    half and half; paints that end up fully transparent are dropped. Lines and outlines without area are
  *    never filled (their strokes count). Mask, clip path and gradient
  *    definitions are skipped: their black and white is coverage, not ink.
  *    Unsupported colour syntax throws, so new artwork cannot slip past the
@@ -30,6 +32,11 @@ import {
  *    when it blends in does the remaining "ink" have to carry the mark.
  *    Without this a blue disc behind six white facets would count as
  *    "mostly white", although the disc is what a light page shows.
+ *  - **Tones.** A colour is near-black or near-white when every channel is
+ *    beyond {@link DARK_MAX} / {@link LIGHT_MIN} (greys), or when its WCAG 2
+ *    contrast against black / white is below {@link MIN_CONTRAST}, which
+ *    also catches saturated pale colours (Blast's `#FCFC03`, 1.10:1 against
+ *    white) and deep ones (HTX's `#00003E`, 1.07:1 against black).
  *  - **Dominance.** A tone dominates when it is at least half of the paint
  *    weight measured: the threshold of the original issue #712 audit.
  *
@@ -47,9 +54,9 @@ export type Tone = 'dark' | 'light';
 
 /** Weighted paint shares; `dark + light ≤ 1`. */
 export interface ToneShares {
-  /** Share of paint weight with every channel below {@link DARK_MAX}. */
+  /** Share of paint weight that is near-black ({@link isNearBlack}). */
   readonly dark: number;
-  /** Share of paint weight with every channel above {@link LIGHT_MIN}. */
+  /** Share of paint weight that is near-white ({@link isNearWhite}). */
   readonly light: number;
   /** Total paint weight measured (0 when nothing paints). */
   readonly weight: number;
@@ -132,13 +139,43 @@ export function parseColor(value: string): Color {
   return { rgb: [red, green, blue], alpha: alpha / 255 };
 }
 
-/** Every channel below {@link DARK_MAX}: vanishes on a dark background. */
-export const isNearBlack = (rgb: Rgb): boolean =>
-  rgb.every(channel => channel < DARK_MAX);
+/**
+ * WCAG 2 contrast ratio below which a paint counts as the background's own
+ * tone even when its channels are not all near-black or near-white: a
+ * saturated pale yellow such as Blast's `#FCFC03` (1.10:1 against white) or
+ * a deep navy such as HTX's `#00003E` (1.07:1 against black) vanishes as
+ * surely as a grey does.
+ */
+export const MIN_CONTRAST = 1.5;
 
-/** Every channel above {@link LIGHT_MIN}: vanishes on a light background. */
+/** WCAG 2 relative luminance of an sRGB colour: 0 (black) … 1 (white). */
+export function relativeLuminance(rgb: Rgb): number {
+  const [red = 0, green = 0, blue = 0] = rgb.map(channel => {
+    const c = channel / 255;
+    return c <= 0.040_45 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+}
+
+/** WCAG 2 contrast ratio between two relative luminances (1 … 21). */
+export const contrastRatio = (a: number, b: number): number =>
+  (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+
+/**
+ * Vanishes on a dark background: every channel below {@link DARK_MAX}, or
+ * less than {@link MIN_CONTRAST} against black.
+ */
+export const isNearBlack = (rgb: Rgb): boolean =>
+  rgb.every(channel => channel < DARK_MAX) ||
+  contrastRatio(relativeLuminance(rgb), 0) < MIN_CONTRAST;
+
+/**
+ * Vanishes on a light background: every channel above {@link LIGHT_MIN}, or
+ * less than {@link MIN_CONTRAST} against white.
+ */
 export const isNearWhite = (rgb: Rgb): boolean =>
-  rgb.every(channel => channel > LIGHT_MIN);
+  rgb.every(channel => channel > LIGHT_MIN) ||
+  contrastRatio(relativeLuminance(rgb), 1) < MIN_CONTRAST;
 
 // --- Geometry: just enough to find a container's extent ---------------------
 
@@ -601,11 +638,13 @@ class Painter {
     if (server.tag !== 'linearGradient' && server.tag !== 'radialGradient') {
       throw new Error(`unsupported paint server <${server.tag}>`);
     }
-    const stops = this.stops(server);
-    return stops.map(stop => {
-      const { rgb, alpha } = parseColor(getAttr(stop, 'stop-color') ?? 'black');
-      const opacity = opacityOf(stop, 'stop-opacity') * alpha;
-      return { rgb, weight: (weight * opacity) / stops.length };
+    const stops = rampStops(this.stops(server));
+    if (stops.length === 0) {
+      return [];
+    }
+    return Array.from({ length: GRADIENT_SAMPLES }, (_, i) => {
+      const { rgb, alpha } = rampAt(stops, (i + 0.5) / GRADIENT_SAMPLES);
+      return { rgb, weight: (weight * alpha) / GRADIENT_SAMPLES };
     });
   }
 
@@ -687,6 +726,56 @@ class Painter {
       this.layers.push({ colors: stroke, span: 0 });
     }
   }
+}
+
+/** Evenly spaced samples a gradient paint is split into. */
+const GRADIENT_SAMPLES = 16;
+
+/** A gradient stop: its colour, its alpha times `stop-opacity`, its offset. */
+interface RampStop extends Color {
+  readonly offset: number;
+}
+
+/**
+ * The stops of a gradient in ramp order: a missing `offset` is 0, and an
+ * offset below the one before it is raised to that one (SVG 1.1, 13.2.4).
+ */
+function rampStops(stops: readonly XmlNode[]): RampStop[] {
+  let previous = 0;
+  return stops.map(stop => {
+    const { rgb, alpha } = parseColor(getAttr(stop, 'stop-color') ?? 'black');
+    previous = Math.max(previous, opacityOf(stop, 'offset', 0));
+    return {
+      rgb,
+      alpha: alpha * opacityOf(stop, 'stop-opacity'),
+      offset: previous,
+    };
+  });
+}
+
+/**
+ * The colour of a gradient ramp at `t` (0…1): interpolated in sRGB between
+ * the stops around it, and the first or last stop's colour outside them
+ * (the default `spreadMethod="pad"`).
+ */
+function rampAt(stops: readonly RampStop[], t: number): Color {
+  const next = stops.findIndex(stop => stop.offset >= t);
+  const to = stops.at(next === -1 ? -1 : next);
+  const from = next > 0 ? stops[next - 1] : to;
+  if (from === undefined || to === undefined) {
+    throw new Error('gradient without stops');
+  }
+  const span = to.offset - from.offset;
+  const f = span > 0 ? (t - from.offset) / span : 1;
+  const mix = (a: number, b: number): number => a + (b - a) * f;
+  return {
+    rgb: [
+      mix(from.rgb[0], to.rgb[0]),
+      mix(from.rgb[1], to.rgb[1]),
+      mix(from.rgb[2], to.rgb[2]),
+    ],
+    alpha: mix(from.alpha, to.alpha),
+  };
 }
 
 /** The paint state of `node`, inheriting from its parent's. */

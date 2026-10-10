@@ -16,7 +16,7 @@ const icons: readonly (readonly [label: string, source: string])[] = [
   ['Ethereum', 'chain/ethereum'],
   ['Bitcoin', 'chain/bitcoin'],
   ['Solana', 'chain/solana'],
-  ['BNB', 'coin/bnb'],
+  ['BNB', 'chain/bnb-smart-chain'],
   ['Polygon', 'chain/polygon'],
   ['Avalanche', 'chain/avalanche'],
   ['Arbitrum', 'chain/arbitrum'],

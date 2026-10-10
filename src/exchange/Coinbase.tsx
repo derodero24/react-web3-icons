@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://coinbase.com (official brand)
+// Source: https://www.coinbase.com (official site; walled, see notes)
+// Source: https://github.com/coinbase/onchainkit/blob/3ecbd8fd28bf65002a4ad97092bfd0b157310e22/packages/onchainkit/src/internal/svg/coinbaseLogoSvg.tsx (official Coinbase repository, a UI copy of the C)
+// Not verified (checked 2026-10-09): coinbase.com and coinbase.com/press answer automated requests with 403, so the brand kit could not be read. The official onchainkit UI icon coinbaseLogoSvg.tsx draws the same C in the same #0052FF with the same opening, but 5% narrower (a UI copy, aspect 0.95), so it corroborates the colour and structure only. The artwork, which predates the source policy, is unchanged
 /** Coinbase Circle exchange icon (colored). */
 export const CoinbaseCircle = /* @__PURE__ */ createIcon(
   'CoinbaseCircle',

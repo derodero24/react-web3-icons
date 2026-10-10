@@ -1,0 +1,37 @@
+name: Source links
+
+# Monthly report of icon `source` URLs that are gone (404 / 410), moved to
+# another site, serving a web page in place of the cited file, or failing
+# (scripts/check-sources.ts). Report only: the job summary lists the findings
+# and the job stays green, because brand sites change on their own schedule
+# and many wall off bots (403 / 429).
+on:
+  schedule:
+    - cron: '23 5 1 * *'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Check icon source URLs
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # The script uses Node built-ins only: no dependency install needed.
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24.x'
+
+      - name: Check source URLs
+        run: node scripts/check-sources.ts

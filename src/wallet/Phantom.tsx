@@ -3,10 +3,11 @@ import { createIcon } from '../utils';
 // Source: https://sanity-proxy-v2.phantom.app/files/3nm6d03a/production/5e73f0ad2d621b5ed6ca3c66aad2b70686f8a00e.zip (official Phantom press kit, Nov 2024: Phantom Logomark/Phantom-Icon-Purple.svg, Phantom-Icon-Black.svg, Phantom App Icon/phantom-app-icon-drkprpl.svg)
 // Source: https://phantom.com/_web_platform_assets/favicon.svg
 // Default: the press kit's Phantom-Icon-Purple.svg ghost (#AB9FF2, the colour phantom.com's favicon.svg uses), placed on the 64 grid
-// Mono and SymbolMono: the press kit's single-colour Phantom-Icon-Black.svg ghost in currentColor (the eyes are holes); the default is now the standalone ghost, so SymbolMono has the same artwork as Mono and is kept for compatibility
+// Mono: the press kit's single-colour Phantom-Icon-Black.svg ghost in currentColor (the eyes are holes)
 // Square: the press kit's phantom-app-icon-drkprpl.svg (rounded square #9886E5, rx 74.39 of 309, with the #FFFDF8 ghost), scaled 64/309
 // Circle: no official circular asset; plain container composition of the app icon: the same #9886E5 background as a circle r=32 with the app icon's #FFFDF8 ghost at the same scale and position
 // CircleMono / SquareMono: the container in currentColor with the app icon's ghost knocked out by a mask (the eyes stay ink, as in the app icon)
+// PhantomSymbolMono: deprecated alias of PhantomMono. Since the default became the standalone ghost, SymbolMono rendered the same artwork as Mono
 /** Phantom wallet icon (colored). */
 export const Phantom = /* @__PURE__ */ createIcon(
   'Phantom',
@@ -110,12 +111,5 @@ export const PhantomSquareMono = /* @__PURE__ */ createIcon(
   { fill: 'currentColor', ids: true },
 );
 
-/** Phantom Symbol wallet icon (monochrome). */
-export const PhantomSymbolMono = /* @__PURE__ */ createIcon(
-  'PhantomSymbolMono',
-  '0 0 64 64',
-  () => (
-    <path d="M10.63 55.31c7.14 0 12.51-6.21 15.71-11.12q-.6 1.64-.6 3.21c0 2.87 1.64 4.91 4.9 4.91 4.45 0 9.21-3.9 11.68-8.12q-.26.9-.26 1.7c0 2 1.13 3.25 3.42 3.25C52.72 49.14 60 36.32 60 25.11c0-8.73-4.42-16.42-15.5-16.42C25 8.69 4 32.5 4 47.89c0 6.03 3.25 7.42 6.63 7.42m27.15-31.15c0-2.18 1.2-3.7 2.98-3.7 1.74 0 2.95 1.52 2.95 3.7 0 2.17-1.21 3.73-2.95 3.73-1.77 0-2.98-1.56-2.98-3.73m9.26 0c0-2.18 1.22-3.7 3-3.7 1.72 0 2.94 1.52 2.94 3.7 0 2.17-1.22 3.73-2.95 3.73-1.77 0-2.99-1.56-2.99-3.73" />
-  ),
-  { fill: 'currentColor' },
-);
+/** @deprecated Phantom's default is the standalone ghost, so SymbolMono is the same artwork as Mono — use `PhantomMono` instead. */
+export const PhantomSymbolMono = PhantomMono;

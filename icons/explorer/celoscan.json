@@ -5,24 +5,28 @@
   ],
   "notes": [
     "Celoscan uses the Celo \"C\" mark, a square path forming an open C shape",
-    "Default and Square: the official chain-light.svg as is (#FCFF52 tile with the black C), without its no-op clip path; the old default was the C alone in the pre-2023 Celo green #35D07F",
-    "Mono and SquareMono: the tile in currentColor with the C knocked out"
+    "Default: the official chain-light.svg as is (#FCFF52 tile with the black C), without its no-op clip path; the old default was the C alone in the pre-2023 Celo green #35D07F",
+    "Mono: the tile in currentColor with the C knocked out",
+    "CeloscanSquare / CeloscanSquareMono: aliases of Celoscan / CeloscanMono. The official mark is already the square tile, so the Square variants render it instead of keeping a second copy of the same file"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "celoscan.svg"
     },
-    "Square": {
-      "file": "celoscan.square.svg"
-    },
     "Mono": {
       "file": "celoscan.mono.svg",
       "fill": "currentColor"
-    },
-    "SquareMono": {
-      "file": "celoscan.square-mono.svg",
-      "fill": "currentColor"
     }
-  }
+  },
+  "localAliases": [
+    {
+      "name": "CeloscanSquare",
+      "target": "Celoscan"
+    },
+    {
+      "name": "CeloscanSquareMono",
+      "target": "CeloscanMono"
+    }
+  ]
 }

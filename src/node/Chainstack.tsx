@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://chainstack.com (official brand)
+// Source: https://chainstack.com/wp-content/themes/chainstack/img/chainstack-logo-blue.svg (the logomark download on https://chainstack.com/press-kit/)
+// Source: https://chainstack.com/wp-content/themes/chainstack/img/Chainstack-Branding-and-Presskit-2023.zip (press kit: Logo/SVG/Chainstack-Mark-Blue.svg, Logo/SVG/Chainstack-Mark-White.svg)
+// Default: the press-kit logomark chainstack-logo-blue.svg, its two #007BFF paths unchanged, placed on the 64 grid; the zip's Chainstack-Mark-Blue.svg is a lower-precision export of the same mark
+// Mono: the same paths in currentColor, as in the one-colour chainstack-logo-white.svg on the press-kit page
 /** Chainstack node icon (colored). */
 export const Chainstack = /* @__PURE__ */ createIcon(
   'Chainstack',

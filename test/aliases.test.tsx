@@ -5,6 +5,14 @@ import { describe, expect, it } from 'vitest';
 import {
   Aptos,
   AptosMono,
+  ArbitrumNova,
+  ArbitrumNovaFlat,
+  ArbitrumNovaFlatMono,
+  ArbitrumNovaMono,
+  ArbitrumOne,
+  ArbitrumOneFlat,
+  ArbitrumOneFlatMono,
+  ArbitrumOneMono,
   Argent,
   ArgentMono,
   Backpack,
@@ -25,6 +33,10 @@ import {
   BtcCircle,
   BtcCircleMono,
   BtcMono,
+  Celoscan,
+  CeloscanMono,
+  CeloscanSquare,
+  CeloscanSquareMono,
   Chainlink,
   ChainlinkMono,
   Daedalus,
@@ -60,6 +72,7 @@ import {
   OkxWallet,
   OkxWalletMono,
   Phantom,
+  PhantomMono,
   PhantomSymbolMono,
   PhantomWallet,
   PhantomWalletSymbolMono,
@@ -78,9 +91,12 @@ import {
   SolCircleMono,
   SolMono,
   StarkNet,
+  StarkNetCircle,
   StarkNetCircleMono,
   Starknet,
+  StarknetCircle,
   StarknetCircleMono,
+  StarknetMono,
   Stellar,
   StellarMono,
   Tron,
@@ -215,9 +231,9 @@ const aliasPairs = [
   // v5 renames: the deprecated names render their replacement (#815)
   ['PhantomWallet → Phantom', PhantomWallet, Phantom],
   [
-    'PhantomWalletSymbolMono → PhantomSymbolMono',
+    'PhantomWalletSymbolMono → PhantomMono',
     PhantomWalletSymbolMono,
-    PhantomSymbolMono,
+    PhantomMono,
   ],
   ['RainbowWallet → Rainbow', RainbowWallet, Rainbow],
   ['RainbowWalletSymbol → RainbowSymbol', RainbowWalletSymbol, RainbowSymbol],
@@ -236,6 +252,14 @@ const aliasPairs = [
     StarkNetCircleMono,
     StarknetCircleMono,
   ],
+  // Variants whose official artwork is the default itself: one file, one
+  // component (no second copy of the same SVG).
+  ['StarknetCircle → Starknet', StarknetCircle, Starknet],
+  ['StarknetCircleMono → StarknetMono', StarknetCircleMono, StarknetMono],
+  ['StarkNetCircle → Starknet', StarkNetCircle, Starknet],
+  ['CeloscanSquare → Celoscan', CeloscanSquare, Celoscan],
+  ['CeloscanSquareMono → CeloscanMono', CeloscanSquareMono, CeloscanMono],
+  ['PhantomSymbolMono → PhantomMono', PhantomSymbolMono, PhantomMono],
   ['BinanceSmartChain → BnbSmartChain', BinanceSmartChain, BnbSmartChain],
   [
     'BinanceSmartChainSquare → BnbSmartChainSquare',
@@ -244,6 +268,19 @@ const aliasPairs = [
   ],
   ['Mkr → MakerDao', Mkr, MakerDao],
   ['MkrMono → MakerDaoMono', MkrMono, MakerDaoMono],
+  // Single-colour current marks: Flat is the default artwork (#835)
+  ['ArbitrumOneFlat → ArbitrumOne', ArbitrumOneFlat, ArbitrumOne],
+  [
+    'ArbitrumOneFlatMono → ArbitrumOneMono',
+    ArbitrumOneFlatMono,
+    ArbitrumOneMono,
+  ],
+  ['ArbitrumNovaFlat → ArbitrumNova', ArbitrumNovaFlat, ArbitrumNova],
+  [
+    'ArbitrumNovaFlatMono → ArbitrumNovaMono',
+    ArbitrumNovaFlatMono,
+    ArbitrumNovaMono,
+  ],
 ] as const;
 
 describe('Icon aliases', () => {

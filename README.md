@@ -96,9 +96,9 @@ Every icon has a `Mono` variant that uses `currentColor`, making it easy to matc
 
 ### Dark Backgrounds and Theming
 
-Colored icons reproduce the official brand artwork, and some brand marks are black (Aptos, LayerZero, Ledger, …) or nearly white, so they disappear on a background of the same tone. Pick the variant by how much brand color you need:
+Colored icons reproduce the official brand artwork, and some brand marks are black (Aptos, LayerZero, Ledger, …), nearly white, or a pale color that barely contrasts with white (Blast, Celo, Hyperliquid, Mode, QuickNode, Nansen, …), so they disappear on a background of the same tone. Pick the variant by how much brand color you need:
 
-- **`Mono` + CSS `color`** — one color that follows your theme via `currentColor`. For black-only marks this is exactly the brand's reversed logo, so `<AptosMono />` in white is the dark-mode Aptos.
+- **`Mono` + CSS `color`** — one color that follows your theme via `currentColor`. For black-only marks this is exactly the brand's reversed logo, so `<AptosMono />` in white is the dark-mode Aptos; for a pale mark on a light page, `<HyperliquidMono />` in a dark color keeps the whole mark.
 - **`Circle` / `Square`** — the mark on its brand background (`EthereumCircle`, `ArbitrumSquare`), legible on any page color.
 - **`Inverted`** — brand colors reworked for dark backgrounds (`BybitInverted`, `EtherscanInverted`).
 
@@ -318,11 +318,11 @@ The `variant` prop selects the artwork: `'colored'` (the default), `'mono'`, or 
 
 | Component | Variant type | Values besides `'colored'` and `'mono'` |
 | --- | --- | --- |
-| `ChainIcon` | `ChainVariant` | `'Circle'`, `'CircleMono'`, `'Flat'`, `'FlatMono'`, `'Square'`, `'SquareMono'` |
+| `ChainIcon` | `ChainVariant` | `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'` |
 | `CoinIcon` | `CoinVariant` | `'Alt'`, `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'` |
 | `WalletIcon` | `WalletVariant` | `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'`, `'Symbol'`, `'SymbolMono'` |
 | `ExchangeIcon` | `ExchangeVariant` | `'Circle'`, `'CircleAlt'`, `'CircleMono'`, `'Inverted'`, `'Square'`, `'SquareMono'` |
-| `DexIcon` | `DexVariant` | `'Circle'`, `'CircleMono'`, `'Square'`, `'SquareMono'` |
+| `DexIcon` | `DexVariant` | `'Circle'`, `'CircleMono'`, `'Inverted'`, `'Square'`, `'SquareMono'` |
 | `BridgeIcon` | `BridgeVariant` | `'Inverted'` |
 | `DefiIcon` | `DefiVariant` | `'Circle'`, `'CircleMono'` |
 | `OracleIcon` | `OracleVariant` | — |

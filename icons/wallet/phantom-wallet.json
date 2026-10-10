@@ -9,8 +9,7 @@
       "PhantomCircleMono",
       "PhantomMono",
       "PhantomSquare",
-      "PhantomSquareMono",
-      "PhantomSymbolMono"
+      "PhantomSquareMono"
     ],
     "exports": [
       {
@@ -45,8 +44,8 @@
       },
       {
         "name": "PhantomWalletSymbolMono",
-        "target": "PhantomSymbolMono",
-        "deprecated": "Use `PhantomSymbolMono` instead."
+        "target": "PhantomMono",
+        "deprecated": "Use `PhantomMono` instead (Phantom's SymbolMono is the same artwork as Mono)."
       }
     ]
   }

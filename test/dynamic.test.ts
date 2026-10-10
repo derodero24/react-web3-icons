@@ -88,6 +88,7 @@ describe('resolveChain', () => {
     expect(resolveChain({ chainId: 1 })).toBe('Ethereum');
     expect(resolveChain({ chainId: 42_161 })).toBe('Arbitrum');
     expect(resolveChain({ chainId: 42_170 })).toBe('ArbitrumNova');
+    expect(resolveChain({ chainId: 1514 })).toBe('DataNetwork');
   });
 
   it('resolves by slug', () => {
@@ -127,6 +128,13 @@ describe('category lookups', () => {
     // v5 renames (#815): the old keys resolve to the new icons.
     [resolveTicker, 'MKR', 'Sky'],
     [resolveTicker, 'GRAM', 'Gram'],
+    // DATA Network (formerly Story, #706) and FDUSD (#708).
+    [resolveTicker, 'DATA', 'Data'],
+    [resolveTicker, 'IP', 'Data'],
+    [resolveTicker, 'FDUSD', 'Fdusd'],
+    [resolveChainSlug, 'data-network', 'DataNetwork'],
+    [resolveChainSlug, 'data', 'DataNetwork'],
+    [resolveChainSlug, 'story', 'DataNetwork'],
     [resolveDefiSlug, 'makerdao', 'Sky'],
     [resolveDexSlug, 'paraswap', 'Velora'],
     [resolveChainSlug, 'bsc', 'BnbSmartChain'],
@@ -180,8 +188,9 @@ describe('wallet connector ids', () => {
     ['subWallet', 'SubWallet'],
     ['argentX', 'Ready'],
     ['polkadot-js', 'PolkadotJs'],
-    // Nami was folded into Lace; its deprecated icon has no lookup keys.
-    ['nami', undefined],
+    // Nami was folded into Lace (Nami mode); its keys moved to Lace.
+    ['nami', 'Lace'],
+    ['namiwallet', 'Lace'],
     ['lace', 'Lace'],
     ['yoroi', 'Yoroi'],
     ['daedalus', 'Daedalus'],

@@ -1,7 +1,12 @@
 {
   "name": "PancakeSwap",
   "source": [
-    "https://pancakeswap.finance"
+    "https://github.com/pancakeswap/pancake-document/blob/2417556992ef57834a287369dffad7b5293c31fc/.gitbook/assets/PancakeSwap%20Logos.zip (official brand kit: Full Logo/bunny-color.svg)",
+    "https://docs.pancakeswap.finance/welcome-to-pancakeswap/about-us/brand (official Brand & Logos page, which links the kit)"
+  ],
+  "notes": [
+    "Default: matches the kit's bunny-color.svg (alpha IoU 0.99, checked 2026-10-09), so the paths are unchanged",
+    "Mono: the bunny silhouette in currentColor with the eyes and the cream rim knocked out (the kit's own one-colour bunny-mono is PNG only)"
   ],
   "kind": "icon",
   "variants": {

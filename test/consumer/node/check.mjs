@@ -1,7 +1,7 @@
 // Loads every entry of the installed package's `exports` map the way a Node
 // consumer would: `import` for all of them, and `require` too where Node
 // supports require(esm). Run after installing the packed tarball here.
-import { existsSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import pkg from 'react-web3-icons/package.json' with { type: 'json' };
@@ -86,6 +86,47 @@ expect(
   `missing SVG files: ${missingSvgs.join(', ')}`,
 );
 process.stdout.write(`ok ${manifest.length} SVG subpaths\n`);
+
+// tsdown emits each module on its own (`unbundle`), which keeps a source
+// module's 'use client' directive at the top of its output; the build silences
+// rolldown's warning that the directive may not survive bundling
+// (tsdown.config.ts), so check every client module of this checkout's src/
+// here. The list comes from the source, so a new client module is covered
+// without touching this file.
+const SRC = new URL('../../../src/', import.meta.url);
+const DIST = new URL('dist/', import.meta.resolve(`${pkg.name}/package.json`));
+const USE_CLIENT = /^(['"])use client\1/;
+// Strips a leading BOM, whitespace and comments: a directive may follow them.
+const LEADING_TRIVIA = /^(?:\uFEFF|\s|\/\/[^\n]*|\/\*[\s\S]*?\*\/)+/;
+
+function sourceModules(dir) {
+  return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
+    if (entry.isDirectory()) {
+      return sourceModules(new URL(`${entry.name}/`, dir));
+    }
+    return /\.tsx?$/.test(entry.name) && !entry.name.endsWith('.d.ts')
+      ? [new URL(entry.name, dir)]
+      : [];
+  });
+}
+
+const clientModules = sourceModules(SRC)
+  .filter(url =>
+    USE_CLIENT.test(readFileSync(url, 'utf8').replace(LEADING_TRIVIA, '')),
+  )
+  .map(url => url.href.slice(SRC.href.length).replace(/\.tsx?$/, '.mjs'));
+expect(clientModules.length > 0, `no 'use client' module found in ${SRC}`);
+for (const file of clientModules) {
+  const url = new URL(file, DIST);
+  expect(existsSync(url), `dist/${file} is missing`);
+  expect(
+    readFileSync(url, 'utf8').startsWith('"use client";'),
+    `dist/${file} does not start with the "use client" directive`,
+  );
+}
+process.stdout.write(
+  `ok "use client" in ${clientModules.map(file => `dist/${file}`).join(', ')}\n`,
+);
 
 const { Ethereum } = await import(pkg.name);
 expect(

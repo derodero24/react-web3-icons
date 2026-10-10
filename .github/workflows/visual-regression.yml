@@ -158,8 +158,10 @@ jobs:
           # Build to make the dist available for the node script
           pnpm build --silent
           # Icons without a base-commit screenshot are new in this PR. The
-          # pattern is anchored to the full test name ("<describe> <icon>")
-          # so a new `Base` does not re-baseline `Basescan*`.
+          # pattern is anchored to the full test name ("<describe> > <icon>"
+          # since vitest 5; the optional "> " also matches vitest 4's
+          # "<describe> <icon>") so a new `Base` does not re-baseline
+          # `Basescan*`.
           NEW_ICONS_PATTERN=$(node --input-type=module <<'EOF'
           import { existsSync } from 'node:fs';
           import * as icons from './dist/index.mjs';
@@ -171,7 +173,7 @@ jobs:
             .filter(name => !existsSync(`${dir}/${name}.png`));
           if (newIcons.length > 0) {
             const escaped = newIcons.map(n => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-            process.stdout.write(`^Icon visual regression (${escaped.join('|')})$`);
+            process.stdout.write(`^Icon visual regression (?:> )?(${escaped.join('|')})$`);
           }
           EOF
           )
@@ -184,10 +186,17 @@ jobs:
         if: github.event_name == 'pull_request' && env.BASELINE_UPDATE != 'true'
         run: pnpm test:visual
 
+      # toMatchScreenshot writes the -actual and -diff images of a mismatch
+      # to vitest's attachments directory (.vitest/attachments/), not next
+      # to the references. include-hidden-files keeps upload-artifact from
+      # skipping anything under the dot-directory.
       - name: Upload screenshot diffs on failure
         if: failure()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: visual-regression-diffs
-          path: test/visual/__screenshots__
+          path: |
+            test/visual/__screenshots__
+            .vitest/attachments
+          include-hidden-files: true
           retention-days: 30

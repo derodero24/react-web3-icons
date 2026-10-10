@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://coinledger.io
+// Source: https://coinledger.io/press (official press page: Brand Assets, Logos download)
+// Source: https://drive.google.com/uc?export=download&id=1YUa0NjcwS6weG4RhH2oQVPj2lVvBoCB5 (Logos zip linked from coinledger.io/press)
+// Default: the kit's CoinLedger Logo/Blue/Type=Icon Only, Color=Blue, Formerly text=No.svg (#00C2FF), uniformly scaled onto the 64 grid (silhouette IoU 0.993)
+// Mono: the Default path in currentColor; the kit's Black/Type=Icon Only, Color=Black, Formerly text=No.svg (#001A38) is the same mark, exported about 0.9 units lower and clipped by its 132×132 frame
 /** Coin Ledger portfolio icon (colored). */
 export const CoinLedger = /* @__PURE__ */ createIcon(
   'CoinLedger',

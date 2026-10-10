@@ -22,7 +22,7 @@ Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The bas
 | `Alt` | Alternative color scheme or design | `LooksAlt` |
 | `Inverted` | Inverted color scheme for contrast on dark backgrounds | `EtherscanInverted` |
 | `Light` | _(deprecated)_ Legacy lighter variant; only `BlastscanLight` remains active. Prefer `Inverted` for new icons. | `BlastscanLight` |
-| `Flat` | Single brand color, no internal color variation | `ArbitrumOneFlat` |
+| `Flat` | Single brand color, no internal color variation | `LooksRareFlat` |
 | `Symbol` | Standalone symbol without container (when base has one) | `RainbowSymbol` |
 | `SymbolMono` | Monochrome standalone symbol without container | `OpenSeaSymbolMono` |
 
@@ -72,6 +72,17 @@ that swapping colored → mono changes only the coloring, never the impression:
    simplify it rather than delete it.
 4. **Verify both polarities**: check the mono on white *and* on a dark
    background (`color` set to a light value) before submitting.
+5. **The brand's own one-colour mark comes first**: when the brand publishes
+   a one-colour (white, black or single-ink) version of the same mark the
+   colored variant shows, the mono is that asset in `currentColor`, even
+   where it departs from rules 1–3: an outline where the colored mark has a
+   filled body, a detail left out, or the asset's own opacity tiers. The
+   unit's `notes` name the file. Examples: `ArbitrumMono` and `ArbiscanMono`
+   (the Arbitrum brand kit's `AllWhite_Logos_Logomark_RGB.svg`, an outline
+   hexagon whose navy body is left open), `CoinGeckoMono`
+   (`CG-Symbol-2.svg`), `ConvexMono` (`convex-white.svg`) and `SynapseMono`
+   (`synapse-mark-black.svg`, with its 0.5 opacity). A one-colour asset of a
+   different mark does not count; without one, derive the mono by rules 1–3.
 
 `node scripts/audit-mono.ts` rasterizes every colored/mono pair and reports
 outliers — run it after adding or reworking mono artwork. Besides silhouette

@@ -39,7 +39,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ['22.x', '24.x']
+        node: ['22.x', '24.x', '26.x']
 
     steps:
       - name: Checkout repo
@@ -76,6 +76,41 @@ jobs:
 
       - name: Build
         run: pnpm run build
+
+  # The contributor Node range (devEngines.runtime and the `prepare` check in
+  # package.json) is the intersection of the toolchain's own `engines`, which
+  # engine-strict enforces. The build job only runs the latest release of the
+  # Node lines it covers, so installing on the exact lower bound of each line
+  # of that range catches a dependency update (Renovate automerges minors)
+  # that raises its floor above ours. Keep one entry per lower bound.
+  node-floor:
+    name: Install on Node ${{ matrix.node }} (lower bound)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22.22.2', '24.15.0', '26.0.0']
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+
+      # Fails on any dependency whose `engines` excludes this version
+      # (engine-strict), and on a `prepare` check that disagrees with it.
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
 
   build-example:
     name: Build example app

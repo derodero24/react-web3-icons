@@ -1,8 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://across.to (official site logomark)
-// Paths sourced from across.to — the circular logomark
-// X-shaped crossing path (dark foreground)
+// Source: https://across.to (the round Across icon inlined on the site next to "Across V4": a #6CF9D8 disc with the #2D2E33 X)
+// Default: that inline icon, its disc and X path unchanged, scaled 16 -> 64
+// Mono: the disc in currentColor with the X knocked out (mask), the same silhouette as the default
+// Not used: the across.to header logo draws the logomark in one colour with longer, heavier X arms beside the wordmark, and https://across.to/favicon.svg puts a third drawing of the X on a #6CF9D8 square. No brand kit was found on across.to
 /** Across bridge icon (colored). */
 export const Across = /* @__PURE__ */ createIcon(
   'Across',

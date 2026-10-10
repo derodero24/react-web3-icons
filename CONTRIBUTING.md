@@ -15,16 +15,20 @@ pnpm install
 
 ### Prerequisites
 
-- **Node.js** `^22.18.0 || >=24.11.0`, as declared in `devEngines.runtime` in package.json. `.nvmrc` selects Node 24.
+- **Node.js** `^22.22.2 || ^24.15.0 || >=26.0.0`, as declared in `devEngines.runtime` in package.json. `.nvmrc` selects Node 24.
 - **pnpm** 10.x (`packageManager` in package.json pins the exact version)
 
 This is a contributor requirement only: the published package has no Node.js
 requirement (see the README's install section).
 
 Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/activates the required Node version if missing).
-`pnpm install` fails fast on unsupported Node versions: the `prepare` script checks the range above (the scripts under
-`scripts/` run through Node's built-in TypeScript type stripping), and `engine-strict=true` in `.npmrc` enforces the
-toolchain dependencies' own `engines`.
+`pnpm install` fails fast on unsupported Node versions: `engine-strict=true` in `.npmrc` enforces the toolchain
+dependencies' own `engines`, and the `prepare` script checks the range above. The range is the intersection of those
+`engines`: when a dependency raises its floor, raise it in `devEngines`, the `prepare` check, this section and the
+`node-floor` job in `.github/workflows/main.yml` together (that job installs on the exact lower bounds).
+
+`@types/node` stays on the lowest supported Node major (22), so `pnpm run typecheck` rejects Node APIs that the oldest
+supported runtime lacks. A rule in `renovate.json` keeps it there; raise both together with the `devEngines` floor.
 
 ### Useful Commands
 
@@ -41,7 +45,7 @@ toolchain dependencies' own `engines`.
 | `pnpm run build` | Build `dist/` (JS, types, static SVGs, Iconify JSON, `manifest.json`) |
 | `pnpm run start` | Rebuild the library on change (`tsdown --watch`) |
 | `pnpm run size` | Check the bundle-size budgets (needs a fresh `pnpm run build`) |
-| `pnpm run analyze` | Show what makes up each size-limit entry |
+| `pnpm run analyze` | Show what makes up each size-limit entry (writes `esbuild-why-*.html` to the repo root and opens them; needs a fresh build) |
 | `pnpm run new-icon` | Scaffold a new icon unit from an SVG |
 | `pnpm run generate-icons` | Regenerate `src/` (icons, dynamic import maps, meta, deprecated set, manifest) and `icons/schema.json` from `icons/` (`--check`: verify only) |
 | `pnpm run showcase` | Re-render `image/icons.png`, the README's icon overview, from `icons/` |
@@ -67,8 +71,10 @@ scripts/
   new-icon.ts     # Scaffolds a unit (pnpm run new-icon)
   audit-mono.ts   # Mono-vs-colored quality audit
   check-svgo.ts   # Lists SVGs SVGO would still change
+  check-sources.ts  # Reports dead or moved `source` URLs (monthly workflow)
   render-showcase.ts  # Renders image/icons.png (pnpm run showcase)
   size-report.ts  # Renders the size-limit PR comment
+  changelog.ts    # Changelog generator for `changeset version` (.changeset/config.json)
 test/             # Vitest suites; visual/ (Playwright screenshots), consumer/ (packed-tarball fixtures for CI)
 example/          # Next.js demo site (react-web3-icons.vercel.app), builds from src/
 examples/
@@ -156,7 +162,10 @@ icons/chain/ethereum.json         # metadata:
 - The manifest's `brandColor` is derived from the colored default artwork:
   the most frequent fill/stroke/stop-color that is not neutral (greys,
   near-black, near-white); a neutral is used only when the artwork has no
-  other colour. When that still misses the brand (e.g. a near-black logomark
+  other colour, and artwork whose shapes have no `fill` at all renders, and
+  counts, as SVG's default black. A unit whose default export re-exports
+  another icon (`Ldo` → `Lido`) takes that icon's colour. Every base entry
+  of the manifest has one. When that still misses the brand (e.g. a near-black logomark
   whose brand accent is a colour), set `"brandColor": "#rrggbb"` from the
   official palette and cite it in `notes` (see `icons/oracle/pyth.json`).
   Genuinely black-and-white marks (Aptos, Hedera) keep their neutral colour.
@@ -266,6 +275,14 @@ Ticker aliases and deprecated renames are JSON-only units:
 Deprecated aliases use `"kind": "alias"` with an `aliasConst` block so the
 generator emits `/** @deprecated … */ export const Old = New;` (see
 `icons/wallet/argent.json` for a real example).
+
+A variant whose official artwork is another variant's (a token mark that is
+already a disc, an app icon that is already the default) is a
+`localAliases` entry of its unit, not a second SVG file:
+`{ "name": "UsdcCircle", "target": "Usdc" }` (add `"deprecated"` when the
+name should go). `test/duplicate-artwork.test.ts` fails when two SVG files
+under `icons/` draw the same artwork (ignoring id names, attribute order and
+where `<defs>` sit), unless the pair is listed there with its reason.
 
 ### Regenerating
 
@@ -431,8 +448,9 @@ unit without the required attribution (and the generated TSX without its
 regenerating.
 
 This runs SVGO with the bundled configuration (removes metadata, strips fixed
-dimensions, keeps brand colors, ids, and multi-colored paths), normalizes the
-root element, puts the artwork on the 64×64 grid following the
+dimensions, moves `fill`, `stroke` and other presentation properties out of
+`style` into attributes, keeps brand colors, ids, and multi-colored paths),
+normalizes the root element, puts the artwork on the 64×64 grid following the
 [optical-size rule](#optical-size) (this step launches Chromium through
 Playwright), writes `icons/<category>/<slug>.svg` (+ `.mono.svg`) and
 `<slug>.json`, and regenerates `src/`. Follow the printed next steps
@@ -515,17 +533,26 @@ Key points:
 #### Dark / light background legibility
 
 `test/legibility.test.ts` flags colored default artwork that mostly vanishes
-on a dark background (near-black paint, every channel below 60) or a light
-one (near-white, every channel above 195). A flagged icon needs one of:
+on a dark background (near-black paint: every channel below 60, or less than
+1.5:1 WCAG contrast against black, like a deep navy) or a light one
+(near-white: every channel above 195, or less than 1.5:1 against white, like
+Blast's pale yellow `#FCFC03`). Gradients count by the colours sampled along
+their ramp. A flagged icon needs one of:
 
-- an official colored `Circle*` / `Square*` / `Inverted*` variant that is
-  not itself flagged;
-- nothing more when the mark has no colour besides black (or white) and its
-  `Mono` variant has the same geometry, since `Mono` in a contrasting `color`
-  is then the brand's reversed mark;
+- an official colored `Circle*` / `Square*` / `Inverted*` variant (or the
+  legacy `BlastscanLight`) that is not itself flagged;
+- nothing more when the mark is painted in that one tone only (black, white,
+  or one pale or deep colour) and its `Mono` variant has the same geometry:
+  `Mono` in a contrasting `color` then shows the whole mark, and for a black
+  mark it is the brand's reversed mark;
 - otherwise an entry in that test's `EXEMPTIONS`, with the reason checked by
   the test (another legible colored variant, or the official sources that
   were searched without finding an alternative).
+
+When an official legible variant exists but is still to be added, record it,
+with the file it comes from, in that test's `PENDING`: the report names it
+and the entry fails once it lands. A pending entry is a note, not one of the
+options above.
 
 Never recolour a brand mark to pass the audit unless the brand's guidelines
 show that version; cite them in `source`. The audit's measure (per-paint
