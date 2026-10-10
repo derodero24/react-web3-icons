@@ -4,11 +4,12 @@
  *
  * Content of a `<mask>` or `<pattern>` inherits `fill` from the ancestors of
  * that element, not from the shape that references it. Inside a React icon
- * those ancestors end at the icon's `<svg>`, whose `fill` is a prop
- * (`<HardhatMono fill="#fff" />` would paint white cut-outs, which a
- * luminance mask then shows instead of hiding). So every such element whose
- * content would inherit `fill` gets the value the content inherits in the
- * standalone source file, and the rendering no longer depends on the host.
+ * those ancestors end at the icon's `<svg>`, whose `fill` is a prop (with
+ * `fill="#fff"` on the icon, a cut-out without a fill of its own would
+ * paint white, which a luminance mask then shows instead of hiding). So
+ * every such element whose content would inherit `fill` gets the value the
+ * content inherits in the standalone source file, and the rendering no
+ * longer depends on the host.
  */
 
 import { getAttr, type XmlNode } from './xml.ts';

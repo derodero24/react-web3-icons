@@ -8,11 +8,14 @@ on:
       - 'icons/**'
       - 'scripts/normalize-viewbox.ts'
       - 'scripts/build-icons/optical*.ts'
+      - 'scripts/build-icons/raster.ts'
+      - 'scripts/build-icons/chromium.ts'
       - 'test/visual/**'
       - 'scripts/build-icons/mono-audit.ts'
       - 'vitest.config.visual.ts'
       - 'package.json'
       - 'pnpm-lock.yaml'
+      - '.github/workflows/visual-regression.yml'
   pull_request:
     branches: [develop]
     paths:
@@ -20,11 +23,14 @@ on:
       - 'icons/**'
       - 'scripts/normalize-viewbox.ts'
       - 'scripts/build-icons/optical*.ts'
+      - 'scripts/build-icons/raster.ts'
+      - 'scripts/build-icons/chromium.ts'
       - 'test/visual/**'
       - 'scripts/build-icons/mono-audit.ts'
       - 'vitest.config.visual.ts'
       - 'package.json'
       - 'pnpm-lock.yaml'
+      - '.github/workflows/visual-regression.yml'
 
 permissions:
   contents: read

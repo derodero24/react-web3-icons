@@ -365,8 +365,8 @@ export default function ComparePage() {
                   </thead>
                   <tbody className="divide-y divide-border">
                     {[
-                      { label: 'Single icon (Ethereum)', size: '~0.8 KB' },
-                      { label: 'Full coin category (/coin)', size: '~72 KB' },
+                      { label: 'Single icon (Ethereum)', size: '~0.7 KB' },
+                      { label: 'Full coin category (/coin)', size: '~71 KB' },
                       { label: 'Full chain category (/chain)', size: '~37 KB' },
                       {
                         label: 'Dynamic loader (/dynamic), no code splitting',
