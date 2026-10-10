@@ -214,7 +214,9 @@ function describeDynamicIcon<P extends SharedProps>(
   });
 }
 
-describeDynamicIcon('ChainIcon', dynamic.ChainIcon, {
+// ChainIconProps is a union (`chainId`, `name` or both), which TypeScript
+// cannot infer `P` from.
+describeDynamicIcon<dynamic.ChainIconProps>('ChainIcon', dynamic.ChainIcon, {
   props: { name: 'ethereum' },
   unknownProps: { name: 'not-a-chain' },
   exportName: 'Ethereum',

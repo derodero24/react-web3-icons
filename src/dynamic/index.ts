@@ -69,18 +69,34 @@ export type {
 // nothing matches renders `fallback`. `variant` is strict: one of the
 // category's variants.
 
-export interface ChainIconProps extends DynamicIconProps<ChainVariant> {
-  /**
-   * Chain slug, normalized (e.g. `'ethereum'`, `'Arbitrum Nova'`,
-   * `'arbitrum-one'`). Used when `chainId` is absent or unknown.
-   */
-  name?: ChainSlug | (string & {}) | undefined;
-  /**
-   * EVM chain ID (e.g. `1`, `8453`). Takes precedence over `name`; an
-   * unknown chain ID falls back to `name`.
-   */
-  chainId?: ChainId | (number & {}) | undefined;
-}
+/** Props of {@link ChainIcon}: `chainId`, `name`, or both. */
+export type ChainIconProps = DynamicIconProps<ChainVariant> &
+  (
+    | {
+        /**
+         * EVM chain ID (e.g. `1`, `8453`). Takes precedence over `name`; an
+         * unknown chain ID falls back to `name`.
+         */
+        chainId: ChainId | (number & {});
+        /**
+         * Chain slug, normalized (e.g. `'ethereum'`, `'Arbitrum Nova'`,
+         * `'arbitrum-one'`). Used when `chainId` is absent or unknown.
+         */
+        name?: ChainSlug | (string & {}) | undefined;
+      }
+    | {
+        /**
+         * EVM chain ID (e.g. `1`, `8453`). Takes precedence over `name`; an
+         * unknown chain ID falls back to `name`.
+         */
+        chainId?: ChainId | (number & {}) | undefined;
+        /**
+         * Chain slug, normalized (e.g. `'ethereum'`, `'Arbitrum Nova'`,
+         * `'arbitrum-one'`). Used when `chainId` is absent or unknown.
+         */
+        name: ChainSlug | (string & {});
+      }
+  );
 
 export interface CoinIconProps extends DynamicIconProps<CoinVariant> {
   /** Ticker symbol, case-insensitive (e.g. `'ETH'`, `'btc'`). */

@@ -302,7 +302,7 @@ import { ChainIcon, CoinIcon, WalletIcon, ExchangeIcon, DefiIcon, DexIcon, Bridg
 <OracleIcon name="pyth" />              // Pyth oracle icon
 ```
 
-`chainId` takes precedence over `name`; an unknown `chainId` falls back to `name`, so `<ChainIcon chainId={chain.id} name={chain.slug} />` still renders for chains without a registered ID.
+`ChainIcon` takes `chainId`, `name`, or both; without either it is a type error. `chainId` takes precedence over `name`; an unknown `chainId` falls back to `name`, so `<ChainIcon chainId={chain.id} name={chain.slug} />` still renders for chains without a registered ID.
 
 #### Identifiers
 
@@ -310,7 +310,7 @@ An identifier resolves through the lookup keys of the [metadata maps](#metadata-
 
 The keys include legacy names (`'klaytn'` → Kaia, `'fantom'` → Sonic), every search alias the [manifest](#icon-manifest) lists for these categories (`'btc'`, `'wc'`, `'1inch'`, …), and common wallet connector ids, so `<WalletIcon name={connector.id} />` works for wagmi and RainbowKit connectors such as `'metaMaskSDK'`, `'coinbaseWalletSDK'`, `'walletConnect'`, `'safe'`, `'phantom'`, `'rainbow'`, `'okx'`, `'backpack'`, `'trust'`, `'bitget'` or `'uniswap'`.
 
-Identifier props are typed as the known keys plus any string (`name?: ChainSlug | (string & {})`): editors suggest the keys, and strings from API data still type-check.
+Identifier props are typed as the known keys plus any string (`name: WalletSlug | (string & {})`): editors suggest the keys, and strings from API data still type-check.
 
 #### Variants
 

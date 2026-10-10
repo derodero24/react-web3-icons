@@ -106,6 +106,12 @@ export const elements: ReactElement[] = [
   <DefiIcon key="dynamic-bad-variant" name="aave" variant="Square" />,
   // @ts-expect-error variants are case-sensitive suffixes
   <ChainIcon key="dynamic-variant-case" name="base" variant="circle" />,
+  // @ts-expect-error ChainIcon needs chainId or name
+  <ChainIcon key="dynamic-no-identifier" />,
+  // @ts-expect-error ChainIcon needs chainId or name
+  <ChainIcon key="dynamic-variant-only" variant="Circle" />,
+  // @ts-expect-error an identifier that may be undefined does not count
+  <ChainIcon key="dynamic-maybe-name" name={maybeLabel} />,
   <AvalancheCircle key="extra-toggle" withBackground={false} ref={ref} />,
   <Bybit key="extra-fill" {...bybitProps} />,
   // @ts-expect-error extra props are typed per component
