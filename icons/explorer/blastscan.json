@@ -2,25 +2,32 @@
   "$schema": "../schema.json",
   "name": "Blastscan",
   "source": [
+    "re-export of Blast (default and Mono) — see src/chain/Blast.tsx",
     "https://blastscan.io/assets/blast/images/svg/logos/chain-dark.svg",
     "https://blastscan.io/assets/blast/images/svg/logos/chain-light.svg (BlastscanLight)"
   ],
   "notes": [
-    "Blastscan uses the Blast L2 geometric \"BLAST\" wordmark as its brandmark"
+    "Blastscan uses the Blast L2 geometric \"BLAST\" wordmark as its brandmark",
+    "Blastscan and BlastscanMono re-export Blast and BlastMono: the Blastscan mark (chain-dark.svg) is the Blast mark, and the two units' files differed by at most 0.03 units, so the artwork now lives in one place. BlastscanLight (chain-light.svg, the mark in black) stays its own artwork"
   ],
   "kind": "icon",
   "variants": {
-    "": {
-      "file": "blastscan.svg",
-      "fill": "#FCFC03"
-    },
     "Light": {
       "file": "blastscan.light.svg",
       "fill": "#000"
-    },
-    "Mono": {
-      "file": "blastscan.mono.svg",
-      "fill": "currentColor"
     }
+  },
+  "reexport": {
+    "from": "../chain/Blast",
+    "exports": [
+      {
+        "of": "Blast",
+        "as": "Blastscan"
+      },
+      {
+        "of": "BlastMono",
+        "as": "BlastscanMono"
+      }
+    ]
   }
 }

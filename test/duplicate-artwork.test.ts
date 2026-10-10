@@ -11,7 +11,9 @@ import { ICONS } from './helpers/units';
  * unit's `localAliases` (`UsdcCircle` → `Usdc`, `StarknetCircle` →
  * `Starknet`) or, across units, in a `reexport` unit (`Strk` → `Starknet`),
  * so one file and one component back both names (CONTRIBUTING.md, "Aliases
- * and re-exports").
+ * and re-exports"). This test compares markup; the visual project's
+ * test/visual/near-duplicate-artwork.test.ts compares renders, which also
+ * catches the same artwork written in different markup.
  */
 
 /**

@@ -2,24 +2,21 @@
   "$schema": "../schema.json",
   "name": "Stx",
   "source": [
-    "https://cdn.prod.website-files.com/618b0aafa4afde65f2fe38fe/65dbdd6c87cf20baca9ac049_stacks-logo-navbar.svg (the Stacks symbol in the header of the official site https://www.stacks.co/; brand: https://www.stacks.co/brand)"
+    "re-export of Stacks — see src/chain/Stacks.tsx. Both units drew the official Stacks symbol of the stacks.co navbar (stacks-logo-navbar.svg), so the artwork now lives in one place"
   ],
-  "notes": [
-    "Colored: the official Stacks symbol (stacks-logo-navbar.svg) unchanged, one evenodd path in #141414 (its display-p3 style is the same colour), placed on the 64 grid; docs.stacks.co uses the same black symbol (StacksSymbol_Black)",
-    "Mono: the same path in currentColor",
-    "brandColor: the symbol is near-black, so the manifest uses the 2024 brand orange #FC6432 (the stacks.co favicon and accent)"
-  ],
-  "brandColor": "#fc6432",
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "stx.svg",
-      "fill": "#141414"
-    },
-    "Mono": {
-      "file": "stx.mono.svg",
-      "fill": "currentColor"
-    }
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Stacks",
+    "exports": [
+      {
+        "of": "Stacks",
+        "as": "Stx"
+      },
+      {
+        "of": "StacksMono",
+        "as": "StxMono"
+      }
+    ]
   },
   "tickers": [
     "STX"

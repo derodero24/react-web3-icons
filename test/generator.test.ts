@@ -1411,6 +1411,38 @@ describe('published artifacts', () => {
     });
   });
 
+  it("an alias unit's case-only rename of its own export gets no file of its own", () => {
+    const iconsDir = join(
+      fixture({
+        'icons/exchange/bar.json': iconUnit('Bar', ['', 'bar.svg']),
+        'icons/exchange/bar.svg': SQUARE,
+        // `FooBar` is `Bar` from another category; `FOOBar` renames
+        // `FooBar` (this module's own export) only in case.
+        'icons/wallet/foo-bar.json': JSON.stringify({
+          $schema: SCHEMA_REF,
+          name: 'FooBar',
+          kind: 'alias',
+          aliasConst: {
+            importFrom: '../exchange/Bar',
+            imports: ['Bar'],
+            exports: [
+              { name: 'FooBar', target: 'Bar' },
+              { name: 'FOOBar', target: 'FooBar', deprecated: 'Use FooBar.' },
+            ],
+          },
+        }),
+      }),
+      'icons',
+    );
+    expect([...buildDistSvgs(iconsDir).keys()]).toEqual([
+      'exchange/Bar.svg',
+      'wallet/FooBar.svg',
+    ]);
+    expect(buildIconifySets(iconsDir).colored.aliases).toEqual({
+      'wallet-foo-bar': { parent: 'exchange-bar' },
+    });
+  });
+
   it('Iconify info.height is the common height, or omitted', () => {
     const tall = `<svg ${XMLNS} viewBox="0,0,24,48"/>`;
     const sets = buildIconifySets(

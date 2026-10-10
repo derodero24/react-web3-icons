@@ -289,6 +289,8 @@ already a disc, an app icon that is already the default) is a
 name should go). `test/duplicate-artwork.test.ts` fails when two SVG files
 under `icons/` draw the same artwork (ignoring id names, attribute order and
 where `<defs>` sit), unless the pair is listed there with its reason.
+`test/visual/near-duplicate-artwork.test.ts` (`pnpm run test:visual`) does
+the same for two files that render the same from different markup.
 
 ### Regenerating
 
