@@ -69,6 +69,7 @@ scripts/
   check-svgo.ts   # Lists SVGs SVGO would still change
   render-showcase.ts  # Renders image/icons.png (pnpm run showcase)
   size-report.ts  # Renders the size-limit PR comment
+  changelog.ts    # Changelog generator for `changeset version` (.changeset/config.json)
 test/             # Vitest suites; visual/ (Playwright screenshots), consumer/ (packed-tarball fixtures for CI)
 example/          # Next.js demo site (react-web3-icons.vercel.app), builds from src/
 examples/
