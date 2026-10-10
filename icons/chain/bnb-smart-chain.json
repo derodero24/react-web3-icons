@@ -2,7 +2,9 @@
   "$schema": "../schema.json",
   "name": "BnbSmartChain",
   "source": [
-    "https://static.bnbchain.org/home-ui/static/images/brand-guidelines/BNBChain-Logo.zip (official BNB Chain brand kit at https://www.bnbchain.org/en/brand-guidelines, files BNB Chain - Logo/SVG/BNB Chain_Symbol_Yellow.svg and BNB Chain_Symbol_White.svg; the brand-guidelines page serves the same files at https://www.bnbchain.org/images/brand-guidelines/svg/)"
+    "https://static.bnbchain.org/home-ui/static/images/brand-guidelines/BNBChain-Logo.zip (official BNB Chain brand kit at https://www.bnbchain.org/en/brand-guidelines, files BNB Chain - Logo/SVG/BNB Chain_Symbol_Yellow.svg and BNB Chain_Symbol_White.svg; the brand-guidelines page serves the same files)",
+    "https://www.bnbchain.org/images/brand-guidelines/svg/BNB%20Chain_Symbol_Yellow.svg",
+    "https://www.bnbchain.org/images/brand-guidelines/svg/BNB%20Chain_Symbol_White.svg"
   ],
   "notes": [
     "Colored: the official BNB Chain_Symbol_Yellow.svg unchanged (one #F0B90B path), placed on the 64 grid; the coin Bnb re-exports these components",

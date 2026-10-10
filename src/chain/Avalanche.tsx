@@ -1,12 +1,13 @@
 import { createIcon } from '../utils';
 
-// Source: https://support.avax.network/en/articles/4132288-avalanche-press-kit-and-brand-assets
+// Source: https://support.avax.network/en/articles/4132288-avalanche-brand-media-kit
+// Source: https://drive.google.com/drive/folders/1wihaictwf0PizEomMmt2CIYEnp1fslCx
 // Source: https://drive.google.com/drive/folders/1i81sIjB6Z8hmQIITyXB37c1thodumFKJ
-// Source: https://www.avax.network/touchicon.svg
-// Default: the current Avalanche logomark (two shapes in #E6212F), identical in shape and colour to Avalanche_Logomark_Red.svg in the official brand-assets kit (linked from support.avax.network; Avalanche Logomark/SVG); paths from the site's 256-unit touchicon.svg, clipped to its 196x173 artwork box as in the file. It replaces the older #E84142 disc-cut mark
+// Source: https://www.avalanche.com/touchicon.svg
+// Default: the current Avalanche logomark (two shapes in #E6212F), identical in shape and colour to Avalanche_Logomark_Red.svg in Avalanche Logomark/SVG of the Avalanche Brand Logos & Assets folder, which the kit article links (checked 2026-10-10); paths from the site's 256-unit touchicon.svg, clipped to its 196x173 artwork box as in the file. It replaces the older #E84142 disc-cut mark
 // Mono: the same two shapes in currentColor
 // Square: the official touchicon.svg (the #E6212F mark on a #1D1D1D square); SquareMono is that square in currentColor with the mark knocked out (fill-rule=evenodd)
-// Circle: the official AVAX token (Avax Token/Avalanche_AvaxToken 1.svg in the brand-assets kit), a #E6212F disc with the mark cut out over a white inner disc; CircleMono is the token's disc path alone in currentColor (the mark knocked out), which is what withBackground=false shows
+// Circle: the official AVAX token (Avax Token/Avalanche_AvaxToken 1.svg in the Avalanche Logos [Public] folder, the parent of the linked one; checked 2026-10-10, the kit article no longer links this folder but it still serves the file), a #E6212F disc with the mark cut out over a white inner disc; CircleMono is the token's disc path alone in currentColor (the mark knocked out), which is what withBackground=false shows
 /** Extra props of the Avalanche icons (on top of `IconProps`). */
 export interface AvalancheProps {
   /** Fill the cut-out of the mark with white. Defaults to `true` for `AvalancheCircle` and `false` for `AvalancheCircleMono`. */

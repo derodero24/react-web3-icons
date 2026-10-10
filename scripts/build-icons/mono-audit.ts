@@ -181,11 +181,6 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'A gradient sphere: the mono is the solid disc, and the gradient inflates the colour-boundary count.',
   },
-  'coin/Ena': {
-    kind: 'false-positive',
-    reason:
-      'The gradient disc and the radial highlight on the rim inflate the colour-boundary count; the mark knockout reads at every size.',
-  },
   'coin/Shib': {
     kind: 'false-positive',
     reason:

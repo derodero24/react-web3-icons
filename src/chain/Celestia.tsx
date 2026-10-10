@@ -4,6 +4,7 @@ import { createIcon } from '../utils';
 // Source: https://celestia.org/brand/ (official brand assets)
 // Default: the official Celestia symbol (celestia-symbol.svg, #0E1014) from celestia.org/brand, which publishes the symbol in #0E1014 and white only; it replaces the older #7A2BF9 purple symbol
 // Mono: the same symbol path in currentColor (celestia-symbol-white.svg is this geometry in white)
+// brandColor: the symbol is near-black Void, so the manifest uses the palette's brand colour Indigo #5640D1 (celestia.org/brand: 'Indigo and Amethyst carry the brand'); the coin Tia re-exports these components
 /** Celestia chain icon (colored). */
 export const Celestia = /* @__PURE__ */ createIcon(
   'Celestia',

@@ -4,6 +4,7 @@ import { createIcon } from '../utils';
 // Source: https://www.stacks.co/brand (redirects to the Stacks Brand 2024 Figma file)
 // Default: the official stacks.co navbar symbol (#141414, fill-rule=evenodd), path unchanged; it replaces a near-identical redraw stretched to a square box
 // Mono: the same path in currentColor
+// brandColor: the symbol is near-black, so the manifest uses the 2024 brand orange #FC6432 (the stacks.co favicon and accent); the coin Stx re-exports these components
 /** Stacks chain icon (colored). */
 export const Stacks = /* @__PURE__ */ createIcon(
   'Stacks',

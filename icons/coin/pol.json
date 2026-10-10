@@ -4,6 +4,9 @@
   "source": [
     "re-export of Polygon — see src/chain/Polygon.tsx"
   ],
+  "notes": [
+    "Lookup keys: the legacy ticker MATIC resolves to Pol, because MATIC was upgraded 1:1 to POL (https://docs.polygon.technology/pos/concepts/tokens/matic-to-pol: \"The migration operates on a 1:1 basis\")."
+  ],
   "kind": "reexport",
   "reexport": {
     "from": "../chain/Polygon",
@@ -27,6 +30,7 @@
     ]
   },
   "tickers": [
-    "POL"
+    "POL",
+    "MATIC"
   ]
 }

@@ -35,7 +35,9 @@ describe('CHAIN_ID_TO_NAME', () => {
     expect(CHAIN_ID_TO_NAME[100]).toBe('GnosisChain');
     expect(CHAIN_ID_TO_NAME[169]).toBe('MantaPacific');
     expect(CHAIN_ID_TO_NAME[252]).toBe('Fraxtal');
+    expect(CHAIN_ID_TO_NAME[295]).toBe('Hedera');
     expect(CHAIN_ID_TO_NAME[1088]).toBe('Metis');
+    expect(CHAIN_ID_TO_NAME[1776]).toBe('Injective');
     expect(CHAIN_ID_TO_NAME[2222]).toBe('Kava');
     expect(CHAIN_ID_TO_NAME[8453]).toBe('Base');
     expect(CHAIN_ID_TO_NAME[34_443]).toBe('Mode');
@@ -113,6 +115,11 @@ describe('TICKER_TO_COIN', () => {
     expect(TICKER_TO_COIN.HBAR).toBe('Hbar');
     expect(TICKER_TO_COIN.NEAR).toBe('Near');
     expect(TICKER_TO_COIN.TON).toBe('Ton');
+  });
+
+  it('routes legacy tickers of 1:1 token migrations to the new coin', () => {
+    expect(TICKER_TO_COIN.MATIC).toBe('Pol');
+    expect(TICKER_TO_COIN.KLAY).toBe('Kaia');
   });
 
   it('all keys are uppercase', () => {

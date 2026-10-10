@@ -31,8 +31,8 @@ import {
  * `helpers/legibility.ts` for the measure — must come with a colored
  * alternative that does not:
  *
- *  1. a colored `Circle*`, `Square*` or `Inverted*` variant (or the legacy
- *     `BlastscanLight`) that is not itself dominated by that tone; or
+ *  1. a colored `Circle*`, `Square*` or `Inverted*` variant that is not
+ *     itself dominated by that tone; or
  *  2. for a mark painted in that tone alone, its `Mono` variant with
  *     identical geometry. For a black mark (Aptos, LayerZero, …)
  *     `<AptosMono color="#fff" />` *is* the brand's reversed mark, with no
@@ -123,7 +123,7 @@ interface Pending {
   readonly note: string;
 }
 
-const LEGIBLE_SUFFIX = /^(?:Circle|Square|Inverted|Light)/;
+const LEGIBLE_SUFFIX = /^(?:Circle|Square|Inverted)/;
 
 const isColored = (variant: VariantSource): boolean =>
   !variant.suffix.endsWith('Mono') && variant.fill !== 'currentColor';

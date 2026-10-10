@@ -6,12 +6,12 @@
     "https://github.com/dydxprotocol/v4-web/blob/main/public/logos/logo-mark-dark.svg",
     "https://dydx.trade/logos/logo-mark-light.svg",
     "https://github.com/dydxprotocol/v4-web/blob/main/public/logos/logo-mark-light.svg",
-    "https://dydx.exchange"
+    "https://dydx.trade/favicon.svg (the app-icon tile, the icon of https://dydx.trade)"
   ],
   "notes": [
     "Default: the official light-theme logomark logo-mark-dark.svg (#181818 strokes, #6966FF accent), which dydx.trade shows on light backgrounds",
     "Inverted: the official dark-theme logomark logo-mark-light.svg (#FAFAFD stroke, white to 55%-white gradient stroke, #6966FF accent), which dydx.trade shows for every non-light theme (v4-web src/components/QrCode.tsx); same paths as the default, unchanged, with the same transform",
-    "Square and SquareMono: unchanged dark app-icon tile (https://dydx.exchange)",
+    "Square: the app-icon tile, dydx.trade/favicon.svg (a 183-unit #2C2C3D to #1A1A27 tile with rx 38 and the same three paths and gradients), checked 2026-10-10. The file, which predates the source policy, is unchanged: it insets the tile to a 181-unit rect with rx 37 and adds a 2-unit #2d2d3d border stroke, which the current favicon does not have; SquareMono is that inset tile in currentColor with the mark knocked out",
     "Mono: the logomark's three strokes in currentColor"
   ],
   "kind": "icon",

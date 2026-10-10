@@ -4,6 +4,9 @@
   "source": [
     "re-export of Kaia \u2014 see src/chain/Kaia.tsx"
   ],
+  "notes": [
+    "Lookup keys: the legacy ticker KLAY resolves to Kaia, because KLAY converted to KAIA 1:1 (https://docs.kaia.io/kaiatech/kaia-white-paper/: \"KLAY: KAIA = 1:1\")."
+  ],
   "kind": "reexport",
   "reexport": {
     "from": "../chain/Kaia",
@@ -19,6 +22,7 @@
     ]
   },
   "tickers": [
-    "KAIA"
+    "KAIA",
+    "KLAY"
   ]
 }

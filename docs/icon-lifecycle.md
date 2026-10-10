@@ -10,7 +10,8 @@ must change. It is part of the [contributing guide](../CONTRIBUTING.md).
 - Re-export the canonical component instead of duplicating SVG markup, so behavior stays identical. A rename is a JSON-only unit with `"kind": "alias"` and an `aliasConst` block (see [Aliases and re-exports](../CONTRIBUTING.md#aliases-and-re-exports)).
 - Give every alias export a `deprecated` message (``"Use `Ready` instead."``). The generator emits it as a ``/** @deprecated Use `Ready` instead. */`` JSDoc comment and adds the export to `DEPRECATED_ICON_NAMES` (`src/deprecated.ts`), so consuming apps can filter it automatically.
 - To deprecate artwork that has no direct rename (a brand that was succeeded or shut down), list the exports in the unit's `deprecated` map instead.
-- Move the old lookup keys (slugs, tickers, chain IDs) to the canonical unit as extra keys; lookup keys may not point at deprecated exports.
+- Move the old lookup keys (slugs, tickers, chain IDs) and manifest `aliases` to the canonical unit as extra keys; lookup keys may not point at deprecated exports.
+  One exception: a re-export that has the same name as the icon it re-exports cannot be deprecated on its own, because the deprecated binding would make the root export ambiguous and `DEPRECATED_ICON_NAMES` is keyed by name. Such a unit keeps its keys. The coin `Ton` re-exports the chain `Ton` (The Open Network), so the ticker `TON` still resolves to it after Toncoin was renamed Gram; `GRAM` resolves to `Gram`.
 
 ## Deprecation and removal timing
 
@@ -41,6 +42,6 @@ For intentional breaking renames in a major release, document the exception in t
 ## Existing examples in this repository
 
 - `icons/wallet/ready.json` is canonical, and `icons/wallet/argent.json` generates the deprecated `Argent` / `ArgentMono` aliases (`src/wallet/Argent.tsx`) after the Argent → Ready rebrand.
-- A rename that only changes letter case (`OKXWallet` → `OkxWallet`, `StarkNet` → `Starknet`) cannot get a module of its own, since `OKXWallet.tsx` and `OkxWallet.tsx` are one file on case-insensitive file systems. List the old names in the canonical unit's `localAliases` with a `deprecated` message instead (`icons/wallet/okx-wallet.json`); the generator gives them no `dist/svg` file or Iconify alias of their own.
+- A rename that only changes letter case (`OKXWallet` → `OkxWallet`, `StarkNet` → `Starknet`) cannot get a module of its own, since `OKXWallet.tsx` and `OkxWallet.tsx` are one file on case-insensitive file systems. List the old names in the canonical unit's `localAliases` with a `deprecated` message instead (`icons/chain/starknet.json`), or, in an alias unit, as `aliasConst` exports whose target is the new name (`icons/wallet/okx-wallet.json`); the generator gives them no `dist/svg` file or Iconify alias of their own.
 - `icons/chain/fantom.json` deprecates the `Fantom` / `FantomMono` artwork through its `deprecated` map after the Fantom → Sonic rebrand, and `icons/coin/ftm.json` deprecates the `Ftm` / `FtmMono` aliases; `Sonic` / `SonicMono` replace them. `icons/defi/maker-dao.json` and `icons/coin/mkr.json` do the same for MakerDAO → Sky, and `icons/wallet/nami-wallet.json` for Nami → Lace (Nami was folded into Lace; its keys `nami` and `namiwallet` are slugs of `icons/wallet/lace.json`).
 - `icons/dex/odos.json` deprecates artwork with no replacement: the message names the shutdown and its source.
