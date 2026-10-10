@@ -1,5 +1,15 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import type {
+  BridgeVariant,
+  ChainVariant,
+  CoinVariant,
+  DefiVariant,
+  DexVariant,
+  ExchangeVariant,
+  OracleVariant,
+  WalletVariant,
+} from 'react-web3-icons/dynamic';
 import {
   BRIDGE_SLUG_TO_NAME,
   CHAIN_ID_TO_NAME,
@@ -48,51 +58,120 @@ const TH_CLASS =
   'py-2 pr-4 text-xs font-semibold uppercase tracking-wide text-fg-muted first:pl-3';
 const TD_CLASS = 'py-2 pr-4 align-top text-sm text-fg/60 first:pl-3';
 
-/** Dynamic components and their identifier props (src/dynamic/index.ts). */
+/**
+ * The values of a `variant` union besides `'colored'` and `'mono'`. The
+ * record must name every value of `V` and nothing else, so the page fails to
+ * type-check (and `next build` fails) when a category's generated variant
+ * union (src/dynamic/imports/<category>.ts) gains or loses a value.
+ */
+function variantsOf<V extends string>(all: Record<V, true>): string[] {
+  return Object.keys(all).filter(v => v !== 'colored' && v !== 'mono');
+}
+
+/** Dynamic components, their identifier props and variants (src/dynamic). */
 const DYNAMIC_COMPONENTS: readonly {
   component: string;
   identifier: string;
   resolvesWith: string;
+  variants: readonly string[];
 }[] = [
   {
     component: 'ChainIcon',
     identifier: 'chainId?: ChainId | number; name?: ChainSlug | string',
     resolvesWith: 'CHAIN_ID_TO_NAME, CHAIN_SLUG_TO_NAME',
+    variants: variantsOf<ChainVariant>({
+      colored: true,
+      mono: true,
+      Circle: true,
+      CircleMono: true,
+      Square: true,
+      SquareMono: true,
+    }),
   },
   {
     component: 'CoinIcon',
     identifier: 'symbol: Ticker | string',
     resolvesWith: 'TICKER_TO_COIN',
+    variants: variantsOf<CoinVariant>({
+      colored: true,
+      mono: true,
+      Alt: true,
+      Circle: true,
+      CircleMono: true,
+      Square: true,
+      SquareMono: true,
+    }),
   },
   {
     component: 'WalletIcon',
     identifier: 'name: WalletSlug | string',
     resolvesWith: 'WALLET_SLUG_TO_NAME',
+    variants: variantsOf<WalletVariant>({
+      colored: true,
+      mono: true,
+      Circle: true,
+      CircleMono: true,
+      Square: true,
+      SquareMono: true,
+      Symbol: true,
+      SymbolMono: true,
+    }),
   },
   {
     component: 'ExchangeIcon',
     identifier: 'name: ExchangeSlug | string',
     resolvesWith: 'EXCHANGE_SLUG_TO_NAME',
+    variants: variantsOf<ExchangeVariant>({
+      colored: true,
+      mono: true,
+      Circle: true,
+      CircleAlt: true,
+      CircleMono: true,
+      Inverted: true,
+      Square: true,
+      SquareMono: true,
+    }),
   },
   {
     component: 'DefiIcon',
     identifier: 'name: DefiSlug | string',
     resolvesWith: 'DEFI_SLUG_TO_NAME',
+    variants: variantsOf<DefiVariant>({
+      colored: true,
+      mono: true,
+      Circle: true,
+      CircleMono: true,
+    }),
   },
   {
     component: 'DexIcon',
     identifier: 'name: DexSlug | string',
     resolvesWith: 'DEX_SLUG_TO_NAME',
+    variants: variantsOf<DexVariant>({
+      colored: true,
+      mono: true,
+      Circle: true,
+      CircleMono: true,
+      Inverted: true,
+      Square: true,
+      SquareMono: true,
+    }),
   },
   {
     component: 'BridgeIcon',
     identifier: 'name: BridgeSlug | string',
     resolvesWith: 'BRIDGE_SLUG_TO_NAME',
+    variants: variantsOf<BridgeVariant>({
+      colored: true,
+      mono: true,
+      Inverted: true,
+    }),
   },
   {
     component: 'OracleIcon',
     identifier: 'name: OracleSlug | string',
     resolvesWith: 'ORACLE_SLUG_TO_NAME',
+    variants: variantsOf<OracleVariant>({ colored: true, mono: true }),
   },
 ];
 
@@ -393,7 +472,7 @@ export function MyComponent() {
                 </div>
                 <div>
                   <p className="mb-1.5 text-sm font-medium text-fg/80">
-                    Category subpath (better tree-shaking)
+                    Category subpath (tree-shakes the same, grouped by category)
                   </p>
                   <CodeBlock>{`import { Ethereum } from 'react-web3-icons/chain';
 import { Bitcoin, Doge } from 'react-web3-icons/coin';
@@ -416,25 +495,29 @@ import { MetaMask } from 'react-web3-icons/wallet';`}</CodeBlock>
             <Section id="dynamic" title="Dynamic Components">
               <p className="mb-3 text-sm text-fg/60">
                 <Code>react-web3-icons/dynamic</Code> resolves an icon from
-                runtime data (chain ID, slug, ticker) and lazy-loads only that
-                icon&apos;s chunk. These are client components (
-                <Code>&apos;use client&apos;</Code>); each wraps the lazy icon
-                in its own <Code>{'<Suspense>'}</Code>.
+                runtime data (chain ID, slug, ticker, wallet connector id) and
+                lazy-loads only that icon&apos;s chunk. These are client
+                components (<Code>&apos;use client&apos;</Code>); each wraps the
+                lazy icon in its own <Code>{'<Suspense>'}</Code>.
               </p>
-              <CodeBlock>{`import { ChainIcon, CoinIcon } from 'react-web3-icons/dynamic';
+              <CodeBlock>{`import { ChainIcon, CoinIcon, WalletIcon } from 'react-web3-icons/dynamic';
 
-<ChainIcon chainId={chain.id} size={24} />
-<CoinIcon symbol={token.symbol} variant="mono" fallback={<Placeholder />} />`}</CodeBlock>
+<ChainIcon chainId={chain.id} name={chain.slug} size={24} />
+<CoinIcon symbol={token.symbol} variant="mono" fallback={<Placeholder />} />
+<WalletIcon name={connector.id} variant="Square" />`}</CodeBlock>
               <div className="mt-4 overflow-x-auto rounded-lg border border-border">
                 <table className="w-full text-left">
                   <caption className="sr-only">
-                    Dynamic icon components and their identifier props
+                    Dynamic icon components, their identifier props and variants
                   </caption>
                   <thead>
                     <tr className="border-b border-border bg-surface">
                       <th className={TH_CLASS}>Component</th>
                       <th className={TH_CLASS}>Identifier props</th>
                       <th className={TH_CLASS}>Resolved via</th>
+                      <th className={TH_CLASS}>
+                        Variants besides colored and mono
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
@@ -449,6 +532,9 @@ import { MetaMask } from 'react-web3-icons/wallet';`}</CodeBlock>
                         <td className={`${TD_CLASS} font-mono`}>
                           {row.resolvesWith}
                         </td>
+                        <td className={`${TD_CLASS} font-mono`}>
+                          {row.variants.join(', ') || '—'}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -459,31 +545,72 @@ import { MetaMask } from 'react-web3-icons/wallet';`}</CodeBlock>
               </p>
               <ul className="mb-3 flex list-disc flex-col gap-1.5 pl-5 text-sm text-fg/60">
                 <li>
-                  <Code>variant?: &apos;colored&apos; | &apos;mono&apos;</Code>{' '}
-                  — defaults to <Code>&apos;colored&apos;</Code>;{' '}
-                  <Code>&apos;mono&apos;</Code> loads the{' '}
-                  <Code>{'<Name>Mono'}</Code> export.
+                  <Code>variant</Code> — <Code>&apos;colored&apos;</Code> (the
+                  default), <Code>&apos;mono&apos;</Code> (the{' '}
+                  <Code>{'<Name>Mono'}</Code> export), or a variant suffix of
+                  the category from the table (<Code>&apos;Circle&apos;</Code>{' '}
+                  loads <Code>{'<Name>Circle'}</Code>). The prop is typed with
+                  the category&apos;s union (<Code>ChainVariant</Code>,{' '}
+                  <Code>CoinVariant</Code>, …), exported from{' '}
+                  <Code>react-web3-icons/dynamic</Code>, so a typo is a type
+                  error. Not every icon ships every variant of its category;
+                  check the manifest&apos;s <Code>variants</Code>.
                 </li>
                 <li>
                   <Code>fallback?: ReactNode</Code> — rendered while the chunk
-                  loads and when the identifier is not recognized (default:
-                  nothing).
+                  loads, when the identifier is not recognized (including{' '}
+                  <Code>undefined</Code> or <Code>null</Code> from untyped
+                  data), when the variant is unknown or the icon does not ship
+                  it, and when the chunk fails to load (a later render retries
+                  the import). Default: nothing.
                 </li>
                 <li>
-                  All icon props except <Code>ref</Code> (<Code>size</Code>,{' '}
-                  <Code>className</Code>, <Code>title</Code>, …), forwarded to
-                  the resolved icon.
+                  All icon props (<Code>size</Code>, <Code>className</Code>,{' '}
+                  <Code>title</Code>, …) and <Code>ref</Code>, forwarded to the
+                  loaded icon&apos;s <Code>{'<svg>'}</Code>.
                 </li>
               </ul>
+              <p className="mb-3 text-sm text-fg/60">
+                Every component normalizes identifiers the same way, and the
+                keys of the metadata maps too: lowercased, with whitespace,{' '}
+                <Code>.</Code>, <Code>-</Code> and <Code>_</Code> removed. So{' '}
+                <Code>&apos;Arbitrum Nova&apos;</Code>,{' '}
+                <Code>&apos;arbitrum_nova&apos;</Code> and{' '}
+                <Code>&apos;arbitrum-nova&apos;</Code> are the same key, as are{' '}
+                <Code>&apos;Ether.fi&apos;</Code> /{' '}
+                <Code>&apos;etherfi&apos;</Code> and{' '}
+                <Code>&apos;eth&apos;</Code> / <Code>&apos;ETH&apos;</Code>. The
+                keys include legacy names, the manifest&apos;s search aliases
+                and common wallet connector ids (
+                <Code>&apos;metaMaskSDK&apos;</Code>,{' '}
+                <Code>&apos;walletConnect&apos;</Code>, …).
+              </p>
+              <p className="mb-3 text-sm text-fg/60">
+                <Code>ChainIcon</Code> needs <Code>chainId</Code> or{' '}
+                <Code>name</Code>. <Code>chainId</Code> takes precedence; an
+                unknown <Code>chainId</Code> falls back to <Code>name</Code>, so{' '}
+                <Code>
+                  {'<ChainIcon chainId={chain.id} name={chain.slug} />'}
+                </Code>{' '}
+                still renders a chain without a registered ID.
+              </p>
               <p className="text-sm text-fg/60">
-                Identifiers are trimmed and case-insensitive (
-                <Code>symbol=&quot;eth&quot;</Code> ={' '}
-                <Code>symbol=&quot;ETH&quot;</Code>); <Code>DefiIcon</Code> also
-                ignores dots and hyphens (<Code>&quot;ether.fi&quot;</Code>). On{' '}
-                <Code>ChainIcon</Code>, <Code>chainId</Code> takes precedence
-                over <Code>name</Code>. The prop types autocomplete known keys
-                but accept any string or number, so unknown values type-check
-                and render <Code>fallback</Code>.
+                Identifier props autocomplete the known keys but accept any
+                string (and <Code>chainId</Code> any number), so values from API
+                data type-check; one that matches nothing renders{' '}
+                <Code>fallback</Code>. In development builds, an unknown
+                identifier, an unknown or missing variant and a failed load each
+                log one <Code>console.warn</Code>; production builds strip these
+                warnings. Details:{' '}
+                <a
+                  href="https://github.com/derodero24/react-web3-icons#dynamic-icon-components"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-fg/80"
+                >
+                  README, Dynamic Icon Components
+                </a>
+                .
               </p>
             </Section>
 
@@ -577,16 +704,30 @@ function ChainLogo({ chainId }: { chainId: number }) {
                         'Square',
                         'Icon enclosed in a square/rounded background',
                       ],
+                      ['SquareMono', 'Square variant in single-color'],
                       ['Wordmark', 'Full logo with logotype text'],
-                      ['Symbol', 'Symbol-only mark without text'],
+                      ['WordmarkMono', 'Wordmark in single-color'],
+                      [
+                        'Symbol',
+                        'Standalone symbol without the container the default has',
+                      ],
+                      ['SymbolMono', 'Symbol variant in single-color'],
                       [
                         'Flat',
                         'Single-color simplification of the default design',
                       ],
                       ['Alt', 'Meaningfully different design or color scheme'],
                       [
+                        'CircleAlt',
+                        'Circle variant in an alternative color scheme',
+                      ],
+                      [
+                        'Inverted',
+                        'Colors reworked for dark backgrounds; same shape as the default',
+                      ],
+                      [
                         'Light',
-                        'White/light-colored artwork for dark backgrounds',
+                        'Legacy, closed to new icons: only BlastscanLight, the official dark single-color mark for light backgrounds (the default is pale). New icons use Flat for this.',
                       ],
                     ].map(([suffix, desc]) => (
                       <tr
@@ -627,9 +768,12 @@ function ChainLogo({ chainId }: { chainId: number }) {
             {/* Deprecation */}
             <Section id="deprecation" title="Deprecation Policy">
               <p className="mb-3 text-sm text-fg/60">
-                When a project rebrands, the old name stays as a deprecated
-                re-export alias and is removed only in a major release (after at
-                least one minor release and 90 days).
+                Renamed exports, including rebrands that kept their artwork,
+                stay as deprecated aliases of the new name. When a rebrand
+                brings new artwork, or a project shuts down, the old export
+                keeps its old artwork and is deprecated. Deprecated exports are
+                removed only in a major release, after at least one minor
+                release and 90 days.
               </p>
               <p className="mb-3 text-sm text-fg/60">
                 A{' '}
@@ -654,8 +798,13 @@ const activeNames = Object.keys(icons).filter(
             {/* RSC */}
             <Section id="rsc" title="React Server Components">
               <p className="mb-3 text-sm text-fg/60">
-                Static icons are pure, hook-free components — they render in
-                React Server Components with no{' '}
+                Static icons call no hooks other than{' '}
+                <code className="rounded bg-surface px-1 font-mono text-sm">
+                  useId
+                </code>
+                , which React supports in Server Components, and icons without
+                internal ids (masks, gradients, clip paths) call no hooks at
+                all. They render in React Server Components with no{' '}
                 <code className="rounded bg-surface px-1 font-mono text-sm">
                   &apos;use client&apos;
                 </code>{' '}
