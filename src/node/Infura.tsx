@@ -1,6 +1,10 @@
 import { createIcon } from '../utils';
 
-// Source: https://infura.io (official brand)
+// Source: https://www.infura.io/favicon/safari-pinned-tab.svg (the infura.io site icon: the Infura mark in black on a #FF6B4A square)
+// Source: https://docs.infura.io/img/logo-dark.svg (the Infura docs logo: the same mark in #FF5833 beside the INFURA wordmark)
+// Default: the mark of safari-pinned-tab.svg, its path unchanged, alone in the #FF6B4A of that icon's square; the docs logo draws the mark about 1.3% wider (aspect 1.194 against 1.179) in #FF5833
+// Mono: the same path in currentColor
+// infura.io/brand returns 404 and the infura.io header now shows the MetaMask Developer logo; no Infura brand kit was found
 /** Infura node icon (colored). */
 export const Infura = /* @__PURE__ */ createIcon(
   'Infura',
