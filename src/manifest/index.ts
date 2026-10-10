@@ -396,6 +396,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Hedera',
     category: 'chain',
+    chainId: 295,
     slug: 'hedera',
     variants: ['', 'Mono'],
     brandColor: '#000000',
@@ -417,6 +418,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Injective',
     category: 'chain',
+    chainId: 1776,
     slug: 'injective',
     variants: ['', 'Mono'],
     brandColor: '#4d3dff',
