@@ -1,3 +1,5 @@
+// biome-ignore-all lint/complexity/useLiteralKeys: SVGO types `attributes` as an index signature, and noPropertyAccessFromIndexSignature (@tsconfig/strictest) requires bracket access to it
+// biome-ignore-all lint/performance/noDelete: SVGO removes an attribute only when its key is deleted; assigning undefined does not type-check
 import { snapHalfCircleArcs } from './scripts/build-icons/arcs.ts';
 
 /**

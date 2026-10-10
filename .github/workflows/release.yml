@@ -92,8 +92,14 @@ jobs:
       - name: Install deps
         run: pnpm install --frozen-lockfile
 
-      # Build here, without any credentials in the environment: the publish
-      # step disables lifecycle scripts, so `prepublishOnly` does not rebuild.
+      # Build here, before any step sets NODE_AUTH_TOKEN: the publish step
+      # disables lifecycle scripts, so `prepublishOnly` does not rebuild.
+      # Install and build still run with this job's privileges: the
+      # job-level `id-token: write` puts the OIDC token request variables in
+      # every step's environment, and the runner receives GITHUB_TOKEN and
+      # NPM_TOKEN when the job starts, so code run by these steps can reach
+      # them. docs/releasing.md ("Hardening before trusted publishing")
+      # describes the recommended split into separate jobs.
       - name: Build
         run: pnpm run build
 
