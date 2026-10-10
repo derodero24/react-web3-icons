@@ -6,6 +6,7 @@
  *   src/dynamic/imports/<cat>.ts    per-icon lazy import maps and variants
  *   src/meta/index.ts               lookup maps (slugs, chain IDs, tickers)
  *   src/deprecated.ts               DEPRECATED_ICON_NAMES
+ *   src/icon-names.ts               the IconName union
  *   src/manifest/index.ts           ICON_MANIFEST
  *   icons/schema.json               JSON Schema of the unit definitions
  */
@@ -21,7 +22,12 @@ import {
   type SourceUnit,
 } from './lib.ts';
 import { buildManifest, renderManifestModule } from './manifest.ts';
-import { collectLookups, emitDeprecated, emitMeta } from './meta.ts';
+import {
+  collectLookups,
+  emitDeprecated,
+  emitIconNames,
+  emitMeta,
+} from './meta.ts';
 import type { Outputs } from './outputs.ts';
 import { UNIT_JSON_SCHEMA } from './unit.ts';
 
@@ -56,6 +62,7 @@ export function generateIconSources(root: string, format: Formatter): Outputs {
     );
   }
   add('src/deprecated.ts', emitDeprecated(allUnits));
+  add('src/icon-names.ts', emitIconNames(allUnits));
   add('src/manifest/index.ts', renderManifestModule(buildManifest(allUnits)));
   files.set(
     'icons/schema.json',

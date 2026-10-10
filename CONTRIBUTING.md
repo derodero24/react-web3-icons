@@ -294,7 +294,8 @@ where `<defs>` sit), unless the pair is listed there with its reason.
 
 ```sh
 pnpm run generate-icons  # icons/ → src/<category>/, src/dynamic/imports/, src/meta/,
-                         #          src/deprecated.ts, src/manifest/, icons/schema.json
+                         #          src/deprecated.ts, src/icon-names.ts, src/manifest/,
+                         #          icons/schema.json
 pnpm run build           # dist + static SVGs + Iconify JSON + manifest.json
 ```
 
