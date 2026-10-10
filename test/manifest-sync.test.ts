@@ -28,6 +28,7 @@ import * as oracle from '../src/oracle';
 import * as portfolio from '../src/portfolio';
 import * as storage from '../src/storage';
 import * as tracker from '../src/tracker';
+import type { IconName } from '../src/utils';
 import * as wallet from '../src/wallet';
 
 const CATEGORY_MODULES = {
@@ -71,7 +72,7 @@ const ID_MAPS: Partial<
 };
 
 function deriveEntry(
-  name: string,
+  name: IconName,
   category: keyof typeof CATEGORY_MODULES,
 ): IconManifestEntry {
   return {
@@ -88,7 +89,11 @@ function deriveExpected(): IconManifestEntry[] {
     for (const [name, value] of Object.entries(mod)) {
       if ((value as { $$typeof?: symbol } | null)?.$$typeof === FORWARD_REF) {
         entries.push(
-          deriveEntry(name, category as keyof typeof CATEGORY_MODULES),
+          // A component export of a category module is an icon name.
+          deriveEntry(
+            name as IconName,
+            category as keyof typeof CATEGORY_MODULES,
+          ),
         );
       }
     }

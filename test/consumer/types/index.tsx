@@ -4,6 +4,7 @@
 // The JSON subpaths are covered by ../node/check.mjs: `module: node16` does not
 // support import attributes.
 import { createRef, type ReactElement } from 'react';
+import * as allIcons from 'react-web3-icons';
 import {
   DEPRECATED_ICON_NAMES,
   Ethereum,
@@ -99,6 +100,9 @@ const firstEntry: IconManifestEntry | undefined = ICON_MANIFEST[0];
 // The set holds icon names but still accepts any string (backward compatible).
 const deprecatedNames: readonly IconName[] = [...DEPRECATED_ICON_NAMES];
 const anyName: string = firstEntry?.name ?? '';
+// Manifest names are icon names, so they index the icon exports without a cast.
+// biome-ignore lint/performance/noDynamicNamespaceImportAccess: the pattern under test
+const firstIcon = allIcons[firstEntry?.name ?? iconName];
 
 export const values: readonly unknown[] = [
   DEPRECATED_ICON_NAMES.has(iconName),
@@ -107,4 +111,5 @@ export const values: readonly unknown[] = [
   DEPRECATED_FROM_SUBPATH.size,
   CHAIN_ID_TO_NAME[chainId],
   firstEntry?.category,
+  firstIcon,
 ];

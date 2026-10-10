@@ -411,7 +411,7 @@ import { ICON_MANIFEST } from 'react-web3-icons/manifest';
 const chains = ICON_MANIFEST.filter(e => e.category === 'chain' && !e.deprecated);
 ```
 
-Each entry (type `IconManifestEntry`) carries `name`, `category`, and — where registered in the [metadata maps](#metadata-lookups) — `chainId`, `slug`, or `ticker`, plus a `deprecated` flag for aliases. Base entries additionally list their `variants` (e.g. `['', 'Mono', 'Circle']`), extra lowercase search `aliases` (e.g. `'btc'` on `Bitcoin`), and a `brandColor` (the most frequent non-neutral colour of the colored artwork, or a curated override). The same data ships as plain JSON for non-JavaScript consumers at `react-web3-icons/manifest.json` (also available on the CDN under `dist/manifest.json`).
+Each entry (type `IconManifestEntry`) carries `name` (an `IconName`), `category`, and — where registered in the [metadata maps](#metadata-lookups) — `chainId`, `slug`, or `ticker`, plus a `deprecated` flag for aliases. Base entries additionally list their `variants` (e.g. `['', 'Mono', 'Circle']`), extra lowercase search `aliases` (e.g. `'btc'` on `Bitcoin`), and a `brandColor` (the most frequent non-neutral colour of the colored artwork, or a curated override). The same data ships as plain JSON for non-JavaScript consumers at `react-web3-icons/manifest.json` (also available on the CDN under `dist/manifest.json`).
 
 ## Bundle Size
 
