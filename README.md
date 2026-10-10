@@ -188,21 +188,21 @@ The files have no fixed `width`/`height`, so they scale to their container. Mono
 You can also hotlink them from a CDN without installing the package. Pin an exact version:
 
 ```
-https://cdn.jsdelivr.net/npm/react-web3-icons@4.0.0/dist/svg/chain/Ethereum.svg
-https://unpkg.com/react-web3-icons@4.0.0/dist/svg/chain/Ethereum.svg
+https://cdn.jsdelivr.net/npm/react-web3-icons@5.0.0/dist/svg/chain/Ethereum.svg
+https://unpkg.com/react-web3-icons@5.0.0/dist/svg/chain/Ethereum.svg
 ```
 
-Pick the version from the [npm page](https://www.npmjs.com/package/react-web3-icons?activeTab=versions) or the [changelog](./CHANGELOG.md). An unpinned URL (`@latest`, `@4`) can start serving different files whenever a new version is published, without any change on your side.
+Pick the version from the [npm page](https://www.npmjs.com/package/react-web3-icons?activeTab=versions) or the [changelog](./CHANGELOG.md). An unpinned URL (`@latest`, `@5`) can start serving different files whenever a new version is published, without any change on your side.
 
 Browsers don't check [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) for images, so for an `<img>` the exact version is the only pin; self-host the files from `node_modules/react-web3-icons/dist/svg/` if you need more. When you load a file with `fetch()` instead (e.g. `dist/manifest.json` or an SVG you inline), you can pass `integrity`. Compute the hash from the exact URL you load:
 
 ```sh
-curl -sL https://cdn.jsdelivr.net/npm/react-web3-icons@4.0.0/dist/manifest.json \
+curl -sL https://cdn.jsdelivr.net/npm/react-web3-icons@5.0.0/dist/manifest.json \
   | openssl dgst -sha384 -binary | openssl base64 -A
 ```
 
 ```ts
-const res = await fetch('https://cdn.jsdelivr.net/npm/react-web3-icons@4.0.0/dist/manifest.json', {
+const res = await fetch('https://cdn.jsdelivr.net/npm/react-web3-icons@5.0.0/dist/manifest.json', {
   integrity: 'sha384-<hash printed by the command above>',
 });
 ```
