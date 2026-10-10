@@ -2,7 +2,7 @@
 "react-web3-icons": patch
 ---
 
-Refresh more wallet, exchange and DEX artwork from the brands' current official files (#834). Export names are unchanged.
+Refresh more wallet, exchange and DEX artwork from the brands' current official files (#834).
 
 - `Kraken`: the symbol from kraken.com's header logo in `#7132F5` replaces `#5841D8`.
 - `Deribit`: deribit.com's official `favicon.svg` in `#0052FF` replaces the teal `#2DAE9A` mark.
@@ -16,4 +16,4 @@ Refresh more wallet, exchange and DEX artwork from the brands' current official 
 - `Bitstamp`: the current "Bitstamp by Robinhood" B in `#003B2F` replaces the old dark B with a green bar. `BitstampCircle` is the white B on a `#003B2F` disc.
 - `WalletConnect` (+ `Circle`, `Square`): the current sharp-cornered brandmark in `#0988F0` replaces the 2018 rounded mark in `#3396FF`. `WalletConnectCircle` is the official WCT token icon.
 
-Every changed `Mono` variant was rebuilt from the new artwork. `OkxWallet`, `Bybit`, `Zerion` and `Bithumb` only record their sources and verification notes; their artwork is unchanged.
+Every changed `Mono` variant was rebuilt from the new artwork. `OkxWallet` and `Bybit` only record their sources and verification notes; their artwork is unchanged.

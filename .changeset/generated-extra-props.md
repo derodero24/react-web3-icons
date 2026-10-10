@@ -2,7 +2,7 @@
 "react-web3-icons": major
 ---
 
-Generate the icons with extra props (`AvalancheCircle`/`AvalancheCircleMono` `withBackground`, `Bybit*` `fill1`/`fill2`, `RainbowWallet`/`RainbowWalletSymbol` `withBackground`) like every other icon instead of hand-writing them.
+Generate the icons with extra props (`AvalancheCircle`/`AvalancheCircleMono` `withBackground`, `Bybit*` `fill1`/`fill2`, `Rainbow`/`RainbowSymbol` `withBackground`) like every other icon instead of hand-writing them.
 
 - They now set `aria-labelledby` from `title` + `titleId`, like every other icon.
 - Their `createIcon` calls are `/* @__PURE__ */`-annotated, so importing e.g. `AvalancheMono` no longer bundles `AvalancheCircle`.
