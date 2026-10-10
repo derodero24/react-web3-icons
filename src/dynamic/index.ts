@@ -74,12 +74,12 @@ export interface ChainIconProps extends DynamicIconProps<ChainVariant> {
    * Chain slug, normalized (e.g. `'ethereum'`, `'Arbitrum Nova'`,
    * `'arbitrum-one'`). Used when `chainId` is absent or unknown.
    */
-  name?: ChainSlug | (string & {});
+  name?: ChainSlug | (string & {}) | undefined;
   /**
    * EVM chain ID (e.g. `1`, `8453`). Takes precedence over `name`; an
    * unknown chain ID falls back to `name`.
    */
-  chainId?: ChainId | (number & {});
+  chainId?: ChainId | (number & {}) | undefined;
 }
 
 export interface CoinIconProps extends DynamicIconProps<CoinVariant> {

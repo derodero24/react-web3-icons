@@ -30,7 +30,7 @@ export interface DynamicIconProps<V extends string = 'colored' | 'mono'>
    * the category ships (`'Circle'`, `'Square'`, …). An icon that lacks the
    * requested variant renders `fallback`.
    */
-  variant?: V;
+  variant?: V | undefined;
   /** Rendered while loading, when the identifier or variant is not recognized, or when the icon fails to load. */
   fallback?: ReactNode;
 }

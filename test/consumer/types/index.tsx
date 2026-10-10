@@ -69,6 +69,12 @@ const defiVariant: DefiVariant = 'mono';
 // Identifiers keep autocomplete but accept any runtime string.
 const connectorId: string = 'metaMaskSDK';
 const walletProps: WalletIconProps = { name: connectorId, variant: 'Square' };
+// Optional props accept `undefined` under exactOptionalPropertyTypes, like the
+// SVG attributes of @types/react, so values that may be missing pass through.
+declare const maybeLabel: string | undefined;
+declare const maybeSize: number | undefined;
+declare const maybeFlag: boolean | undefined;
+declare const maybeVariant: ChainVariant | undefined;
 
 export const elements: ReactElement[] = [
   <Ethereum key="root" ref={ref} {...props} />,
@@ -106,6 +112,21 @@ export const elements: ReactElement[] = [
   <Binance key="no-extra" withBackground />,
   // @ts-expect-error unknown props must be rejected (types are not `any`)
   <Ethereum key="invalid" notAnSvgProp />,
+  <Ethereum
+    key="optional-undefined"
+    title={maybeLabel}
+    titleId={maybeLabel}
+    size={maybeSize}
+  />,
+  <AvalancheCircle key="optional-toggle" withBackground={maybeFlag} />,
+  <Bybit key="optional-fill" fill1={maybeLabel} fill2={undefined} />,
+  <ChainIcon
+    key="optional-dynamic"
+    chainId={1}
+    name={maybeLabel}
+    variant={maybeVariant}
+  />,
+  <ChainIcon key="dynamic-icon-props" chainId={1} {...props} />,
 ];
 
 // A category namespace exports icon components only: every key is an
