@@ -111,21 +111,7 @@ const EXEMPTIONS: Readonly<Record<UnitKey, Exemption>> = {
  * remove it then. A pending variant is not an option of its own: until it
  * lands, the icon needs one of the options above.
  */
-const PENDING: Readonly<Record<UnitKey, Pending>> = {
-  'chain/Blast': {
-    tone: 'light',
-    variant: 'BlastCircle',
-    source: 'https://blast.io/icons/blast-color.svg',
-    note: 'the #FCFC03 mark on a black disc',
-  },
-  'chain/Mode': {
-    tone: 'light',
-    variant: 'ModeCircle',
-    source:
-      'https://raw.githubusercontent.com/mode-network/brandkit/main/Assets/Logo/Token.svg',
-    note: 'the black M on a #DFFE00 disc',
-  },
-};
+const PENDING: Readonly<Record<UnitKey, Pending>> = {};
 
 interface Pending {
   /** The background the default icon vanishes on. */
@@ -326,7 +312,8 @@ describe('dark/light background legibility (issue #712)', () => {
     );
   });
 
-  describe('pending variants', () => {
+  // Empty while no official variant is pending; vitest rejects an empty suite.
+  describe.skipIf(Object.keys(PENDING).length === 0)('pending variants', () => {
     const byKey = new Map<string, Audited>(
       audited.map(entry => [entry.key, entry]),
     );

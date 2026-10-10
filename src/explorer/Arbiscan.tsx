@@ -6,7 +6,9 @@ import { createIcon } from '../utils';
 // Source: https://arbitrumfoundation.notion.site/Arbitrum-brand-guidelines-6014e69d7b574f378a50f5ee678495d3 (Arbitrum Foundation brand kit: AllWhite_Logos_Logomark_RGB.svg, the Mono)
 // Arbiscan has no mark of its own: its brand assets page (headed "Arbitrum One Brand Assets & Guidelines") ships the Arbitrum logomark as logo-symbol.svg, and the header logo (logos/logo-light.svg) is that logomark beside an ARBISCAN wordmark
 // Default: logo-symbol.svg from logos.zip (byte-identical to the site's chain-light.svg and chain-dark.svg), paths unchanged and placed on the 64 grid without the file's near-no-op clip path; it matches the Arbitrum default to about 0.02 units
-// Mono: Arbiscan publishes no one-colour symbol, so it is the Arbitrum brand kit's one-colour logomark (AllWhite_Logos_Logomark_RGB.svg) in currentColor, the same artwork as ArbitrumMono: the ring and the four strokes in ink, the navy body left open (docs/icon-variants.md, mono rule 5). It replaces a hand-built filled hexagon with the strokes knocked out
+// ArbiscanMono re-exports ArbitrumMono: Arbiscan publishes no one-colour symbol, so its mono is the Arbitrum brand kit's one-colour logomark (AllWhite_Logos_Logomark_RGB.svg), the artwork of ArbitrumMono (the ring and the four strokes in ink, the navy body left open; docs/icon-variants.md, mono rule 5)
+export { ArbitrumMono as ArbiscanMono } from '../chain/Arbitrum';
+
 /** Arbiscan explorer icon (colored). */
 export const Arbiscan = /* @__PURE__ */ createIcon(
   'Arbiscan',
@@ -42,18 +44,4 @@ export const Arbiscan = /* @__PURE__ */ createIcon(
     </>
   ),
   {},
-);
-
-/** Arbiscan explorer icon (monochrome). */
-export const ArbiscanMono = /* @__PURE__ */ createIcon(
-  'ArbiscanMono',
-  '0 0 64 64',
-  () => (
-    <>
-      <path d="m36.15 36.26-2.72 7.43a1 1 0 0 0 0 .64l4.67 12.8L43.5 54l-6.48-17.75a.46.46 0 0 0-.87 0m5.43-12.5a.46.46 0 0 0-.87 0L38 31.18a1 1 0 0 0 0 .64l7.64 20.94 5.4-3.11z" />
-      <path d="M32 7.47q.2 0 .38.1l20.58 11.88c.23.14.38.4.38.67v23.75q-.02.44-.38.67L32.38 56.42q-.17.1-.38.1c-.21 0-.27-.04-.39-.1L11.04 44.55a.8.8 0 0 1-.39-.67V20.12c0-.27.15-.53.39-.67L31.6 7.58q.18-.1.39-.11M32 4c-.73 0-1.47.19-2.13.57L9.3 16.44a4.2 4.2 0 0 0-2.12 3.68v23.75a4.2 4.2 0 0 0 2.12 3.68l20.58 11.88a4.2 4.2 0 0 0 4.25 0L54.7 47.55a4.2 4.2 0 0 0 2.12-3.68V20.12a4.2 4.2 0 0 0-2.12-3.68L34.12 4.57A4 4 0 0 0 32 4" />
-      <path d="M30.26 18.42h-5.21a.9.9 0 0 0-.88.61L13 49.68l5.4 3.12 12.3-33.75a.46.46 0 0 0-.44-.63m9.13 0h-5.22a.9.9 0 0 0-.87.61l-12.76 35 5.39 3.12 13.9-38.1a.47.47 0 0 0-.44-.63" />
-    </>
-  ),
-  { fill: 'currentColor' },
 );
