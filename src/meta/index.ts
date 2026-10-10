@@ -250,7 +250,7 @@ export const TICKER_TO_COIN = {
   TAIKO: 'Taiko',
   TAO: 'Tao',
   TIA: 'Tia',
-  TON: 'Gram',
+  TON: 'Ton',
   TRX: 'Trx',
   UNI: 'Uni',
   USDC: 'Usdc',

@@ -184,7 +184,7 @@ Deprecated exports are not variants of the dynamic components, so `'Alt'` is not
 
 ## 7. Rebrands with new artwork
 
-These projects rebranded with a new logo or were folded into a successor. The new export carries the new artwork from the official source; the old export keeps the old artwork and is deprecated (the coin `Ton` is removed instead, see below):
+These projects rebranded with a new logo or were folded into a successor. The new export carries the new artwork from the official source; the old export keeps the old artwork and is deprecated:
 
 | Deprecated | Replacement | Category | New artwork |
 | --- | --- | --- | --- |
@@ -193,17 +193,10 @@ These projects rebranded with a new logo or were folded into a successor. The ne
 | `Mkr`, `MkrMono` | `Sky`, `SkyMono`, `SkyCircle`, `SkyCircleMono` | coin | the same, re-exported from defi (MKR upgrades to SKY) |
 | `ParaSwap`, `ParaSwapMono` | `Velora`, `VeloraMono` | dex | the Velora brand kit, velora.xyz/brand |
 | `NamiWallet`, `NamiWalletMono` | `Lace`, `LaceMono` | wallet | the Lace symbol from lace.io (Nami was folded into Lace) |
-| `Ton`, `TonMono` (coin only, removed) | `Gram`, `GramMono`, `GramCircle`, `GramCircleMono` | coin | the Gram token marks from ton.org/media (Toncoin was renamed Gram) |
 
-`Gram`, `GramMono`, `GramCircle` and `GramCircleMono` (coin, tickers `GRAM` and `TON`) are new: Gram is the token formerly known as Toncoin (TON), with its own mark from ton.org/media. In v4, `react-web3-icons/coin` exported `Ton` and `TonMono` as re-exports of the chain icon, the logo of The Open Network. v5 removes them from `react-web3-icons/coin` instead of deprecating them: a deprecated coin `Ton` would share its name with the chain `Ton`, so the root `Ton` would be ambiguous and `DEPRECATED_ICON_NAMES` would list the chain icon too. The root and `react-web3-icons/chain` still export `Ton` and `TonMono`, unchanged. The files `svg/coin/Ton.svg` and `svg/coin/TonMono.svg` and the Iconify aliases `coin-ton` and `coin-ton-mono` are gone too.
+`Gram`, `GramMono`, `GramCircle` and `GramCircleMono` (coin, ticker `GRAM`) are new: Gram is the token formerly known as Toncoin (TON), with its own mark from ton.org/media. The `Ton` exports, the logo of The Open Network, are unchanged in `react-web3-icons/chain` and `react-web3-icons/coin`, and the ticker `TON` (new in v5) resolves to them.
 
-```diff
-- import { Ton } from 'react-web3-icons/coin';
-+ import { Gram } from 'react-web3-icons/coin'; // the token
-+ import { Ton } from 'react-web3-icons/chain'; // The Open Network, the same component as before
-```
-
-- The lookup keys moved with the brands: `makerdao` resolves to `Sky` (`DefiIcon`), `paraswap` to `Velora` (`DexIcon`), `namiwallet` to `Lace` (`WalletIcon`) and `MKR` to `Sky` (`CoinIcon`, `TICKER_TO_COIN`), so they render the new artwork. `sky`, `velora`, `lace`, `nami` (→ `Lace`), `SKY`, `GRAM` and `TON` (→ `Gram`) are new keys.
+- The lookup keys moved with the brands: `makerdao` resolves to `Sky` (`DefiIcon`), `paraswap` to `Velora` (`DexIcon`), `namiwallet` to `Lace` (`WalletIcon`) and `MKR` to `Sky` (`CoinIcon`, `TICKER_TO_COIN`), so they render the new artwork. `sky`, `velora`, `lace`, `nami` (→ `Lace`), `SKY` and `GRAM` are new keys.
 - `DefiIcon` gains the `'Circle'` and `'CircleMono'` variants (`DefiVariant`) through `SkyCircle`.
 
 ```diff
@@ -243,7 +236,7 @@ These exports were deprecated in v2 or v3 and have met the lifecycle policy (at 
 | `Drizzle`, `DrizzleMono` | — (ConsenSys sunset Truffle Suite) | 3.1.0 (2026-03-16) |
 | `TofuNft`, `TofuNftMono` | — (tofunft.com shut down) | 3.1.0 (2026-03-16) |
 
-Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases are gone too. `react-web3-icons/coin` also no longer exports `Ton` / `TonMono`, which were not deprecated first (section 7); import them from the root or `react-web3-icons/chain`, or use `Gram` for the token. `Fantom`, `FantomMono`, `Ftm` and `FtmMono` were deprecated in 4.0.0 (2026-09-14), have not met the 90-day window yet, and stay deprecated.
+Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases are gone too. `Fantom`, `FantomMono`, `Ftm` and `FtmMono` were deprecated in 4.0.0 (2026-09-14), have not met the 90-day window yet, and stay deprecated.
 
 ```diff
 - import { EtherscanLight, GnosisSafe, Matic } from 'react-web3-icons';
@@ -352,7 +345,7 @@ They now fill the whole box like other containers (section 5), so they render la
 
 - **Fantom lookups render Sonic.** `CHAIN_ID_TO_NAME[250]`, `CHAIN_SLUG_TO_NAME.fantom` and `TICKER_TO_COIN.FTM` are now `'Sonic'`, so `<ChainIcon chainId={250} />`, `<ChainIcon name="fantom" />` and `<CoinIcon symbol="FTM" />` render the Sonic mark. The deprecated `Fantom`, `FantomMono`, `Ftm` and `FtmMono` exports still render the Fantom artwork.
 - **One `Pyth` component.** `react-web3-icons/coin` now re-exports `Pyth` and `PythMono` from `react-web3-icons/oracle`, so both subpaths export the same component, coloured `#110F23`. In v4 the oracle `Pyth` was `#9945FF` and the coin `Pyth` `#110F24`.
-- **Keys for icons v4 already exported.** The tickers `DOT`, `FET`, `HBAR`, `ICP`, `INJ`, `NEAR`, `PEPE`, `STX` and `TIA`, the legacy tickers `MATIC` (`Pol`) and `KLAY` (`Kaia`), the chain slug `cronos` and the chain IDs `295` (`Hedera`) and `1776` (`Injective`) rendered `fallback` in v4; they now render their icons.
+- **Keys for icons v4 already exported.** The tickers `DOT`, `FET`, `HBAR`, `ICP`, `INJ`, `NEAR`, `PEPE`, `STX`, `TIA` and `TON`, the legacy tickers `MATIC` (`Pol`) and `KLAY` (`Kaia`), the chain slug `cronos` and the chain IDs `295` (`Hedera`) and `1776` (`Injective`) rendered `fallback` in v4; they now render their icons.
 - **Deprecated manifest entries carry no lookup ids.** In v4 `Fantom` had `chainId: 250` and `slug: 'fantom'`, and `Ftm` had `ticker: 'FTM'`; in v5 no deprecated entry has a `chainId`, `slug` or `ticker`, and `Fantom`'s search alias `ftm` moved to `Sonic`. The old names of renamed exports (section 6) are alias entries with only `name`, `category` and `deprecated`; read the other fields from the new name's entry (`BnbSmartChain` has `chainId: 56`).
 - **Entries that became re-exports carry no `variants` or `brandColor`.** An entry that only re-exports another icon, with no variants of its own, has neither field. In v5 this newly applies to coin `Bnb`, `Cro`, `Ena`, `Hbar`, `Pyth`, `Stx`, `Tia` and `Wld`, chain `CosmosHub`, defi `SafeProtocol`, explorer `Arbiscan` and wallet `OkxWallet` (`OKXWallet` in v4); read these fields from the icon they re-export (chain `BnbSmartChain`, chain `Cronos`, defi `Ethena`, chain `Hedera`, oracle `Pyth`, chain `Stacks`, chain `Celestia`, chain `WorldChain`, coin `Atom`, wallet `Safe`, chain `Arbitrum` and exchange `Okx`). The reverse also happened: chain `Cronos` and coin `Op` were re-exports in v4 and now have their own artwork, and coin `Ldo` still re-exports `Lido` but adds its own `Circle` variants. These three now have `variants` and `brandColor` (`Ldo` has Lido's `#0085ff`).
 - **`brandColor` follows a new rule.** v4 took the most frequent colour value of the colored artwork other than white, which for badge-style marks was often the dark container. v5 counts greys, near-black and near-white only when the artwork has no other colour, and some icons carry a curated value. Together with the new artwork, this changes many values, for example chain `Kaia` `#040404` → `#bff009`, wallet `Xverse` `#181818` → `#ee7a30` and oracle `Pyth` `#9945ff` → `#7142cf`. If you stored `brandColor` values, read them again from `react-web3-icons/manifest` or `react-web3-icons/manifest.json`.
@@ -367,7 +360,6 @@ They now fill the whole box like other containers (section 5), so they render la
 - [ ] Optionally rename the deprecated names with the find-and-replace in section 6 (they keep working through v5)
 - [ ] Drop `variant="Alt"` from `WalletIcon` and `variant="Flat"` / `"FlatMono"` from `ChainIcon`, and use `variant="mono"` instead of `variant="SymbolMono"` for Phantom; optionally replace `ArbitrumOneFlat*` and `ArbitrumNovaFlat*` with `ArbitrumOne*` and `ArbitrumNova*` (section 6, duplicate variants)
 - [ ] Optionally move from `Tally`, `MakerDao`, `Mkr`, `ParaSwap` and `NamiWallet` to `Cactus`, `Sky`, `Velora` and `Lace` (new artwork, section 7)
-- [ ] Import `Ton` / `TonMono` from the root or `react-web3-icons/chain` instead of `react-web3-icons/coin`, or use `Gram` for the token; expect the Gram mark for `<CoinIcon symbol="TON" />` (section 7)
 - [ ] Expect `fallback` for the lookup keys of defunct projects (`BUSD`, `hopprotocol`, `odos`, …) and the new Sky, Velora and Lace artwork for `MKR`, `makerdao`, `paraswap`, `nami` and `namiwallet` (sections 7 and 8)
 - [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg`, `Starknet*.svg` and `Zksync*.svg` instead of the `OKXWallet*`, `StarkNet*` and `ZkSync*` files
 - [ ] Use `ZerionCircle` / `TrustWalletSquare` (and their `Mono` variants) where you relied on `Zerion` / `TrustWallet` rendering a container (section 10)

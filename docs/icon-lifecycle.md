@@ -11,6 +11,7 @@ must change. It is part of the [contributing guide](../CONTRIBUTING.md).
 - Give every alias export a `deprecated` message (``"Use `Ready` instead."``). The generator emits it as a ``/** @deprecated Use `Ready` instead. */`` JSDoc comment and adds the export to `DEPRECATED_ICON_NAMES` (`src/deprecated.ts`), so consuming apps can filter it automatically.
 - To deprecate artwork that has no direct rename (a brand that was succeeded or shut down), list the exports in the unit's `deprecated` map instead.
 - Move the old lookup keys (slugs, tickers, chain IDs) and manifest `aliases` to the canonical unit as extra keys; lookup keys may not point at deprecated exports.
+  One exception: a re-export that has the same name as the icon it re-exports cannot be deprecated on its own, because the deprecated binding would make the root export ambiguous and `DEPRECATED_ICON_NAMES` is keyed by name. Such a unit keeps its keys. The coin `Ton` re-exports the chain `Ton` (The Open Network), so the ticker `TON` still resolves to it after Toncoin was renamed Gram; `GRAM` resolves to `Gram`.
 
 ## Deprecation and removal timing
 

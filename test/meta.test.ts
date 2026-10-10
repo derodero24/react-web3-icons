@@ -114,7 +114,7 @@ describe('TICKER_TO_COIN', () => {
     expect(TICKER_TO_COIN.DOT).toBe('Dot');
     expect(TICKER_TO_COIN.HBAR).toBe('Hbar');
     expect(TICKER_TO_COIN.NEAR).toBe('Near');
-    expect(TICKER_TO_COIN.TON).toBe('Gram');
+    expect(TICKER_TO_COIN.TON).toBe('Ton');
   });
 
   it('routes legacy tickers of 1:1 token migrations to the new coin', () => {

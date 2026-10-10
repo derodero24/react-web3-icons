@@ -62,6 +62,7 @@ export * from './Sui';
 export * from './Taiko';
 export * from './Tao';
 export * from './Tia';
+export * from './Ton';
 export * from './Trx';
 export * from './Uni';
 export * from './Usdc';

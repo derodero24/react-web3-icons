@@ -1065,6 +1065,8 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'TaoMono', category: 'coin' },
   { name: 'Tia', category: 'coin', ticker: 'TIA' },
   { name: 'TiaMono', category: 'coin' },
+  { name: 'Ton', category: 'coin', ticker: 'TON' },
+  { name: 'TonMono', category: 'coin' },
   { name: 'Trx', category: 'coin', ticker: 'TRX' },
   { name: 'TrxMono', category: 'coin' },
   { name: 'Uni', category: 'coin', ticker: 'UNI' },

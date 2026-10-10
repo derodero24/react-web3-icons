@@ -128,7 +128,6 @@ describe('category lookups', () => {
     // v5 renames (#815): the old keys resolve to the new icons.
     [resolveTicker, 'MKR', 'Sky'],
     [resolveTicker, 'GRAM', 'Gram'],
-    [resolveTicker, 'ton', 'Gram'],
     // DATA Network (formerly Story, #706) and FDUSD (#708).
     [resolveTicker, 'DATA', 'Data'],
     [resolveTicker, 'IP', 'Data'],
