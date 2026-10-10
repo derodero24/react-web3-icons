@@ -1,7 +1,14 @@
 {
   "name": "Blast",
   "source": [
-    "https://blast.io"
+    "https://blast.io/favicon.svg (Blast's site icon, accessed 2026-10-09)",
+    "https://blast.io/icons/blast-color.svg (the round icon served by blast.io)"
+  ],
+  "notes": [
+    "No downloadable brand kit was found; the artwork is Blast's own site assets",
+    "Default: the two polygons of favicon.svg (the mark in #FCFC03), shapes unchanged and placed on the 64 grid",
+    "Mono: the same shapes in currentColor",
+    "Circle: blast-color.svg (the #FCFC03 mark on a black disc), shapes unchanged without the file's no-op clip path and placed on the 64 grid as a full-bleed container; it is the light-background option for the pale default. CircleMono is the disc in currentColor with the mark knocked out (fill-rule=evenodd)"
   ],
   "kind": "icon",
   "variants": {
@@ -11,6 +18,13 @@
     },
     "Mono": {
       "file": "blast.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "blast.circle.svg"
+    },
+    "CircleMono": {
+      "file": "blast.circle-mono.svg",
       "fill": "currentColor"
     }
   },

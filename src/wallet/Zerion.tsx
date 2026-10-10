@@ -1,35 +1,55 @@
 import { createIcon } from '../utils';
 
-// Source: https://zerion.io
-// Source: https://zerion.io/_next/static/media/zerion-logo.85fd1b5e.svg (current header lockup: a white rounded tile with the Z knocked out)
-// Checked 2026-10-04: blocked on a colour vector. Zerion's current Z (rounder, 2025) is published only as the white one-colour tile of the zerion.io header lockup, and the app icon only as a raster (https://zerion.io/favicon-wallet.png, blue-to-cyan checker gradient). This artwork is the earlier sharp Z on #2962EF / #16161A and stays unchanged until a colour vector exists, rather than mixing the new Z with old colours
+// Source: https://design.zerion.io/assets/zerion_symbol_main.87a4f570.svg (official brand guidelines, Symbol .svg pack)
+// Source: https://design.zerion.io/assets/zerion_icon-square_main.9c1ae08b.svg (official brand guidelines, Icon .svg pack)
+// Source: https://design.zerion.io/assets/zerion_icon-circle_main.7309aeca.svg (official brand guidelines, Icon .svg pack)
+// Source: https://design.zerion.io/logo (official brand guidelines, linked as Brand Assets from the zerion.io footer)
+// Source: https://design.zerion.io/color (core colour Zerion Digital #2461ED)
+// Default: the brand guidelines' Symbol, zerion_symbol_main.svg (the #2461ED Z, Zerion Digital), path unchanged, placed on the 64 grid; its no-op clipPath (the whole 400x400 canvas) is dropped
+// Mono: the same Z path in currentColor; the guidelines' Symbol pack shows the same path in single colours (white, #06003C)
+// Square and Circle: the guidelines' Icon, zerion_icon-square_main.svg (176 grid, rounded square) and zerion_icon-circle_main.svg (191 grid, disc): one #2461ED evenodd path with the Z knocked out, unchanged, scaled full-bleed to 64; the guidelines recommend the Icon for small sizes and monochrome use
+// SquareMono and CircleMono: the same Icon paths in currentColor (the Z stays a hole)
+/** Zerion wallet icon (colored). */
+export const Zerion = /* @__PURE__ */ createIcon(
+  'Zerion',
+  '0 0 64 64',
+  () => (
+    <g>
+      <path
+        fill="#2461ED"
+        d="M16.95 33.97c1.7-2.35 5.16-2.87 7.63-1.55 9.91 5.28 23.8 13.32 33.67 19.4 3.05 1.87 1.85 6.38-1.72 6.38H7.55c-2.84 0-4.31-2.94-3.1-5 4.08-6.96 8.69-14 12.5-19.24M55.86 5.79c2.6 0 4.33 2.9 3.04 5.07-3.12 5.39-7.68 12.25-11.48 17.67-2.05 2.91-5.4 3.42-7.88 2.08-10.24-5.56-22.7-12.74-32.1-18.58-2.78-2-1.37-6.24 1.97-6.24z"
+      />
+    </g>
+  ),
+  {},
+);
+
+/** Zerion wallet icon (monochrome). */
+export const ZerionMono = /* @__PURE__ */ createIcon(
+  'ZerionMono',
+  '0 0 64 64',
+  () => (
+    <g>
+      <path d="M16.95 33.97c1.7-2.35 5.16-2.87 7.63-1.55 9.91 5.28 23.8 13.32 33.67 19.4 3.05 1.87 1.85 6.38-1.72 6.38H7.55c-2.84 0-4.31-2.94-3.1-5 4.08-6.96 8.69-14 12.5-19.24M55.86 5.79c2.6 0 4.33 2.9 3.04 5.07-3.12 5.39-7.68 12.25-11.48 17.67-2.05 2.91-5.4 3.42-7.88 2.08-10.24-5.56-22.7-12.74-32.1-18.58-2.78-2-1.37-6.24 1.97-6.24z" />
+    </g>
+  ),
+  { fill: 'currentColor' },
+);
+
 /** Zerion Circle wallet icon (colored). */
 export const ZerionCircle = /* @__PURE__ */ createIcon(
   'ZerionCircle',
   '0 0 64 64',
-  (_props, _id) => (
-    <g transform="scale(.0625)">
-      <rect width="1024" height="1024" fill={`url(#${_id}-zr-a)`} rx="512" />
+  () => (
+    <g>
       <path
-        fill="#fff"
-        d="M258.64 288c-15.35 0-21.27 18.99-8.38 26.92l322.32 194.35c8.04 4.95 18.76 3 24.29-4.43L738.59 318.8c9.63-12.92-.1-30.79-16.78-30.79zm506.61 448c15.35 0 21.42-19.09 8.54-27.02L451.37 514.65c-8.03-4.94-18.49-2.74-24.02 4.68l-142 186.01c-9.63 12.93.41 30.66 17.09 30.66z"
+        fill="#2461ED"
+        fillRule="evenodd"
+        d="M32 0c17.67 0 32 14.33 32 32S49.68 64 32 64 0 49.67 0 32 14.33 0 32 0m-4.2 32.3c-1.4-.74-3.35-.45-4.31.88-2.16 2.96-4.76 6.94-7.07 10.88-.68 1.16.14 2.83 1.75 2.83h27.7c2.01 0 2.7-2.55.98-3.62C41.26 39.84 33.4 35.3 27.8 32.3m-8.58-15.05c-1.9 0-2.69 2.4-1.12 3.53 5.3 3.31 12.36 7.37 18.16 10.5 1.4.76 3.29.48 4.45-1.17 2.15-3.07 4.72-6.94 6.49-9.99.73-1.23-.25-2.86-1.71-2.87z"
       />
-      <defs>
-        <linearGradient
-          id={`${_id}-zr-a`}
-          x1="0"
-          x2="1209.97"
-          y1="0"
-          y2="704.7"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#2962ef" />
-          <stop offset="1" stopColor="#255ce5" />
-        </linearGradient>
-      </defs>
     </g>
   ),
-  { ids: true },
+  {},
 );
 
 /** Zerion Square wallet icon (colored). */
@@ -37,16 +57,13 @@ export const ZerionSquare = /* @__PURE__ */ createIcon(
   'ZerionSquare',
   '0 0 64 64',
   () => (
-    <>
+    <g>
       <path
-        fill="#16161a"
-        d="M0 17.2c0-5.98 0-8.97 1.16-11.25 1.02-2 2.65-3.64 4.66-4.66C8.1.13 11.09.13 17.06.13h29.86c5.97 0 8.96 0 11.24 1.16 2 1.02 3.64 2.65 4.66 4.66C64 8.23 64 11.22 64 17.2v29.63c0 5.97 0 8.96-1.17 11.24-1.02 2-2.65 3.64-4.66 4.66-2.28 1.17-5.27 1.17-11.24 1.17H17.06c-5.97 0-8.96 0-11.24-1.17-2-1.02-3.64-2.65-4.66-4.66C-.01 55.78-.01 52.8-.01 46.82z"
+        fill="#2461ED"
+        fillRule="evenodd"
+        d="M45.9 0C55.9 0 64 8.1 64 18.1v27.8c0 10-8.1 18.1-18.1 18.1H18.1C8.1 64 0 55.9 0 45.9V18.1C0 8.1 8.1 0 18.1 0zM27.46 32.25c-1.52-.81-3.64-.49-4.67.94-2.34 3.22-5.15 7.52-7.65 11.78-.74 1.26.15 3.07 1.9 3.07H47c2.18 0 2.92-2.77 1.05-3.92-6.04-3.72-14.54-8.64-20.6-11.87m-9.3-16.29c-2.04 0-2.9 2.6-1.2 3.82 5.74 3.58 13.37 7.98 19.65 11.37 1.52.82 3.56.51 4.8-1.27 2.34-3.32 5.13-7.51 7.04-10.8.8-1.35-.27-3.12-1.85-3.12z"
       />
-      <path
-        fill="#fff"
-        d="M13.87 16.07c-1.1 0-1.52 1.35-.6 1.91L36.3 31.81a1.3 1.3 0 0 0 1.73-.31l10.12-13.24c.69-.92 0-2.2-1.2-2.2zm36.19 31.88c1.1 0 1.53-1.36.6-1.92L27.65 32.2a1.3 1.3 0 0 0-1.72.33L15.78 45.77c-.69.92.03 2.18 1.22 2.18z"
-      />
-    </>
+    </g>
   ),
   {},
 );
@@ -55,54 +72,28 @@ export const ZerionSquare = /* @__PURE__ */ createIcon(
 export const ZerionCircleMono = /* @__PURE__ */ createIcon(
   'ZerionCircleMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <g transform="scale(.0625)">
-      <defs>
-        <mask id={`${_id}-zr-circle-a`}>
-          <rect width="1024" height="1024" fill="#fff" />
-          <path
-            fill="#000"
-            d="M258.64 288c-15.35 0-21.27 18.99-8.38 26.92l322.32 194.35c8.04 4.95 18.76 3 24.29-4.43L738.59 318.8c9.63-12.92-.1-30.79-16.78-30.79zm506.61 448c15.35 0 21.42-19.09 8.54-27.02L451.37 514.65c-8.03-4.94-18.49-2.74-24.02 4.68l-142 186.01c-9.63 12.93.41 30.66 17.09 30.66z"
-          />
-        </mask>
-      </defs>
-      <rect
-        width="1024"
-        height="1024"
-        mask={`url(#${_id}-zr-circle-a)`}
-        rx="512"
+  () => (
+    <g>
+      <path
+        fillRule="evenodd"
+        d="M32 0c17.67 0 32 14.33 32 32S49.68 64 32 64 0 49.67 0 32 14.33 0 32 0m-4.2 32.3c-1.4-.74-3.35-.45-4.31.88-2.16 2.96-4.76 6.94-7.07 10.88-.68 1.16.14 2.83 1.75 2.83h27.7c2.01 0 2.7-2.55.98-3.62C41.26 39.84 33.4 35.3 27.8 32.3m-8.58-15.05c-1.9 0-2.69 2.4-1.12 3.53 5.3 3.31 12.36 7.37 18.16 10.5 1.4.76 3.29.48 4.45-1.17 2.15-3.07 4.72-6.94 6.49-9.99.73-1.23-.25-2.86-1.71-2.87z"
       />
     </g>
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );
 
 /** Zerion Square wallet icon (monochrome). */
 export const ZerionSquareMono = /* @__PURE__ */ createIcon(
   'ZerionSquareMono',
   '0 0 64 64',
-  (_props, _id) => (
-    <g transform="translate(-157.62 -259.86)scale(1.59414)">
-      <defs>
-        <mask id={`${_id}-zr-square-a`}>
-          <path fill="#fff" d="M-180.8-15.75h1847v1635h-1847z" />
-          <path
-            fill="#000"
-            d="M107.58 173.09c-.69 0-.95.84-.37 1.2l14.44 8.67a.83.83 0 0 0 1.09-.2l6.35-8.3c.43-.58 0-1.38-.76-1.38zm22.7 20c.69 0 .96-.86.38-1.21l-14.44-8.68a.8.8 0 0 0-1.08.21l-6.36 8.3c-.43.58.02 1.38.76 1.38z"
-          />
-        </mask>
-      </defs>
+  () => (
+    <g>
       <path
-        d="M98.87 173.8c0-3.76 0-5.63.73-7.06a6.7 6.7 0 0 1 2.93-2.93c1.43-.73 3.3-.73 7.05-.73h18.73c3.75 0 5.62 0 7.06.73a6.7 6.7 0 0 1 2.92 2.93c.73 1.43.73 3.3.73 7.05v18.59c0 3.74 0 5.62-.73 7.05a6.7 6.7 0 0 1-2.92 2.92c-1.44.73-3.31.73-7.06.73h-18.73c-3.75 0-5.62 0-7.05-.73a6.7 6.7 0 0 1-2.93-2.92c-.73-1.43-.73-3.3-.73-7.06z"
-        mask={`url(#${_id}-zr-square-a)`}
+        fillRule="evenodd"
+        d="M45.9 0C55.9 0 64 8.1 64 18.1v27.8c0 10-8.1 18.1-18.1 18.1H18.1C8.1 64 0 55.9 0 45.9V18.1C0 8.1 8.1 0 18.1 0zM27.46 32.25c-1.52-.81-3.64-.49-4.67.94-2.34 3.22-5.15 7.52-7.65 11.78-.74 1.26.15 3.07 1.9 3.07H47c2.18 0 2.92-2.77 1.05-3.92-6.04-3.72-14.54-8.64-20.6-11.87m-9.3-16.29c-2.04 0-2.9 2.6-1.2 3.82 5.74 3.58 13.37 7.98 19.65 11.37 1.52.82 3.56.51 4.8-1.27 2.34-3.32 5.13-7.51 7.04-10.8.8-1.35-.27-3.12-1.85-3.12z"
       />
     </g>
   ),
-  { fill: 'currentColor', ids: true },
+  { fill: 'currentColor' },
 );
-
-/** Zerion wallet icon (colored). */
-export const Zerion = ZerionCircle;
-
-/** Zerion wallet icon (monochrome). */
-export const ZerionMono = ZerionCircleMono;

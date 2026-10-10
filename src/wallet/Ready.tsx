@@ -1,7 +1,10 @@
 import { createIcon } from '../utils';
 
-// Source: https://argent.xyz
-// Ready is Argent's new name (argent.xyz now serves Ready); the mark is unchanged, so the artwork carries over from the Argent unit
+// Source: https://framerusercontent.com/images/tuUJVhzQ6d0kOUpd0oT5bsqm3Nc.svg (official www.ready.co favicon, its rel=icon for light and dark colour schemes)
+// Source: https://www.ready.co (argent.xyz redirects here)
+// Ready is Argent's new name (argent.xyz redirects to www.ready.co); the mark is unchanged, so the artwork carries over from the Argent unit
+// Default: the ready.co favicon SVG, a single #FF875B path (its no-op clipPath is the whole canvas), placed on the 64 grid. It matches the shipped artwork (alpha IoU 0.998, checked 2026-10-09), so the path is unchanged. ready.co has no brand or press page; its #F36A3D accent is a site UI colour, not a logo file, so it is not used
+// Mono: the same path in currentColor
 /** Ready wallet icon (colored). */
 export const Ready = /* @__PURE__ */ createIcon(
   'Ready',
