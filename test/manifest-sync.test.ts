@@ -246,7 +246,7 @@ describe('Icon manifest sync', () => {
     expect(source).not.toMatch(/^(?:import|export .* from) /m);
   });
 
-  it('variants are the exports of each icon, colored and mono first', async () => {
+  it('variants are the exports of each icon, each mono after its colored suffix', async () => {
     const expected = await expectedVariants(loadIconUnits().values());
     for (const entry of ICON_MANIFEST) {
       const label = `${entry.category}/${entry.name} variants`;
@@ -260,6 +260,17 @@ describe('Icon manifest sync', () => {
       );
       const first = ['', 'Mono'].filter(s => variants.includes(s));
       expect(entry.variants?.slice(0, first.length), label).toEqual(first);
+      // `CircleMono` comes right after `Circle` when the icon has both.
+      const list = entry.variants ?? [];
+      expect(
+        list.filter(
+          (suffix, i) =>
+            suffix.endsWith('Mono') &&
+            list.includes(suffix.slice(0, -'Mono'.length)) &&
+            list[i - 1] !== suffix.slice(0, -'Mono'.length),
+        ),
+        `${label} pair each mono with its colored suffix`,
+      ).toEqual([]);
       expect(
         missingVariantExports(entry, entry.variants ?? []),
         `${label} must all be exports`,

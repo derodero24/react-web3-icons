@@ -859,8 +859,8 @@ export interface IconManifestEntry {
   readonly deprecated?: true;
   /**
    * Variant suffixes of this icon, the colored default (`''`) and
-   * `'Mono'` first: each `name + suffix` is an export of the same
-   * category. Deprecated variants are left out unless the icon itself is
+   * `'Mono'` first, then each other suffix followed by its mono: each
+   * `name + suffix` is an export of the same category. Deprecated variants are left out unless the icon itself is
    * deprecated. The exports of a longer name that a
    * `react-web3-icons/meta` map resolves to are left out too, as that
    * name's entry lists them (`'Nova'` is not a variant of `Arbitrum`:
@@ -1061,7 +1061,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     chainId: 8453,
     slug: 'base',
-    variants: ['', 'Mono', 'Circle', 'Square', 'SquareMono', 'CircleMono'],
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono'],
     brandColor: '#0000ff',
   },
   { name: 'BaseCircle', category: 'chain' },
@@ -1113,7 +1113,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     chainId: 56,
     slug: 'bsc',
-    variants: ['', 'Mono', 'Circle', 'Square', 'SquareMono', 'CircleMono'],
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono'],
     aliases: ['bnb', 'bsc'],
     brandColor: '#f0b90b',
   },
@@ -1377,7 +1377,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     chainId: 10,
     slug: 'optimism',
-    variants: ['', 'Mono', 'Circle', 'Square', 'SquareMono', 'CircleMono'],
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono'],
     brandColor: '#ff0421',
   },
   { name: 'OptimismCircle', category: 'chain' },
@@ -1442,7 +1442,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Solana',
     category: 'chain',
     slug: 'solana',
-    variants: ['', 'Mono', 'Circle', 'Square', 'SquareMono', 'CircleMono'],
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono'],
     brandColor: '#9945ff',
   },
   { name: 'SolanaCircle', category: 'chain' },
@@ -1569,7 +1569,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     chainId: 324,
     slug: 'zksync',
-    variants: ['', 'Mono', 'Circle', 'Square', 'SquareMono', 'CircleMono'],
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono'],
     aliases: ['zk'],
     brandColor: '#11141a',
   },
@@ -2820,7 +2820,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Coinbase',
     category: 'exchange',
     slug: 'coinbase',
-    variants: ['', 'Mono', 'Circle', 'CircleAlt', 'CircleMono'],
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'CircleAlt'],
     brandColor: '#0052ff',
   },
   { name: 'CoinbaseCircle', category: 'exchange' },
@@ -3134,7 +3134,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Coinpanda',
     category: 'portfolio',
-    variants: ['', 'Mono', 'Circle', 'Square', 'CircleMono', 'SquareMono'],
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono'],
     brandColor: '#246aff',
   },
   { name: 'CoinpandaCircle', category: 'portfolio' },
@@ -3430,11 +3430,11 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
       '',
       'Mono',
       'Symbol',
+      'SymbolMono',
       'Circle',
       'CircleMono',
       'Square',
       'SquareMono',
-      'SymbolMono',
     ],
     brandColor: '#ff4000',
   },
@@ -3506,7 +3506,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'TrustWallet',
     category: 'wallet',
     slug: 'trustwallet',
-    variants: ['', 'Mono', 'Square', 'Circle', 'SquareMono', 'CircleMono'],
+    variants: ['', 'Mono', 'Square', 'SquareMono', 'Circle', 'CircleMono'],
     brandColor: '#0500ff',
   },
   { name: 'TrustWalletCircle', category: 'wallet' },
@@ -3557,7 +3557,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Zerion',
     category: 'wallet',
     slug: 'zerion',
-    variants: ['', 'Mono', 'Circle', 'Square', 'CircleMono', 'SquareMono'],
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono'],
     brandColor: '#2461ed',
   },
   { name: 'ZerionCircle', category: 'wallet' },

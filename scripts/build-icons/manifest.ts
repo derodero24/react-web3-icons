@@ -166,9 +166,18 @@ export function extractBrandColor(svgText: string): string | undefined {
   return first;
 }
 
-/** Orders the colored default and its mono first; the rest keep their order. */
-function variantRank(suffix: string): number {
-  return suffix === '' ? 0 : suffix === 'Mono' ? 1 : 2;
+/**
+ * Orders variant suffixes: the colored default and its mono first, then
+ * each other suffix in the order its unit declares it, followed by its mono
+ * (`['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono']`).
+ */
+function orderVariants(suffixes: readonly string[]): string[] {
+  const coloredOf = (suffix: string): string =>
+    suffix.endsWith('Mono') ? suffix.slice(0, -'Mono'.length) : suffix;
+  const colored = [...new Set(['', ...suffixes.map(coloredOf)])];
+  return colored.flatMap(suffix =>
+    [suffix, `${suffix}Mono`].filter(s => suffixes.includes(s)),
+  );
 }
 
 /**
@@ -244,14 +253,15 @@ function enrichmentsOf(
   return new Map(
     targets.map(target => {
       // A deprecated icon keeps all its variants, so the list is not empty.
-      const variants = names
-        .filter(
-          name =>
-            targetOf(name, targets) === target &&
-            (deprecated.has(target) || !deprecated.has(name)),
-        )
-        .map(name => name.slice(target.length))
-        .sort((a, b) => variantRank(a) - variantRank(b));
+      const variants = orderVariants(
+        names
+          .filter(
+            name =>
+              targetOf(name, targets) === target &&
+              (deprecated.has(target) || !deprecated.has(name)),
+          )
+          .map(name => name.slice(target.length)),
+      );
       const aliases =
         isArtwork(unitMeta) && target === unitMeta.name
           ? (unitMeta.aliases ?? [])
@@ -358,8 +368,8 @@ export interface IconManifestEntry {
   readonly deprecated?: true;
   /**
    * Variant suffixes of this icon, the colored default (\`''\`) and
-   * \`'Mono'\` first: each \`name + suffix\` is an export of the same
-   * category. Deprecated variants are left out unless the icon itself is
+   * \`'Mono'\` first, then each other suffix followed by its mono: each
+   * \`name + suffix\` is an export of the same category. Deprecated variants are left out unless the icon itself is
    * deprecated. The exports of a longer name that a
    * \`react-web3-icons/meta\` map resolves to are left out too, as that
    * name's entry lists them (\`'Nova'\` is not a variant of \`Arbitrum\`:
