@@ -88,17 +88,21 @@ function fixture(files: Readonly<Record<string, string>>): string {
   return root;
 }
 
-/** JSON of an `icon` unit with one variant (`suffix` → `file`). */
+/** JSON of an `icon` unit with one variant (`suffix` → `file`, `fill`). */
 function iconUnit(
   name: string,
-  [suffix, file]: readonly [suffix: string, file: string],
+  [suffix, file, fill]: readonly [
+    suffix: string,
+    file: string,
+    fill?: string | undefined,
+  ],
   extra: Readonly<Record<string, unknown>> = {},
 ): string {
   return JSON.stringify({
     $schema: SCHEMA_REF,
     name,
     kind: 'icon',
-    variants: { [suffix]: { file } },
+    variants: { [suffix]: fill === undefined ? { file } : { file, fill } },
     ...extra,
   });
 }
@@ -664,12 +668,12 @@ describe('loading icons/', () => {
     [
       'two units with one export name',
       {
-        'icons/chain/a.json': iconUnit('Foo', ['Mono', 'a.svg']),
+        'icons/chain/a.json': iconUnit('Foo', ['Alt', 'a.svg']),
         'icons/chain/b.json': iconUnit('Bar', ['', 'b.svg'], {
-          localAliases: [{ name: 'FooMono', target: 'Bar' }],
+          localAliases: [{ name: 'FooAlt', target: 'Bar' }],
         }),
       },
-      /icons\/chain\/b\.json: export FooMono is already defined by icons\/chain\/a\.json/,
+      /icons\/chain\/b\.json: export FooAlt is already defined by icons\/chain\/a\.json/,
     ],
   ])('rejects %s', (_, files, message) => {
     expect(() =>
@@ -736,6 +740,34 @@ describe('loading icons/', () => {
       });
     expect(load).toThrow(/^icons\/chain\/foo\.svg: /);
     expect(load).toThrow(message);
+  });
+
+  it.each([
+    ['no fill', undefined],
+    ['a hex fill', '#000'],
+  ])('rejects a Mono variant with %s', (_, fill) => {
+    const root = fill === undefined ? '' : ` fill="${fill}"`;
+    expect(() =>
+      loadChain({
+        'icons/chain/foo.json': iconUnit('Foo', [
+          'CircleMono',
+          'foo.svg',
+          fill,
+        ]),
+        'icons/chain/foo.svg': `<svg ${XMLNS} viewBox="0 0 24 24"${root}/>`,
+      }),
+    ).toThrow(
+      `icons/chain/foo.json: variants.CircleMono.fill must be "currentColor" (or "none" for stroke-only artwork), got ${fill ?? '(none)'}`,
+    );
+  });
+
+  it('accepts a stroke-only Mono variant with fill none', () => {
+    expect(
+      loadChain({
+        'icons/chain/foo.json': iconUnit('Foo', ['Mono', 'foo.svg', 'none']),
+        'icons/chain/foo.svg': `<svg ${XMLNS} viewBox="0 0 24 24" fill="none"><path stroke="currentColor" d="M0 0h24"/></svg>`,
+      }),
+    ).toHaveLength(1);
   });
 
   it('parses comma-separated viewBoxes', () => {
@@ -1406,7 +1438,7 @@ describe('published artifacts', () => {
   });
 
   it('Iconify info.height is the common height, or omitted', () => {
-    const tall = `<svg ${XMLNS} viewBox="0,0,24,48"/>`;
+    const tall = `<svg ${XMLNS} viewBox="0,0,24,48" fill="currentColor"/>`;
     const sets = buildIconifySets(
       join(
         fixture({
@@ -1414,7 +1446,11 @@ describe('published artifacts', () => {
           'icons/chain/b.json': iconUnit('Beta', ['', 'b.svg']),
           'icons/chain/a.svg': SQUARE,
           'icons/chain/b.svg': SQUARE,
-          'icons/coin/c.json': iconUnit('Gamma', ['Mono', 'c.svg']),
+          'icons/coin/c.json': iconUnit('Gamma', [
+            'Mono',
+            'c.svg',
+            'currentColor',
+          ]),
           'icons/coin/c.svg': tall,
         }),
         'icons',

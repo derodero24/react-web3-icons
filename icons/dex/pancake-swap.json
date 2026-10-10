@@ -17,7 +17,7 @@
     },
     "Mono": {
       "file": "pancake-swap.mono.svg",
-      "fill": "none"
+      "fill": "currentColor"
     }
   },
   "aliases": [

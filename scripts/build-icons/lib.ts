@@ -199,12 +199,25 @@ function withPath<T>(path: string, load: () => T): T {
   }
 }
 
+/**
+ * Root fills a Mono variant may declare: `currentColor`, or `none` for
+ * stroke-only artwork. Its shapes inherit the root fill, so the `fill` prop
+ * recolours them like those of every other Mono icon.
+ */
+const MONO_FILLS: readonly (string | undefined)[] = ['currentColor', 'none'];
+
 function loadVariant(
   iconsDir: string,
+  unitPath: string,
   category: Category,
   unitName: string,
   [suffix, variant]: readonly [string, Variant],
 ): VariantSource {
+  if (suffix.endsWith('Mono') && !MONO_FILLS.includes(variant.fill)) {
+    throw new Error(
+      `${unitPath}: variants.${suffix}.fill must be "currentColor" (or "none" for stroke-only artwork), got ${variant.fill ?? '(none)'}`,
+    );
+  }
   const path = `icons/${category}/${variant.file}`;
   return withPath(path, () => {
     const svg = readFileSync(join(iconsDir, category, variant.file), 'utf-8');
@@ -300,7 +313,7 @@ export function loadCategory(
     assertUnitMeta(meta, path);
     const variants = isArtwork(meta)
       ? Object.entries(meta.variants).map(entry =>
-          loadVariant(iconsDir, category, meta.name, entry),
+          loadVariant(iconsDir, path, category, meta.name, entry),
         )
       : [];
     const unit = { category, slug: file.slice(0, -5), path, meta, variants };

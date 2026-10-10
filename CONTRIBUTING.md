@@ -485,7 +485,9 @@ stay round.
 
 Each key in the unit's `variants` map is an export suffix backed by one SVG
 file. Mono variants set `"fill": "currentColor"` (or `"none"` for stroke-only
-artwork) and that value becomes the default `fill` on the rendered `<svg>`.
+artwork), and the generator rejects any other value. That value becomes the
+default `fill` on the rendered `<svg>`, where the shapes inherit it, so the
+`fill` prop recolours them.
 
 #### Circle / Square Variants
 
