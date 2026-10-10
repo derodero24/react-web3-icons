@@ -7,7 +7,7 @@ Refresh outdated or wrong chain, bridge, oracle, domain and node artwork with th
 - **Visible rebrands:**
   - `Base` is now Base's current symbol, "The Square": a blue `#0000FF` rounded square. It replaces the circle-with-bar mark. `BaseCircle` and `BaseSquare` show the white Square on a `#0000FF` disc or tile.
   - `Polkadot` is the current symbol: six ellipses in near-black `#171717`. The pink `#E6007A` symbol is gone.
-  - `Avalanche` uses the current two-part mark in `#E6212F`. It no longer sits in a disc. `AvalancheSquare` is the official icon: the red mark on a `#1D1D1D` square.
+  - `Avalanche` uses the current two-part mark in `#E6212F`. It no longer sits in a disc. `AvalancheSquare` is the official icon: the red mark on a `#1D1D1D` square. `AvalancheCircle` is the official AVAX token: a `#E6212F` disc with the mark cut out over a white inner disc. The `Mono` variants are the same shapes in `currentColor`, with the mark knocked out of the square and the disc.
   - `Zksync` is the official logomark (`#11141A` arrows) without the black tile. `ZksyncCircle` and `ZksyncSquare` keep the black container.
 - **Wrong artwork replaced by the real logo:**
   - `Wormhole` is the black W logomark. It was a moon illustration.
