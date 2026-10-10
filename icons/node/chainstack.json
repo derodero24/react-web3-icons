@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Chainstack",
   "source": [
     "https://chainstack.com/wp-content/themes/chainstack/img/chainstack-logo-blue.svg (the logomark download on https://chainstack.com/press-kit/)",

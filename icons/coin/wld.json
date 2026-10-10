@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Wld",
   "source": [
     "re-export of WorldChain — see src/chain/WorldChain.tsx (WLD uses the official World logomark, the same artwork)"

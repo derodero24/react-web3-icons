@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Oneinch",
   "source": [
     "https://1inch.com/assets/images/landing/press-room/assets/1inch_block_black.svg (official press room, https://1inch.com/press-room)",

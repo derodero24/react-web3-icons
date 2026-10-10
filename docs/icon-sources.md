@@ -15,6 +15,7 @@ units predate the `source` field; add it when you touch them.
 
 ```json
 {
+  "$schema": "../schema.json",
   "name": "MyToken",
   "source": ["https://github.com/org/repo/blob/main/logo.svg"],
   "kind": "icon",

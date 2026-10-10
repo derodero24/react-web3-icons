@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Liquity",
   "source": [
     "https://cdn.prod.website-files.com/5fd883457ba5da4c3822b02c/671246973b22dfce4deb98be_liquity-logo.svg (navbar and footer logo of the official site https://www.liquity.org)",

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "SafeProtocol",
   "source": [
     "re-export of Safe — see src/wallet/Safe.tsx. Both units drew the same safe.global mark, so the artwork now lives in one place (#837)"

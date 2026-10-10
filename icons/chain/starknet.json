@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Starknet",
   "source": [
     "https://www.starknet.io/assets/starknet-logos-svg.zip (official logo kit: Symbol/SN-Symbol-Gradient.svg)"

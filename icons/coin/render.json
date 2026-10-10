@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Render",
   "source": [
     "https://rendernetwork.com/api/medias/file/logo-footer.svg (official Render Network site lockup; the Render Network Foundation press page, https://renderfoundation.com/press, offers the logos as PNG only)"

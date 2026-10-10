@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Zerion",
   "source": [
     "https://design.zerion.io/assets/zerion_symbol_main.87a4f570.svg (official brand guidelines, Symbol .svg pack)",

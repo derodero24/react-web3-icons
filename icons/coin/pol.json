@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Pol",
   "source": [
     "re-export of Polygon — see src/chain/Polygon.tsx"

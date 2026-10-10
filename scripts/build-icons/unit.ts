@@ -97,8 +97,8 @@ export interface LookupKeys {
 }
 
 interface UnitBase extends LookupKeys {
-  /** Optional editor hint; always {@link SCHEMA_REF}. */
-  readonly $schema?: typeof SCHEMA_REF;
+  /** Always {@link SCHEMA_REF}, so editors validate and complete the file. */
+  readonly $schema: typeof SCHEMA_REF;
   /** Canonical PascalCase export name, also the module file name. */
   readonly name: string;
   readonly source?: readonly string[];
@@ -390,7 +390,7 @@ const LOOKUP_KEYS: Schema<LookupKeys> = {
 };
 
 const BASE: Schema<UnitBase> = {
-  $schema: optional(literal(SCHEMA_REF)),
+  $schema: literal(SCHEMA_REF),
   name: identifier,
   source: optional(lines),
   notes: optional(lines),

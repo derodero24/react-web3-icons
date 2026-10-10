@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Cardano",
   "source": [
     "https://cardano.org/img/brand-assets/cardano-starburst-blue.svg (official Cardano brand assets, https://cardano.org/brand-assets/)"

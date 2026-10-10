@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Crv",
   "notes": [
     "Legacy artwork: paths sourced from @web3icons/react (MIT) — CRV (Curve Finance) token SVG, a simplified 16-gradient redraw",

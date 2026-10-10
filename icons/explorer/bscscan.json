@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Bscscan",
   "source": [
     "https://info.etherscan.com/explorer/bscscan/icon.svg",

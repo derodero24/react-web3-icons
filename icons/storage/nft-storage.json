@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "NftStorage",
   "source": [
     "https://nft.storage (official brand, service sunset)"

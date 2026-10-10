@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "PancakeSwap",
   "source": [
     "https://github.com/pancakeswap/pancake-document/blob/2417556992ef57834a287369dffad7b5293c31fc/.gitbook/assets/PancakeSwap%20Logos.zip (official brand kit: Full Logo/bunny-color.svg)",

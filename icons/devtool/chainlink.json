@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Chainlink",
   "source": [
     "https://cdn.prod.website-files.com/5f6b7190899f41fb70882d08/6aa7fef7f56d1f1d953c589d_Chainlink-Symbol-Blue.svg"

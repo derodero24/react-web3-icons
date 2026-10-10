@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Xrp",
   "source": [
     "https://xrpl.org/assets/xrp-symbol-black.8ecaf7670b5ebd82b8283c9eae4388cff60ec37c3a57351436b36eeeee131dd8.c92cfbea.svg (official XRP Ledger site, xrpl.org)",

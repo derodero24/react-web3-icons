@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "DeBank",
   "source": [
     "https://debank.com"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "UnstoppableDomains",
   "source": [
     "https://storage.googleapis.com/unstoppable-client-assets/images/favicon/icon.svg (the site icon linked from https://unstoppabledomains.com; the site header logo draws the same mark beside the wordmark)"

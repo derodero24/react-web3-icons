@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Pinata",
   "source": [
     "https://framerusercontent.com/images/ijqXtdeIMcKXZhS8CTvgpbUB9UU.svg"

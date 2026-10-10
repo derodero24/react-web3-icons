@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Across",
   "source": [
     "https://across.to (the round Across icon inlined on the site next to \"Across V4\": a #6CF9D8 disc with the #2D2E33 X)"

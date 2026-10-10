@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Jup",
   "source": [
     "re-export of Jupiter — see src/dex/Jupiter.tsx"

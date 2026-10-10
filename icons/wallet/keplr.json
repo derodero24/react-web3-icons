@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Keplr",
   "source": [
     "https://cdn.prod.website-files.com/667dc891bc7b863b5397495b/68a4ca95f93a9ab64dc67ab4_keplr-symbol.svg (official symbol served by www.keplr.app)",

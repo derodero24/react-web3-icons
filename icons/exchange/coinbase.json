@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Coinbase",
   "source": [
     "https://www.coinbase.com (official site; walled, see notes)",

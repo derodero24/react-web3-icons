@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Strk",
   "source": [
     "re-export of Starknet \u2014 see src/chain/Starknet.tsx"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Tron",
   "source": [
     "https://tron.network/favicon.svg",

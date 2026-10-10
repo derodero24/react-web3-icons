@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Osmosis",
   "source": [
     "https://osmosis.zone/brand (official brand kit zip: Osmosis Brand Kit/Osmosis_IconBrandmark Combo.svg, Osmosis_Icon.png)"

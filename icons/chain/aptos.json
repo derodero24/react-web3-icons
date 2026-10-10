@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Aptos",
   "source": [
     "https://aptosnetwork.com/media-kit (official media kit, accessed 2026-10-03)",

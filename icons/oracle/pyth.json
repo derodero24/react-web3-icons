@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Pyth",
   "source": [
     "https://legacy.pyth.network/brand (official brand assets: pyth-logomark.zip, Pyth Logomark/SVG/Pyth Logomark_Dark.svg, #110F23 Dark Purple)",

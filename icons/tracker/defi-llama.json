@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "DefiLlama",
   "source": [
     "https://github.com/DefiLlama/og-cards-v2/blob/main/logo/llama-icon.svg"

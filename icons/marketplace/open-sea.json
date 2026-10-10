@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "OpenSea",
   "source": [
     "https://opensea.io (site header logo: the inline <svg aria-label=\"OpenSea\"> of its OpenSeaBrandLogo component, viewBox 0 0 30 30)"

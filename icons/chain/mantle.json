@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Mantle",
   "source": [
     "https://www.mantle.xyz (Brand Assets, accessed 2026-10-03)",

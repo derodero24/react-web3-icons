@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Zora",
   "source": [
     "https://bridge.zora.energy/img/zorb.svg (the Zorb on Zora Network's bridge, the MAINNET link on https://zora.energy)",

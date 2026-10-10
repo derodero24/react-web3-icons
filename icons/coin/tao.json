@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Tao",
   "source": [
     "https://github.com/opentensor/developer-docs/blob/f6dd8e948952a7bb7ceab6f67d07d7c6d992e995/static/bittensor-media-assets/Bittensor-mediaassets-2024Dec02.zip (official Bittensor media assets of the Opentensor Foundation, the kit the Bittensor docs' Media Assets page linked)"

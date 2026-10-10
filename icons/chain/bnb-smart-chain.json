@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "BnbSmartChain",
   "source": [
     "https://static.bnbchain.org/home-ui/static/images/brand-guidelines/BNBChain-Logo.zip (official BNB Chain brand kit at https://www.bnbchain.org/en/brand-guidelines, files BNB Chain - Logo/SVG/BNB Chain_Symbol_Yellow.svg and BNB Chain_Symbol_White.svg; the brand-guidelines page serves the same files at https://www.bnbchain.org/images/brand-guidelines/svg/)"

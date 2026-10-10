@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Infura",
   "source": [
     "https://www.infura.io/favicon/safari-pinned-tab.svg (the infura.io site icon: the Infura mark in black on a #FF6B4A square)",

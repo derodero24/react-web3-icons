@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Arb",
   "source": [
     "re-export of Arbitrum — see src/chain/Arbitrum.tsx"

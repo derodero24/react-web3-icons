@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Sky",
   "source": [
     "re-export of Sky — see src/defi/Sky.tsx"

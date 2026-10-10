@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Basescan",
   "source": [
     "https://basescan.org/assets/base/images/svg/logos/logo-light.svg",

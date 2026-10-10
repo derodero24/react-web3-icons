@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Cake",
   "source": [
     "https://docs.pancakeswap.finance/welcome-to-pancakeswap/about-us/brand (official brand page; PancakeSwap Logos.zip, file CAKE Token/cake-token.svg)",

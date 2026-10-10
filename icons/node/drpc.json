@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Drpc",
   "source": [
     "https://drpc.org/images/drpc_logo/full/svg/dRPC_fullcollor_white.svg (the full-colour dRPC logo for dark backgrounds, the logo drpc.org shows and declares as its organization logo)"

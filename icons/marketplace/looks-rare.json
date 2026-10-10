@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "LooksRare",
   "source": [
     "https://docs.looksrare.org/assets/files/LooksRare_Brand_Assets-58613b3d791f31eeedf46caf2c2d428c.zip (official LooksRare brand assets, files LooksRare Logo/icon-darkbg.svg, icon-lightbg.svg and icon-mono-black.svg)"

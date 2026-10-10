@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Near",
   "source": [
     "https://www.near.org (the NEAR symbol inlined in the site header, fill #000000)",

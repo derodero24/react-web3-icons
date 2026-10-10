@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Pepe",
   "source": [
     "@web3icons/core (MIT) — PEPE token SVG (legacy third-party artwork)"

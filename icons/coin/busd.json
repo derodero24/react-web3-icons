@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Busd",
   "source": [
     "legacy artwork of unidentified origin (not an official Paxos or Binance file)"

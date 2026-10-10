@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Fil",
   "source": [
     "https://filecoin.io/ (official site: the inline filecoin-logo-icon SVG of its header)"

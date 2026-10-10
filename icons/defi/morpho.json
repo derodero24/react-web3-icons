@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Morpho",
   "source": [
     "https://cdn.morpho.org/assets/brand-kit/morpho-logo.zip"

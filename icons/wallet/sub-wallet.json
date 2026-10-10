@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "SubWallet",
   "source": [
     "https://github.com/Koniverse/Koni-Branding-Kit/blob/main/02.SubWallet/04.Icon/01.SVG/Style%3DGradient.svg (official brand kit, linked as \"Download now\" from https://www.subwallet.app/brandingkit.html)"

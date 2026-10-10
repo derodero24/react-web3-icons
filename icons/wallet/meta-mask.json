@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "MetaMask",
   "source": [
     "https://metamask.io/assets (official brand kit, Logo Pack: https://assets.ctfassets.net/clixtyxoaeas/1d7h0Cnm1RaQ0TspxaTS0H/57418d60d3a13fbee748be1ca560235a/MetaMask-Logo-Pack__4_.zip → MetaMask/MetaMask-icon-fox.svg, MetaMask-icon-fox-with-margins.svg)"

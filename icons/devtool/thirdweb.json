@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Thirdweb",
   "source": [
     "https://framerusercontent.com/assets/MjjaHZTK3Udfa5H8cBJbYTKZM.svg",

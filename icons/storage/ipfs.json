@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Ipfs",
   "source": [
     "https://docs.ipfs.tech/images/ipfs-logo.svg"

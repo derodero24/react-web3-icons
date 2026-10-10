@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Remix",
   "source": [
     "https://github.com/remix-project-org/remix-project/blob/master/libs/remix-ui/top-bar/src/components/BasicLogo.tsx",

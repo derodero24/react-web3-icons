@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Ankr",
   "source": [
     "https://www.ankr.com/assets/ (Ankr brand assets: the \"Blue Symbol\" SVG download; the page serves its SVG downloads as data: URIs, so there is no separate file URL)"

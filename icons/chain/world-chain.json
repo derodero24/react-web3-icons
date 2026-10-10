@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "WorldChain",
   "source": [
     "https://world.org/brand (official brand assets, Logomark.zip: [World] Logomark-Black-RGB.svg)",

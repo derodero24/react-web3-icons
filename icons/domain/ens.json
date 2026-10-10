@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Ens",
   "source": [
     "https://ens.domains/assets/brand/mark/ens-mark-Blue.svg",

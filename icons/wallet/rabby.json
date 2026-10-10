@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Rabby",
   "source": [
     "https://rabby.io/assets/logos/symbol-new.svg (official rabbit symbol served by rabby.io, in a #4C65FE to #8F9FFF gradient; a different drawing from this artwork, see notes)",

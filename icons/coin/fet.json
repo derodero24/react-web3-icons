@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Fet",
   "source": [
     "https://superintelligence.io/wp-content/uploads/2025/01/mobile-logo.svg (official ASI Alliance site; FET is the ASI Alliance token, https://superintelligence.io/asi-token-fet/)"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Blast",
   "source": [
     "https://blast.io/favicon.svg (Blast's site icon, accessed 2026-10-09)",

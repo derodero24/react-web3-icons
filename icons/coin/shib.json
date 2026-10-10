@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Shib",
   "source": [
     "https://shib.mypinata.cloud/ipfs/bafybeidvkdvjgb7efb2b4n5pthoyw4cwmc3h2wanbcm7zoyu4ksjbtwwu4/images/redesign/shib_token.svg (the SHIB token in shibatoken.com's asset directory)"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Mnt",
   "source": [
     "re-export of Mantle — see src/chain/Mantle.tsx"

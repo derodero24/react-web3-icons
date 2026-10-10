@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Scroll",
   "source": [
     "https://scroll.io (the inline mark-scroll SVG of the site header and footer; docs.scroll.io serves the same mark)"

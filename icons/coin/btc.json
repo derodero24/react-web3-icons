@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Btc",
   "source": [
     "re-export of Bitcoin — see src/chain/Bitcoin.tsx"

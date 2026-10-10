@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Tangem",
   "source": [
     "https://tangem.com (official site; the header draws the logo inline as the tangem-logo symbol, in currentColor)"

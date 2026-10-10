@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Hyperliquid",
   "source": [
     "https://hyperliquid.gitbook.io/hyperliquid-docs/brand-kit (official brand kit: Hyperliquid SVG format.zip, Hyperliquid_Blob_Green.svg and Hyperliquid_Blob_Dark.svg)",

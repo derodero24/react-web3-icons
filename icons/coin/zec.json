@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Zec",
   "source": [
     "https://z.cash/wp-content/uploads/2023/11/Brandmark-Yellow.svg (official Zcash Media Kit, https://z.cash/press/, Icons > Yellow SVG)",

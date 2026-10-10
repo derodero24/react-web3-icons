@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Spark",
   "source": [
     "https://docs.spark.finance/brand/spark-logomark.svg (official press kit at https://docs.spark.finance/brand, linked from the spark.finance homepage)"

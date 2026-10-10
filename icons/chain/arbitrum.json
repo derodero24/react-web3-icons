@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Arbitrum",
   "source": [
     "https://arbitrum.foundation (links the Arbitrum Brand Kit)",

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Aerodrome",
   "source": [
     "https://aerodrome.finance/svg/AERO/favicon.svg",

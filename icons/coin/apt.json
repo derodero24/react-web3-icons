@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Apt",
   "source": [
     "re-export of Aptos — see src/chain/Aptos.tsx"

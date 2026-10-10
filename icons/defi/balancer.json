@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Balancer",
   "source": [
     "https://raw.githubusercontent.com/balancer/brand-assets/main/logo/no-container/logo-balancer-black.svg"

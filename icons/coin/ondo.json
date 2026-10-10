@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Ondo",
   "source": [
     "https://www.notion.so/Ondo-Media-Kit-3bc0a5aced014cc4b0ef62f1638bbf8e (official Ondo Media Kit, linked from https://docs.ondo.finance/ondo-stocks/partners-and-media)"

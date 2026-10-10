@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Ena",
   "source": [
     "https://ethena.fi/shared/ethena.svg (official site; media assets: https://docs.ethena.fi/resources/media-assets)"

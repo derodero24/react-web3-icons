@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Babylon",
   "source": [
     "https://cdn.prod.website-files.com/671f8903fede075d021ba774/6a69ce72a51fb5381f6a5039_Babylon%20Brand%20Kit-20260729T095640Z-1-001.zip"

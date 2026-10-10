@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Mkr",
   "source": [
     "re-export of MakerDao — see src/defi/MakerDao.tsx"

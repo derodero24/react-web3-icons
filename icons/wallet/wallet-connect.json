@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "WalletConnect",
   "source": [
     "https://profiles-assets.walletconnect.network/wc-icon.svg (current WalletConnect brandmark, served by https://walletguide.walletconnect.network/)",

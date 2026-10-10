@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Wagmi",
   "source": [
     "https://github.com/wevm/wagmi/blob/main/site/public/favicon.svg (served as https://wagmi.sh/favicon.svg)",

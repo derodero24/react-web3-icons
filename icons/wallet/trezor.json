@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Trezor",
   "source": [
     "https://trezor.io (official site; the header draws the padlock symbol inline: <svg viewBox=\"0 0 20 28\">, in currentColor)"

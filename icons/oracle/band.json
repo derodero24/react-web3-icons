@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Band",
   "source": [
     "https://www.bandprotocol.com/static/brand-asset/band-logomark.svg",

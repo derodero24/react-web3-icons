@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Sei",
   "source": [
     "re-export of Sei \u2014 see src/chain/Sei.tsx"

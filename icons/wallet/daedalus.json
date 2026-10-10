@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Daedalus",
   "source": [
     "https://daedaluswallet.io/images/daedalus-logo-netlify.svg (official site logo)"

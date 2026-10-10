@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Venus",
   "source": [
     "https://github.com/VenusProtocol/venus-protocol-interface/blob/main/apps/evm/src/assets/img/venusLogo.svg"

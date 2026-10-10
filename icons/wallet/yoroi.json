@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Yoroi",
   "source": [
     "https://yoroi-wallet.com/assets/logo-yoroi-blue.svg"

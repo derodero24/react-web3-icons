@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Gmx",
   "source": [
     "https://raw.githubusercontent.com/gmx-io/gmx-interface/master/src/img/logo_GMX_small.svg"

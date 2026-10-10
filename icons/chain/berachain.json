@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Berachain",
   "source": [
     "https://mintcdn.com/berachain-422fce37/sVHHuWrozTnTMuyP/logo/light.svg (official logo served by docs.berachain.com)",

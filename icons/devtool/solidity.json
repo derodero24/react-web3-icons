@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Solidity",
   "source": [
     "https://github.com/ethereum/solidity/blob/develop/docs/logo.svg (the official logo file of the Solidity repository)",

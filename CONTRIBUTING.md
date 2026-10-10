@@ -125,6 +125,7 @@ icons/chain/ethereum.json         # metadata:
 
 ```json
 {
+  "$schema": "../schema.json",
   "name": "Ethereum",
   "kind": "icon",
   "source": ["https://ethereum.org"],
@@ -171,9 +172,10 @@ icons/chain/ethereum.json         # metadata:
   Genuinely black-and-white marks (Aptos, Hedera) keep their neutral colour.
 - Unit files are validated strictly (unknown keys are errors, names must be
   PascalCase identifiers, comments single-line). `icons/schema.json` is the
-  matching JSON Schema, generated from `scripts/build-icons/unit.ts`; add
-  `"$schema": "../schema.json"` to a unit (`new-icon` does) for editor
-  completion and validation.
+  matching JSON Schema, generated from `scripts/build-icons/unit.ts`. Every
+  unit starts with `"$schema": "../schema.json"` (`new-icon` writes it), so
+  editors complete and validate the file; the generator rejects a unit
+  without it.
 
 ### Lookup keys vs. search aliases
 
@@ -215,6 +217,7 @@ A unit declares two different kinds of names:
 
 ```json
 {
+  "$schema": "../schema.json",
   "name": "Kaia",
   "kind": "icon",
   "variants": { "": { "file": "kaia.svg" }, "Mono": { "file": "kaia.mono.svg", "fill": "currentColor" } },
@@ -260,6 +263,7 @@ Ticker aliases and deprecated renames are JSON-only units:
 
 ```json
 {
+  "$schema": "../schema.json",
   "name": "Mtkn",
   "kind": "reexport",
   "reexport": {

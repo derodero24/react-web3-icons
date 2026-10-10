@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Tia",
   "source": [
     "https://celestia.org/images/brand/celestia-symbol.svg (official Celestia brand page https://celestia.org/brand/)"

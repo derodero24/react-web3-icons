@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Bitstamp",
   "source": [
     "https://blog.bitstamp.net (official Bitstamp by Robinhood site: the B of the app badge, inline SVG .app-qr__icon, painted with --brand-color-dark = --dark-forest-green-900 #003B2F; the header wordmark uses the same #003B2F)",

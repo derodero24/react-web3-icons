@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Gemini",
   "source": [
     "https://www.gemini.com (official site; header logo inline SVG, symbol + GEMINI lettering in black)",

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Enkrypt",
   "source": [
     "https://github.com/enkryptcom/enKrypt/blob/main/packages/extension/src/ui/action/icons/common/logo.vue (official Enkrypt extension repository, inline SVG logo)"

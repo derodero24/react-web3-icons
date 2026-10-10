@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Frax",
   "source": [
     "https://docs.frax.com (site icon: the inline <svg name=\"FraxIcon\">, viewBox 0 0 283.46 283.46)"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "NamiWallet",
   "source": [
     "https://namiwallet.io"

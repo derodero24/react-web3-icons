@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Lido",
   "source": [
     "https://lido.fi/static/LIDO_press_kit.zip (official 2026 press kit: Lido/Logomark/Standart/No background/SVG/Lido_Color.svg, Lido_Black.svg)"

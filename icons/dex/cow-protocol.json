@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "CowProtocol",
   "source": [
     "https://cownation.notion.site/CoW-DAO-Brand-Kit-dad6212f182f49d38683e8410bfb37d2 (official CoW DAO brand kit, linked as \"Brand Kit\" in the cow.fi footer; CoW-logos.zip, CoW Protocol/icon/light/svg/CoW-Protocol-icon-light-purple.svg)"

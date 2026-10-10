@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Sol",
   "source": [
     "re-export of Solana — see src/chain/Solana.tsx"

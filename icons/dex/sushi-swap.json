@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "SushiSwap",
   "source": [
     "https://github.com/sushi-labs/sushiswap/blob/master/apps/web/public/icon-512x512.svg (official Sushi Labs repository; the sushi.com app icon)"

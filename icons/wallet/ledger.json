@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Ledger",
   "source": [
     "https://www.ledger.com/wp-content/themes/ledger-v2/public/images/ledger-logo-short.svg (official short logo served by ledger.com)"

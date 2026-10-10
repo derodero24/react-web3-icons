@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Xmr",
   "source": [
     "https://www.getmonero.org/press-kit/symbols/monero-symbol.ai (official press kit https://www.getmonero.org/press-kit/)",

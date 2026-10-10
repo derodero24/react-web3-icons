@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "RedStone",
   "source": [
     "https://www.redstone.finance/images/RedStoneLogoSymbolRed.svg",

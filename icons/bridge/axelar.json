@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Axelar",
   "source": [
     "https://github.com/axelarnetwork/axelar-docs/blob/main/public/images/chains/axelar.svg"

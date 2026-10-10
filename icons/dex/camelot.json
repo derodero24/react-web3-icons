@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Camelot",
   "source": [
     "https://app.camelot.exchange/favicon.svg",

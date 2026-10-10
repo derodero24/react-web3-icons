@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Stacks",
   "source": [
     "https://cdn.prod.website-files.com/618b0aafa4afde65f2fe38fe/65dbdd6c87cf20baca9ac049_stacks-logo-navbar.svg (the symbol in the stacks.co navbar)",

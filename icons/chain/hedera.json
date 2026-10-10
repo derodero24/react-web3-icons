@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Hedera",
   "source": [
     "https://hedera.com/wp-content/uploads/2026/05/hedera-logo-library-26.zip (official logo library from https://brand.hedera.com: Logomark/Hedera-Icon-Dark.svg)"

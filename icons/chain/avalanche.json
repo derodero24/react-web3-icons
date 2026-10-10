@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Avalanche",
   "source": [
     "https://support.avax.network/en/articles/4132288-avalanche-press-kit-and-brand-assets",

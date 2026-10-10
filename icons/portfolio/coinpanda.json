@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Coinpanda",
   "source": [
     "https://coinpanda.io/branding/ (official Branding page: Brand icon and Alternative brand icon)",
