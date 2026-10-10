@@ -199,12 +199,35 @@ function withPath<T>(path: string, load: () => T): T {
   }
 }
 
+/**
+ * Root fills a Mono variant may declare: `currentColor`, or `none` for
+ * stroke-only artwork. Its shapes inherit the root fill, so the `fill` prop
+ * recolours them like those of every other Mono icon.
+ */
+const MONO_FILLS: readonly (string | undefined)[] = ['currentColor', 'none'];
+
+/**
+ * Throws unless `fill` is a root fill a Mono variant may declare; `what`
+ * names the fill in the message.
+ */
+export function assertMonoFill(fill: string | undefined, what: string): void {
+  if (!MONO_FILLS.includes(fill)) {
+    throw new Error(
+      `${what} must be "currentColor" (or "none" for stroke-only artwork), got ${fill ?? '(none)'}`,
+    );
+  }
+}
+
 function loadVariant(
   iconsDir: string,
+  unitPath: string,
   category: Category,
   unitName: string,
   [suffix, variant]: readonly [string, Variant],
 ): VariantSource {
+  if (suffix.endsWith('Mono')) {
+    assertMonoFill(variant.fill, `${unitPath}: variants.${suffix}.fill`);
+  }
   const path = `icons/${category}/${variant.file}`;
   return withPath(path, () => {
     const svg = readFileSync(join(iconsDir, category, variant.file), 'utf-8');
@@ -282,16 +305,51 @@ export function isCaseOnlyRename(category: string, link: ExportLink): boolean {
   );
 }
 
-/** Loads and validates every unit definition in a category directory. */
+/**
+ * Files an operating system writes into the folders it displays (macOS
+ * Finder); they are ignored by git and never part of the tree.
+ */
+const SYSTEM_FILES: ReadonlySet<string> = new Set(['.DS_Store']);
+
+/**
+ * Throws on a directory under `icons/` that is not a category: nothing
+ * would read its units. Files at that level (`icons/schema.json`) are
+ * allowed.
+ */
+export function assertCategoryDirs(iconsDir: string): void {
+  for (const entry of readdirSync(iconsDir, { withFileTypes: true })) {
+    if (entry.isDirectory() && !isCategory(entry.name)) {
+      throw new Error(
+        `icons/${entry.name}/: not a category (expected one of ${CATEGORIES.join(', ')})`,
+      );
+    }
+  }
+}
+
+/**
+ * Loads and validates every unit definition in a category directory. Every
+ * other file must be an SVG that a variant of some unit references, so no
+ * artwork is silently left out of the outputs.
+ */
 export function loadCategory(
   iconsDir: string,
   category: Category,
 ): SourceUnit[] {
   const dir = join(iconsDir, category);
   const units: SourceUnit[] = [];
+  const svgs: string[] = [];
   for (const file of readdirSync(dir).sort(compareStrings)) {
-    if (!file.endsWith('.json')) {
+    if (file.endsWith('.svg')) {
+      svgs.push(file);
       continue;
+    }
+    if (!file.endsWith('.json')) {
+      if (SYSTEM_FILES.has(file)) {
+        continue;
+      }
+      throw new Error(
+        `icons/${category}/${file}: neither a unit (.json) nor artwork (.svg)`,
+      );
     }
     const path = `icons/${category}/${file}`;
     const meta: unknown = withPath(path, () =>
@@ -300,7 +358,7 @@ export function loadCategory(
     assertUnitMeta(meta, path);
     const variants = isArtwork(meta)
       ? Object.entries(meta.variants).map(entry =>
-          loadVariant(iconsDir, category, meta.name, entry),
+          loadVariant(iconsDir, path, category, meta.name, entry),
         )
       : [];
     const unit = { category, slug: file.slice(0, -5), path, meta, variants };
@@ -308,6 +366,16 @@ export function loadCategory(
       withPath(path, () => validateProps({ meta, variants }));
     }
     units.push(unit);
+  }
+  // Several variants (of one unit or of several) may share a file.
+  const referenced = new Set(
+    units.flatMap(unit => unit.variants.map(variant => variant.path)),
+  );
+  for (const file of svgs) {
+    const path = `icons/${category}/${file}`;
+    if (!referenced.has(path)) {
+      throw new Error(`${path}: SVG is not referenced by any unit's variants`);
+    }
   }
   assertUniqueOutputs(units);
   return units;

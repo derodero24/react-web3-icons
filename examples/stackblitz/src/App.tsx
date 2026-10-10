@@ -1,7 +1,12 @@
 import { useState } from 'react';
 // Named imports tree-shake: only these icons end up in the bundle, whether
 // they come from the package root or from a category subpath.
-import { Bitcoin, BitcoinCircle, Ethereum, EthereumMono } from 'react-web3-icons';
+import {
+  Bitcoin,
+  BitcoinCircle,
+  Ethereum,
+  EthereumMono,
+} from 'react-web3-icons';
 import { Arbitrum, Base } from 'react-web3-icons/chain';
 // Dynamic components load one icon at a time by ticker, slug or chain ID.
 import { ChainIcon, CoinIcon, WalletIcon } from 'react-web3-icons/dynamic';

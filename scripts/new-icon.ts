@@ -4,7 +4,13 @@
  *
  * Usage:
  *   pnpm run new-icon --category chain --name Taiko --svg path/to/taiko.svg \
- *     [--mono path/to/taiko.mono.svg] [--source https://taiko.xyz]
+ *     --mono path/to/taiko.mono.svg --source https://taiko.xyz \
+ *     --slug taiko --chain-id 167000
+ *
+ * An icon of a dynamic category (bridge, chain, coin, defi, dex, exchange,
+ * oracle, wallet) needs --mono and at least one lookup key: --ticker for
+ * coin, --slug (or --chain-id) for chain, --slug for the rest, each
+ * repeatable.
  *
  * What it does:
  *   1. Optimizes the SVG(s) with SVGO and normalizes the root element
@@ -12,9 +18,10 @@
  *   2. Puts the artwork on the canonical 64×64 grid following the fill rule
  *      ("Optical size" in CONTRIBUTING.md), measured in Chromium, and checks
  *      that the result renders like the input
- *   3. Writes icons/<category>/<slug>.svg (+ .mono.svg) and <slug>.json
- *   4. Regenerates src/<category>/ via the icon pipeline
- *   5. Prints the remaining manual steps (meta maps, manifest, changeset)
+ *   3. Writes icons/<category>/<slug>.svg (+ .mono.svg) and <slug>.json,
+ *      with the lookup keys
+ *   4. Regenerates src/ via the icon pipeline
+ *   5. Prints the remaining manual steps (Mono variant, checks, changeset)
  */
 
 import { execFileSync } from 'node:child_process';
@@ -23,11 +30,18 @@ import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { withChromium } from './build-icons/chromium.ts';
 import {
+  assertMonoFill,
   CATEGORIES,
+  DYNAMIC_CATEGORIES,
   isCategory,
   kebab,
   validateSvg,
 } from './build-icons/lib.ts';
+import {
+  LOOKUP_FIELDS,
+  LOOKUP_MAPS,
+  type LookupField,
+} from './build-icons/meta.ts';
 import {
   createOptimizer,
   normalizeRoot,
@@ -40,6 +54,7 @@ import {
 import {
   assertUnitMeta,
   type IconUnitMeta,
+  type LookupKeys,
   SCHEMA_REF,
   type Variant,
 } from './build-icons/unit.ts';
@@ -52,8 +67,20 @@ function fail(error: unknown): never {
   process.exit(1);
 }
 
-const USAGE =
-  'Usage: pnpm run new-icon --category <category> --name <PascalName> --svg <file> [--mono <file>] [--source <url>]';
+const USAGE = `Usage: pnpm run new-icon --category <category> --name <PascalName> --svg <file>
+         [--mono <file>] [--source <url>]
+         [--slug <slug>]... [--chain-id <id>]... [--ticker <TICKER>]...
+
+Icons of a dynamic category need --mono and at least one lookup key:
+--ticker for coin, --slug (or --chain-id) for chain, --slug for the rest.
+Dynamic categories: ${DYNAMIC_CATEGORIES.join(', ')}.`;
+
+/** The option that sets each lookup field. */
+const LOOKUP_OPTION: Readonly<Record<LookupField, string>> = {
+  slugs: '--slug',
+  chainIds: '--chain-id',
+  tickers: '--ticker',
+};
 
 function usageError(message: string): never {
   console.error(`${message}\n${USAGE}`);
@@ -71,6 +98,9 @@ function parseCli() {
         svg: { type: 'string' },
         mono: { type: 'string' },
         source: { type: 'string' },
+        slug: { type: 'string', multiple: true },
+        'chain-id': { type: 'string', multiple: true },
+        ticker: { type: 'string', multiple: true },
         help: { type: 'boolean', short: 'h' },
       },
     }).values;
@@ -84,7 +114,16 @@ if (parsed.help) {
   console.log(USAGE);
   process.exit(0);
 }
-const { category, name, svg: svgPath, mono: monoPath, source } = parsed;
+const {
+  category,
+  name,
+  svg: svgPath,
+  mono: monoPath,
+  source,
+  slug: slugs = [],
+  'chain-id': chainIdArgs = [],
+  ticker: tickers = [],
+} = parsed;
 if (!(category && name && svgPath)) {
   usageError('--category, --name and --svg are required.');
 }
@@ -99,9 +138,54 @@ if (!/^[A-Z][A-Za-z0-9]*$/.test(name)) {
   process.exit(2);
 }
 
+for (const id of chainIdArgs) {
+  if (!/^[1-9]\d*$/.test(id)) {
+    usageError(`--chain-id must be a positive decimal integer (got '${id}')`);
+  }
+}
+const lookupKeys: LookupKeys = {
+  ...(slugs.length > 0 && { slugs }),
+  ...(chainIdArgs.length > 0 && { chainIds: chainIdArgs.map(Number) }),
+  ...(tickers.length > 0 && { tickers }),
+};
+const lookupFields = LOOKUP_MAPS.filter(map => map.category === category).map(
+  map => map.field,
+);
+const lookupOptions =
+  lookupFields.map(field => LOOKUP_OPTION[field]).join(', ') || 'none';
+for (const field of LOOKUP_FIELDS) {
+  if (lookupKeys[field] !== undefined && !lookupFields.includes(field)) {
+    usageError(
+      `${LOOKUP_OPTION[field]} is not a lookup key of the ${category} category (allowed: ${lookupOptions}).`,
+    );
+  }
+}
+if (DYNAMIC_CATEGORIES.includes(category)) {
+  if (Object.keys(lookupKeys).length === 0) {
+    usageError(
+      `Icons in the ${category} category need at least one lookup key (${lookupOptions}): the dynamic components find icons only by their keys.`,
+    );
+  }
+  if (!monoPath) {
+    usageError(
+      `Icons in the ${category} category need --mono: the dynamic components render <Name> and <Name>Mono.`,
+    );
+  }
+}
+
 const slug = kebab(name);
 const dir = join(ROOT, 'icons', category);
 const jsonPath = join(dir, `${slug}.json`);
+// The lookup keys' spelling (lowercase slugs, uppercase tickers), before
+// any SVG is processed; the whole unit is checked again before writing.
+try {
+  assertUnitMeta(
+    { $schema: SCHEMA_REF, name, kind: 'icon', variants: {}, ...lookupKeys },
+    `icons/${category}/${slug}.json`,
+  );
+} catch (error) {
+  usageError(error instanceof Error ? error.message : String(error));
+}
 if (existsSync(jsonPath)) {
   console.error(`icons/${category}/${slug}.json already exists.`);
   process.exit(1);
@@ -122,8 +206,11 @@ function ingest(
   try {
     const optimized = optimize(readFileSync(fromPath, 'utf-8'), fromPath);
     root = normalizeRoot(parseSvg(optimized, fromPath), isMono);
-    // The same checks the generator applies when it loads icons/.
+    // The checks the generator applies to each SVG when it loads icons/.
     validateSvg(root, getAttr(root, 'fill'));
+    if (isMono) {
+      assertMonoFill(getAttr(root, 'fill'), "--mono: the SVG's root fill");
+    }
   } catch (error) {
     return fail(error);
   }
@@ -211,6 +298,7 @@ const meta: IconUnitMeta = {
   variants: Object.fromEntries(
     [...ingested].map(([suffix, { variant }]) => [suffix, variant]),
   ),
+  ...lookupKeys,
 };
 
 // Validate the unit exactly as the generator will (e.g. a root fill that is
@@ -253,18 +341,19 @@ try {
   process.exit(1);
 }
 
+const steps = [
+  ...(monoPath
+    ? []
+    : [
+        `Add a Mono variant (icons/${category}/${slug}.mono.svg + "Mono" entry in the JSON),
+     then re-run: pnpm run generate-icons — mono coverage is enforced by tests.`,
+      ]),
+  'Verify: pnpm test && pnpm run check',
+  'Add a changeset: pnpm changeset',
+];
 console.log(`
 Created icons/${category}/${slug}.{svg,json} and generated src/${category}/${name}.tsx.
 
 Next steps:
-  1.${
-    monoPath
-      ? ''
-      : ` Add a Mono variant (icons/${category}/${slug}.mono.svg + "Mono" entry in the JSON),
-     then re-run: pnpm run generate-icons — mono coverage is enforced by tests.
-  2.`
-  } For a dynamic category, add lookup keys ("slugs" / "chainIds" / "tickers") to
-     icons/${category}/${slug}.json and re-run: pnpm run generate-icons
-  ${monoPath ? '2.' : '3.'} Verify: pnpm test && pnpm run check
-  ${monoPath ? '3.' : '4.'} Add a changeset: pnpm changeset
+${steps.map((step, i) => `  ${i + 1}. ${step}`).join('\n')}
 `);

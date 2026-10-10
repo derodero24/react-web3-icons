@@ -47,7 +47,7 @@ supported runtime lacks. A rule in `renovate.json` keeps it there; raise both to
 | `pnpm run size` | Check the bundle-size budgets (needs a fresh `pnpm run build`) |
 | `pnpm run analyze` | Show what makes up each size-limit entry (writes `esbuild-why-*.html` to the repo root and opens them; needs a fresh build) |
 | `pnpm run new-icon` | Scaffold a new icon unit from an SVG |
-| `pnpm run generate-icons` | Regenerate `src/` (icons, dynamic import maps, meta, deprecated set, manifest) and `icons/schema.json` from `icons/` (`--check`: verify only) |
+| `pnpm run generate-icons` | Regenerate `src/` (icons, dynamic import maps, meta, deprecated set, `IconName` union, manifest) and `icons/schema.json` from `icons/` (`--check`: verify only) |
 | `pnpm run showcase` | Re-render `image/icons.png`, the README's icon overview, from `icons/` |
 | `pnpm run optimize:svg` | Optimize an SVG with SVGO |
 | `pnpm run check:svgo` | List icon SVGs SVGO would still change (fails if any) |
@@ -64,8 +64,9 @@ src/
   dynamic/        # Lazy <ChainIcon>, <CoinIcon>, …; imports/ is generated
   meta/           # Lookup maps (CHAIN_ID_TO_NAME, TICKER_TO_COIN, …), generated
   manifest/       # ICON_MANIFEST catalog, generated
-  utils/          # createIcon factory and the IconProps / IconName types
+  utils/          # createIcon factory and the IconProps type
   deprecated.ts   # DEPRECATED_ICON_NAMES, generated
+  icon-names.ts   # IconName union, generated
   index.ts        # Root entry: re-exports every category
 scripts/
   build-icons/    # Generator (cli.ts) and the dist emitters (SVG, Iconify, manifest.json)
@@ -107,7 +108,8 @@ their unit JSON too (see [Extra props](#extra-props)).
 
 ```sh
 pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.svg \
-  [--mono path/to/icon.mono.svg] [--source <official URL>]
+  [--mono path/to/icon.mono.svg] [--source <official URL>] \
+  [--slug <slug>]... [--chain-id <id>]... [--ticker <TICKER>]...
 ```
 
 This optimizes the SVG with SVGO, normalizes the root element (sizing and
@@ -115,7 +117,12 @@ metadata attributes are dropped; inherited presentation attributes such as a
 root `stroke` move onto a wrapping `<g>`), puts the artwork on the 64×64 grid
 (see [Optical size](#optical-size)), writes `icons/<category>/<slug>.svg`
 and `<slug>.json`, and regenerates `src/` (the input SVGs are only read,
-never modified). Follow the printed next steps (lookup keys, changeset).
+never modified). An icon of a category with a dynamic component (`bridge`,
+`chain`, `coin`, `defi`, `dex`, `exchange`, `oracle`, `wallet`) needs
+`--mono` and at least one [lookup key](#lookup-keys-vs-search-aliases):
+`--ticker` for coin, `--slug` (or `--chain-id`) for chain, `--slug` for the
+rest, each repeatable.
+Follow the printed next steps (Mono variant, changeset).
 
 ### Anatomy of an icon unit
 
@@ -159,6 +166,11 @@ icons/chain/ethereum.json         # metadata:
   `width`/`height`, no `<style>` tags, no text content.
 - Every `url(#…)` / `href="#…"` must point at an `id` defined in the same
   file, and ids must be unique within it; the generator fails otherwise.
+- `icons/<category>/` holds only unit JSON files and the SVGs their variants
+  reference. The generator fails on an SVG that no variant references, on
+  any other file (except macOS Finder's `.DS_Store`), and on a directory
+  under `icons/` that is not a category, so no artwork is silently left out
+  of the package.
 - `deprecated` (map of export name → message) marks deprecated artwork exports.
   Together with the deprecated `aliasConst` / `localAliases` entries it is the
   source of `DEPRECATED_ICON_NAMES` (`src/deprecated.ts`, generated).
@@ -298,7 +310,8 @@ where `<defs>` sit), unless the pair is listed there with its reason.
 
 ```sh
 pnpm run generate-icons  # icons/ → src/<category>/, src/dynamic/imports/, src/meta/,
-                         #          src/deprecated.ts, src/manifest/, icons/schema.json
+                         #          src/deprecated.ts, src/icon-names.ts, src/manifest/,
+                         #          icons/schema.json
 pnpm run build           # dist + static SVGs + Iconify JSON + manifest.json
 ```
 
@@ -449,8 +462,12 @@ reshaped geometry, no altered brand colors in the default variant. The full
 
 ```sh
 pnpm run new-icon --category <category> --name <PascalName> --svg path/to/icon.svg \
-  --source <official URL> [--mono path/to/icon.mono.svg]
+  --source <official URL> [--mono path/to/icon.mono.svg] \
+  [--slug <slug>]... [--chain-id <id>]... [--ticker <TICKER>]...
 ```
+
+For example, a chain: `--category chain --name Taiko --svg taiko.svg --mono
+taiko.mono.svg --source <official URL> --slug taiko --chain-id 167000`.
 
 `--source` is technically optional for the script, but omitting it leaves the
 unit without the required attribution (and the generated TSX without its
@@ -463,8 +480,9 @@ dimensions, moves `fill`, `stroke` and other presentation properties out of
 normalizes the root element, puts the artwork on the 64×64 grid following the
 [optical-size rule](#optical-size) (this step launches Chromium through
 Playwright), writes `icons/<category>/<slug>.svg` (+ `.mono.svg`) and
-`<slug>.json`, and regenerates `src/`. Follow the printed next steps
-(lookup keys, changeset).
+`<slug>.json` with the lookup keys, and regenerates `src/`. A category with
+a dynamic component needs `--mono` and at least one lookup key, as above.
+Follow the printed next steps (Mono variant, changeset).
 
 To optimize an SVG without scaffolding a unit:
 
@@ -489,7 +507,9 @@ stay round.
 
 Each key in the unit's `variants` map is an export suffix backed by one SVG
 file. Mono variants set `"fill": "currentColor"` (or `"none"` for stroke-only
-artwork) and that value becomes the default `fill` on the rendered `<svg>`.
+artwork), and the generator rejects any other value. That value becomes the
+default `fill` on the rendered `<svg>`, where the shapes inherit it, so the
+`fill` prop recolours them.
 
 #### Circle / Square Variants
 

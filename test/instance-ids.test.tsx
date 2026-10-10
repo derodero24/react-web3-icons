@@ -3,7 +3,13 @@ import { flushSync } from 'react-dom';
 import ReactDOM from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it } from 'vitest';
-import { Alchemy, Ethereum, HardhatMono, NftStorage } from '../src';
+import {
+  Alchemy,
+  Ethereum,
+  HardhatMono,
+  NftStorage,
+  TrustWalletCircleMono,
+} from '../src';
 import { createIcon } from '../src/utils';
 import { toSvgId } from '../src/utils/createIcon';
 import { isIconComponent } from './helpers/units';
@@ -106,6 +112,7 @@ describe('mask content', () => {
       <>
         <HardhatMono fill="#fff" />
         <HardhatMono />
+        <TrustWalletCircleMono fill="#fff" />
         <NftStorage fill="currentColor" />
       </>,
     );
@@ -116,14 +123,17 @@ describe('mask content', () => {
   });
 
   it('keeps the fill the source rendered with', () => {
-    const [hardhat, nftStorage] = render(
+    const [trustWallet, nftStorage] = render(
       <>
-        <HardhatMono fill="#fff" />
+        <TrustWalletCircleMono fill="#fff" />
         <NftStorage fill="currentColor" />
       </>,
     );
-    // No root fill in the source: mask content painted SVG's initial black.
-    expect(hardhat?.querySelector('mask')?.getAttribute('fill')).toBe('#000');
+    // Root fill currentColor in the source: mask content painted black, the
+    // initial color.
+    expect(trustWallet?.querySelector('mask')?.getAttribute('fill')).toBe(
+      '#000',
+    );
     // The source declares the mask's fill itself: it is kept as written.
     // (Root fill="none" is covered by the isolateMaskContent unit test.)
     expect(nftStorage?.querySelector('mask')?.getAttribute('fill')).toBe(
@@ -172,36 +182,36 @@ describe('hooks', () => {
   });
 });
 
-describe('createIcon v4 form', () => {
-  const Legacy = createIcon(
-    'Legacy',
+describe('createIcon', () => {
+  const Masked = createIcon(
+    'Masked',
     '0 0 1 1',
-    id => (
+    (_props, id) => (
       <>
         <mask id={`${id}-m`} />
         <rect width="1" height="1" mask={`url(#${id}-m)`} />
       </>
     ),
-    'red',
+    { fill: 'red', ids: true },
   );
-  const Unfilled = createIcon('Unfilled', '0 0 1 1', () => <rect />);
+  const Unfilled = createIcon('Unfilled', '0 0 1 1', () => <rect />, {});
 
-  it('passes a per-instance id to render(id)', () => {
+  it('passes a per-instance id to render with `ids`, and sets `fill`', () => {
     const svgs = render(
       <>
-        <Legacy />
-        <Legacy />
+        <Masked />
+        <Masked />
       </>,
     );
     const [first = [], second = []] = svgs.map(ids);
     expect(first).toHaveLength(1);
     expect(second).toHaveLength(1);
     expect(first[0]).not.toBe(second[0]);
-    expect(first[0]).toMatch(/^w3i-legacy-[A-Za-z0-9]+-m$/);
+    expect(first[0]).toMatch(/^w3i-masked-[A-Za-z0-9]+-m$/);
     expect(svgs[0]?.getAttribute('fill')).toBe('red');
   });
 
-  it('defaultFill stays optional', () => {
+  it('sets no fill without `fill`', () => {
     const [svg] = render(<Unfilled />);
     expect(svg?.hasAttribute('fill')).toBe(false);
   });

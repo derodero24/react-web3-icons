@@ -302,7 +302,7 @@ import { ChainIcon, CoinIcon, WalletIcon, ExchangeIcon, DefiIcon, DexIcon, Bridg
 <OracleIcon name="pyth" />              // Pyth oracle icon
 ```
 
-`chainId` takes precedence over `name`; an unknown `chainId` falls back to `name`, so `<ChainIcon chainId={chain.id} name={chain.slug} />` still renders for chains without a registered ID.
+`ChainIcon` takes `chainId`, `name`, or both; without either it is a type error. `chainId` takes precedence over `name`; an unknown `chainId` falls back to `name`, so `<ChainIcon chainId={chain.id} name={chain.slug} />` still renders for chains without a registered ID.
 
 #### Identifiers
 
@@ -310,7 +310,7 @@ An identifier resolves through the lookup keys of the [metadata maps](#metadata-
 
 The keys include legacy names (`'klaytn'` → Kaia, `'fantom'` → Sonic), every search alias the [manifest](#icon-manifest) lists for these categories (`'btc'`, `'wc'`, `'1inch'`, …), and common wallet connector ids, so `<WalletIcon name={connector.id} />` works for wagmi and RainbowKit connectors such as `'metaMaskSDK'`, `'coinbaseWalletSDK'`, `'walletConnect'`, `'safe'`, `'phantom'`, `'rainbow'`, `'okx'`, `'backpack'`, `'trust'`, `'bitget'` or `'uniswap'`.
 
-Identifier props are typed as the known keys plus any string (`name?: ChainSlug | (string & {})`): editors suggest the keys, and strings from API data still type-check.
+Identifier props are typed as the known keys plus any string (`name: WalletSlug | (string & {})`): editors suggest the keys, and strings from API data still type-check.
 
 #### Variants
 
@@ -333,7 +333,7 @@ The `variant` prop selects the artwork: `'colored'` (the default), `'mono'`, or 
 <WalletIcon name="phantom" variant="SquareMono" /> // PhantomSquareMono
 ```
 
-Not every icon ships every variant of its category (see the manifest's `variants`); an icon without the requested variant renders `fallback`, and so does a variant the category does not know. Every icon of these categories has a `mono` variant.
+Not every icon ships every variant of its category (see the manifest's `variants`, where `''` and `'Mono'` correspond to `'colored'` and `'mono'`); an icon without the requested variant renders `fallback`, and so does a variant the category does not know. Every icon of these categories has a `mono` variant.
 
 #### Fallback
 
@@ -385,7 +385,7 @@ function ResolvedChainIcon({ chainId }: { chainId: number }) {
 
 #### Example: Resolve a coin icon from a ticker
 
-The same trade-off applies: in client code this bundles every coin icon (about 72 KB). If your app only shows a known set of tokens, import those icons by name and map tickers to them yourself.
+The same trade-off applies: in client code this bundles every coin icon (about 71 KB). If your app only shows a known set of tokens, import those icons by name and map tickers to them yourself.
 
 ```tsx
 import * as coins from 'react-web3-icons/coin'; // bundles every coin icon
@@ -419,10 +419,10 @@ The package ships one ES module per icon, marks every icon `/* @__PURE__ */`, an
 
 | Import | Bundled | Size |
 | --- | --- | --- |
-| `import { Ethereum } from 'react-web3-icons'` | `Ethereum` only | ~0.8 KB |
-| `import { Ethereum } from 'react-web3-icons/chain'` | `Ethereum` only (same as the root import) | ~0.8 KB |
+| `import { Ethereum } from 'react-web3-icons'` | `Ethereum` only | ~0.7 KB |
+| `import { Ethereum } from 'react-web3-icons/chain'` | `Ethereum` only (same as the root import) | ~0.7 KB |
 | `import * as chains from 'react-web3-icons/chain'` + `chains[name]` | every chain icon | ~37 KB |
-| `import * as coins from 'react-web3-icons/coin'` + `coins[name]` | every coin icon | ~72 KB |
+| `import * as coins from 'react-web3-icons/coin'` + `coins[name]` | every coin icon | ~71 KB |
 | `import * as icons from 'react-web3-icons'` + `icons[name]` | the whole library | ~160 KB |
 | `<CoinIcon symbol={symbol} />` from `react-web3-icons/dynamic` | a small loader, then one chunk per icon rendered | — |
 

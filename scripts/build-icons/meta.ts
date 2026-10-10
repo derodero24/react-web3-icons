@@ -6,6 +6,7 @@
  *                         and `tickers` (and `variantLookups`)
  *   src/deprecated.ts     DEPRECATED_ICON_NAMES, from `deprecated` and the
  *                         deprecated `aliasConst` / `localAliases` entries
+ *   src/icon-names.ts     the IconName union of every export name
  *
  * The manifest (manifest.ts) reads the same data through `primaryIds()`,
  * `deprecatedExports()` and, like the dynamic import maps (dynamic.ts),
@@ -484,6 +485,39 @@ export type ${spec.typeName} = keyof typeof ${spec.constName};`;
 ${imports}
 
 ${blocks.join('\n\n')}
+`;
+}
+
+/**
+ * Source of `src/icon-names.ts` (before Biome formatting): the `IconName`
+ * union of every export name of every unit.
+ *
+ * A literal union rather than `keyof typeof` the category namespaces: the
+ * declaration bundler turns such a namespace import into an exported
+ * namespace of the category's `.d.mts`, which does not exist at runtime.
+ */
+export function emitIconNames(units: readonly SourceUnit[]): string {
+  const names = [...new Set(units.flatMap(unitAllExportNames))].sort(
+    compareStrings,
+  );
+  return `${HEADER}
+/**
+ * Union type of all exported icon component names.
+ * Generated from the icon definitions, so it stays in sync as icons are added.
+ *
+ * @example
+ * \`\`\`tsx
+ * import type { IconName } from 'react-web3-icons';
+ * import * as allIcons from 'react-web3-icons';
+ *
+ * function DynamicIcon({ name }: { name: IconName }) {
+ *   const Icon = allIcons[name];
+ *   return <Icon />;
+ * }
+ * \`\`\`
+ */
+export type IconName =
+${names.map(name => `  | ${quote(name)}`).join('\n')};
 `;
 }
 
