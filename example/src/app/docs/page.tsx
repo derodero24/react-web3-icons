@@ -21,6 +21,7 @@ import {
   TICKER_TO_COIN,
   WALLET_SLUG_TO_NAME,
 } from 'react-web3-icons/meta';
+import pkg from '../../../../package.json';
 import CodeBlock from '../../components/elements/CodeBlock';
 import { ICON_CATEGORIES } from '../../utils/icons';
 
@@ -571,8 +572,8 @@ import { MetaMask } from 'react-web3-icons/wallet';`}</CodeBlock>
                 </li>
               </ul>
               <p className="mb-3 text-sm text-fg/60">
-                Every component normalizes identifiers the same way, and the
-                keys of the metadata maps too: lowercased, with whitespace,{' '}
+                Names, slugs and tickers resolve through the metadata maps, with
+                both sides normalized the same way: lowercased, with whitespace,{' '}
                 <Code>.</Code>, <Code>-</Code> and <Code>_</Code> removed. So{' '}
                 <Code>&apos;Arbitrum Nova&apos;</Code>,{' '}
                 <Code>&apos;arbitrum_nova&apos;</Code> and{' '}
@@ -657,7 +658,7 @@ import { MetaMask } from 'react-web3-icons/wallet';`}</CodeBlock>
                 </table>
               </div>
               <CodeBlock>{`import { CHAIN_ID_TO_NAME, type ChainId } from 'react-web3-icons/meta';
-import * as chains from 'react-web3-icons/chain';
+import * as chains from 'react-web3-icons/chain'; // bundles every chain icon
 
 function isChainId(id: number): id is ChainId {
   return Object.hasOwn(CHAIN_ID_TO_NAME, id);
@@ -727,7 +728,7 @@ function ChainLogo({ chainId }: { chainId: number }) {
                       ],
                       [
                         'Light',
-                        'Legacy, closed to new icons: only BlastscanLight, the official dark single-color mark for light backgrounds (the default is pale). New icons use Flat for this.',
+                        'Legacy, closed to new icons: only BlastscanLight, the official dark single-color mark for light backgrounds (the default is pale). New icons use Flat for a version in one brand color and Mono for a black one.',
                       ],
                     ].map(([suffix, desc]) => (
                       <tr
@@ -780,18 +781,27 @@ function ChainLogo({ chainId }: { chainId: number }) {
                 <code className="rounded bg-surface px-1 font-mono text-sm">
                   DEPRECATED_ICON_NAMES
                 </code>{' '}
-                set is exported to help you filter deprecated aliases at
+                set is exported to help you filter deprecated exports at
                 runtime:
               </p>
               <CodeBlock>{`import { DEPRECATED_ICON_NAMES } from 'react-web3-icons';
-// or from the dedicated subpath (smaller bundle):
+// or from its own subpath:
 import { DEPRECATED_ICON_NAMES } from 'react-web3-icons/deprecated';
 
-// Get only current (non-deprecated) icon names:
-import * as icons from 'react-web3-icons';
-const activeNames = Object.keys(icons).filter(
-  name =>
-    !DEPRECATED_ICON_NAMES.has(name) && name !== 'DEPRECATED_ICON_NAMES',
+const iconNames = ['Ethereum', 'Argent', 'Ready'];
+const current = iconNames.filter(name => !DEPRECATED_ICON_NAMES.has(name));
+// ['Ethereum', 'Ready']`}</CodeBlock>
+              <p className="mt-4 mb-3 text-sm text-fg/60">
+                To list the current icons, use the manifest, which flags
+                deprecated entries itself. <Code>Object.keys()</Code> on{' '}
+                <Code>import * as icons</Code> also works, but it bundles the
+                whole library.
+              </p>
+              <CodeBlock>{`import { ICON_MANIFEST } from 'react-web3-icons/manifest';
+
+// A Set, because an icon exported from two categories (e.g. Sonic) has two entries
+const activeIconNames = new Set(
+  ICON_MANIFEST.filter(e => !e.deprecated).map(e => e.name),
 );`}</CodeBlock>
             </Section>
 
@@ -837,7 +847,21 @@ export default function Page() {
               </p>
               <CodeBlock>{`import ethereumSvgUrl from 'react-web3-icons/svg/chain/Ethereum.svg';
 // or on a CDN:
-// https://cdn.jsdelivr.net/npm/react-web3-icons/dist/svg/chain/Ethereum.svg`}</CodeBlock>
+// https://cdn.jsdelivr.net/npm/react-web3-icons@${pkg.version}/dist/svg/chain/Ethereum.svg`}</CodeBlock>
+              <p className="mt-4 mb-3 text-sm text-fg/60">
+                Pin an exact version: a URL without one, or with{' '}
+                <Code>@latest</Code>, can start serving different files whenever
+                a new version is published. Details:{' '}
+                <a
+                  href="https://github.com/derodero24/react-web3-icons#raw-svg-files"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-fg/80"
+                >
+                  README, Raw SVG Files
+                </a>
+                .
+              </p>
               <p className="mt-4 mb-3 text-sm text-fg/60">
                 IconifyJSON collections (
                 <code className="rounded bg-surface px-1 font-mono text-sm">
@@ -877,16 +901,28 @@ const chains = ICON_MANIFEST.filter(
                 <code className="rounded bg-surface px-1 font-mono text-sm">
                   IconName
                 </code>{' '}
-                union type enumerates every exported icon name and is useful for
-                type-safe dynamic icon selection:
+                union type enumerates every exported icon name. Collect the
+                icons you need in a map: only the listed icons are bundled, and{' '}
+                <Code>satisfies</Code> rejects names that don&apos;t exist:
               </p>
-              <CodeBlock>{`import type { IconName } from 'react-web3-icons';
-import * as icons from 'react-web3-icons';
+              <CodeBlock>{`import { Arbitrum, Base, Ethereum, type IconName } from 'react-web3-icons';
 
-function DynamicIcon({ name, size }: { name: IconName; size?: number }) {
-  const Icon = icons[name];
+const ICONS = { Arbitrum, Base, Ethereum } satisfies Partial<Record<IconName, unknown>>;
+
+function NamedIcon({ name, size }: { name: keyof typeof ICONS; size?: number }) {
+  const Icon = ICONS[name];
   return <Icon size={size} />;
 }`}</CodeBlock>
+              <p className="mt-4 text-sm text-fg/60">
+                Accepting any <Code>IconName</Code> at runtime (
+                <Code>import * as icons</Code> and <Code>icons[name]</Code>)
+                bundles the whole library. To resolve icons from runtime data,
+                use the{' '}
+                <a href="#dynamic" className="underline hover:text-fg/80">
+                  dynamic components
+                </a>
+                , which load one icon at a time.
+              </p>
             </Section>
           </div>
         </div>

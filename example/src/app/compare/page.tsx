@@ -84,12 +84,6 @@ const ICON_UNIT_COUNT = ICON_MANIFEST.filter(
   e => e.variants && !e.deprecated,
 ).length;
 const EXPORT_COUNT = ICON_MANIFEST.filter(e => !e.deprecated).length;
-// Units that ship the mark on a disc or tile (`Circle*` / `Square*` variants).
-const CONTAINER_UNIT_COUNT = ICON_MANIFEST.filter(
-  e =>
-    !e.deprecated &&
-    e.variants?.some(v => v.startsWith('Circle') || v.startsWith('Square')),
-).length;
 
 const COMPARISON_ROWS: {
   feature: string;
@@ -145,13 +139,12 @@ const COMPARISON_ROWS: {
   },
   {
     feature: 'Background variant',
-    ours: <CheckIcon />,
+    ours: <CrossIcon />,
     competitors: {
       web3icons: <CheckIcon />,
       'cryptocurrency-icons': <CrossIcon />,
       ledger: <CrossIcon />,
     },
-    note: `Circle / Square variants (EthereumCircle) on ${CONTAINER_UNIT_COUNT} icons`,
   },
   {
     feature: 'Dynamic loading',
