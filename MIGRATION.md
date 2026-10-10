@@ -348,7 +348,7 @@ Internal `id` attributes (masks, gradients) previously used React's `useId` and 
 
 4.0.0 declares `engines.node` `>=22.12.0`. Node 20 reached end-of-life on 2026-04-30. This only affects the declared support matrix — the published files are plain ESM and unchanged — but package managers will warn (or fail, with `engine-strict`) when installing 4.0.0 on Node 20. That check ran even for apps that only use the package in a browser bundle, because it is tied to the Node version running the install.
 
-Releases after 4.0.0 no longer declare `engines`. What consumers need is an **ES2022** baseline: the published JavaScript is compiled to ES2022 and runs in any browser, bundler, or runtime that supports it, whatever the Node version. Node `^22.18.0 || >=24.11.0` is only required to build the library from source.
+Releases after 4.0.0 no longer declare `engines`. What consumers need is an **ES2022** baseline: the published JavaScript is compiled to ES2022 and runs in any browser, bundler, or runtime that supports it, whatever the Node version. Only building the library from source needs a specific Node version (see the [prerequisites in CONTRIBUTING.md](./CONTRIBUTING.md#prerequisites)).
 
 ## 4. Artwork changes to existing icons
 

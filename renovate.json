@@ -71,6 +71,13 @@
       "groupName": "example-app-major"
     },
     {
+      "description": "Keep @types/node on the lowest supported contributor Node major (devEngines.runtime in package.json), so the typings never offer APIs that runtime lacks. Raise it together with that floor.",
+      "matchPackageNames": [
+        "@types/node"
+      ],
+      "allowedVersions": "22.x"
+    },
+    {
       "description": "Do not automerge root production dependencies",
       "matchDepTypes": [
         "dependencies"

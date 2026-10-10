@@ -15,16 +15,20 @@ pnpm install
 
 ### Prerequisites
 
-- **Node.js** `^22.18.0 || >=24.11.0`, as declared in `devEngines.runtime` in package.json. `.nvmrc` selects Node 24.
+- **Node.js** `^22.22.2 || ^24.15.0 || >=26.0.0`, as declared in `devEngines.runtime` in package.json. `.nvmrc` selects Node 24.
 - **pnpm** 10.x (`packageManager` in package.json pins the exact version)
 
 This is a contributor requirement only: the published package has no Node.js
 requirement (see the README's install section).
 
 Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/activates the required Node version if missing).
-`pnpm install` fails fast on unsupported Node versions: the `prepare` script checks the range above (the scripts under
-`scripts/` run through Node's built-in TypeScript type stripping), and `engine-strict=true` in `.npmrc` enforces the
-toolchain dependencies' own `engines`.
+`pnpm install` fails fast on unsupported Node versions: `engine-strict=true` in `.npmrc` enforces the toolchain
+dependencies' own `engines`, and the `prepare` script checks the range above. The range is the intersection of those
+`engines`: when a dependency raises its floor, raise it in `devEngines`, the `prepare` check, this section and the
+`node-floor` job in `.github/workflows/main.yml` together (that job installs on the exact lower bounds).
+
+`@types/node` stays on the lowest supported Node major (22), so `pnpm run typecheck` rejects Node APIs that the oldest
+supported runtime lacks. A rule in `renovate.json` keeps it there; raise both together with the `devEngines` floor.
 
 ### Useful Commands
 
@@ -41,7 +45,7 @@ toolchain dependencies' own `engines`.
 | `pnpm run build` | Build `dist/` (JS, types, static SVGs, Iconify JSON, `manifest.json`) |
 | `pnpm run start` | Rebuild the library on change (`tsdown --watch`) |
 | `pnpm run size` | Check the bundle-size budgets (needs a fresh `pnpm run build`) |
-| `pnpm run analyze` | Show what makes up each size-limit entry |
+| `pnpm run analyze` | Show what makes up each size-limit entry (writes `esbuild-why-*.html` to the repo root and opens them; needs a fresh build) |
 | `pnpm run new-icon` | Scaffold a new icon unit from an SVG |
 | `pnpm run generate-icons` | Regenerate `src/` (icons, dynamic import maps, meta, deprecated set, manifest) and `icons/schema.json` from `icons/` (`--check`: verify only) |
 | `pnpm run showcase` | Re-render `image/icons.png`, the README's icon overview, from `icons/` |
