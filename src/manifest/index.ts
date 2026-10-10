@@ -861,11 +861,13 @@ export interface IconManifestEntry {
    * Variant suffixes of this icon, the colored default (`''`) and
    * `'Mono'` first: each `name + suffix` is an export of the same
    * category. Deprecated variants are left out unless the icon itself is
-   * deprecated, and so are the variants of an icon with its own entry
-   * (`'Nova'` is not a variant of `Arbitrum`: `ArbitrumNova` has
-   * `['', 'Mono']`). Present on base entries (re-exports such as `Eth`
-   * included, old names such as `BinanceSmartChain` not) and on every
-   * entry `react-web3-icons/meta` maps to.
+   * deprecated. The exports of a longer name that a
+   * `react-web3-icons/meta` map resolves to are left out too, as that
+   * name's entry lists them (`'Nova'` is not a variant of `Arbitrum`:
+   * `ArbitrumNova` has `['', 'Mono']`). Present on base entries
+   * (re-exports such as `Eth` included, old names such as
+   * `BinanceSmartChain` not) and on every entry `react-web3-icons/meta`
+   * maps to.
    */
   readonly variants?: readonly string[];
   /** Extra lowercase search terms (e.g. `'btc'` on `Bitcoin`). Base entries only. */
