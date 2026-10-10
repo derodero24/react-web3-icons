@@ -31,10 +31,12 @@ release flow works without them.
 4. A maintainer approves the PR's CI runs (see
    [The version PR](#the-version-pr)), reviews it and merges it.
 5. Verify runs again on the merge commit. With no changesets left, the job
-   builds the package without credentials, then publishes it with
-   `pnpm changeset publish` and a provenance attestation
+   builds the package before any step sets the npm token, then publishes it
+   with `pnpm changeset publish` and a provenance attestation
    (`NPM_CONFIG_PROVENANCE=true`, `id-token: write`). Lifecycle scripts are
-   disabled during the upload.
+   disabled during the upload. Install and build still run in the job that
+   holds `id-token: write` and the tokens (see
+   [Hardening before trusted publishing](#hardening-before-trusted-publishing)).
 6. `changesets/action` creates the lightweight tag `react-web3-icons@<version>`
    on that commit and a GitHub release with the version's changelog, both
    through the GitHub API.
@@ -97,6 +99,33 @@ GitHub Actions
   GitHub-hosted runner with Node 24.x (trusted publishing needs npm 11.5.1
   and Node 22.14.0 or later; Node 24.5.0 and later bundle npm 11.5.1 or
   newer).
+
+### Hardening before trusted publishing
+
+**Version or publish** installs dependencies and builds in the same job that
+publishes. Every step of that job can request an OIDC token
+(`id-token: write`), and the runner receives `GITHUB_TOKEN` (with
+`contents: write`) and `NPM_TOKEN` when the job starts. A step-scoped `env:`
+keeps a secret out of the other steps' environment variables, not out of
+the runner's memory. A compromised dependency that runs code during install
+or build could therefore publish, and once a trusted publisher exists, the
+OIDC token alone is enough to publish `react-web3-icons`. The frozen
+lockfile, the 3-day `minimum-release-age` in `.npmrc` and the short
+`onlyBuiltDependencies` list in `pnpm-workspace.yaml` reduce this risk; the
+split below removes that exposure. Schedule it before the trusted publisher
+is configured:
+
+- A build job with only `contents: read` installs, builds and runs
+  `pnpm pack`, then uploads the tarball and the pending-changesets result as
+  an artifact.
+- The version PR keeps its own job, because `pnpm run version-packages`
+  needs an install. It gets `contents: write` and `pull-requests: write`, but
+  no `id-token: write` and no `NPM_TOKEN`.
+- A publish job is the only one with `id-token: write` and `NPM_TOKEN`. It
+  downloads the tarball and runs
+  `npm publish <tarball> --provenance --access public`, without installing
+  the workspace and without `cache: pnpm`. It then creates the tag and the
+  GitHub release through the API and fast-forwards `main`.
 
 ### Check that the trusted publisher was used
 
