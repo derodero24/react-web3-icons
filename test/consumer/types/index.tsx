@@ -76,6 +76,18 @@ declare const maybeSize: number | undefined;
 declare const maybeFlag: boolean | undefined;
 declare const maybeVariant: ChainVariant | undefined;
 
+// A wrapper that drops props from each member of the ChainIconProps union
+// still requires an identifier and spreads into ChainIcon; a plain `Omit`
+// would make both identifiers optional.
+type DistributiveOmit<T, K extends PropertyKey> = T extends unknown
+  ? Omit<T, K>
+  : never;
+function ChainIconWithoutFallback(
+  wrapperProps: DistributiveOmit<ChainIconProps, 'fallback'>,
+): ReactElement {
+  return <ChainIcon {...wrapperProps} fallback={null} />;
+}
+
 export const elements: ReactElement[] = [
   <Ethereum key="root" ref={ref} {...props} />,
   <Across key="bridge" />,
@@ -133,6 +145,9 @@ export const elements: ReactElement[] = [
     variant={maybeVariant}
   />,
   <ChainIcon key="dynamic-icon-props" chainId={1} {...props} />,
+  <ChainIconWithoutFallback key="wrapper" name="base" variant="Circle" />,
+  // @ts-expect-error the wrapper keeps the identifier requirement
+  <ChainIconWithoutFallback key="wrapper-no-identifier" variant="Circle" />,
 ];
 
 // A category namespace exports icon components only: every key is an
