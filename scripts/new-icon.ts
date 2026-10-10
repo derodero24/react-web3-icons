@@ -29,6 +29,7 @@ import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { withChromium } from './build-icons/chromium.ts';
 import {
+  assertMonoFill,
   CATEGORIES,
   DYNAMIC_CATEGORIES,
   isCategory,
@@ -204,8 +205,11 @@ function ingest(
   try {
     const optimized = optimize(readFileSync(fromPath, 'utf-8'), fromPath);
     root = normalizeRoot(parseSvg(optimized, fromPath), isMono);
-    // The same checks the generator applies when it loads icons/.
+    // The checks the generator applies to each SVG when it loads icons/.
     validateSvg(root, getAttr(root, 'fill'));
+    if (isMono) {
+      assertMonoFill(getAttr(root, 'fill'), "--mono: the SVG's root fill");
+    }
   } catch (error) {
     return fail(error);
   }

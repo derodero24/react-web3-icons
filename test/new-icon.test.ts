@@ -52,6 +52,10 @@ beforeAll(() => {
     join(copy, 'in.mono.svg'),
     `<svg ${XMLNS} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>`,
   );
+  writeFileSync(
+    join(copy, 'black.mono.svg'),
+    `<svg ${XMLNS} viewBox="0 0 24 24" fill="#000"><circle cx="12" cy="12" r="10"/></svg>`,
+  );
 });
 afterAll(() => {
   rmSync(copy, { recursive: true, force: true });
@@ -107,6 +111,25 @@ describe('new-icon', () => {
     },
     60_000,
   );
+
+  // Before Chromium starts (without the check, this run would fail there,
+  // or in the generator after writing the files).
+  it('rejects a Mono SVG whose root fill is not currentColor', () => {
+    const result = newIcon(
+      ...CHAIN_ICON,
+      '--svg',
+      'in.svg',
+      '--mono',
+      'black.mono.svg',
+      '--slug',
+      'scaffold',
+    );
+    expect(result.status, result.stderr).toBe(1);
+    expect(result.stderr.trim()).toBe(
+      `--mono: the SVG's root fill must be "currentColor" (or "none" for stroke-only artwork), got #000`,
+    );
+    expect(existsSync(join(copy, 'icons/chain/scaffold.json'))).toBe(false);
+  }, 60_000);
 });
 
 // The CI test job installs no browser; the visual-regression job does, but

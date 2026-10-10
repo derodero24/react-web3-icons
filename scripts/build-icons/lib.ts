@@ -206,6 +206,18 @@ function withPath<T>(path: string, load: () => T): T {
  */
 const MONO_FILLS: readonly (string | undefined)[] = ['currentColor', 'none'];
 
+/**
+ * Throws unless `fill` is a root fill a Mono variant may declare; `what`
+ * names the fill in the message.
+ */
+export function assertMonoFill(fill: string | undefined, what: string): void {
+  if (!MONO_FILLS.includes(fill)) {
+    throw new Error(
+      `${what} must be "currentColor" (or "none" for stroke-only artwork), got ${fill ?? '(none)'}`,
+    );
+  }
+}
+
 function loadVariant(
   iconsDir: string,
   unitPath: string,
@@ -213,10 +225,8 @@ function loadVariant(
   unitName: string,
   [suffix, variant]: readonly [string, Variant],
 ): VariantSource {
-  if (suffix.endsWith('Mono') && !MONO_FILLS.includes(variant.fill)) {
-    throw new Error(
-      `${unitPath}: variants.${suffix}.fill must be "currentColor" (or "none" for stroke-only artwork), got ${variant.fill ?? '(none)'}`,
-    );
+  if (suffix.endsWith('Mono')) {
+    assertMonoFill(variant.fill, `${unitPath}: variants.${suffix}.fill`);
   }
   const path = `icons/${category}/${variant.file}`;
   return withPath(path, () => {
