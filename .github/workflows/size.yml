@@ -27,17 +27,26 @@ jobs:
           node-version: '24.x'
           cache: pnpm
 
-      # size-limit exits 1 when an entry is over its limit, after writing
-      # the results. The render step is the gate: it writes the report first
-      # and then fails, so the comment step can still post it. A crash
+      # size-limit writes the results array and then exits 1 in two cases:
+      # an entry is over its limit, or an entry's path matches no file. For
+      # an entry over its limit, the render step is the gate: it writes the
+      # report first and then fails, so the comment step can still post it.
+      # An entry whose path matches no file still reads "passed": true, so
+      # this step fails on a non-zero exit when no entry has failed. A crash
       # writes `{"error": ...}` instead of the results array and fails here.
       - name: Measure PR bundle sizes
         run: |
           pnpm install --frozen-lockfile
           pnpm exec tsdown
-          pnpm exec size-limit --json > /tmp/size-pr.json || true
+          status=0
+          pnpm exec size-limit --json > /tmp/size-pr.json || status=$?
           if ! jq -e 'type == "array"' /tmp/size-pr.json > /dev/null; then
             cat /tmp/size-pr.json
+            exit 1
+          fi
+          if [ "$status" -ne 0 ] && ! jq -e 'any(.[]; .passed == false)' /tmp/size-pr.json > /dev/null; then
+            cat /tmp/size-pr.json
+            echo "::error::size-limit exited $status with no entry over its limit. Check that every size-limit path matches a file."
             exit 1
           fi
 
@@ -51,7 +60,12 @@ jobs:
           cd /tmp/base-checkout
           if pnpm install --frozen-lockfile && pnpm exec tsdown; then
             # A base that is already over a limit still gives valid deltas.
-            pnpm exec size-limit --json > /tmp/size-base.json || true
+            # A base path that matches no file does not, so drop the results.
+            status=0
+            pnpm exec size-limit --json > /tmp/size-base.json || status=$?
+            if [ "$status" -ne 0 ] && ! jq -e 'any(.[]; .passed == false)' /tmp/size-base.json > /dev/null 2>&1; then
+              rm -f /tmp/size-base.json
+            fi
           fi
           if jq -e 'type == "array"' /tmp/size-base.json > /dev/null 2>&1; then
             echo "Base branch measured."
