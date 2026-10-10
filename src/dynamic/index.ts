@@ -121,7 +121,7 @@ export interface OracleIconProps extends DynamicIconProps<OracleVariant> {
 }
 
 /** Lazily loads a chain icon by chain ID or slug. */
-export const ChainIcon = createDynamicIcon<ChainIconProps>({
+export const ChainIcon = /* @__PURE__ */ createDynamicIcon<ChainIconProps>({
   displayName: 'ChainIcon',
   resolve: resolveChain,
   imports: chainImports,
@@ -130,7 +130,7 @@ export const ChainIcon = createDynamicIcon<ChainIconProps>({
 });
 
 /** Lazily loads a coin icon by ticker symbol. */
-export const CoinIcon = createDynamicIcon<CoinIconProps>({
+export const CoinIcon = /* @__PURE__ */ createDynamicIcon<CoinIconProps>({
   displayName: 'CoinIcon',
   resolve: props => resolveTicker(props.symbol),
   imports: coinImports,
@@ -139,7 +139,7 @@ export const CoinIcon = createDynamicIcon<CoinIconProps>({
 });
 
 /** Lazily loads a wallet icon by name or connector id. */
-export const WalletIcon = createDynamicIcon<WalletIconProps>({
+export const WalletIcon = /* @__PURE__ */ createDynamicIcon<WalletIconProps>({
   displayName: 'WalletIcon',
   resolve: props => resolveWalletSlug(props.name),
   imports: walletImports,
@@ -148,16 +148,17 @@ export const WalletIcon = createDynamicIcon<WalletIconProps>({
 });
 
 /** Lazily loads an exchange icon by name. */
-export const ExchangeIcon = createDynamicIcon<ExchangeIconProps>({
-  displayName: 'ExchangeIcon',
-  resolve: props => resolveExchangeSlug(props.name),
-  imports: exchangeImports,
-  variants: exchangeVariants,
-  identifiers: ['name'],
-});
+export const ExchangeIcon =
+  /* @__PURE__ */ createDynamicIcon<ExchangeIconProps>({
+    displayName: 'ExchangeIcon',
+    resolve: props => resolveExchangeSlug(props.name),
+    imports: exchangeImports,
+    variants: exchangeVariants,
+    identifiers: ['name'],
+  });
 
 /** Lazily loads a DeFi protocol icon by name. */
-export const DefiIcon = createDynamicIcon<DefiIconProps>({
+export const DefiIcon = /* @__PURE__ */ createDynamicIcon<DefiIconProps>({
   displayName: 'DefiIcon',
   resolve: props => resolveDefiSlug(props.name),
   imports: defiImports,
@@ -166,7 +167,7 @@ export const DefiIcon = createDynamicIcon<DefiIconProps>({
 });
 
 /** Lazily loads a DEX icon by name. */
-export const DexIcon = createDynamicIcon<DexIconProps>({
+export const DexIcon = /* @__PURE__ */ createDynamicIcon<DexIconProps>({
   displayName: 'DexIcon',
   resolve: props => resolveDexSlug(props.name),
   imports: dexImports,
@@ -175,7 +176,7 @@ export const DexIcon = createDynamicIcon<DexIconProps>({
 });
 
 /** Lazily loads a bridge icon by name. */
-export const BridgeIcon = createDynamicIcon<BridgeIconProps>({
+export const BridgeIcon = /* @__PURE__ */ createDynamicIcon<BridgeIconProps>({
   displayName: 'BridgeIcon',
   resolve: props => resolveBridgeSlug(props.name),
   imports: bridgeImports,
@@ -184,7 +185,7 @@ export const BridgeIcon = createDynamicIcon<BridgeIconProps>({
 });
 
 /** Lazily loads an oracle icon by name. */
-export const OracleIcon = createDynamicIcon<OracleIconProps>({
+export const OracleIcon = /* @__PURE__ */ createDynamicIcon<OracleIconProps>({
   displayName: 'OracleIcon',
   resolve: props => resolveOracleSlug(props.name),
   imports: oracleImports,
