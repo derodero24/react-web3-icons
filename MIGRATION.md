@@ -6,7 +6,7 @@ See [CHANGELOG.md](./CHANGELOG.md) for full release notes.
 
 v4 gave every instance of an icon the same internal ids (`w3i-<name>-…`), and `url(#…)` always resolves to the first element with an id. A first instance inside a `display: none` subtree, or one with a different `fill` or `color`, therefore broke or restyled the masks and gradients of every later instance.
 
-Icons with internal ids (masks, gradients, clip paths) now call `useId` and render unique ids per instance, e.g. `w3i-ethereumcirclemono-r1-ethc-a`. `useId` works in React Server Components, so icons still need no `'use client'`; icons without internal ids still call no hooks. Mask content also no longer inherits `fill` from the icon's `<svg>`.
+Icons with internal ids (masks, gradients, clip paths) now call `useId` and render unique ids per instance, e.g. `w3i-arbitrumcirclemono-r1-arb-circle-a`. `useId` works in React Server Components, so icons still need no `'use client'`; icons without internal ids still call no hooks. Mask content also no longer inherits `fill` from the icon's `<svg>`.
 
 - Default rendering is unchanged.
 - Markup snapshots that contain icon ids need to be regenerated.
@@ -14,10 +14,10 @@ Icons with internal ids (masks, gradients, clip paths) now call `useId` and rend
 
 ## 2. Icons with extra props are generated like every other icon
 
-`AvalancheCircle(Mono)`, `Bybit*` and `RainbowWallet(Symbol)` were hand-written and are now generated from `icons/` like the rest, which fixes their drift from the other icons:
+`AvalancheCircle(Mono)`, `Bybit*` and `RainbowWallet(Symbol)` (now `Rainbow(Symbol)`, see section 6) were hand-written and are now generated from `icons/` like the rest, which fixes their drift from the other icons:
 
 - With `title` and `titleId`, they now set `aria-labelledby` like every other icon.
-- They are annotated `/* @__PURE__ */`, so importing one export of `Avalanche`, `Bybit` or `RainbowWallet` no longer bundles its siblings.
+- They are annotated `/* @__PURE__ */`, so importing one export of `Avalanche`, `Bybit` or `Rainbow` no longer bundles its siblings.
 - `withBackground`, `fill1` and `fill2` render exactly as before for every combination of values.
 - **`BybitProps` now holds only the extra props** (`fill1`, `fill2`); it no longer extends `IconProps`. `AvalancheProps` and `RainbowProps` (for `Rainbow`, formerly `RainbowWallet`, see section 6) are now exported the same way.
 
@@ -57,13 +57,13 @@ Icons used to keep the viewBox of their source artwork (`0 0 784.37 1277.39` for
 - a bare mark's longer side spans 56 of the 64 units (87.5%), centred;
 - a container (`Circle*` / `Square*` variants, and marks that are themselves a solid disc or square, such as coins and app-icon tiles) fills all 64 units.
 
-Shapes and colours are unchanged; only the scale and position inside the box change, and the props, `width`/`height` defaults and the `1em` sizing are the same. At the same `size`, icons change size in both directions:
+The grid changes no shapes or colours, only the scale and position inside the box (sections 10 to 12 cover new artwork that changes an icon's outline), and the props, `width`/`height` defaults and the `1em` sizing are the same. At the same `size`, icons change size in both directions:
 
-- **Letterboxed, tall, wide or heavily padded marks render larger**, up to about 1.75× (`Tangem` ×1.75, `BackpackWallet` ×1.54, `OKXWallet` and `Api3` ×1.45).
+- **Letterboxed, tall, wide or heavily padded marks render larger**, up to about 1.75× (`Tangem` ×1.75, `Backpack` (formerly `BackpackWallet`) ×1.54, `OkxWallet` (formerly `OKXWallet`) ×1.45).
 - **Marks that already filled their square viewBox edge to edge render about 12.5% smaller** (×0.875), because bare marks now keep 4 units of padding on each side.
 - Containers that already filled their box (most `Circle*` / `Square*` variants) are unchanged.
 
-Seven marks overflowed their old viewBox and were cut off at its edge; they are now shown whole, which makes them render somewhat smaller: `Eclipse`, `Frax`, `Lido`, `SushiSwap`, `Binance`, `Helius` and `RedStone` (and their `Mono` variants, which share their geometry). `WorldChain` keeps its old crop.
+Eight marks overflowed their old viewBox and were cut off at its edge: `Eclipse`, `Frax`, `Lido`, `SushiSwap`, `Binance`, `Helius`, `RedStone` and `WorldChain`. v5 shows every mark whole. `Eclipse`, `Binance` and `Helius` look as before and render somewhat smaller; the other five also have new artwork in v5 (`Frax` and `WorldChain` are in section 12).
 
 - **Regenerate snapshots** that contain icon markup: every `viewBox` and most path data changed.
 - **Re-check custom sizing that relied on the old viewBox**, e.g. CSS that set only `width` or `height` and let the other follow the aspect ratio, `preserveAspectRatio` overrides, padding added to even out letterboxed icons, or code reading the `viewBox` attribute. The square viewBox makes such tweaks unnecessary.
@@ -194,9 +194,9 @@ These projects rebranded with a new logo or were folded into a successor. The ne
 | `ParaSwap`, `ParaSwapMono` | `Velora`, `VeloraMono` | dex | the Velora brand kit, velora.xyz/brand |
 | `NamiWallet`, `NamiWalletMono` | `Lace`, `LaceMono` | wallet | the Lace symbol from lace.io (Nami was folded into Lace) |
 
-`Gram`, `GramMono`, `GramCircle` and `GramCircleMono` (coin, ticker `GRAM`) are new: Gram is the token formerly known as Toncoin (TON), with its own mark from ton.org/media. The `Ton` exports, the logo of The Open Network, are unchanged in `react-web3-icons/chain` and `react-web3-icons/coin`, and the ticker `TON` still resolves to them.
+`Gram`, `GramMono`, `GramCircle` and `GramCircleMono` (coin, ticker `GRAM`) are new: Gram is the token formerly known as Toncoin (TON), with its own mark from ton.org/media. The `Ton` exports, the logo of The Open Network, are unchanged in `react-web3-icons/chain` and `react-web3-icons/coin`, and the ticker `TON` (new in v5) resolves to them.
 
-- The lookup keys moved with the brands: `makerdao` resolves to `Sky` (`DefiIcon`), `paraswap` to `Velora` (`DexIcon`), `nami` and `namiwallet` to `Lace` (`WalletIcon`) and `MKR` to `Sky` (`CoinIcon`, `TICKER_TO_COIN`), so they render the new artwork. `sky`, `velora`, `lace`, `SKY` and `GRAM` are new keys.
+- The lookup keys moved with the brands: `makerdao` resolves to `Sky` (`DefiIcon`), `paraswap` to `Velora` (`DexIcon`), `namiwallet` to `Lace` (`WalletIcon`) and `MKR` to `Sky` (`CoinIcon`, `TICKER_TO_COIN`), so they render the new artwork. `sky`, `velora`, `lace`, `nami` (→ `Lace`), `SKY` and `GRAM` are new keys.
 - `DefiIcon` gains the `'Circle'` and `'CircleMono'` variants (`DefiVariant`) through `SkyCircle`.
 
 ```diff
@@ -274,6 +274,82 @@ When a brand publishes its token only as a disc, the base export now renders tha
 
 There is no export for the bare DAI symbol any more: Sky publishes no stand-alone version of it. A `fill` prop no longer recolours `Dai` (its disc and mark carry their own colours); use `DaiMono` with `color` or `fill` for a single-colour icon.
 
+## 12. Artwork changes that affect layout
+
+Many icons have new artwork from the brand's current official files. Most of these changes are details or colours (see the 5.0.0 entries in [CHANGELOG.md](./CHANGELOG.md)), but in the icons below the outline changed too: a mark lost or gained its disc or tile, or a container changed shape. Check code that relies on an icon's outline, such as a circular crop, a border radius or a background you draw behind a mark, and review screenshots or visual baselines that include these icons. The `Mono` variants changed the same way, and the deprecated old names (section 6) render the same as the new ones. Sections 10 and 11 cover `Zerion`, `TrustWallet`, `Dai`, `UsdcCircle`, `DogeCircle` and `Op`.
+
+### Marks that lost their disc or tile
+
+They are now bare marks with the padding of section 5. Use the container variant named in the table, or draw a background yourself.
+
+| Exports | v4 rendered | v5 renders |
+| --- | --- | --- |
+| `ArbitrumOne`, `ArbitrumNova` | the white letter on a `#1B4ADD` / `#E57310` disc (the deprecated `ArbitrumOneFlat` and `ArbitrumNovaFlat`: the letter in a ring) | the hexagon logomark, an outline in `#1B4ADD` / `#FF7700` |
+| `Band` | a hexagonal B on a `#516BF0` disc | the `#8F8FFF` loop logomark |
+| `Berachain`, `Bera` | a white bear and chain links on a `#814625` tile | the `#2C1A16` bear and chain links, more than twice as wide as tall; `BerachainCircle` and `BeraCircle` (new) are the BERA token disc |
+| `Bnb` | the white symbol on a `#F0B90B` disc | the `#F0B90B` symbol, re-exported from `BnbSmartChain`; `BnbCircle` keeps the disc |
+| `CoinbaseWallet` | a white disc and blue square on a `#0052FF` tile | the C ring in a blue-to-yellow gradient; `CoinbaseWalletCircle` and `CoinbaseWalletSquare` put it on a white disc or tile |
+| `Ekubo` | a white mark on a purple-to-black gradient disc | the mark in `#101010` |
+| `Mantle`, `Mnt` | white bars on a black disc | white-to-`#00FF93` bars drawn for dark backgrounds; `MantleSquare` and `MntSquare` (new) put them on a `#092C24` square |
+| `Phantom` | a white ghost on a purple gradient disc | the `#AB9FF2` ghost; `PhantomCircle` and `PhantomSquare` keep a container, now in `#9886E5` |
+| `Remix` | a figure knocked out of a black disc | the Remix logo in `#007AA6`; there is no container variant |
+| `Scroll` | the coloured scroll on a `#FFEEDA` square | the scroll in `#0A0A0A` |
+| `Socket` | the letters OC in white on a `#7F1FFF` square | the SOCKET symbol in a green-to-blue gradient |
+| `Xverse` | a white X on a `#181818` disc | the `#0F0F0F` X with its `#EE7A30` accent |
+| `Zksync` | white arrows on a black square | the `#11141A` arrows; `ZksyncCircle` and `ZksyncSquare` keep the black container |
+
+### Marks that are now drawn on a disc or tile
+
+They now fill the whole box like other containers (section 5), so they render larger, and a background you drew behind them is no longer needed.
+
+| Exports | v4 rendered | v5 renders |
+| --- | --- | --- |
+| `Api3` | the bare `#4B6EFF` triangle | the triangle on a `#1F267B` disc |
+| `Atom`, `CosmosHub` | `Atom`: the bare atom; `CosmosHub`: a `#BA3FD9` hexagon | the ATOM token, an atom on a `#2E3148` disc; `CosmosHub` re-exports `Atom` |
+| `Bch` | the bare `#58BE92` symbol | the white symbol on a `#0AC18E` disc |
+| `BitgetWallet` | the bare `#00F0FF` mark | the `#00F0FF` chevron on a `#001F29` tile |
+| `Cronos`, `Cro` | the Crypto.com lion shield in `#2E4B9F` | a black C on a `#4CDBFF` square; `Cro` re-exports `Cronos` |
+| `CryptoCom` | a `#03316C` hexagon | the white hexagon outline and lion on a blue gradient tile |
+| `Fil` | the bare `#0090FF` f | the white f on a `#0090FF` disc |
+| `Frax` | the bare black crosshair | the white crosshair on a black disc with a white ring |
+| `Fraxtal` | the black Frax crosshair | a white chain link on a black disc with a thin white rim |
+| `Hbar` | the bare black H | the Hedera logomark, an H knocked out of a black disc |
+| `Inj` | the bare mark in a blue gradient | the white mark on a `#4D3DFF` disc |
+| `Metis` | a bare `#00D8C1` mark | a black head on a `#00D2FF` disc |
+
+### Other outline changes
+
+| Exports | v4 rendered | v5 renders |
+| --- | --- | --- |
+| `Optimism` | the white glyph on a `#FF0420` disc | the glyph on a full-bleed `#FF0421` square; `OptimismCircle` keeps a disc, and `OptimismSquare` keeps a tile, now with a corner radius of about 6 units instead of 12.8 |
+| `Base` | the white circle-with-bar mark on a `#0052FF` disc | Base's square symbol, a full-bleed `#0000FF` square; `BaseCircle` and `BaseSquare` now hold a white square |
+| `AvalancheSquare`, `AvalancheSquareMono` | the mark in a white disc on a `#E84142` rounded tile (`AvalancheSquareMono`: a disc with the mark knocked out) | the `#E6212F` mark on a full-bleed `#1D1D1D` square (`AvalancheSquareMono`: that square with the mark knocked out) |
+| `PolygonSquare` | the white mark, 46 of 64 units wide, on a `#7B3FE4` tile with a corner radius of 12.8 units | the mark, 28 units wide, on a `#670DE5` tile with a corner radius of 4 units |
+| `Oneinch` | the white sign on a `#E82219` tile with rounded corners | the sign on a full-bleed black square |
+| `UniswapWallet` | the `#FF007A` unicorn on a `#FFD8EA` square | the `#F50DB4` unicorn on a `#FEF4FF` tile with rounded corners |
+| `Wormhole` | a moon and stars drawn in `#C1BBF6` lines | the logomark, a W knocked out of a black disc, at the size of a bare mark |
+| `WorldChain` | a clipped glyph | the World logomark, whole; `Wld`, which already showed the whole logomark with a thinner ring, now re-exports it |
+| `Stx` | the letters STX in `#7023EB`, a wide mark | the `#141414` Stacks symbol, as tall as it is wide |
+| `MagicEdenWordmark`, `MagicEdenWordmarkMono` | the stacked lockup, the mark above the name | the horizontal header wordmark, about nine times as wide as tall, so it fills only a thin band of a square box; the deprecated `MagicEdenWordmarkFlat` keeps the stacked lockup |
+
+### Marks that changed between dark and light
+
+- These are now dark marks on a transparent background, so on a dark page they need a light background, or the `Mono` variant with a light `color`: `Balancer`, `Berachain` / `Bera`, `Celestia` / `Tia`, `CoinMarketCap`, `Ekubo`, `Gemini`, `Near`, `Polkadot` / `Dot`, `Privy`, oracle `Pyth` (section 13), `Scroll`, `Stx`, `TheGraph`, `Xverse` and `Zksync`. In v4 they were coloured, light, or on their own container.
+- `GnosisChain` (a green disc in v4), `Sei` (a red gradient disc in v4, now `#600014`) and `Wormhole` are now dark discs with the mark knocked out, so the same applies to them.
+- `Dydx` and `Htx` were light marks and are now dark; the new `DydxInverted` and `HtxInverted` are light versions for dark backgrounds.
+- `AvalancheSquare` (`#1D1D1D`) and `Oneinch` (black) are now dark containers (red in v4), so on a dark page their edge does not show.
+- These are now light and fade on a white page: `Mantle` / `Mnt` (use `MantleSquare`, or `MantleMono` with a dark `color`), `QuickNode` (`#6CFF75`) and `Hyperliquid` / `Hype` (`#97FCE4`).
+- `CoinbaseWalletCircle`, `CoinbaseWalletSquare` and `TrustWalletCircle` are now white containers (blue in v4), and `UniswapWallet` is now a near-white `#FEF4FF` tile (a pale pink `#FFD8EA` square in v4), so on a white page their edge does not show.
+
+## 13. Lookup and manifest changes
+
+- **Fantom lookups render Sonic.** `CHAIN_ID_TO_NAME[250]`, `CHAIN_SLUG_TO_NAME.fantom` and `TICKER_TO_COIN.FTM` are now `'Sonic'`, so `<ChainIcon chainId={250} />`, `<ChainIcon name="fantom" />` and `<CoinIcon symbol="FTM" />` render the Sonic mark. The deprecated `Fantom`, `FantomMono`, `Ftm` and `FtmMono` exports still render the Fantom artwork.
+- **One `Pyth` component.** `react-web3-icons/coin` now re-exports `Pyth` and `PythMono` from `react-web3-icons/oracle`, so both subpaths export the same component, coloured `#110F23`. In v4 the oracle `Pyth` was `#9945FF` and the coin `Pyth` `#110F24`.
+- **Keys for icons v4 already exported.** The tickers `DOT`, `FET`, `HBAR`, `ICP`, `INJ`, `NEAR`, `PEPE`, `STX`, `TIA` and `TON` and the chain slug `cronos` rendered `fallback` in v4; they now render their icons.
+- **Deprecated manifest entries carry no lookup ids.** In v4 `Fantom` had `chainId: 250` and `slug: 'fantom'`, and `Ftm` had `ticker: 'FTM'`; in v5 no deprecated entry has a `chainId`, `slug` or `ticker`. The old names of renamed exports (section 6) are alias entries with only `name`, `category` and `deprecated`; read the other fields from the new name's entry (`BnbSmartChain` has `chainId: 56`).
+- **Entries that became re-exports carry no `variants` or `brandColor`.** An entry that only re-exports another icon, with no variants of its own, has neither field. In v5 this newly applies to coin `Bnb`, `Cro`, `Pyth` and `Wld`, chain `CosmosHub` and defi `SafeProtocol`; read these fields from the icon they re-export (chain `BnbSmartChain`, chain `Cronos`, oracle `Pyth`, chain `WorldChain`, coin `Atom` and wallet `Safe`). The reverse also happened: chain `Cronos` and coin `Op` were re-exports in v4 and now have their own artwork, and coin `Ldo` still re-exports `Lido` but adds its own `Circle` variants. These three now have `variants` and `brandColor` (`Ldo` has Lido's `#0085ff`).
+- **`brandColor` follows a new rule.** v4 took the most frequent colour value of the colored artwork other than white, which for badge-style marks was often the dark container. v5 counts greys, near-black and near-white only when the artwork has no other colour, and some icons carry a curated value. Together with the new artwork, this changes many values, for example chain `Kaia` `#040404` → `#bff009`, wallet `Xverse` `#181818` → `#ee7a30` and oracle `Pyth` `#9945ff` → `#7142cf`. If you stored `brandColor` values, read them again from `react-web3-icons/manifest` or `react-web3-icons/manifest.json`.
+
 ## Checklist
 
 - [ ] Regenerate markup snapshots containing icon defs ids or icon markup (viewBox, path data)
@@ -288,6 +364,8 @@ There is no export for the bare DAI symbol any more: Sky publishes no stand-alon
 - [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg`, `Starknet*.svg` and `Zksync*.svg` instead of the `OKXWallet*`, `StarkNet*` and `ZkSync*` files
 - [ ] Use `ZerionCircle` / `TrustWalletSquare` (and their `Mono` variants) where you relied on `Zerion` / `TrustWallet` rendering a container (section 10)
 - [ ] Expect the DAI disc from `Dai` / `DaiMono`, and review visual baselines of the icons in section 11
+- [ ] Review layouts, backgrounds and visual baselines for the icons in section 12 (for example code that assumed a round `Optimism`, `Base` or `Bnb`, or a container around `Phantom`, `Zksync` or `Mantle`), and check that the marks that are now dark or light still show on your background
+- [ ] Expect Sonic for chain 250, `fantom` and `FTM`, and the `#110F23` `Pyth`; read stored `brandColor` values again, and take `variants` and `brandColor` of re-exported icons from the icon they re-export (section 13)
 
 ---
 
