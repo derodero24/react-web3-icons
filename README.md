@@ -333,7 +333,7 @@ The `variant` prop selects the artwork: `'colored'` (the default), `'mono'`, or 
 <WalletIcon name="phantom" variant="SquareMono" /> // PhantomSquareMono
 ```
 
-Not every icon ships every variant of its category (see the manifest's `variants`); an icon without the requested variant renders `fallback`, and so does a variant the category does not know. Every icon of these categories has a `mono` variant.
+Not every icon ships every variant of its category (see the manifest's `variants`, where `''` and `'Mono'` correspond to `'colored'` and `'mono'`); an icon without the requested variant renders `fallback`, and so does a variant the category does not know. Every icon of these categories has a `mono` variant.
 
 #### Fallback
 
