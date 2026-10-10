@@ -34,6 +34,7 @@ import { Arbiscan } from 'react-web3-icons/explorer';
 import {
   ICON_MANIFEST,
   type IconManifestEntry,
+  type IconManifestName,
 } from 'react-web3-icons/manifest';
 import { LooksRare } from 'react-web3-icons/marketplace';
 import { CHAIN_ID_TO_NAME, type ChainId } from 'react-web3-icons/meta';
@@ -101,8 +102,9 @@ const firstEntry: IconManifestEntry | undefined = ICON_MANIFEST[0];
 const deprecatedNames: readonly IconName[] = [...DEPRECATED_ICON_NAMES];
 const anyName: string = firstEntry?.name ?? '';
 // Manifest names are icon names, so they index the icon exports without a cast.
+const manifestName: IconManifestName = iconName;
 // biome-ignore lint/performance/noDynamicNamespaceImportAccess: the pattern under test
-const firstIcon = allIcons[firstEntry?.name ?? iconName];
+const firstIcon = allIcons[firstEntry?.name ?? manifestName];
 
 export const values: readonly unknown[] = [
   DEPRECATED_ICON_NAMES.has(iconName),

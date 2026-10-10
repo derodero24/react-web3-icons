@@ -1,5 +1,6 @@
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, expectTypeOf, it } from 'vitest';
 import {
   CATEGORIES,
   compareStrings,
@@ -20,7 +21,11 @@ import * as dex from '../src/dex';
 import * as domain from '../src/domain';
 import * as exchange from '../src/exchange';
 import * as explorer from '../src/explorer';
-import { ICON_MANIFEST, type IconManifestEntry } from '../src/manifest';
+import {
+  ICON_MANIFEST,
+  type IconManifestEntry,
+  type IconManifestName,
+} from '../src/manifest';
 import * as marketplace from '../src/marketplace';
 import * as meta from '../src/meta';
 import * as node from '../src/node';
@@ -228,6 +233,17 @@ describe('Icon manifest sync', () => {
   // running: pnpm run generate-icons
   it('src/manifest/index.ts matches the actual category exports', () => {
     expect(ICON_MANIFEST.map(baseProjection)).toEqual(deriveExpected());
+  });
+
+  // The manifest spells the names out instead of importing IconName, so its
+  // types load without the icon types and @types/react.
+  it('IconManifestName is IconName, and the manifest module imports nothing', () => {
+    expectTypeOf<IconManifestName>().toEqualTypeOf<IconName>();
+    const source = readFileSync(
+      join(import.meta.dirname, '../src/manifest/index.ts'),
+      'utf8',
+    );
+    expect(source).not.toMatch(/^(?:import|export .* from) /m);
   });
 
   it('variants are the exports of each icon, colored and mono first', async () => {
