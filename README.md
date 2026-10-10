@@ -45,7 +45,7 @@ yarn add react-web3-icons
 pnpm add react-web3-icons
 ```
 
-Requires React 18+. Upgrading from v3? See the [migration guide](./MIGRATION.md).
+Requires React 18+. Upgrading from v4 or earlier? See the [migration guide](./MIGRATION.md).
 
 The published files are ES modules compiled to **ES2022**, with no Node.js version requirement. They run as-is in any browser, bundler, or runtime that supports ES modules and ES2022 syntax and built-ins (for example `Object.hasOwn`, used by the dynamic components). To support older browsers, let your bundler transpile `react-web3-icons` and polyfill the missing built-ins.
 
