@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://linea.build
+// Not verified (checked 2026-10-10): the source cites only the home page, not an official logo file, and the artwork has not been compared with one
 /** Linea chain icon (colored). */
 export const Linea = /* @__PURE__ */ createIcon(
   'Linea',

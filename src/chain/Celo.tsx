@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://celo.org
+// Not verified (checked 2026-10-10): the source cites only the home page, not an official logo file, and the artwork has not been compared with one
 /** Celo chain icon (colored). */
 export const Celo = /* @__PURE__ */ createIcon(
   'Celo',
