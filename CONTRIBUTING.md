@@ -47,7 +47,7 @@ supported runtime lacks. A rule in `renovate.json` keeps it there; raise both to
 | `pnpm run size` | Check the bundle-size budgets (needs a fresh `pnpm run build`) |
 | `pnpm run analyze` | Show what makes up each size-limit entry (writes `esbuild-why-*.html` to the repo root and opens them; needs a fresh build) |
 | `pnpm run new-icon` | Scaffold a new icon unit from an SVG |
-| `pnpm run generate-icons` | Regenerate `src/` (icons, dynamic import maps, meta, deprecated set, manifest) and `icons/schema.json` from `icons/` (`--check`: verify only) |
+| `pnpm run generate-icons` | Regenerate `src/` (icons, dynamic import maps, meta, deprecated set, `IconName` union, manifest) and `icons/schema.json` from `icons/` (`--check`: verify only) |
 | `pnpm run showcase` | Re-render `image/icons.png`, the README's icon overview, from `icons/` |
 | `pnpm run optimize:svg` | Optimize an SVG with SVGO |
 | `pnpm run check:svgo` | List icon SVGs SVGO would still change (fails if any) |
@@ -64,8 +64,9 @@ src/
   dynamic/        # Lazy <ChainIcon>, <CoinIcon>, …; imports/ is generated
   meta/           # Lookup maps (CHAIN_ID_TO_NAME, TICKER_TO_COIN, …), generated
   manifest/       # ICON_MANIFEST catalog, generated
-  utils/          # createIcon factory and the IconProps / IconName types
+  utils/          # createIcon factory and the IconProps type
   deprecated.ts   # DEPRECATED_ICON_NAMES, generated
+  icon-names.ts   # IconName union, generated
   index.ts        # Root entry: re-exports every category
 scripts/
   build-icons/    # Generator (cli.ts) and the dist emitters (SVG, Iconify, manifest.json)
