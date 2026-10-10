@@ -80,6 +80,13 @@ export default {
   plugins: [
     stashRootFill,
 
+    // Moves presentation properties out of `style` into attributes
+    // (`style="fill:#F00"` → `fill="#F00"`), so every reader of the sources
+    // (manifest brand colours, fill props, the legibility checks) finds
+    // paint in attributes. Non-presentation properties such as
+    // `mix-blend-mode` stay in `style`.
+    'convertStyleToAttrs',
+
     {
       name: 'preset-default',
       params: {

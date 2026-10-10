@@ -115,7 +115,7 @@ Export names now follow the rules in [CONTRIBUTING.md](./CONTRIBUTING.md#export-
 | `PhantomWalletCircleMono` | `PhantomCircleMono` | wallet |
 | `PhantomWalletSquare` | `PhantomSquare` | wallet |
 | `PhantomWalletSquareMono` | `PhantomSquareMono` | wallet |
-| `PhantomWalletSymbolMono` | `PhantomSymbolMono` | wallet |
+| `PhantomWalletSymbolMono` | `PhantomMono` (see [duplicate variants](#duplicate-variants-are-deprecated)) | wallet |
 | `RainbowWallet` | `Rainbow` | wallet |
 | `RainbowWalletSymbol` | `RainbowSymbol` | wallet |
 | `RainbowWalletCircle` | `RainbowCircle` | wallet |
@@ -136,9 +136,11 @@ Export names now follow the rules in [CONTRIBUTING.md](./CONTRIBUTING.md#export-
 
 ### Quick find-and-replace
 
-Every rename keeps the variant suffix, so one replacement per name covers all variants (`PhantomWalletSquareMono` → `PhantomSquareMono`):
+Every rename keeps the variant suffix, so one replacement per name covers all variants (`PhantomWalletSquareMono` → `PhantomSquareMono`). The first two lines replace Phantom's duplicate `SymbolMono` (see below) instead:
 
 ```
+s/\bPhantomWalletSymbolMono\b/PhantomMono/g
+s/\bPhantomSymbolMono\b/PhantomMono/g
 s/\bPhantomWallet/Phantom/g
 s/\bRainbowWallet/Rainbow/g
 s/\bBackpackWallet/Backpack/g
@@ -156,7 +158,7 @@ s/\bZkSync/Zksync/g
 Save these lines as `v5-renames.sed` and run, for example with GNU sed:
 
 ```sh
-grep -rlE '\b(PhantomWallet|RainbowWallet|BackpackWallet|YoroiWallet|DaedalusWallet|OKXWallet|Argent|Gateio|StarkNet|BinanceSmartChain|ImmutableX|ZkSync)' src \
+grep -rlE '\b(PhantomWallet|PhantomSymbolMono|RainbowWallet|BackpackWallet|YoroiWallet|DaedalusWallet|OKXWallet|Argent|Gateio|StarkNet|BinanceSmartChain|ImmutableX|ZkSync)' src \
   | xargs sed -i -f v5-renames.sed
 ```
 
@@ -167,6 +169,7 @@ These variants render the same artwork as another export, or legacy artwork with
 | Deprecated | Use instead | Category | Why |
 | --- | --- | --- | --- |
 | `MetaMaskAlt` | `MetaMask` | wallet | MetaMask has a single fox design since its 2024 refresh, so `Alt` rendered the default |
+| `PhantomSymbolMono`, `PhantomWalletSymbolMono` | `PhantomMono` | wallet | Phantom's default is the standalone ghost since the 2024 press kit, so `SymbolMono` rendered the same artwork as `Mono` |
 | `MagicEdenFlat` | `MagicEden` | marketplace | the current Magic Eden mark is single-colour, so `Flat` rendered the default |
 | `MagicEdenWordmarkFlat` | `MagicEdenWordmark`, `MagicEdenWordmarkMono` | marketplace | legacy stacked lockup; Magic Eden has no single-colour wordmark |
 | `OpenSeaAlt` | `OpenSea`, `OpenSeaSymbol` | marketplace | pre-2025 white-disc logomark (`#2081E2` ship); the current OpenSea brand has no white-disc asset |
@@ -175,11 +178,13 @@ These variants render the same artwork as another export, or legacy artwork with
 | `ArbitrumNovaFlat` | `ArbitrumNova` | chain | the current Arbitrum Nova logomark is single-colour, so `Flat` now renders the default |
 | `ArbitrumNovaFlatMono` | `ArbitrumNovaMono` | chain | the same, for the mono |
 
-Deprecated exports are not variants of the dynamic components, so `'Alt'` is not a `WalletVariant` value and `'Flat'` and `'FlatMono'` are not `ChainVariant` values: `<WalletIcon name="metamask" variant="Alt" />` and `<ChainIcon name="arbitrum-nova" variant="Flat" />` are type errors and render `fallback`. Omit `variant` (or use `'mono'`) instead.
+Deprecated exports are not variants of the dynamic components, so `'Alt'` is not a `WalletVariant` value and `'Flat'` and `'FlatMono'` are not `ChainVariant` values: `<WalletIcon name="metamask" variant="Alt" />` and `<ChainIcon name="arbitrum-nova" variant="Flat" />` are type errors and render `fallback`. Omit `variant` (or use `'mono'`) instead. Likewise `<WalletIcon name="phantom" variant="SymbolMono" />` renders `fallback` (`'SymbolMono'` stays a `WalletVariant` for `Rainbow`); use `variant="mono"`.
+
+`StarknetCircle`, `StarknetCircleMono`, `CeloscanSquare` and `CeloscanSquareMono` are not deprecated: the official Starknet symbol is already a disc and the Celoscan mark already a square tile, so they are now the same components as `Starknet`, `StarknetMono`, `Celoscan` and `CeloscanMono` and render the same artwork as before. Their markup carries the default's ids (`w3i-starknet-…`), and their Iconify names are aliases of the default icons.
 
 ## 7. Rebrands with new artwork
 
-These projects rebranded with a new logo. The new export carries the new artwork from the official source; the old export keeps the old artwork and is deprecated:
+These projects rebranded with a new logo or were folded into a successor. The new export carries the new artwork from the official source; the old export keeps the old artwork and is deprecated:
 
 | Deprecated | Replacement | Category | New artwork |
 | --- | --- | --- | --- |
@@ -187,15 +192,16 @@ These projects rebranded with a new logo. The new export carries the new artwork
 | `MakerDao`, `MakerDaoMono` | `Sky`, `SkyMono`, `SkyCircle`, `SkyCircleMono` | defi | the SKY token file, app.sky.money/tokens/sky.svg |
 | `Mkr`, `MkrMono` | `Sky`, `SkyMono`, `SkyCircle`, `SkyCircleMono` | coin | the same, re-exported from defi (MKR upgrades to SKY) |
 | `ParaSwap`, `ParaSwapMono` | `Velora`, `VeloraMono` | dex | the Velora brand kit, velora.xyz/brand |
+| `NamiWallet`, `NamiWalletMono` | `Lace`, `LaceMono` | wallet | the Lace symbol from lace.io (Nami was folded into Lace) |
 
 `Gram`, `GramMono`, `GramCircle` and `GramCircleMono` (coin, ticker `GRAM`) are new: Gram is the token formerly known as Toncoin (TON), with its own mark from ton.org/media. The `Ton` exports, the logo of The Open Network, are unchanged in `react-web3-icons/chain` and `react-web3-icons/coin`, and the ticker `TON` still resolves to them.
 
-- The lookup keys moved with the brands: `makerdao` resolves to `Sky` (`DefiIcon`), `paraswap` to `Velora` (`DexIcon`) and `MKR` to `Sky` (`CoinIcon`, `TICKER_TO_COIN`), so they render the new artwork. `sky`, `velora`, `SKY` and `GRAM` are new keys.
+- The lookup keys moved with the brands: `makerdao` resolves to `Sky` (`DefiIcon`), `paraswap` to `Velora` (`DexIcon`), `nami` and `namiwallet` to `Lace` (`WalletIcon`) and `MKR` to `Sky` (`CoinIcon`, `TICKER_TO_COIN`), so they render the new artwork. `sky`, `velora`, `lace`, `SKY` and `GRAM` are new keys.
 - `DefiIcon` gains the `'Circle'` and `'CircleMono'` variants (`DefiVariant`) through `SkyCircle`.
 
 ```diff
-- import { MakerDao, Mkr, ParaSwap, Tally } from 'react-web3-icons';
-+ import { Cactus, Sky, Velora } from 'react-web3-icons';
+- import { MakerDao, Mkr, NamiWallet, ParaSwap, Tally } from 'react-web3-icons';
++ import { Cactus, Lace, Sky, Velora } from 'react-web3-icons';
 ```
 
 ## 8. Icons of defunct projects are deprecated
@@ -205,14 +211,13 @@ These projects shut down or were discontinued. Their exports still work and rend
 | Deprecated | Category | Reason |
 | --- | --- | --- |
 | `Busd`, `BusdMono` | coin | Paxos stopped minting BUSD in February 2023, and Binance ended support in December 2023 |
-| `NamiWallet`, `NamiWalletMono` | wallet | Nami was folded into Lace |
 | `Web3Js`, `Web3JsMono` | devtool | ChainSafe sunset web3.js on 2025-03-04 |
 | `X2Y2`, `X2Y2Mono` | marketplace | X2Y2 closed its marketplace on 2025-04-30 |
 | `NftStorage`, `NftStorageMono` | storage | NFT.Storage Classic uploads were decommissioned on 2024-06-30 |
 | `HopProtocol`, `HopProtocolMono` | bridge | Hop's official domain has lapsed |
 | `Odos`, `OdosMono` | dex | Odos shut down on 2026-07-30 (odos.xyz shows the shutdown notice) |
 
-Lookup keys may not point at deprecated icons, so the ticker `BUSD` and the slugs `namiwallet`, `nami`, `hopprotocol` and `odos` no longer resolve: the dynamic components render `fallback` for them, and the `react-web3-icons/meta` maps no longer list them.
+Lookup keys may not point at deprecated icons, so the ticker `BUSD` and the slugs `hopprotocol` and `odos` no longer resolve: the dynamic components render `fallback` for them, and the `react-web3-icons/meta` maps no longer list them.
 
 ## 9. Removed exports
 
@@ -277,9 +282,9 @@ There is no export for the bare DAI symbol any more: Sky publishes no stand-alon
 - [ ] Re-check custom CSS or layout that compensated for the old per-icon viewBoxes
 - [ ] Replace the removed exports (`GnosisSafe*`, `Matic*`, `*Light`, `Truffle*`, `Ganache*`, `Drizzle*`, `TofuNft*`) with their replacements (section 9)
 - [ ] Optionally rename the deprecated names with the find-and-replace in section 6 (they keep working through v5)
-- [ ] Drop `variant="Alt"` from `WalletIcon` and `variant="Flat"` / `"FlatMono"` from `ChainIcon`; optionally replace `ArbitrumOneFlat*` and `ArbitrumNovaFlat*` with `ArbitrumOne*` and `ArbitrumNova*` (section 6, duplicate variants)
-- [ ] Optionally move from `Tally`, `MakerDao`, `Mkr` and `ParaSwap` to `Cactus`, `Sky` and `Velora` (new artwork, section 7)
-- [ ] Expect `fallback` for the lookup keys of defunct projects (`BUSD`, `nami`, `odos`, …) and the new Sky and Velora artwork for `MKR`, `makerdao` and `paraswap` (sections 7 and 8)
+- [ ] Drop `variant="Alt"` from `WalletIcon` and `variant="Flat"` / `"FlatMono"` from `ChainIcon`, and use `variant="mono"` instead of `variant="SymbolMono"` for Phantom; optionally replace `ArbitrumOneFlat*` and `ArbitrumNovaFlat*` with `ArbitrumOne*` and `ArbitrumNova*` (section 6, duplicate variants)
+- [ ] Optionally move from `Tally`, `MakerDao`, `Mkr`, `ParaSwap` and `NamiWallet` to `Cactus`, `Sky`, `Velora` and `Lace` (new artwork, section 7)
+- [ ] Expect `fallback` for the lookup keys of defunct projects (`BUSD`, `hopprotocol`, `odos`, …) and the new Sky, Velora and Lace artwork for `MKR`, `makerdao`, `paraswap`, `nami` and `namiwallet` (sections 7 and 8)
 - [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg`, `Starknet*.svg` and `Zksync*.svg` instead of the `OKXWallet*`, `StarkNet*` and `ZkSync*` files
 - [ ] Use `ZerionCircle` / `TrustWalletSquare` (and their `Mono` variants) where you relied on `Zerion` / `TrustWallet` rendering a container (section 10)
 - [ ] Expect the DAI disc from `Dai` / `DaiMono`, and review visual baselines of the icons in section 11

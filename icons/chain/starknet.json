@@ -4,9 +4,10 @@
     "https://www.starknet.io/assets/starknet-logos-svg.zip (official logo kit: Symbol/SN-Symbol-Gradient.svg)"
   ],
   "notes": [
-    "Default and Circle: the official Starknet symbol SN-Symbol-Gradient.svg (#0C0C4F disc, #FAFAFA mark, #EC796B -> #E175B1 gradients), drawn full-bleed; it replaces artwork whose gradient ended in #D672EF (not in the kit) and whose Circle/Square marks were undersized",
+    "Default: the official Starknet symbol SN-Symbol-Gradient.svg (#0C0C4F disc, #FAFAFA mark, #EC796B -> #E175B1 gradients), drawn full-bleed; it replaces artwork whose gradient ended in #D672EF (not in the kit) and whose Circle/Square marks were undersized",
+    "StarknetCircle / StarknetCircleMono: aliases of Starknet / StarknetMono. The official symbol is already a disc, so the Circle variants render it instead of keeping a second copy of the same file",
     "Square: no official tile exists; a repo-convention #0C0C4F rounded square (rx 31.6/158 = 12.8/64) holding the official mark paths at the symbol's own scale",
-    "Mono, CircleMono and SquareMono: the disc / tile in currentColor with the star, the dot, the white crest and the pink underside knocked out as one evenodd path; the underside is cut back from the crest by a 1.2-unit ink seam (the pink shape minus the crest offset by 1.2), so the wave keeps its two layers"
+    "Mono and SquareMono: the disc / tile in currentColor with the star, the dot, the white crest and the pink underside knocked out as one evenodd path; the underside is cut back from the crest by a 1.2-unit ink seam (the pink shape minus the crest offset by 1.2), so the wave keeps its two layers"
   ],
   "kind": "icon",
   "variants": {
@@ -17,18 +18,11 @@
       "file": "starknet.mono.svg",
       "fill": "currentColor"
     },
-    "Circle": {
-      "file": "starknet.circle.svg"
-    },
     "Square": {
       "file": "starknet.square.svg"
     },
     "SquareMono": {
       "file": "starknet.square-mono.svg",
-      "fill": "currentColor"
-    },
-    "CircleMono": {
-      "file": "starknet.circle-mono.svg",
       "fill": "currentColor"
     }
   },
@@ -36,6 +30,14 @@
     "starknet"
   ],
   "localAliases": [
+    {
+      "name": "StarknetCircle",
+      "target": "Starknet"
+    },
+    {
+      "name": "StarknetCircleMono",
+      "target": "StarknetMono"
+    },
     {
       "name": "StarkNet",
       "target": "Starknet",

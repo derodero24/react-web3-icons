@@ -44,7 +44,9 @@ export interface IconManifestEntry {
   /**
    * Brand color as a `#rrggbb` hex: the most frequent non-neutral color of
    * the colored artwork (a heuristic; greys, near-black and near-white count
-   * only when the artwork has nothing else), or a curated override. Base
+   * only when the artwork has nothing else, and artwork painted only in
+   * SVG's default fill is `'#000000'`), or a curated override. An icon
+   * that re-exports another icon's artwork has that icon's color. Base
    * entries only.
    */
   readonly brandColor?: string;
@@ -391,7 +393,13 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#0d0d0d',
   },
   { name: 'GnosisChainMono', category: 'chain' },
-  { name: 'Hedera', category: 'chain', slug: 'hedera', variants: ['', 'Mono'] },
+  {
+    name: 'Hedera',
+    category: 'chain',
+    slug: 'hedera',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
   { name: 'HederaMono', category: 'chain' },
   { name: 'Hyperliquid', category: 'chain', chainId: 999, slug: 'hyperliquid' },
   { name: 'HyperliquidMono', category: 'chain' },
@@ -450,6 +458,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 59_144,
     slug: 'linea',
     variants: ['', 'Mono'],
+    brandColor: '#000000',
   },
   { name: 'LineaMono', category: 'chain' },
   {
@@ -632,7 +641,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Starknet',
     category: 'chain',
     slug: 'starknet',
-    variants: ['', 'Mono', 'Circle', 'Square', 'SquareMono', 'CircleMono'],
+    variants: ['Circle', 'CircleMono', '', 'Mono', 'Square', 'SquareMono'],
     brandColor: '#ec796b',
   },
   { name: 'StarknetCircle', category: 'chain' },
@@ -771,14 +780,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'BeraCircle', category: 'coin' },
   { name: 'BeraCircleMono', category: 'coin' },
   { name: 'BeraMono', category: 'coin' },
-  {
-    name: 'Bnb',
-    category: 'coin',
-    ticker: 'BNB',
-    variants: ['', 'Mono', 'Circle', 'CircleMono'],
-    aliases: ['bnb'],
-    brandColor: '#f0b90b',
-  },
+  { name: 'Bnb', category: 'coin', ticker: 'BNB' },
   { name: 'BnbCircle', category: 'coin' },
   { name: 'BnbCircleMono', category: 'coin' },
   { name: 'BnbMono', category: 'coin' },
@@ -948,6 +950,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'coin',
     ticker: 'LDO',
     variants: ['', 'Mono', 'Circle', 'CircleMono'],
+    brandColor: '#0085ff',
   },
   { name: 'LdoCircle', category: 'coin' },
   { name: 'LdoCircleMono', category: 'coin' },
@@ -983,7 +986,13 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'MonadMono', category: 'coin' },
   { name: 'Near', category: 'coin', ticker: 'NEAR' },
   { name: 'NearMono', category: 'coin' },
-  { name: 'Ondo', category: 'coin', ticker: 'ONDO', variants: ['', 'Mono'] },
+  {
+    name: 'Ondo',
+    category: 'coin',
+    ticker: 'ONDO',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
   { name: 'OndoMono', category: 'coin' },
   {
     name: 'Op',
@@ -1063,7 +1072,13 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'TaikoCircle', category: 'coin' },
   { name: 'TaikoCircleMono', category: 'coin' },
   { name: 'TaikoMono', category: 'coin' },
-  { name: 'Tao', category: 'coin', ticker: 'TAO', variants: ['', 'Mono'] },
+  {
+    name: 'Tao',
+    category: 'coin',
+    ticker: 'TAO',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
   { name: 'TaoMono', category: 'coin' },
   {
     name: 'Tia',
@@ -1764,9 +1779,10 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Htx',
     category: 'exchange',
     slug: 'htx',
-    variants: ['', 'Mono'],
+    variants: ['', 'Inverted', 'Mono'],
     brandColor: '#00003e',
   },
+  { name: 'HtxInverted', category: 'exchange' },
   { name: 'HtxMono', category: 'exchange' },
   {
     name: 'Kraken',
@@ -1867,7 +1883,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   {
     name: 'Celoscan',
     category: 'explorer',
-    variants: ['', 'Square', 'Mono', 'SquareMono'],
+    variants: ['Square', 'SquareMono', '', 'Mono'],
     brandColor: '#fcff52',
   },
   { name: 'CeloscanMono', category: 'explorer' },
@@ -2286,15 +2302,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     name: 'Phantom',
     category: 'wallet',
     slug: 'phantom',
-    variants: [
-      '',
-      'Mono',
-      'Circle',
-      'CircleMono',
-      'Square',
-      'SquareMono',
-      'SymbolMono',
-    ],
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono'],
     brandColor: '#ab9ff2',
   },
   { name: 'PhantomCircle', category: 'wallet' },
@@ -2302,7 +2310,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'PhantomMono', category: 'wallet' },
   { name: 'PhantomSquare', category: 'wallet' },
   { name: 'PhantomSquareMono', category: 'wallet' },
-  { name: 'PhantomSymbolMono', category: 'wallet' },
+  { name: 'PhantomSymbolMono', category: 'wallet', deprecated: true },
   { name: 'PhantomWallet', category: 'wallet', deprecated: true },
   { name: 'PhantomWalletCircle', category: 'wallet', deprecated: true },
   { name: 'PhantomWalletCircleMono', category: 'wallet', deprecated: true },

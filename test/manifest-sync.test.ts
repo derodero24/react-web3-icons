@@ -109,34 +109,6 @@ function baseProjection({
   return { name, category, ...(deprecated ? { deprecated } : {}) };
 }
 
-/**
- * True when the unit's colored default artwork (the `""` variant, or the
- * variant behind a `""` local alias) declares at least one hex colour, i.e.
- * when the generator must have been able to derive a `brandColor`.
- */
-function defaultArtworkHasHexColor({ meta, variants }: SourceUnit): boolean {
-  if (!isArtwork(meta)) {
-    return false;
-  }
-  const aliasTarget = (meta.localAliases ?? []).find(
-    a => !a.deprecated && a.name === meta.name,
-  )?.target;
-  const suffix =
-    '' in meta.variants
-      ? ''
-      : aliasTarget?.startsWith(meta.name)
-        ? aliasTarget.slice(meta.name.length)
-        : undefined;
-  const svg = variants.find(v => v.suffix === suffix)?.svg;
-  if (svg === undefined) {
-    return false;
-  }
-  // Mirror the generator: white (#fff / #ffffff) never counts as a brand colour.
-  return [...svg.matchAll(/(?:fill|stroke|stop-color)="(#[0-9a-fA-F]{3,8})"/g)]
-    .map(m => m[1]?.toLowerCase() ?? '')
-    .some(hex => !/^#(?:fff|ffffff)(?:[0-9a-f]{2})?$/.test(hex));
-}
-
 /** Same variant derivation as scripts/build-icons/manifest.ts. */
 function expectedVariants(unit: SourceUnit | undefined): string[] {
   if (!(unit && isArtwork(unit.meta))) {
@@ -195,20 +167,19 @@ function missingVariantExports(
   });
 }
 
-/** Why an entry's `brandColor` is wrong, or undefined when it is fine. */
-function brandColorProblem(
-  entry: IconManifestEntry,
-  unit: SourceUnit | undefined,
-): string | undefined {
+/**
+ * Why an entry's `brandColor` is wrong, or undefined when it is fine. Every
+ * base entry (the one carrying `variants`) has one: artwork always paints
+ * in some colour, if only SVG's default black, and a unit without default
+ * artwork of its own re-exports one that has (Ldo → Lido).
+ */
+function brandColorProblem(entry: IconManifestEntry): string | undefined {
   if (entry.brandColor) {
     return /^#[0-9a-f]{6}$/.test(entry.brandColor)
       ? undefined
       : `brandColor ${entry.brandColor} is not #rrggbb`;
   }
-  if (entry.variants && unit && defaultArtworkHasHexColor(unit)) {
-    return 'default artwork declares hex colours but no brandColor was derived';
-  }
-  return undefined;
+  return entry.variants ? 'base entry has no brandColor' : undefined;
 }
 
 describe('Icon manifest sync', () => {
@@ -239,7 +210,7 @@ describe('Icon manifest sync', () => {
           artwork?.aliases ?? [],
         );
       }
-      expect(brandColorProblem(entry, unit), entry.name).toBeUndefined();
+      expect(brandColorProblem(entry), entry.name).toBeUndefined();
       if (artwork?.brandColor) {
         expect(entry.brandColor, `${entry.name} override`).toBe(
           artwork.brandColor,

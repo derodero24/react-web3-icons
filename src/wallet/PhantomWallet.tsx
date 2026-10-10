@@ -5,7 +5,6 @@ import {
   PhantomMono,
   PhantomSquare,
   PhantomSquareMono,
-  PhantomSymbolMono,
 } from './Phantom';
 
 /** @deprecated PhantomWallet was renamed to the official product name — use `Phantom` instead. */
@@ -26,5 +25,5 @@ export const PhantomWalletSquare = PhantomSquare;
 /** @deprecated Use `PhantomSquareMono` instead. */
 export const PhantomWalletSquareMono = PhantomSquareMono;
 
-/** @deprecated Use `PhantomSymbolMono` instead. */
-export const PhantomWalletSymbolMono = PhantomSymbolMono;
+/** @deprecated Use `PhantomMono` instead (Phantom's SymbolMono is the same artwork as Mono). */
+export const PhantomWalletSymbolMono = PhantomMono;

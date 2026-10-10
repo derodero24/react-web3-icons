@@ -6,16 +6,21 @@ import {
   type Category,
   loadCategory,
   type SourceUnit,
+  unitAllExportNames,
   type VariantSource,
 } from '../scripts/build-icons/lib.ts';
 import { isArtwork } from '../scripts/build-icons/unit.ts';
 import { parseSvg } from '../scripts/build-icons/xml.ts';
 import {
   analyzeTone,
+  contrastRatio,
   geometryOf,
   isDominatedBy,
   isMonochrome,
+  isNearBlack,
+  isNearWhite,
   parseColor,
+  relativeLuminance,
   type Tone,
   type ToneAnalysis,
 } from './helpers/legibility.ts';
@@ -26,11 +31,14 @@ import {
  * `helpers/legibility.ts` for the measure — must come with a colored
  * alternative that does not:
  *
- *  1. a colored `Circle*`, `Square*` or `Inverted*` variant that is not
- *     itself dominated by that tone; or
- *  2. for a mark with no colour besides that tone (Aptos, LayerZero, …), its
- *     `Mono` variant with identical geometry: `<AptosMono color="#fff" />`
- *     *is* the brand's reversed mark, with no brand colour to give up; or
+ *  1. a colored `Circle*`, `Square*` or `Inverted*` variant (or the legacy
+ *     `BlastscanLight`) that is not itself dominated by that tone; or
+ *  2. for a mark painted in that tone alone, its `Mono` variant with
+ *     identical geometry. For a black mark (Aptos, LayerZero, …)
+ *     `<AptosMono color="#fff" />` *is* the brand's reversed mark, with no
+ *     brand colour to give up; a pale single-colour mark (Hyperliquid's mint,
+ *     QuickNode's green) keeps its whole shape, though not its colour, in a
+ *     dark `color`; or
  *  3. an entry in {@link EXEMPTIONS}, whose reason is verified below.
  *
  * Variants are only added from official artwork (CONTRIBUTING.md,
@@ -85,9 +93,37 @@ const EXEMPTIONS: Readonly<Record<UnitKey, Exemption>> = {
     searched: ['https://docs.frax.com', 'https://frax.com'],
     note: "A static misreading: the official FraxIcon's white disc is only a keyline ring under the black disc, so on light backgrounds the icon reads as the black disc with the white crosshair, but counting paints treats the white disc as a light container and the black disc and white crosshair as half light. FraxMono with a dark color is the same black disc.",
   },
+  'dex/Orca': {
+    tone: 'light',
+    kind: 'no-official-alternative',
+    searched: [
+      'https://docs.orca.so/reference/brand',
+      'https://drive.google.com/drive/folders/1yRC6zPMsUvvRM6AKmRNvc5h0YRLh2BPb',
+    ],
+    note: "A static misreading: on light backgrounds the black orca carries the mark, but counting paints weighs the pale #FFD15C disc (1.45:1 against white) as a light container and the white belly as half the ink. The brand kit's Orca Logo folder has this logomark and the horizontal lockups only; OrcaMono with a dark color keeps the disc and the orca.",
+  },
 };
 
-const LEGIBLE_SUFFIX = /^(?:Circle|Square|Inverted)/;
+/**
+ * Official legible variants that exist but are not in the set yet, with the
+ * file to take them from. The report names them next to the icon's current
+ * option, and the entry fails as stale once the unit ships the variant:
+ * remove it then. A pending variant is not an option of its own: until it
+ * lands, the icon needs one of the options above.
+ */
+const PENDING: Readonly<Record<UnitKey, Pending>> = {};
+
+interface Pending {
+  /** The background the default icon vanishes on. */
+  readonly tone: Tone;
+  /** Export name the official variant will get. */
+  readonly variant: string;
+  /** The official file to take it from. */
+  readonly source: string;
+  readonly note: string;
+}
+
+const LEGIBLE_SUFFIX = /^(?:Circle|Square|Inverted|Light)/;
 
 const isColored = (variant: VariantSource): boolean =>
   !variant.suffix.endsWith('Mono') && variant.fill !== 'currentColor';
@@ -179,6 +215,12 @@ function withExemption(entry: Audited, tone: Tone): Coverage {
     : found;
 }
 
+/** ` (pending FooCircle)` when an official variant for `tone` is pending. */
+function pendingNote(entry: Audited, tone: Tone): string {
+  const pending = PENDING[entry.key];
+  return pending?.tone === tone ? ` (pending ${pending.variant})` : '';
+}
+
 describe('dark/light background legibility (issue #712)', () => {
   it('measures every colored artwork', () => {
     for (const entry of audited) {
@@ -215,10 +257,12 @@ describe('dark/light background legibility (issue #712)', () => {
           case 'variant':
           case 'monochrome':
             return [
-              `${tone}: ${entry.key} → ${found.kind} ${found.exportName}`,
+              `${tone}: ${entry.key} → ${found.kind} ${found.exportName}${pendingNote(entry, tone)}`,
             ];
           case 'exempt':
-            return [`${tone}: ${entry.key} → exempt (${found.exemption.kind})`];
+            return [
+              `${tone}: ${entry.key} → exempt (${found.exemption.kind})${pendingNote(entry, tone)}`,
+            ];
           default:
             return found satisfies never;
         }
@@ -267,6 +311,33 @@ describe('dark/light background legibility (issue #712)', () => {
       },
     );
   });
+
+  // Empty while no official variant is pending; vitest rejects an empty suite.
+  describe.skipIf(Object.keys(PENDING).length === 0)('pending variants', () => {
+    const byKey = new Map<string, Audited>(
+      audited.map(entry => [entry.key, entry]),
+    );
+
+    it.each(Object.entries(PENDING))(
+      '%s is still pending and needed',
+      (key, pending) => {
+        const entry = byKey.get(key);
+        expect(entry, `${key}: no such colored icon unit`).toBeDefined();
+        if (entry === undefined) {
+          return;
+        }
+        expect(
+          unitAllExportNames(entry.unit),
+          `${key}: ${pending.variant} has landed; remove its PENDING entry`,
+        ).not.toContain(pending.variant);
+        expect(
+          coverage(entry, pending.tone).kind,
+          `${key}: legible on ${pending.tone} backgrounds — ${pending.note}`,
+        ).not.toBe('legible');
+        expect(pending.source).toMatch(/^https:\/\//);
+      },
+    );
+  });
 });
 
 describe('tone analysis', () => {
@@ -298,6 +369,24 @@ describe('tone analysis', () => {
     ]) {
       expect(() => parseColor(unsupported)).toThrow(/unsupported colour/);
     }
+  });
+
+  it('classifies tones by channels or by WCAG contrast', () => {
+    expect(contrastRatio(relativeLuminance([255, 255, 255]), 0)).toBeCloseTo(
+      21,
+    );
+    expect(relativeLuminance([0, 0, 0])).toBe(0);
+    // Greys by their channels, as before.
+    expect(isNearBlack([59, 59, 59])).toBe(true);
+    expect(isNearWhite([196, 196, 196])).toBe(true);
+    // Saturated colours by their contrast with the background.
+    expect(isNearWhite(parseColor('#FCFC03').rgb)).toBe(true); // 1.10:1
+    expect(isNearWhite(parseColor('#97FCE4').rgb)).toBe(true); // 1.21:1
+    expect(isNearWhite(parseColor('#59D9D9').rgb)).toBe(false); // 1.70:1
+    expect(isNearBlack(parseColor('#00003E').rgb)).toBe(true); // 1.07:1
+    expect(isNearBlack(parseColor('#008CD6').rgb)).toBe(false);
+    expect(isNearBlack(parseColor('#FCFC03').rgb)).toBe(false);
+    expect(isNearWhite(parseColor('#00003E').rgb)).toBe(false);
   });
 
   it('drops transparent colours, solid or in gradients (regression)', () => {
@@ -352,11 +441,42 @@ describe('tone analysis', () => {
     expect(masked.overall).toEqual({ dark: 0, light: 0, weight: 1 });
   });
 
-  it('splits gradient paints across stops, following href templates', () => {
-    const gradient = svg(
-      '<defs><linearGradient id="a"><stop stop-color="#000"/><stop stop-color="#fff" stop-opacity="0"/></linearGradient><radialGradient id="b" xlink:href="#a"/></defs><path d="M0 0h1v1z" fill="url(#b)"/>',
-    );
-    expect(gradient.ink).toEqual({ dark: 1, light: 0, weight: 0.5 });
+  it('samples gradient paints along their ramp, following href templates', () => {
+    const ramp = (stops: string): ToneAnalysis =>
+      svg(
+        `<defs><linearGradient id="a">${stops}</linearGradient><radialGradient id="b" xlink:href="#a"/></defs><path d="M0 0h1v1z" fill="url(#b)"/>`,
+      );
+    // A hard stop at the middle: half of each.
+    expect(
+      ramp(
+        '<stop stop-color="#000"/><stop offset=".5" stop-color="#000"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#fff"/>',
+      ).ink,
+    ).toEqual({ dark: 0.5, light: 0.5, weight: 1 });
+    // A smooth ramp is near-black or near-white only near its ends.
+    expect(
+      ramp('<stop stop-color="#000"/><stop offset="1" stop-color="#fff"/>').ink,
+    ).toEqual({ dark: 0.25, light: 0.25, weight: 1 });
+    // Fading out: the weight follows the interpolated alpha.
+    expect(
+      ramp(
+        '<stop stop-color="#000"/><stop offset="100%" stop-color="#000" stop-opacity="0"/>',
+      ).ink,
+    ).toEqual({ dark: 1, light: 0, weight: 0.5 });
+    // Stops without an offset sit at 0, so the last one fills the shape,
+    // and an offset below the previous one is raised to it.
+    expect(
+      ramp('<stop stop-color="#000"/><stop stop-color="#fff"/>').ink.light,
+    ).toBe(1);
+    expect(
+      ramp(
+        '<stop offset=".5" stop-color="#000"/><stop offset=".2" stop-color="#fff"/>',
+      ).ink,
+    ).toEqual({ dark: 0.5, light: 0.5, weight: 1 });
+    expect(
+      svg(
+        '<defs><linearGradient id="e"/></defs><path d="M0 0h1v1z" fill="url(#e)"/>',
+      ).overall.weight,
+    ).toBe(0);
     expect(() =>
       svg('<defs><pattern id="p"/></defs><path d="M0 0h1v1z" fill="url(#p)"/>'),
     ).toThrow(/unsupported paint server <pattern>/);
