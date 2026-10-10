@@ -66,8 +66,10 @@ export type {
 // known keys, and any string (API data, connector ids, user input) still
 // type-checks, since it is resolved at runtime anyway: case-insensitively,
 // ignoring whitespace, `.`, `-` and `_` (see normalize.ts). An identifier
-// nothing matches renders `fallback`. `variant` is strict: one of the
-// category's variants.
+// nothing matches renders `fallback`. The identifier prop is required, but its
+// value may be `undefined` (data that is not loaded yet, such as wagmi's
+// `useAccount().chainId` before a wallet connects), which renders `fallback`.
+// `variant` is strict: one of the category's variants.
 
 /** Props of {@link ChainIcon}: `chainId`, `name`, or both. */
 export type ChainIconProps = DynamicIconProps<ChainVariant> &
@@ -77,7 +79,7 @@ export type ChainIconProps = DynamicIconProps<ChainVariant> &
          * EVM chain ID (e.g. `1`, `8453`). Takes precedence over `name`; an
          * unknown chain ID falls back to `name`.
          */
-        chainId: ChainId | (number & {});
+        chainId: ChainId | (number & {}) | undefined;
         /**
          * Chain slug, normalized (e.g. `'ethereum'`, `'Arbitrum Nova'`,
          * `'arbitrum-one'`). Used when `chainId` is absent or unknown.
@@ -94,13 +96,13 @@ export type ChainIconProps = DynamicIconProps<ChainVariant> &
          * Chain slug, normalized (e.g. `'ethereum'`, `'Arbitrum Nova'`,
          * `'arbitrum-one'`). Used when `chainId` is absent or unknown.
          */
-        name: ChainSlug | (string & {});
+        name: ChainSlug | (string & {}) | undefined;
       }
   );
 
 export interface CoinIconProps extends DynamicIconProps<CoinVariant> {
   /** Ticker symbol, case-insensitive (e.g. `'ETH'`, `'btc'`). */
-  symbol: Ticker | (string & {});
+  symbol: Ticker | (string & {}) | undefined;
 }
 
 export interface WalletIconProps extends DynamicIconProps<WalletVariant> {
@@ -108,32 +110,32 @@ export interface WalletIconProps extends DynamicIconProps<WalletVariant> {
    * Wallet name or connector id, normalized (e.g. `'metamask'`, `'metaMaskSDK'`,
    * `'phantom'`, `'Trust Wallet'`).
    */
-  name: WalletSlug | (string & {});
+  name: WalletSlug | (string & {}) | undefined;
 }
 
 export interface ExchangeIconProps extends DynamicIconProps<ExchangeVariant> {
   /** Exchange name, normalized (e.g. `'binance'`, `'Crypto.com'`). */
-  name: ExchangeSlug | (string & {});
+  name: ExchangeSlug | (string & {}) | undefined;
 }
 
 export interface DefiIconProps extends DynamicIconProps<DefiVariant> {
   /** DeFi protocol name, normalized (e.g. `'aave'`, `'ether.fi'`). */
-  name: DefiSlug | (string & {});
+  name: DefiSlug | (string & {}) | undefined;
 }
 
 export interface DexIconProps extends DynamicIconProps<DexVariant> {
   /** DEX name, normalized (e.g. `'uniswap'`, `'1inch'`). */
-  name: DexSlug | (string & {});
+  name: DexSlug | (string & {}) | undefined;
 }
 
 export interface BridgeIconProps extends DynamicIconProps<BridgeVariant> {
   /** Bridge name, normalized (e.g. `'layerzero'`, `'hop-protocol'`). */
-  name: BridgeSlug | (string & {});
+  name: BridgeSlug | (string & {}) | undefined;
 }
 
 export interface OracleIconProps extends DynamicIconProps<OracleVariant> {
   /** Oracle protocol name, normalized (e.g. `'pyth'`, `'RedStone'`). */
-  name: OracleSlug | (string & {});
+  name: OracleSlug | (string & {}) | undefined;
 }
 
 /** Lazily loads a chain icon by chain ID or slug. */

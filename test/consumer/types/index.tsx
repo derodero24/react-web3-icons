@@ -122,8 +122,10 @@ export const elements: ReactElement[] = [
   <ChainIcon key="dynamic-no-identifier" />,
   // @ts-expect-error ChainIcon needs chainId or name
   <ChainIcon key="dynamic-variant-only" variant="Circle" />,
-  // @ts-expect-error an identifier that may be undefined does not count
+  // An identifier that may be undefined (data not loaded yet) renders fallback.
   <ChainIcon key="dynamic-maybe-name" name={maybeLabel} />,
+  <ChainIcon key="dynamic-maybe-id" chainId={maybeSize} />,
+  <CoinIcon key="dynamic-maybe-symbol" symbol={maybeLabel} />,
   <AvalancheCircle key="extra-toggle" withBackground={false} ref={ref} />,
   <Bybit key="extra-fill" {...bybitProps} />,
   // @ts-expect-error extra props are typed per component

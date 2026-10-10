@@ -415,15 +415,13 @@ describe('connector ids and aliases', () => {
 });
 
 describe('identifiers from untyped data', () => {
-  // Each element is typed wrongly on purpose: TypeScript rejects it, but
+  // `undefined` is a typed identifier (data not loaded yet). The other
+  // elements are typed wrongly on purpose: TypeScript rejects them, but
   // untyped API data reaches the component all the same.
   const cases: [string, () => ReactElement][] = [
     [
       'CoinIcon symbol={undefined}',
-      () => (
-        // @ts-expect-error a missing symbol
-        <dynamic.CoinIcon symbol={undefined} fallback={FALLBACK} />
-      ),
+      () => <dynamic.CoinIcon symbol={undefined} fallback={FALLBACK} />,
     ],
     [
       'CoinIcon symbol={null}',
@@ -441,10 +439,7 @@ describe('identifiers from untyped data', () => {
     ],
     [
       'DexIcon name={undefined}',
-      () => (
-        // @ts-expect-error a missing name
-        <dynamic.DexIcon name={undefined} fallback={FALLBACK} />
-      ),
+      () => <dynamic.DexIcon name={undefined} fallback={FALLBACK} />,
     ],
     [
       'ChainIcon name={1}',
