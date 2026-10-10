@@ -22,7 +22,7 @@ Every icon export follows a `{Brand}{Variant}` pattern using PascalCase. The bas
 | `Alt` | Alternative color scheme or design | `LooksAlt` |
 | `CircleAlt` | Circle variant in an alternative color scheme | `CoinbaseCircleAlt` |
 | `Inverted` | Inverted color scheme for contrast on dark backgrounds | `EtherscanInverted` |
-| `Light` | _(legacy, closed to new icons)_ The brand's official dark single-color version for light backgrounds, where the default mark is pale. Only `BlastscanLight` uses it, and it is not deprecated. New icons use `Flat` for this and `Inverted` for light-on-dark. | `BlastscanLight` |
+| `Light` | _(legacy, closed to new icons)_ The brand's official dark single-color version for light backgrounds, where the default mark is pale. Only `BlastscanLight` uses it (`BlastscanMono` in black), and it is not deprecated. New icons use `Flat` for a version in one brand color (as `LooksRareFlat`), `Mono` for a black one ([mono rule 5](#mono-design-rules)) and `Inverted` for light-on-dark. | `BlastscanLight` |
 | `Flat` | Single brand color, no internal color variation | `LooksRareFlat` |
 | `Symbol` | Standalone symbol without container (when base has one) | `RainbowSymbol` |
 | `SymbolMono` | Monochrome standalone symbol without container | `OpenSeaSymbolMono` |

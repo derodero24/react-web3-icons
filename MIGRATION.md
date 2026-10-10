@@ -358,7 +358,7 @@ They now fill the whole box like other containers (section 5), so they render la
 - [ ] Type full `Bybit` props as `IconProps & BybitProps` (or `ComponentProps<typeof Bybit>`)
 - [ ] Pass dynamic components only `variant` values of their category (`ChainVariant`, …); others render `fallback`
 - [ ] Re-check custom CSS or layout that compensated for the old per-icon viewBoxes
-- [ ] Replace the removed exports (`GnosisSafe*`, `Matic*`, `*Light`, `Truffle*`, `Ganache*`, `Drizzle*`, `TofuNft*`) with their replacements (section 9)
+- [ ] Replace the removed exports (`GnosisSafe*`, `Matic*`, `EtherscanLight`, `BasescanLight`, `BscscanLight`, `BybitLight`, `Truffle*`, `Ganache*`, `Drizzle*`, `TofuNft*`) with their replacements (section 9)
 - [ ] Optionally rename the deprecated names with the find-and-replace in section 6 (they keep working through v5)
 - [ ] Drop `variant="Alt"` from `WalletIcon` and `variant="Flat"` / `"FlatMono"` from `ChainIcon`, and use `variant="mono"` instead of `variant="SymbolMono"` for Phantom; optionally replace `ArbitrumOneFlat*` and `ArbitrumNovaFlat*` with `ArbitrumOne*` and `ArbitrumNova*` (section 6, duplicate variants)
 - [ ] Optionally move from `Tally`, `MakerDao`, `Mkr`, `ParaSwap` and `NamiWallet` to `Cactus`, `Sky`, `Velora` and `Lace` (new artwork, section 7)

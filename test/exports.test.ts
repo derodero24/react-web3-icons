@@ -135,7 +135,7 @@ describe('Every colored icon has a Mono variant', () => {
     'Doge',
     'Shib',
     // BlastscanLight is Blastscan's official black mark for light backgrounds
-    // (the default is pale), a single-colour variant like LooksRareFlat with no Mono of its own
+    // (the default is pale): BlastscanMono in black, so it needs no Mono of its own
     'BlastscanLight',
     // Alt/Flat variants where a Mono adds no practical value
     'CoinbaseCircleAlt',
