@@ -11,7 +11,7 @@ import type { IconProps } from './index';
 /** Icons without extra props. */
 export type NoExtraProps = Readonly<Record<never, never>>;
 
-/** Options of the `createIcon(displayName, viewBox, render, options)` form. */
+/** Options of `createIcon(displayName, viewBox, render, options)`. */
 export interface IconOptions<P extends object = NoExtraProps> {
   /** Default `fill` of the `<svg>` element (e.g. `'currentColor'`); a `fill` prop overrides it. */
   readonly fill?: string;
@@ -45,22 +45,6 @@ export type IconViewBox<P extends object> =
  */
 type SvgProps = Omit<IconProps, 'ref'>;
 type Render = (props: SvgProps, id: string) => ReactNode;
-type OptionsForm = [
-  displayName: string,
-  viewBox: IconViewBox<SvgProps>,
-  render: Render,
-  options: IconOptions<Readonly<Record<string, unknown>>>,
-];
-type LegacyForm = [
-  displayName: string,
-  viewBox: string,
-  render: (id: string) => ReactNode,
-  defaultFill?: string | undefined,
-];
-
-function isOptionsForm(args: OptionsForm | LegacyForm): args is OptionsForm {
-  return typeof args[3] === 'object';
-}
 
 /** Outer delimiters of `useId()` output per React version. */
 const USE_ID_DELIMITERS: Readonly<Record<string, string>> = {
@@ -111,16 +95,10 @@ export function toSvgId(reactId: string): string {
  * Components, so every icon renders in React Server Components without a
  * `'use client'` boundary.
  *
- * Two call forms are supported:
- *
- * - `createIcon<P>(displayName, viewBox, render, options)` — `render(props,
- *   id)` receives the component's props, from which it reads its extra props
- *   `P` (listed in `options.props`, e.g. `withBackground`), and, when
- *   `options.ids` is set, a per-instance id prefix for internal `id`
- *   attributes. `viewBox` may also be a function of the props. This is the
- *   form the icon generator emits.
- * - `createIcon(displayName, viewBox, render, defaultFill?)` — the v4 form:
- *   `render(id)` always receives a per-instance id prefix.
+ * `render(props, id)` receives the component's props, from which it reads
+ * its extra props `P` (listed in `options.props`, e.g. `withBackground`),
+ * and, when `options.ids` is set, a per-instance id prefix for internal `id`
+ * attributes. `viewBox` may also be a function of the props.
  *
  * Per-instance ids keep every rendered icon self-contained: a `url(#…)`
  * reference never resolves into another instance, which may be hidden
@@ -129,7 +107,7 @@ export function toSvgId(reactId: string): string {
  * @param displayName - Component display name shown in React DevTools; also part of the id prefix (`w3i-<lowercased name>-<instance>`).
  * @param viewBox - SVG `viewBox` attribute value (e.g. `"0 0 24 24"`).
  * @param render - Function that returns the SVG content.
- * @param options - Default `fill`, extra props, and whether `render` needs ids; or, in the v4 form, the default `fill`.
+ * @param options - Default `fill`, extra props, and whether `render` needs ids.
  */
 export function createIcon<P extends object = NoExtraProps>(
   displayName: string,
@@ -145,21 +123,10 @@ export function createIcon<P extends object = NoExtraProps>(
 ): IconComponent<P>;
 export function createIcon(
   displayName: string,
-  viewBox: string,
-  render: (id: string) => ReactNode,
-  defaultFill?: string,
-): IconComponent;
-export function createIcon(...args: OptionsForm | LegacyForm): IconComponent {
-  const [displayName, viewBox] = args;
-  let draw: Render;
-  let options: OptionsForm[3];
-  if (isOptionsForm(args)) {
-    [, , draw, options] = args;
-  } else {
-    const [, , render, fill] = args;
-    draw = (_props, id) => render(id);
-    options = fill === undefined ? { ids: true } : { fill, ids: true };
-  }
+  viewBox: IconViewBox<SvgProps>,
+  render: Render,
+  options: IconOptions<Readonly<Record<string, unknown>>>,
+): IconComponent {
   const prefix = `w3i-${displayName.toLowerCase()}`;
   const extraProps = options.props ?? [];
 
@@ -191,7 +158,7 @@ export function createIcon(...args: OptionsForm | LegacyForm): IconComponent {
         {...props}
       >
         {title && <title id={titleId}>{title}</title>}
-        {draw(allProps, id)}
+        {render(allProps, id)}
       </svg>
     );
   }

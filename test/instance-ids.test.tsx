@@ -172,36 +172,36 @@ describe('hooks', () => {
   });
 });
 
-describe('createIcon v4 form', () => {
-  const Legacy = createIcon(
-    'Legacy',
+describe('createIcon', () => {
+  const Masked = createIcon(
+    'Masked',
     '0 0 1 1',
-    id => (
+    (_props, id) => (
       <>
         <mask id={`${id}-m`} />
         <rect width="1" height="1" mask={`url(#${id}-m)`} />
       </>
     ),
-    'red',
+    { fill: 'red', ids: true },
   );
-  const Unfilled = createIcon('Unfilled', '0 0 1 1', () => <rect />);
+  const Unfilled = createIcon('Unfilled', '0 0 1 1', () => <rect />, {});
 
-  it('passes a per-instance id to render(id)', () => {
+  it('passes a per-instance id to render with `ids`, and sets `fill`', () => {
     const svgs = render(
       <>
-        <Legacy />
-        <Legacy />
+        <Masked />
+        <Masked />
       </>,
     );
     const [first = [], second = []] = svgs.map(ids);
     expect(first).toHaveLength(1);
     expect(second).toHaveLength(1);
     expect(first[0]).not.toBe(second[0]);
-    expect(first[0]).toMatch(/^w3i-legacy-[A-Za-z0-9]+-m$/);
+    expect(first[0]).toMatch(/^w3i-masked-[A-Za-z0-9]+-m$/);
     expect(svgs[0]?.getAttribute('fill')).toBe('red');
   });
 
-  it('defaultFill stays optional', () => {
+  it('sets no fill without `fill`', () => {
     const [svg] = render(<Unfilled />);
     expect(svg?.hasAttribute('fill')).toBe(false);
   });

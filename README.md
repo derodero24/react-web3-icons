@@ -385,7 +385,7 @@ function ResolvedChainIcon({ chainId }: { chainId: number }) {
 
 #### Example: Resolve a coin icon from a ticker
 
-The same trade-off applies: in client code this bundles every coin icon (about 72 KB). If your app only shows a known set of tokens, import those icons by name and map tickers to them yourself.
+The same trade-off applies: in client code this bundles every coin icon (about 71 KB). If your app only shows a known set of tokens, import those icons by name and map tickers to them yourself.
 
 ```tsx
 import * as coins from 'react-web3-icons/coin'; // bundles every coin icon
@@ -419,10 +419,10 @@ The package ships one ES module per icon, marks every icon `/* @__PURE__ */`, an
 
 | Import | Bundled | Size |
 | --- | --- | --- |
-| `import { Ethereum } from 'react-web3-icons'` | `Ethereum` only | ~0.8 KB |
-| `import { Ethereum } from 'react-web3-icons/chain'` | `Ethereum` only (same as the root import) | ~0.8 KB |
+| `import { Ethereum } from 'react-web3-icons'` | `Ethereum` only | ~0.7 KB |
+| `import { Ethereum } from 'react-web3-icons/chain'` | `Ethereum` only (same as the root import) | ~0.7 KB |
 | `import * as chains from 'react-web3-icons/chain'` + `chains[name]` | every chain icon | ~37 KB |
-| `import * as coins from 'react-web3-icons/coin'` + `coins[name]` | every coin icon | ~72 KB |
+| `import * as coins from 'react-web3-icons/coin'` + `coins[name]` | every coin icon | ~71 KB |
 | `import * as icons from 'react-web3-icons'` + `icons[name]` | the whole library | ~160 KB |
 | `<CoinIcon symbol={symbol} />` from `react-web3-icons/dynamic` | a small loader, then one chunk per icon rendered | — |
 
