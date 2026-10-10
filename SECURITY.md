@@ -9,6 +9,10 @@ Security fixes are released for the latest major version only, as a new minor or
 | 4.x     | Yes       |
 | < 4.0   | No        |
 
+## Verifying a Release
+
+From 5.0.0, every version is published from GitHub Actions with an npm provenance attestation. Look for the green check mark next to the version on the package's npm page, or run `npm audit signatures` in a project installed with npm. See [Verifying a release](docs/releasing.md#verifying-a-release).
+
 ## Reporting a Vulnerability
 
 If you discover a security vulnerability in this project, please report it responsibly.

@@ -13,8 +13,9 @@ concurrency:
 jobs:
   # Gate: nothing is versioned or published from a commit that has not passed
   # lint, typecheck, tests (with coverage thresholds), build and size limits.
-  # This also covers the version PR, whose GITHUB_TOKEN-created commits do not
-  # trigger CI: its merge commit is verified here before `publish` runs.
+  # This also covers the version PR: GITHUB_TOKEN creates and updates it, so
+  # its CI runs wait for a maintainer's approval (docs/releasing.md), and its
+  # merge commit is verified here before `publish` runs either way.
   verify:
     name: Verify
     runs-on: ubuntu-latest
