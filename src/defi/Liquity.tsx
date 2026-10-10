@@ -1,7 +1,11 @@
 import { createIcon } from '../utils';
 
-// Source: https://liquity.org (official brand)
-// Liquity V2 logo: light-blue circle + indigo column/arc overlay
+// Source: https://cdn.prod.website-files.com/5fd883457ba5da4c3822b02c/671246973b22dfce4deb98be_liquity-logo.svg (navbar and footer logo of the official site https://www.liquity.org)
+// Source: https://cdn.prod.website-files.com/5fd883457ba5da4c3822b02c/66b6165595ff1673d254ee8a_icon-logo.svg (standalone icon on https://www.liquity.org)
+// Liquity V2 logo: a #95CBF3 disc with the #405AE5 column and arc. The paths are the 40×40 mark of the liquity.org navbar lockup liquity-logo.svg (without the wordmark), scaled 1.6× onto the 64 grid
+// The site's standalone icon-logo.svg is the same mark in the same colours but draws the arc slightly differently (about 0.3% of the pixels differ, against 0.03% for the lockup mark)
+// Mono: the #405AE5 column and arc in solid ink, with the disc as a 1.44-unit outline ring
+// liquity.org links no brand or press kit (its /brand, /press and /media-kit pages return 404), and liquity.org/icon-logo.svg returns 404 (checked 2026-10-09)
 /** Liquity DeFi icon (colored). */
 export const Liquity = /* @__PURE__ */ createIcon(
   'Liquity',

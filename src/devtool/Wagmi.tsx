@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://wagmi.sh
+// Source: https://github.com/wevm/wagmi/blob/main/site/public/favicon.svg (served as https://wagmi.sh/favicon.svg)
+// Source: https://github.com/wevm/wagmi/blob/main/site/public/logo-light.svg (served as https://wagmi.sh/logo-light.svg)
+// Mark: the w-and-dot path of wagmi's official favicon.svg (white in the source), uniformly scaled (56/629) onto the 64 grid (silhouette IoU 0.993). The colour #1B1B1B is the fill of the official light-mode wordmark logo-light.svg
+// Mono: the same path in currentColor
 /** Wagmi devtool icon (colored). */
 export const Wagmi = /* @__PURE__ */ createIcon(
   'Wagmi',
