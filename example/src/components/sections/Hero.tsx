@@ -19,7 +19,7 @@ const PKG_MANAGERS: PkgManager[] = ['npm', 'yarn', 'pnpm', 'bun'];
 export default function Hero({
   iconCount,
 }: {
-  /** Number of icon groups (base icons, not variants) */
+  /** Number of distinct icons, as on the compare page: a re-export such as `Eth` counts once. */
   iconCount: number;
 }) {
   const [pkg, setPkg] = useState<PkgManager>('npm');
