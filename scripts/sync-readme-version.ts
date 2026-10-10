@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 /**
- * Sets the version pins in README.md's CDN examples to the version in
+ * Sets the versions of this package in README.md to the version in
  * package.json:
  *
- * - every exact pin `react-web3-icons@X.Y.Z` (prerelease suffix included)
- *   becomes `react-web3-icons@<version>`;
- * - every backticked major range such as `` `@4` `` (the unpinned-URL example)
- *   becomes the major of `<version>`.
+ * - every exact pin `react-web3-icons@X.Y.Z` (prerelease suffix included),
+ *   anywhere in the file, becomes `react-web3-icons@<version>`; today these
+ *   are the CDN examples;
+ * - the major in the unpinned-URL example, "(`@latest`, `@4`)", becomes the
+ *   major of `<version>`.
  *
  *   node scripts/sync-readme-version.ts
  *
@@ -23,13 +24,17 @@ import { pathToFileURL } from 'node:url';
 const ROOT = resolve(import.meta.dirname, '..');
 
 /** A semver version: X.Y.Z with an optional prerelease suffix. */
-const VERSION = /^(\d+)\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/;
+const VERSION = /^(\d+)\.\d+\.\d+(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/;
 
-/** An exact pin of this package, as in a CDN URL. */
-const EXACT_PIN = /react-web3-icons@\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?/g;
+/**
+ * An exact pin of this package, as in a CDN URL. The prerelease suffix is
+ * dot-separated identifiers, so a period that ends a sentence is not part of it.
+ */
+const EXACT_PIN =
+  /react-web3-icons@\d+\.\d+\.\d+(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?/g;
 
-/** A major range in a code span, as in "An unpinned URL (`@latest`, `@4`)". */
-const MAJOR_RANGE = /`@\d+`/g;
+/** The major in "An unpinned URL (`@latest`, `@4`)", and nowhere else. */
+const UNPINNED_MAJOR = /(?<=\(`@latest`, `@)\d+(?=`\))/g;
 
 /** Returns `readme` with every pin set to `version`. */
 export function syncReadmeVersion(readme: string, version: string): string {
@@ -39,7 +44,7 @@ export function syncReadmeVersion(readme: string, version: string): string {
   }
   return readme
     .replace(EXACT_PIN, () => `react-web3-icons@${version}`)
-    .replace(MAJOR_RANGE, () => `\`@${major}\``);
+    .replace(UNPINNED_MAJOR, () => major);
 }
 
 /** The `version` field of a package.json. */

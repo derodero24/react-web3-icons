@@ -128,11 +128,13 @@ jobs:
 
       # Version path: opens or updates the version PR. No npm credentials.
       # `version-packages` runs `changeset version`, then
-      # scripts/sync-readme-version.ts, which sets README.md's CDN version
-      # pins to the new version. The two commands live in a package.json
-      # script because the action runs `version-script` through @actions/exec,
-      # which splits the string into arguments and starts the first one
-      # without a shell: a `&&` here would reach `changeset` as an argument.
+      # scripts/sync-readme-version.ts, which sets every exact
+      # react-web3-icons@X.Y.Z in README.md (today, the CDN examples) and the
+      # major in its unpinned-URL example to the new version. The two commands
+      # live in a package.json script because the action runs `version-script`
+      # through @actions/exec, which splits the string into arguments and
+      # starts the first one without a shell: a `&&` here would reach
+      # `changeset` as an argument.
       # `publish-script` is only metadata here: with pending changesets the
       # action runs `version-script` and uses the presence of a publish
       # script to word the PR body ("will be published automatically"); it

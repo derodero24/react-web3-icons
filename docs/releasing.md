@@ -23,10 +23,11 @@ release flow works without them.
    updates the `chore: version packages` PR from `changeset-release/develop`.
    `pnpm run version-packages` runs `changeset version`, which bumps
    `package.json`, writes `CHANGELOG.md` and deletes the consumed
-   changesets. It then runs `scripts/sync-readme-version.ts`, which sets the
-   versions in the README's CDN section to the new one, so the README
-   published with the release links to that release's files. Every later
-   push to `develop` rebuilds the same PR on top of it.
+   changesets. It then runs `scripts/sync-readme-version.ts`, which sets
+   every exact `react-web3-icons@X.Y.Z` in `README.md` (today, the CDN
+   examples) and the major in its unpinned-URL example to the new version,
+   so the README published with the release links to that release's files.
+   Every later push to `develop` rebuilds the same PR on top of it.
 4. A maintainer approves the PR's CI runs (see
    [The version PR](#the-version-pr)), reviews it and merges it.
 5. Verify runs again on the merge commit. With no changesets left, the job

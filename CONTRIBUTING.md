@@ -52,7 +52,7 @@ supported runtime lacks. A rule in `renovate.json` keeps it there; raise both to
 | `pnpm run optimize:svg` | Optimize an SVG with SVGO |
 | `pnpm run check:svgo` | List icon SVGs SVGO would still change (fails if any) |
 | `pnpm changeset` | Add a changeset for a change to the published package |
-| `pnpm run version-packages` | Run by the release workflow for the version PR: `changeset version`, then set the README's CDN version pins to the new version (see [docs/releasing.md](docs/releasing.md)) |
+| `pnpm run version-packages` | Run by the release workflow for the version PR: `changeset version`, then set every exact `react-web3-icons@X.Y.Z` in README.md, and the major in its unpinned-URL example, to the new version (see [docs/releasing.md](docs/releasing.md)) |
 
 ## Project Structure
 
@@ -76,7 +76,7 @@ scripts/
   render-showcase.ts  # Renders image/icons.png (pnpm run showcase)
   size-report.ts  # Renders the size-limit PR comment
   changelog.ts    # Changelog generator for `changeset version` (.changeset/config.json)
-  sync-readme-version.ts  # Sets the README's CDN version pins (pnpm run version-packages)
+  sync-readme-version.ts  # Sets README.md's react-web3-icons@X.Y.Z pins to package.json's version (pnpm run version-packages)
 test/             # Vitest suites; visual/ (Playwright screenshots), consumer/ (packed-tarball fixtures for CI)
 example/          # Next.js demo site (react-web3-icons.vercel.app), builds from src/
 examples/

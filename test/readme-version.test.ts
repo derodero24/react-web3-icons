@@ -42,6 +42,12 @@ describe('syncReadmeVersion', () => {
       version: '5.1.0-beta.0',
       expected: 'react-web3-icons@5.1.0-beta.0/dist',
     },
+    {
+      name: 'a prerelease pin that ends a sentence, keeping the period',
+      input: 'see react-web3-icons@5.0.0-beta.1.',
+      version: '5.0.0',
+      expected: 'see react-web3-icons@5.0.0.',
+    },
   ])('replaces $name', ({ input, version, expected }) => {
     expect(syncReadmeVersion(input, version)).toBe(expected);
   });
@@ -63,6 +69,7 @@ describe('syncReadmeVersion', () => {
       'An unpinned URL (`@latest`) can start serving different files',
       "import { Icon } from '@iconify/react';",
       'react@18.3.1 and @types/react@19.3.0',
+      'React `@18` or `@19`, and (`@next`, `@4`)',
     ].join('\n');
     expect(syncReadmeVersion(readme, '5.0.0')).toBe(readme);
   });
@@ -76,7 +83,7 @@ describe('syncReadmeVersion', () => {
     expect(syncReadmeVersion(once, '5.0.0')).toBe(once);
   });
 
-  it.each(['', '5', '5.0', 'v5.0.0', '5.0.0 '])(
+  it.each(['', '5', '5.0', 'v5.0.0', '5.0.0 ', '5.0.0-beta.', '5.0.0-.1'])(
     'rejects the version %j',
     version => {
       expect(() =>
@@ -107,10 +114,19 @@ describe('README.md', () => {
 
   it("pins every exact version to package.json's version", () => {
     const pins = [
-      ...readme.matchAll(/react-web3-icons@(\d+\.\d+\.\d+[^\s/'"`)]*)/g),
+      ...readme.matchAll(
+        /react-web3-icons@(\d+\.\d+\.\d+(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)/g,
+      ),
     ].map(([, pin]) => pin);
     expect(pins.length).toBeGreaterThan(0);
     expect(new Set(pins)).toEqual(new Set([version]));
+  });
+
+  it("names package.json's major in the unpinned-URL example", () => {
+    // The sync script only rewrites this exact text; if the sentence is
+    // reworded, update the script's pattern with it.
+    const major = version.split('.')[0];
+    expect(readme).toContain(`(\`@latest\`, \`@${major}\`)`);
   });
 
   it('is what the sync script writes', () => {
