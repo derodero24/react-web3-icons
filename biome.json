@@ -6,7 +6,14 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["src/**", "test/**", "scripts/**", "example/src/**"]
+    "includes": [
+      "src/**",
+      "test/**",
+      "scripts/**",
+      "example/src/**",
+      "examples/stackblitz/**",
+      "*.config.*"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -306,6 +313,26 @@
         "rules": {
           "suspicious": {
             "noConsole": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.config.*"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["examples/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useNumericSeparators": "off"
           }
         }
       }
