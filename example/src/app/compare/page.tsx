@@ -342,10 +342,10 @@ export default function ComparePage() {
             {/* Bundle Size */}
             <Section id="bundle-size" title="Bundle Size">
               <p className="mb-4 text-sm text-fg/60">
-                Because both libraries ship ES modules, your bundler tree-shakes
-                unused icons automatically. The numbers below reflect
-                gzip-compressed size for a handful of representative import
-                patterns.
+                This library ships one ES module per icon, so a bundler that
+                tree-shakes keeps only the icons you import by name. The numbers
+                below are minified and brotli-compressed sizes, with React
+                excluded, for a handful of representative import patterns.
               </p>
 
               <div className="mb-6 overflow-x-auto rounded-lg border border-border">
@@ -359,50 +359,27 @@ export default function ComparePage() {
                         Import
                       </th>
                       <th className="py-2 pr-4 text-right text-xs font-semibold uppercase tracking-wide text-fg-muted">
-                        Raw
-                      </th>
-                      <th className="py-2 pr-4 text-right text-xs font-semibold uppercase tracking-wide text-fg-muted">
-                        Gzip
+                        Brotli
                       </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
                     {[
+                      { label: 'Single icon (Ethereum)', size: '~0.8 KB' },
+                      { label: 'Full coin category (/coin)', size: '~72 KB' },
+                      { label: 'Full chain category (/chain)', size: '~37 KB' },
                       {
-                        label: 'Single icon (Ethereum)',
-                        raw: '~1.2 KB',
-                        gzip: '~0.6 KB',
+                        label: 'Dynamic loader (/dynamic), no code splitting',
+                        size: '~139 KB',
                       },
-                      {
-                        label: 'Full coin category (/coin)',
-                        raw: '~57 KB',
-                        gzip: '~21 KB',
-                      },
-                      {
-                        label: 'Full chain category (/chain)',
-                        raw: '~29 KB',
-                        gzip: '~12 KB',
-                      },
-                      {
-                        label: 'Dynamic loader (/dynamic)',
-                        raw: '~106 KB',
-                        gzip: '~33 KB',
-                      },
-                      {
-                        label: 'Entire library',
-                        raw: '~142 KB',
-                        gzip: '~46 KB',
-                      },
+                      { label: 'Entire library', size: '~160 KB' },
                     ].map(row => (
                       <tr key={row.label}>
                         <td className="py-2 pr-4 pl-3 font-mono text-sm text-fg/70">
                           {row.label}
                         </td>
                         <td className="py-2 pr-4 text-right font-mono text-sm text-fg-muted">
-                          {row.raw}
-                        </td>
-                        <td className="py-2 pr-4 text-right font-mono text-sm text-fg-muted">
-                          {row.gzip}
+                          {row.size}
                         </td>
                       </tr>
                     ))}
@@ -413,10 +390,11 @@ export default function ComparePage() {
               <p className="text-sm text-fg-muted">
                 Measured with{' '}
                 <code className="rounded bg-surface px-1 font-mono text-xs">
-                  size-limit
+                  pnpm run size
                 </code>{' '}
-                on the published ESM build. Single-icon size varies by path
-                complexity.
+                (size-limit) on the ESM build; 1 KB = 1,000 bytes. With code
+                splitting, /dynamic is a small loader plus one chunk per icon
+                rendered. Single-icon size varies by path complexity.
               </p>
             </Section>
 
