@@ -213,9 +213,9 @@ A unit declares two different kinds of names:
   pickers, fuzzy search) and need not be unique. The dynamic components
   resolve lookup keys only, so in the categories above every alias must also
   normalize to a lookup key of its own unit (the generator fails otherwise;
-  add it to `slugs` / `tickers`). A unit whose exports are all deprecated
-  may point its aliases at the replacement's keys (`Fantom`'s `ftm` →
-  `Sonic`). In the other categories aliases are search terms only.
+  add it to `slugs` / `tickers`). Like the keys, the aliases of a rebrand
+  move to the new unit (`ftm` is an alias of `Sonic`, not of the deprecated
+  `Fantom`). In the other categories aliases are search terms only.
 
 ```json
 {

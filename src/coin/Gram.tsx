@@ -5,6 +5,7 @@ import { createIcon } from '../utils';
 // Gram (GRAM) is the token formerly known as Toncoin (TON); The Open Network (chain `Ton`) keeps its own logo (ton.org/media). Default: `Gram Diamond Mark/Gram Diamond Mark.svg` unchanged
 // Circle: `Gram Circular Badge/Gram Circular Badge.svg` unchanged
 // Mono: the diamond with the sparkle knocked out (evenodd); CircleMono: the disc with the diamond knocked out and the sparkle kept in ink, both from the same official paths
+// Lookup keys: the legacy ticker TON resolves to Gram, because Toncoin was renamed Gram (ton.org/media: "Gram is the name of the token — and GRAM is its ticker. Formerly known as Toncoin or TON.")
 /** Gram coin icon (colored). */
 export const Gram = /* @__PURE__ */ createIcon(
   'Gram',

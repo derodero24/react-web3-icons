@@ -10,7 +10,7 @@ must change. It is part of the [contributing guide](../CONTRIBUTING.md).
 - Re-export the canonical component instead of duplicating SVG markup, so behavior stays identical. A rename is a JSON-only unit with `"kind": "alias"` and an `aliasConst` block (see [Aliases and re-exports](../CONTRIBUTING.md#aliases-and-re-exports)).
 - Give every alias export a `deprecated` message (``"Use `Ready` instead."``). The generator emits it as a ``/** @deprecated Use `Ready` instead. */`` JSDoc comment and adds the export to `DEPRECATED_ICON_NAMES` (`src/deprecated.ts`), so consuming apps can filter it automatically.
 - To deprecate artwork that has no direct rename (a brand that was succeeded or shut down), list the exports in the unit's `deprecated` map instead.
-- Move the old lookup keys (slugs, tickers, chain IDs) to the canonical unit as extra keys; lookup keys may not point at deprecated exports.
+- Move the old lookup keys (slugs, tickers, chain IDs) and manifest `aliases` to the canonical unit as extra keys; lookup keys may not point at deprecated exports.
 
 ## Deprecation and removal timing
 

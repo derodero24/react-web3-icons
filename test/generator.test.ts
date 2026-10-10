@@ -914,6 +914,20 @@ describe('lookup keys', () => {
       },
       /icons\/chain\/a\.json: alias "beta" resolves to Beta \(key "beta" of icons\/chain\/b\.json\), not to this icon/,
     ],
+    [
+      'an alias of a deprecated icon, which belongs on its replacement',
+      {
+        ...chainUnit('a', 'Alpha', { slugs: ['alpha-one'] }),
+        ...chainUnit('o', 'Old', {
+          aliases: ['alpha-one'],
+          deprecated: Object.fromEntries([
+            ['Old', 'Use Alpha.'],
+            ['OldMono', 'Use AlphaMono.'],
+          ]),
+        }),
+      },
+      /icons\/chain\/o\.json: alias "alpha-one" resolves to Alpha \(key "alpha-one" of icons\/chain\/a\.json\), not to this icon/,
+    ],
   ])('rejects %s', (_, files, message) => {
     expect(() => collectLookups(loadChain(files))).toThrow(message);
   });
@@ -923,14 +937,6 @@ describe('lookup keys', () => {
       ...chainUnit('a', 'Alpha', {
         slugs: ['alpha-one'],
         aliases: ['alpha one', 'alpha.one'],
-      }),
-      // A fully deprecated icon may point its aliases at its replacement.
-      ...chainUnit('o', 'Old', {
-        aliases: ['alpha-one'],
-        deprecated: Object.fromEntries([
-          ['Old', 'Use Alpha.'],
-          ['OldMono', 'Use AlphaMono.'],
-        ]),
       }),
     });
     expect(tableOf('CHAIN_SLUG_TO_NAME', units)).toEqual([

@@ -184,8 +184,6 @@ export const coinImports: Record<
   TaoMono: () => import('../../coin/Tao'),
   Tia: () => import('../../coin/Tia'),
   TiaMono: () => import('../../coin/Tia'),
-  Ton: () => import('../../coin/Ton'),
-  TonMono: () => import('../../coin/Ton'),
   Trx: () => import('../../coin/Trx'),
   TrxMono: () => import('../../coin/Trx'),
   Uni: () => import('../../coin/Uni'),

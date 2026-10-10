@@ -17,6 +17,4 @@ Settle the remaining v5 naming and artwork decisions (#815, #835, #836, #837):
   - `CosmosHub` / `CosmosHubMono` re-export `Atom` / `AtomMono`. The Cosmos chain registry uses that art as the Cosmos Hub logo, and it replaces a legacy hexagon with no current official source.
   - `Wld` / `WldMono` re-export `WorldChain` / `WorldChainMono`. The geometry is the same World logomark.
 - **Lookup:** the new slug `eigencloud` resolves to `EigenLayer`.
-- **Kept as they are:**
-  - `Oneinch`: 1inch is one word.
-  - `TON`: still the ticker of the `Ton` mark. The coin re-export of the chain cannot be deprecated without making the root `Ton` ambiguous.
+- **Kept as it is:** `Oneinch`, because 1inch is one word.
