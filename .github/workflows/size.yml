@@ -27,11 +27,19 @@ jobs:
           node-version: '24.x'
           cache: pnpm
 
+      # size-limit exits 1 when an entry is over its limit, after writing
+      # the results. The render step is the gate: it writes the report first
+      # and then fails, so the comment step can still post it. A crash
+      # writes `{"error": ...}` instead of the results array and fails here.
       - name: Measure PR bundle sizes
         run: |
           pnpm install --frozen-lockfile
           pnpm exec tsdown
-          pnpm exec size-limit --json > /tmp/size-pr.json
+          pnpm exec size-limit --json > /tmp/size-pr.json || true
+          if ! jq -e 'type == "array"' /tmp/size-pr.json > /dev/null; then
+            cat /tmp/size-pr.json
+            exit 1
+          fi
 
       - name: Measure base branch bundle sizes
         # Best-effort: if the base branch fails to build or measure, the
@@ -41,7 +49,11 @@ jobs:
         run: |
           git worktree add /tmp/base-checkout "$BASE_SHA"
           cd /tmp/base-checkout
-          if pnpm install --frozen-lockfile && pnpm exec tsdown && pnpm exec size-limit --json > /tmp/size-base.json; then
+          if pnpm install --frozen-lockfile && pnpm exec tsdown; then
+            # A base that is already over a limit still gives valid deltas.
+            pnpm exec size-limit --json > /tmp/size-base.json || true
+          fi
+          if jq -e 'type == "array"' /tmp/size-base.json > /dev/null 2>&1; then
             echo "Base branch measured."
           else
             echo "::warning::Could not measure base branch; reporting PR sizes only."
