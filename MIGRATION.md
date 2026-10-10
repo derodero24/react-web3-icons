@@ -243,7 +243,7 @@ These exports were deprecated in v2 or v3 and have met the lifecycle policy (at 
 | `Drizzle`, `DrizzleMono` | — (ConsenSys sunset Truffle Suite) | 3.1.0 (2026-03-16) |
 | `TofuNft`, `TofuNftMono` | — (tofunft.com shut down) | 3.1.0 (2026-03-16) |
 
-Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases are gone too. `Fantom`, `FantomMono`, `Ftm` and `FtmMono` were deprecated in 4.0.0 (2026-09-14), have not met the 90-day window yet, and stay deprecated.
+Their static files (`react-web3-icons/svg/…`) and Iconify icons and aliases are gone too. `react-web3-icons/coin` also no longer exports `Ton` / `TonMono`, which were not deprecated first (section 7); import them from the root or `react-web3-icons/chain`, or use `Gram` for the token. `Fantom`, `FantomMono`, `Ftm` and `FtmMono` were deprecated in 4.0.0 (2026-09-14), have not met the 90-day window yet, and stay deprecated.
 
 ```diff
 - import { EtherscanLight, GnosisSafe, Matic } from 'react-web3-icons';

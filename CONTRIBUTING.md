@@ -547,8 +547,8 @@ on a dark background (near-black paint: every channel below 60, or less than
 Blast's pale yellow `#FCFC03`). Gradients count by the colours sampled along
 their ramp. A flagged icon needs one of:
 
-- an official colored `Circle*` / `Square*` / `Inverted*` variant (or the
-  legacy `BlastscanLight`) that is not itself flagged;
+- an official colored `Circle*` / `Square*` / `Inverted*` variant that is
+  not itself flagged;
 - nothing more when the mark is painted in that one tone only (black, white,
   or one pale or deep colour) and its `Mono` variant has the same geometry:
   `Mono` in a contrasting `color` then shows the whole mark, and for a black
