@@ -284,7 +284,7 @@ They are now bare marks with the padding of section 5. Use the container variant
 
 | Exports | v4 rendered | v5 renders |
 | --- | --- | --- |
-| `ArbitrumOne`, `ArbitrumNova` | the white letter on a `#1B4ADD` / `#E57310` disc | the hexagon logomark, an outline in `#1B4ADD` / `#FF7700` |
+| `ArbitrumOne`, `ArbitrumNova` | the white letter on a `#1B4ADD` / `#E57310` disc (the deprecated `ArbitrumOneFlat` and `ArbitrumNovaFlat`: the letter in a ring) | the hexagon logomark, an outline in `#1B4ADD` / `#FF7700` |
 | `Band` | a hexagonal B on a `#516BF0` disc | the `#8F8FFF` loop logomark |
 | `Berachain`, `Bera` | a white bear and chain links on a `#814625` tile | the `#2C1A16` bear and chain links, more than twice as wide as tall; `BerachainCircle` and `BeraCircle` (new) are the BERA token disc |
 | `Bnb` | the white symbol on a `#F0B90B` disc | the `#F0B90B` symbol, re-exported from `BnbSmartChain`; `BnbCircle` keeps the disc |
@@ -292,6 +292,7 @@ They are now bare marks with the padding of section 5. Use the container variant
 | `Ekubo` | a white mark on a purple-to-black gradient disc | the mark in `#101010` |
 | `Mantle`, `Mnt` | white bars on a black disc | white-to-`#00FF93` bars drawn for dark backgrounds; `MantleSquare` and `MntSquare` (new) put them on a `#092C24` square |
 | `Phantom` | a white ghost on a purple gradient disc | the `#AB9FF2` ghost; `PhantomCircle` and `PhantomSquare` keep a container, now in `#9886E5` |
+| `Remix` | a figure knocked out of a black disc | the Remix logo in `#007AA6`; there is no container variant |
 | `Scroll` | the coloured scroll on a `#FFEEDA` square | the scroll in `#0A0A0A` |
 | `Socket` | the letters OC in white on a `#7F1FFF` square | the SOCKET symbol in a green-to-blue gradient |
 | `Xverse` | a white X on a `#181818` disc | the `#0F0F0F` X with its `#EE7A30` accent |
@@ -320,19 +321,25 @@ They now fill the whole box like other containers (section 5), so they render la
 
 | Exports | v4 rendered | v5 renders |
 | --- | --- | --- |
-| `Optimism` | the white glyph on a `#FF0420` disc | the glyph on a full-bleed `#FF0421` square; `OptimismCircle` keeps a disc |
+| `Optimism` | the white glyph on a `#FF0420` disc | the glyph on a full-bleed `#FF0421` square; `OptimismCircle` keeps a disc, and `OptimismSquare` keeps a tile, now with a corner radius of about 6 units instead of 12.8 |
 | `Base` | the white circle-with-bar mark on a `#0052FF` disc | Base's square symbol, a full-bleed `#0000FF` square; `BaseCircle` and `BaseSquare` now hold a white square |
 | `AvalancheSquare`, `AvalancheSquareMono` | the mark in a white disc on a `#E84142` rounded tile (`AvalancheSquareMono`: a disc with the mark knocked out) | the `#E6212F` mark on a full-bleed `#1D1D1D` square (`AvalancheSquareMono`: that square with the mark knocked out) |
-| `WorldChain`, `Wld` | `WorldChain`: a clipped glyph; `Wld`: its own artwork | the World logomark, whole; `Wld` re-exports `WorldChain` |
+| `PolygonSquare` | the white mark, 46 of 64 units wide, on a `#7B3FE4` tile with a corner radius of 12.8 units | the mark, 28 units wide, on a `#670DE5` tile with a corner radius of 4 units |
+| `Oneinch` | the white sign on a `#E82219` tile with rounded corners | the sign on a full-bleed black square |
+| `UniswapWallet` | the `#FF007A` unicorn on a `#FFD8EA` square | the `#F50DB4` unicorn on a `#FEF4FF` tile with rounded corners |
+| `Wormhole` | a moon and stars drawn in `#C1BBF6` lines | the logomark, a W knocked out of a black disc, at the size of a bare mark |
+| `WorldChain` | a clipped glyph | the World logomark, whole; `Wld`, which already showed the whole logomark with a thinner ring, now re-exports it |
 | `Stx` | the letters STX in `#7023EB`, a wide mark | the `#141414` Stacks symbol, as tall as it is wide |
 | `MagicEdenWordmark`, `MagicEdenWordmarkMono` | the stacked lockup, the mark above the name | the horizontal header wordmark, about nine times as wide as tall, so it fills only a thin band of a square box; the deprecated `MagicEdenWordmarkFlat` keeps the stacked lockup |
 
 ### Marks that changed between dark and light
 
-- These are now dark on a transparent background, so on a dark page they need a light background, or the `Mono` variant with a light `color`: `Balancer`, `Berachain` / `Bera`, `Celestia` / `Tia`, `CoinMarketCap`, `Ekubo`, `Gemini`, `GnosisChain`, `Near`, `Polkadot` / `Dot`, `Privy`, `Pyth` (section 13), `Scroll`, `Sei` (`#600014`), `Stx`, `TheGraph`, `Wormhole`, `Xverse` and `Zksync`. In v4 they were coloured, light, or on their own container.
+- These are now dark marks on a transparent background, so on a dark page they need a light background, or the `Mono` variant with a light `color`: `Balancer`, `Berachain` / `Bera`, `Celestia` / `Tia`, `CoinMarketCap`, `Ekubo`, `Gemini`, `Near`, `Polkadot` / `Dot`, `Privy`, oracle `Pyth` (section 13), `Scroll`, `Stx`, `TheGraph`, `Xverse` and `Zksync`. In v4 they were coloured, light, or on their own container.
+- `GnosisChain` (a green disc in v4), `Sei` (a red gradient disc in v4, now `#600014`) and `Wormhole` are now dark discs with the mark knocked out, so the same applies to them.
 - `Dydx` and `Htx` were light marks and are now dark; the new `DydxInverted` and `HtxInverted` are light versions for dark backgrounds.
+- `AvalancheSquare` (`#1D1D1D`) and `Oneinch` (black) are now dark containers (red in v4), so on a dark page their edge does not show.
 - These are now light and fade on a white page: `Mantle` / `Mnt` (use `MantleSquare`, or `MantleMono` with a dark `color`), `QuickNode` (`#6CFF75`) and `Hyperliquid` / `Hype` (`#97FCE4`).
-- `CoinbaseWalletCircle`, `CoinbaseWalletSquare` and `TrustWalletCircle` are now white containers (blue in v4), so on a white page their edge does not show.
+- `CoinbaseWalletCircle`, `CoinbaseWalletSquare` and `TrustWalletCircle` are now white containers (blue in v4), and `UniswapWallet` is now a near-white `#FEF4FF` tile (a pale pink `#FFD8EA` square in v4), so on a white page their edge does not show.
 
 ## 13. Lookup and manifest changes
 
@@ -340,7 +347,7 @@ They now fill the whole box like other containers (section 5), so they render la
 - **One `Pyth` component.** `react-web3-icons/coin` now re-exports `Pyth` and `PythMono` from `react-web3-icons/oracle`, so both subpaths export the same component, coloured `#110F23`. In v4 the oracle `Pyth` was `#9945FF` and the coin `Pyth` `#110F24`.
 - **Keys for icons v4 already exported.** The tickers `DOT`, `FET`, `HBAR`, `ICP`, `INJ`, `NEAR`, `PEPE`, `STX`, `TIA` and `TON` and the chain slug `cronos` rendered `fallback` in v4; they now render their icons.
 - **Deprecated manifest entries carry no lookup ids.** In v4 `Fantom` had `chainId: 250` and `slug: 'fantom'`, and `Ftm` had `ticker: 'FTM'`; in v5 no deprecated entry has a `chainId`, `slug` or `ticker`. The old names of renamed exports (section 6) are alias entries with only `name`, `category` and `deprecated`; read the other fields from the new name's entry (`BnbSmartChain` has `chainId: 56`).
-- **Entries that became re-exports carry no `variants` or `brandColor`.** As in v4, an entry that only re-exports another icon has neither. In v5 this applies to coin `Bnb`, `Cro`, `Pyth` and `Wld`, chain `CosmosHub` and defi `SafeProtocol`; read these fields from the icon they re-export (chain `BnbSmartChain`, chain `Cronos`, oracle `Pyth`, chain `WorldChain`, coin `Atom` and wallet `Safe`).
+- **Entries that became re-exports carry no `variants` or `brandColor`.** An entry that only re-exports another icon, with no variants of its own, has neither field. In v5 this newly applies to coin `Bnb`, `Cro`, `Pyth` and `Wld`, chain `CosmosHub` and defi `SafeProtocol`; read these fields from the icon they re-export (chain `BnbSmartChain`, chain `Cronos`, oracle `Pyth`, chain `WorldChain`, coin `Atom` and wallet `Safe`). The reverse also happened: chain `Cronos` and coin `Op` were re-exports in v4 and now have their own artwork, and coin `Ldo` still re-exports `Lido` but adds its own `Circle` variants. These three now have `variants` and `brandColor` (`Ldo` has Lido's `#0085ff`).
 - **`brandColor` follows a new rule.** v4 took the most frequent colour value of the colored artwork other than white, which for badge-style marks was often the dark container. v5 counts greys, near-black and near-white only when the artwork has no other colour, and some icons carry a curated value. Together with the new artwork, this changes many values, for example chain `Kaia` `#040404` → `#bff009`, wallet `Xverse` `#181818` → `#ee7a30` and oracle `Pyth` `#9945ff` → `#7142cf`. If you stored `brandColor` values, read them again from `react-web3-icons/manifest` or `react-web3-icons/manifest.json`.
 
 ## Checklist
