@@ -14,11 +14,20 @@ import {
   unitAllExportNames,
   unitLinks,
 } from './lib.ts';
-import { deprecatedExports, type PrimaryIds, primaryIds } from './meta.ts';
-import { type ArtworkUnitMeta, isArtwork } from './unit.ts';
+import {
+  deprecatedExports,
+  lookupTargets,
+  type PrimaryIds,
+  primaryIds,
+  targetOf,
+} from './meta.ts';
+import { isArtwork } from './unit.ts';
 import { parseSvg, type XmlNode } from './xml.ts';
 
-/** Per-unit data from icons/ that only base entries carry. */
+/**
+ * Data from icons/ that only the entries of icons carry: base entries and
+ * the `variantLookups` targets (`ArbitrumNova`), but no variant entries.
+ */
 interface Enrichment {
   readonly variants?: readonly string[];
   readonly aliases?: readonly string[];
@@ -157,123 +166,107 @@ export function extractBrandColor(svgText: string): string | undefined {
   return first;
 }
 
-/**
- * Non-deprecated `localAliases` entries that point at one of the unit's own
- * variants, i.e. extra export suffixes of the unit (`DogeCircle` → `Doge`
- * yields `'Circle'`).
- */
-function localAliasVariants(
-  unitMeta: ArtworkUnitMeta,
-): { suffix: string; target: string }[] {
-  return (unitMeta.localAliases ?? []).flatMap(alias => {
-    if (
-      alias.deprecated ||
-      !alias.name.startsWith(unitMeta.name) ||
-      !alias.target.startsWith(unitMeta.name)
-    ) {
-      return [];
-    }
-    const target = alias.target.slice(unitMeta.name.length);
-    if (!unitMeta.variants[target]) {
-      return [];
-    }
-    return [{ suffix: alias.name.slice(unitMeta.name.length), target }];
-  });
-}
-
 /** Orders the colored default and its mono first; the rest keep their order. */
 function variantRank(suffix: string): number {
   return suffix === '' ? 0 : suffix === 'Mono' ? 1 : 2;
 }
 
 /**
- * The colored default artwork of an artwork unit: its `""` variant, or the
- * variant a `""` local alias points at (TrustWallet → TrustWalletSquare).
- */
-function defaultSvgOf(
-  unitMeta: ArtworkUnitMeta,
-  variants: SourceUnit['variants'],
-): string | undefined {
-  const svgBySuffix = new Map(variants.map(v => [v.suffix, v.svg]));
-  const defaultSuffix = svgBySuffix.has('')
-    ? ''
-    : localAliasVariants(unitMeta).find(v => v.suffix === '')?.target;
-  return defaultSuffix === undefined
-    ? undefined
-    : svgBySuffix.get(defaultSuffix);
-}
-
-/**
- * Resolves the `brandColor` of artwork units: the unit's curated value, or
- * the colour derived from its colored default artwork. A unit whose default
- * export re-exports another unit's base export (Ldo → `Lido`) has no artwork
- * of its own to derive from and takes that unit's colour, so the two never
- * drift apart.
+ * Resolves the `brandColor` of an export: the unit's curated value for its
+ * base export, else the colour derived from the export's own artwork. An
+ * export without artwork of its own re-exports another one (coin `Eth` →
+ * chain `Ethereum`, `Ldo` → `Lido`) and takes the colour of that one, so
+ * the two never drift apart.
  */
 function brandColorResolver(
   units: readonly SourceUnit[],
-): (unit: SourceUnit) => string | undefined {
-  const byBaseName = new Map(
-    units.map(unit => [`${unit.category}/${unit.meta.name}`, unit]),
+): (unit: SourceUnit, name: string) => string | undefined {
+  const byExport = new Map(
+    units.flatMap(unit =>
+      unitAllExportNames(unit).map(name => [`${unit.category}/${name}`, unit]),
+    ),
   );
   const resolve = (
     unit: SourceUnit,
-    seen: ReadonlySet<SourceUnit>,
+    name: string,
+    seen: ReadonlySet<string>,
   ): string | undefined => {
-    const { meta: unitMeta, variants } = unit;
-    if (!isArtwork(unitMeta) || seen.has(unit)) {
+    const key = `${unit.category}/${name}`;
+    if (seen.has(key)) {
       return undefined;
     }
-    if (unitMeta.brandColor) {
+    const { meta: unitMeta, variants } = unit;
+    if (isArtwork(unitMeta) && name === unitMeta.name && unitMeta.brandColor) {
       return unitMeta.brandColor;
     }
-    const defaultSvg = defaultSvgOf(unitMeta, variants);
-    if (defaultSvg !== undefined) {
-      return extractBrandColor(defaultSvg);
+    const artwork = variants.find(v => v.exportName === name);
+    if (artwork) {
+      return extractBrandColor(artwork.svg);
     }
-    const link = unitLinks(unit).find(
-      l => l.name === unitMeta.name && !l.deprecated,
-    );
+    const link = unitLinks(unit).find(l => l.name === name);
     const target =
-      link && byBaseName.get(`${link.targetCategory}/${link.targetName}`);
-    return target ? resolve(target, new Set([...seen, unit])) : undefined;
+      link && byExport.get(`${link.targetCategory}/${link.targetName}`);
+    return link && target
+      ? resolve(target, link.targetName, new Set([...seen, key]))
+      : undefined;
   };
-  return unit => resolve(unit, new Set());
+  return (unit, name) => resolve(unit, name, new Set());
 }
 
-function enrichmentOf(
+/**
+ * The enrichment of each icon of a unit, by export name. The icons are the
+ * base export and the lookup targets, so a group of variants with its own
+ * lookup keys (`ArbitrumNova`, `ArbitrumNovaMono`) is an icon of its own,
+ * not variants of the base, as in the dynamic components. A deprecated
+ * alias unit (an old name such as `BinanceSmartChain`) has none: its
+ * replacement's entries carry the data.
+ */
+function enrichmentsOf(
   unit: SourceUnit,
-  brandColorOf: (unit: SourceUnit) => string | undefined,
-): Enrichment {
+  deprecated: ReadonlySet<string>,
+  brandColorOf: (unit: SourceUnit, name: string) => string | undefined,
+): Map<string, Enrichment> {
   const unitMeta = unit.meta;
-  if (!isArtwork(unitMeta)) {
-    return {};
+  if (!isArtwork(unitMeta) && deprecated.has(unitMeta.name)) {
+    return new Map();
   }
-  // Units may expose variants through `localAliases` (e.g. DogeCircle →
-  // Doge), even their default export (Foo → FooSquare) instead of a `""`
-  // variant; those aliases are variants of the unit as far as consumers go.
-  const aliasVariants = localAliasVariants(unitMeta);
-  const brandColor = brandColorOf(unit);
-  const own = [
-    ...aliasVariants.map(v => v.suffix),
-    ...unit.variants.map(v => v.suffix),
+  const targets = [...new Set([unitMeta.name, ...lookupTargets(unit)])];
+  // Local aliases first (DogeCircle → Doge): units may expose variants, even
+  // their default export, through them.
+  const names = [
+    ...new Set([
+      ...(isArtwork(unitMeta) ? (unitMeta.localAliases ?? []) : []).map(
+        alias => alias.name,
+      ),
+      ...unitAllExportNames(unit),
+    ]),
   ];
-  // An artwork unit may also re-export some of its variants from another
-  // unit (Bnb draws Bnb/BnbMono and re-exports BnbCircle/BnbCircleMono);
-  // those suffixes are variants of the unit too.
-  const reexported = (unitMeta.reexport?.exports ?? []).flatMap(({ as }) =>
-    as.startsWith(unitMeta.name) ? [as.slice(unitMeta.name.length)] : [],
+  return new Map(
+    targets.map(target => {
+      // A deprecated icon keeps all its variants, so the list is not empty.
+      const variants = names
+        .filter(
+          name =>
+            targetOf(name, targets) === target &&
+            (deprecated.has(target) || !deprecated.has(name)),
+        )
+        .map(name => name.slice(target.length))
+        .sort((a, b) => variantRank(a) - variantRank(b));
+      const aliases =
+        isArtwork(unitMeta) && target === unitMeta.name
+          ? (unitMeta.aliases ?? [])
+          : [];
+      const brandColor = brandColorOf(unit, target);
+      return [
+        target,
+        {
+          variants,
+          ...(aliases.length > 0 ? { aliases } : {}),
+          ...(brandColor ? { brandColor } : {}),
+        },
+      ];
+    }),
   );
-  return {
-    variants:
-      reexported.length > 0
-        ? [...new Set([...own, ...reexported])].sort(
-            (a, b) => variantRank(a) - variantRank(b),
-          )
-        : own,
-    ...(unitMeta.aliases?.length ? { aliases: unitMeta.aliases } : {}),
-    ...(brandColor ? { brandColor } : {}),
-  };
 }
 
 /** One entry per exported icon component, sorted by category and name. */
@@ -282,14 +275,14 @@ export function buildManifest(units: readonly SourceUnit[]): ManifestEntry[] {
   const entries = units.flatMap(unit => {
     const ids = primaryIds(unit);
     const deprecated = new Set(deprecatedExports(unit));
-    const enrichment = enrichmentOf(unit, brandColorOf);
+    const enrichments = enrichmentsOf(unit, deprecated, brandColorOf);
     return unitAllExportNames(unit).map(
       (name): ManifestEntry => ({
         name,
         category: unit.category,
         ...ids.get(name),
         ...(deprecated.has(name) ? { deprecated: true } : {}),
-        ...(name === unit.meta.name ? enrichment : {}),
+        ...enrichments.get(name),
       }),
     );
   });
@@ -353,8 +346,14 @@ export interface IconManifestEntry {
   /** Set when the export is a deprecated alias kept for backward compatibility. */
   readonly deprecated?: true;
   /**
-   * Variant suffixes available for this base icon (\`''\` is the colored
-   * default). Present only on base entries of artwork units.
+   * Variant suffixes of this icon, the colored default (\`''\`) and
+   * \`'Mono'\` first: each \`name + suffix\` is an export of the same
+   * category. Deprecated variants are left out unless the icon itself is
+   * deprecated, and so are the variants of an icon with its own entry
+   * (\`'Nova'\` is not a variant of \`Arbitrum\`: \`ArbitrumNova\` has
+   * \`['', 'Mono']\`). Present on base entries (re-exports such as \`Eth\`
+   * included, old names such as \`BinanceSmartChain\` not) and on every
+   * entry \`react-web3-icons/meta\` maps to.
    */
   readonly variants?: readonly string[];
   /** Extra lowercase search terms (e.g. \`'btc'\` on \`Bitcoin\`). Base entries only. */
@@ -364,8 +363,8 @@ export interface IconManifestEntry {
    * the colored artwork (a heuristic; greys, near-black and near-white count
    * only when the artwork has nothing else, and artwork painted only in
    * SVG's default fill is \`'#000000'\`), or a curated override. An icon
-   * that re-exports another icon's artwork has that icon's color. Base
-   * entries only.
+   * that re-exports another icon's artwork (\`Eth\` → \`Ethereum\`) has that
+   * icon's color. Present on the same entries as \`variants\`.
    */
   readonly brandColor?: string;
 }

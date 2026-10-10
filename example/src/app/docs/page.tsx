@@ -709,9 +709,10 @@ addCollection(web3Icons);
 <Icon icon="web3:chain-ethereum" />;`}</CodeBlock>
               <p className="mt-4 mb-3 text-sm text-fg/60">
                 The manifest is a flat catalog of every export (name, category,
-                and any registered chain ID / slug / ticker); base entries of
-                each artwork unit also carry variants, search aliases, and the
-                brand color. Built for icon pickers and search indexes:
+                and any registered chain ID / slug / ticker); the base entry of
+                each icon, re-exports included, also carries its variants and
+                brand color, plus any search aliases. Built for icon pickers and
+                search indexes:
               </p>
               <CodeBlock>{`import { ICON_MANIFEST } from 'react-web3-icons/manifest';
 

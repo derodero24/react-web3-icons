@@ -1133,7 +1133,8 @@ describe('manifest brandColor', () => {
           exports: [{ of: 'Curated', as: 'Cur' }],
         },
       }),
-      // Only a re-exported base export carries a unit's colour.
+      // A re-export takes the colour of the artwork it renders, and no unit
+      // here draws LidoMono.
       'icons/chain/variant.json': iconUnit(
         'Variant',
         ['Circle', 'circle.svg'],
@@ -1155,6 +1156,79 @@ describe('manifest brandColor', () => {
       ['Lido', '#0085ff'],
       ['Variant', undefined],
       ['VariantCircle', undefined],
+    ]);
+  });
+
+  it('gives every icon variants and a colour, re-exports and variant lookups included', () => {
+    const colored = (fill: string): string =>
+      `<svg ${XMLNS} viewBox="0 0 24 24"><path fill="${fill}" d="M0 0h24v24H0z"/></svg>`;
+    const mono = `<svg ${XMLNS} viewBox="0 0 24 24" fill="currentColor"/>`;
+    const json = (unit: Readonly<Record<string, unknown>>): string =>
+      JSON.stringify({ $schema: SCHEMA_REF, ...unit });
+    const units = loadChain({
+      'icons/chain/alpha.json': json({
+        name: 'Alpha',
+        kind: 'icon',
+        variants: Object.fromEntries([
+          ['Old', { file: 'alpha.svg' }],
+          ['NovaMono', { file: 'mono.svg', fill: 'currentColor' }],
+          ['Nova', { file: 'nova.svg' }],
+          ['Mono', { file: 'mono.svg', fill: 'currentColor' }],
+          ['', { file: 'alpha.svg' }],
+        ]),
+        deprecated: Object.fromEntries([['AlphaOld', 'Use Alpha.']]),
+        slugs: ['alpha'],
+        variantLookups: Object.fromEntries([['Nova', { slugs: ['nova'] }]]),
+      }),
+      'icons/chain/alpha.svg': colored('#E57310'),
+      'icons/chain/nova.svg': colored('#1B4ADD'),
+      'icons/chain/mono.svg': mono,
+      'icons/chain/al.json': json({
+        name: 'Al',
+        kind: 'reexport',
+        reexport: {
+          from: './Alpha',
+          exports: [
+            { of: 'Alpha', as: 'Al' },
+            { of: 'AlphaMono', as: 'AlMono' },
+          ],
+        },
+      }),
+      'icons/chain/old-alpha.json': json({
+        name: 'OldAlpha',
+        kind: 'alias',
+        aliasConst: {
+          importFrom: './Alpha',
+          imports: ['Alpha'],
+          exports: [
+            { name: 'OldAlpha', target: 'Alpha', deprecated: 'Use Alpha.' },
+          ],
+        },
+      }),
+      'icons/chain/gone.json': json({
+        name: 'Gone',
+        kind: 'icon',
+        variants: Object.fromEntries([
+          ['Mono', { file: 'mono.svg', fill: 'currentColor' }],
+          ['', { file: 'nova.svg' }],
+        ]),
+        deprecated: Object.fromEntries([
+          ['Gone', 'Gone.'],
+          ['GoneMono', 'Gone.'],
+        ]),
+      }),
+    });
+    expect(
+      buildManifest(units).flatMap(e =>
+        e.variants ? [[e.name, e.variants, e.brandColor]] : [],
+      ),
+    ).toEqual([
+      ['Al', ['', 'Mono'], '#e57310'],
+      // AlphaNova is an icon of its own, and AlphaOld is deprecated.
+      ['Alpha', ['', 'Mono'], '#e57310'],
+      ['AlphaNova', ['', 'Mono'], '#1b4add'],
+      // A deprecated icon keeps its variants.
+      ['Gone', ['', 'Mono'], '#1b4add'],
     ]);
   });
 

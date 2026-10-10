@@ -91,8 +91,6 @@ export interface IconGroup {
    * the same name (none today; kept as a guard for future collisions).
    */
   readonly inRootEntry: boolean;
-  /** True when the manifest declares this group's artwork (not a re-export). */
-  readonly isArtworkUnit: boolean;
 }
 
 /** Categories in manifest order (alphabetical). */
@@ -107,9 +105,8 @@ export const CATEGORY_FILTERS: readonly CategoryFilter[] = [
 
 /**
  * Every variant suffix the manifest declares (`Mono`, `CircleMono`, …),
- * longest first. Used only to attach re-exported variants (e.g. `BtcMono`,
- * which has no manifest `variants` of its own) to a sibling export that
- * exists in the same category.
+ * longest first. Used only to attach an export that no manifest entry lists
+ * among its `variants` to a sibling export in the same category.
  */
 const KNOWN_SUFFIXES: readonly string[] = [
   ...new Set(
@@ -135,10 +132,10 @@ function buildCategoryGroups(
     entries.filter(entry => !entry.deprecated).map(entry => entry.name),
   );
   const suffixesByBase = new Map<string, string[]>();
-  const artworkBases = new Set<string>();
   const claimed = new Set<string>();
 
-  // 1. Artwork units: base entries list their variants explicitly.
+  // 1. Icons: their entries list their variants explicitly, re-exports such
+  //    as `Eth` (→ `Ethereum`) included.
   for (const entry of entries) {
     if (!entry.variants || !names.has(entry.name)) continue;
     const suffixes = entry.variants.filter(suffix =>
@@ -146,12 +143,10 @@ function buildCategoryGroups(
     );
     for (const suffix of suffixes) claimed.add(`${entry.name}${suffix}`);
     suffixesByBase.set(entry.name, suffixes);
-    artworkBases.add(entry.name);
   }
 
-  // 2. Re-exports (ticker aliases, cross-category re-exports, extra variants
-  //    such as `BnbCircle`): attach to an existing sibling base when one of
-  //    the manifest's suffixes leads to it, otherwise start a new group.
+  // 2. Anything left: attach to an existing sibling base when one of the
+  //    manifest's suffixes leads to it, otherwise start a new group.
   for (const name of names) {
     if (claimed.has(name)) continue;
     const suffix =
@@ -172,7 +167,7 @@ function buildCategoryGroups(
 
   const groups: IconGroup[] = [];
   for (const [base, suffixes] of suffixesByBase) {
-    // Primary first, then manifest order (artwork) / alphabetical (re-exports).
+    // Primary first, then manifest order (step 1) / alphabetical (step 2).
     const ordered = suffixes.includes('')
       ? ['', ...suffixes.filter(suffix => suffix !== '')]
       : suffixes;
@@ -197,7 +192,6 @@ function buildCategoryGroups(
       variants,
       inRootEntry:
         getComponent(rootExports, primary.name) === primary.Component,
-      isArtworkUnit: artworkBases.has(base),
     });
   }
   return groups.sort(byBase);
@@ -205,17 +199,16 @@ function buildCategoryGroups(
 
 /**
  * Pick the group shown in the "all" view when several categories export the
- * same base name: the one the root entry resolves to, then the artwork unit
- * (the category that owns the SVG rather than re-exporting it).
+ * same base name: the one the root entry resolves to, then the one with more
+ * variants, then the first category.
  */
 function preferForAll(current: IconGroup, candidate: IconGroup): IconGroup {
   if (current.inRootEntry !== candidate.inRootEntry) {
     return current.inRootEntry ? current : candidate;
   }
-  if (current.isArtworkUnit !== candidate.isArtworkUnit) {
-    return current.isArtworkUnit ? current : candidate;
-  }
-  return current;
+  return candidate.variants.length > current.variants.length
+    ? candidate
+    : current;
 }
 
 function buildIconGroups(): ReadonlyMap<CategoryFilter, readonly IconGroup[]> {
@@ -249,6 +242,16 @@ function buildIconGroups(): ReadonlyMap<CategoryFilter, readonly IconGroup[]> {
 }
 
 const ICON_GROUPS = buildIconGroups();
+
+/**
+ * Number of distinct current icons: the components of the manifest entries
+ * that list `variants`, so a re-export (`Eth` → `Ethereum`) counts once.
+ */
+export const ICON_COUNT = new Set(
+  ICON_MANIFEST.filter(entry => entry.variants && !entry.deprecated).map(
+    entry => getComponent(CATEGORY_MODULES[entry.category], entry.name),
+  ),
+).size;
 
 /** Icon groups for a category filter, sorted by base name. */
 export function getIconGroups(filter: CategoryFilter): readonly IconGroup[] {
