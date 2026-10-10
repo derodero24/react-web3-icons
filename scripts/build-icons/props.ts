@@ -121,10 +121,10 @@ export function emitPropsInterface(unit: UnitSource): string | undefined {
   const { name } = unit.meta;
   const members = props.map(([prop, spec]) => {
     if (spec.type === 'fill') {
-      return `  /** ${spec.description} */\n  ${prop}?: string;`;
+      return `  /** ${spec.description} */\n  ${prop}?: string | undefined;`;
     }
     const defaults = `Defaults to \`true\` for \`${name}${spec.on}\` and \`false\` for \`${name}${spec.off}\`.`;
-    return `  /** ${spec.description} ${defaults} */\n  ${prop}?: boolean;`;
+    return `  /** ${spec.description} ${defaults} */\n  ${prop}?: boolean | undefined;`;
   });
   return `/** Extra props of the ${name} icons (on top of \`IconProps\`). */\nexport interface ${propsInterfaceName(name)} {\n${members.join('\n')}\n}`;
 }

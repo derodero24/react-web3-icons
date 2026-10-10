@@ -1,0 +1,5 @@
+---
+"react-web3-icons": major
+---
+
+**Breaking (types):** `ChainIcon` needs `chainId`, `name`, or both. `<ChainIcon />` and `<ChainIcon variant="mono" />` type-checked but could only render `fallback`; they are now type errors, as a missing identifier already is for the other dynamic components. The prop may still hold `undefined` (for example `useAccount().chainId` before a wallet connects), which renders `fallback`, so `<ChainIcon chainId={account.chainId} />` keeps compiling. `ChainIconProps` is now a union type alias instead of an interface: `interface MyProps extends ChainIconProps` no longer compiles, so write `type MyProps = ChainIconProps & { … }`. A wrapper that types its props as `Omit<ChainIconProps, …>` or `Pick<ChainIconProps, …>`, or passes `chainId` and `name` on as separate variables, no longer type-checks, because both identifiers become optional: pass the props on as one object, or omit props from each member of the union. See the [migration guide](https://github.com/derodero24/react-web3-icons/blob/develop/MIGRATION.md#4-dynamic-components-every-variant-stricter-variant-normalized-identifiers).

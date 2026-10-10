@@ -56,7 +56,7 @@ const DYNAMIC_COMPONENTS: readonly {
 }[] = [
   {
     component: 'ChainIcon',
-    identifier: 'chainId?: ChainId | number; name?: ChainSlug | string',
+    identifier: 'chainId: ChainId | number, name: ChainSlug | string, or both',
     resolvesWith: 'CHAIN_ID_TO_NAME, CHAIN_SLUG_TO_NAME',
   },
   {

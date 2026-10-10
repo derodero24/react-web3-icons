@@ -10,7 +10,7 @@
   "dependencies": {
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-web3-icons": "^4.0.0"
+    "react-web3-icons": "^4.0.0 || ^5.0.0"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",

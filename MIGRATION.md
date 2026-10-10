@@ -47,6 +47,19 @@ Icons with internal ids (masks, gradients, clip paths) now call `useId` and rend
   ```
 
 - **An unknown `chainId` falls back to `name`.** `<ChainIcon chainId={id} name={slug} />` with an ID this package does not know now renders the icon for `name` instead of `fallback`. Pass only `chainId` to keep the old behaviour.
+- **`ChainIcon` needs `chainId` or `name`.** `<ChainIcon />` and `<ChainIcon variant="mono" />` type-checked in v4 but could only render `fallback`; they are now type errors, like a missing identifier of the other components. The prop has to be there, but its value may still be `undefined` (for example `useAccount().chainId` before a wallet connects), which renders `fallback` as before, so `<ChainIcon chainId={account.chainId} />` keeps compiling.
+
+  `ChainIconProps` is now a union type alias instead of an interface. `interface MyProps extends ChainIconProps` no longer compiles; write `type MyProps = ChainIconProps & { … }` instead. Wrappers should pass the props on to `ChainIcon` as one object, `{...props}` or the rest after destructuring other props. A plain `Omit<ChainIconProps, …>` or `Pick<ChainIconProps, …>`, or `chainId` and `name` destructured into separate variables, makes both identifiers optional, so `ChainIcon` no longer accepts the result. To drop props, omit them from each member of the union:
+
+  ```diff
+  + type DistributiveOmit<T, K extends PropertyKey> = T extends unknown ? Omit<T, K> : never;
+  +
+  - function MyChainIcon(props: Omit<ChainIconProps, 'fallback'>) {
+  + function MyChainIcon(props: DistributiveOmit<ChainIconProps, 'fallback'>) {
+      return <ChainIcon {...props} fallback={<Spinner />} />;
+    }
+  ```
+
 - **Identifiers are normalized in every component**: case-insensitive, ignoring whitespace, `.`, `-` and `_` (`'layer-zero'`, `'Arbitrum Nova'`, `'Crypto.com'`), and manifest aliases and common wallet connector ids (`'phantom'`, `'metaMaskSDK'`, `'okx'`, …) resolve. Inputs that used to render `fallback` may now render an icon.
 - **Types:** the `variant` prop of `ChainIconProps`, `CoinIconProps`, … is the category's variant union instead of `'colored' | 'mono'`. Code that copies it into a `'colored' | 'mono'` variable needs the wider type.
 
@@ -355,6 +368,7 @@ They now fill the whole box like other containers (section 5), so they render la
 - [ ] Regenerate markup snapshots containing icon defs ids or icon markup (viewBox, path data)
 - [ ] Type full `Bybit` props as `IconProps & BybitProps` (or `ComponentProps<typeof Bybit>`)
 - [ ] Pass dynamic components only `variant` values of their category (`ChainVariant`, …); others render `fallback`
+- [ ] Give every `ChainIcon` a `chainId` or `name` prop, turn `interface … extends ChainIconProps` into an intersection type, and pass the props of `ChainIcon` wrappers on whole or through a distributive omit (section 4)
 - [ ] Re-check custom CSS or layout that compensated for the old per-icon viewBoxes
 - [ ] Replace the removed exports (`GnosisSafe*`, `Matic*`, `*Light`, `Truffle*`, `Ganache*`, `Drizzle*`, `TofuNft*`) with their replacements (section 9)
 - [ ] Optionally rename the deprecated names with the find-and-replace in section 6 (they keep working through v5)

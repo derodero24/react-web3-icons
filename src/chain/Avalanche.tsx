@@ -11,7 +11,7 @@ import { createIcon } from '../utils';
 /** Extra props of the Avalanche icons (on top of `IconProps`). */
 export interface AvalancheProps {
   /** Fill the cut-out of the mark with white. Defaults to `true` for `AvalancheCircle` and `false` for `AvalancheCircleMono`. */
-  withBackground?: boolean;
+  withBackground?: boolean | undefined;
 }
 
 /** The artwork `withBackground` switches between. */

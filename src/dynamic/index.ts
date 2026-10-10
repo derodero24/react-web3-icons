@@ -66,25 +66,43 @@ export type {
 // known keys, and any string (API data, connector ids, user input) still
 // type-checks, since it is resolved at runtime anyway: case-insensitively,
 // ignoring whitespace, `.`, `-` and `_` (see normalize.ts). An identifier
-// nothing matches renders `fallback`. `variant` is strict: one of the
-// category's variants.
+// nothing matches renders `fallback`. The identifier prop is required, but its
+// value may be `undefined` (data that is not loaded yet, such as wagmi's
+// `useAccount().chainId` before a wallet connects), which renders `fallback`.
+// `variant` is strict: one of the category's variants.
 
-export interface ChainIconProps extends DynamicIconProps<ChainVariant> {
-  /**
-   * Chain slug, normalized (e.g. `'ethereum'`, `'Arbitrum Nova'`,
-   * `'arbitrum-one'`). Used when `chainId` is absent or unknown.
-   */
-  name?: ChainSlug | (string & {});
-  /**
-   * EVM chain ID (e.g. `1`, `8453`). Takes precedence over `name`; an
-   * unknown chain ID falls back to `name`.
-   */
-  chainId?: ChainId | (number & {});
-}
+/** Props of {@link ChainIcon}: `chainId`, `name`, or both. */
+export type ChainIconProps = DynamicIconProps<ChainVariant> &
+  (
+    | {
+        /**
+         * EVM chain ID (e.g. `1`, `8453`). Takes precedence over `name`; an
+         * unknown chain ID falls back to `name`.
+         */
+        chainId: ChainId | (number & {}) | undefined;
+        /**
+         * Chain slug, normalized (e.g. `'ethereum'`, `'Arbitrum Nova'`,
+         * `'arbitrum-one'`). Used when `chainId` is absent or unknown.
+         */
+        name?: ChainSlug | (string & {}) | undefined;
+      }
+    | {
+        /**
+         * EVM chain ID (e.g. `1`, `8453`). Takes precedence over `name`; an
+         * unknown chain ID falls back to `name`.
+         */
+        chainId?: ChainId | (number & {}) | undefined;
+        /**
+         * Chain slug, normalized (e.g. `'ethereum'`, `'Arbitrum Nova'`,
+         * `'arbitrum-one'`). Used when `chainId` is absent or unknown.
+         */
+        name: ChainSlug | (string & {}) | undefined;
+      }
+  );
 
 export interface CoinIconProps extends DynamicIconProps<CoinVariant> {
   /** Ticker symbol, case-insensitive (e.g. `'ETH'`, `'btc'`). */
-  symbol: Ticker | (string & {});
+  symbol: Ticker | (string & {}) | undefined;
 }
 
 export interface WalletIconProps extends DynamicIconProps<WalletVariant> {
@@ -92,36 +110,36 @@ export interface WalletIconProps extends DynamicIconProps<WalletVariant> {
    * Wallet name or connector id, normalized (e.g. `'metamask'`, `'metaMaskSDK'`,
    * `'phantom'`, `'Trust Wallet'`).
    */
-  name: WalletSlug | (string & {});
+  name: WalletSlug | (string & {}) | undefined;
 }
 
 export interface ExchangeIconProps extends DynamicIconProps<ExchangeVariant> {
   /** Exchange name, normalized (e.g. `'binance'`, `'Crypto.com'`). */
-  name: ExchangeSlug | (string & {});
+  name: ExchangeSlug | (string & {}) | undefined;
 }
 
 export interface DefiIconProps extends DynamicIconProps<DefiVariant> {
   /** DeFi protocol name, normalized (e.g. `'aave'`, `'ether.fi'`). */
-  name: DefiSlug | (string & {});
+  name: DefiSlug | (string & {}) | undefined;
 }
 
 export interface DexIconProps extends DynamicIconProps<DexVariant> {
   /** DEX name, normalized (e.g. `'uniswap'`, `'1inch'`). */
-  name: DexSlug | (string & {});
+  name: DexSlug | (string & {}) | undefined;
 }
 
 export interface BridgeIconProps extends DynamicIconProps<BridgeVariant> {
   /** Bridge name, normalized (e.g. `'layerzero'`, `'hop-protocol'`). */
-  name: BridgeSlug | (string & {});
+  name: BridgeSlug | (string & {}) | undefined;
 }
 
 export interface OracleIconProps extends DynamicIconProps<OracleVariant> {
   /** Oracle protocol name, normalized (e.g. `'pyth'`, `'RedStone'`). */
-  name: OracleSlug | (string & {});
+  name: OracleSlug | (string & {}) | undefined;
 }
 
 /** Lazily loads a chain icon by chain ID or slug. */
-export const ChainIcon = createDynamicIcon<ChainIconProps>({
+export const ChainIcon = /* @__PURE__ */ createDynamicIcon<ChainIconProps>({
   displayName: 'ChainIcon',
   resolve: resolveChain,
   imports: chainImports,
@@ -130,7 +148,7 @@ export const ChainIcon = createDynamicIcon<ChainIconProps>({
 });
 
 /** Lazily loads a coin icon by ticker symbol. */
-export const CoinIcon = createDynamicIcon<CoinIconProps>({
+export const CoinIcon = /* @__PURE__ */ createDynamicIcon<CoinIconProps>({
   displayName: 'CoinIcon',
   resolve: props => resolveTicker(props.symbol),
   imports: coinImports,
@@ -139,7 +157,7 @@ export const CoinIcon = createDynamicIcon<CoinIconProps>({
 });
 
 /** Lazily loads a wallet icon by name or connector id. */
-export const WalletIcon = createDynamicIcon<WalletIconProps>({
+export const WalletIcon = /* @__PURE__ */ createDynamicIcon<WalletIconProps>({
   displayName: 'WalletIcon',
   resolve: props => resolveWalletSlug(props.name),
   imports: walletImports,
@@ -148,16 +166,17 @@ export const WalletIcon = createDynamicIcon<WalletIconProps>({
 });
 
 /** Lazily loads an exchange icon by name. */
-export const ExchangeIcon = createDynamicIcon<ExchangeIconProps>({
-  displayName: 'ExchangeIcon',
-  resolve: props => resolveExchangeSlug(props.name),
-  imports: exchangeImports,
-  variants: exchangeVariants,
-  identifiers: ['name'],
-});
+export const ExchangeIcon =
+  /* @__PURE__ */ createDynamicIcon<ExchangeIconProps>({
+    displayName: 'ExchangeIcon',
+    resolve: props => resolveExchangeSlug(props.name),
+    imports: exchangeImports,
+    variants: exchangeVariants,
+    identifiers: ['name'],
+  });
 
 /** Lazily loads a DeFi protocol icon by name. */
-export const DefiIcon = createDynamicIcon<DefiIconProps>({
+export const DefiIcon = /* @__PURE__ */ createDynamicIcon<DefiIconProps>({
   displayName: 'DefiIcon',
   resolve: props => resolveDefiSlug(props.name),
   imports: defiImports,
@@ -166,7 +185,7 @@ export const DefiIcon = createDynamicIcon<DefiIconProps>({
 });
 
 /** Lazily loads a DEX icon by name. */
-export const DexIcon = createDynamicIcon<DexIconProps>({
+export const DexIcon = /* @__PURE__ */ createDynamicIcon<DexIconProps>({
   displayName: 'DexIcon',
   resolve: props => resolveDexSlug(props.name),
   imports: dexImports,
@@ -175,7 +194,7 @@ export const DexIcon = createDynamicIcon<DexIconProps>({
 });
 
 /** Lazily loads a bridge icon by name. */
-export const BridgeIcon = createDynamicIcon<BridgeIconProps>({
+export const BridgeIcon = /* @__PURE__ */ createDynamicIcon<BridgeIconProps>({
   displayName: 'BridgeIcon',
   resolve: props => resolveBridgeSlug(props.name),
   imports: bridgeImports,
@@ -184,7 +203,7 @@ export const BridgeIcon = createDynamicIcon<BridgeIconProps>({
 });
 
 /** Lazily loads an oracle icon by name. */
-export const OracleIcon = createDynamicIcon<OracleIconProps>({
+export const OracleIcon = /* @__PURE__ */ createDynamicIcon<OracleIconProps>({
   displayName: 'OracleIcon',
   resolve: props => resolveOracleSlug(props.name),
   imports: oracleImports,

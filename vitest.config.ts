@@ -28,6 +28,9 @@ const rsc: TestProjectInlineConfiguration = {
   test: {
     name: 'rsc',
     environment: 'node',
+    // The Flight server reports problems such as missing keys through
+    // console.error, not onError, so this project needs the guard too.
+    setupFiles: ['test/setup.ts'],
     include: ['test/rsc/**/*.test.tsx'],
     // Externalized packages (react, react-server-dom-parcel) are loaded by
     // Node itself, so it needs the condition too.

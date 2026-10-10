@@ -7,11 +7,11 @@ import { diffOutputs } from '../scripts/build-icons/outputs.ts';
 
 /**
  * Guards the SVG-first pipeline: src/<category>/, src/dynamic/imports/,
- * src/meta/, src/deprecated.ts, src/manifest/ and icons/schema.json are
- * generated, and this test runs the generator in memory and fails on any
- * difference from the committed files — whether icons/ or the generator
- * changed, or a generated file was hand-edited or orphaned. CI runs the same
- * comparison via `--check`.
+ * src/meta/, src/deprecated.ts, src/icon-names.ts, src/manifest/ and
+ * icons/schema.json are generated, and this test runs the generator in
+ * memory and fails on any difference from the committed files — whether
+ * icons/ or the generator changed, or a generated file was hand-edited or
+ * orphaned. CI runs the same comparison via `--check`.
  */
 
 const ROOT = join(import.meta.dirname, '..');
