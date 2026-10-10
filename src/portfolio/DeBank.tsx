@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
 // Source: https://debank.com
+// No official vector found (checked 2026-10-10): debank.com/manifest.json lists only the PNG icons 192.png and 512.png, and /favicon.svg returns 404. The artwork matches the site's app icon https://debank.com/192.png (alpha IoU 0.99 with both fitted to the mark's box; on white both render #FF6238, #FE9A7F and #DF876F). It predates the source policy and is unchanged
 // Mono: the B and the front arc in one ink, parted by a 1.2-unit knock-out gap along the arc; no official one-colour asset was found
 /** De Bank portfolio icon (colored). */
 export const DeBank = /* @__PURE__ */ createIcon(

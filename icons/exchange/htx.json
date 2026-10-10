@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Htx",
   "source": [
     "https://www.htx.com/v4/fed-hbg-enhome/_next/static/media/avatar.2fce523a.svg (HTX flame mark served by htx.com)",

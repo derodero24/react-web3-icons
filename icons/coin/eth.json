@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Eth",
   "source": [
     "re-export of Ethereum — see src/chain/Ethereum.tsx"

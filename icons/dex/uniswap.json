@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Uniswap",
   "source": [
     "https://github.com/Uniswap/brand-assets/blob/1d829912a8b1c154b700984f88baa83142ee1a1b/Uniswap%20Brand%20Assets/Uniswap_icon_pink.svg (official brand assets)",

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Tenderly",
   "source": [
     "https://docs.tenderly.co/logo/tenderly-symbol.svg",

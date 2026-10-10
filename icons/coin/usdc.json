@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Usdc",
   "source": [
     "https://6778953.fs1.hubspotusercontent-na1.net/hubfs/6778953/Pressroom/brandkit/logo-downloads/usdc.zip (Circle's official USDC brand kit, file Token Logo/USDC Token.svg)"

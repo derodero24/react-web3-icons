@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Ldo",
   "source": [
     "https://lido.fi/static/LIDO_press_kit.zip (official 2026 press kit: Lido/Tokens/LDO/LDO.svg)"

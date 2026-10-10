@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "LayerZero",
   "source": [
     "https://layerzero.network (official site header logo)",

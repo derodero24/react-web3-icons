@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Fraxtal",
   "source": [
     "https://static.frax.com/images/chains/fraxtal.svg (the Fraxtal chain icon of the frax.com app)"

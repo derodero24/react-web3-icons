@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Hbar",
   "source": [
     "https://brand.hedera.com/_assets/v11/aeb715f7e0214e08250dd88ec3a32db004821b84.svg (the primary black logomark on the official brand portal https://brand.hedera.com/)"

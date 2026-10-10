@@ -279,6 +279,7 @@
         }
       },
       "required": [
+        "$schema",
         "name",
         "variants",
         "kind"
@@ -380,6 +381,7 @@
         }
       },
       "required": [
+        "$schema",
         "name",
         "kind",
         "reexport"
@@ -495,6 +497,7 @@
         }
       },
       "required": [
+        "$schema",
         "name",
         "kind",
         "aliasConst"

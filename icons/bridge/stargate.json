@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Stargate",
   "source": [
     "https://stargate.finance/static/logo-mobile.svg"

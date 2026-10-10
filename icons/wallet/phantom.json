@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Phantom",
   "source": [
     "https://sanity-proxy-v2.phantom.app/files/3nm6d03a/production/5e73f0ad2d621b5ed6ca3c66aad2b70686f8a00e.zip (official Phantom press kit, Nov 2024: Phantom Logomark/Phantom-Icon-Purple.svg, Phantom-Icon-Black.svg, Phantom App Icon/phantom-app-icon-drkprpl.svg)",

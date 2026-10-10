@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Hyperliquid",
   "source": [
     "re-export of Hyperliquid \u2014 see src/dex/Hyperliquid.tsx"

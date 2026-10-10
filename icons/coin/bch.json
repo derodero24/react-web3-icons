@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Bch",
   "source": [
     "https://bitcoincash.org/img/green/bitcoin-cash-circle.svg (official graphics page https://bitcoincash.org/graphics/)"

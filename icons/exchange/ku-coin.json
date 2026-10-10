@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "KuCoin",
   "source": [
     "https://assets.staticimg.com/kc-v2-config/site-config/693bcdd4680db10001fa9856_logo_general_green.svg",

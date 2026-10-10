@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "DeBridge",
   "notes": [
     "Official standalone logomark (fan without the avatar tile)"

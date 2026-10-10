@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Binance",
   "source": [
     "https://www.binance.com (official site; walled, see notes)"

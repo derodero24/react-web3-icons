@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "BitgetWallet",
   "source": [
     "https://web3.bitget.com/bgwactivity-static/_next/static/media/Bitget-Wallet-Logomark.07wqb3-5_b2ml.svg",

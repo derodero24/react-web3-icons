@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Routescan",
   "source": [
     "https://docs.routescan.io/routescan-brand-assets (official brand kit: Routescan-symbol.svg, also in Routescan_brand_asset.zip)"

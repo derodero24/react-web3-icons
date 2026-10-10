@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Ekubo",
   "source": [
     "https://ekubo.org/logo.svg"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Odos",
   "source": [
     "https://odos.xyz"

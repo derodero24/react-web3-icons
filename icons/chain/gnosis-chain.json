@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "GnosisChain",
   "source": [
     "https://github.com/gnosischain/media-kit/blob/main/Logos/Owl_Logo%20-%20Mark.svg"

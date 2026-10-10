@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Convex",
   "source": [
     "https://www.convexfinance.com/logos/convex-color.svg",

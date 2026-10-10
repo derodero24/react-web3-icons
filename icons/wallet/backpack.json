@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Backpack",
   "source": [
     "https://backpack.app/media-kit (official media kit page; its inline header lockup draws the #E33E3F backpack symbol, and its Download button links the brand icons on Google Drive)"

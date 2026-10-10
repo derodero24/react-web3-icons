@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Ton",
   "source": [
     "https://ton.org/assets/media/ton_white_logo.zip",

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Metis",
   "source": [
     "https://www.metis.io/brandassets (official brand assets, accessed 2026-10-09: Logo Library, \"Symbol Metis\")",

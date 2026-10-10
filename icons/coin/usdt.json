@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Usdt",
   "source": [
     "https://tether.to/en/ (official site: the Tether mark of the header logo, inline SVG)",

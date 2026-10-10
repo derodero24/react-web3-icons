@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Upbit",
   "source": [
     "https://upbit-web-dist.upbit.com/upbit-web/sri-v2-D3aTi1aP.svg (official UPbit wordmark in #093687, served by upbit.com's web app)",

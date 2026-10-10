@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Socket",
   "source": [
     "https://sockettech.notion.site/SOCKET-Brand-Kit-184818fd285880b3b974e2e957cd70bd (official SOCKET brand kit, \"SOCKET Visual Identity assets hub\": SOCKET_pfSymbol_FC_round.svg)"

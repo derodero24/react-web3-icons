@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Op",
   "source": [
     "https://optimism.io/brand (official brand assets, accessed 2026-10-03; the \"OP Token\" card)",

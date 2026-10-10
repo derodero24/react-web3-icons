@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Base",
   "source": [
     "https://raw.githubusercontent.com/base/brand-kit/main/logo/TheSquare/Digital/Base_square_blue.svg",

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Sui",
   "source": [
     "https://sui.io/media-kit (official media kit, 01_Sui_Logo.zip: Sui_Droplet/SVG/Logo_Sui_Droplet_Sui Blue.svg)"

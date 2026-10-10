@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Solscan",
   "source": [
     "https://solscan.io/_next/static/media/solscan-logo-light.1410e164.svg (the symbol on the official Branding page https://solscan.io/branding: ring #00E8B5, dot #C74AE3)",

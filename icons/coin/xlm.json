@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Xlm",
   "source": [
     "re-export of Stellar — see src/chain/Stellar.tsx"

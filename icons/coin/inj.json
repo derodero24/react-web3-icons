@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Inj",
   "source": [
     "https://injective.com/brand/injective_icon.zip (official Injective brand kit at https://injective.com/brand, file Icon/SVG/Injective Token.svg)"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Dai",
   "source": [
     "https://app.sky.money/tokens/dai.svg (official Sky app token icon)"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Uni",
   "source": [
     "re-export of Uniswap — see src/dex/Uniswap.tsx"

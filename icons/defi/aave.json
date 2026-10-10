@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Aave",
   "source": [
     "https://aave.com/aave-brand-assets.zip (official brand kit: Logomark Purple.svg)"

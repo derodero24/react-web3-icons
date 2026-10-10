@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "PolkadotJs",
   "source": [
     "https://polkadot.js.org"

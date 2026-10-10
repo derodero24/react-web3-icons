@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Ada",
   "source": [
     "re-export of Cardano — see src/chain/Cardano.tsx"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Link",
   "source": [
     "re-export of Chainlink — see src/devtool/Chainlink.tsx"

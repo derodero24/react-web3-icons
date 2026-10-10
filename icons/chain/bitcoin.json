@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Bitcoin",
   "source": [
     "https://bitcoin.org/img/icons/logotop.svg (the bitcoin.org header logo; the footer's https://bitcoin.org/img/icons/logo-footer.svg draws the same mark)"

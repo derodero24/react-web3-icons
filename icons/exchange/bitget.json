@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Bitget",
   "source": [
     "https://www.bitget.com/micro-runtime/images/logo-light.svg (official header lockup: the symbol and the Bitget wordmark in currentColor)",

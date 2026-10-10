@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Bera",
   "source": [
     "re-export of Berachain \u2014 see src/chain/Berachain.tsx"

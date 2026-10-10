@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Moralis",
   "source": [
     "https://moralis.com/wp-content/uploads/2025/10/Moralis-Logo-Light.svg"

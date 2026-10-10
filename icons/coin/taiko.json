@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Taiko",
   "source": [
     "re-export of Taiko \u2014 see src/chain/Taiko.tsx"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Dot",
   "source": [
     "re-export of Polkadot — see src/chain/Polkadot.tsx"

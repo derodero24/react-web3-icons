@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "CoinbaseWallet",
   "source": [
     "https://base.app/ (official Coinbase Wallet site; inline <svg aria-label=\"Coinbase Wallet Logo\" viewBox=\"0 0 32 32\">, retrieved 2026-10-03)",

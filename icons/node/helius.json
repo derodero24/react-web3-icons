@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Helius",
   "source": [
     "https://www.helius.dev/brand (Helius Brand Kit: Helius/Helius-Icon.svg, Helius/Helius-Icon-Black.svg, Helius/Helius-Icon-White.svg)",

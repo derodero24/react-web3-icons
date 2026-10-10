@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Avascan",
   "source": [
     "https://avascan.info (official site; not reachable for verification)"

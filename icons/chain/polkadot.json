@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Polkadot",
   "source": [
     "https://polkadot.com/favicon-light.svg"

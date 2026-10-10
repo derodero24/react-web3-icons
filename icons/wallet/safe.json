@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Safe",
   "source": [
     "https://safe.global/images/common/safe-icon.svg (the mark the safe.global homepage serves)"

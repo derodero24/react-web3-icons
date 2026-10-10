@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Synthetix",
   "source": [
     "https://synthetix.io/brand/brand-kit/icon/snx-icon-primary.svg",

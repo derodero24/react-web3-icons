@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Bitfinex",
   "source": [
     "https://www.bitfinex.com/images/press-v2/downloads/brands/leaf.svg (official press kit, Downloads > Brands)",

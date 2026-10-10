@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Aragon",
   "source": [
     "https://github.com/aragon/app/blob/main/apps/app/src/shared/components/aragonLogo/aragonLogoIcon.tsx",

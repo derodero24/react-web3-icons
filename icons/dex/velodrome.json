@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Velodrome",
   "source": [
     "https://velodrome.finance/brand-kit/VELO/symbol.svg (official brand kit, https://velodrome.finance/brand)"

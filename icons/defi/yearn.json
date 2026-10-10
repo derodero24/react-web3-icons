@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Yearn",
   "source": [
     "https://brand.yearn.fi/downloads/YEARN_SYMBOL_BLUE_RGB.svg"

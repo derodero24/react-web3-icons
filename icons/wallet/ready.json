@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Ready",
   "source": [
     "https://framerusercontent.com/images/tuUJVhzQ6d0kOUpd0oT5bsqm3Nc.svg (official www.ready.co favicon, its rel=icon for light and dark colour schemes)",

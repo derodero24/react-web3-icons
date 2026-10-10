@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "QuickNode",
   "source": [
     "https://www.quicknode.com/brand-kit/quicknode-brand-kit.zip (official brand kit: mark/svg/quicknode-mark-green.svg, quicknode-mark-black.svg)"

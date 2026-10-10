@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Doge",
   "source": [
     "https://github.com/dogecoin/dogecoin/blob/master/share/pixmaps/dogecoin256.svg (official Dogecoin Core repository)"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "UniswapWallet",
   "source": [
     "https://github.com/Uniswap/interface/blob/main/apps/web/src/assets/svg/uniswap_app_logo.svg (official Uniswap Labs repository)",

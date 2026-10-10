@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Blockscout",
   "source": [
     "https://docs.blockscout.com/logo/Color_BS_symbol.svg"

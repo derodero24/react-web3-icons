@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "TheGraph",
   "source": [
     "https://storage.thegraph.com/brand/The%20Graph%20-%20Logomark.zip"

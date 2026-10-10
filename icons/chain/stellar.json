@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Stellar",
   "source": [
     "https://stellar.org/brand-resources (Stellar brand resource hub, accessed 2026-10-09: \"Stellar logo pack\")",

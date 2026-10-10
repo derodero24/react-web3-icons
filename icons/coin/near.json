@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Near",
   "source": [
     "re-export of Near — see src/chain/Near.tsx"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Celoscan",
   "source": [
     "https://celoscan.io/assets/celo/images/svg/logos/chain-light.svg"

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Phemex",
   "source": [
     "https://static.phemex.com/s/home/logo/logo-black-newhome-v3.svg"

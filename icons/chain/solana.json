@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Solana",
   "source": [
     "https://solana.com/src/img/branding/solanaLogoMark.svg",

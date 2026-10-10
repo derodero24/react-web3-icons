@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Sei",
   "source": [
     "https://brand.sei.io/sei-brand-assets.zip (official brand assets: SeiBrandAssets/Logomark/SeiToken.svg and SeiLogomark-lightmode.svg)"

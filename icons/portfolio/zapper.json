@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Zapper",
   "source": [
     "https://zapper.xyz (official site; not reachable for verification)"

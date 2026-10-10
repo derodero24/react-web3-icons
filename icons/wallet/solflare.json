@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Solflare",
   "source": [
     "https://www.solflare.com/solflare-brand-kit.zip (official brand kit, linked from solflare.com: SVG/Solflare_INSIGNIA_Obsidian_Noir_BACKGROUND_Yellow.svg)",

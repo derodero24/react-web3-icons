@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Bybit",
   "source": [
     "https://www.bybit.com (official site; stylesheet palette --by-orange-normal #f7a600, --by-color-black #121214)"

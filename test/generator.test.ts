@@ -53,6 +53,7 @@ import {
 } from '../scripts/build-icons/outputs.ts';
 import {
   assertUnitMeta,
+  SCHEMA_REF,
   UNIT_JSON_SCHEMA,
 } from '../scripts/build-icons/unit.ts';
 import { getAttr, parseSvg, serializeSvg } from '../scripts/build-icons/xml.ts';
@@ -94,6 +95,7 @@ function iconUnit(
   extra: Readonly<Record<string, unknown>> = {},
 ): string {
   return JSON.stringify({
+    $schema: SCHEMA_REF,
     name,
     kind: 'icon',
     variants: { [suffix]: { file } },
@@ -283,6 +285,7 @@ describe('extra props', () => {
     svgs: Readonly<Record<string, string>>,
   ): Readonly<Record<string, string>> => ({
     'icons/chain/x.json': JSON.stringify({
+      $schema: SCHEMA_REF,
       name: 'X',
       kind: 'icon',
       variants: Object.fromEntries(
@@ -492,17 +495,27 @@ describe('mask content isolation', () => {
 describe('unit definitions', () => {
   const check = (value: unknown): void => assertUnitMeta(value, 'u.json');
   const valid = {
+    $schema: SCHEMA_REF,
     name: 'Foo',
     kind: 'icon',
     variants: { '': { file: 'f.svg' } },
   };
 
-  it('accepts a valid unit, including the optional $schema hint', () => {
+  it('accepts a valid unit', () => {
     expect(() => check(valid)).not.toThrow();
-    expect(() => check({ $schema: '../schema.json', ...valid })).not.toThrow();
   });
 
   it.each([
+    [
+      'a unit without $schema',
+      { name: 'Foo', kind: 'icon', variants: { '': { file: 'f.svg' } } },
+      /u\.json: \$schema must be "\.\.\/schema\.json"/,
+    ],
+    [
+      'another $schema',
+      { ...valid, $schema: './schema.json' },
+      /u\.json: \$schema must be "\.\.\/schema\.json"/,
+    ],
     [
       'an unknown key',
       { ...valid, variant: {} },
@@ -566,6 +579,7 @@ describe('unit definitions', () => {
     [
       'an unquoted module specifier',
       {
+        $schema: SCHEMA_REF,
         name: 'Foo',
         kind: 'reexport',
         reexport: { from: "./A';", exports: [] },
@@ -606,9 +620,19 @@ describe('unit definitions', () => {
     expect(icon).toMatchObject({
       type: 'object',
       additionalProperties: false,
-      required: ['name', 'variants', 'kind'],
+      required: ['$schema', 'name', 'variants', 'kind'],
       properties: { kind: { const: 'icon' } },
     });
+  });
+
+  it('requires $schema in every kind of unit', () => {
+    const kinds = UNIT_JSON_SCHEMA.oneOf;
+    expect(kinds).toHaveLength(3);
+    for (const kind of kinds) {
+      expect(kind).toMatchObject({
+        required: expect.arrayContaining(['$schema']),
+      });
+    }
   });
 });
 
@@ -753,6 +777,7 @@ describe('lookup keys', () => {
     extra: Readonly<Record<string, unknown>> = {},
   ): Record<string, string> => ({
     [`icons/chain/${slug}.json`]: JSON.stringify({
+      $schema: SCHEMA_REF,
       name,
       kind: 'icon',
       variants: variantsOf(slug, ['', 'Mono']),
@@ -840,6 +865,7 @@ describe('lookup keys', () => {
 
   it('rejects malformed keys in the unit schema', () => {
     const valid = {
+      $schema: SCHEMA_REF,
       name: 'Foo',
       kind: 'icon',
       variants: { '': { file: 'f.svg' } },
@@ -923,6 +949,7 @@ describe('dynamic import maps', () => {
     extra: Readonly<Record<string, unknown>> = {},
   ): Record<string, string> => ({
     [`icons/chain/${slug}.json`]: JSON.stringify({
+      $schema: SCHEMA_REF,
       name,
       kind: 'icon',
       variants: Object.fromEntries(
@@ -981,6 +1008,7 @@ describe('dynamic import maps', () => {
         deprecated: Object.fromEntries([['AlphaOld', 'Gone.']]),
       }),
       'icons/chain/g.json': JSON.stringify({
+        $schema: SCHEMA_REF,
         name: 'Gamma',
         kind: 'alias',
         aliasConst: {

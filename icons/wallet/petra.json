@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Petra",
   "source": [
     "https://petra.app (official site; header logo: the Petra mark as an inline SVG in white on the \"petra-blue\" hero)",

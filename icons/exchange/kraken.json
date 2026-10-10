@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Kraken",
   "source": [
     "https://assets-cms.kraken.com/images/51n36hrp/facade/4d67f3f4eac6aa0702c6ae62b1e0b1abc41b10cd-650x155.svg (the \"kraken by Payward\" header logo served by kraken.com, e.g. on https://www.kraken.com/press)"

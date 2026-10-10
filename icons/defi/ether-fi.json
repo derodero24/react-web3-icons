@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "EtherFi",
   "source": [
     "https://github.com/etherfi-protocol/.github/blob/master/etherfi-logo.svg"

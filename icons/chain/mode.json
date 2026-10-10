@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Mode",
   "source": [
     "https://github.com/mode-network/brandkit (official Mode brand kit, linked from mode.network, accessed 2026-10-09)",

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Rainbow",
   "source": [
     "https://github.com/rainbow-me/rainbowkit/blob/03360ee924cfa6af13ff1d623b356bf5a170348e/packages/rainbowkit/src/wallets/walletConnectors/rainbowWallet/rainbowWallet.svg (official Rainbow repository, the wallet's app icon)",

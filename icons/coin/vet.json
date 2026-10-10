@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Vet",
   "source": [
     "https://files.vechain.org/branding/Logos/VeChain.zip (official VeChain brand kit, files VeChain/VeChain_Dark.svg and VeChain_Light.svg; guidelines: https://files.vechain.org/branding/Guidelines/VeChain%20Brand%20Guidelines.pdf)"

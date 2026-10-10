@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Pyth",
   "source": [
     "re-export of Pyth — see src/oracle/Pyth.tsx"

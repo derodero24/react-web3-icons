@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Viem",
   "source": [
     "https://github.com/wevm/viem/blob/main/site/public/logo-light-hug.svg"

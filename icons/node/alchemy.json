@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Alchemy",
   "source": [
     "https://media.alchemy.com/1702567897-alchemy-brand-assets.zip (official brand assets from https://www.alchemy.com/brand: Mark/Blue-gradient/alchemy-mark-blue-gradient.svg)"

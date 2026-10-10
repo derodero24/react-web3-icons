@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Dydx",
   "source": [
     "https://dydx.trade/logos/logo-mark-dark.svg",

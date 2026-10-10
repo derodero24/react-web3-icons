@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Flare",
   "source": [
     "https://flare.network/api/media/file/Flare.svg"

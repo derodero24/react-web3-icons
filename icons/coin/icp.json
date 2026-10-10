@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Icp",
   "source": [
     "https://internetcomputer.org/favicon.svg (official site)",

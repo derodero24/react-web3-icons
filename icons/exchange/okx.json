@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Okx",
   "source": [
     "https://web3.okx.com/cdn/assets/imgs/258/4C0F53E9427468A2.svg (official OKX header lockup served on OKX's own domain: the black checker + \"Wallet\")",

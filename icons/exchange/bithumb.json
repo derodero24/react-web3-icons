@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Bithumb",
   "source": [
     "https://www.bithumbcorp.com/bithumb_bi_asset.zip (official BI kit, 1_Bithumb Symbol/웹_RGB/bithumb_symbol_RGB_full color.ai and bithumb_symbol_RGB_black.ai)",

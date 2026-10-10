@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Blastscan",
   "source": [
     "https://blastscan.io/assets/blast/images/svg/logos/chain-dark.svg",

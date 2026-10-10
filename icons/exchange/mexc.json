@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Mexc",
   "source": [
     "https://www.mexc.com (official site; the header logo is an inline data:image/svg+xml in <img class=\"remote-header-placeholder-logo\">)"

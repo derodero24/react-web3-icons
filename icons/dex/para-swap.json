@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "ParaSwap",
   "source": [
     "https://paraswap.io"

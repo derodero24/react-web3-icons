@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Ronin",
   "source": [
     "re-export of Ronin \u2014 see src/chain/Ronin.tsx"

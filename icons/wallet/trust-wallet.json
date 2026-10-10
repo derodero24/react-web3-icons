@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "TrustWallet",
   "source": [
     "https://trustwallet.com/icon.svg (official site icon: the standalone two-part shield)",

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Eigen",
   "source": [
     "re-export of EigenLayer — see src/defi/EigenLayer.tsx"

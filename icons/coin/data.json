@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Data",
   "source": [
     "re-export of DataNetwork — see src/chain/DataNetwork.tsx"

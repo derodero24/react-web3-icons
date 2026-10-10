@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Raydium",
   "source": [
     "https://github.com/raydium-io/raydium-ui-v3-public/blob/045a2a942711440b85e091ac313378a1e534f102/src/icons/RaydiumLogo.tsx (official Raydium UI repository, inline SVG symbol)",

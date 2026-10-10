@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "OpenZeppelin",
   "source": [
     "https://cdn.sanity.io/files/7gbik6p1/production/93a4bce6e91c627d1c1c3995fbb5c5ce6115540c.zip (official brand kit, the Download Brand Kit link of https://www.openzeppelin.com/brand-kit)"

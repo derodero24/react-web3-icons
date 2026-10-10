@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema.json",
   "name": "Compound",
   "source": [
     "https://github.com/compound-finance/compound-components/blob/master/src/public/assets/compound-mark.svg (official Compound Labs repository: the #00D395 mark our paths are scaled from)",
