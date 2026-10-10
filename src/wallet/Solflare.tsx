@@ -1,6 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://solflare.com
+// Source: https://www.solflare.com/solflare-brand-kit.zip (official brand kit, linked from solflare.com: SVG/Solflare_INSIGNIA_Obsidian_Noir_BACKGROUND_Yellow.svg)
+// Source: https://www.solflare.com/wp-content/uploads/2024/11/App-Icon.svg (official app icon)
+// The insignia matches the kit's Solflare_INSIGNIA_Obsidian_Noir_BACKGROUND_Yellow.svg (#02050A on #FFEF46; alpha IoU 0.99, checked 2026-10-09), but the tile here is a composition: the insignia is 62.5% of the square tile, where the kit file draws it at 50% on its square artboard and the site's App-Icon.svg at 67% on a rounded tile. The artwork, which predates the source policy, is unchanged until one of the two official layouts is chosen
+// Mono: the tile in currentColor with the insignia knocked out
 /** Solflare wallet icon (colored). */
 export const Solflare = /* @__PURE__ */ createIcon(
   'Solflare',

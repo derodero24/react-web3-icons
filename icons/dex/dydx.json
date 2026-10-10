@@ -3,10 +3,13 @@
   "source": [
     "https://dydx.trade/logos/logo-mark-dark.svg",
     "https://github.com/dydxprotocol/v4-web/blob/main/public/logos/logo-mark-dark.svg",
+    "https://dydx.trade/logos/logo-mark-light.svg",
+    "https://github.com/dydxprotocol/v4-web/blob/main/public/logos/logo-mark-light.svg",
     "https://dydx.exchange"
   ],
   "notes": [
     "Default: the official light-theme logomark logo-mark-dark.svg (#181818 strokes, #6966FF accent), which dydx.trade shows on light backgrounds",
+    "Inverted: the official dark-theme logomark logo-mark-light.svg (#FAFAFD stroke, white to 55%-white gradient stroke, #6966FF accent), which dydx.trade shows for every non-light theme (v4-web src/components/QrCode.tsx); same paths as the default, unchanged, with the same transform",
     "Square and SquareMono: unchanged dark app-icon tile (https://dydx.exchange)",
     "Mono: the logomark's three strokes in currentColor"
   ],
@@ -14,6 +17,10 @@
   "variants": {
     "": {
       "file": "dydx.svg",
+      "fill": "none"
+    },
+    "Inverted": {
+      "file": "dydx.inverted.svg",
       "fill": "none"
     },
     "Square": {

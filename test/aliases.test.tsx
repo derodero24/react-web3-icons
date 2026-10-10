@@ -5,6 +5,14 @@ import { describe, expect, it } from 'vitest';
 import {
   Aptos,
   AptosMono,
+  ArbitrumNova,
+  ArbitrumNovaFlat,
+  ArbitrumNovaFlatMono,
+  ArbitrumNovaMono,
+  ArbitrumOne,
+  ArbitrumOneFlat,
+  ArbitrumOneFlatMono,
+  ArbitrumOneMono,
   Argent,
   ArgentMono,
   Backpack,
@@ -120,6 +128,8 @@ import {
   Uni,
   UniMono,
 } from '../src/coin';
+import { SafeProtocol, SafeProtocolMono } from '../src/defi';
+import { Safe, SafeMono } from '../src/wallet';
 
 function renderToHtml(component: ReactElement): string {
   const container = document.createElement('div');
@@ -200,6 +210,8 @@ const aliasPairs = [
   ['TrxMono → TronMono', TrxMono, TronMono],
   ['Link → Chainlink', Link, Chainlink],
   ['LinkMono → ChainlinkMono', LinkMono, ChainlinkMono],
+  ['SafeProtocol → Safe', SafeProtocol, Safe],
+  ['SafeProtocolMono → SafeMono', SafeProtocolMono, SafeMono],
   ['Uni → Uniswap', Uni, Uniswap],
   ['UniMono → UniswapMono', UniMono, UniswapMono],
   ['Ldo → Lido', Ldo, Lido],
@@ -240,6 +252,19 @@ const aliasPairs = [
   ],
   ['Mkr → MakerDao', Mkr, MakerDao],
   ['MkrMono → MakerDaoMono', MkrMono, MakerDaoMono],
+  // Single-colour current marks: Flat is the default artwork (#835)
+  ['ArbitrumOneFlat → ArbitrumOne', ArbitrumOneFlat, ArbitrumOne],
+  [
+    'ArbitrumOneFlatMono → ArbitrumOneMono',
+    ArbitrumOneFlatMono,
+    ArbitrumOneMono,
+  ],
+  ['ArbitrumNovaFlat → ArbitrumNova', ArbitrumNovaFlat, ArbitrumNova],
+  [
+    'ArbitrumNovaFlatMono → ArbitrumNovaMono',
+    ArbitrumNovaFlatMono,
+    ArbitrumNovaMono,
+  ],
 ] as const;
 
 describe('Icon aliases', () => {

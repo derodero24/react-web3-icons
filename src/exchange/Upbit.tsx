@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://upbit.com (official brand)
+// Source: https://upbit-web-dist.upbit.com/upbit-web/sri-v2-D3aTi1aP.svg (official UPbit wordmark in #093687, served by upbit.com's web app)
+// Source: https://upbit.com (official site)
+// Not verified (checked 2026-10-09): upbit.com serves the UPbit wordmark as a vector (#093687, the same blue as the disc here) but the round UP app icon only as a raster (favicon.jpg). The UP letters here differ from the wordmark's (the arrow is drawn as ink between U and P, where the wordmark cuts it as a gap; alpha IoU 0.89), so the artwork, which predates the source policy, is unchanged
 /** Upbit exchange icon (colored). */
 export const Upbit = /* @__PURE__ */ createIcon(
   'Upbit',

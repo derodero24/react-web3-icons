@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Source: https://tangem.com
+// Source: https://tangem.com (official site; the header draws the logo inline as the tangem-logo symbol, in currentColor)
+// Not verified (checked 2026-10-09): the three-part mark matches the symbol of tangem.com's inline header logo in structure, but its proportions differ slightly (in the official symbol the gap under the bar is larger and the right leg starts higher; alpha IoU 0.93), and the site sets no colour of its own (currentColor), so #1E1E1E is unverified. tangem.com has no brand or press page (/en/press/, /en/media-kit/ and /en/brand/ return 404). The artwork, which predates the source policy, is unchanged
 /** Tangem wallet icon (colored). */
 export const Tangem = /* @__PURE__ */ createIcon(
   'Tangem',

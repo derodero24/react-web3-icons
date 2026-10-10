@@ -1,8 +1,13 @@
 {
   "name": "Spark",
+  "source": [
+    "https://docs.spark.finance/brand/spark-logomark.svg (official press kit at https://docs.spark.finance/brand, linked from the spark.finance homepage)"
+  ],
   "notes": [
-    "Spark (SparkLend by MakerDAO) — lightning bolt mark",
-    "Gradient: pink #FA43BD → orange #FFA930, from official spark.fi brand"
+    "Spark is the lending and savings protocol of the Sky ecosystem; the mark is a four-point spark star",
+    "Spark: the press kit's spark-logomark.svg, path and #FA43BD to #FFA930 gradient unchanged, placed on the 64 grid. The kit's lockup spark-logo.svg and the docs favicon https://docs.spark.finance/fav.svg draw the same square star",
+    "SparkMono: the same path in currentColor",
+    "The spark.finance site lockup (https://spark.finance/logo.svg; spark.fi now redirects there) draws a slightly narrower star (aspect 0.966 against 1.0), which the previous artwork copied; the kit is followed instead (accessed 2026-10-09)"
   ],
   "kind": "icon",
   "variants": {
