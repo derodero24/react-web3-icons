@@ -14,7 +14,8 @@
       "file": "hardhat.svg"
     },
     "Mono": {
-      "file": "hardhat.mono.svg"
+      "file": "hardhat.mono.svg",
+      "fill": "currentColor"
     }
   }
 }
