@@ -178,6 +178,8 @@ These variants render the same artwork as another export, or legacy artwork with
 | `ArbitrumNovaFlat` | `ArbitrumNova` | chain | the current Arbitrum Nova logomark is single-colour, so `Flat` now renders the default |
 | `ArbitrumNovaFlatMono` | `ArbitrumNovaMono` | chain | the same, for the mono |
 
+`MagicEdenWordmark` and `MagicEdenWordmarkMono` are now the horizontal lockup (section 12), which paints only about 6.4 of the 64 units tall: render them at roughly 128 px or larger, or use `MagicEden` at small sizes.
+
 Deprecated exports are not variants of the dynamic components, so `'Alt'` is not a `WalletVariant` value and `'Flat'` and `'FlatMono'` are not `ChainVariant` values: `<WalletIcon name="metamask" variant="Alt" />` and `<ChainIcon name="arbitrum-nova" variant="Flat" />` are type errors and render `fallback`. Omit `variant` (or use `'mono'`) instead. Likewise `<WalletIcon name="phantom" variant="SymbolMono" />` renders `fallback` (`'SymbolMono'` stays a `WalletVariant` for `Rainbow`); use `variant="mono"`.
 
 `StarknetCircle`, `StarknetCircleMono`, `CeloscanSquare` and `CeloscanSquareMono` are not deprecated: the official Starknet symbol is already a disc and the Celoscan mark already a square tile, so they are now the same components as `Starknet`, `StarknetMono`, `Celoscan` and `CeloscanMono` and render the same artwork as before. Their markup carries the default's ids (`w3i-starknet-…`), and their Iconify names are aliases of the default icons.
@@ -330,7 +332,7 @@ They now fill the whole box like other containers (section 5), so they render la
 | `Wormhole` | a moon and stars drawn in `#C1BBF6` lines | the logomark, a W knocked out of a black disc, at the size of a bare mark |
 | `WorldChain` | a clipped glyph | the World logomark, whole; `Wld`, which already showed the whole logomark with a thinner ring, now re-exports it |
 | `Stx` | the letters STX in `#7023EB`, a wide mark | the `#141414` Stacks symbol, as tall as it is wide |
-| `MagicEdenWordmark`, `MagicEdenWordmarkMono` | the stacked lockup, the mark above the name | the horizontal header wordmark, about nine times as wide as tall, so it fills only a thin band of a square box; the deprecated `MagicEdenWordmarkFlat` keeps the stacked lockup |
+| `MagicEdenWordmark`, `MagicEdenWordmarkMono` | the stacked lockup, the mark above the name | the horizontal header wordmark, about nine times as wide as tall, so it fills only a thin band of a square box (about 6.4 of the 64 units; render it at roughly 128 px or larger, or use `MagicEden` at small sizes); the deprecated `MagicEdenWordmarkFlat` keeps the stacked lockup |
 
 ### Marks that changed between dark and light
 
