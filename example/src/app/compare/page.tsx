@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { ICON_MANIFEST } from 'react-web3-icons/manifest';
 import CodeBlock from '../../components/elements/CodeBlock';
+import { ICON_COUNT } from '../../utils/icons';
 
 export const metadata: Metadata = {
   title: 'Compare — React Web3 Icons',
@@ -79,10 +80,7 @@ const COMPETITORS = [
 type CompetitorKey = (typeof COMPETITORS)[number]['key'];
 
 // Derived from the manifest so the compare page cannot drift from the package:
-// distinct artwork units (base entries) and total non-deprecated exports.
-const ICON_UNIT_COUNT = ICON_MANIFEST.filter(
-  e => e.variants && !e.deprecated,
-).length;
+// distinct icons and total non-deprecated exports.
 const EXPORT_COUNT = ICON_MANIFEST.filter(e => !e.deprecated).length;
 
 const COMPARISON_ROWS: {
@@ -258,7 +256,7 @@ const COMPARISON_ROWS: {
     feature: 'Icon count',
     ours: (
       <span className="text-sm text-fg/70">
-        {ICON_UNIT_COUNT} ({EXPORT_COUNT} exports)
+        {ICON_COUNT} ({EXPORT_COUNT} exports)
       </span>
     ),
     competitors: {

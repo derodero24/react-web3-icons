@@ -8,8 +8,9 @@
  *                         deprecated `aliasConst` / `localAliases` entries
  *   src/icon-names.ts     the IconName union of every export name
  *
- * The manifest (manifest.ts) reads the same data through `primaryIds()` and
- * `deprecatedExports()`.
+ * The manifest (manifest.ts) reads the same data through `primaryIds()`,
+ * `deprecatedExports()` and, like the dynamic import maps (dynamic.ts),
+ * `lookupTargets()` / `targetOf()`.
  */
 
 import { normalizeKey } from '../../src/dynamic/normalize.ts';
@@ -298,6 +299,24 @@ export function lookupTargets(unit: SourceUnit): string[] {
   return unitLookups(unit)
     .filter(lookup => LOOKUP_FIELDS.some(f => keysOf(lookup.keys, f).length))
     .map(lookup => lookup.exportName);
+}
+
+/**
+ * The target an export of a unit belongs to: the longest of the unit's
+ * `targets` it starts with at a word boundary, or undefined
+ * (`ArbitrumNovaMono` belongs to `ArbitrumNova`, not to `Arbitrum`).
+ */
+export function targetOf(
+  exportName: string,
+  targets: readonly string[],
+): string | undefined {
+  return targets
+    .filter(
+      target =>
+        exportName.startsWith(target) &&
+        /^(?:[A-Z].*)?$/.test(exportName.slice(target.length)),
+    )
+    .sort((a, b) => b.length - a.length)[0];
 }
 
 /**

@@ -1,5 +1,6 @@
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, expectTypeOf, it } from 'vitest';
 import {
   CATEGORIES,
   compareStrings,
@@ -20,7 +21,11 @@ import * as dex from '../src/dex';
 import * as domain from '../src/domain';
 import * as exchange from '../src/exchange';
 import * as explorer from '../src/explorer';
-import { ICON_MANIFEST, type IconManifestEntry } from '../src/manifest';
+import {
+  ICON_MANIFEST,
+  type IconManifestEntry,
+  type IconManifestName,
+} from '../src/manifest';
 import * as marketplace from '../src/marketplace';
 import * as meta from '../src/meta';
 import * as node from '../src/node';
@@ -28,6 +33,7 @@ import * as oracle from '../src/oracle';
 import * as portfolio from '../src/portfolio';
 import * as storage from '../src/storage';
 import * as tracker from '../src/tracker';
+import type { IconName } from '../src/utils';
 import * as wallet from '../src/wallet';
 
 const CATEGORY_MODULES = {
@@ -71,7 +77,7 @@ const ID_MAPS: Partial<
 };
 
 function deriveEntry(
-  name: string,
+  name: IconName,
   category: keyof typeof CATEGORY_MODULES,
 ): IconManifestEntry {
   return {
@@ -88,7 +94,11 @@ function deriveExpected(): IconManifestEntry[] {
     for (const [name, value] of Object.entries(mod)) {
       if ((value as { $$typeof?: symbol } | null)?.$$typeof === FORWARD_REF) {
         entries.push(
-          deriveEntry(name, category as keyof typeof CATEGORY_MODULES),
+          // A component export of a category module is an icon name.
+          deriveEntry(
+            name as IconName,
+            category as keyof typeof CATEGORY_MODULES,
+          ),
         );
       }
     }
@@ -109,35 +119,64 @@ function baseProjection({
   return { name, category, ...(deprecated ? { deprecated } : {}) };
 }
 
-/** Same variant derivation as scripts/build-icons/manifest.ts. */
-function expectedVariants(unit: SourceUnit | undefined): string[] {
-  if (!(unit && isArtwork(unit.meta))) {
-    return [];
-  }
-  const { meta } = unit;
-  const aliasSuffixes = (meta.localAliases ?? [])
-    .filter(
-      a =>
-        !a.deprecated &&
-        a.name.startsWith(meta.name) &&
-        a.target.startsWith(meta.name) &&
-        a.target.slice(meta.name.length) in meta.variants,
-    )
-    .map(a => a.name.slice(meta.name.length));
-  const own = [...aliasSuffixes, ...Object.keys(meta.variants)];
-  // Variants the unit re-exports from another unit (Bnb → BnbCircle).
-  const reexported = (meta.reexport?.exports ?? [])
-    .map(e => e.as)
-    .filter(name => name.startsWith(meta.name))
-    .map(name => name.slice(meta.name.length));
-  if (reexported.length === 0) {
-    return own;
-  }
-  const rank = (suffix: string): number =>
-    suffix === '' ? 0 : suffix === 'Mono' ? 1 : 2;
-  return [...new Set([...own, ...reexported])].sort(
-    (a, b) => rank(a) - rank(b),
+/** Export names `react-web3-icons/meta` resolves to, as `category/name`. */
+function metaTargets(): Set<string> {
+  return new Set(
+    Object.entries(ID_MAPS).flatMap(([category, maps]) =>
+      Object.values(maps).flatMap(map =>
+        Object.values(map).map(name => `${category}/${name}`),
+      ),
+    ),
   );
+}
+
+/**
+ * The variants of every icon, by `category/name`, derived from the
+ * generated modules rather than by the generator's code. The icons of a
+ * unit are its base export and the exports a meta map resolves to
+ * (`ArbitrumNova`); a deprecated alias unit has none. Each export of the
+ * unit's module belongs to the longest icon name it extends by nothing or a
+ * capitalized suffix, and counts unless it is deprecated and the icon is not.
+ */
+async function expectedVariants(
+  units: Iterable<SourceUnit>,
+): Promise<Map<string, string[]>> {
+  const targets = metaTargets();
+  const variants = new Map<string, string[]>();
+  for (const unit of units) {
+    const base = unit.meta.name;
+    if (!isArtwork(unit.meta) && DEPRECATED_ICON_NAMES.has(base)) {
+      continue;
+    }
+    const exports = Object.keys(
+      await import(`../src/${unit.category}/${base}.tsx`),
+    );
+    const icons = exports.filter(
+      name => name === base || targets.has(`${unit.category}/${name}`),
+    );
+    const iconOf = (name: string): string | undefined =>
+      icons
+        .filter(
+          icon =>
+            name.startsWith(icon) &&
+            /^(?:[A-Z].*)?$/.test(name.slice(icon.length)),
+        )
+        .sort((a, b) => b.length - a.length)[0];
+    for (const icon of icons) {
+      variants.set(
+        `${unit.category}/${icon}`,
+        exports
+          .filter(
+            name =>
+              iconOf(name) === icon &&
+              (DEPRECATED_ICON_NAMES.has(icon) ||
+                !DEPRECATED_ICON_NAMES.has(name)),
+          )
+          .map(name => name.slice(icon.length)),
+      );
+    }
+  }
+  return variants;
 }
 
 function artworkOf(unit: SourceUnit | undefined): ArtworkUnitMeta | undefined {
@@ -169,9 +208,9 @@ function missingVariantExports(
 
 /**
  * Why an entry's `brandColor` is wrong, or undefined when it is fine. Every
- * base entry (the one carrying `variants`) has one: artwork always paints
- * in some colour, if only SVG's default black, and a unit without default
- * artwork of its own re-exports one that has (Ldo → Lido).
+ * icon (an entry carrying `variants`) has one: artwork always paints in some
+ * colour, if only SVG's default black, and an icon without artwork of its
+ * own re-exports one that has (Eth → Ethereum, Ldo → Lido).
  */
 function brandColorProblem(entry: IconManifestEntry): string | undefined {
   if (entry.brandColor) {
@@ -179,7 +218,14 @@ function brandColorProblem(entry: IconManifestEntry): string | undefined {
       ? undefined
       : `brandColor ${entry.brandColor} is not #rrggbb`;
   }
-  return entry.variants ? 'base entry has no brandColor' : undefined;
+  return entry.variants ? 'an icon has no brandColor' : undefined;
+}
+
+/** The component an entry names. */
+function componentOf(entry: IconManifestEntry): unknown {
+  return new Map<string, unknown>(
+    Object.entries(CATEGORY_MODULES[entry.category]),
+  ).get(entry.name);
 }
 
 describe('Icon manifest sync', () => {
@@ -189,22 +235,97 @@ describe('Icon manifest sync', () => {
     expect(ICON_MANIFEST.map(baseProjection)).toEqual(deriveExpected());
   });
 
-  it('enrichment fields match the icons/ unit definitions', () => {
+  // The manifest spells the names out instead of importing IconName, so its
+  // types load without the icon types and @types/react.
+  it('IconManifestName is IconName, and the manifest module imports nothing', () => {
+    expectTypeOf<IconManifestName>().toEqualTypeOf<IconName>();
+    const source = readFileSync(
+      join(import.meta.dirname, '../src/manifest/index.ts'),
+      'utf8',
+    );
+    expect(source).not.toMatch(/^(?:import|export .* from) /m);
+  });
+
+  it('variants are the exports of each icon, each mono after its colored suffix', async () => {
+    const expected = await expectedVariants(loadIconUnits().values());
+    for (const entry of ICON_MANIFEST) {
+      const label = `${entry.category}/${entry.name} variants`;
+      const variants = expected.get(`${entry.category}/${entry.name}`);
+      if (variants === undefined) {
+        expect(entry.variants, label).toBeUndefined();
+        continue;
+      }
+      expect([...(entry.variants ?? [])].sort(compareStrings), label).toEqual(
+        variants.sort(compareStrings),
+      );
+      const first = ['', 'Mono'].filter(s => variants.includes(s));
+      expect(entry.variants?.slice(0, first.length), label).toEqual(first);
+      // `CircleMono` comes right after `Circle` when the icon has both.
+      const list = entry.variants ?? [];
+      expect(
+        list.filter(
+          (suffix, i) =>
+            suffix.endsWith('Mono') &&
+            list.includes(suffix.slice(0, -'Mono'.length)) &&
+            list[i - 1] !== suffix.slice(0, -'Mono'.length),
+        ),
+        `${label} pair each mono with its colored suffix`,
+      ).toEqual([]);
+      expect(
+        missingVariantExports(entry, entry.variants ?? []),
+        `${label} must all be exports`,
+      ).toEqual([]);
+    }
+  });
+
+  it('a current icon lists no deprecated variant', () => {
+    for (const entry of ICON_MANIFEST) {
+      if (!entry.deprecated) {
+        expect(
+          (entry.variants ?? []).filter(suffix =>
+            DEPRECATED_ICON_NAMES.has(entry.name + suffix),
+          ),
+          `${entry.category}/${entry.name}`,
+        ).toEqual([]);
+      }
+    }
+  });
+
+  it('every icon a meta map resolves to has variants and a brandColor', () => {
+    const targets = metaTargets();
+    expect(targets.size).toBeGreaterThan(100);
+    for (const target of targets) {
+      const entry = ICON_MANIFEST.find(
+        e => `${e.category}/${e.name}` === target,
+      );
+      expect(entry?.variants?.length, `${target} variants`).toBeGreaterThan(0);
+      expect(entry?.brandColor, `${target} brandColor`).toBeDefined();
+    }
+  });
+
+  // Eth renders Ethereum's artwork, so it has Ethereum's colour.
+  it('entries of the same component have the same brandColor', () => {
+    const byComponent = new Map<unknown, IconManifestEntry>();
+    for (const entry of ICON_MANIFEST) {
+      if (entry.brandColor) {
+        const first = byComponent.get(componentOf(entry));
+        if (first) {
+          expect(
+            entry.brandColor,
+            `${entry.category}/${entry.name} like ${first.category}/${first.name}`,
+          ).toBe(first.brandColor);
+        } else {
+          byComponent.set(componentOf(entry), entry);
+        }
+      }
+    }
+  });
+
+  it('aliases and brandColor match the icons/ unit definitions', () => {
     const unitByKey = loadIconUnits();
     for (const entry of ICON_MANIFEST) {
       const unit = unitByKey.get(`${entry.category}/${entry.name}`);
       const artwork = artworkOf(unit);
-      // Guard on the unit too, so a manifest entry that dropped `variants`
-      // entirely fails instead of being skipped.
-      if (artwork || entry.variants) {
-        expect(entry.variants ?? [], `${entry.name} variants`).toEqual(
-          expectedVariants(unit),
-        );
-        expect(
-          missingVariantExports(entry, entry.variants ?? []),
-          `${entry.name} variants must all be exports`,
-        ).toEqual([]);
-      }
       if (entry.aliases) {
         expect(entry.aliases, `${entry.name} aliases`).toEqual(
           artwork?.aliases ?? [],
@@ -247,21 +368,17 @@ describe('Icon manifest sync', () => {
   // one name (the former coin/oracle `Pyth` pair, #810), so `name` is a
   // unique key for a component — and for `import { name }` from the root.
   it('each name identifies exactly one component', () => {
+    const unitByKey = loadIconUnits();
     const byName = new Map<string, IconManifestEntry[]>();
     for (const entry of ICON_MANIFEST) {
       byName.set(entry.name, [...(byName.get(entry.name) ?? []), entry]);
     }
     for (const [name, entries] of byName) {
-      const components = new Set(
-        entries.map(entry =>
-          new Map<string, unknown>(
-            Object.entries(CATEGORY_MODULES[entry.category]),
-          ).get(name),
-        ),
-      );
-      expect(components.size, name).toBe(1);
+      expect(new Set(entries.map(componentOf)).size, name).toBe(1);
       expect(
-        entries.filter(entry => entry.variants).length,
+        entries.filter(entry =>
+          artworkOf(unitByKey.get(`${entry.category}/${entry.name}`)),
+        ).length,
         `${name} artwork entries`,
       ).toBeLessThanOrEqual(1);
     }

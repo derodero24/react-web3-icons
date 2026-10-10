@@ -29,7 +29,7 @@ import {
   unitAllExportNames,
   unitLinks,
 } from './lib.ts';
-import { deprecatedExports, lookupTargets } from './meta.ts';
+import { deprecatedExports, lookupTargets, targetOf } from './meta.ts';
 
 /** Suffixes of the `'colored'` and `'mono'` variants. */
 const DEFAULT_SUFFIXES: readonly string[] = ['', 'Mono'];
@@ -52,23 +52,6 @@ export interface DynamicCategory {
    * (`'Mono'`), sorted.
    */
   readonly variants: readonly string[];
-}
-
-/**
- * The target an export of the unit belongs to: the longest target name it
- * starts with at a word boundary, or undefined.
- */
-function targetOf(
-  exportName: string,
-  targets: readonly string[],
-): string | undefined {
-  return targets
-    .filter(
-      target =>
-        exportName.startsWith(target) &&
-        /^(?:[A-Z].*)?$/.test(exportName.slice(target.length)),
-    )
-    .sort((a, b) => b.length - a.length)[0];
 }
 
 /** Non-deprecated exports of the unit, by the target they belong to. */
