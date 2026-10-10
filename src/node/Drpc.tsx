@@ -1,9 +1,9 @@
 import { createIcon } from '../utils';
 
-// Source: https://drpc.org (official brand)
-// dRPC brand mark — three-dimensional diamond cluster
-// Three shades: bright (#49FF87), mid (#41E278), dark (#33B05D)
+// Source: https://drpc.org/images/drpc_logo/full/svg/dRPC_fullcollor_white.svg (the full-colour dRPC logo for dark backgrounds, the logo drpc.org shows and declares as its organization logo)
+// Default: the symbol of dRPC_fullcollor_white.svg without the white wordmark, its nine prism faces unchanged in three shades: bright #49FF87, mid #41E278, dark #33B05D
 // Mono: every prism face in ink, kept apart by 1.2-unit knockout seams along the shared face edges (no opacity tiers).
+// drpc.org/brand returns 404; no brand kit was found
 /** Drpc node icon (colored). */
 export const Drpc = /* @__PURE__ */ createIcon(
   'Drpc',
