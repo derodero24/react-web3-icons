@@ -368,9 +368,9 @@ export default function ComparePage() {
                       { label: 'Full chain category (/chain)', size: '~37 KB' },
                       {
                         label: 'Dynamic loader (/dynamic), no code splitting',
-                        size: '~139 KB',
+                        size: '~138 KB',
                       },
-                      { label: 'Entire library', size: '~160 KB' },
+                      { label: 'Entire library', size: '~158 KB' },
                     ].map(row => (
                       <tr key={row.label}>
                         <td className="py-2 pr-4 pl-3 font-mono text-sm text-fg/70">

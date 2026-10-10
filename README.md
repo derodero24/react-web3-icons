@@ -423,14 +423,14 @@ The package ships one ES module per icon, marks every icon `/* @__PURE__ */`, an
 | `import { Ethereum } from 'react-web3-icons/chain'` | `Ethereum` only (same as the root import) | ~0.7 KB |
 | `import * as chains from 'react-web3-icons/chain'` + `chains[name]` | every chain icon | ~37 KB |
 | `import * as coins from 'react-web3-icons/coin'` + `coins[name]` | every coin icon | ~71 KB |
-| `import * as icons from 'react-web3-icons'` + `icons[name]` | the whole library | ~160 KB |
+| `import * as icons from 'react-web3-icons'` + `icons[name]` | the whole library | ~158 KB |
 | `<CoinIcon symbol={symbol} />` from `react-web3-icons/dynamic` | a small loader, then one chunk per icon rendered | — |
 
 Sizes are minified and brotli-compressed with React excluded, as reported by `pnpm run size` (1 KB = 1,000 bytes). The budgets live in the `size-limit` field of [package.json](./package.json) and are checked on every pull request.
 
 - Import icons by name, from the root or from a category subpath. Both tree-shake equally.
 - In client code, avoid `import * as …` combined with a runtime lookup such as `icons[name]` or `Object.keys(icons)`. The bundler can't tell which icons you use, so it keeps all of them.
-- To pick icons from runtime data (a token list, the connected chain), use the [dynamic components](#dynamic-icon-components). They need a bundler that splits dynamic `import()` into chunks; without code splitting, the dynamic entry inlines every icon it can load (~139 KB).
+- To pick icons from runtime data (a token list, the connected chain), use the [dynamic components](#dynamic-icon-components). They need a bundler that splits dynamic `import()` into chunks; without code splitting, the dynamic entry inlines every icon it can load (~138 KB).
 - To list or search icons, use the [manifest](#icon-manifest) (~6 KB) instead of a namespace import.
 
 ## Icon Categories

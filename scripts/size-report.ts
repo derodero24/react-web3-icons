@@ -55,9 +55,10 @@ function load(path: string): Entry[] {
   });
 }
 
+/** Formats like size-limit itself and the README: 1 kB = 1,000 bytes. */
 function formatBytes(bytes: number): string {
-  if (bytes >= 1024) {
-    return `${(bytes / 1024).toFixed(2)} KB`;
+  if (bytes >= 1000) {
+    return `${(bytes / 1000).toFixed(2)} kB`;
   }
   return `${bytes} B`;
 }
