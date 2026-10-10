@@ -127,6 +127,12 @@ jobs:
       #   `react-web3-icons@<version>` as before.
 
       # Version path: opens or updates the version PR. No npm credentials.
+      # `version-packages` runs `changeset version`, then
+      # scripts/sync-readme-version.ts, which sets README.md's CDN version
+      # pins to the new version. The two commands live in a package.json
+      # script because the action runs `version-script` through @actions/exec,
+      # which splits the string into arguments and starts the first one
+      # without a shell: a `&&` here would reach `changeset` as an argument.
       # `publish-script` is only metadata here: with pending changesets the
       # action runs `version-script` and uses the presence of a publish
       # script to word the PR body ("will be published automatically"); it
@@ -136,7 +142,7 @@ jobs:
         uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          version-script: pnpm changeset version
+          version-script: pnpm run version-packages
           publish-script: pnpm changeset publish
           pr-title: 'chore: version packages'
           commit-message: 'chore: version packages'

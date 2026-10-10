@@ -21,9 +21,12 @@ release flow works without them.
    passes.
 3. While unreleased changesets exist, **Version or publish** opens or
    updates the `chore: version packages` PR from `changeset-release/develop`.
-   `pnpm changeset version` bumps `package.json`, writes `CHANGELOG.md` and
-   deletes the consumed changesets. Every later push to `develop` rebuilds
-   the same PR on top of it.
+   `pnpm run version-packages` runs `changeset version`, which bumps
+   `package.json`, writes `CHANGELOG.md` and deletes the consumed
+   changesets. It then runs `scripts/sync-readme-version.ts`, which sets the
+   versions in the README's CDN section to the new one, so the README
+   published with the release links to that release's files. Every later
+   push to `develop` rebuilds the same PR on top of it.
 4. A maintainer approves the PR's CI runs (see
    [The version PR](#the-version-pr)), reviews it and merges it.
 5. Verify runs again on the merge commit. With no changesets left, the job
