@@ -2,8 +2,11 @@ import { createIcon } from '../utils';
 
 // Source: https://dydx.trade/logos/logo-mark-dark.svg
 // Source: https://github.com/dydxprotocol/v4-web/blob/main/public/logos/logo-mark-dark.svg
+// Source: https://dydx.trade/logos/logo-mark-light.svg
+// Source: https://github.com/dydxprotocol/v4-web/blob/main/public/logos/logo-mark-light.svg
 // Source: https://dydx.exchange
 // Default: the official light-theme logomark logo-mark-dark.svg (#181818 strokes, #6966FF accent), which dydx.trade shows on light backgrounds
+// Inverted: the official dark-theme logomark logo-mark-light.svg (#FAFAFD stroke, white to 55%-white gradient stroke, #6966FF accent), which dydx.trade shows for every non-light theme (v4-web src/components/QrCode.tsx); same paths as the default, unchanged, with the same transform
 // Square and SquareMono: unchanged dark app-icon tile (https://dydx.exchange)
 // Mono: the logomark's three strokes in currentColor
 /** Dydx DEX icon (colored). */
@@ -36,6 +39,50 @@ export const Dydx = /* @__PURE__ */ createIcon(
         </linearGradient>
         <linearGradient
           id={`${_id}-dydx-b`}
+          x1="31.08"
+          x2="16.38"
+          y1="37.55"
+          y2="17.82"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#6966FF" />
+          <stop offset="1" stopColor="#6966FF" stopOpacity=".36" />
+        </linearGradient>
+      </defs>
+    </g>
+  ),
+  { fill: 'none', ids: true },
+);
+
+/** Dydx Inverted DEX icon (colored). */
+export const DydxInverted = /* @__PURE__ */ createIcon(
+  'DydxInverted',
+  '0 0 64 64',
+  (_props, _id) => (
+    <g transform="translate(5.98 4)scale(1.37794)">
+      <path fill="#FAFAFD" d="M28.25 0 0 40.63h8.67L37.07 0z" />
+      <path
+        fill={`url(#${_id}-dydxi-a)`}
+        d="m9.58 0 8.3 11.97-4.33 6.53L.72 0z"
+      />
+      <path
+        fill={`url(#${_id}-dydxi-b)`}
+        d="m29.1 40.64-9.22-13.25 4.33-6.35 13.55 19.6z"
+      />
+      <defs>
+        <linearGradient
+          id={`${_id}-dydxi-a`}
+          x1="7.59"
+          x2="19.54"
+          y1="2.54"
+          y2="16.91"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity=".55" />
+        </linearGradient>
+        <linearGradient
+          id={`${_id}-dydxi-b`}
           x1="31.08"
           x2="16.38"
           y1="37.55"

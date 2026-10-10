@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Source: https://rainbow.me
+// Source: https://github.com/rainbow-me/rainbowkit/blob/03360ee924cfa6af13ff1d623b356bf5a170348e/packages/rainbowkit/src/wallets/walletConnectors/rainbowWallet/rainbowWallet.svg (official Rainbow repository, the wallet's app icon)
+// Source: https://www.figma.com/community/file/1139300796265858893/rainbow-brand-assets (official brand assets, linked from rainbow.me)
 // Arc paths from viewBox 20 20 80 80 → scale 0.575, translate(-2.5, -2.5)
 /** Extra props of the Rainbow icons (on top of `IconProps`). */
 export interface RainbowProps {

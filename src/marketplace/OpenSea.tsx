@@ -4,7 +4,7 @@ import { createIcon } from '../utils';
 // No downloadable brand-kit SVG exists; the artwork is OpenSea's own site asset, accessed 2026-10-03
 // OpenSea / OpenSeaMono: the header logo with background (#0086FF disc, #FFF ship); the mono knocks the ship out of the disc (evenodd)
 // OpenSeaSymbol / OpenSeaSymbolMono: the same component without background, which draws the ship alone in #0086FF
-// OpenSeaAlt is still the pre-2025 white-disc artwork (#2081E2 ship): the current brand has no official white-disc asset
+// OpenSeaAlt: deprecated, artwork unchanged. It is the pre-2025 white-disc logomark (#2081E2 ship); the current opensea.io brand (#0086FF) has no white-disc asset, and the old opensea-static Logomark files now return 403
 // opensea.io also ships an opt-in "os-rebrand" lab logo (viewBox 0 0 360 360); it is not the default yet and is not used here
 /** Open Sea marketplace icon (colored). */
 export const OpenSea = /* @__PURE__ */ createIcon(
@@ -25,7 +25,7 @@ export const OpenSea = /* @__PURE__ */ createIcon(
   {},
 );
 
-/** Open Sea Alt marketplace icon (colored). */
+/** @deprecated Pre-2025 white-disc artwork with no current official counterpart — use `OpenSea` or `OpenSeaSymbol` instead. */
 export const OpenSeaAlt = /* @__PURE__ */ createIcon(
   'OpenSeaAlt',
   '0 0 64 64',

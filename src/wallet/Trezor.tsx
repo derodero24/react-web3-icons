@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://trezor.io
+// Source: https://trezor.io (official site; the header draws the padlock symbol inline: <svg viewBox="0 0 20 28">, in currentColor)
+// Default: matches the padlock symbol of trezor.io's inline header logo (alpha IoU 0.999 in the same frame, checked 2026-10-09), so the path is unchanged; the site paints it in its text colour, and the #000000 fill here is kept
+// Mono: the same path in currentColor
 /** Trezor wallet icon (colored). */
 export const Trezor = /* @__PURE__ */ createIcon(
   'Trezor',
