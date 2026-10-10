@@ -14,6 +14,7 @@ import { join } from 'node:path';
 import { collectDynamic, emitDynamicImports } from './dynamic.ts';
 import type { Formatter } from './format.ts';
 import {
+  assertCategoryDirs,
   CATEGORIES,
   DYNAMIC_CATEGORIES,
   generateCategory,
@@ -36,6 +37,7 @@ export function generateIconSources(root: string, format: Formatter): Outputs {
     files.set(path, format(path, content));
   };
 
+  assertCategoryDirs(iconsDir);
   const allUnits: SourceUnit[] = [];
   for (const category of CATEGORIES) {
     const units = loadCategory(iconsDir, category);

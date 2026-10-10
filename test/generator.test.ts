@@ -21,6 +21,7 @@ import {
   distSvgIdPrefix,
 } from '../scripts/build-icons/emit-dist-svg.ts';
 import { buildIconifySets } from '../scripts/build-icons/emit-iconify.ts';
+import { generateIconSources } from '../scripts/build-icons/generate.ts';
 import { namespaceIds, validateIds } from '../scripts/build-icons/ids.ts';
 import { isolateMaskContent } from '../scripts/build-icons/isolate.ts';
 import { emitRender } from '../scripts/build-icons/jsx.ts';
@@ -770,6 +771,44 @@ describe('loading icons/', () => {
     ).toHaveLength(1);
   });
 
+  it('rejects an SVG that no variant references', () => {
+    expect(() =>
+      loadChain({
+        'icons/chain/foo.json': iconUnit('Foo', ['', 'foo.svg']),
+        'icons/chain/foo.svg': SQUARE,
+        'icons/chain/foo.square.svg': SQUARE,
+      }),
+    ).toThrow(
+      "icons/chain/foo.square.svg: SVG is not referenced by any unit's variants",
+    );
+  });
+
+  it('rejects a file that is neither a unit nor artwork', () => {
+    const files = {
+      'icons/chain/foo.json': iconUnit('Foo', ['', 'foo.svg']),
+      'icons/chain/foo.svg': SQUARE,
+    };
+    expect(() =>
+      loadChain({ ...files, 'icons/chain/README.txt': 'notes' }),
+    ).toThrow(
+      'icons/chain/README.txt: neither a unit (.json) nor artwork (.svg)',
+    );
+    // macOS Finder's folder metadata, ignored by git.
+    expect(loadChain({ ...files, 'icons/chain/.DS_Store': '' })).toHaveLength(
+      1,
+    );
+  });
+
+  it('rejects a directory under icons/ that is not a category', () => {
+    const generate = (files: Readonly<Record<string, string>>) => () =>
+      generateIconSources(fixture(files), (_, content) => content);
+    expect(generate({ 'icons/chains/foo.svg': SQUARE })).toThrow(
+      /^icons\/chains\/: not a category \(expected one of bridge, chain, /,
+    );
+    // Files at that level are fine: icons/schema.json lives there.
+    expect(generate({ 'icons/schema.json': '{}' })).not.toThrow();
+  });
+
   it('parses comma-separated viewBoxes', () => {
     expect(parseViewBox('0,0, 24 ,32')).toEqual([0, 0, 24, 32]);
     expect(parseViewBox(' -1.5 +.5 2e1 24. ')).toEqual([-1.5, 0.5, 20, 24]);
@@ -870,10 +909,16 @@ describe('lookup keys', () => {
     ],
     [
       'a target without a Mono export',
-      chainUnit('a', 'Alpha', {
-        variants: variantsOf('a', ['']),
-        slugs: ['alpha'],
-      }),
+      {
+        'icons/chain/a.json': JSON.stringify({
+          $schema: SCHEMA_REF,
+          name: 'Alpha',
+          kind: 'icon',
+          variants: variantsOf('a', ['']),
+          slugs: ['alpha'],
+        }),
+        'icons/chain/a.svg': SQUARE,
+      },
       /icons\/chain\/a\.json: lookup keys need an export AlphaMono/,
     ],
     [

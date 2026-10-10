@@ -159,6 +159,10 @@ icons/chain/ethereum.json         # metadata:
   `width`/`height`, no `<style>` tags, no text content.
 - Every `url(#…)` / `href="#…"` must point at an `id` defined in the same
   file, and ids must be unique within it; the generator fails otherwise.
+- `icons/<category>/` holds only unit JSON files and the SVGs their variants
+  reference. The generator fails on an SVG that no variant references, on
+  any other file, and on a directory under `icons/` that is not a category,
+  so no artwork is silently left out of the package.
 - `deprecated` (map of export name → message) marks deprecated artwork exports.
   Together with the deprecated `aliasConst` / `localAliases` entries it is the
   source of `DEPRECATED_ICON_NAMES` (`src/deprecated.ts`, generated).
