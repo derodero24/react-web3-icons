@@ -105,15 +105,15 @@ GitHub Actions
 **Version or publish** installs dependencies and builds in the same job that
 publishes. Every step of that job can request an OIDC token
 (`id-token: write`), and the runner receives `GITHUB_TOKEN` (with
-`contents: write`) and `NPM_TOKEN` when the job starts. A step-scoped `env:`
-keeps a secret out of the other steps' environment variables, not out of
-the runner's memory. A compromised dependency that runs code during install
-or build could therefore publish, and once a trusted publisher exists, the
-OIDC token alone is enough to publish `react-web3-icons`. The frozen
-lockfile, the 3-day `minimum-release-age` in `.npmrc` and the short
-`onlyBuiltDependencies` list in `pnpm-workspace.yaml` reduce this risk; the
-split below removes that exposure. Schedule it before the trusted publisher
-is configured:
+`contents: write` and `pull-requests: write`) and `NPM_TOKEN` when the job
+starts. A step-scoped `env:` keeps a secret out of the other steps'
+environment variables, not out of the runner's memory. A compromised
+dependency that runs code during install or build could therefore publish,
+and once a trusted publisher exists, the OIDC token alone is enough to
+publish `react-web3-icons`. The frozen lockfile, the 3-day
+`minimum-release-age` in `.npmrc` and the short `onlyBuiltDependencies` list
+in `pnpm-workspace.yaml` reduce this risk; the split below removes that
+exposure. Schedule it before the trusted publisher is configured:
 
 - A build job with only `contents: read` installs, builds and runs
   `pnpm pack`, then uploads the tarball and the pending-changesets result as
@@ -225,6 +225,13 @@ change.
 
 ## Release checklist
 
+- Major release, before merging the version PR: make
+  `examples/stackblitz/package.json` accept the new major next to the
+  current one (for 5.0.0, `^4.0.0 || ^5.0.0`). The playground has no
+  lockfile, so the README's StackBlitz link, which opens `main`, installs the
+  new major as soon as it is on npm. A range with only the new major would
+  fail the `Build StackBlitz playground` check until then, because that job
+  installs from npm.
 - Approve the version PR's runs and wait for them to pass before merging.
 - First release with a trusted publisher: create the configuration just
   before merging the version PR. After the publish, confirm with `_npmUser`
@@ -233,13 +240,6 @@ change.
   and only then [remove the token](#remove-the-token).
 - After publishing: check provenance, the tag, the GitHub release and
   `main` as described in [Release flow](#release-flow).
-- Major release, before merging the version PR: make
-  `examples/stackblitz/package.json` accept the new major next to the
-  current one (for 5.0.0, `^4.0.0 || ^5.0.0`). The playground has no
-  lockfile, so the README's StackBlitz link, which opens `main`, installs the
-  new major as soon as it is on npm. A range with only the new major would
-  fail the `Build StackBlitz playground` check until then, because that job
-  installs from npm.
 - Major release: once the new major is on npm, update the supported-versions
   table in [SECURITY.md](../SECURITY.md) (new major `Yes`, every older
   version `No`). The policy covers the latest published major only, so the
