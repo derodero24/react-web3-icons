@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Legacy artwork: paths sourced from @web3icons/react (MIT) — CRV (Curve Finance) token SVG, a simplified 16-gradient redraw
+// Source: @web3icons/react (MIT) — CRV (Curve Finance) token SVG (legacy third-party artwork)
+// Legacy artwork: a simplified 16-gradient redraw, not the official file
 // The official mark is https://raw.githubusercontent.com/curvefi/curve-assets/main/branding/logo.svg, a matplotlib mesh of 1,521 paths (about 244 KB, 45 KB gzipped, after SVGO); not adopted because one icon would add about a quarter of the full bundle (#836)
 /** Crv coin icon (colored). */
 export const Crv = /* @__PURE__ */ createIcon(

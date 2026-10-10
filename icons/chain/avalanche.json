@@ -2,9 +2,9 @@
   "$schema": "../schema.json",
   "name": "Avalanche",
   "source": [
-    "https://support.avax.network/en/articles/4132288-avalanche-press-kit-and-brand-assets",
+    "https://support.avax.network/en/articles/4132288-avalanche-brand-media-kit",
     "https://drive.google.com/drive/folders/1i81sIjB6Z8hmQIITyXB37c1thodumFKJ",
-    "https://www.avax.network/touchicon.svg"
+    "https://www.avalanche.com/touchicon.svg"
   ],
   "notes": [
     "Default: the current Avalanche logomark (two shapes in #E6212F), identical in shape and colour to Avalanche_Logomark_Red.svg in the official brand-assets kit (linked from support.avax.network; Avalanche Logomark/SVG); paths from the site's 256-unit touchicon.svg, clipped to its 196x173 artwork box as in the file. It replaces the older #E84142 disc-cut mark",

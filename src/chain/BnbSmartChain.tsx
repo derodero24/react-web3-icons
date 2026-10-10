@@ -1,6 +1,8 @@
 import { createIcon } from '../utils';
 
-// Source: https://static.bnbchain.org/home-ui/static/images/brand-guidelines/BNBChain-Logo.zip (official BNB Chain brand kit at https://www.bnbchain.org/en/brand-guidelines, files BNB Chain - Logo/SVG/BNB Chain_Symbol_Yellow.svg and BNB Chain_Symbol_White.svg; the brand-guidelines page serves the same files at https://www.bnbchain.org/images/brand-guidelines/svg/)
+// Source: https://static.bnbchain.org/home-ui/static/images/brand-guidelines/BNBChain-Logo.zip (official BNB Chain brand kit at https://www.bnbchain.org/en/brand-guidelines, files BNB Chain - Logo/SVG/BNB Chain_Symbol_Yellow.svg and BNB Chain_Symbol_White.svg; the brand-guidelines page serves the same files)
+// Source: https://www.bnbchain.org/images/brand-guidelines/svg/BNB%20Chain_Symbol_Yellow.svg
+// Source: https://www.bnbchain.org/images/brand-guidelines/svg/BNB%20Chain_Symbol_White.svg
 // Colored: the official BNB Chain_Symbol_Yellow.svg unchanged (one #F0B90B path), placed on the 64 grid; the coin Bnb re-exports these components
 // Mono: the same path in currentColor
 // Circle / Square: the brand kit has no container version, so these follow the repository container convention: the official symbol in white (BNB Chain_Symbol_White.svg has the same path; the brand guidelines list #F0B90B and #FFFFFF as brand colours) on a #F0B90B disc (r 32) or rounded square (rx 12.8). The 96-unit symbol is placed at translate(8.9316 9) scale(0.479167): 46 units tall (about 72% of the container) and centred
