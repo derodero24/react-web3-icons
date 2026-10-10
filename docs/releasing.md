@@ -233,10 +233,19 @@ change.
   and only then [remove the token](#remove-the-token).
 - After publishing: check provenance, the tag, the GitHub release and
   `main` as described in [Release flow](#release-flow).
+- Major release, before merging the version PR: make
+  `examples/stackblitz/package.json` accept the new major next to the
+  current one (for 5.0.0, `^4.0.0 || ^5.0.0`). The playground has no
+  lockfile, so the README's StackBlitz link, which opens `main`, installs the
+  new major as soon as it is on npm. A range with only the new major would
+  fail the `Build StackBlitz playground` check until then, because that job
+  installs from npm.
 - Major release: once the new major is on npm, update the supported-versions
   table in [SECURITY.md](../SECURITY.md) (new major `Yes`, every older
   version `No`). The policy covers the latest published major only, so the
-  table changes after the release, not before.
+  table changes after the release, not before. Also narrow the playground's
+  range to the new major (for 5.0.0, `^5.0.0`) on `develop`; `main` picks
+  that up at the next release.
 
 ## Verifying a release
 
