@@ -15,6 +15,7 @@ export * from './Celestia';
 export * from './Celo';
 export * from './CosmosHub';
 export * from './Cronos';
+export * from './DataNetwork';
 export * from './Eclipse';
 export * from './Ethereum';
 export * from './Fantom';

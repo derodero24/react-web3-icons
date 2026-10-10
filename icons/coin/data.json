@@ -1,0 +1,35 @@
+{
+  "name": "Data",
+  "source": [
+    "re-export of DataNetwork — see src/chain/DataNetwork.tsx"
+  ],
+  "notes": [
+    "Lookup keys: the legacy ticker IP resolves to Data, because $IP converts to $DATA automatically at a 1:1 ratio (https://www.datafdn.org/faqs)."
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/DataNetwork",
+    "exports": [
+      {
+        "of": "DataNetwork",
+        "as": "Data"
+      },
+      {
+        "of": "DataNetworkMono",
+        "as": "DataMono"
+      },
+      {
+        "of": "DataNetworkSquare",
+        "as": "DataSquare"
+      },
+      {
+        "of": "DataNetworkSquareMono",
+        "as": "DataSquareMono"
+      }
+    ]
+  },
+  "tickers": [
+    "DATA",
+    "IP"
+  ]
+}

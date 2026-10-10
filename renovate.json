@@ -2,18 +2,20 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    "helpers:pinGitHubActionDigestsToSemver"
+    "helpers:pinGitHubActionDigestsToSemver",
+    "customManagers:biomeVersions"
   ],
   "schedule": [
     "before 4am on monday"
   ],
+  "prHourlyLimit": 0,
   "prConcurrentLimit": 10,
   "minimumReleaseAge": "3 days",
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true,
     "schedule": [
-      "before 4am on monday"
+      "before 4am on thursday"
     ],
     "recreateWhen": "always",
     "rebaseWhen": "never"
@@ -84,6 +86,19 @@
         "package.json"
       ],
       "automerge": false
+    },
+    {
+      "description": "Group and automerge non-major Biome updates: CLI, WASM build and biome.json $schema. Kept last so it overrides the example-app group; $schema deps have no depType, so automerge is set here",
+      "matchPackageNames": [
+        "@biomejs/biome",
+        "@biomejs/wasm-nodejs"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "biome",
+      "automerge": true
     }
   ]
 }

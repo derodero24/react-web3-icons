@@ -1,7 +1,13 @@
 {
   "name": "Injective",
   "source": [
-    "https://injective.com"
+    "https://injective.com/brand (official Injective brand kit, accessed 2026-10-09)",
+    "https://injective.com/brand/injective_icon.zip (Icon/SVG/icon_Injective-Ocean.svg and icon_Injective-Black.svg)"
+  ],
+  "notes": [
+    "Default: the kit's icon_Injective-Ocean.svg (#4D3DFF), path unchanged and placed on the 64 grid; its clip path (the 48-unit viewBox square, which cuts nothing) is dropped. It replaces a copy of the same mark squashed about 2% horizontally (aspect 1.00 against the file's 1.02)",
+    "Mono: the same path in currentColor, as in the kit's one-colour icon_Injective-Black.svg and icon_Injective-White.svg (same geometry)",
+    "The kit's round token mark (Injective Token.svg) is the Inj coin unit, see icons/coin/inj.json"
   ],
   "kind": "icon",
   "variants": {

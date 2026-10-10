@@ -1,7 +1,10 @@
 {
   "name": "ImToken",
   "source": [
-    "https://token.im"
+    "https://token.im (official site; walled, see notes)"
+  ],
+  "notes": [
+    "Not verified (checked 2026-10-09): token.im and support.token.im answer automated requests with 403, and the official forum imtoken.fans serves the logo only as PNG. The artwork predates the source policy and is unchanged"
   ],
   "kind": "icon",
   "variants": {
