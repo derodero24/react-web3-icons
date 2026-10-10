@@ -128,6 +128,21 @@ describe('unlinkIssueRefsInCode', () => {
       input: `x\n  \`\`\`js \`${issue('5')}\`\n  ${issue('836')}`,
       expected: `x\n  \`\`\`js \`#5\`\n  ${issue('836')}`,
     },
+    {
+      name: 'a Markdown link in a fenced code block, next to pull request and commit links',
+      input: `x\n\n  \`\`\`md\n  See ${issue('141414')}, [#867](${SERVER}/${REPO}/pull/867) and [\`abc1234\`](${SERVER}/${REPO}/commit/abc1234)\n  \`\`\`\n\n  See ${issue('836')}`,
+      expected: `x\n\n  \`\`\`md\n  See #141414, [#867](${SERVER}/${REPO}/pull/867) and [\`abc1234\`](${SERVER}/${REPO}/commit/abc1234)\n  \`\`\`\n\n  See ${issue('836')}`,
+    },
+    {
+      name: 'a fenced code block up to the end of its list item',
+      input: `- a\n  \`\`\`\n  ${issue('141414')}\n- b ${issue('836')}`,
+      expected: `- a\n  \`\`\`\n  #141414\n- b ${issue('836')}`,
+    },
+    {
+      name: 'an indented code block',
+      input: `- x\n\n      <Xrp color="${issue('141414')}" />\n\n  See ${issue('836')}`,
+      expected: `- x\n\n      <Xrp color="#141414" />\n\n  See ${issue('836')}`,
+    },
   ])('unlinks $name', ({ input, expected }) => {
     expect(unlinkIssueRefsInCode(input)).toBe(expected);
   });
