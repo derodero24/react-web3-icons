@@ -1,18 +1,21 @@
 {
   "name": "SafeProtocol",
   "source": [
-    "https://safe.global (official brand)"
+    "re-export of Safe — see src/wallet/Safe.tsx. Both units drew the same safe.global mark, so the artwork now lives in one place (#837)"
   ],
-  "kind": "icon",
-  "variants": {
-    "": {
-      "file": "safe-protocol.svg",
-      "fill": "#000"
-    },
-    "Mono": {
-      "file": "safe-protocol.mono.svg",
-      "fill": "currentColor"
-    }
+  "kind": "reexport",
+  "reexport": {
+    "from": "../wallet/Safe",
+    "exports": [
+      {
+        "of": "Safe",
+        "as": "SafeProtocol"
+      },
+      {
+        "of": "SafeMono",
+        "as": "SafeProtocolMono"
+      }
+    ]
   },
   "slugs": [
     "safeprotocol"

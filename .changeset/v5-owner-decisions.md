@@ -8,7 +8,7 @@ Settle the remaining v5 naming and artwork decisions (#815, #835, #836, #837):
   - `ImmutableX*` → `Immutable*`, after the Immutable X → Immutable rebrand. The new slugs `immutable` and `immutable-zkevm` resolve to it.
   - `ZkSync*` → `Zksync*`, the official name ZKsync with the acronym written as a word. Like `StarkNet*`, the old names get no `dist/svg` file of their own, because those files would differ only in letter case.
 - **Duplicate variants deprecated:**
-  - `MetaMaskAlt` → `MetaMask`: one fox design since 2024. `'Alt'` leaves `WalletVariant`.
+  - `MetaMaskAlt` → `MetaMask`: one fox design since 2024. `'Alt'` is not a `WalletVariant` value.
   - `MagicEdenFlat` → `MagicEden`: the current mark is single-colour.
   - `MagicEdenWordmarkFlat`: a legacy stacked lockup with no official counterpart. Use `MagicEdenWordmark` or `MagicEdenWordmarkMono`.
 - **Unofficial composites:**

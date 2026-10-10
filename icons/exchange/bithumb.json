@@ -1,12 +1,17 @@
 {
   "name": "Bithumb",
   "source": [
-    "https://www.bithumb.com (official site; raster logos only, see notes)"
+    "https://www.bithumbcorp.com/bithumb_bi_asset.zip (official BI kit, 1_Bithumb Symbol/웹_RGB/bithumb_symbol_RGB_full color.ai and bithumb_symbol_RGB_black.ai)",
+    "https://www.bithumbcorp.com/ko/promotion/bi.php (official CI·BI page of Bithumb Co., Ltd., which links the kit)",
+    "https://www.bithumbcorp.com/bithumb_bi_system_guide_v5_0.pdf (BI system guide v5.0: primary colour Bithumb Orange, Pantone 1505 C, #FF6C00)"
   ],
   "notes": [
-    "Origin of the artwork unknown (it predates the source policy). Checked 2026-10-04: bithumb.com serves its logo only as rasters (WebP header/footer backgrounds in its stylesheets, https://content.bithumb.com/resources/img/comm/seo/apple-icon-180x180.png in orange #FE8100 / #E2530B); no official vector was found, so the red-to-orange artwork here is left unchanged",
-    "Mono: the red flag behind the stem is cut back from the b by a 1.2-unit seam."
+    "Default: the kit's bithumb_symbol_RGB_full color.ai (Illustrator PDF, vector only): the #D1350F flag and the #FF8200 b, path data unchanged, plus the kit's #D1350F shadow on the bowl's shoulder. Every coordinate is mapped from the 1080 pt PDF page by X = (x - 565.938) * 56/900 + 32, Y = (540 - y) * 56/900 + 32 (y flipped; centred on the ArtBox, 900 pt tall -> 56 units)",
+    "Shadow: the .ai paints a constant #D1350F shading through the shoulder's clip path under a luminosity soft mask (an axial DeviceGray 0 -> 1 shading under cm [-115.3766 125.7091 169.1205 151.4174 771.047 544.2887]). It is converted analytically, not sampled from pixels: a userSpaceOnUse linearGradient of #D1350F from stop-opacity 0 to 1, from PDF point E = (771.047, 544.289) to E + g/|g|^2 = (657.239, 671.402), where g is the first row of the inverse shading matrix, both mapped like the paths (no gradientTransform). It matches the kit's own bithumb_symbol_RGB_full color.png within 0.07/255 mean colour error",
+    "Mono: the kit's one-colour bithumb_symbol_RGB_black.ai (the same file as its orange and white versions): the b and a separate flag sliver, path data unchanged and mapped the same way, in currentColor; the kit's own gaps keep the flag and the shoulder apart from the stem",
+    "brandColor: the guide's primary colour Bithumb Orange #FF6C00 (also on the BI page as RGB 255 108 0); the artwork's most frequent colour would be the #D1350F flag"
   ],
+  "brandColor": "#ff6c00",
   "kind": "icon",
   "variants": {
     "": {

@@ -1,12 +1,14 @@
 {
   "name": "Stellar",
   "source": [
-    "https://stellar.org"
+    "https://stellar.org/brand-resources (Stellar brand resource hub, accessed 2026-10-09: \"Stellar logo pack\")",
+    "https://cdn.sanity.io/files/e2r40yh6/production-i18n/9ef5ab890833c2571489b41a23a0ffc29307300c.zip (Logo Press Kit 2026: Stellar/CMYK/Black/Stellar Logo Final Black CMYK.pdf and Stellar/RGB/Stellar Logo Final Black RGB.png)"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "stellar.svg"
+      "file": "stellar.svg",
+      "fill": "#000"
     },
     "Mono": {
       "file": "stellar.mono.svg",
@@ -15,5 +17,11 @@
   },
   "slugs": [
     "stellar"
+  ],
+  "notes": [
+    "Default: the mark of the press kit's Stellar logo (the ring with the two bands, the first two paths of Stellar Logo Final Black CMYK.pdf, an Illustrator 30.2 file modified 2026-03-20), converted 1:1 with pdftocairo -svg, the wordmark dropped and a trailing empty moveto removed; paths otherwise unchanged and placed on the 64 grid. The kit's Stellar logo is vector only as .ai/.pdf/.eps, and its White CMYK files share the same path data",
+    "Colour: #000, as in the kit's RGB export (Stellar Logo Final Black RGB.png is pure #000000); the PDF stores a CMYK rich black that converts to about #100F0D",
+    "Mono: the same two paths in currentColor (the kit's White files are the same mark in one colour)",
+    "It replaces a heavier version of the mark (thicker ring and bands), the one the stellar.org header logo still draws (cdn.sanity.io/images/e2r40yh6/production-i18n/8d48eccbfb27a38b4beb307ed3633f2b2744376b-106x26.svg, #0F0F0F); the brand kit is preferred over the site header"
   ]
 }

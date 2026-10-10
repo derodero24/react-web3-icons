@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 64 64">
-  <path d="m40.95 4-9 16h-18l9-16z" opacity=".45"/>
-  <path d="M31.95 20h18l-9-16h-18z" opacity=".6"/>
-  <path d="m22.95 36 9-16-9-16-9 16z" opacity=".8"/>
-  <path d="m23.04 60 9-16h18l-9 16z" opacity=".45"/>
-  <path d="M32.04 44h-18l9 16h18z" opacity=".6"/>
-  <path d="m41.04 28-9 16 9 16 9-16z" opacity=".8"/>
+  <path d="M32 19.36 23.15 4.02l-8.86 15.34 8.86 15.33z" opacity=".8"/>
+  <path d="m32 19.36 8.85-15.34h-17.7l-8.86 15.34z" opacity=".45"/>
+  <path d="M40.85 4.02h-17.7L32 19.36h17.7z" opacity=".6"/>
+  <path d="m32 44.64 8.85 15.34 8.86-15.34-8.86-15.33z" opacity=".8"/>
+  <path d="m32 44.64-8.85 15.34h17.7l8.86-15.34z" opacity=".45"/>
+  <path d="M23.15 59.98h17.7L32 44.64H14.3z" opacity=".6"/>
 </svg>

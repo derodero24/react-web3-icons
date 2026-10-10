@@ -1,6 +1,7 @@
 import { createIcon } from '../utils';
 
-// Source: https://token.im
+// Source: https://token.im (official site; walled, see notes)
+// Not verified (checked 2026-10-09): token.im and support.token.im answer automated requests with 403, and the official forum imtoken.fans serves the logo only as PNG. The artwork predates the source policy and is unchanged
 /** Im Token wallet icon (colored). */
 export const ImToken = /* @__PURE__ */ createIcon(
   'ImToken',

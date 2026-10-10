@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64">
   <g transform="translate(1.7 .99)scale(1.51497)">
+    <path fill="url(#ray-g)" d="M34.33 15.87v12.88L20 37.02 5.66 28.75V12.2L20 3.92l11.01 6.36 1.67-.96L20 2 4 11.24V29.7l16 9.24 16-9.24V14.9z"/>
+    <path fill="url(#ray-g)" d="M15.99 28.76h-2.4v-8.04h8a2.88 2.88 0 0 0 2.63-3.96 3 3 0 0 0-.63-.92 2.8 2.8 0 0 0-2-.84h-8v-2.44h8a5.3 5.3 0 0 1 5.3 5.29c0 1.07-.33 2.12-.94 3a5 5 0 0 1-2.3 1.88q-1.4.45-2.87.43h-4.8z"/>
+    <path fill="url(#ray-g)" d="M26.83 28.56h-2.8l-2.16-3.77a9 9 0 0 0 2.5-.5z"/>
+    <path fill="url(#ray-g)" d="m32.66 13.19 1.65.92 1.66-.92v-1.94l-1.66-.96-1.65.96z"/>
     <defs>
-      <linearGradient id="ray-g" x1="35.73" x2="4.07" y1="11.29" y2="29.77" gradientUnits="userSpaceOnUse">
+      <linearGradient id="ray-g" x1="35.97" x2="2.04" y1="11.25" y2="24.82" gradientUnits="userSpaceOnUse">
         <stop stop-color="#C200FB"/>
         <stop offset=".49" stop-color="#3772FF"/>
         <stop offset="1" stop-color="#5AC4BE"/>
       </linearGradient>
     </defs>
-    <path fill="url(#ray-g)" d="M34.33 15.87v12.88L20 37.02 5.66 28.75V12.2L20 3.92l11.01 6.36 1.67-.96L20 2 4 11.24V29.7l16 9.24 16-9.24V14.9z"/>
-    <path fill="url(#ray-g)" d="M15.99 28.76h-2.4v-8.04h8a2.88 2.88 0 0 0 2.63-3.96 3 3 0 0 0-.63-.92 2.8 2.8 0 0 0-2-.84h-8v-2.44h8a5.3 5.3 0 0 1 5.3 5.29c0 1.07-.33 2.12-.94 3a5 5 0 0 1-2.3 1.88q-1.4.45-2.87.43h-4.8z"/>
-    <path fill="url(#ray-g)" d="M26.83 28.56h-2.8l-2.16-3.77a9 9 0 0 0 2.5-.5z"/>
-    <path fill="url(#ray-g)" d="m32.66 13.19 1.65.92 1.66-.92v-1.94l-1.66-.96-1.65.96z"/>
   </g>
 </svg>

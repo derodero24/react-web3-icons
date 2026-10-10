@@ -1,13 +1,18 @@
 {
   "name": "Uniswap",
   "source": [
-    "https://uniswap.org"
+    "https://github.com/Uniswap/brand-assets/blob/1d829912a8b1c154b700984f88baa83142ee1a1b/Uniswap%20Brand%20Assets/Uniswap_icon_pink.svg (official brand assets)",
+    "https://github.com/Uniswap/brand-assets/blob/1d829912a8b1c154b700984f88baa83142ee1a1b/Uniswap%20Brand%20Assets/Uniswap_icon_black.svg (official one-colour icon)"
+  ],
+  "notes": [
+    "Default: the official Uniswap_icon_pink.svg, the current #F50DB4 unicorn (nine paths, unchanged), placed on the 64 grid. It replaces the earlier, thinner unicorn in #FF007A",
+    "Mono: the official one-colour Uniswap_icon_black.svg (the same nine paths) in currentColor"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "uniswap.svg",
-      "fill": "#FF007A"
+      "fill": "#F50DB4"
     },
     "Mono": {
       "file": "uniswap.mono.svg",
