@@ -4,6 +4,7 @@
  * it never depends on a previous build.
  */
 
+import { ownFill } from './isolate.ts';
 import { quote } from './jsx.ts';
 import {
   CATEGORIES,
@@ -15,7 +16,7 @@ import {
 } from './lib.ts';
 import { deprecatedExports, type PrimaryIds, primaryIds } from './meta.ts';
 import { type ArtworkUnitMeta, isArtwork } from './unit.ts';
-import { getAttr, parseSvg, type XmlNode } from './xml.ts';
+import { parseSvg, type XmlNode } from './xml.ts';
 
 /** Per-unit data from icons/ that only base entries carry. */
 interface Enrichment {
@@ -90,14 +91,14 @@ const UNRENDERED = new Set([
 
 /**
  * Whether a painted shape under `node` gets SVG's initial fill, black: no
- * `fill` on the shape nor on any ancestor (`inherited` says whether one of
- * `node`'s ancestors sets it).
+ * `fill` (attribute or `style` declaration) on the shape nor on any ancestor
+ * (`inherited` says whether one of `node`'s ancestors sets it).
  */
 function paintsInitialFill(node: XmlNode, inherited = false): boolean {
   if (UNRENDERED.has(node.tag)) {
     return false;
   }
-  const filled = inherited || getAttr(node, 'fill') !== undefined;
+  const filled = inherited || ownFill(node) !== undefined;
   if (!filled && FILLED_SHAPES.has(node.tag)) {
     return true;
   }
@@ -105,10 +106,31 @@ function paintsInitialFill(node: XmlNode, inherited = false): boolean {
 }
 
 /**
+ * Rewrites each `style` attribute as one attribute per declaration
+ * (`style="fill: #F00; opacity: .5"` → ` fill="#F00" opacity=".5"`), in
+ * place, so colours set in `style` count like attributes and in document
+ * order.
+ */
+function styleAsAttributes(svgText: string): string {
+  return svgText.replace(/\sstyle="([^"]*)"/g, (_, style: string) =>
+    style
+      .split(';')
+      .map(declaration => {
+        const colon = declaration.indexOf(':');
+        return colon < 0
+          ? ''
+          : ` ${declaration.slice(0, colon).trim()}="${declaration.slice(colon + 1).trim()}"`;
+      })
+      .join(''),
+  );
+}
+
+/**
  * Brand color of a colored SVG, by frequency of the fill/stroke/stop-color
- * values (hex, or the keywords `black` and `white`): the most frequent
- * non-neutral color (see {@link isNeutralColor}), or — for artwork with
- * nothing but neutrals — the most frequent neutral other than pure white.
+ * values (hex, or the keywords `black` and `white`; as attributes or `style`
+ * declarations): the most frequent non-neutral color (see
+ * {@link isNeutralColor}), or — for artwork with nothing but neutrals — the
+ * most frequent neutral other than pure white.
  * Artwork that names no such colour but paints a shape without any `fill`
  * (Hedera's disc, Linea's square) renders that shape black, SVG's initial
  * fill, and gets `#000000`. A heuristic: badge-style marks whose container
@@ -117,7 +139,7 @@ function paintsInitialFill(node: XmlNode, inherited = false): boolean {
  */
 export function extractBrandColor(svgText: string): string | undefined {
   const counts = new Map<string, number>();
-  for (const [, color = ''] of svgText.matchAll(
+  for (const [, color = ''] of styleAsAttributes(svgText).matchAll(
     /(?:fill|stroke|stop-color)="(#[0-9a-fA-F]{3,8}|black|white)"/gi,
   )) {
     const hex = normalizeHex(color);

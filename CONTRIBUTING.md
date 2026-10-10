@@ -444,8 +444,9 @@ unit without the required attribution (and the generated TSX without its
 regenerating.
 
 This runs SVGO with the bundled configuration (removes metadata, strips fixed
-dimensions, keeps brand colors, ids, and multi-colored paths), normalizes the
-root element, puts the artwork on the 64×64 grid following the
+dimensions, moves `fill`, `stroke` and other presentation properties out of
+`style` into attributes, keeps brand colors, ids, and multi-colored paths),
+normalizes the root element, puts the artwork on the 64×64 grid following the
 [optical-size rule](#optical-size) (this step launches Chromium through
 Playwright), writes `icons/<category>/<slug>.svg` (+ `.mono.svg`) and
 `<slug>.json`, and regenerates `src/`. Follow the printed next steps

@@ -33,7 +33,7 @@ const SHAPES: ReadonlySet<string> = new Set([
 export const INITIAL_FILL = '#000';
 
 /** The node's own `fill`, from the attribute or a `fill:` style declaration. */
-function ownFill(node: XmlNode): string | undefined {
+export function ownFill(node: XmlNode): string | undefined {
   const style = getAttr(node, 'style');
   const declared =
     style && /(?:^|;)\s*fill\s*:\s*([^;]+?)\s*(?:;|$)/.exec(style);

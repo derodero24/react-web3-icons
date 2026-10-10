@@ -1069,6 +1069,21 @@ describe('manifest brandColor', () => {
       `<svg ${XMLNS} viewBox="0 0 24 24" fill="#FFF"><path d="M0 0h24v24H0z"/></svg>`,
       undefined,
     ],
+    [
+      'colours set in style declarations',
+      `<svg ${XMLNS} viewBox="0 0 24 24"><path style="fill:#E57310" d="M0 0h1v1H0z"/><path fill="#1B4ADD" d="M1 0h1v1H1z"/><path style="mix-blend-mode: multiply; fill: #e57310" d="M2 0h1v1H2z"/></svg>`,
+      '#e57310',
+    ],
+    [
+      'nothing when a style sets the fill of the only shape',
+      `<svg ${XMLNS} viewBox="0 0 24 24"><path style="fill:#fff" d="M0 0h24v24H0z"/></svg>`,
+      undefined,
+    ],
+    [
+      "nothing when a group's style sets the fill of its shapes",
+      `<svg ${XMLNS} viewBox="0 0 24 24"><g style="opacity:.5;fill:none"><path d="M0 0h24v24H0z"/></g></svg>`,
+      undefined,
+    ],
   ])('picks %s', (_, artwork, expected) => {
     expect(extractBrandColor(artwork)).toBe(expected);
   });
@@ -1437,6 +1452,18 @@ describe('new-icon normalization', () => {
       expect(getAttr(parseSvg(optimized), 'fill')).toBe(fill);
       expect(isSvgoNormalized(optimize, optimized, 'in.svg')).toBe(true);
     }
+  });
+
+  it('SVGO moves paint out of style attributes', async () => {
+    const optimize = await createOptimizer(ROOT);
+    const optimized = optimize(
+      `<svg ${XMLNS} viewBox="0 0 24 24"><path style="fill:#E57310;mix-blend-mode:multiply" d="M0 0h24v24H0z"/></svg>`,
+      'in.svg',
+    );
+    const [path] = parseSvg(optimized).children;
+    expect(path && getAttr(path, 'fill')).toBe('#E57310');
+    expect(path && getAttr(path, 'style')).toBe('mix-blend-mode:multiply');
+    expect(isSvgoNormalized(optimize, optimized, 'in.svg')).toBe(true);
   });
 
   it('SVGO strips <title> and <desc>, which the parser would reject', async () => {
