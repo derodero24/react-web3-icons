@@ -2,6 +2,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import * as icons from '../src';
+import * as dynamic from '../src/dynamic';
 import { isIconComponent } from './helpers/units';
 
 const SRC_DIR = join(import.meta.dirname, '../src');
@@ -35,6 +36,15 @@ const declarations = collectIconFiles(SRC_DIR).flatMap(file =>
 /** An annotated factory call, or an alias of another export. */
 const PURE_CALL = /^\/\* @__PURE__ \*\/ createIcon(?:<.+>)?\($/;
 const ALIAS = /^[A-Z]\w*;$/;
+
+/** The same, for the dynamic components. */
+const dynamicDeclarations = [
+  ...readFileSync(join(SRC_DIR, 'dynamic/index.ts'), 'utf-8').matchAll(
+    /^export const (\w+) =\s*(\S[^\n]*)/gm,
+  ),
+].map(([, name = '', init = '']) => ({ name, init }));
+
+const PURE_DYNAMIC_CALL = /^\/\* @__PURE__ \*\/ createDynamicIcon<\w+>\(\{$/;
 
 describe('PURE annotations', () => {
   // Without /* @__PURE__ */, bundlers must assume createIcon() has side
@@ -72,5 +82,18 @@ describe('PURE annotations', () => {
       .filter(([name, value]) => isIconComponent(value) && !declared.has(name))
       .map(([name]) => name);
     expect(missing).toEqual([]);
+  });
+
+  // Each createDynamicIcon() call keeps its category's whole lazy import map.
+  // Without the annotation, importing one dynamic component bundles the
+  // loaders and lookup maps of all eight categories.
+  it('every dynamic component is a /* @__PURE__ */ createDynamicIcon call', () => {
+    const offenders = dynamicDeclarations
+      .filter(({ init }) => !PURE_DYNAMIC_CALL.test(init))
+      .map(({ name, init }) => `${name} = ${init}`);
+    expect(offenders).toEqual([]);
+    expect(new Set(dynamicDeclarations.map(({ name }) => name))).toEqual(
+      new Set(Object.keys(dynamic)),
+    );
   });
 });

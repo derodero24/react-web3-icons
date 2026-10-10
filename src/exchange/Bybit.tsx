@@ -6,9 +6,9 @@ import { createIcon } from '../utils';
 /** Extra props of the Bybit icons (on top of `IconProps`). */
 export interface BybitProps {
   /** Fill of the bar of the logo. */
-  fill1?: string;
+  fill1?: string | undefined;
   /** Fill of the lettering. */
-  fill2?: string;
+  fill2?: string | undefined;
 }
 
 /** Bybit exchange icon (colored). */

@@ -6,7 +6,7 @@ import { createIcon } from '../utils';
 /** Extra props of the Rainbow icons (on top of `IconProps`). */
 export interface RainbowProps {
   /** Render the gradient tile behind the arcs. Defaults to `true` for `Rainbow` and `false` for `RainbowSymbol`. */
-  withBackground?: boolean;
+  withBackground?: boolean | undefined;
 }
 
 /** The artwork `withBackground` switches between. */
