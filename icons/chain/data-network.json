@@ -1,0 +1,45 @@
+{
+  "$schema": "../schema.json",
+  "name": "DataNetwork",
+  "source": [
+    "https://datafdn.org/brand-guide (official DATA Foundation brand guide, brand kit 06252026)",
+    "https://assets.piplabs.xyz/datafdn.org/brand-kit/06252026/Symbol/sm/TDF_Symbol_Black.svg (the brand guide's Symbol; Symbol/sm/TDF_Symbol_White.svg is the same geometry in #F8F8F6)",
+    "https://assets.piplabs.xyz/datafdn.org/brand-kit/06252026/Token/sm/DATA/TDF_Token_DATA.svg (the brand guide's $DATA token badge)"
+  ],
+  "notes": [
+    "Formerly Story: https://www.datafdn.org/ says Story Network becomes DATA Network and $IP becomes $DATA, and https://www.datafdn.org/faqs says all $IP converts to $DATA at a 1:1 ratio. Chain ID 1514 is listed as Data Network on chainid.network (checked 2026-10-09). Story never shipped in this package, so story is an extra lookup key with no deprecated alias",
+    "Default: the official Symbol TDF_Symbol_Black.svg (one path in #1A1A1A), path unchanged, placed on the 64 grid. The brand guide calls the Symbol the standalone mark for social icons, token badges and favicons. The brand colour stays the neutral #1A1A1A, as for Aptos and Hedera, because the guide reserves the #F6FF00 highlight for emphasis",
+    "Mono: the same path in currentColor (TDF_Symbol_White.svg is this geometry in #F8F8F6)",
+    "Square: the official $DATA token badge TDF_Token_DATA.svg (a full-bleed #1A1A1A square with the mark in #F8F8F6 at 60% of the side), paths unchanged, placed on the 64 grid. SquareMono: the square in currentColor with the badge's mark knocked out (one evenodd path; the mark is a single contour)"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "data-network.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "data-network.mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "data-network.square.svg",
+      "fill": "none"
+    },
+    "SquareMono": {
+      "file": "data-network.square-mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "aliases": [
+    "story"
+  ],
+  "slugs": [
+    "data-network",
+    "data",
+    "story"
+  ],
+  "chainIds": [
+    1514
+  ]
+}

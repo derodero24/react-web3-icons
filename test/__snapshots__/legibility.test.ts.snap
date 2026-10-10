@@ -9,6 +9,7 @@ exports[`dark/light background legibility (issue #712) > documents how each affe
   "dark: chain/Aptos → monochrome AptosMono",
   "dark: chain/Berachain → variant BerachainCircle",
   "dark: chain/Celestia → monochrome CelestiaMono",
+  "dark: chain/DataNetwork → variant DataNetworkSquare",
   "dark: chain/Eclipse → monochrome EclipseMono",
   "dark: chain/Ethereum → variant EthereumCircle",
   "light: chain/Fraxtal → exempt (no-official-alternative)",
