@@ -110,7 +110,7 @@ README and this file in one change; the npm subpaths stay as they are.
 ## Keeping the collections fresh
 
 Nothing beyond the normal release is needed. The release workflow builds
-`dist/` (including both JSON files) before `pnpm changeset publish`, so every
+`dist/` (including both JSON files) and packs it before publishing, so every
 npm version carries collections generated from the same `icons/` tree as its
 components, with `info.version` and `info.total` updated. Iconify only lists
 sets whose source it can update automatically, and refreshes listed sets
