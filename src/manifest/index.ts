@@ -645,6 +645,8 @@ export type IconManifestName =
   | 'RainbowWalletSymbolMono'
   | 'Raydium'
   | 'RaydiumMono'
+  | 'Rbtc'
+  | 'RbtcMono'
   | 'Ready'
   | 'ReadyMono'
   | 'RedStone'
@@ -659,6 +661,8 @@ export type IconManifestName =
   | 'RoninCircle'
   | 'RoninCircleMono'
   | 'RoninMono'
+  | 'Rootstock'
+  | 'RootstockMono'
   | 'Routescan'
   | 'RoutescanMono'
   | 'Safe'
@@ -1468,6 +1472,15 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'RoninCircleMono', category: 'chain' },
   { name: 'RoninMono', category: 'chain' },
   {
+    name: 'Rootstock',
+    category: 'chain',
+    chainId: 30,
+    slug: 'rootstock',
+    variants: ['', 'Mono'],
+    brandColor: '#ff931e',
+  },
+  { name: 'RootstockMono', category: 'chain' },
+  {
     name: 'Scroll',
     category: 'chain',
     chainId: 534_352,
@@ -2069,6 +2082,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#7142cf',
   },
   { name: 'PythMono', category: 'coin' },
+  {
+    name: 'Rbtc',
+    category: 'coin',
+    ticker: 'RBTC',
+    variants: ['', 'Mono'],
+    brandColor: '#ff9100',
+  },
+  { name: 'RbtcMono', category: 'coin' },
   {
     name: 'Render',
     category: 'coin',

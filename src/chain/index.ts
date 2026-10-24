@@ -42,6 +42,7 @@ export * from './Plasma';
 export * from './Polkadot';
 export * from './Polygon';
 export * from './Ronin';
+export * from './Rootstock';
 export * from './Scroll';
 export * from './Sei';
 export * from './Solana';

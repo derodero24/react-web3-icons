@@ -144,6 +144,8 @@ export const coinImports: Record<
   PolMono: () => import('../../coin/Pol'),
   Pyth: () => import('../../coin/Pyth'),
   PythMono: () => import('../../coin/Pyth'),
+  Rbtc: () => import('../../coin/Rbtc'),
+  RbtcMono: () => import('../../coin/Rbtc'),
   Render: () => import('../../coin/Render'),
   RenderMono: () => import('../../coin/Render'),
   Ronin: () => import('../../coin/Ronin'),

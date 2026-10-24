@@ -155,6 +155,8 @@ export const chainImports: Record<
   RoninCircle: () => import('../../chain/Ronin'),
   RoninCircleMono: () => import('../../chain/Ronin'),
   RoninMono: () => import('../../chain/Ronin'),
+  Rootstock: () => import('../../chain/Rootstock'),
+  RootstockMono: () => import('../../chain/Rootstock'),
   Scroll: () => import('../../chain/Scroll'),
   ScrollMono: () => import('../../chain/Scroll'),
   Sei: () => import('../../chain/Sei'),

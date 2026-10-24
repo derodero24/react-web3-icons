@@ -1,0 +1,32 @@
+{
+  "$schema": "../schema.json",
+  "name": "Rootstock",
+  "kind": "icon",
+  "source": [
+    "https://rootstock.io/brand (official brand page, accessed 2026-10-24: \"Download assets\")",
+    "https://drive.google.com/drive/folders/1IBqsZeIOEhyrdH51noo4sK2c_VPjauzW (the brand page's asset folder: Logo/SVG/Logo/Logo_Colour.svg, Logo_Black.svg)"
+  ],
+  "notes": [
+    "Default: the official Logo_Colour.svg (a #FF931E dot above a knot of rounded lobes), paths unchanged, placed on the 64 grid",
+    "Mono: the same shapes in currentColor; the official Logo_Black.svg has the identical geometry in black",
+    "Rootstock (formerly RSK) is a Bitcoin sidechain; its native coin RBTC ships as Rbtc"
+  ],
+  "variants": {
+    "": {
+      "file": "rootstock.svg",
+      "fill": "#FF931E"
+    },
+    "Mono": {
+      "file": "rootstock.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "rootstock",
+    "rsk"
+  ],
+  "chainIds": [
+    30
+  ],
+  "brandColor": "#ff931e"
+}
