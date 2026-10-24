@@ -1,0 +1,47 @@
+{
+  "$schema": "../schema.json",
+  "name": "Euler",
+  "kind": "icon",
+  "source": [
+    "https://www.euler.finance/brand (official brand page, accessed 2026-10-24: Symbol transparent / dark / circle, brand colors)",
+    "https://www.euler.finance/branding/euler-brand-assets.zip (euler-brand-assets.zip: symbols/euler-symbol-transparent.svg, euler-symbol-dark.svg, euler-symbol-circle.svg)"
+  ],
+  "notes": [
+    "Default: the official euler-symbol-transparent.svg (three bars in #2AE5B9, #FCBF22 and #FF7829), paths unchanged, placed on the 64 grid. The kit ships the symbol standalone and on navy containers, so the base is the standalone symbol (base icon background rule)",
+    "Mono: the three bars as one currentColor path; the kit's mono logos use the same bars in one colour",
+    "Square: the official euler-symbol-dark.svg (the symbol on a full-bleed #08131F square), with its transform, scaled 64/1024",
+    "Circle: the official euler-symbol-circle.svg (the symbol on a #08131F disc), with its transform, scaled 64/1024",
+    "SquareMono / CircleMono: the container in currentColor with the bars knocked out (mask)",
+    "brandColor: #2AE5B9, listed first as \"Euler green\" on the brand page"
+  ],
+  "variants": {
+    "": {
+      "file": "euler.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "euler.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "euler.circle.svg",
+      "fill": "none"
+    },
+    "CircleMono": {
+      "file": "euler.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "euler.square.svg",
+      "fill": "none"
+    },
+    "SquareMono": {
+      "file": "euler.square-mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "euler"
+  ],
+  "brandColor": "#2ae5b9"
+}
