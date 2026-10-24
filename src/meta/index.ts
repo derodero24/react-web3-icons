@@ -413,6 +413,7 @@ export const DEFI_SLUG_TO_NAME = {
   maple: 'Maple',
   morpho: 'Morpho',
   pendle: 'Pendle',
+  polymarket: 'Polymarket',
   rocketpool: 'RocketPool',
   safeprotocol: 'SafeProtocol',
   sky: 'Sky',
