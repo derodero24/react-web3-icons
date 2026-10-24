@@ -76,6 +76,7 @@ const BRAND_CASING = new Map<string, string>([
   ['EigenLayer', 'EigenLayer'],
   ['ImToken', 'imToken'],
   ['KuCoin', 'KuCoin'],
+  ['L2Beat', 'L2BEAT'],
   ['LayerZero', 'LayerZero'],
   ['LooksRare', 'LooksRare'],
   ['MetaMask', 'MetaMask'],

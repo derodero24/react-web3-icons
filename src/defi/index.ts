@@ -15,6 +15,7 @@ export * from './MakerDao';
 export * from './Maple';
 export * from './Morpho';
 export * from './Pendle';
+export * from './Polymarket';
 export * from './RocketPool';
 export * from './SafeProtocol';
 export * from './Sky';

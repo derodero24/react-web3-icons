@@ -4,4 +4,5 @@ export * from './CoinMarketCap';
 export * from './DefiLlama';
 export * from './DexScreener';
 export * from './Dune';
+export * from './L2Beat';
 export * from './Nansen';
