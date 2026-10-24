@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Ray",
+  "source": [
+    "re-export of Raydium — see src/dex/Raydium.tsx"
+  ],
+  "notes": [
+    "The RAY token logo is the Raydium mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the dex icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../dex/Raydium",
+    "exports": [
+      {
+        "of": "Raydium",
+        "as": "Ray"
+      },
+      {
+        "of": "RaydiumMono",
+        "as": "RayMono"
+      }
+    ]
+  },
+  "tickers": [
+    "RAY"
+  ]
+}

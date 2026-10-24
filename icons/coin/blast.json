@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Blast",
+  "source": [
+    "re-export of Blast — see src/chain/Blast.tsx"
+  ],
+  "notes": [
+    "The BLAST token logo is the Blast mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the chain icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Blast",
+    "exports": [
+      {
+        "of": "Blast",
+        "as": "Blast"
+      },
+      {
+        "of": "BlastMono",
+        "as": "BlastMono"
+      }
+    ]
+  },
+  "tickers": [
+    "BLAST"
+  ]
+}

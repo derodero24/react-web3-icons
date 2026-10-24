@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Dydx",
+  "source": [
+    "re-export of Dydx — see src/dex/Dydx.tsx"
+  ],
+  "notes": [
+    "The DYDX token logo is the Dydx mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the dex icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../dex/Dydx",
+    "exports": [
+      {
+        "of": "Dydx",
+        "as": "Dydx"
+      },
+      {
+        "of": "DydxMono",
+        "as": "DydxMono"
+      }
+    ]
+  },
+  "tickers": [
+    "DYDX"
+  ]
+}

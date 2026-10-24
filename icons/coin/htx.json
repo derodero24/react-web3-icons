@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Htx",
+  "source": [
+    "re-export of Htx — see src/exchange/Htx.tsx"
+  ],
+  "notes": [
+    "The HTX token logo is the Htx mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the exchange icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../exchange/Htx",
+    "exports": [
+      {
+        "of": "Htx",
+        "as": "Htx"
+      },
+      {
+        "of": "HtxMono",
+        "as": "HtxMono"
+      }
+    ]
+  },
+  "tickers": [
+    "HTX"
+  ]
+}

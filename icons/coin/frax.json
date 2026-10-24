@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Frax",
+  "source": [
+    "re-export of Frax — see src/defi/Frax.tsx"
+  ],
+  "notes": [
+    "The FRAX token logo is the Frax mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the defi icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Frax",
+    "exports": [
+      {
+        "of": "Frax",
+        "as": "Frax"
+      },
+      {
+        "of": "FraxMono",
+        "as": "FraxMono"
+      }
+    ]
+  },
+  "tickers": [
+    "FRAX"
+  ]
+}

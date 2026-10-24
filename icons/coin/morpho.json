@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Morpho",
+  "source": [
+    "re-export of Morpho — see src/defi/Morpho.tsx"
+  ],
+  "notes": [
+    "The MORPHO token logo is the Morpho mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the defi icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Morpho",
+    "exports": [
+      {
+        "of": "Morpho",
+        "as": "Morpho"
+      },
+      {
+        "of": "MorphoMono",
+        "as": "MorphoMono"
+      }
+    ]
+  },
+  "tickers": [
+    "MORPHO"
+  ]
+}

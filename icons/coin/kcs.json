@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Kcs",
+  "source": [
+    "re-export of KuCoin — see src/exchange/KuCoin.tsx"
+  ],
+  "notes": [
+    "The KCS token logo is the KuCoin mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the exchange icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../exchange/KuCoin",
+    "exports": [
+      {
+        "of": "KuCoin",
+        "as": "Kcs"
+      },
+      {
+        "of": "KuCoinMono",
+        "as": "KcsMono"
+      }
+    ]
+  },
+  "tickers": [
+    "KCS"
+  ]
+}

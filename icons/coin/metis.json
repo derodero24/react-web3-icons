@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Metis",
+  "source": [
+    "re-export of Metis — see src/chain/Metis.tsx"
+  ],
+  "notes": [
+    "The METIS token logo is the Metis mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the chain icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Metis",
+    "exports": [
+      {
+        "of": "Metis",
+        "as": "Metis"
+      },
+      {
+        "of": "MetisMono",
+        "as": "MetisMono"
+      }
+    ]
+  },
+  "tickers": [
+    "METIS"
+  ]
+}

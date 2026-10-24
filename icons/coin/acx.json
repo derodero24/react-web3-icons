@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Acx",
+  "source": [
+    "re-export of Across — see src/bridge/Across.tsx"
+  ],
+  "notes": [
+    "The ACX token logo is the Across mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the bridge icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../bridge/Across",
+    "exports": [
+      {
+        "of": "Across",
+        "as": "Acx"
+      },
+      {
+        "of": "AcrossMono",
+        "as": "AcxMono"
+      }
+    ]
+  },
+  "tickers": [
+    "ACX"
+  ]
+}

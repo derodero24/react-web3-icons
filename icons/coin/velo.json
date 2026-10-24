@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Velo",
+  "source": [
+    "re-export of Velodrome — see src/dex/Velodrome.tsx"
+  ],
+  "notes": [
+    "The VELO token logo is the Velodrome mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the dex icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../dex/Velodrome",
+    "exports": [
+      {
+        "of": "Velodrome",
+        "as": "Velo"
+      },
+      {
+        "of": "VelodromeMono",
+        "as": "VeloMono"
+      }
+    ]
+  },
+  "tickers": [
+    "VELO"
+  ]
+}

@@ -357,6 +357,7 @@ rules (#815), which `test/naming.test.ts` enforces over `icons/**/*.json`:
    | `Monad` | `MON` | re-export of the chain, named after the project |
    | `Ronin` | `RON` | re-export of the chain, named after the project |
    | `Flare` | `FLR` | named after the project; `Flr` is its ticker alias |
+   | `Wormhole` | `W` | one-letter ticker; re-export of the bridge |
 
 4. **Renames keep the old name.** A unit whose name breaks these rules, or
    whose project rebrands, gets the new canonical name, and the old name

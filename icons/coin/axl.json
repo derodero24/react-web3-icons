@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Axl",
+  "source": [
+    "re-export of Axelar — see src/bridge/Axelar.tsx"
+  ],
+  "notes": [
+    "The AXL token logo is the Axelar mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the bridge icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../bridge/Axelar",
+    "exports": [
+      {
+        "of": "Axelar",
+        "as": "Axl"
+      },
+      {
+        "of": "AxelarMono",
+        "as": "AxlMono"
+      }
+    ]
+  },
+  "tickers": [
+    "AXL"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Wormhole",
+  "source": [
+    "re-export of Wormhole — see src/bridge/Wormhole.tsx"
+  ],
+  "notes": [
+    "The W token logo is the Wormhole mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the bridge icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../bridge/Wormhole",
+    "exports": [
+      {
+        "of": "Wormhole",
+        "as": "Wormhole"
+      },
+      {
+        "of": "WormholeMono",
+        "as": "WormholeMono"
+      }
+    ]
+  },
+  "tickers": [
+    "W"
+  ]
+}

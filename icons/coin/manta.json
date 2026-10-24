@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Manta",
+  "source": [
+    "re-export of MantaPacific — see src/chain/MantaPacific.tsx"
+  ],
+  "notes": [
+    "The MANTA token logo is the MantaPacific mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the chain icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/MantaPacific",
+    "exports": [
+      {
+        "of": "MantaPacific",
+        "as": "Manta"
+      },
+      {
+        "of": "MantaPacificMono",
+        "as": "MantaMono"
+      }
+    ]
+  },
+  "tickers": [
+    "MANTA"
+  ]
+}

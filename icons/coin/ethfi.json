@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Ethfi",
+  "source": [
+    "re-export of EtherFi — see src/defi/EtherFi.tsx"
+  ],
+  "notes": [
+    "The ETHFI token logo is the EtherFi mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the defi icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/EtherFi",
+    "exports": [
+      {
+        "of": "EtherFi",
+        "as": "Ethfi"
+      },
+      {
+        "of": "EtherFiMono",
+        "as": "EthfiMono"
+      }
+    ]
+  },
+  "tickers": [
+    "ETHFI"
+  ]
+}

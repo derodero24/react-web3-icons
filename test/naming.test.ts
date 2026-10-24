@@ -143,6 +143,8 @@ const COIN_NAME_EXCEPTIONS = new Map<string, CoinNameReason>([
   ['Ronin', 'project name'],
   // S: re-export of the chain `Sonic`.
   ['Sonic', 'short ticker'],
+  // W: re-export of the bridge `Wormhole`.
+  ['Wormhole', 'short ticker'],
 ]);
 
 const currentNames = new Set(current.map(unit => unit.meta.name));

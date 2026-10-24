@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Bgb",
+  "source": [
+    "re-export of Bitget — see src/exchange/Bitget.tsx"
+  ],
+  "notes": [
+    "The BGB token logo is the Bitget mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the exchange icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../exchange/Bitget",
+    "exports": [
+      {
+        "of": "Bitget",
+        "as": "Bgb"
+      },
+      {
+        "of": "BitgetMono",
+        "as": "BgbMono"
+      }
+    ]
+  },
+  "tickers": [
+    "BGB"
+  ]
+}

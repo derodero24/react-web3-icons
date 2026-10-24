@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Bal",
+  "source": [
+    "re-export of Balancer — see src/defi/Balancer.tsx"
+  ],
+  "notes": [
+    "The BAL token logo is the Balancer mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the defi icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Balancer",
+    "exports": [
+      {
+        "of": "Balancer",
+        "as": "Bal"
+      },
+      {
+        "of": "BalancerMono",
+        "as": "BalMono"
+      }
+    ]
+  },
+  "tickers": [
+    "BAL"
+  ]
+}

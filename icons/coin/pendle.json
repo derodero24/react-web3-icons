@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Pendle",
+  "source": [
+    "re-export of Pendle — see src/defi/Pendle.tsx"
+  ],
+  "notes": [
+    "The PENDLE token logo is the Pendle mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the defi icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Pendle",
+    "exports": [
+      {
+        "of": "Pendle",
+        "as": "Pendle"
+      },
+      {
+        "of": "PendleMono",
+        "as": "PendleMono"
+      }
+    ]
+  },
+  "tickers": [
+    "PENDLE"
+  ]
+}

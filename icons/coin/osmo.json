@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Osmo",
+  "source": [
+    "re-export of Osmosis — see src/dex/Osmosis.tsx"
+  ],
+  "notes": [
+    "The OSMO token logo is the Osmosis mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the dex icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../dex/Osmosis",
+    "exports": [
+      {
+        "of": "Osmosis",
+        "as": "Osmo"
+      },
+      {
+        "of": "OsmosisMono",
+        "as": "OsmoMono"
+      }
+    ]
+  },
+  "tickers": [
+    "OSMO"
+  ]
+}
