@@ -6,6 +6,7 @@ export * from './Convex';
 export * from './EigenLayer';
 export * from './Ethena';
 export * from './EtherFi';
+export * from './Euler';
 export * from './Frax';
 export * from './Gmx';
 export * from './Kamino';
