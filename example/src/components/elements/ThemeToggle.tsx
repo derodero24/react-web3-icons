@@ -19,7 +19,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggleTheme}
       aria-label={label}
-      className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface text-fg-muted transition-colors hover:bg-surface-hover hover:text-fg/80"
+      className="flex h-9 w-9 items-center justify-center rounded-md text-fg-muted transition-colors hover:bg-surface hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
       {/* Sun: shown in dark mode */}
       <svg

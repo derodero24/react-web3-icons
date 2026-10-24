@@ -4,16 +4,16 @@
   "license": "MIT",
   "author": "@derodero24",
   "scripts": {
-    "build": "next build",
-    "dev": "next dev --turbopack",
+    "build": "pnpm run catalog && next build",
+    "catalog": "node ../scripts/build-icons/emit-site-catalog.ts",
+    "dev": "pnpm run catalog && next dev --turbopack",
     "lint": "biome check",
     "lint:fix": "biome check --write",
     "start": "next start",
-    "typecheck": "next typegen && tsc --noEmit"
+    "typecheck": "pnpm run catalog && next typegen && tsc --noEmit"
   },
   "dependencies": {
     "next": "^16.1.6",
-    "nuqs": "^2.8.9",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-web3-icons": "workspace:*"

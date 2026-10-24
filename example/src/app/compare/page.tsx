@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { ICON_MANIFEST } from 'react-web3-icons/manifest';
 import CodeBlock from '../../components/elements/CodeBlock';
-import { ICON_COUNT } from '../../utils/icons';
+import { STATS } from '../../lib/catalog';
 
 export const metadata: Metadata = {
-  title: 'Compare — React Web3 Icons',
+  title: 'Compare Web3 icon libraries',
   description:
     'How react-web3-icons compares to other Web3 icon libraries on bundle size, API design, and features.',
 };
@@ -20,7 +20,7 @@ function Section({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-8">
+    <section id={id} className="scroll-mt-20">
       <h2 className="mb-4 text-xl font-semibold text-fg">{title}</h2>
       {children}
     </section>
@@ -69,8 +69,8 @@ const TOC_ITEMS = [
 ] as const;
 
 // Competitors included in the feature matrix.
-// When adding a new feature to react-web3-icons, update the corresponding row
-// below. See CLAUDE.md § "Compare page maintenance" for the full checklist.
+// When react-web3-icons or a competitor gains or loses a feature, update the
+// corresponding row below and the review date under the matrix.
 const COMPETITORS = [
   { key: 'web3icons', label: '@web3icons/react' },
   { key: 'cryptocurrency-icons', label: 'cryptocurrency-icons' },
@@ -137,32 +137,53 @@ const COMPARISON_ROWS: {
   },
   {
     feature: 'Background variant',
+    ours: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CrossIcon />,
+    },
+    note: 'Circle and Square containers (EthereumCircle, PhantomSquareMono)',
+  },
+  {
+    feature: 'Dynamic loading',
+    ours: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CheckIcon />,
+    },
+    note: 'web3icons: TokenIcon / NetworkIcon (client-only); Ledger fetches from its CDN at runtime',
+  },
+  {
+    feature: 'Chain ID metadata',
+    ours: <CheckIcon />,
+    competitors: {
+      web3icons: <CheckIcon />,
+      'cryptocurrency-icons': <CrossIcon />,
+      ledger: <CrossIcon />,
+    },
+    note: 'react-web3-icons/meta and <ChainIcon chainId={…} />; web3icons: chainId in its network metadata',
+  },
+  {
+    feature: 'Token lookup by contract address',
     ours: <CrossIcon />,
     competitors: {
       web3icons: <CheckIcon />,
       'cryptocurrency-icons': <CrossIcon />,
       ledger: <CrossIcon />,
     },
+    note: 'react-web3-icons looks coins up by ticker',
   },
   {
-    feature: 'Dynamic loading',
+    feature: 'Recorded source for every logo',
     ours: <CheckIcon />,
     competitors: {
-      web3icons: <CrossIcon />,
-      'cryptocurrency-icons': <CrossIcon />,
-      ledger: <CheckIcon />,
+      web3icons: <span className="text-sm text-fg-muted">—</span>,
+      'cryptocurrency-icons': <span className="text-sm text-fg-muted">—</span>,
+      ledger: <span className="text-sm text-fg-muted">—</span>,
     },
-    note: 'Ledger fetches from CDN at runtime',
-  },
-  {
-    feature: 'Meta maps (chain ID → name)',
-    ours: <CheckIcon />,
-    competitors: {
-      web3icons: <CrossIcon />,
-      'cryptocurrency-icons': <CrossIcon />,
-      ledger: <CrossIcon />,
-    },
-    note: 'react-web3-icons/meta',
+    note: 'Each icon page links the official brand asset it was drawn from',
   },
   {
     feature: 'JSDoc IDE hints',
@@ -256,7 +277,7 @@ const COMPARISON_ROWS: {
     feature: 'Icon count',
     ours: (
       <span className="text-sm text-fg/70">
-        {ICON_COUNT} ({EXPORT_COUNT} exports)
+        {STATS.icons} ({EXPORT_COUNT} exports)
       </span>
     ),
     competitors: {
@@ -297,9 +318,12 @@ export default function ComparePage() {
                     <strong className="font-medium text-fg/80">
                       react-web3-icons
                     </strong>{' '}
-                    prioritises a lean, production-ready bundle with
-                    TypeScript-first ergonomics, per-category subpath imports,
-                    and utilities like dynamic loaders and chain ID maps.
+                    covers more than tokens (chains, wallets, DEXs, DeFi,
+                    bridges, oracles, explorers and more), draws every logo from
+                    the brand&apos;s official assets and records the source, and
+                    pairs each colored icon with a mono variant. It ships
+                    TypeScript-first named exports, per-category subpaths,
+                    dynamic loaders and chain ID maps.
                   </span>
                 </li>
                 <li className="flex gap-2">
@@ -308,8 +332,10 @@ export default function ComparePage() {
                     <strong className="font-medium text-fg/80">
                       @web3icons/react
                     </strong>{' '}
-                    offers a much larger catalogue (2,500+ icons), a raw SVG
-                    package for non-React consumers, and a Figma plugin.
+                    offers a much larger catalogue (2,500+ icons, most of them
+                    tokens), token lookup by contract address, a raw SVG package
+                    for non-React consumers, and a Figma plugin. It is the most
+                    downloaded library of the four.
                   </span>
                 </li>
                 <li className="flex gap-2">
@@ -364,13 +390,13 @@ export default function ComparePage() {
                   <tbody className="divide-y divide-border">
                     {[
                       { label: 'Single icon (Ethereum)', size: '~0.7 KB' },
-                      { label: 'Full coin category (/coin)', size: '~71 KB' },
-                      { label: 'Full chain category (/chain)', size: '~37 KB' },
+                      { label: 'Full coin category (/coin)', size: '~74 KB' },
+                      { label: 'Full chain category (/chain)', size: '~40 KB' },
                       {
                         label: 'Dynamic loader (/dynamic), no code splitting',
-                        size: '~138 KB',
+                        size: '~143 KB',
                       },
-                      { label: 'Entire library', size: '~158 KB' },
+                      { label: 'Entire library', size: '~163 KB' },
                     ].map(row => (
                       <tr key={row.label}>
                         <td className="py-2 pr-4 pl-3 font-mono text-sm text-fg/70">
@@ -390,9 +416,9 @@ export default function ComparePage() {
                 <code className="rounded bg-surface px-1 font-mono text-xs">
                   pnpm run size
                 </code>{' '}
-                (size-limit) on the ESM build; 1 KB = 1,000 bytes. With code
-                splitting, /dynamic is a small loader plus one chunk per icon
-                rendered. Single-icon size varies by path complexity.
+                (size-limit) on the 5.0.0 ESM build; 1 KB = 1,000 bytes. With
+                code splitting, /dynamic is a small loader plus one chunk per
+                icon rendered. Single-icon size varies by path complexity.
               </p>
             </Section>
 
@@ -568,7 +594,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
                 >
                   npm trends
                 </a>{' '}
-                for live download stats.
+                for live download stats. Last reviewed on 2026-10-24.
               </p>
             </Section>
           </div>
@@ -576,7 +602,7 @@ import { CryptoIcon } from '@ledgerhq/crypto-icons';
 
         {/* Sticky sidebar TOC (desktop only) */}
         <aside className="hidden lg:block">
-          <nav aria-label="Table of contents" className="sticky top-8">
+          <nav aria-label="Table of contents" className="sticky top-20">
             <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg-muted">
               On this page
             </p>

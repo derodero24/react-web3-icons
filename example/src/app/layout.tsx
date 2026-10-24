@@ -3,8 +3,9 @@ import '../styles/global.css';
 import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import type { ReactNode } from 'react';
-import Footer from '../components/sections/Footer';
-import Header from '../components/sections/Header';
+import Footer from '../components/site/Footer';
+import Header from '../components/site/Header';
+import { SITE_URL } from '../lib/site';
 import { THEME_INIT_SCRIPT } from '../utils/theme';
 import { Providers } from './providers';
 
@@ -20,16 +21,26 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
+const DESCRIPTION =
+  'Open-source React icons for Web3: chains, coins, wallets, DEXs and more, drawn from official brand assets. Colored and mono variants, tree-shakable, Server Components ready.';
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env['NEXT_PUBLIC_SITE_URL'] ??
-      'https://react-web3-icons.vercel.app',
-  ),
-  title: 'React Web3 Icons',
-  description:
-    'Open-source React icon library for Web3 — chains, coins, wallets, DEXs, and more.',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'React Web3 Icons: Web3 brand icons for React',
+    template: '%s · React Web3 Icons',
+  },
+  description: DESCRIPTION,
   authors: [{ name: '@derodero24' }],
-  keywords: 'React, Web3, Icon, Blockchain, Crypto, Currency, Token, NFT',
+  keywords: [
+    'react icons',
+    'web3 icons',
+    'crypto icons',
+    'chain icons',
+    'token icons',
+    'wallet icons',
+    'svg',
+  ],
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -41,15 +52,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'React Web3 Icons',
     siteName: 'React Web3 Icons',
-    description:
-      'Open-source React icon library for Web3 — chains, coins, wallets, DEXs, and more.',
+    description: DESCRIPTION,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'React Web3 Icons',
-    description:
-      'Open-source React icon library for Web3 — chains, coins, wallets, DEXs, and more.',
+    description: DESCRIPTION,
   },
 };
 
@@ -79,14 +88,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <Providers>
           <a
-            href="#icon-grid"
+            href="#main"
             className="fixed left-4 top-4 z-50 -translate-y-16 rounded-lg bg-accent-fg px-4 py-2 text-sm font-medium text-bg transition-transform focus:translate-y-0"
           >
-            Skip to icons
+            Skip to content
           </a>
           <div className="flex min-h-svh flex-col">
             <Header />
-            <main className="flex-1">{children}</main>
+            <main id="main" className="flex-1">
+              {children}
+            </main>
             <Footer />
           </div>
         </Providers>

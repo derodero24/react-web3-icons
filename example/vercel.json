@@ -1,3 +1,13 @@
 {
-  "buildCommand": "next build"
+  "buildCommand": "pnpm run build",
+  "headers": [
+    {
+      "source": "/opengraph-image/",
+      "headers": [{ "key": "Content-Type", "value": "image/png" }]
+    },
+    {
+      "source": "/icons/:category/:slug/opengraph-image/",
+      "headers": [{ "key": "Content-Type", "value": "image/png" }]
+    }
+  ]
 }
