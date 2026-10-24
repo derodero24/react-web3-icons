@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Yfi",
+  "source": [
+    "re-export of Yearn — see src/defi/Yearn.tsx"
+  ],
+  "notes": [
+    "The YFI token logo is the Yearn mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the defi icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Yearn",
+    "exports": [
+      {
+        "of": "Yearn",
+        "as": "Yfi"
+      },
+      {
+        "of": "YearnMono",
+        "as": "YfiMono"
+      }
+    ]
+  },
+  "tickers": [
+    "YFI"
+  ]
+}

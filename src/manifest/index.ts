@@ -32,10 +32,14 @@ export type IconManifestName =
   | 'AbstractMono'
   | 'Across'
   | 'AcrossMono'
+  | 'Acx'
+  | 'AcxMono'
   | 'Ada'
   | 'AdaCircle'
   | 'AdaCircleMono'
   | 'AdaMono'
+  | 'Aero'
+  | 'AeroMono'
   | 'Aerodrome'
   | 'AerodromeMono'
   | 'Alchemy'
@@ -108,12 +112,16 @@ export type IconManifestName =
   | 'AvaxMono'
   | 'Axelar'
   | 'AxelarMono'
+  | 'Axl'
+  | 'AxlMono'
   | 'Babylon'
   | 'BabylonMono'
   | 'Backpack'
   | 'BackpackMono'
   | 'BackpackWallet'
   | 'BackpackWalletMono'
+  | 'Bal'
+  | 'BalMono'
   | 'Balancer'
   | 'BalancerMono'
   | 'Band'
@@ -137,6 +145,8 @@ export type IconManifestName =
   | 'BerachainCircle'
   | 'BerachainCircleMono'
   | 'BerachainMono'
+  | 'Bgb'
+  | 'BgbMono'
   | 'Binance'
   | 'BinanceMono'
   | 'BinanceSmartChain'
@@ -243,6 +253,8 @@ export type IconManifestName =
   | 'CoinpandaSquareMono'
   | 'CollabLand'
   | 'CollabLandMono'
+  | 'Comp'
+  | 'CompMono'
   | 'Compound'
   | 'CompoundMono'
   | 'Convex'
@@ -259,6 +271,8 @@ export type IconManifestName =
   | 'CrvMono'
   | 'CryptoCom'
   | 'CryptoComMono'
+  | 'Cvx'
+  | 'CvxMono'
   | 'Daedalus'
   | 'DaedalusMono'
   | 'DaedalusWallet'
@@ -338,6 +352,10 @@ export type IconManifestName =
   | 'Etherscan'
   | 'EtherscanInverted'
   | 'EtherscanMono'
+  | 'Ethfi'
+  | 'EthfiMono'
+  | 'Eul'
+  | 'EulMono'
   | 'Euler'
   | 'EulerCircle'
   | 'EulerCircleMono'
@@ -376,12 +394,18 @@ export type IconManifestName =
   | 'GeminiSquareMono'
   | 'Gmx'
   | 'GmxMono'
+  | 'Gno'
+  | 'GnoMono'
   | 'GnosisChain'
   | 'GnosisChainMono'
+  | 'Grail'
+  | 'GrailMono'
   | 'Gram'
   | 'GramCircle'
   | 'GramCircleMono'
   | 'GramMono'
+  | 'Gt'
+  | 'GtMono'
   | 'Hardhat'
   | 'HardhatMono'
   | 'Hbar'
@@ -435,8 +459,12 @@ export type IconManifestName =
   | 'KavaCircle'
   | 'KavaCircleMono'
   | 'KavaMono'
+  | 'Kcs'
+  | 'KcsMono'
   | 'Keplr'
   | 'KeplrMono'
+  | 'Kmno'
+  | 'KmnoMono'
   | 'Kraken'
   | 'KrakenMono'
   | 'KuCoin'
@@ -472,6 +500,8 @@ export type IconManifestName =
   | 'LooksRare'
   | 'LooksRareFlat'
   | 'LooksRareMono'
+  | 'Lqty'
+  | 'LqtyMono'
   | 'Ltc'
   | 'LtcMono'
   | 'MagicEden'
@@ -482,6 +512,8 @@ export type IconManifestName =
   | 'MagicEdenWordmarkMono'
   | 'MakerDao'
   | 'MakerDaoMono'
+  | 'Manta'
+  | 'MantaMono'
   | 'MantaPacific'
   | 'MantaPacificMono'
   | 'Mantle'
@@ -533,6 +565,8 @@ export type IconManifestName =
   | 'OKXWalletMono'
   | 'Odos'
   | 'OdosMono'
+  | 'Okb'
+  | 'OkbMono'
   | 'Okx'
   | 'OkxMono'
   | 'OkxWallet'
@@ -565,6 +599,8 @@ export type IconManifestName =
   | 'OrbiterMono'
   | 'Orca'
   | 'OrcaMono'
+  | 'Osmo'
+  | 'OsmoMono'
   | 'Osmosis'
   | 'OsmosisMono'
   | 'PancakeSwap'
@@ -643,6 +679,8 @@ export type IconManifestName =
   | 'RainbowWalletSquareMono'
   | 'RainbowWalletSymbol'
   | 'RainbowWalletSymbolMono'
+  | 'Ray'
+  | 'RayMono'
   | 'Raydium'
   | 'RaydiumMono'
   | 'Rbtc'
@@ -672,6 +710,8 @@ export type IconManifestName =
   | 'SafeMono'
   | 'SafeProtocol'
   | 'SafeProtocolMono'
+  | 'Scr'
+  | 'ScrMono'
   | 'Scroll'
   | 'ScrollMono'
   | 'Sei'
@@ -682,6 +722,8 @@ export type IconManifestName =
   | 'SkyCircle'
   | 'SkyCircleMono'
   | 'SkyMono'
+  | 'Snx'
+  | 'SnxMono'
   | 'Socket'
   | 'SocketMono'
   | 'Sol'
@@ -726,6 +768,8 @@ export type IconManifestName =
   | 'StarknetSquareMono'
   | 'Stellar'
   | 'StellarMono'
+  | 'Stg'
+  | 'StgMono'
   | 'Strk'
   | 'StrkCircle'
   | 'StrkCircleMono'
@@ -738,8 +782,12 @@ export type IconManifestName =
   | 'SubWalletMono'
   | 'Sui'
   | 'SuiMono'
+  | 'Sushi'
+  | 'SushiMono'
   | 'SushiSwap'
   | 'SushiSwapMono'
+  | 'Syn'
+  | 'SynMono'
   | 'Synapse'
   | 'SynapseMono'
   | 'Synthetix'
@@ -802,6 +850,8 @@ export type IconManifestName =
   | 'UsdtCircle'
   | 'UsdtCircleMono'
   | 'UsdtMono'
+  | 'Velo'
+  | 'VeloMono'
   | 'Velodrome'
   | 'VelodromeMono'
   | 'Velora'
@@ -850,6 +900,8 @@ export type IconManifestName =
   | 'XverseMono'
   | 'Yearn'
   | 'YearnMono'
+  | 'Yfi'
+  | 'YfiMono'
   | 'Yoroi'
   | 'YoroiMono'
   | 'YoroiWallet'
@@ -864,6 +916,8 @@ export type IconManifestName =
   | 'ZerionMono'
   | 'ZerionSquare'
   | 'ZerionSquareMono'
+  | 'Zk'
+  | 'ZkMono'
   | 'ZkSync'
   | 'ZkSyncCircle'
   | 'ZkSyncCircleMono'
@@ -877,7 +931,9 @@ export type IconManifestName =
   | 'ZksyncSquare'
   | 'ZksyncSquareMono'
   | 'Zora'
-  | 'ZoraMono';
+  | 'ZoraMono'
+  | 'Zro'
+  | 'ZroMono';
 
 /** One exported icon component, as listed in the manifest. */
 export interface IconManifestEntry {
@@ -1651,6 +1707,22 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   },
   { name: 'ZoraMono', category: 'chain' },
   {
+    name: 'Aave',
+    category: 'coin',
+    ticker: 'AAVE',
+    variants: ['', 'Mono'],
+    brandColor: '#9391f7',
+  },
+  { name: 'AaveMono', category: 'coin' },
+  {
+    name: 'Acx',
+    category: 'coin',
+    ticker: 'ACX',
+    variants: ['', 'Mono'],
+    brandColor: '#6cf9d8',
+  },
+  { name: 'AcxMono', category: 'coin' },
+  {
     name: 'Ada',
     category: 'coin',
     ticker: 'ADA',
@@ -1660,6 +1732,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'AdaCircle', category: 'coin' },
   { name: 'AdaCircleMono', category: 'coin' },
   { name: 'AdaMono', category: 'coin' },
+  {
+    name: 'Aero',
+    category: 'coin',
+    ticker: 'AERO',
+    variants: ['', 'Mono'],
+    brandColor: '#0433ff',
+  },
+  { name: 'AeroMono', category: 'coin' },
   {
     name: 'Algo',
     category: 'coin',
@@ -1716,6 +1796,22 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'AvaxCircleMono', category: 'coin' },
   { name: 'AvaxMono', category: 'coin' },
   {
+    name: 'Axl',
+    category: 'coin',
+    ticker: 'AXL',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
+  { name: 'AxlMono', category: 'coin' },
+  {
+    name: 'Bal',
+    category: 'coin',
+    ticker: 'BAL',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
+  { name: 'BalMono', category: 'coin' },
+  {
     name: 'Bch',
     category: 'coin',
     ticker: 'BCH',
@@ -1733,6 +1829,22 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'BeraCircle', category: 'coin' },
   { name: 'BeraCircleMono', category: 'coin' },
   { name: 'BeraMono', category: 'coin' },
+  {
+    name: 'Bgb',
+    category: 'coin',
+    ticker: 'BGB',
+    variants: ['', 'Mono'],
+    brandColor: '#00f0ff',
+  },
+  { name: 'BgbMono', category: 'coin' },
+  {
+    name: 'Blast',
+    category: 'coin',
+    ticker: 'BLAST',
+    variants: ['', 'Mono'],
+    brandColor: '#fcfc03',
+  },
+  { name: 'BlastMono', category: 'coin' },
   {
     name: 'Bnb',
     category: 'coin',
@@ -1778,6 +1890,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   },
   { name: 'CeloMono', category: 'coin' },
   {
+    name: 'Comp',
+    category: 'coin',
+    ticker: 'COMP',
+    variants: ['', 'Mono'],
+    brandColor: '#00d395',
+  },
+  { name: 'CompMono', category: 'coin' },
+  {
     name: 'Cro',
     category: 'coin',
     ticker: 'CRO',
@@ -1793,6 +1913,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#1cffdb',
   },
   { name: 'CrvMono', category: 'coin' },
+  {
+    name: 'Cvx',
+    category: 'coin',
+    ticker: 'CVX',
+    variants: ['', 'Mono'],
+    brandColor: '#1682fe',
+  },
+  { name: 'CvxMono', category: 'coin' },
   {
     name: 'Dai',
     category: 'coin',
@@ -1832,6 +1960,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   },
   { name: 'DotMono', category: 'coin' },
   {
+    name: 'Dydx',
+    category: 'coin',
+    ticker: 'DYDX',
+    variants: ['', 'Mono'],
+    brandColor: '#6966ff',
+  },
+  { name: 'DydxMono', category: 'coin' },
+  {
     name: 'Eigen',
     category: 'coin',
     ticker: 'EIGEN',
@@ -1857,6 +1993,22 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'EthCircle', category: 'coin' },
   { name: 'EthCircleMono', category: 'coin' },
   { name: 'EthMono', category: 'coin' },
+  {
+    name: 'Ethfi',
+    category: 'coin',
+    ticker: 'ETHFI',
+    variants: ['', 'Mono'],
+    brandColor: '#29bcfa',
+  },
+  { name: 'EthfiMono', category: 'coin' },
+  {
+    name: 'Eul',
+    category: 'coin',
+    ticker: 'EUL',
+    variants: ['', 'Mono'],
+    brandColor: '#2ae5b9',
+  },
+  { name: 'EulMono', category: 'coin' },
   {
     name: 'Fdusd',
     category: 'coin',
@@ -1896,8 +2048,40 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#e62058',
   },
   { name: 'FlrMono', category: 'coin' },
+  {
+    name: 'Frax',
+    category: 'coin',
+    ticker: 'FRAX',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
+  { name: 'FraxMono', category: 'coin' },
   { name: 'Ftm', category: 'coin', deprecated: true },
   { name: 'FtmMono', category: 'coin', deprecated: true },
+  {
+    name: 'Gmx',
+    category: 'coin',
+    ticker: 'GMX',
+    variants: ['', 'Mono'],
+    brandColor: '#03d1cf',
+  },
+  { name: 'GmxMono', category: 'coin' },
+  {
+    name: 'Gno',
+    category: 'coin',
+    ticker: 'GNO',
+    variants: ['', 'Mono'],
+    brandColor: '#0d0d0d',
+  },
+  { name: 'GnoMono', category: 'coin' },
+  {
+    name: 'Grail',
+    category: 'coin',
+    ticker: 'GRAIL',
+    variants: ['', 'Mono'],
+    brandColor: '#fff3d4',
+  },
+  { name: 'GrailMono', category: 'coin' },
   {
     name: 'Gram',
     category: 'coin',
@@ -1909,6 +2093,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'GramCircleMono', category: 'coin' },
   { name: 'GramMono', category: 'coin' },
   {
+    name: 'Gt',
+    category: 'coin',
+    ticker: 'GT',
+    variants: ['', 'Mono'],
+    brandColor: '#2354e6',
+  },
+  { name: 'GtMono', category: 'coin' },
+  {
     name: 'Hbar',
     category: 'coin',
     ticker: 'HBAR',
@@ -1916,6 +2108,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#000000',
   },
   { name: 'HbarMono', category: 'coin' },
+  {
+    name: 'Htx',
+    category: 'coin',
+    ticker: 'HTX',
+    variants: ['', 'Mono'],
+    brandColor: '#00003e',
+  },
+  { name: 'HtxMono', category: 'coin' },
   {
     name: 'Hype',
     category: 'coin',
@@ -1977,6 +2177,22 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'KavaCircleMono', category: 'coin' },
   { name: 'KavaMono', category: 'coin' },
   {
+    name: 'Kcs',
+    category: 'coin',
+    ticker: 'KCS',
+    variants: ['', 'Mono'],
+    brandColor: '#00b47d',
+  },
+  { name: 'KcsMono', category: 'coin' },
+  {
+    name: 'Kmno',
+    category: 'coin',
+    ticker: 'KMNO',
+    variants: ['', 'Mono'],
+    brandColor: '#caf2fc',
+  },
+  { name: 'KmnoMono', category: 'coin' },
+  {
     name: 'Ldo',
     category: 'coin',
     ticker: 'LDO',
@@ -2004,6 +2220,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'LooksAlt', category: 'coin' },
   { name: 'LooksMono', category: 'coin' },
   {
+    name: 'Lqty',
+    category: 'coin',
+    ticker: 'LQTY',
+    variants: ['', 'Mono'],
+    brandColor: '#95cbf3',
+  },
+  { name: 'LqtyMono', category: 'coin' },
+  {
     name: 'Ltc',
     category: 'coin',
     ticker: 'LTC',
@@ -2011,6 +2235,22 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#345d9d',
   },
   { name: 'LtcMono', category: 'coin' },
+  {
+    name: 'Manta',
+    category: 'coin',
+    ticker: 'MANTA',
+    variants: ['', 'Mono'],
+    brandColor: '#29ccb9',
+  },
+  { name: 'MantaMono', category: 'coin' },
+  {
+    name: 'Metis',
+    category: 'coin',
+    ticker: 'METIS',
+    variants: ['', 'Mono'],
+    brandColor: '#00d2ff',
+  },
+  { name: 'MetisMono', category: 'coin' },
   { name: 'Mkr', category: 'coin', deprecated: true },
   { name: 'MkrMono', category: 'coin', deprecated: true },
   {
@@ -2034,6 +2274,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'MonadCircleMono', category: 'coin' },
   { name: 'MonadMono', category: 'coin' },
   {
+    name: 'Morpho',
+    category: 'coin',
+    ticker: 'MORPHO',
+    variants: ['', 'Mono'],
+    brandColor: '#2470ff',
+  },
+  { name: 'MorphoMono', category: 'coin' },
+  {
     name: 'Near',
     category: 'coin',
     ticker: 'NEAR',
@@ -2041,6 +2289,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#000000',
   },
   { name: 'NearMono', category: 'coin' },
+  {
+    name: 'Okb',
+    category: 'coin',
+    ticker: 'OKB',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
+  { name: 'OkbMono', category: 'coin' },
   {
     name: 'Ondo',
     category: 'coin',
@@ -2059,6 +2315,30 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'OpCircle', category: 'coin' },
   { name: 'OpCircleMono', category: 'coin' },
   { name: 'OpMono', category: 'coin' },
+  {
+    name: 'Orca',
+    category: 'coin',
+    ticker: 'ORCA',
+    variants: ['', 'Mono'],
+    brandColor: '#ffd15c',
+  },
+  { name: 'OrcaMono', category: 'coin' },
+  {
+    name: 'Osmo',
+    category: 'coin',
+    ticker: 'OSMO',
+    variants: ['', 'Mono'],
+    brandColor: '#000292',
+  },
+  { name: 'OsmoMono', category: 'coin' },
+  {
+    name: 'Pendle',
+    category: 'coin',
+    ticker: 'PENDLE',
+    variants: ['', 'Mono'],
+    brandColor: '#1e4480',
+  },
+  { name: 'PendleMono', category: 'coin' },
   {
     name: 'Pepe',
     category: 'coin',
@@ -2086,6 +2366,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   },
   { name: 'PythMono', category: 'coin' },
   {
+    name: 'Ray',
+    category: 'coin',
+    ticker: 'RAY',
+    variants: ['', 'Mono'],
+    brandColor: '#c200fb',
+  },
+  { name: 'RayMono', category: 'coin' },
+  {
     name: 'Rbtc',
     category: 'coin',
     ticker: 'RBTC',
@@ -2111,6 +2399,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'RoninCircle', category: 'coin' },
   { name: 'RoninCircleMono', category: 'coin' },
   { name: 'RoninMono', category: 'coin' },
+  {
+    name: 'Scr',
+    category: 'coin',
+    ticker: 'SCR',
+    variants: ['', 'Mono'],
+    brandColor: '#0a0a0a',
+  },
+  { name: 'ScrMono', category: 'coin' },
   {
     name: 'Sei',
     category: 'coin',
@@ -2138,6 +2434,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'SkyCircleMono', category: 'coin' },
   { name: 'SkyMono', category: 'coin' },
   {
+    name: 'Snx',
+    category: 'coin',
+    ticker: 'SNX',
+    variants: ['', 'Mono'],
+    brandColor: '#00d1ff',
+  },
+  { name: 'SnxMono', category: 'coin' },
+  {
     name: 'Sol',
     category: 'coin',
     ticker: 'SOL',
@@ -2157,6 +2461,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'SonicCircle', category: 'coin' },
   { name: 'SonicCircleMono', category: 'coin' },
   { name: 'SonicMono', category: 'coin' },
+  {
+    name: 'Stg',
+    category: 'coin',
+    ticker: 'STG',
+    variants: ['', 'Mono'],
+    brandColor: '#999999',
+  },
+  { name: 'StgMono', category: 'coin' },
   {
     name: 'Strk',
     category: 'coin',
@@ -2185,6 +2497,22 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#298dff',
   },
   { name: 'SuiMono', category: 'coin' },
+  {
+    name: 'Sushi',
+    category: 'coin',
+    ticker: 'SUSHI',
+    variants: ['', 'Mono'],
+    brandColor: '#27b0e6',
+  },
+  { name: 'SushiMono', category: 'coin' },
+  {
+    name: 'Syn',
+    category: 'coin',
+    ticker: 'SYN',
+    variants: ['', 'Mono'],
+    brandColor: '#d24dff',
+  },
+  { name: 'SynMono', category: 'coin' },
   {
     name: 'Taiko',
     category: 'coin',
@@ -2272,6 +2600,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'UsdtCircleMono', category: 'coin' },
   { name: 'UsdtMono', category: 'coin' },
   {
+    name: 'Velo',
+    category: 'coin',
+    ticker: 'VELO',
+    variants: ['', 'Mono'],
+    brandColor: '#ff1100',
+  },
+  { name: 'VeloMono', category: 'coin' },
+  {
     name: 'Vet',
     category: 'coin',
     ticker: 'VET',
@@ -2287,6 +2623,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#000000',
   },
   { name: 'WldMono', category: 'coin' },
+  {
+    name: 'Wormhole',
+    category: 'coin',
+    ticker: 'W',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
+  { name: 'WormholeMono', category: 'coin' },
   {
     name: 'Xlm',
     category: 'coin',
@@ -2326,6 +2670,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'XrpCircleMono', category: 'coin' },
   { name: 'XrpMono', category: 'coin' },
   {
+    name: 'Yfi',
+    category: 'coin',
+    ticker: 'YFI',
+    variants: ['', 'Mono'],
+    brandColor: '#0657f9',
+  },
+  { name: 'YfiMono', category: 'coin' },
+  {
     name: 'Zec',
     category: 'coin',
     ticker: 'ZEC',
@@ -2333,6 +2685,22 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#f4b728',
   },
   { name: 'ZecMono', category: 'coin' },
+  {
+    name: 'Zk',
+    category: 'coin',
+    ticker: 'ZK',
+    variants: ['', 'Mono'],
+    brandColor: '#11141a',
+  },
+  { name: 'ZkMono', category: 'coin' },
+  {
+    name: 'Zro',
+    category: 'coin',
+    ticker: 'ZRO',
+    variants: ['', 'Mono'],
+    brandColor: '#000000',
+  },
+  { name: 'ZroMono', category: 'coin' },
   {
     name: 'Aave',
     category: 'defi',

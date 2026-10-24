@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Aave",
+  "source": [
+    "re-export of Aave — see src/defi/Aave.tsx"
+  ],
+  "notes": [
+    "The AAVE token logo is the Aave mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the defi icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Aave",
+    "exports": [
+      {
+        "of": "Aave",
+        "as": "Aave"
+      },
+      {
+        "of": "AaveMono",
+        "as": "AaveMono"
+      }
+    ]
+  },
+  "tickers": [
+    "AAVE"
+  ]
+}

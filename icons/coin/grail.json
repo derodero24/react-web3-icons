@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Grail",
+  "source": [
+    "re-export of Camelot — see src/dex/Camelot.tsx"
+  ],
+  "notes": [
+    "The GRAIL token logo is the Camelot mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the dex icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../dex/Camelot",
+    "exports": [
+      {
+        "of": "Camelot",
+        "as": "Grail"
+      },
+      {
+        "of": "CamelotMono",
+        "as": "GrailMono"
+      }
+    ]
+  },
+  "tickers": [
+    "GRAIL"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Kmno",
+  "source": [
+    "re-export of Kamino — see src/defi/Kamino.tsx"
+  ],
+  "notes": [
+    "The KMNO token logo is the Kamino mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the defi icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Kamino",
+    "exports": [
+      {
+        "of": "Kamino",
+        "as": "Kmno"
+      },
+      {
+        "of": "KaminoMono",
+        "as": "KmnoMono"
+      }
+    ]
+  },
+  "tickers": [
+    "KMNO"
+  ]
+}

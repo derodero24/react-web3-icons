@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Sushi",
+  "source": [
+    "re-export of SushiSwap — see src/dex/SushiSwap.tsx"
+  ],
+  "notes": [
+    "The SUSHI token logo is the SushiSwap mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the dex icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../dex/SushiSwap",
+    "exports": [
+      {
+        "of": "SushiSwap",
+        "as": "Sushi"
+      },
+      {
+        "of": "SushiSwapMono",
+        "as": "SushiMono"
+      }
+    ]
+  },
+  "tickers": [
+    "SUSHI"
+  ]
+}

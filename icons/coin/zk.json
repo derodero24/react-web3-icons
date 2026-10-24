@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Zk",
+  "source": [
+    "re-export of Zksync — see src/chain/Zksync.tsx"
+  ],
+  "notes": [
+    "The ZK token logo is the Zksync mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the chain icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Zksync",
+    "exports": [
+      {
+        "of": "Zksync",
+        "as": "Zk"
+      },
+      {
+        "of": "ZksyncMono",
+        "as": "ZkMono"
+      }
+    ]
+  },
+  "tickers": [
+    "ZK"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Eul",
+  "source": [
+    "re-export of Euler — see src/defi/Euler.tsx"
+  ],
+  "notes": [
+    "The EUL token logo is the Euler mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the defi icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Euler",
+    "exports": [
+      {
+        "of": "Euler",
+        "as": "Eul"
+      },
+      {
+        "of": "EulerMono",
+        "as": "EulMono"
+      }
+    ]
+  },
+  "tickers": [
+    "EUL"
+  ]
+}

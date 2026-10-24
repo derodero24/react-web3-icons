@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Comp",
+  "source": [
+    "re-export of Compound — see src/defi/Compound.tsx"
+  ],
+  "notes": [
+    "The COMP token logo is the Compound mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the defi icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Compound",
+    "exports": [
+      {
+        "of": "Compound",
+        "as": "Comp"
+      },
+      {
+        "of": "CompoundMono",
+        "as": "CompMono"
+      }
+    ]
+  },
+  "tickers": [
+    "COMP"
+  ]
+}

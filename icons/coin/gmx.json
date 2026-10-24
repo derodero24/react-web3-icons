@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Gmx",
+  "source": [
+    "re-export of Gmx — see src/defi/Gmx.tsx"
+  ],
+  "notes": [
+    "The GMX token logo is the Gmx mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the defi icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Gmx",
+    "exports": [
+      {
+        "of": "Gmx",
+        "as": "Gmx"
+      },
+      {
+        "of": "GmxMono",
+        "as": "GmxMono"
+      }
+    ]
+  },
+  "tickers": [
+    "GMX"
+  ]
+}

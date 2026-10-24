@@ -1,0 +1,6 @@
+// Source: re-export of Aerodrome — see src/dex/Aerodrome.tsx
+// The AERO token logo is the Aerodrome mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the dex icon
+export {
+  Aerodrome as Aero,
+  AerodromeMono as AeroMono,
+} from '../dex/Aerodrome';

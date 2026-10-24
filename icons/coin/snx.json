@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Snx",
+  "source": [
+    "re-export of Synthetix — see src/defi/Synthetix.tsx"
+  ],
+  "notes": [
+    "The SNX token logo is the Synthetix mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the defi icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../defi/Synthetix",
+    "exports": [
+      {
+        "of": "Synthetix",
+        "as": "Snx"
+      },
+      {
+        "of": "SynthetixMono",
+        "as": "SnxMono"
+      }
+    ]
+  },
+  "tickers": [
+    "SNX"
+  ]
+}

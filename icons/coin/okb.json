@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Okb",
+  "source": [
+    "re-export of Okx — see src/exchange/Okx.tsx"
+  ],
+  "notes": [
+    "The OKB token logo is the Okx mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the exchange icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../exchange/Okx",
+    "exports": [
+      {
+        "of": "Okx",
+        "as": "Okb"
+      },
+      {
+        "of": "OkxMono",
+        "as": "OkbMono"
+      }
+    ]
+  },
+  "tickers": [
+    "OKB"
+  ]
+}

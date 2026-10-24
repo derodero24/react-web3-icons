@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Scr",
+  "source": [
+    "re-export of Scroll — see src/chain/Scroll.tsx"
+  ],
+  "notes": [
+    "The SCR token logo is the Scroll mark (CoinGecko token image, checked 2026-10-24), so the coin re-exports the chain icon"
+  ],
+  "kind": "reexport",
+  "reexport": {
+    "from": "../chain/Scroll",
+    "exports": [
+      {
+        "of": "Scroll",
+        "as": "Scr"
+      },
+      {
+        "of": "ScrollMono",
+        "as": "ScrMono"
+      }
+    ]
+  },
+  "tickers": [
+    "SCR"
+  ]
+}
