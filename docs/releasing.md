@@ -44,6 +44,13 @@ The release flow works without them.
 8. If the version's tag points at the commit the run was triggered by,
    `main` is fast-forwarded to it. If `main` has diverged, the step fails
    and needs a manual fix.
+9. In the same case, the **Deploy the docs site** job calls the Vercel
+   deploy hook in the `VERCEL_DEPLOY_HOOK_URL` secret, which builds the
+   production deployment of <https://react-web3-icons.vercel.app> from
+   `main`. Vercel skips the push from the fast-forward because it already
+   deployed that commit as a preview from `develop`, so without the hook
+   the site stays on the previous release. Without the secret, the job
+   only logs a notice.
 
 Later pushes without a changeset find the version on npm, its release in
 place and its tag on an older commit, and the Publish job changes nothing.
@@ -58,6 +65,8 @@ After a release, check that
 points at the release commit: after `git fetch origin --tags`,
 `git rev-parse origin/main` and
 `git rev-parse 'react-web3-icons@<version>^{commit}'` print the same commit.
+The version in the header of <https://react-web3-icons.vercel.app> should
+match once the Vercel build finishes, a few minutes after the run.
 `develop` may already be ahead of `main` if another PR was merged after the
 version PR; that is expected.
 
@@ -123,6 +132,9 @@ only a job that runs no dependency code may request one
   --ignore-scripts`, without installing the workspace and without
   `cache: pnpm`, then creates the tag and the GitHub release through the API
   and fast-forwards `main`.
+- **Deploy the docs site** has no permissions and checks out nothing. It
+  only reads the `VERCEL_DEPLOY_HOOK_URL` secret, a URL that can trigger a
+  production build of `main` and nothing else.
 
 ## Branch rulesets (once configured)
 

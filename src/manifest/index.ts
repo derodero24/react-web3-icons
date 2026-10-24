@@ -435,6 +435,9 @@ export type IconManifestName =
   | 'KrakenMono'
   | 'KuCoin'
   | 'KuCoinMono'
+  | 'L2Beat'
+  | 'L2BeatInverted'
+  | 'L2BeatMono'
   | 'Lace'
   | 'LaceMono'
   | 'LayerZero'
@@ -606,6 +609,10 @@ export type IconManifestName =
   | 'PolygonMono'
   | 'PolygonSquare'
   | 'PolygonSquareMono'
+  | 'Polymarket'
+  | 'PolymarketMono'
+  | 'PolymarketSquare'
+  | 'PolymarketSquareMono'
   | 'Privy'
   | 'PrivyMono'
   | 'Pyth'
@@ -2436,6 +2443,16 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   },
   { name: 'PendleMono', category: 'defi' },
   {
+    name: 'Polymarket',
+    category: 'defi',
+    slug: 'polymarket',
+    variants: ['', 'Mono', 'Square', 'SquareMono'],
+    brandColor: '#2e5cff',
+  },
+  { name: 'PolymarketMono', category: 'defi' },
+  { name: 'PolymarketSquare', category: 'defi' },
+  { name: 'PolymarketSquareMono', category: 'defi' },
+  {
     name: 'RocketPool',
     category: 'defi',
     slug: 'rocketpool',
@@ -3287,6 +3304,15 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'DuneMono', category: 'tracker' },
   { name: 'DuneSquare', category: 'tracker' },
   { name: 'DuneSquareMono', category: 'tracker' },
+  {
+    name: 'L2Beat',
+    category: 'tracker',
+    variants: ['', 'Mono', 'Inverted'],
+    aliases: ['l2beat'],
+    brandColor: '#f9347b',
+  },
+  { name: 'L2BeatInverted', category: 'tracker' },
+  { name: 'L2BeatMono', category: 'tracker' },
   {
     name: 'Nansen',
     category: 'tracker',

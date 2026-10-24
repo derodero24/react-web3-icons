@@ -382,13 +382,13 @@ describe('variants', () => {
     const { container, root } = mount();
     act(() => {
       root.render(
-        // @ts-expect-error DefiIcon has no Square variant
-        <dynamic.DefiIcon name="aave" variant="Square" fallback={FALLBACK} />,
+        // @ts-expect-error DefiIcon has no Inverted variant
+        <dynamic.DefiIcon name="aave" variant="Inverted" fallback={FALLBACK} />,
       );
     });
     expect(container.innerHTML).toBe(FALLBACK_HTML);
     expect(warn).toHaveBeenCalledWith(
-      '[react-web3-icons] DefiIcon: unknown variant "Square" (expected one of "colored", "mono", "Circle", "CircleMono"); rendering the fallback.',
+      '[react-web3-icons] DefiIcon: unknown variant "Inverted" (expected one of "colored", "mono", "Circle", "CircleMono", "Square", "SquareMono"); rendering the fallback.',
     );
     warn.mockRestore();
   });

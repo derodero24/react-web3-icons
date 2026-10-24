@@ -1,0 +1,38 @@
+{
+  "$schema": "../schema.json",
+  "name": "Polymarket",
+  "kind": "icon",
+  "source": [
+    "https://polymarket.com/brand (official brand page, accessed 2026-10-24: \"Download logos\")",
+    "https://polymarket-upload.s3.us-east-2.amazonaws.com/polymarket-logos.zip (polymarket-logos.zip: icon-black.svg, icon-blue.svg)"
+  ],
+  "notes": [
+    "Default: the official icon-black.svg mark, path unchanged, placed on the 64 grid. The kit ships the mark standalone in black and white and on a #2E5CFF square, so the base is the standalone mark (base icon background rule)",
+    "Mono: the same mark in currentColor",
+    "Square: the official icon-blue.svg (the white mark on a full-bleed #2E5CFF square), scaled 64/512",
+    "SquareMono: the square in currentColor with the mark knocked out (fill-rule=evenodd)",
+    "brandColor: #2E5CFF, the colour of the official app icon (the standalone mark is black)"
+  ],
+  "variants": {
+    "": {
+      "file": "polymarket.svg",
+      "fill": "#000"
+    },
+    "Mono": {
+      "file": "polymarket.mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "polymarket.square.svg",
+      "fill": "#2E5CFF"
+    },
+    "SquareMono": {
+      "file": "polymarket.square-mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "polymarket"
+  ],
+  "brandColor": "#2e5cff"
+}

@@ -43,6 +43,10 @@ export const defiImports: Record<
   MorphoMono: () => import('../../defi/Morpho'),
   Pendle: () => import('../../defi/Pendle'),
   PendleMono: () => import('../../defi/Pendle'),
+  Polymarket: () => import('../../defi/Polymarket'),
+  PolymarketMono: () => import('../../defi/Polymarket'),
+  PolymarketSquare: () => import('../../defi/Polymarket'),
+  PolymarketSquareMono: () => import('../../defi/Polymarket'),
   RocketPool: () => import('../../defi/RocketPool'),
   RocketPoolMono: () => import('../../defi/RocketPool'),
   SafeProtocol: () => import('../../defi/SafeProtocol'),
@@ -65,11 +69,22 @@ export const defiImports: Record<
  * Variant suffixes `<DefiIcon variant>` accepts besides `'colored'`
  * and `'mono'`: every one that some DeFi icon ships.
  */
-export const defiVariants: readonly string[] = ['Circle', 'CircleMono'];
+export const defiVariants: readonly string[] = [
+  'Circle',
+  'CircleMono',
+  'Square',
+  'SquareMono',
+];
 
 /**
  * `variant` of `<DefiIcon>`: `'colored'` (the default) and `'mono'`,
  * plus every variant suffix some DeFi icon ships. An icon without
  * the requested variant renders `fallback`.
  */
-export type DefiVariant = 'colored' | 'mono' | 'Circle' | 'CircleMono';
+export type DefiVariant =
+  | 'colored'
+  | 'mono'
+  | 'Circle'
+  | 'CircleMono'
+  | 'Square'
+  | 'SquareMono';

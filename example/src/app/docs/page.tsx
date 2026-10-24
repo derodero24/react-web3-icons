@@ -142,6 +142,8 @@ const DYNAMIC_COMPONENTS: readonly {
       mono: true,
       Circle: true,
       CircleMono: true,
+      Square: true,
+      SquareMono: true,
     }),
   },
   {

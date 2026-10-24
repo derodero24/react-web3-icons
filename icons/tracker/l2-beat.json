@@ -1,0 +1,30 @@
+{
+  "$schema": "../schema.json",
+  "name": "L2Beat",
+  "kind": "icon",
+  "source": [
+    "https://l2beat.com/brand-kit (official brand kit, accessed 2026-10-24: symbol-dark.svg, symbol-light.svg)"
+  ],
+  "notes": [
+    "Default: the official symbol-dark.svg (the black L2 over the #F9347B heart, for light backgrounds), paths unchanged, placed on the 64 grid",
+    "Inverted: the official symbol-light.svg (the white L2 over the #BD114F heart, for dark backgrounds), the same geometry at the same scale and position",
+    "Mono: the kit has no one-colour symbol. The heart and the L2 in currentColor, with the L2 cut out of the heart by a 3-unit stroke (mask) so the letters stay readable"
+  ],
+  "variants": {
+    "": {
+      "file": "l2-beat.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "l2-beat.mono.svg",
+      "fill": "currentColor"
+    },
+    "Inverted": {
+      "file": "l2-beat.inverted.svg",
+      "fill": "none"
+    }
+  },
+  "aliases": [
+    "l2beat"
+  ]
+}
