@@ -630,15 +630,27 @@ develop.
 
 ## Running the Example App
 
-The `example/` directory contains the Next.js demo site. It resolves
-`react-web3-icons` to `../src`, so it needs no library build. From the
-repository root:
+The `example/` directory contains the Next.js site at
+<https://react-web3-icons.vercel.app>: the gallery, one category page per
+subpath and one page per icon (`/icons/<category>/<kebab-name>/`), all
+statically exported. It resolves `react-web3-icons` to `../src`, so it needs
+no library build. From the repository root:
 
 ```sh
 pnpm --filter react-web3-icons-example run dev
 ```
 
-This is useful for visually verifying new icons after adding them.
+`dev`, `build` and `typecheck` first run `pnpm run catalog`
+(`scripts/build-icons/emit-site-catalog.ts`), which writes two gitignored
+outputs from `icons/`: `example/src/generated/catalog.json` (each export's
+SVG markup and its unit's `source` and `notes`, shown on the icon pages) and
+`example/public/svg/` (the same files as `dist/svg`, which the gallery loads
+as images). A new icon therefore appears in the gallery and gets its own page
+without any change to the site.
+
+This is useful for visually verifying new icons after adding them: open the
+icon's page and switch its preview between the light, dark and transparent
+backgrounds.
 
 `examples/stackblitz/` is the playground behind the README's StackBlitz link.
 It is a standalone npm project outside the workspace that installs the

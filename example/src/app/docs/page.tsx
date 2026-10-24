@@ -23,10 +23,10 @@ import {
 } from 'react-web3-icons/meta';
 import pkg from '../../../../package.json';
 import CodeBlock from '../../components/elements/CodeBlock';
-import { ICON_CATEGORIES } from '../../utils/icons';
+import { CATEGORIES as ICON_CATEGORIES } from '../../lib/categories';
 
 export const metadata: Metadata = {
-  title: 'Docs — React Web3 Icons',
+  title: 'Docs',
   description: 'API reference and usage guide for react-web3-icons.',
 };
 
@@ -40,7 +40,7 @@ function Section({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-8">
+    <section id={id} className="scroll-mt-20">
       <h2 className="mb-4 text-xl font-semibold text-fg">{title}</h2>
       {children}
     </section>
@@ -932,7 +932,7 @@ function NamedIcon({ name, size }: { name: keyof typeof ICONS; size?: number }) 
 
         {/* Sticky sidebar TOC (desktop only) */}
         <aside className="hidden lg:block">
-          <nav aria-label="Table of contents" className="sticky top-8">
+          <nav aria-label="Table of contents" className="sticky top-20">
             <p className="mb-3 text-xs font-medium uppercase tracking-wide text-fg-muted">
               On this page
             </p>

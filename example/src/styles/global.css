@@ -128,3 +128,26 @@
     }
   }
 }
+
+/* Icon page previews: PreviewBackground sets data-preview-bg. */
+@layer components {
+  .preview-surface {
+    @apply bg-surface text-fg;
+  }
+  [data-preview-bg="light"] .preview-surface {
+    background: #ffffff;
+    color: #111111;
+  }
+  [data-preview-bg="dark"] .preview-surface {
+    background: #111111;
+    color: #ffffff;
+  }
+  [data-preview-bg="checker"] .preview-surface {
+    background-color: var(--color-bg);
+    background-image: repeating-conic-gradient(
+      color-mix(in srgb, var(--color-fg) 10%, transparent) 0% 25%,
+      transparent 0% 50%
+    );
+    background-size: 16px 16px;
+  }
+}

@@ -137,7 +137,8 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       # Intentionally no library build: Vercel deploys the example with only
-      # `next build` (see example/vercel.json), resolving the workspace
+      # its own `build` script (see example/vercel.json), which generates the
+      # site catalog from icons/ and runs `next build`, resolving the workspace
       # package from source via next.config/tsconfig aliases. Building dist
       # here would mask missing-alias failures that then break deploys.
       - name: Build example app

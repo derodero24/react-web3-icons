@@ -1,24 +1,22 @@
-import { Suspense } from 'react';
-import CategoryBar, {
-  CategoryBarView,
-} from '../components/sections/CategoryBar';
-import Hero from '../components/sections/Hero';
-import IconTable, { IconTableFallback } from '../components/sections/IconTable';
-import { ICON_COUNT } from '../utils/icons';
+import Gallery from '../components/gallery/Gallery';
+import LegacyLinkRedirect from '../components/gallery/LegacyLinkRedirect';
+import Hero from '../components/home/Hero';
+import { CATALOG } from '../lib/catalog';
 
 export default function Home() {
-  // Only the URL-bound parts (nuqs → useSearchParams) sit behind Suspense.
-  // Their fallbacks render the default view, so the static export contains
-  // the category bar and the initial icon grid, not an empty shell.
+  // Links from the previous site (`/?icon=Ethereum`, `/?category=chain`)
+  // still resolve: the redirect maps them to the new pages.
+  const legacyTargets = Object.fromEntries(
+    CATALOG.filter(icon => icon.listedInAll).map(icon => [
+      icon.name,
+      icon.href,
+    ]),
+  );
   return (
-    <>
-      <Hero iconCount={ICON_COUNT} />
-      <Suspense fallback={<CategoryBarView current="all" />}>
-        <CategoryBar />
-      </Suspense>
-      <Suspense fallback={<IconTableFallback />}>
-        <IconTable />
-      </Suspense>
-    </>
+    <div className="container px-4 sm:px-6">
+      <LegacyLinkRedirect iconHrefs={legacyTargets} />
+      <Hero />
+      <Gallery filter="all" />
+    </div>
   );
 }
