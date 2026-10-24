@@ -18,6 +18,9 @@ on:
       - '.github/workflows/visual-regression.yml'
   pull_request:
     branches: [develop]
+    # `labeled` lets 'visual-baseline-update' take effect when it is added
+    # after the PR was opened; the job below ignores every other label.
+    types: [opened, synchronize, reopened, labeled]
     paths:
       - 'src/**'
       - 'icons/**'
@@ -36,12 +39,15 @@ permissions:
   contents: read
 
 concurrency:
-  group: visual-${{ github.ref }}
+  # A run for another label gets a group of its own, so it cannot cancel the
+  # run in progress before its job is skipped.
+  group: visual-${{ github.ref }}${{ github.event.action == 'labeled' && github.event.label.name != 'visual-baseline-update' && format('-{0}', github.run_id) || '' }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   visual-test:
     name: Visual regression test
+    if: github.event.action != 'labeled' || github.event.label.name == 'visual-baseline-update'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
