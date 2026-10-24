@@ -18,7 +18,8 @@ concurrency:
 #   It can write to the repository but cannot publish.
 # - publish: once the version PR is merged, uploads the tarball that verify
 #   packed. It never installs or builds the workspace, so it is the only job
-#   with `id-token: write` and NPM_TOKEN.
+#   with `id-token: write`, which npm trusted publishing exchanges for a
+#   short-lived publish token.
 jobs:
   # Gate: nothing is versioned or published from a commit that has not passed
   # lint, typecheck, tests (with coverage thresholds), build and size limits.
@@ -193,7 +194,7 @@ jobs:
     timeout-minutes: 15
     permissions:
       contents: write # release tag, GitHub release, fast-forward of main
-      id-token: write # npm provenance attestation (and trusted publishing)
+      id-token: write # npm trusted publishing and provenance attestation
 
     steps:
       # No checkout and no install: this job runs no code from the
@@ -204,14 +205,14 @@ jobs:
           name: release
           path: release
 
-      # registry-url writes an .npmrc (exported as NPM_CONFIG_USERCONFIG)
-      # that reads the token from NODE_AUTH_TOKEN, which only the publish
-      # step sets. No `cache: pnpm`: nothing is installed here.
+      # Node 24 bundles npm 11.5.1 or later, which trusted publishing needs.
+      # No registry-url: npm publishes to its default registry and gets its
+      # credential through OIDC, so no .npmrc with a token is written. No
+      # `cache: pnpm`: nothing is installed here.
       - name: Setup Node.js
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '24.x'
-          registry-url: https://registry.npmjs.org
 
       # Both checks tell "not there" (HTTP 404) from errors: anything else
       # but 200 (an outage, a rate limit, an auth problem) stops the job
@@ -243,13 +244,11 @@ jobs:
       # --ignore-scripts makes that explicit. The path starts with ./ because
       # npm reads `release/package.tgz` as the GitHub repository
       # release/package.tgz. --provenance attests the
-      # tarball to this run and commit. The token is in this step's
-      # environment only; once a trusted publisher is configured, npm
-      # authenticates through OIDC first (docs/releasing.md).
+      # tarball to this run and commit. npm authenticates through the
+      # trusted publisher configured for release.yml on npmjs.com; there is
+      # no npm token (docs/releasing.md).
       - name: Publish to npm
         if: steps.state.outputs.on-npm == 'false'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish ./release/package.tgz --provenance --access public --tag latest --ignore-scripts
 
       # The tag is a lightweight ref on the commit that triggered this run

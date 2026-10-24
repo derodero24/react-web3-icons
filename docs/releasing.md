@@ -6,9 +6,8 @@ from contributors is a changeset in their PR (see
 [Submitting a Pull Request](../CONTRIBUTING.md#submitting-a-pull-request)).
 
 Sections marked "once configured" describe settings that only the owner
-can change ([#703](https://github.com/derodero24/react-web3-icons/issues/703),
-[#718](https://github.com/derodero24/react-web3-icons/issues/718)). The
-release flow works without them.
+can change ([#718](https://github.com/derodero24/react-web3-icons/issues/718)).
+The release flow works without them.
 
 ## Release flow
 
@@ -28,7 +27,7 @@ release flow works without them.
    examples) and the major in its unpinned-URL example to the new version,
    so the README published with the release links to that release's files.
    Every later push to `develop` rebuilds the same PR on top of it. This job
-   can write to the repository but holds no npm token and no OIDC token.
+   can write to the repository but holds no OIDC token.
 4. A maintainer approves the PR's CI runs (see
    [The version PR](#the-version-pr)), reviews it and merges it.
 5. Verify runs again on the merge commit. With no changesets left, it packs
@@ -77,15 +76,15 @@ Alternatives: give `changesets/action` a GitHub App installation token
 once required checks are configured, merge through a ruleset bypass. In
 every case Verify checks the merge commit before anything is published.
 
-## npm trusted publishing (once configured)
+## npm trusted publishing
 
-The "Publish to npm" step authenticates with the `NPM_TOKEN` repository secret
-(`NODE_AUTH_TOKEN`). Once a trusted publisher is configured, npm
-authenticates the workflow through OIDC instead; the npm CLI tries OIDC
-before a token and falls back to the token when the OIDC exchange fails.
+`react-web3-icons` is published through an npm trusted publisher, without
+an npm token. The "Publish to npm" step holds no credential: npm exchanges
+the job's OIDC token (`id-token: write`) for a short-lived token that can
+publish this package only, and only from `release.yml` in this repository.
 
-On npmjs.com, in the package's settings under **Trusted Publisher**, choose
-GitHub Actions
+The configuration lives on npmjs.com, in the package's settings under
+**Trusted Publisher**
 ([npm docs](https://docs.npmjs.com/trusted-publishers#for-github-actions)):
 
 | Field | Value |
@@ -96,70 +95,34 @@ GitHub Actions
 | Environment name | empty (the release job uses no environment) |
 | Allowed actions | `npm publish` ticked |
 
-- **Allowed actions**: configurations created after 2026-09-03 allow only
-  `npm stage publish` by default. The workflow publishes directly, so
-  `npm publish` must be allowed as well.
-- **Timing**: create the configuration just before merging a version PR. A
-  new configuration expires if no publish through it succeeds within 2 days,
-  and an expired one has to be deleted and created again
-  ([npm docs](https://docs.npmjs.com/trusted-publishers#trusted-publisher-configuration-expiry)).
-- **Already in place**: `repository.url` in `package.json` matches the
-  repository exactly, the release job has `id-token: write`, and it runs on a
-  GitHub-hosted runner with Node 24.x (trusted publishing needs npm 11.5.1
+- **Renames**: renaming `release.yml`, moving the repository or changing
+  `repository.url` in `package.json` breaks the match, and the publish step
+  fails. Update the configuration in the same change, then re-run the
+  Release run (see [Release flow](#release-flow)).
+- **Requirements**: `repository.url` in `package.json` matches the
+  repository exactly, the release job has `id-token: write`, and it runs on
+  a GitHub-hosted runner with Node 24.x (trusted publishing needs npm 11.5.1
   and Node 22.14.0 or later; Node 24.5.0 and later bundle npm 11.5.1 or
   newer).
+- **Check**: after a release,
+  `npm view react-web3-icons@<version> _npmUser` shows
+  `name: 'GitHub Actions'` with a `trustedPublisher` entry.
 
 ### Job permissions
 
-Once a trusted publisher exists, an OIDC token from `release.yml` is enough
-to publish `react-web3-icons`, so only a job that runs no dependency code may
-request one ([#887](https://github.com/derodero24/react-web3-icons/issues/887)):
+An OIDC token from `release.yml` is enough to publish `react-web3-icons`, so
+only a job that runs no dependency code may request one
+([#887](https://github.com/derodero24/react-web3-icons/issues/887)):
 
 - **Verify** installs, builds and packs with `contents: read` only, without
   secrets and without `id-token: write`.
 - **Version PR** installs to run `changeset version`. It gets
-  `contents: write` and `pull-requests: write`, but no `id-token: write` and
-  no `NPM_TOKEN`.
-- **Publish** is the only job with `id-token: write` and `NPM_TOKEN`. It
-  downloads the tarball and runs `npm publish <tarball> --provenance
-  --access public --ignore-scripts`, without installing the workspace and
-  without `cache: pnpm`, then creates the tag and the GitHub release through
-  the API and fast-forwards `main`.
-
-### Check that the trusted publisher was used
-
-While `NODE_AUTH_TOKEN` is set, a failed OIDC exchange (for example,
-`npm publish` not ticked under Allowed actions, or a typo in a field) falls
-back to the token without any message at the default log level, and the
-version still gets a provenance attestation. The provenance check in
-[Release flow](#release-flow) therefore passes either way and does not show
-which credential published. After the first release with a trusted
-publisher, run
-
-```sh
-npm view react-web3-icons@<version> _npmUser
-```
-
-- `name: 'GitHub Actions'` with a `trustedPublisher` entry: the publish went
-  through the trusted publisher. Continue with the token removal below.
-- The owner's npm account (`derodero24`): the publish fell back to the token,
-  and the configuration is still unvalidated. Fix it (if it has expired,
-  delete it and create it again just before the next version PR is merged),
-  check again after the next release, and keep the token until then.
-
-### Remove the token
-
-Only once `_npmUser` shows the trusted publisher:
-
-1. Remove `NODE_AUTH_TOKEN` from the "Publish to npm" step in `release.yml`, together
-   with the comments that mention it.
-2. Delete the `NPM_TOKEN` repository secret.
-3. On npmjs.com, revoke the access token that `NPM_TOKEN` held (**Access
-   Tokens** in the account menu). Deleting the secret alone leaves the token
-   valid on npm.
-4. Optional: in the package's settings under **Publishing access**, select
-   "Require two-factor authentication and disallow tokens". Trusted
-   publishing keeps working.
+  `contents: write` and `pull-requests: write`, but no `id-token: write`.
+- **Publish** is the only job with `id-token: write`. It downloads the
+  tarball and runs `npm publish <tarball> --provenance --access public
+  --ignore-scripts`, without installing the workspace and without
+  `cache: pnpm`, then creates the tag and the GitHub release through the API
+  and fast-forwards `main`.
 
 ## Branch rulesets (once configured)
 
@@ -232,12 +195,8 @@ change.
   fail the `Build StackBlitz playground` check until then, because that job
   installs from npm.
 - Approve the version PR's runs and wait for them to pass before merging.
-- First release with a trusted publisher: create the configuration just
-  before merging the version PR. After the publish, confirm with `_npmUser`
-  that the trusted publisher was used
-  ([Check that the trusted publisher was used](#check-that-the-trusted-publisher-was-used)),
-  and only then [remove the token](#remove-the-token).
-- After publishing: check provenance, the tag, the GitHub release and
+- After publishing: check provenance, the trusted publisher
+  ([`_npmUser`](#npm-trusted-publishing)), the tag, the GitHub release and
   `main` as described in [Release flow](#release-flow).
 - Major release: once the new major is on npm, update the supported-versions
   table in [SECURITY.md](../SECURITY.md) (new major `Yes`, every older
