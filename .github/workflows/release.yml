@@ -195,6 +195,8 @@ jobs:
     permissions:
       contents: write # release tag, GitHub release, fast-forward of main
       id-token: write # npm trusted publishing and provenance attestation
+    outputs:
+      release-commit: ${{ steps.tag.outputs.release-commit }}
 
     steps:
       # No checkout and no install: this job runs no code from the
@@ -326,3 +328,28 @@ jobs:
             echo "::error::Fast-forward merge failed. main may have diverged from develop. Manual intervention required."
             exit 1
           fi
+
+  # Vercel builds the docs site's production deployment from pushes to main,
+  # but a fast-forward moves main to a commit it already deployed as a
+  # preview from develop, and Vercel skips that push (5.0.0 stayed on the
+  # 4.0.0 site). A deploy hook for main asks for the production build
+  # instead. It runs in its own job, without repository access or OIDC, and
+  # only holds the hook URL.
+  site:
+    name: Deploy the docs site
+    needs: publish
+    if: needs.publish.outputs.release-commit == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+
+    steps:
+      - name: Trigger the production deployment
+        env:
+          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$VERCEL_DEPLOY_HOOK_URL" ]; then
+            echo "::notice::VERCEL_DEPLOY_HOOK_URL is not set; the docs site is not redeployed."
+            exit 0
+          fi
+          curl -fsS -X POST -o /dev/null "$VERCEL_DEPLOY_HOOK_URL"
