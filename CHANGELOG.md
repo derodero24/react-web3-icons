@@ -1,5 +1,49 @@
 # Changelog
 
+## 5.1.0
+
+### Minor Changes
+
+- [#931](https://github.com/derodero24/react-web3-icons/pull/931) [`cae4248`](https://github.com/derodero24/react-web3-icons/commit/cae42481c98894d82a95804445094adaee97ebb6) Thanks [@derodero24](https://github.com/derodero24)! - Look up 39 more tokens by ticker. Their token logo is their protocol's mark, so each coin re-exports the existing icon (`Aave` → `Aave`, `Okb` → `Okx`, `Zro` → `LayerZero`), and `<CoinIcon symbol="…" />` and `TICKER_TO_COIN` resolve them: AAVE, ACX, AERO, AXL, BAL, BGB, BLAST, COMP, CVX, DYDX, ETHFI, EUL, FRAX, GMX, GNO, GRAIL, GT, HTX, KCS, KMNO, LQTY, MANTA, METIS, MORPHO, OKB, ORCA, OSMO, PENDLE, RAY, SCR, SNX, STG, SUSHI, SYN, VELO, W (`Wormhole`), YFI, ZK and ZRO.
+
+- [#923](https://github.com/derodero24/react-web3-icons/pull/923) [`34d2262`](https://github.com/derodero24/react-web3-icons/commit/34d226250949cf0f402e256c51f0bc8db5c319c6) Thanks [@derodero24](https://github.com/derodero24)! - Add `Plasma` for the Plasma chain (chain ID 9745) from the official Plasma brand kit:
+  
+  - `Plasma` / `PlasmaMono`: the official symbol in `#141414`, and the same symbol in `currentColor`.
+  - `PlasmaSquare` / `PlasmaSquareMono`: the official boxed logo, the white symbol on a `#162F29` square, and the square in `currentColor` with the symbol knocked out.
+  - `PlasmaCircle` / `PlasmaCircleMono`: the official XPL token mark, the white symbol on a `#162F29` disc, and the disc in `currentColor` with the symbol knocked out. Use the circle or the square on dark backgrounds.
+  - `<ChainIcon>` and `CHAIN_ID_TO_NAME` / `CHAIN_SLUG_TO_NAME` resolve chain ID `9745` and the slug `plasma`.
+  - The coin re-export `Xpl` (`XplMono`, `XplCircle`, `XplCircleMono`, `XplSquare`, `XplSquareMono`) resolves the ticker `XPL` through `<CoinIcon>` and `TICKER_TO_COIN`.
+
+- [#928](https://github.com/derodero24/react-web3-icons/pull/928) [`685f8d0`](https://github.com/derodero24/react-web3-icons/commit/685f8d0755c5676737d3fc01ab680b6e0ae65f11) Thanks [@derodero24](https://github.com/derodero24)! - Add `Rootstock` (chain 30) and its coin `Rbtc` from the official Rootstock brand assets:
+  
+  - `Rootstock` / `RootstockMono`: the official logo, a `#FF931E` dot above a knot of rounded lobes, and the same shapes in `currentColor`.
+  - `Rbtc` / `RbtcMono`: the official rBTC symbol, a `#FF9100` badge with a white Bitcoin B, and the badge in `currentColor` with the B knocked out.
+  - `<ChainIcon>` resolves chain ID `30` and the slugs `rootstock` and `rsk`; `<CoinIcon>` resolves the ticker `RBTC`.
+
+- [#926](https://github.com/derodero24/react-web3-icons/pull/926) [`dbd3aa2`](https://github.com/derodero24/react-web3-icons/commit/dbd3aa22a94e9272d9897e443682e620a784aa4d) Thanks [@derodero24](https://github.com/derodero24)! - Add `Euler` from the official Euler brand kit:
+  
+  - `Euler` / `EulerMono`: the official symbol (three bars in Euler green, yellow and orange) without a background, and the same bars in `currentColor`.
+  - `EulerSquare` / `EulerCircle`: the official symbol on a navy (`#08131F`) square and disc. `EulerSquareMono` / `EulerCircleMono` are the containers in `currentColor` with the bars knocked out.
+  - `<DefiIcon>` and `DEFI_SLUG_TO_NAME` resolve the slug `euler`.
+
+- [#922](https://github.com/derodero24/react-web3-icons/pull/922) [`53a7d07`](https://github.com/derodero24/react-web3-icons/commit/53a7d072f27f43e32bbf2ba2264ea83e8f623d16) Thanks [@derodero24](https://github.com/derodero24)! - Add `Polymarket` from the official Polymarket logo kit:
+  
+  - `Polymarket` / `PolymarketMono`: the official standalone mark in black, and the same mark in `currentColor`.
+  - `PolymarketSquare` / `PolymarketSquareMono`: the official app icon, the white mark on a `#2E5CFF` square, and the square in `currentColor` with the mark knocked out. Use the square on dark backgrounds.
+  - `<DefiIcon>` and `DEFI_SLUG_TO_NAME` resolve the slug `polymarket`. `DefiIcon` gains the `'Square'` and `'SquareMono'` variants (`DefiVariant`).
+
+- [#927](https://github.com/derodero24/react-web3-icons/pull/927) [`aedab35`](https://github.com/derodero24/react-web3-icons/commit/aedab35d1c4298f8c75590a2d534f49580b09d86) Thanks [@derodero24](https://github.com/derodero24)! - Add `Reown` (the company behind WalletConnect, AppKit and WalletKit) from the official Reown brand assets:
+  
+  - `Reown`: the official positive brandmark, two `#202020` shapes with a white slash and dot.
+  - `ReownInverted`: the official negative brandmark (white shapes) for dark backgrounds.
+  - `ReownMono`: the brandmark in `currentColor` with the slash and dot knocked out.
+
+- [#922](https://github.com/derodero24/react-web3-icons/pull/922) [`53a7d07`](https://github.com/derodero24/react-web3-icons/commit/53a7d072f27f43e32bbf2ba2264ea83e8f623d16) Thanks [@derodero24](https://github.com/derodero24)! - Add `L2Beat` for L2BEAT from its official brand kit:
+  
+  - `L2Beat`: the official symbol for light backgrounds, the black L2 over the `#F9347B` heart.
+  - `L2BeatInverted`: the official symbol for dark backgrounds, the white L2 over the `#BD114F` heart.
+  - `L2BeatMono`: the heart and the L2 in `currentColor`, with the L2 cut out of the heart by a thin gap (the kit has no one-colour symbol).
+
 ## 5.0.0
 
 ### Major Changes
