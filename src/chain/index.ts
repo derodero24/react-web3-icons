@@ -38,6 +38,7 @@ export * from './Monad';
 export * from './Near';
 export * from './OpBnb';
 export * from './Optimism';
+export * from './Plasma';
 export * from './Polkadot';
 export * from './Polygon';
 export * from './Ronin';

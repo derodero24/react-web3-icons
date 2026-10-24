@@ -1,0 +1,50 @@
+{
+  "$schema": "../schema.json",
+  "name": "Plasma",
+  "kind": "icon",
+  "source": [
+    "https://www.plasma.to/brand (official brand page, accessed 2026-10-24)",
+    "https://www.plasma.to/brand/plasma-brand-kit.zip (plasma-brand-kit.zip: logo/plasma-symbol-dark.svg, logo/plasma-boxed.svg, token/xpl-mark.svg)"
+  ],
+  "notes": [
+    "Default: the official plasma-symbol-dark.svg (#141414), path unchanged, placed on the 64 grid. The kit also ships the symbol in white and boxed on #162F29, so the base is the standalone symbol (base icon background rule)",
+    "Mono: the same symbol in currentColor",
+    "Square: the official plasma-boxed.svg (the white symbol on a full-bleed #162F29 square), scaled 64/166",
+    "Circle: the official XPL token mark token/xpl-mark.svg (the white symbol on a #162F29 disc), scaled 64/240",
+    "SquareMono and CircleMono: the square or disc in currentColor with the symbol knocked out (mask)",
+    "brandColor: #162F29, the colour of the official boxed logo and token (the standalone symbol is the neutral #141414)"
+  ],
+  "variants": {
+    "": {
+      "file": "plasma.svg",
+      "fill": "#141414"
+    },
+    "Mono": {
+      "file": "plasma.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "plasma.circle.svg",
+      "fill": "#162F29"
+    },
+    "CircleMono": {
+      "file": "plasma.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "plasma.square.svg",
+      "fill": "#162F29"
+    },
+    "SquareMono": {
+      "file": "plasma.square-mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "slugs": [
+    "plasma"
+  ],
+  "chainIds": [
+    9745
+  ],
+  "brandColor": "#162f29"
+}

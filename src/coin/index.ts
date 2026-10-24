@@ -73,5 +73,6 @@ export * from './Vet';
 export * from './Wld';
 export * from './Xlm';
 export * from './Xmr';
+export * from './Xpl';
 export * from './Xrp';
 export * from './Zec';
