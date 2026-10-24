@@ -16,13 +16,13 @@ pnpm install
 ### Prerequisites
 
 - **Node.js** `^22.22.2 || ^24.15.0 || >=26.0.0`, as declared in `devEngines.runtime` in package.json. `.nvmrc` selects Node 24.
-- **pnpm** 10.x (`packageManager` in package.json pins the exact version)
+- **pnpm** 12.x (`packageManager` in package.json pins the exact version)
 
 This is a contributor requirement only: the published package has no Node.js
 requirement (see the README's install section).
 
 Run `nvm install` before installing dependencies (reads `.nvmrc` and installs/activates the required Node version if missing).
-`pnpm install` fails fast on unsupported Node versions: `engine-strict=true` in `.npmrc` enforces the toolchain
+`pnpm install` fails fast on unsupported Node versions: `engineStrict: true` in `pnpm-workspace.yaml` enforces the toolchain
 dependencies' own `engines`, and the `prepare` script checks the range above. The range is the intersection of those
 `engines`: when a dependency raises its floor, raise it in `devEngines`, the `prepare` check, this section and the
 `node-floor` job in `.github/workflows/main.yml` together (that job installs on the exact lower bounds).

@@ -2,7 +2,18 @@ packages:
   - '.'
   - 'example'
 
-onlyBuiltDependencies:
-  - esbuild
-  - lefthook
-  - sharp
+# Dependencies whose install scripts may run. pnpm 12 reads its settings
+# from this file, not from .npmrc (which it only reads for auth and
+# registries) or the "pnpm" field in package.json.
+allowBuilds:
+  esbuild: true
+  lefthook: true
+  sharp: true
+
+# Resolve only versions published at least 3 days (4320 minutes) ago, the
+# same wait as minimumReleaseAge in renovate.json.
+minimumReleaseAge: 4320
+
+# Fail the install when a dependency's engines field excludes the running
+# Node.js (CONTRIBUTING.md, "Prerequisites").
+engineStrict: true
