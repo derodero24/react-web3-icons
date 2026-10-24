@@ -1,11 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <path fill="#D1350F" d="M16.43 32h-.76c-3.52 0-5.55-2.85-4.54-6.36l2.55-8.91h7.13Z"/>
-  <path fill="#FF8200" d="M38.38 16.73h-4.33L29.67 32H34c2.8 0 3.72 2.12 2.5 6.36s-3.35 6.37-6.15 6.37-3.72-2.12-2.5-6.37l8.02-28C36.88 6.85 34.85 4 31.33 4h-8.9l-9.86 34.36C8.44 52.8 14 60 25.97 60s21.67-7.21 25.8-21.64c4.14-14.42-1.43-21.63-13.4-21.63"/>
-  <path fill="url(#bith-a)" d="M34.05 16.73 29.67 32H34c2.8 0 3.72 2.12 2.5 6.36h15.27c4.14-14.42-1.43-21.63-13.4-21.63Z"/>
-  <defs>
-    <linearGradient id="bith-a" x1="44.76" x2="37.68" y1="31.73" y2="23.82" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#D1350F" stop-opacity="0"/>
-      <stop offset="1" stop-color="#D1350F"/>
-    </linearGradient>
-  </defs>
+  <g transform="translate(-72.73 -49.59)scale(.25895)">
+    <path fill="url(#bithumb-a)" d="m337.73 315.63-7.01 24.43c-15.88 55.39 14.12 83.08 51.44 83.08 45.94 0 87.17-27.69 103.06-83.08s-23.17-83.08-55.41-83.08h-16.62l8.04-28.04c3.15-10.99-5.1-21.94-16.54-21.94h-35.82l-14.33 49.98h-23.35l-10.51 36.71c-3.15 10.99 5.1 21.94 16.54 21.94zm88.84 24.43c-4.67 16.29-16.84 24.44-27.6 24.44s-14.28-8.14-9.61-24.44l7-24.43H413c10.75 0 18.25 8.14 13.58 24.43"/>
+    <path fill="url(#bithumb-b)" d="M330.72 340.06c-15.88 55.39 14.12 83.08 51.44 83.08l16.82-58.64c-10.75 0-14.28-8.14-9.61-24.44l31.86-111.12c3.15-10.99-5.1-21.94-16.54-21.94h-35.82z"/>
+    <defs>
+      <linearGradient id="bithumb-a" x1="415.24" x2="387.22" y1="355.42" y2="306.88" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#FF6C00"/>
+        <stop offset=".4" stop-color="#F25900"/>
+        <stop offset="1" stop-color="#DC3700"/>
+      </linearGradient>
+      <linearGradient id="bithumb-b" x1="400.44" x2="353.3" y1="348.08" y2="266.42" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#FF6C00"/>
+        <stop offset="1" stop-color="#FF9100"/>
+      </linearGradient>
+    </defs>
+  </g>
 </svg>
