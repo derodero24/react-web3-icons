@@ -589,6 +589,12 @@ export type IconManifestName =
   | 'PhemexMono'
   | 'Pinata'
   | 'PinataMono'
+  | 'Plasma'
+  | 'PlasmaCircle'
+  | 'PlasmaCircleMono'
+  | 'PlasmaMono'
+  | 'PlasmaSquare'
+  | 'PlasmaSquareMono'
   | 'Pol'
   | 'PolCircle'
   | 'PolCircleMono'
@@ -817,6 +823,12 @@ export type IconManifestName =
   | 'XlmMono'
   | 'Xmr'
   | 'XmrMono'
+  | 'Xpl'
+  | 'XplCircle'
+  | 'XplCircleMono'
+  | 'XplMono'
+  | 'XplSquare'
+  | 'XplSquareMono'
   | 'Xrp'
   | 'XrpCircle'
   | 'XrpCircleMono'
@@ -1401,6 +1413,19 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
   { name: 'OptimismMono', category: 'chain' },
   { name: 'OptimismSquare', category: 'chain' },
   { name: 'OptimismSquareMono', category: 'chain' },
+  {
+    name: 'Plasma',
+    category: 'chain',
+    chainId: 9745,
+    slug: 'plasma',
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono'],
+    brandColor: '#162f29',
+  },
+  { name: 'PlasmaCircle', category: 'chain' },
+  { name: 'PlasmaCircleMono', category: 'chain' },
+  { name: 'PlasmaMono', category: 'chain' },
+  { name: 'PlasmaSquare', category: 'chain' },
+  { name: 'PlasmaSquareMono', category: 'chain' },
   {
     name: 'Polkadot',
     category: 'chain',
@@ -2248,6 +2273,18 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#ff6600',
   },
   { name: 'XmrMono', category: 'coin' },
+  {
+    name: 'Xpl',
+    category: 'coin',
+    ticker: 'XPL',
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono'],
+    brandColor: '#162f29',
+  },
+  { name: 'XplCircle', category: 'coin' },
+  { name: 'XplCircleMono', category: 'coin' },
+  { name: 'XplMono', category: 'coin' },
+  { name: 'XplSquare', category: 'coin' },
+  { name: 'XplSquareMono', category: 'coin' },
   {
     name: 'Xrp',
     category: 'coin',

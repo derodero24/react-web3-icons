@@ -54,6 +54,7 @@ export const CHAIN_ID_TO_NAME = {
   5000: 'Mantle',
   8217: 'Kaia',
   8453: 'Base',
+  9745: 'Plasma',
   13371: 'Immutable',
   34443: 'Mode',
   42161: 'Arbitrum',
@@ -141,6 +142,7 @@ export const CHAIN_SLUG_TO_NAME = {
   near: 'Near',
   opbnb: 'OpBnb',
   optimism: 'Optimism',
+  plasma: 'Plasma',
   polkadot: 'Polkadot',
   polygon: 'Polygon',
   ron: 'Ronin',
@@ -261,6 +263,7 @@ export const TICKER_TO_COIN = {
   WLD: 'Wld',
   XLM: 'Xlm',
   XMR: 'Xmr',
+  XPL: 'Xpl',
   XRP: 'Xrp',
   ZEC: 'Zec',
 } as const satisfies Record<string, keyof typeof coin>;

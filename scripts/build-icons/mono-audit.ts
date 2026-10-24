@@ -176,6 +176,11 @@ export const MONO_AUDIT_ALLOWLIST: Readonly<Record<PairId, MonoAllowance>> = {
     reason:
       'Each bar fades from white to #00FF93, so the white tops fall outside the best threshold cut of the reference; the mono inks the 16 bars with the same paths, the geometry of the official single-colour brandmarks.',
   },
+  'chain/PlasmaSquare': {
+    kind: 'false-positive',
+    reason:
+      'The mono knocks the colored rays out of the same tile, so the footprints match (iou 1.00). The thin rays anti-alias through several #162F29-to-white colour classes, which inflates the colour-boundary count, so the edge ratio sits on the threshold, as for DydxSquare.',
+  },
   'chain/Zora': {
     kind: 'false-positive',
     reason:
