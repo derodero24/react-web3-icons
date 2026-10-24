@@ -218,12 +218,19 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ needs.verify.outputs.version }}
+        # The registry answers 404 for a version it does not have. Anything
+        # else but 200 (an outage, a rate limit) stops the job rather than
+        # guessing.
         run: |
-          if npm view "react-web3-icons@${VERSION}" version > /dev/null 2>&1; then
-            echo "on-npm=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "on-npm=false" >> "$GITHUB_OUTPUT"
-          fi
+          status="$(curl -sS -o /dev/null -w '%{http_code}' "https://registry.npmjs.org/react-web3-icons/${VERSION}")"
+          case "$status" in
+            200) echo "on-npm=true" >> "$GITHUB_OUTPUT" ;;
+            404) echo "on-npm=false" >> "$GITHUB_OUTPUT" ;;
+            *)
+              echo "::error::The npm registry answered HTTP ${status} for react-web3-icons@${VERSION}."
+              exit 1
+              ;;
+          esac
           if gh release view "react-web3-icons@${VERSION}" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
             echo "released=true" >> "$GITHUB_OUTPUT"
           else
