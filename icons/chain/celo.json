@@ -2,18 +2,19 @@
   "$schema": "../schema.json",
   "name": "Celo",
   "source": [
-    "@web3icons/react (MIT) — Celo SVG (legacy third-party artwork)",
-    "https://celo.org"
+    "https://celo.org/brand-kit (official Celo Brand Kit, accessed 2026-10-24: Symbol, \"Download\")",
+    "https://drive.google.com/file/d/1TlwA79ZvGTxcpsIOyUxoAJHMs1TfAL_q/view (Celo_Symbol_RGB_ProsperityYellow.svg in the brand kit's RGB folder)",
+    "https://drive.google.com/file/d/1eQheMQOj0JegPF-7xcQ2XfL_yXIcPHbT/view (Celo_Symbol_RGB_Onyx.svg, same geometry)"
   ],
   "notes": [
-    "Legacy artwork: the commit that added Celo (#488) took its paths from @web3icons/react (MIT), not from an official file; they have only been rescaled onto the 64 grid since",
-    "Not verified (checked 2026-10-10): https://celo.org is the home page, not an official logo file, and the artwork has not been compared with one"
+    "Default: the official Celo_Symbol_RGB_ProsperityYellow.svg, the symbol in Prosperity Yellow #FCFF52 (the brand kit's primary colour), path unchanged. It replaces legacy third-party artwork (@web3icons/react, MIT) in #FCFE52 that redrew the symbol with a circular arc",
+    "Mono: the same path in currentColor, as the kit's one-colour Onyx, Gypsum and Snow symbols"
   ],
   "kind": "icon",
   "variants": {
     "": {
       "file": "celo.svg",
-      "fill": "#FCFE52"
+      "fill": "#FCFF52"
     },
     "Mono": {
       "file": "celo.mono.svg",

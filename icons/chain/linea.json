@@ -2,18 +2,41 @@
   "$schema": "../schema.json",
   "name": "Linea",
   "source": [
-    "https://linea.build"
+    "https://linea.build/assets (official brand assets page, accessed 2026-10-24: \"Download brand kit\")",
+    "https://assets.ctfassets.net/64upluvbiuck/46y5rC2mj5Ocekur7vMSdP/c972526b87afa927a2e0bf2f506e8f75/Linea-Brand-Assets.zip (Linea-Brand-Assets.zip: Logo/SVG/Logomark Black.svg, Token/Linea-Token_Square.svg, Token/Linea-Token_Round.svg)"
   ],
   "notes": [
-    "Not verified (checked 2026-10-10): the source cites only the home page, not an official logo file, and the artwork has not been compared with one"
+    "Default: the official Logomark Black.svg (the L and dot in #121212), paths unchanged; its clip path only bounds the mark and is dropped. The kit also ships the logomark in white and on white, #61DFFF and #FFF068 backgrounds, so the base is the standalone mark (base icon background rule) and replaces the retired black tile with a white L, for which the kit has no file",
+    "Mono: the logomark's two paths in currentColor",
+    "Square: the official Linea-Token_Square.svg (the #190066 L and dot on a full-bleed #61DFFF square), paths unchanged; the #121212 rect it paints under the full-size #61DFFF square never shows and is dropped, together with the clip path that only bounds the square",
+    "Circle: the official Linea-Token_Round.svg, the same artwork clipped to a disc (a #121212 disc under a #61DFFF square clipped to the same disc); written as the #61DFFF disc with the mark",
+    "SquareMono and CircleMono: the token's square or disc in currentColor with the mark knocked out (fill-rule=evenodd)",
+    "brandColor: #61DFFF, the colour of the official token (the logomark itself is the neutral #121212)"
   ],
   "kind": "icon",
   "variants": {
     "": {
-      "file": "linea.svg"
+      "file": "linea.svg",
+      "fill": "#121212"
     },
     "Mono": {
       "file": "linea.mono.svg",
+      "fill": "currentColor"
+    },
+    "Circle": {
+      "file": "linea.circle.svg",
+      "fill": "#61DFFF"
+    },
+    "CircleMono": {
+      "file": "linea.circle-mono.svg",
+      "fill": "currentColor"
+    },
+    "Square": {
+      "file": "linea.square.svg",
+      "fill": "#61DFFF"
+    },
+    "SquareMono": {
+      "file": "linea.square-mono.svg",
       "fill": "currentColor"
     }
   },
@@ -22,5 +45,6 @@
   ],
   "chainIds": [
     59144
-  ]
+  ],
+  "brandColor": "#61dfff"
 }
