@@ -2,7 +2,7 @@
   "$schema": "../schema.json",
   "name": "WalletConnect",
   "source": [
-    "https://profiles-assets.walletconnect.network/wc-icon.svg (current WalletConnect brandmark, served by https://walletguide.walletconnect.network/)",
+    "https://profiles-assets.walletconnect.network/wc-icon.svg (current WalletConnect brandmark, served by https://walletguide.walletconnect.com/)",
     "https://assets.walletconnect.com/images/wct.svg (official WCT token icon served by https://app.walletconnect.com/: the brandmark in white on a #0988F0 disc)"
   ],
   "notes": [

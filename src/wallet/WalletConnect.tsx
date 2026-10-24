@@ -1,6 +1,6 @@
 import { createIcon } from '../utils';
 
-// Source: https://profiles-assets.walletconnect.network/wc-icon.svg (current WalletConnect brandmark, served by https://walletguide.walletconnect.network/)
+// Source: https://profiles-assets.walletconnect.network/wc-icon.svg (current WalletConnect brandmark, served by https://walletguide.walletconnect.com/)
 // Source: https://assets.walletconnect.com/images/wct.svg (official WCT token icon served by https://app.walletconnect.com/: the brandmark in white on a #0988F0 disc)
 // Checked 2026-10-04: walletconnect.network uses the current sharp-cornered brandmark in #0888F0 (raster icon.png). The older rounded Logo.svg / Icon.svg in #3396FF from the walletconnect-assets repository (last updated 2024-02) are replaced; the Reown media kit (https://reown.com, Media Kit) has no WalletConnect files
 // Colored: the two paths of wc-icon.svg unchanged, filled #0988F0, the blue of the official wct.svg, placed on the 64 grid
