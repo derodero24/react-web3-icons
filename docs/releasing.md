@@ -42,14 +42,16 @@ release flow works without them.
 7. If the version has no GitHub release yet, the same job creates the
    lightweight tag `react-web3-icons@<version>` on that commit and the
    GitHub release with the version's changelog, through the GitHub API.
-8. `main` is fast-forwarded to that same commit, the one the run was
-   triggered by. If `main` has diverged, the step fails and needs a manual
-   fix.
+8. If the version's tag points at the commit the run was triggered by,
+   `main` is fast-forwarded to it. If `main` has diverged, the step fails
+   and needs a manual fix.
 
-Later pushes without a changeset find the version on npm and its release
-in place, and the Publish job does nothing. A run that failed halfway (for
-example after the upload but before the release) can be re-run: it only
-does the steps that are still missing.
+Later pushes without a changeset find the version on npm, its release in
+place and its tag on an older commit, and the Publish job changes nothing.
+A run that failed halfway (for example after the upload but before the
+release, or at the fast-forward) can be re-run: it only does the steps that
+are still missing. The checks treat only HTTP 404 as "missing"; any other
+answer from npm or GitHub fails the job.
 
 After a release, check that
 `npm view react-web3-icons@<version> dist.attestations` prints a

@@ -213,29 +213,31 @@ jobs:
           node-version: '24.x'
           registry-url: https://registry.npmjs.org
 
+      # Both checks tell "not there" (HTTP 404) from errors: anything else
+      # but 200 (an outage, a rate limit, an auth problem) stops the job
+      # rather than counting as not released.
       - name: Check what is already released
         id: state
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ needs.verify.outputs.version }}
-        # The registry answers 404 for a version it does not have. Anything
-        # else but 200 (an outage, a rate limit) stops the job rather than
-        # guessing.
         run: |
-          status="$(curl -sS -o /dev/null -w '%{http_code}' "https://registry.npmjs.org/react-web3-icons/${VERSION}")"
-          case "$status" in
-            200) echo "on-npm=true" >> "$GITHUB_OUTPUT" ;;
-            404) echo "on-npm=false" >> "$GITHUB_OUTPUT" ;;
-            *)
-              echo "::error::The npm registry answered HTTP ${status} for react-web3-icons@${VERSION}."
-              exit 1
-              ;;
-          esac
-          if gh release view "react-web3-icons@${VERSION}" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
-            echo "released=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "released=false" >> "$GITHUB_OUTPUT"
-          fi
+          exists() {
+            case "$2" in
+              200) echo "$1=true" >> "$GITHUB_OUTPUT" ;;
+              404) echo "$1=false" >> "$GITHUB_OUTPUT" ;;
+              *)
+                echo "::error::Checking $1 for react-web3-icons@${VERSION} answered HTTP $2."
+                exit 1
+                ;;
+            esac
+          }
+          exists on-npm "$(curl -sS -o /dev/null -w '%{http_code}' \
+            "https://registry.npmjs.org/react-web3-icons/${VERSION}")"
+          exists released "$(curl -sS -o /dev/null -w '%{http_code}' \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H 'Accept: application/vnd.github+json' \
+            "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/tags/react-web3-icons@${VERSION}")"
 
       # npm runs no lifecycle script when it publishes a tarball, and
       # --ignore-scripts makes that explicit. --provenance attests the
@@ -263,11 +265,34 @@ jobs:
             --title "react-web3-icons@${VERSION}" \
             --notes-file release/notes.md
 
-      # Only after a release: main follows develop to the release commit.
+      # main follows develop to the release commit: the commit this
+      # version's tag points at. On later pushes the tag points at an older
+      # commit, so main stays where it is. Deciding by the tag rather than by
+      # what this run published lets a re-run finish a fast-forward that
+      # failed after the upload and the release.
+      - name: Check the release commit
+        id: tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ needs.verify.outputs.version }}
+        run: |
+          ref="$(gh api "repos/${GITHUB_REPOSITORY}/git/ref/tags/react-web3-icons@${VERSION}" --jq '"\(.object.type) \(.object.sha)"')"
+          read -r type tagged <<< "$ref"
+          # An annotated tag (as releases before 5.0.0 had) points at a tag
+          # object, which in turn points at the commit.
+          if [ "$type" = tag ]; then
+            tagged="$(gh api "repos/${GITHUB_REPOSITORY}/git/tags/${tagged}" --jq .object.sha)"
+          fi
+          if [ "$tagged" = "$GITHUB_SHA" ]; then
+            echo "release-commit=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "release-commit=false" >> "$GITHUB_OUTPUT"
+          fi
+
       # The checkout goes to its own directory, next to the downloaded
       # release, and nothing from it is run.
       - name: Checkout repo
-        if: steps.state.outputs.on-npm == 'false' || steps.state.outputs.released == 'false'
+        if: steps.tag.outputs.release-commit == 'true'
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           path: repo
@@ -275,12 +300,16 @@ jobs:
           persist-credentials: false
 
       - name: Fast-forward main to the release commit
-        if: steps.state.outputs.on-npm == 'false' || steps.state.outputs.released == 'false'
+        if: steps.tag.outputs.release-commit == 'true'
         working-directory: repo
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git fetch origin main:main
+          if git merge-base --is-ancestor "$GITHUB_SHA" main; then
+            echo "main already contains ${GITHUB_SHA}."
+            exit 0
+          fi
           git checkout main
           if git merge "$GITHUB_SHA" --ff-only; then
             # Credentials for this push only: nothing is persisted by the
