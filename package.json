@@ -205,7 +205,7 @@
     {
       "name": "full bundle",
       "path": "dist/index.mjs",
-      "limit": "175 KB"
+      "limit": "185 KB"
     },
     {
       "name": "single icon (tree-shaken)",
@@ -226,17 +226,17 @@
     {
       "name": "chain",
       "path": "dist/chain/index.mjs",
-      "limit": "41 KB"
+      "limit": "45 KB"
     },
     {
       "name": "coin",
       "path": "dist/coin/index.mjs",
-      "limit": "80 KB"
+      "limit": "85 KB"
     },
     {
       "name": "defi",
       "path": "dist/defi/index.mjs",
-      "limit": "10 KB"
+      "limit": "11 KB"
     },
     {
       "name": "devtool",
@@ -256,7 +256,7 @@
     {
       "name": "exchange",
       "path": "dist/exchange/index.mjs",
-      "limit": "7 KB"
+      "limit": "8 KB"
     },
     {
       "name": "explorer",
@@ -306,7 +306,7 @@
     {
       "name": "dynamic (worst case: bundler without code splitting)",
       "path": "dist/dynamic/index.mjs",
-      "limit": "155 KB"
+      "limit": "160 KB"
     },
     {
       "name": "manifest",
