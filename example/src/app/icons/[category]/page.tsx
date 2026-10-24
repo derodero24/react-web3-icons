@@ -6,6 +6,11 @@ import { CATEGORY_INFO, isCategory } from '../../../lib/categories';
 
 export const dynamicParams = false;
 
+/** `dev tool` → `Dev tool`; `DeFi` and `DEX` stay as they are. */
+function capitalize(text: string): string {
+  return `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
+}
+
 export function generateStaticParams(): { category: string }[] {
   return CATALOG_CATEGORIES.map(category => ({ category }));
 }
@@ -15,9 +20,9 @@ export async function generateMetadata({
 }: PageProps<'/icons/[category]'>): Promise<Metadata> {
   const { category } = await params;
   if (!isCategory(category)) return {};
-  const { label, blurb } = CATEGORY_INFO[category];
-  const title = `${label} icons for React`;
-  const description = `${getIcons(category).length} ${label.toLowerCase()} icons as React components, colored and mono. ${blurb}`;
+  const { noun, blurb } = CATEGORY_INFO[category];
+  const title = `${capitalize(noun)} icons for React`;
+  const description = `${getIcons(category).length} ${noun} icons as React components, colored and mono. ${blurb}`;
   return {
     title,
     description,
@@ -31,11 +36,13 @@ export default async function CategoryPage({
 }: PageProps<'/icons/[category]'>) {
   const { category } = await params;
   if (!isCategory(category)) notFound();
-  const { label, blurb } = CATEGORY_INFO[category];
+  const { noun, blurb } = CATEGORY_INFO[category];
   return (
     <div className="container px-4 sm:px-6">
       <header className="space-y-2 py-10">
-        <h1 className="text-3xl font-semibold tracking-tight">{label} icons</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">
+          {capitalize(noun)} icons
+        </h1>
         <p className="text-fg-muted">
           {blurb} Import them from{' '}
           <code className="rounded bg-surface px-1.5 py-0.5 font-mono text-sm text-fg">
