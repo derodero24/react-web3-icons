@@ -390,13 +390,13 @@ export default function ComparePage() {
                   <tbody className="divide-y divide-border">
                     {[
                       { label: 'Single icon (Ethereum)', size: '~0.7 KB' },
-                      { label: 'Full coin category (/coin)', size: '~74 KB' },
-                      { label: 'Full chain category (/chain)', size: '~40 KB' },
+                      { label: 'Full coin category (/coin)', size: '~91 KB' },
+                      { label: 'Full chain category (/chain)', size: '~41 KB' },
                       {
                         label: 'Dynamic loader (/dynamic), no code splitting',
-                        size: '~143 KB',
+                        size: '~145 KB',
                       },
-                      { label: 'Entire library', size: '~163 KB' },
+                      { label: 'Entire library', size: '~164 KB' },
                     ].map(row => (
                       <tr key={row.label}>
                         <td className="py-2 pr-4 pl-3 font-mono text-sm text-fg/70">
@@ -416,7 +416,7 @@ export default function ComparePage() {
                 <code className="rounded bg-surface px-1 font-mono text-xs">
                   pnpm run size
                 </code>{' '}
-                (size-limit) on the 5.0.0 ESM build; 1 KB = 1,000 bytes. With
+                (size-limit) on the 5.1.0 ESM build; 1 KB = 1,000 bytes. With
                 code splitting, /dynamic is a small loader plus one chunk per
                 icon rendered. Single-icon size varies by path complexity.
               </p>
