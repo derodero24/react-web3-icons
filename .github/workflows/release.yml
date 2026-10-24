@@ -240,7 +240,9 @@ jobs:
             "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/tags/react-web3-icons@${VERSION}")"
 
       # npm runs no lifecycle script when it publishes a tarball, and
-      # --ignore-scripts makes that explicit. --provenance attests the
+      # --ignore-scripts makes that explicit. The path starts with ./ because
+      # npm reads `release/package.tgz` as the GitHub repository
+      # release/package.tgz. --provenance attests the
       # tarball to this run and commit. The token is in this step's
       # environment only; once a trusted publisher is configured, npm
       # authenticates through OIDC first (docs/releasing.md).
@@ -248,7 +250,7 @@ jobs:
         if: steps.state.outputs.on-npm == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish release/package.tgz --provenance --access public --tag latest --ignore-scripts
+        run: npm publish ./release/package.tgz --provenance --access public --tag latest --ignore-scripts
 
       # The tag is a lightweight ref on the commit that triggered this run
       # (the version PR merge), created through the API together with the
