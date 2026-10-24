@@ -1,0 +1,37 @@
+import { createIcon } from '../utils';
+
+// Source: https://rootstock.io/brand (official brand page, accessed 2026-10-24: "Download assets")
+// Source: https://drive.google.com/drive/folders/1IBqsZeIOEhyrdH51noo4sK2c_VPjauzW (the brand page's asset folder: rBTC/SVG/Symbol/rBTC symbol.svg)
+// Colored: the official rBTC symbol.svg (a #FF9100 scalloped badge with a white Bitcoin B), paths unchanged
+// Mono: the badge in currentColor with the B knocked out (one fill-rule=evenodd path, so the counters of the B stay ink), matching the kit's single-colour rBTC symbol - light.svg / dark.svg
+/** Rbtc coin icon (colored). */
+export const Rbtc = /* @__PURE__ */ createIcon(
+  'Rbtc',
+  '0 0 64 64',
+  () => (
+    <>
+      <path
+        fill="#FF9100"
+        d="m36.55 5.55 6.62 5.1q.79.6 1.7.97l7.71 3.2c3.13 1.3 5 4.54 4.55 7.9l-1.09 8.3a8 8 0 0 0 0 1.96l1.1 8.3a7.5 7.5 0 0 1-4.56 7.9l-7.71 3.2a8 8 0 0 0-1.7.97l-6.62 5.1a7.46 7.46 0 0 1-9.1 0l-6.62-5.1a8 8 0 0 0-1.7-.98l-7.71-3.2a7.5 7.5 0 0 1-4.55-7.9l1.09-8.29q.13-.98 0-1.96l-1.1-8.3a7.5 7.5 0 0 1 4.56-7.9l7.71-3.2a8 8 0 0 0 1.7-.98l6.62-5.1a7.46 7.46 0 0 1 9.1 0"
+      />
+      <path
+        fill="#fff"
+        d="M42.28 26.1c-.34-3.53-3.37-4.7-7.2-5.04v-4.88h-2.94v4.9h-2.38v-4.9h-2.94v4.9h-1.93l-4.09-.02v3.17s2.2-.04 2.16 0c1.2 0 1.59.7 1.7 1.3V38.9c-.05.38-.27.98-1.1.98.03.03-2.16 0-2.16 0l-.6 3.6h6.02v4.9h2.94v-4.9h2.38v4.9h2.94v-4.9c4.99-.28 8.48-1.57 8.92-6.25.35-3.78-1.43-5.46-4.26-6.14 1.72-.88 2.8-2.42 2.54-5zm-4.15 10.54c0 3.69-6.36 3.27-8.37 3.27v-6.54c2.01 0 8.37-.57 8.37 3.27m-1.38-9.22c0 3.35-5.31 2.96-6.99 2.96v-5.93c1.67 0 7-.53 7 2.97"
+      />
+    </>
+  ),
+  { fill: 'none' },
+);
+
+/** Rbtc coin icon (monochrome). */
+export const RbtcMono = /* @__PURE__ */ createIcon(
+  'RbtcMono',
+  '0 0 64 64',
+  () => (
+    <path
+      fillRule="evenodd"
+      d="m36.55 5.55 6.62 5.1q.79.6 1.7.97l7.71 3.2c3.13 1.3 5 4.54 4.55 7.9l-1.09 8.3a8 8 0 0 0 0 1.96l1.1 8.3a7.5 7.5 0 0 1-4.56 7.9l-7.71 3.2a8 8 0 0 0-1.7.97l-6.62 5.1a7.46 7.46 0 0 1-9.1 0l-6.62-5.1a8 8 0 0 0-1.7-.98l-7.71-3.2a7.5 7.5 0 0 1-4.55-7.9l1.09-8.29q.13-.98 0-1.96l-1.1-8.3a7.5 7.5 0 0 1 4.56-7.9l7.71-3.2a8 8 0 0 0 1.7-.98l6.62-5.1a7.46 7.46 0 0 1 9.1 0m5.73 20.54c-.34-3.51-3.37-4.7-7.2-5.03v-4.88h-2.94v4.9h-2.38v-4.9h-2.94v4.9h-1.93l-4.09-.02v3.17s2.2-.04 2.16 0c1.2 0 1.59.7 1.7 1.3V38.9c-.05.38-.27.98-1.1.98.03.03-2.16 0-2.16 0l-.6 3.6h6.02v4.9h2.94v-4.9h2.38v4.9h2.94v-4.9c4.99-.28 8.49-1.57 8.92-6.25.35-3.78-1.43-5.46-4.26-6.14 1.72-.88 2.8-2.42 2.54-5zm-4.15 10.55c0 3.69-6.36 3.27-8.37 3.27v-6.54c2.01 0 8.37-.57 8.37 3.27m-1.38-9.22c0 3.35-5.31 2.96-6.99 2.96v-5.93c1.67 0 7-.53 7 2.97"
+    />
+  ),
+  { fill: 'currentColor' },
+);

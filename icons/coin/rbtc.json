@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Rbtc",
+  "source": [
+    "https://rootstock.io/brand (official brand page, accessed 2026-10-24: \"Download assets\")",
+    "https://drive.google.com/drive/folders/1IBqsZeIOEhyrdH51noo4sK2c_VPjauzW (the brand page's asset folder: rBTC/SVG/Symbol/rBTC symbol.svg)"
+  ],
+  "notes": [
+    "Colored: the official rBTC symbol.svg (a #FF9100 scalloped badge with a white Bitcoin B), paths unchanged",
+    "Mono: the badge in currentColor with the B knocked out (one fill-rule=evenodd path, so the counters of the B stay ink), matching the kit's single-colour rBTC symbol - light.svg / dark.svg"
+  ],
+  "kind": "icon",
+  "variants": {
+    "": {
+      "file": "rbtc.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "rbtc.mono.svg",
+      "fill": "currentColor"
+    }
+  },
+  "tickers": [
+    "RBTC"
+  ],
+  "brandColor": "#ff9100"
+}

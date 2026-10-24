@@ -49,6 +49,7 @@ export * from './Op';
 export * from './Pepe';
 export * from './Pol';
 export * from './Pyth';
+export * from './Rbtc';
 export * from './Render';
 export * from './Ronin';
 export * from './Sei';
