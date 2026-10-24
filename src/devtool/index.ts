@@ -8,6 +8,7 @@ export * from './Moralis';
 export * from './OpenZeppelin';
 export * from './Privy';
 export * from './Remix';
+export * from './Reown';
 export * from './Solidity';
 export * from './Tally';
 export * from './Tenderly';

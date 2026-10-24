@@ -1,0 +1,29 @@
+{
+  "$schema": "../schema.json",
+  "name": "Reown",
+  "kind": "icon",
+  "source": [
+    "https://reown.com/brand (official brand page, accessed 2026-10-24: \"Download brand assets\")",
+    "https://drive.google.com/drive/folders/1CnhBzy82qcEYSu0cBafk-NWatLjTaCW5 (the brand page's asset folder: Brand Assets/Reown Logo/Brandmark/SVG/reown-brandmark-positive.svg, reown-brandmark-negative.svg)"
+  ],
+  "notes": [
+    "Reown is the company behind WalletConnect and its AppKit / WalletKit SDKs; WalletConnect (the protocol) stays a wallet icon",
+    "Default: the official reown-brandmark-positive.svg (two #202020 shapes with a white slash and dot), paths unchanged, placed on the 64 grid",
+    "Inverted: the official reown-brandmark-negative.svg (white shapes with the slash and dot cut out in #202020), paths unchanged, for dark backgrounds",
+    "Mono: the positive brandmark in currentColor with the slash and dot knocked out (fill-rule=evenodd), so it matches the negative on any background"
+  ],
+  "variants": {
+    "": {
+      "file": "reown.svg",
+      "fill": "none"
+    },
+    "Mono": {
+      "file": "reown.mono.svg",
+      "fill": "currentColor"
+    },
+    "Inverted": {
+      "file": "reown.inverted.svg",
+      "fill": "none"
+    }
+  }
+}

@@ -647,6 +647,9 @@ export type IconManifestName =
   | 'RemixMono'
   | 'Render'
   | 'RenderMono'
+  | 'Reown'
+  | 'ReownInverted'
+  | 'ReownMono'
   | 'RocketPool'
   | 'RocketPoolMono'
   | 'Ronin'
@@ -2583,6 +2586,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#007aa6',
   },
   { name: 'RemixMono', category: 'devtool' },
+  {
+    name: 'Reown',
+    category: 'devtool',
+    variants: ['', 'Mono', 'Inverted'],
+    brandColor: '#202020',
+  },
+  { name: 'ReownInverted', category: 'devtool' },
+  { name: 'ReownMono', category: 'devtool' },
   {
     name: 'Solidity',
     category: 'devtool',
