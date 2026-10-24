@@ -3,6 +3,7 @@ import { createIcon } from '../utils';
 // Source: https://repository.sonic.soniclabs.com/validator/sonic.svg (official asset host, referenced from docs.soniclabs.com validator-node docs)
 // Source: https://mediakit.soniclabs.com (official Sonic media kit: Token-icons 8.zip, S/S_token.svg)
 // Lookup keys: chain ID 250 and slug fantom resolve to Sonic, not to the deprecated Fantom export, because Fantom Opera was succeeded by Sonic (FTM upgraded 1:1 to S; issue #787).
+// Default: the gradient ring from the validator-node sonic.svg on Sonic's asset host (first source), paths unchanged. Checked 2026-10-24: the file is still served, and soniclabs.com's header logo (https://www.soniclabs.com/sonic-logo.svg) draws the same rays in a light disc for its dark header, the design of the Circle variant
 // Circle: the official S token (S_token.svg in the media kit's Token-icons 8.zip: the #F5F5F5 mark on a #141416 disc, drawn as a 200.002x200 rect with rx 100), shapes unchanged and full-bleed on the 64 grid
 // CircleMono: the token's disc in currentColor with the mark knocked out (fill-rule=evenodd)
 /** Sonic chain icon (colored). */

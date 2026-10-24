@@ -305,6 +305,7 @@ They are now bare marks with the padding of section 5. Use the container variant
 | `Bnb` | the white symbol on a `#F0B90B` disc | the `#F0B90B` symbol, re-exported from `BnbSmartChain`; `BnbCircle` keeps the disc |
 | `CoinbaseWallet` | a white disc and blue square on a `#0052FF` tile | the C ring in a blue-to-yellow gradient; `CoinbaseWalletCircle` and `CoinbaseWalletSquare` put it on a white disc or tile |
 | `Ekubo` | a white mark on a purple-to-black gradient disc | the mark in `#101010` |
+| `Linea` | a white L and dot on a black square | the `#121212` L and dot; `LineaCircle` and `LineaSquare` (new) are the LINEA token, the `#190066` mark on a `#61DFFF` disc or square |
 | `Mantle`, `Mnt` | white bars on a black disc | white-to-`#00FF93` bars drawn for dark backgrounds; `MantleSquare` and `MntSquare` (new) put them on a `#092C24` square |
 | `Phantom` | a white ghost on a purple gradient disc | the `#AB9FF2` ghost; `PhantomCircle` and `PhantomSquare` keep a container, now in `#9886E5` |
 | `Remix` | a figure knocked out of a black disc | the Remix logo in `#007AA6`; there is no container variant |
@@ -349,7 +350,7 @@ They now fill the whole box like other containers (section 5), so they render la
 
 ### Marks that changed between dark and light
 
-- These are now dark marks on a transparent background, so on a dark page they need a light background, or the `Mono` variant with a light `color`: `Balancer`, `Berachain` / `Bera`, `Celestia` / `Tia`, `CoinMarketCap`, `Ekubo`, `Gemini`, `Near`, `Polkadot` / `Dot`, `Privy`, oracle `Pyth` (section 13), `Scroll`, `Stx`, `TheGraph`, `Xverse` and `Zksync`. In v4 they were coloured, light, or on their own container.
+- These are now dark marks on a transparent background, so on a dark page they need a light background, or the `Mono` variant with a light `color`: `Balancer`, `Berachain` / `Bera`, `Celestia` / `Tia`, `CoinMarketCap`, `Ekubo`, `Gemini`, `Linea`, `Near`, `Polkadot` / `Dot`, `Privy`, oracle `Pyth` (section 13), `Scroll`, `Stx`, `TheGraph`, `Xverse` and `Zksync`. In v4 they were coloured, light, or on their own container.
 - `GnosisChain` (a green disc in v4), `Sei` (a red gradient disc in v4, now `#600014`) and `Wormhole` are now dark discs with the mark knocked out, so the same applies to them.
 - `Dydx` and `Htx` were light marks and are now dark; the new `DydxInverted` and `HtxInverted` are light versions for dark backgrounds.
 - `AvalancheSquare` (`#1D1D1D`) and `Oneinch` (black) are now dark containers (red in v4), so on a dark page their edge does not show.

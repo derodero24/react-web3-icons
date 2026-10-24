@@ -448,7 +448,11 @@ export type IconManifestName =
   | 'Lido'
   | 'LidoMono'
   | 'Linea'
+  | 'LineaCircle'
+  | 'LineaCircleMono'
   | 'LineaMono'
+  | 'LineaSquare'
+  | 'LineaSquareMono'
   | 'Link'
   | 'LinkMono'
   | 'Liquity'
@@ -1146,7 +1150,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     chainId: 42_220,
     slug: 'celo',
     variants: ['', 'Mono'],
-    brandColor: '#fcfe52',
+    brandColor: '#fcff52',
   },
   { name: 'CeloMono', category: 'chain' },
   {
@@ -1299,10 +1303,14 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'chain',
     chainId: 59_144,
     slug: 'linea',
-    variants: ['', 'Mono'],
-    brandColor: '#000000',
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono'],
+    brandColor: '#61dfff',
   },
+  { name: 'LineaCircle', category: 'chain' },
+  { name: 'LineaCircleMono', category: 'chain' },
   { name: 'LineaMono', category: 'chain' },
+  { name: 'LineaSquare', category: 'chain' },
+  { name: 'LineaSquareMono', category: 'chain' },
   {
     name: 'MantaPacific',
     category: 'chain',
@@ -1712,7 +1720,7 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     category: 'coin',
     ticker: 'CELO',
     variants: ['', 'Mono'],
-    brandColor: '#fcfe52',
+    brandColor: '#fcff52',
   },
   { name: 'CeloMono', category: 'coin' },
   {
