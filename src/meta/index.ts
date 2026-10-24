@@ -407,6 +407,7 @@ export const DEFI_SLUG_TO_NAME = {
   eigenlayer: 'EigenLayer',
   ethena: 'Ethena',
   etherfi: 'EtherFi',
+  euler: 'Euler',
   frax: 'Frax',
   gmx: 'Gmx',
   kamino: 'Kamino',

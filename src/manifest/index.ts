@@ -338,6 +338,12 @@ export type IconManifestName =
   | 'Etherscan'
   | 'EtherscanInverted'
   | 'EtherscanMono'
+  | 'Euler'
+  | 'EulerCircle'
+  | 'EulerCircleMono'
+  | 'EulerMono'
+  | 'EulerSquare'
+  | 'EulerSquareMono'
   | 'Exodus'
   | 'ExodusMono'
   | 'Fantom'
@@ -2372,6 +2378,18 @@ export const ICON_MANIFEST: readonly IconManifestEntry[] = [
     brandColor: '#29bcfa',
   },
   { name: 'EtherFiMono', category: 'defi' },
+  {
+    name: 'Euler',
+    category: 'defi',
+    slug: 'euler',
+    variants: ['', 'Mono', 'Circle', 'CircleMono', 'Square', 'SquareMono'],
+    brandColor: '#2ae5b9',
+  },
+  { name: 'EulerCircle', category: 'defi' },
+  { name: 'EulerCircleMono', category: 'defi' },
+  { name: 'EulerMono', category: 'defi' },
+  { name: 'EulerSquare', category: 'defi' },
+  { name: 'EulerSquareMono', category: 'defi' },
   {
     name: 'Frax',
     category: 'defi',
