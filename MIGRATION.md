@@ -384,7 +384,7 @@ They now fill the whole box like other containers (section 5), so they render la
 - [ ] Load `react-web3-icons/svg/…/OkxWallet*.svg`, `Starknet*.svg` and `Zksync*.svg` instead of the `OKXWallet*`, `StarkNet*` and `ZkSync*` files
 - [ ] Use `ZerionCircle` / `TrustWalletSquare` (and their `Mono` variants) where you relied on `Zerion` / `TrustWallet` rendering a container (section 10)
 - [ ] Expect the DAI disc from `Dai` / `DaiMono`, and review visual baselines of the icons in section 11
-- [ ] Review layouts, backgrounds and visual baselines for the icons in section 12 (for example code that assumed a round `Optimism`, `Base` or `Bnb`, or a container around `Phantom`, `Zksync` or `Mantle`), and check that the marks that are now dark or light still show on your background
+- [ ] Review layouts, backgrounds and visual baselines for the icons in section 12 (for example code that assumed a round `Optimism`, `Base` or `Bnb`, or a container around `Phantom`, `Zksync`, `Mantle` or `Linea`), and check that the marks that are now dark or light still show on your background
 - [ ] Expect Sonic for chain 250, `fantom` and `FTM`, and the `#110F23` `Pyth`; read stored `brandColor` values again, read the variants of `ArbitrumOne` and `ArbitrumNova` from their own manifest entries, and build `IconManifestEntry` objects with export names only (section 13)
 
 ---
