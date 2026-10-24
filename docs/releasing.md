@@ -18,8 +18,8 @@ release flow works without them.
    (`pnpm changeset`) and is merged into `develop`.
 2. The **Verify** job runs lint, typecheck, tests with coverage thresholds,
    build and size limits on the new commit. Nothing below runs unless it
-   passes.
-3. While unreleased changesets exist, **Version or publish** opens or
+   passes. It has read-only access and no secrets.
+3. While unreleased changesets exist, the **Version PR** job opens or
    updates the `chore: version packages` PR from `changeset-release/develop`.
    `pnpm run version-packages` runs `changeset version`, which bumps
    `package.json`, writes `CHANGELOG.md` and deletes the consumed
@@ -27,22 +27,29 @@ release flow works without them.
    every exact `react-web3-icons@X.Y.Z` in `README.md` (today, the CDN
    examples) and the major in its unpinned-URL example to the new version,
    so the README published with the release links to that release's files.
-   Every later push to `develop` rebuilds the same PR on top of it.
+   Every later push to `develop` rebuilds the same PR on top of it. This job
+   can write to the repository but holds no npm token and no OIDC token.
 4. A maintainer approves the PR's CI runs (see
    [The version PR](#the-version-pr)), reviews it and merges it.
-5. Verify runs again on the merge commit. With no changesets left, the job
-   builds the package before any step sets the npm token, then publishes it
-   with `pnpm changeset publish` and a provenance attestation
-   (`NPM_CONFIG_PROVENANCE=true`, `id-token: write`). Lifecycle scripts are
-   disabled during the upload. Install and build still run in the job that
-   holds `id-token: write` and the tokens (see
-   [Hardening before trusted publishing](#hardening-before-trusted-publishing)).
-6. `changesets/action` creates the lightweight tag `react-web3-icons@<version>`
-   on that commit and a GitHub release with the version's changelog, both
-   through the GitHub API.
-7. `main` is fast-forwarded to that same commit, the one the run was
+5. Verify runs again on the merge commit. With no changesets left, it packs
+   the build it just verified with `pnpm pack` and uploads the tarball and
+   the version's `CHANGELOG.md` section as the `release` artifact.
+6. The **Publish** job downloads that artifact and, if the version is not on
+   npm yet, runs `npm publish` on the tarball with a provenance attestation
+   (`--provenance`, `id-token: write`) and lifecycle scripts disabled. It
+   checks out nothing to build and installs nothing, so no dependency code
+   runs in the only job that can publish.
+7. If the version has no GitHub release yet, the same job creates the
+   lightweight tag `react-web3-icons@<version>` on that commit and the
+   GitHub release with the version's changelog, through the GitHub API.
+8. `main` is fast-forwarded to that same commit, the one the run was
    triggered by. If `main` has diverged, the step fails and needs a manual
    fix.
+
+Later pushes without a changeset find the version on npm and its release
+in place, and the Publish job does nothing. A run that failed halfway (for
+example after the upload but before the release) can be re-run: it only
+does the steps that are still missing.
 
 After a release, check that
 `npm view react-web3-icons@<version> dist.attestations` prints a
@@ -70,7 +77,7 @@ every case Verify checks the merge commit before anything is published.
 
 ## npm trusted publishing (once configured)
 
-The Publish step authenticates with the `NPM_TOKEN` repository secret
+The "Publish to npm" step authenticates with the `NPM_TOKEN` repository secret
 (`NODE_AUTH_TOKEN`). Once a trusted publisher is configured, npm
 authenticates the workflow through OIDC instead; the npm CLI tries OIDC
 before a token and falls back to the token when the OIDC exchange fails.
@@ -100,33 +107,22 @@ GitHub Actions
   and Node 22.14.0 or later; Node 24.5.0 and later bundle npm 11.5.1 or
   newer).
 
-### Hardening before trusted publishing
+### Job permissions
 
-**Version or publish** installs dependencies and builds in the same job that
-publishes. Every step of that job can request an OIDC token
-(`id-token: write`), and the runner receives `GITHUB_TOKEN` (with
-`contents: write` and `pull-requests: write`) and `NPM_TOKEN` when the job
-starts. A step-scoped `env:` keeps a secret out of the other steps'
-environment variables, not out of the runner's memory. A compromised
-dependency that runs code during install or build could therefore publish,
-and once a trusted publisher exists, the OIDC token alone is enough to
-publish `react-web3-icons`. The frozen lockfile, the 3-day
-`minimum-release-age` in `.npmrc` and the short `onlyBuiltDependencies` list
-in `pnpm-workspace.yaml` reduce this risk; the split below removes that
-exposure. Schedule it before the trusted publisher is configured
-([#887](https://github.com/derodero24/react-web3-icons/issues/887)):
+Once a trusted publisher exists, an OIDC token from `release.yml` is enough
+to publish `react-web3-icons`, so only a job that runs no dependency code may
+request one ([#887](https://github.com/derodero24/react-web3-icons/issues/887)):
 
-- A build job with only `contents: read` installs, builds and runs
-  `pnpm pack`, then uploads the tarball and the pending-changesets result as
-  an artifact.
-- The version PR keeps its own job, because `pnpm run version-packages`
-  needs an install. It gets `contents: write` and `pull-requests: write`, but
-  no `id-token: write` and no `NPM_TOKEN`.
-- A publish job is the only one with `id-token: write` and `NPM_TOKEN`. It
-  downloads the tarball and runs
-  `npm publish <tarball> --provenance --access public`, without installing
-  the workspace and without `cache: pnpm`. It then creates the tag and the
-  GitHub release through the API and fast-forwards `main`.
+- **Verify** installs, builds and packs with `contents: read` only, without
+  secrets and without `id-token: write`.
+- **Version PR** installs to run `changeset version`. It gets
+  `contents: write` and `pull-requests: write`, but no `id-token: write` and
+  no `NPM_TOKEN`.
+- **Publish** is the only job with `id-token: write` and `NPM_TOKEN`. It
+  downloads the tarball and runs `npm publish <tarball> --provenance
+  --access public --ignore-scripts`, without installing the workspace and
+  without `cache: pnpm`, then creates the tag and the GitHub release through
+  the API and fast-forwards `main`.
 
 ### Check that the trusted publisher was used
 
@@ -153,7 +149,7 @@ npm view react-web3-icons@<version> _npmUser
 
 Only once `_npmUser` shows the trusted publisher:
 
-1. Remove `NODE_AUTH_TOKEN` from the Publish step in `release.yml`, together
+1. Remove `NODE_AUTH_TOKEN` from the "Publish to npm" step in `release.yml`, together
    with the comments that mention it.
 2. Delete the `NPM_TOKEN` repository secret.
 3. On npmjs.com, revoke the access token that `NPM_TOKEN` held (**Access
