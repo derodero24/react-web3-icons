@@ -204,7 +204,7 @@ importers:
         version: 14.3.0(size-limit@14.3.0)
       '@tsconfig/strictest':
         specifier: ^2.0.8
-        version: 2.0.8
+        version: 2.0.9
       '@types/node':
         specifier: ^22.20.5
         version: 22.20.5
@@ -289,7 +289,7 @@ importers:
         version: 0.6.1
       '@tsconfig/strictest':
         specifier: ^2.0.8
-        version: 2.0.8
+        version: 2.0.9
       '@types/node':
         specifier: ^22.20.5
         version: 22.20.5
@@ -1407,8 +1407,8 @@ packages:
   '@total-typescript/ts-reset@0.6.1':
     resolution: {integrity: sha512-cka47fVSo6lfQDIATYqb/vO1nvFfbPw7uWLayIXIhGETj0wcOOlrlkobOMDNQOFr9QOafegUPq13V2+6vtD7yg==}
 
-  '@tsconfig/strictest@2.0.8':
-    resolution: {integrity: sha512-XnQ7vNz5HRN0r88GYf1J9JJjqtZPiHt2woGJOo2dYqyHGGcd6OLGqSlBB6p1j9mpzja6Oe5BoPqWmeDx6X9rLw==}
+  '@tsconfig/strictest@2.0.9':
+    resolution: {integrity: sha512-CbwIySRXoGapLZYXqQHF15cg0wQImJa25Ynmubb7816vnHqTdQrmQlSbZxkJrrBusHLbF1kFbNVn8XtxmQ3EpQ==}
 
   '@tybys/wasm-util@0.10.4':
     resolution: {integrity: sha512-W3c4gRigFS0T/Ma4qIYF3GDAc5AQdHb1yL5znJT1Zv1YaD9Kitx656wBjvr19qbiosmZT8lWDM5BEMynUqX65A==}
@@ -3734,7 +3734,7 @@ snapshots:
 
   '@total-typescript/ts-reset@0.6.1': {}
 
-  '@tsconfig/strictest@2.0.8': {}
+  '@tsconfig/strictest@2.0.9': {}
 
   '@tybys/wasm-util@0.10.4':
     dependencies:
