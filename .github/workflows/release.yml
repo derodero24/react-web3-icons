@@ -207,7 +207,7 @@ jobs:
           name: release
           path: release
 
-      # Node 24 bundles npm 11.5.1 or later, which trusted publishing needs.
+      # Node 26 bundles npm 11.5.1 or later, which trusted publishing needs.
       # No registry-url: npm publishes to its default registry and gets its
       # credential through OIDC, so no .npmrc with a token is written. No
       # `cache: pnpm`: nothing is installed here.
