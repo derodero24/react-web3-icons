@@ -89,6 +89,7 @@ const fallback = createElement('span', null, 'fallback');
 describe('createDynamicIcon', () => {
   it('renders the icon once its module has loaded', async () => {
     const Icon = dynamicIcon({
+      // biome-ignore lint/correctness/noComponentHookFactories: each case builds its own icon from stub imports
       Stub: () => Promise.resolve({ Stub: StubIcon }),
     });
     const { container } = await render(
@@ -100,6 +101,7 @@ describe('createDynamicIcon', () => {
 
   it('forwards icon props but not its own props', async () => {
     const Icon = dynamicIcon({
+      // biome-ignore lint/correctness/noComponentHookFactories: each case builds its own icon from stub imports
       StubMono: () => Promise.resolve({ StubMono: StubIcon }),
     });
     const { container } = await render(
@@ -120,6 +122,7 @@ describe('createDynamicIcon', () => {
 
   it('forwards a ref to the loaded <svg>', async () => {
     const Icon = dynamicIcon({
+      // biome-ignore lint/correctness/noComponentHookFactories: each case builds its own icon from stub imports
       Stub: () => Promise.resolve({ Stub: StubIcon }),
     });
     const ref = createRef<SVGSVGElement>();
@@ -151,6 +154,7 @@ describe('createDynamicIcon', () => {
     it('renders for an unknown variant', async () => {
       vi.spyOn(console, 'warn').mockImplementation(noop);
       const Icon = dynamicIcon(
+        // biome-ignore lint/correctness/noComponentHookFactories: each case builds its own icon from stub imports
         { StubCircle: () => Promise.resolve({ StubCircle: StubIcon }) },
         'Stub',
         ['Circle'],
@@ -165,6 +169,7 @@ describe('createDynamicIcon', () => {
     it('renders when the icon lacks the variant', async () => {
       vi.spyOn(console, 'warn').mockImplementation(noop);
       const Icon = dynamicIcon(
+        // biome-ignore lint/correctness/noComponentHookFactories: each case builds its own icon from stub imports
         { Stub: () => Promise.resolve({ Stub: StubIcon }) },
         'Stub',
         ['Circle'],
@@ -177,6 +182,7 @@ describe('createDynamicIcon', () => {
 
     it('renders when the module lacks the export', async () => {
       vi.spyOn(console, 'warn').mockImplementation(noop);
+      // biome-ignore lint/correctness/noComponentHookFactories: each case builds its own icon from stub imports
       const Icon = dynamicIcon({ Stub: () => Promise.resolve({}) });
       const { container } = await render(createElement(Icon, { fallback }));
       expect(container.textContent).toBe('fallback');
@@ -246,6 +252,7 @@ describe('createDynamicIcon', () => {
     it('warn once per chunk without its export', async () => {
       const warn = vi.spyOn(console, 'warn').mockImplementation(noop);
       const Icon = dynamicIcon(
+        // biome-ignore lint/correctness/noComponentHookFactories: each case builds its own icon from stub imports
         { Missing: () => Promise.resolve({}) },
         'Missing',
       );
@@ -293,6 +300,7 @@ describe('createDynamicIcon', () => {
       await render(
         createElement(
           dynamicIcon(
+            // biome-ignore lint/correctness/noComponentHookFactories: each case builds its own icon from stub imports
             { ProdMissing: () => Promise.resolve({}) },
             'ProdMissing',
           ),
@@ -301,6 +309,7 @@ describe('createDynamicIcon', () => {
       await render(
         createElement(
           dynamicIcon(
+            // biome-ignore lint/correctness/noComponentHookFactories: each case builds its own icon from stub imports
             { ProdFailing: () => Promise.reject(new Error('offline')) },
             'ProdFailing',
           ),
