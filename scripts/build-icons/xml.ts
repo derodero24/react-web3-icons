@@ -110,7 +110,7 @@ class Parser {
       throw this.error('expected tag name');
     }
     const attrs: XmlAttr[] = [];
-    for (;;) {
+    while (true) {
       this.match(SPACE);
       if (this.eat('/>')) {
         return { tag, attrs, children: [] };
@@ -181,7 +181,7 @@ class Parser {
   /** Parses the children of `<tag>` up to and including its closing tag. */
   parseChildren(tag: string): XmlNode[] {
     const children: XmlNode[] = [];
-    for (;;) {
+    while (true) {
       this.match(SPACE);
       if (this.eat(`</${tag}`)) {
         this.match(SPACE);

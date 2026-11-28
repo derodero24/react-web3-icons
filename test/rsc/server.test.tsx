@@ -153,6 +153,7 @@ describe('React Server Components', () => {
   });
 
   it('reports a component that uses a client-only hook', async () => {
+    // biome-ignore lint/correctness/noComponentHookFactories: the case renders a component that exists only for it
     function ClientOnly() {
       React.useState(0);
       return null;

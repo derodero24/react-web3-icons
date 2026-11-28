@@ -261,6 +261,7 @@ export function createDynamicIcon(
     return { exportName, importIcon };
   }
 
+  // biome-ignore lint/correctness/noComponentHookFactories: the factory runs once per category at module scope, so each DynamicIcon keeps one identity
   const DynamicIcon = forwardRef<SVGSVGElement, DynamicIconProps<string>>(
     (props, ref) => {
       const { fallback = null } = props;
