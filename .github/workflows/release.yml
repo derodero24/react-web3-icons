@@ -48,7 +48,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: '24.x'
+          node-version: '26.x'
           cache: pnpm
 
       - name: Install deps
@@ -141,7 +141,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: '24.x'
+          node-version: '26.x'
           cache: pnpm
 
       # `changeset version` and @changesets/changelog-github need the
@@ -207,14 +207,14 @@ jobs:
           name: release
           path: release
 
-      # Node 24 bundles npm 11.5.1 or later, which trusted publishing needs.
+      # Node 26 bundles npm 11.5.1 or later, which trusted publishing needs.
       # No registry-url: npm publishes to its default registry and gets its
       # credential through OIDC, so no .npmrc with a token is written. No
       # `cache: pnpm`: nothing is installed here.
       - name: Setup Node.js
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: '24.x'
+          node-version: '26.x'
 
       # Both checks tell "not there" (HTTP 404) from errors: anything else
       # but 200 (an outage, a rate limit, an auth problem) stops the job
